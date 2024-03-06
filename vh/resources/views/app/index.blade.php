@@ -15,10 +15,10 @@
     </div>
     <div class="w-2/4 p-5">
         <ul class="w-full h-16 flex justify-center items-center">
-            <li class="inline-block ml-16 text-2xl font-semibold">Home</li>
-            <li class="inline-block ml-16 text-2xl font-semibold">Login</li>
-            <li class="inline-block ml-16 text-2xl font-semibold">Registro</li>
-            <li class="inline-block ml-16 text-2xl font-semibold">Servicios</li>
+            <li class="inline-block ml-16 text-2xl font-semibold cursor-pointer">Home</li>
+            <li class="inline-block ml-16 text-2xl font-semibold cursor-pointer">Login</li>
+            <li class="inline-block ml-16 text-2xl font-semibold cursor-pointer">Registro</li>
+            <li class="inline-block ml-16 text-2xl font-semibold cursor-pointer">Servicios</li>
         </ul>
         <h1 class="text-black text-8xl uppercase italic font-bold mt-40">Esto es</h1>
         <h1 class="text-black text-8xl uppercase italic font-bold">vital health</h1>
