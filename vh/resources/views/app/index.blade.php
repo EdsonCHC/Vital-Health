@@ -7,7 +7,7 @@
     @vite('resources/css/app.css')
 </head>
 <body class="flex w-full h-screen">
-    <div class="bg-lime-300 w-2/4 grid place-items-center rounded-tr-lg rounded-br-lg">
+    <div class="bg-lime-600 w-2/4 grid place-items-center rounded-tr-lg rounded-br-lg">
         <div>    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-activity-heartbeat" width="400" height="350" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
   <path d="M3 12h4.5l1.5 -6l4 12l2 -9l1.5 3h4.5" /></svg>
