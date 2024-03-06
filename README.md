@@ -37,7 +37,7 @@
 <h3 align="center">Vital Health</h3>
 
   <p align="center">
-    Vital Health is a comprehensive system designed to improve online health services.
+    Vital Health is a comprehesnsive system designed to improve online health services.
     <br />
     <a href="https://github.com/EdsonCHC/Crea-J-2024"><strong>Explore the docs »</strong></a>
     <br />
