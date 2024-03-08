@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prueba</title>
     @vite('resources/css/app.css')
+    @vite(['resources/js/app.js'])
 </head>
 <body class="flex w-full h-screen">
     <div class="bg-lime-600 w-2/4 grid place-items-center rounded-tr-lg rounded-br-lg">
@@ -15,10 +16,10 @@
     </div>
     <div class="w-2/4 p-5">
         <ul class="w-full h-16 flex justify-center items-center">
-            <li class="inline-block ml-16 text-2xl font-semibold cursor-pointer">Home</li>
-            <li class="inline-block ml-16 text-2xl font-semibold cursor-pointer">Login</li>
-            <li class="inline-block ml-16 text-2xl font-semibold cursor-pointer">Registro</li>
-            <li class="inline-block ml-16 text-2xl font-semibold cursor-pointer">Servicios</li>
+            <li class="inline-block ml-16 text-2xl font-semibold cursor-pointer"><a href="/">Home</a></li>
+            <li class="inline-block ml-16 text-2xl font-semibold cursor-pointer"><a href="/login">Login</a></li>
+            <li class="inline-block ml-16 text-2xl font-semibold cursor-pointer"><a href="/register">Registro</a></li>
+            <li class="inline-block ml-16 text-2xl font-semibold cursor-pointer"><a href="/services">Servicios</a></li>
         </ul>
         <h1 class="text-black text-8xl uppercase italic font-bold mt-40">Esto es</h1>
         <h1 class="text-black text-8xl uppercase italic font-bold">vital health</h1>
