@@ -2,12 +2,14 @@
 
 Vital Health es un sistema integral diseñado para mejorar los servicios sanitarios en línea.
 
+- Para mas documentación visite [Instructivo](https://docs.google.com/document/d/1zdvTis02II8IlQPbXBZkFJTD4d4K0ZHSfBJH7Vhv7M8/edit?usp=sharing)
+
 ## Comenzado
 
 Antes que nada necesitaras las ultimas versiones de php, composer y node.js
  para poder ejecutar todos los paquetes.
 
-### Intallar
+### Installar
 
 Una vez clonado el repositorio, dentro de la carpeat raiz "vh" instalamos el framework tailwind
 
