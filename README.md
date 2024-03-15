@@ -3,6 +3,7 @@
 Vital Health es un sistema integral diseñado para mejorar los servicios sanitarios en línea.
 
 - Para mas documentación visite [Instructivo](https://docs.google.com/document/d/1zdvTis02II8IlQPbXBZkFJTD4d4K0ZHSfBJH7Vhv7M8/edit?usp=sharing)
+- Programador de Tareas [Programador](https://trello.com/b/2sGFh55K/crea-j-2024)
 
 ## Comenzado
 
