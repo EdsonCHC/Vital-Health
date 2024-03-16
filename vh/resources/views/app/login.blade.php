@@ -11,7 +11,7 @@
     <div class="w-full h-screen flex flex-col items-center flex-1 lg:w-3/5">
         <object data="" type=""></object><!--LOGO-->
         <div id="form-div" class="grid place-items-center w-full">
-            <h4 class="text-2xl font-bold mb-8">Inicio de sesión</h4>
+            <h1 class="text-2xl font-bold mb-8">Inicio de sesión</h1>
             <form action="" class="text-center w-full flex flex-col items-center">
                 <Input  class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-2" type="text" placeholder="Nombre de Usuario o Email"></Input>
                 <input  class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-10" placeholder="Contraseña" type="password">
@@ -26,7 +26,7 @@
             <hr class="border border-vh-green opacity-25 w-14">
         </div>
         <div id="my-signin2"></div>
-        <p id="si" class="flex grow items-end text-vh-green text-center">© 2024 Vital Health Todos los derechos reservados</p>
+        <p class="flex grow items-end text-vh-green text-center">© 2024 Vital Health Todos los derechos reservados</p>
     </div>
     <div class="hidden lg:block bg-lime-500 w-2/5 rounded-xl p-11">
         <div class="lg:bg-black opacity-20 w-full h-full rounded-xl"></div>
