@@ -7,7 +7,7 @@
     <title>Inicio de sesión</title>
     @vite('resources/css/app.css')
 </head>
-<body class="flex flex-col bg-white w-full h-screen p-2 lg:h-screen lg:p-8 ">
+<body class="flex flex-col bg-white w-full h-screen p-2 lg:h-screen lg:p-8 lg:flex-row">
     <div class="w-full h-screen flex flex-col items-center flex-1 lg:w-3/5">
         <object data="" type=""></object><!--LOGO-->
         <div id="form-div" class="grid place-items-center w-full">
@@ -28,8 +28,13 @@
         <div id="my-signin2"></div>
         <p class="flex grow items-end text-vh-green text-center">© 2024 Vital Health Todos los derechos reservados</p>
     </div>
-    <div class="hidden lg:block bg-lime-500 w-2/5 rounded-xl p-11">
+    <div class="hidden lg:block bg-vh-green w-2/5 rounded-xl p-11 overflow-hidden">
         <div class="lg:bg-black opacity-20 w-full h-full rounded-xl"></div>
+        <div class="hidden lg:block">
+          <object data="{{asset('storage/svg/circle.svg')}}" type="image/svg+xml" width="100" height="100"></object>
+          <object data="{{asset('storage/svg/circle.svg')}}" type="image/svg+xml" width="150" height="150"></object>
+          <object data="{{asset('storage/svg/circle.svg')}}" type="image/svg+xml" width="200" height="200"></object>
+        </div>
     </div>
     <!--COSO DE GOOGLE-->
     <script> 
