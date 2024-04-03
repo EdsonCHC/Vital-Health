@@ -19,7 +19,7 @@
                 Ingresar</button>
             </form>
         </div>
-        <p class="mb-8">¿No posees cuenta aun? <a href="/registro" class="text-vh-green font-bold">Crear Cuenta</a></p>
+        <p class="mb-8">¿No posees cuenta aun ? <a href="/registro" class="text-vh-green font-bold">Crear Cuenta</a></p>
         <div class="flex gap-1 items-center">
             <hr class="border border-vh-green opacity-25 w-14">
             <p>Ingresa También con</p>
