@@ -43,7 +43,7 @@ repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
   - **Billie Thompson** - *Provided README Template* -
     [PurpleBooth](https://github.com/PurpleBooth)
   - **Edson Chavez** - *Team Leader* -
-    [EdsonCHC](https://github.com/EdsonCHC)
+    [EdsonCHC](https://github.com/EdsonCHC)-Data Base
 
 ## Contribuidores 
 [contributors](https://github.com/EdsonCHC/Vital-Health/contributors)
@@ -57,5 +57,5 @@ details
 
 ## Agradecimientos
 
-  - Agradecemos a Juan Jose Galdamez soto alias Happy por su constatnte desempeño
+  - Agradecemos a Amañenga alias alv por su constatnte desempeño
  
