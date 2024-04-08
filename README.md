@@ -16,9 +16,6 @@ Una vez clonado el repositorio, dentro de la carpeat raiz "vh" instalamos el fra
 
     npx tailwindcss init -p
 
-End with an example of getting some data out of the system or using it
-for a little demo
-
 ## Ejecutar el proyecto
 Dentro de nuestra carpeta raiz ejecutamos e instalamos node
 
@@ -27,13 +24,13 @@ Dentro de nuestra carpeta raiz ejecutamos e instalamos node
 El proximo paso es ejecutar el servidor de vite
 
     npm run dev
-Luego el servidor de laravel
+Luego abrimos otra terminal, el servidor de laravel
 
     php artisan serve
 
 ### Errores
 
-Si todo eso no funciona asegurate de estar en la carpeta raiz y terner todas la dependecias actualizadas, si es asi verifica de tener el archivo env.example y cmabiar el nombre a solo env.
+Si todo eso no funciona asegurate de estar en la carpeta raiz y terner todas la dependecias actualizadas
 
 ## Versioning
 
@@ -45,10 +42,12 @@ repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
 
   - **Billie Thompson** - *Provided README Template* -
     [PurpleBooth](https://github.com/PurpleBooth)
+  - **Edson Chavez** - *Team Leader* -
+    [EdsonCHC](https://github.com/EdsonCHC)
 
-See also the list of
-[contributors](https://github.com/PurpleBooth/a-good-readme-template/contributors)
-who participated in this project.
+## Contribuidores 
+[contributors](https://github.com/EdsonCHC/Vital-Health/contributors)
+
 
 ## Licencia
 
@@ -58,6 +57,5 @@ details
 
 ## Agradecimientos
 
-  - Hat tip to anyone whose code is used
-  - Inspiration
-  - etc
+  - Agradecemos a Juan Jose Galdamez soto alias Happy por su constatnte desempeño
+ 
