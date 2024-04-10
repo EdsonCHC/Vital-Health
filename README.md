@@ -10,16 +10,7 @@ Vital Health es un sistema integral diseñado para mejorar los servicios sanitar
 Antes que nada necesitaras las ultimas versiones de php, composer y node.js
  para poder ejecutar todos los paquetes.
 
-### Installar
-
-Una vez clonado el repositorio, dentro de la carpeat raiz "vh" instalamos el framework tailwind
-
-    npx tailwindcss init -p
-
 ## Ejecutar el proyecto
-Dentro de nuestra carpeta raiz ejecutamos e instalamos node
-
-      npm install npm@latest -g
 
 El proximo paso es ejecutar el servidor de vite
 
