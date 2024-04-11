@@ -1,0 +1,9 @@
+/* Este css es para personalizar los promt de sweetalert */
+
+.genere_custom_popup{
+   border-radius: 16px;
+}
+
+.genere_custom_button{
+    background-color: #155D1C !important;
+}
