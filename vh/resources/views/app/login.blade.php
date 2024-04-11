@@ -6,6 +6,9 @@
     <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
     <title>Inicio de sesión</title>
     @vite('resources/css/app.css')
+    <!-- CDNs -->
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body class="w-full h-screen p-2 flex flex-col bg-white lg:flex-row overflow-hidden">
     <div class="w-full h-screen flex flex-col items-center flex-1 lg:w-3/5">
@@ -51,6 +54,7 @@
       });
     }
   </script>
-    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> <!--API DE GOOGLE-->
+    <!-- <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> API DE GOOGLE -->
+    <script type="module" src="{{asset('/js/app.js')}}" defer></script>
 </body> 
 </html>
