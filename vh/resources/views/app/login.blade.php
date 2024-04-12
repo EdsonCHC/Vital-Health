@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
     <title>Inicio de sesión</title>
-    @vite('resources/css/app.css')
-    @vite('resources/css/swet.css')
+    @vite(['resources/css/app.css','resources/css/swet.css','resources/js/app.js']);
     <!-- CDNs -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
@@ -55,7 +54,6 @@
     }
   </script>
     <!-- <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> API DE GOOGLE -->
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="{{asset('/js/app.js')}}" defer></script>
 </body> 

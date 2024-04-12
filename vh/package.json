@@ -14,6 +14,8 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
-        "sweetalert": "^2.1.2"
+        "jquery": "^3.7.1",
+        "sweetalert": "^2.1.2",
+        "sweetalert2": "^11.10.7"
     }
 }
