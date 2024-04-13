@@ -13,8 +13,7 @@ La propuesta de solución planteada para abordar la problemática identificada a
 
 ## Comenzado
 
-Antes que nada necesitaras las ultimas versiones de php, composer y node.js
- para poder ejecutar todos los paquetes.
+Antes que nada necesitaras las ultimas versiones de php, composer, node.js, jquery y sweetalert para poder ejecutar todos los paquetes.
 
 ## Ejecutar el proyecto
 

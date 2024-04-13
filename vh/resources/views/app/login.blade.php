@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
     <title>Inicio de sesión</title>
-    @vite(['resources/css/app.css','resources/css/swet.css','resources/js/app.js']);
+    @vite(['resources/css/app.css','resources/css/swet.css','resources/js/app.js'])
     <!-- CDNs -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
@@ -17,7 +17,7 @@
             <form action="" class="text-center w-full flex flex-col items-center">
                 <Input  class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-2 lg:w-2/5" type="text" placeholder="Nombre de Usuario o Email"></Input>
                 <input  class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-10 lg:w-2/5" placeholder="Contraseña" type="password">
-                <button id="login" class="w-4/5 h-10 font-bold text-1xl shadow-xl mb-10 shadow-vh-green opacity-25 lg:w-2/5 hover:bg-vh-green hover:text-white hover:opacity-100 ease-in duration-150">
+                <button class="w-4/5 h-10 font-bold text-1xl shadow-xl mb-10 shadow-vh-green opacity-25 lg:w-2/5 hover:bg-vh-green hover:text-white hover:opacity-100 ease-in duration-150">
                 Ingresar</button>
             </form>
         </div>
@@ -54,7 +54,5 @@
     }
   </script>
     <!-- <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> API DE GOOGLE -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="module" src="{{asset('/js/app.js')}}" defer></script>
 </body> 
 </html>
