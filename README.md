@@ -38,16 +38,16 @@ repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
 
   - **Billie Thompson** - *Provided README Template* -
     [PurpleBooth](https://github.com/PurpleBooth)
-  - **Edson Chavez** -
+  - **Edson Chavez** - Lead Developer
     [EdsonCHC](https://github.com/EdsonCH)
-  - **Alejandro Alvarenga** -
-    [EdsonCHC](https://github.com)
-  - **Victor Guevara** -
-    [EdsonCHC](https://github.com)
-  - **Juan Galdamez** -
-    [EdsonCHC](https://github.com)
-  - **Geovanni Jacinto** -
-    [EdsonCHC](https://github.com)
+  - **Alejandro Alvarenga** - Developer
+    [Marvel983](https://github.com)
+  - **Victor Guevara** - Tester/QA
+    [glizzywalk21](https://github.com/glizzywalk21)
+  - **Juan Galdamez** - Project Manager
+    [Happy162006](https://github.com/Happy162006)
+  - **Geovanni Jacinto** - User Experience Designer
+    [Geox](https://github.com/Geox)
 
 ## Contribuidores 
 [contributors](https://github.com/EdsonCHC/Vital-Health/contributors)
@@ -61,5 +61,5 @@ details
 
 ## Agradecimientos
 
-  - Agradecemos a Alvarenga Ventura alias Amañenga por su constatnte desempeño y participacion dentro del proyecto
+  - Agradecemos a **Alvarenga Ventura** alias "Amañenga" por su constante desempeño y participación dentro del proyecto
  
