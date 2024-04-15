@@ -13,9 +13,11 @@ La propuesta de solución planteada para abordar la problemática identificada a
 
 ## Comenzado
 
-Antes que nada necesitaras las ultimas versiones de php, composer, node.js, jquery y sweetalert para poder ejecutar todos los paquetes.
+Antes que nada necesitaras las ultimas versiones de php, composer, node.js en tu computadora para poder ejecutar todos los paquetes.
 
 ## Ejecutar el proyecto
+
+Al clonar el proyecto verás una carpeta llamada **"vh"**, debes de estar dentro de ella.
 
 El proximo paso es ejecutar el servidor de vite
 
