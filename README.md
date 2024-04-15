@@ -57,9 +57,7 @@ repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
 
 ## Licencia
 
-This project is licensed under the [CC0 1.0 Universal](LICENSE.md)
-Creative Commons License - see the [LICENSE.md](LICENSE.md) file for
-details
+Este proyecto está bajo la licencia GNU GENERAL PUBLIC LICENSE (License.md)[https://github.com/EdsonCHC/Vital-Health/blob/main/LICENSE]
 
 ## Agradecimientos
 
