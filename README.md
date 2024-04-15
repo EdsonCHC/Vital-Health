@@ -57,7 +57,7 @@ repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
 
 ## Licencia
 
-Este proyecto está bajo la licencia GNU GENERAL PUBLIC LICENSE (License.md)[https://github.com/EdsonCHC/Vital-Health/blob/main/LICENSE]
+Este proyecto está bajo la licencia GNU GENERAL PUBLIC LICENSE [License.md](https://github.com/EdsonCHC/Vital-Health/blob/main/LICENSE)
 
 ## Agradecimientos
 
