@@ -24,3 +24,7 @@ Route::get('/login', function () {
 Route::get('/registro', function () {
     return view('app.registro');
 });
+
+Route::get('/medicina', function() {
+    return view('app.medicine');
+});
