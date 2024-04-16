@@ -7,7 +7,7 @@
     @vite('resources/css/app.css')
 </head>
 <body class="w-full h-screen">
-    <div class="w-full h-40 bg-green-300 rounded-b-xl flex flex-row items-center p-2 mb-5">
+    <header class="w-full h-40 bg-green-300 rounded-b-xl flex flex-row items-center p-2 mb-5 lg:hidden">
         <h2 class="text-2xl font-bold text-white w-3/5">
             Entrega de medicamentos
         </h2>
@@ -18,7 +18,20 @@
             <p>3rd year</p> <!--Esto para que?-->
             </div>
         </div>        
-    </div>
+    </header>
+    <header class="hidden lg:block w-full h-auto">
+        <ul>
+            <li class="font-bold font-mono"><a href="#">Index</a></li>
+            <li class="font-bold font-mono"><a href="#">Servicios</a></li>
+            <li class="font-bold font-mono"><a href="#">Atencion al Cliente</a></li>
+            <li class="font-bold font-mono"><a href="#">Reporte</a></li>
+            <li class="font-bold font-mono"><a href="#">Acerca De</a></li>
+        </ul>
+        <div>
+            <a href="#"><img src="{{asset('storage/svg/noti.svg')}}" alt="noti_icon"></a>
+            <a href="#"><img src="{{asset('storage/svg/config.svg')}}" alt="config_icon"></a>
+        </div>
+    </header>
     <div class="w-full h-auto flex flex-row justify-between p-2">
         <p class="text-sm text-center font-bold">Medicamentos Asignados</p>
         <button class="w-72 text-white text-sm font-bold bg-green-300 rounded-lg">
