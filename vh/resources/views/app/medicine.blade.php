@@ -19,16 +19,15 @@
             </div>
         </div>        
     </header>
-    <header class="hidden lg:block w-full h-auto">
+    <header class="hidden lg:block w-full h-auto p-3">
         <ul>
-            <li class="font-bold font-mono"><a href="#">Index</a></li>
-            <li class="font-bold font-mono"><a href="#">Servicios</a></li>
-            <li class="font-bold font-mono"><a href="#">Atencion al Cliente</a></li>
-            <li class="font-bold font-mono"><a href="#">Reporte</a></li>
-            <li class="font-bold font-mono"><a href="#">Acerca De</a></li>
-            
+            <li class="inline font-bold font-mono"><a href="#">Index</a></li>
+            <li class="inline font-bold font-mono"><a href="#">Servicios</a></li>
+            <li class="inline font-bold font-mono"><a href="#">Atencion al Cliente</a></li>
+            <li class="inline font-bold font-mono"><a href="#">Reporte</a></li>
+            <li class="inline font-bold font-mono"><a href="#">Acerca De</a></li>
         </ul>
-        <div>
+        <div class="">
             <a href="#"><img src="{{asset('storage/svg/noti.svg')}}" alt="noti_icon"></a>
             <a href="#"><img src="{{asset('storage/svg/config.svg')}}" alt="config_icon"></a>
         </div>

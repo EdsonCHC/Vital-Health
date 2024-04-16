@@ -16,7 +16,7 @@
             <img src="{{asset('storage/svg/chat.svg')}}" type="image/svg+xml"/>
         </a>
     </div>
-    <div class="hidden lg:block w-full h-auto text-center">
+    <div class="hidden lg:flex w-full h-full items-center justify-center">
         <p>&copy 2024 Vital Health Todos los derechos reservados</p>
     </div>
 </footer>
