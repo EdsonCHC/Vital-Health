@@ -26,6 +26,7 @@
             <li class="font-bold font-mono"><a href="#">Atencion al Cliente</a></li>
             <li class="font-bold font-mono"><a href="#">Reporte</a></li>
             <li class="font-bold font-mono"><a href="#">Acerca De</a></li>
+            
         </ul>
         <div>
             <a href="#"><img src="{{asset('storage/svg/noti.svg')}}" alt="noti_icon"></a>
