@@ -17,7 +17,7 @@
             <form action="" class="text-center w-full flex flex-col items-center">
                 <Input  class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-2 lg:w-2/5" type="text" placeholder="Nombre de Usuario o Email"></Input>
                 <input  class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-10 lg:w-2/5" placeholder="Contraseña" type="password">
-                <button class="w-4/5 h-10 font-bold text-1xl shadow-xl mb-10 shadow-vh-green opacity-25 lg:w-2/5 hover:bg-vh-green hover:text-white hover:opacity-100 ease-in duration-150">
+                <button class="w-4/5 h-10 font-bold text-1xl shadow-xl mb-10 shadow-vh-green opacity-25 lg:w-2/5">
                 Ingresar</button>
             </form>
         </div>
