@@ -16,8 +16,8 @@
             <h1 class="text-2xl font-bold mb-5">Inicio de sesión</h1>
             <form action="" class="text-center w-full flex flex-col items-center">
                 <Input  class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-2 lg:w-2/5" type="text" placeholder="Nombre de Usuario o Email"></Input>
-                <input  class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-10 lg:w-2/5" placeholder="Contraseña" type="password">
-                <button class="w-4/5 h-10 font-bold text-1xl shadow-xl mb-10 shadow-vh-green opacity-25 lg:w-2/5">
+                <input  class="block h-10 p-2 outli ne outline-1 outline-vh-green w-4/5 mb-10 lg:w-2/5" placeholder="Contraseña" type="password">
+                <button class="w-4/5 h-10 text-white bg-vh-green font-bold text-1xl shadow-xl mb-10 rounded-lg lg:w-2/5 hover:bg-white hover:text-vh-green">
                 Ingresar</button>
             </form>
         </div>
@@ -25,13 +25,13 @@
         <div class="flex gap-1 items-center">
             <hr class="border border-vh-green opacity-25 w-14">
             <p>Ingresa También con</p>
-            <hr class="border border-vh-green opacity-25 w-14">
+            <hr class="border border-vh-green   opacity-25 w-14">
         </div>
         <div id="my-signin2"></div>
-        <p class="flex grow items-end text-vh-green text-center lg:grow-0 mt-8">© 2024 Vital Health Todos los derechos reservados</p>
+        <p class="flex grow items-end text-vh-green text-center lg:grow-0 mt-8">&copy 2024 Vital Health Todos los derechos reservados</p>
     </div>
     <div class="hidden lg:block bg-vh-green w-2/5 rounded-xl p-11">
-        <div class="lg:bg-black opacity-20 w-full h-full rounded-xl"></div>
+        <div class="lg:bg-black opacity-20 w-full h-full rounded-xl"></div>1
     </div>
     <!--COSO DE GOOGLE-->
     <script> 
