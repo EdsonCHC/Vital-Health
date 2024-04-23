@@ -8,13 +8,8 @@
     <!-- @vite(['resources/js/app.js']) not used now  -->
 </head>
 <body class="w-full h-screen flex flex-col">
-    <div class="h-2/5">
-        @include('templates.header')
-        <div class="">
-            <object data="" type="image/svg+xml"></object>
-        </div>
-    </div>
-    <div class="flex bg-vh-gray-light w-full h-52 hidden">
+    @include('templates.header')
+    <div class="flex bg-vh-gray-light w-full h-52">
         <div class="w-auto mx-auto mt-8">
             <img src="{{asset('storage/svg/doctor.svg')}}" type="image/svg+xml"/>
         </div>
@@ -24,27 +19,40 @@
             <div class="w-14 mb-2  bg-vh-green">a</div>
         </div>
     </div>
+
     <div class="flex justify-center items-center">
-    <div class="w-1/2">
-        <div class="ml-4 mt-4 mb-2">
-            <span class="font-bold text-lg">Brindamos Ayuda</span>
-            <span class="font-bold text-lg">En tu Futuro</span>
+        <div class="w-1/2">
+            <div class="ml-4 mt-4 mb-2">
+                <span class="font-bold text-lg">Brindamos Ayuda</span>
+                <span class="font-bold text-lg">En tu Futuro</span>
+            </div>
+            <a href="/login" target="_self" class="w-4/5 h-8 text-white bg-vh-green text-sm shadow-xl mb-10 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green inline-block text-center pt-1 mx-4">
+                Logueate ahora
+            </a>
         </div>
-        <a href="/login" target="_self" class="w-4/5 h-8 text-white bg-vh-green text-sm shadow-xl mb-10 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green inline-block text-center pt-1 mx-4">
-            Logueate ahora
-        </a>
+        <div class="w-1/2">
+            <p class="text-xs text-justify mb-4 font-bold text-gray-400 mx-4 -mt-1">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        </div>
     </div>
-    <div class="w-1/2">
-        <p class="text-xs text-justify mb-4 font-bold text-gray-400 mx-4 -mt-1">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-    </div>
-</div>
 <div class="flex justify-center text-center flex-col items-center">
-    <h2 class="font-bold text text-xl">Lorem Ipsum</h2>
+    <h2 class="font-bold text text-xl text-vh-green ">Lorem Ipsum</h2>
     <p class="text-sm font-bold text-gray-400 mx-4 mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-    <div class="mx-4 bg-green-100 py-4 my-4 rounded-lg shadow-lg px-8 ">
-          <h2 class="text-lg font-bold mb-2">Juan Jose Galdamez</h2>
+    <div class="w-3/4 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8 ">
+          <h2 class="text-lg font-bold mb-2 text-vh-green">Juan Jose Galdamez</h2>
           <p class="text-sm font-bold text-gray-400 mt-2">Primary Care Doctor</p>
-          <a class="text-xs sm:text-sm text-justify text-normal block">Very personable and good listener.
+          <a class="text-md text-justify font-bold text-vh-green-light block leading-7">Very personable and good listener.
+          Makes you feel comfortable and open immediately. Felt well taken care...</a>
+    </div>
+    <div class="w-3/4 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8 ">
+          <h2 class="text-lg font-bold mb-2 text-vh-green">Juan Jose Galdamez</h2>
+          <p class="text-sm font-bold text-gray-400 mt-2">Primary Care Doctor</p>
+          <a class="text-md text-justify font-bold text-vh-green-light block leading-7">Very personable and good listener.
+          Makes you feel comfortable and open immediately. Felt well taken care...</a>
+    </div>
+    <div class="w-3/4 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8 ">
+          <h2 class="text-lg font-bold mb-2 text-vh-green">Juan Jose Galdamez</h2>
+          <p class="text-sm font-bold text-gray-400 mt-2">Primary Care Doctor</p>
+          <a class="text-md text-justify font-bold text-vh-green-light block leading-7">Very personable and good listener.
           Makes you feel comfortable and open immediately. Felt well taken care...</a>
     </div>
 </div>
