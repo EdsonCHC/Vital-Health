@@ -1,4 +1,4 @@
-<footer class="w-full h-16 rounded-t-lg bg-[#F5F5F5] absolute bottom-0 p-1 lg:bg-blue-100">
+<footer class="w-full h-16 rounded-t-lg bg-[#F5F5F5] absolute bottom-0 p-1 lg:bg-blue-100 hidden">
     <div class="w-full flex items-center justify-around ">
         <a href="" class="w-1/5 flex justify-center">
             <img src="{{asset('storage/svg/hand.svg')}}" type="image/svg+xml"/>
