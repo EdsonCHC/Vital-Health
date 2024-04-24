@@ -14,9 +14,15 @@
             <img src="{{asset('storage/svg/doctor.svg')}}" type="image/svg+xml"/>
         </div>
         <div class="flex flex-col justify-center">
-            <div class="w-10 mb-4 ml-4 bg-vh-green-light">a</div>
-            <div class="w-12 mb-4 ml-2 bg-vh-green-medium">a</div>
-            <div class="w-14 mb-2  bg-vh-green">a</div>
+           <div class="w-10 mb-4 ml-4 bg-vh-green-light">
+               <span class="invisible">a</span>
+          </div>     
+          <div class="w-12 mb-4 ml-2 bg-vh-green-medium">
+               <span class="invisible">a</span>
+          </div> 
+          <div class="w-14 mb-2  bg-vh-green">
+               <span class="invisible">a</span>
+          </div>       
         </div>
     </div>
 
@@ -59,8 +65,8 @@
     <div>
         <div class="mb-2">
             <h2 class="font-bold text-xl text-vh-green">Lorem Ipsum</h2>
-            <p class="text-sm font-bold text-gray-400 mx-4 mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <a class="text-md my-1 text-vh-green-medium block leading-7">Very personable and good listener.</a>
+            <p class="text-sm  text-gray-400 mx-4 mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            <a class="text-md my-1 font-bold text-vh-green-medium block leading-7">Very personable and good listener.</a>
         </div>
         <div class="flex justify-center">
              <div class="flex flex-col w-full ">
