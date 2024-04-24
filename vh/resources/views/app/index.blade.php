@@ -47,6 +47,14 @@
         <p class="text-sm font-bold text-gray-400 mx-4 mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
     </div>
     <div class="flex justify-center">
+
+        <div class="w-3/4 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
+            <h2 class="text-lg font-bold mb-2 text-vh-green">Juan Jose Galdamez</h2>
+            <p class="text-sm font-bold text-gray-400 mt-2">Primary Care Doctor</p>
+            <a class="text-md text-justify text-vh-green block leading-7">Very personable and good listener. Makes you feel comfortable and open immediately. Felt well taken care...</a>
+        </div>
+    </div>
+    <div class="flex justify-center">
         <div class="w-3/4 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
             <h2 class="text-lg font-bold mb-2 text-vh-green">Juan Jose Galdamez</h2>
             <p class="text-sm font-bold text-gray-400 mt-2">Primary Care Doctor</p>
