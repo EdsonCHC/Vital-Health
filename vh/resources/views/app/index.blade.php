@@ -122,7 +122,8 @@
 </div>
 
 <div class=" mx-auto ">
-     <div class="w-11/12 mx-auto bg-vh-green py-11 my-4 ">
+     <div class="w-11/12 mx-auto py-2 ">
+        <object data="{{asset('storage/svg/ad.svg')}}" type="image/svg+xml"></object>
      </div> 
      <div class="flex justify-center text-center items-center flex-col">
          <h2 class="font-bold text-xl text-vh-green">¿Por qué elegir nuestros servicios?</h2>
@@ -186,7 +187,8 @@
   <a href="/login" target="_self" class="w-2/5 h-8 text-white bg-vh-green text-sm shadow-xl mt-5 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green inline-block text-center pt-1 mx-4">
              Unete ya             
    </a>
-   <div class="w-11/12 mx-auto bg-vh-green py-11 my-5 ">
+   <div class="w-11/12 mx-auto py-2">
+        <object data="{{asset('storage/svg/ad.svg')}}" type="image/svg+xml"></object>
     </div> 
 
 </div>
