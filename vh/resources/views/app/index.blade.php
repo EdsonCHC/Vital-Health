@@ -9,22 +9,22 @@
 </head>
 <body class="w-full h-screen flex flex-col">
     @include('templates.header')
-    <div class="flex bg-vh-gray-light w-full h-52">
-        <div class="w-auto mx-auto mt-8">
-            <img src="{{asset('storage/svg/doctor.svg')}}" type="image/svg+xml"/>
-        </div>
-        <div class="flex flex-col justify-center">
-           <div class="w-10 mb-4 ml-4 bg-vh-green-light">
-               <span class="invisible">a</span>
-          </div>     
-          <div class="w-12 mb-4 ml-2 bg-vh-green-medium">
-               <span class="invisible">a</span>
-          </div> 
-          <div class="w-14 mb-2  bg-vh-green">
-               <span class="invisible">a</span>
-          </div>       
-        </div>
+    <div class="flex  lg:py-11 bg-vh-gray-light w-full ">
+       <div class="ml-auto  mt-8  lg:ml-auto   ">
+          <img class="lg:h-full" src="{{asset('storage/svg/doctor.svg')}}" type="image/svg+xml"/>
+      </div>
+    <div class="flex flex-col ml-11 justify-center">
+      <div class="w-10 mb-4 ml-4 bg-vh-green-light">
+        <span class="invisible">a</span>
+      </div>     
+      <div class=" w-12 mb-4 ml-2 bg-vh-green-medium">
+        <span class="invisible">a</span>
+      </div> 
+      <div class=" w-14 mb-2  bg-vh-green">
+        <span class="invisible">a</span>
+      </div>       
     </div>
+  </div>
 
     <div class="flex justify-center items-center">
         <div class="w-1/2">
@@ -183,7 +183,7 @@
 </div>
 <div>
  <h3 class=" text-left m-4  text-vh-green font-bold" >Vital Healt</h3>
-  <h2 class=" text-center  font-bold  mt-3 mx-9 text-xl lg:bg-black">Únase a nosotros y brindaremos una asistencia sanitaria de calidad. </h2>
+  <h2 class=" text-center  font-bold  mt-3 mx-9 text-xl">Únase a nosotros y brindaremos una asistencia sanitaria de calidad. </h2>
   <a href="/login" target="_self" class="w-2/5 h-8 text-white bg-vh-green text-sm shadow-xl mt-5 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green inline-block text-center pt-1 mx-4">
              Unete ya             
    </a>
@@ -198,5 +198,6 @@
             <object data="" type="image/svg+xml"></object>
         </div>
 </div>
+
 </body>
 </html>
