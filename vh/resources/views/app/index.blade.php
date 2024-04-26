@@ -42,7 +42,7 @@
     <div class="flex justify-center text-center flex-col items-center">
     <div class="w-full h-auto">
     <div>
-        <h2 class="font-bold text-xl text-vh-green">Lorem Ipsum</h2>
+        <h2 class="font-bold  text-xl text-vh-green lg:font-bold  lg:text-4xl">Lorem Ipsum</h2>
         <p class="text-sm font-bold text-gray-400 mx-4 mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
     </div>
 
@@ -66,7 +66,7 @@
     </div>
     <div class="w-full text-center mb-8">
         <div class="mb-2">
-            <h2 class="font-bold text-xl text-vh-green">Lorem Ipsum</h2>
+            <h2 class="font-bold  text-xl text-vh-green lg:font-bold  lg:text-4xl">Lorem Ipsum</h2>
             <p class="text-sm  text-gray-400 mx-4 mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
             <a class="text-md my-1 font-bold text-vh-green-medium block leading-7">Very personable and good listener.</a>
         </div>
@@ -78,51 +78,49 @@
     </div>
     <div class="w-full flex flex-col lg:flex-row">
         <div class="m-8 flex items-center justify-center lg:w-1/2">
-            <h2 class="font-bold text-left text-xl  text-vh-green lg:font-bold lg:text-2xl">Las ventajas que posee con
-             nuestros servicios son:</h2>
+<h2 class="font-bold text-left text-xl text-vh-green lg:font-bold lg:text-4xl lg:ml-12">Las ventajas que posee con nuestros servicios son:</h2>
+</div>
+        <div class="w-full flex flex-wrap justify-center items-center gap-3 lg:w-1/2 lg:flex-row lg:flex-wrap lg:justify-start lg:ml-8 lg:mr-8 lg:flex-grow">
+    <!-- Elementos en dos filas y tres columnas -->
+    <div class="w-32 h-auto bg-gray-100 p-8 my-2 rounded-2xl shadow-lg flex justify-center lg:w-1/3">
+        <object data="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" class="w-10"></object>
+    </div>
+    <div class="w-32 h-auto bg-gray-100 p-8 my-2 rounded-2xl shadow-lg flex justify-center lg:w-1/3">
+        <object data="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" class="w-10"></object>
+    </div>
+    <div class="w-32 h-auto bg-gray-100 p-8 my-2 rounded-2xl shadow-lg flex justify-center lg:w-1/3">
+        <object data="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" class="w-10"></object>
+    </div>
+    <div class="w-32 h-auto bg-gray-100 p-8 my-2 rounded-2xl shadow-lg flex justify-center lg:w-1/3">
+        <object data="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" class="w-10"></object>
+    </div>
+    <div class="w-32 h-auto bg-gray-100 p-8 my-2 rounded-2xl shadow-lg flex justify-center lg:w-1/3">
+        <object data="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" class="w-10"></object>
+    </div>
+    <div class="w-32 h-auto bg-gray-100 p-8 my-2 rounded-2xl shadow-lg flex justify-center lg:w-1/3">
+        <object data="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" class="w-10"></object>
+    </div>
+</div>
+</div>
+</div>
+    <div class="w-full flex flex-col lg:flex-row  ">
+       <div class="m-8 flex items-center justify-center lg:w-1/2">
+       <object data="{{asset('storage/svg/ad.svg')}}" type="image/svg+xml" class="mx-auto my-0 w-full lg:w-3/4 lg:ml-auto"></object>
         </div>
-        <div class="w-full flex flex-wrap justify-center items-center gap-4 lg:w-1/2">
-            <!-- Primera columna -->
-            <div class="w-32 h-auto bg-gray-100 p-10 my-4 rounded-2xl shadow-lg flex justify-center">
-                <object data="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" class="w-10"></object>
-            </div>
-            <div class="w-32 h-auto bg-gray-100 p-10 my-4 rounded-2xl shadow-lg flex justify-center">
-                <object data="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" class="w-10"></object>
-            </div>
-            <div class="w-32 h-auto bg-gray-100 p-10 my-4 rounded-2xl shadow-lg flex justify-center">
-                <object data="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" class="w-10"></object>
-            </div>
-                <!-- Segunda columna -->
-            <div class="w-32 h-auto bg-gray-100 p-10 my-4 rounded-2xl shadow-lg flex justify-center">
-                <object data="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" class="w-10"></object>
-            </div>
-            <div class="w-32 h-auto bg-gray-100 p-10 my-4 rounded-2xl shadow-lg flex justify-center">
-                <object data="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" class="w-10"></object>
-            </div>
-            <div class="w-32 h-auto bg-gray-100 p-10 my-4 rounded-2xl shadow-lg flex justify-center">
-                <object data="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" class="w-10"></object>
-            </div>
+        <div class="flex justify-center text-left items-center flex-col">
+        <h2 class="font-bold  text-xl text-vh-green lg:font-bold lg:text-left lg:text-4xl lg:ml-12">Por qué elegir nuestros servicios?</h2>
+    <div class="flex justify-center lg:text-center items-center">
+        <div class="flex flex-col">
+            <p class="text-base lg:text-2xl font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area looking for a new provider.</p>
+            <p class="text-base lg:text-2xl font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area looking for a new provider.</p>
+            <p class="text-base lg:text-2xl font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area looking for a new provider.</p>
         </div>
     </div>
-    </div>
-    <div class=" mx-auto ">
-     <div class="w-full py-2 ">
-        <object data="{{asset('storage/svg/ad.svg')}}" type="image/svg+xml"
-        class="mx-auto my-0"></object>
-     </div> 
-     <div class="flex justify-center text-center items-center flex-col">
-         <h2 class="font-bold text-xl text-vh-green">¿Por qué elegir nuestros servicios?</h2>
-             <div class="flex justify-center text-left items-center">
-                <div class="flex flex-col">
-                       <p class="text-xs font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area looking for a new provider.</p>
-                       <p class="text-xs font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area looking for a new provider.</p>
-                       <p class="text-xs font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area looking for a new provider.</p>
-               </div>
-            </div>
-            <a href="/login" target="_self" class="w-2/5 h-8 text-white bg-vh-green text-sm shadow-xl m-5 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green inline-block text-center pt-1 mx-4">
-             Comienza ya             
-            </a>
-     </div>
+    <a href="/login" target="_self" class="w-2/5 lg:w-2/3 h-12 text-white bg-vh-green text-base lg:text-3xl shadow-xl m-5 rounded-full hover:bg-white hover:text-vh-green inline-block text-center pt-2 lg:pt-1 mx-4">
+    Comienza ya
+</a>
+</div>
+
     </div>
     <div class="w-11/12 mx-auto m-2 pt-5 pb-10 bg-blue-100 rounded-2xl shadow-lg px-8">
     <h2 class="font-bold text-center text-xl  pb-8 text-vh-green">Servicios</h2>
@@ -165,14 +163,26 @@
             </ul>
         </div>
     </div>
-    <div>
-        <h3 class=" text-left m-4  text-vh-green font-bold" >Vital Healt</h3>
+    
+    <div class="w-full flex flex-col lg:flex-row  ">
+        <div class="flex flex-col">
+
+         <h3 class=" text-left m-4  text-vh-green font-bold" >Vital Healt</h3>
         <h2 class=" text-center  font-bold  mt-3 mx-9 text-xl">Únase a nosotros y brindaremos una asistencia sanitaria de calidad. </h2>
-        <a href="/login" target="_self" class="w-2/5 h-8 text-white bg-vh-green text-sm shadow-xl mt-5 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green inline-block text-center pt-1 mx-4">Unete ya           </a>
-        <div class="w-full py-2">
-            <object data="{{asset('storage/svg/ad.svg')}}" type="image/svg+xml" class="mx-auto my-0"></object>
+        <div class="flex justify-center  ">
+        <a href="/login" target="_self" class="w-2/5 h-8 text-white bg-vh-green text-sm shadow-xl mt-5 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green inline-block text-center pt-1 mx-4">
+         Unete ya </a>
+         </div> 
+         </div> 
+
+
+         <div class="m-8 flex items-center justify-center lg:w-1/2">
+             <object data="{{asset('storage/svg/ad.svg')}}" type="image/svg+xml" class="mx-auto my-0 w-full lg:w-3/4 lg:ml-auto"></object>
         </div> 
+
+
     </div>
     @include('templates.footer') 
 </body>
 </html>
+      
