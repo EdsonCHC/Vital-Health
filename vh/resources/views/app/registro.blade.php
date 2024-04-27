@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    @vite(['resources/css/app.css', 'resources/css/swet.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/css/swet.css', 'resources/js/register.js'])
 </head>
 <body class="w-full h-screen">
     <div class="w-full h-screen p-2 flex flex-col bg-white lg:flex-row">
@@ -18,7 +18,7 @@
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 "type="text" placeholder="Fecha de nacimiento">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 "type="email" placeholder="Email">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-10 lg:w-2/5 "type="password" placeholder="Contraseña">
-                    <button id="register" class="w-full p-2 rounded-md bg-vh-green text-white font-bold  lg:w-2/5">Registrarse</button>
+                    <button id="register" class="w-full p-2 rounded-md bg-vh-green text-white font-bold  lg:w-2/5" id="show-alert">Registrarse</button>
                 </form>
             </div>
             <p class="flex grow items-end text-vh-green text-center lg:block">© 2024 Vital Health Todos los derechos reservados</p>
@@ -27,8 +27,5 @@
             <div class="lg:bg-black opacity-20 w-full h-full rounded-xl"></div>
         </div>
     </div>
-    <!-- scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="module" src="{{asset('/js/app.js')}}" defer></script>
 </body>
 </html>
