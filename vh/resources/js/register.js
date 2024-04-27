@@ -1,3 +1,6 @@
+import Swal from 'sweetalert2';
+import jQuery from 'jquery';
+window.$ = jQuery;
 $(document).ready(function () {
     
     $("#register").click((e) => {
