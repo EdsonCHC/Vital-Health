@@ -48,7 +48,7 @@
             </div>
         </section>
     </main>
-    <div class="w-auto h-auto absolute bottom-0">
+    <div class="w-full h-auto absolute bottom-0">
         @include('templates.footer')
     </div>
 </body>

@@ -14,18 +14,20 @@
             Solicitudes de medicamentos
         </button>
     </div>
-    <div id="medicine_container" class="w-full h-auto p-5">
-        <div class="w-full h-auto bg-gray-300 rounded-lg p-2 flex gap-2 items-center">
-            <object data="{{asset('storage/svg/medicine_example.svg')}}" type="image/svg+xml"></object>
-            <div>
-                <p class="text-lg font-bold">Pedido #1</p>
-                <p>Medicamento</p>
-                <p>Total: 3</p>
-                <p class="text-blue-500">3h 10m 3s</p>
+    <div class="w-full h-auto">
+        <div id="medicine_container" class="w-full h-auto p-5 md:w-80 lg:w-80">
+            <div class="w-full h-auto bg-gray-300 rounded-lg p-2 flex gap-2 items-center">
+                <object data="{{asset('storage/svg/medicine_example.svg')}}" type="image/svg+xml"></object>
+                <div>
+                    <p class="text-lg font-bold">Pedido #1</p>
+                    <p>Medicamento</p>
+                    <p>Total: 3</p>
+                    <p class="text-blue-500">3h 10m 3s</p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="w-auto h-auto absolute bottom-0">
+    <div class="w-full h-auto absolute bottom-0">
         @include('templates.footer')    
     </div>
 </body>

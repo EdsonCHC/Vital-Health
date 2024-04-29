@@ -8,7 +8,9 @@
     <!-- @vite(['resources/js/app.js']) not used now  -->
 </head>
 <body class="w-full h-full">
-    @include('templates.header')
+    <div class="w-full h-full absolute top-0 z-10">
+        @include('templates.header')
+    </div>
     <div class="flex  lg:py-11 bg-vh-gray-light w-full ">
        <div class="ml-auto  mt-8  lg:ml-auto   ">
           <img class="lg:h-full" src="{{asset('storage/svg/doctor.svg')}}" type="image/svg+xml"/>

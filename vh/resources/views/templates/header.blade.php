@@ -8,15 +8,15 @@
                 <li class="font-bold mb-4">Inicio de sesión</li>
                 <li class="font-bold mb-4">Registro</li>
             </ul>
-            <div class="w-2/5 h-auto flex flex-row items-center">
+            <div class="hidden w-2/5 h-auto lg:flex lg:flex-row items-center justify-end gap-4">
                 <object data="{{asset('storage/svg/user.svg')}}" type="image/svg+xml"></object>
                 <div>
                     <p class="font-bold">John Doe</p>
                     <p>3rd year</p> <!--Esto para que?-->
                 </div>
                 <div class="">
-                    <a href="#"><img src="{{asset('storage/svg/noti.svg')}}" alt="noti_icon"></a>
-                    <a href="#"><img src="{{asset('storage/svg/config.svg')}}" alt="config_icon"></a>
+                    <a href="#"><img src="{{asset('storage/svg/noti.svg')}}" alt="noti_icon" class="w-8 p-1 bg-gray-300 rounded-full"></a>
+                    <a href="#"><img src="{{asset('storage/svg/config.svg')}}" alt="config_icon" class="w-8 p-1 bg-gray-300 rounded-full"></a>
                 </div>
             </div>
         </div>
