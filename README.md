@@ -30,12 +30,6 @@ Luego abrimos otra terminal, el servidor de laravel
 
 Si todo eso no funciona asegurate de estar en la carpeta raiz y terner todas la dependecias actualizadas
 
-## Versioning
-
-We use [Semantic Versioning](http://semver.org/) for versioning. For the versions
-available, see the [tags on this
-repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
-
 ## Autores
 
   - **Billie Thompson** - *Provided README Template* -
