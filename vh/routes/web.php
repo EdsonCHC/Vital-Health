@@ -32,3 +32,15 @@ Route::get('/about', function() {
     return view('app.about');
 });
 
+
+Route::get('/examen', function() {
+    return view('app.exams');
+});
+
+Route::get('/examen', function() {
+    return view('app.exams');
+});
+
+Route::get('/service', function() {
+    return view('app.service');
+});
