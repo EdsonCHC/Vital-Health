@@ -28,3 +28,7 @@ Route::get('/registro', function () {
 Route::get('/medicina', function() {
     return view('app.medicine');
 });
+
+Route::get('/examen', function() {
+    return view('app.exams');
+});
