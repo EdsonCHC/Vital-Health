@@ -1,0 +1,25 @@
+/* Estilos personalizados para el checkbox */
+.checkbox-custom {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1.8px solid gray;
+    border-radius: 0.15rem;
+    outline: none;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.checkbox-custom:checked {
+    background-color: #166534;
+    border: 1.8px solid gray;
+}
+
+.checkbox-custom:checked::before {
+    content: "\2713";
+    display: block;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    line-height: 1rem;
+}

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicio</title>
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css','resources/css/checkbox.css'])
     <!-- @vite(['resources/js/app.js']) not used now  -->
 </head>
 <body class="w-full h-full">
@@ -17,7 +17,7 @@
                     <span class="text-lg">Personal</span>
                     <span class="text-lg">Personalizado</span>
                 </div>
-            </div>        
+            </div>
         </div>
         <div class="ml-auto lg:ml-auto">
             <div class="ml-14 mt-5 absolute z-10">
@@ -27,7 +27,7 @@
         <div class="ml-auto mt-12 lg:ml-auto">
             <div class="bg-vh-green-light opacity-60 rounded-full h-60 w-60">
                 <span class="invisible">a</span>
-            </div>        
+            </div>
         </div>
     </div>
     <div class="flex justify-center items-center">
@@ -57,20 +57,20 @@
                     <p class="text-sm font-bold text-gray-400 mt-2 px-6 text-justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut ex id exercitationem amet unde aliquam, nihil, assumenda libero, atque veritatis pariatur nesciunt ipsam voluptatum blanditiis iure est dolor laudantium. Facere.</p>
                     <hr class="mx-6 my-2">
                     <div class="flex flex-col px-8">
-                        <label class="flex items-center cursor-pointer">
-                            <input type="checkbox" class="form-checkbox h-4 w-4">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom">
                             <span class="ml-2">Opción 1</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom">
                             <span class="ml-2">Opción 2</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom">
                             <span class="ml-2">Opción 3</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom">
                             <span class="ml-2">Opción 4</span>
                         </label>
                     </div>
@@ -82,20 +82,20 @@
                     <p class="text-sm font-bold text-gray-400 mt-2 px-6 text-justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut ex id exercitationem amet unde aliquam, nihil, assumenda libero, atque veritatis pariatur nesciunt ipsam voluptatum blanditiis iure est dolor laudantium. Facere.</p>
                     <hr class="mx-6 my-2">
                     <div class="flex flex-col px-8">
-                        <label class="flex items-center cursor-pointer">
-                            <input type="checkbox" class="form-checkbox h-4 w-4">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom">
                             <span class="ml-2">Opción 1</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom">
                             <span class="ml-2">Opción 2</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom">
                             <span class="ml-2">Opción 3</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom">
                             <span class="ml-2">Opción 4</span>
                         </label>
                     </div>
@@ -106,20 +106,20 @@
                     <p class="text-sm font-bold text-gray-400 mt-2 px-6 text-justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut ex id exercitationem amet unde aliquam, nihil, assumenda libero, atque veritatis pariatur nesciunt ipsam voluptatum blanditiis iure est dolor laudantium. Facere.</p>
                     <hr class="mx-6 my-2">
                     <div class="flex flex-col px-8">
-                        <label class="flex items-center cursor-pointer">
-                            <input type="checkbox" class="form-checkbox h-4 w-4">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom">
                             <span class="ml-2">Opción 1</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom">
                             <span class="ml-2">Opción 2</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom">
                             <span class="ml-2">Opción 3</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom">
                             <span class="ml-2">Opción 4</span>
                         </label>
                     </div>
@@ -127,6 +127,7 @@
                 </div>
             </div>
         </div>
+
 
         <!--Segundo Bloque-->
         <div class="w-full text-center mb-8">
@@ -138,18 +139,18 @@
                     <div class="ml-8 mt-8 lg:ml-auto">
                         <div class="bg-vh-green-medium rounded-full h-16 w-16">
                                 <span class="invisible">a</span>
-                        </div>        
+                        </div>
                     </div>
                     <div class="flex flex-col pl-4 mt-5 mx-auto">
                         <h3 class="font-bold text-2xl">Juan</h3>
                         <p>Matematics</p>
-                        <div class="w-28 flex justify-around my-4 lg:ml-auto"> 
+                        <div class="w-28 flex justify-around my-4 lg:ml-auto">
                             <div class="bg-vh-green-medium rounded-full h-10 w-10">
                                 <span class="invisible">a</span>
-                            </div>          
+                            </div>
                             <div class="bg-vh-green-medium rounded-full h-10 w-10">
                                 <span class="invisible">a</span>
-                            </div>        
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -157,18 +158,18 @@
                     <div class="ml-8 mt-8 lg:ml-auto">
                         <div class="bg-vh-green-medium rounded-full h-16 w-16">
                                 <span class="invisible">a</span>
-                        </div>        
+                        </div>
                     </div>
                     <div class="flex flex-col pl-4 mt-5 mx-auto">
                         <h3 class="font-bold text-2xl">Epico Palo</h3>
                         <p>Matematics</p>
-                        <div class="w-28 flex justify-around my-4 lg:ml-auto"> 
+                        <div class="w-28 flex justify-around my-4 lg:ml-auto">
                             <div class="bg-vh-green-medium rounded-full h-10 w-10">
                                 <span class="invisible">a</span>
-                            </div>          
+                            </div>
                             <div class="bg-vh-green-medium rounded-full h-10 w-10">
                                 <span class="invisible">a</span>
-                            </div>        
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -176,18 +177,18 @@
                     <div class="ml-8 mt-8 lg:ml-auto">
                         <div class="bg-vh-green-medium rounded-full h-16 w-16">
                                 <span class="invisible">a</span>
-                        </div>        
+                        </div>
                     </div>
                     <div class="flex flex-col pl-4 mt-5 mx-auto">
                         <h3 class="font-bold text-2xl">Alvarenga</h3>
                         <p>Matematics</p>
-                        <div class="w-28 flex justify-around my-4 lg:ml-auto"> 
+                        <div class="w-28 flex justify-around my-4 lg:ml-auto">
                             <div class="bg-vh-green-medium rounded-full h-10 w-10">
                                 <span class="invisible">a</span>
-                            </div>          
+                            </div>
                             <div class="bg-vh-green-medium rounded-full h-10 w-10">
                                 <span class="invisible">a</span>
-                            </div>        
+                            </div>
                         </div>
                     </div>
                 </div>
