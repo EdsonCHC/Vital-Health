@@ -35,13 +35,13 @@
 
         <div class="">
             <div class="flex flex-col  items-end">
-                <div class="w-16 mb-4 ml-4 bg-vh-green-light">
+                <div class="w-16 mb-6  bg-vh-green-light">
                     <span class="invisible">a</span>
                 </div>     
-                <div class="w-28 mb-4 ml-2 bg-vh-green-medium">
+                <div class="w-28 mb-6  bg-vh-green-medium">
                     <span class="invisible">a</span>
                 </div> 
-                <div class="w-40 mb-2 bg-vh-green">
+                <div class="w-40 mb-6  bg-vh-green">
                     <span class="invisible">a</span>
                 </div>       
             </div>
@@ -179,42 +179,36 @@
     <div class="w-11/12 mx-auto m-2 pt-5 pb-10 bg-blue-100 rounded-2xl shadow-lg px-8">
     <h2 class="font-bold text-center text-xl  pb-8 text-vh-green">Servicios</h2>
     <div class="flex justify-between">
-    <ul class="w-5/12 list-none pl-0">
+    <ul class="w-5/12 list-disc pl-0">
     <li class="text-vh-green relative pl-5 mb-2 ml-4">
-        <span class="absolute left-0 top-0 transform -translate-x-4">&#10148;</span>
         Servicio 1
     </li>
     <li class="text-vh-green relative pl-5 mb-2 ml-4">
-        <span class="absolute left-0 top-0 transform -translate-x-4">&#10148;</span>
         Servicio 2
     </li>
     <li class="text-vh-green relative pl-5 mb-2 ml-4">
-        <span class="absolute left-0 top-0 transform -translate-x-4">&#10148;</span>
         Servicio 3
     </li>
     <li class="text-vh-green relative pl-5 mb-2 ml-4">
-        <span class="absolute left-0 top-0 transform -translate-x-4">&#10148;</span>
         Servicio 4
     </li>   
-            </ul>
-            <ul class="w-5/12 list-none pl-0">
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    <span class="absolute left-0 top-0 transform -translate-x-4">&#10148;</span>
-                    Servicio 5
-                </li>
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    <span class="absolute left-0 top-0 transform -translate-x-4">&#10148;</span>
-                    Servicio 6
-                </li>
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    <span class="absolute left-0 top-0 transform -translate-x-4">&#10148;</span>
-                    Servicio 7
-                </li>
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    <span class="absolute left-0 top-0 transform -translate-x-4">&#10148;</span>
-                    Servicio 8
-                </li>
-            </ul>
+</ul>
+
+<ul class="w-5/12 list-disc pl-0">
+    <li class="text-vh-green relative pl-5 mb-2 ml-4">
+        Servicio 5
+    </li>
+    <li class="text-vh-green relative pl-5 mb-2 ml-4">
+        Servicio 6
+    </li>
+    <li class="text-vh-green relative pl-5 mb-2 ml-4">
+        Servicio 7
+    </li>
+    <li class="text-vh-green relative pl-5 mb-2 ml-4">
+        Servicio 8
+    </li>
+</ul>
+
         </div>
     </div>
     
