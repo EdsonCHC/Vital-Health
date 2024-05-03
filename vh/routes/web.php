@@ -44,3 +44,8 @@ Route::get('/examen', function() {
 Route::get('/service', function() {
     return view('app.service');
 });
+
+Route::get('/chats', function() {
+    return view('app.chats');
+});
+

@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicio</title>
-    @vite(['resources/css/app.css','resources/css/checkbox.css'])
-    <!-- @vite(['resources/js/app.js']) not used now  -->
+    @vite(['resources/css/app.css','resources/css/checkbox.css','resources/js/appointment.js'])
 </head>
 <body class="w-full h-full">
     <div class="flex">
@@ -75,7 +74,7 @@
                         </label>
                     </div>
                     <!--Solo falta el pop-up-->
-                    <a href="/#" target="_self" class="w-4/5 py-4 my-4 border border-solid border-vh-green font-bold text-base lg:w-2/5 hover:bg-vh-green transition duration-300 hover:text-white inline-block text-center">Agendar</a>
+                    <button target="_self" id="make_appointment" class="w-4/5 py-4 my-4 border border-solid border-vh-green font-bold text-base lg:w-2/5 hover:bg-vh-green transition duration-300 hover:text-white inline-block text-center">Agendar</button>
                 </div>
                 <div class="w-full min-w-40 max-w-72 mx-4 border border-solid border-vh-green py-4 my-4">
                     <h2 class="text-lg font-bold mb-2">Expedientes</h2>
