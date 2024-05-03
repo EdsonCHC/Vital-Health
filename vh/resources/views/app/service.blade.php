@@ -7,6 +7,9 @@
     @vite(['resources/css/app.css','resources/css/checkbox.css','resources/js/appointment.js'])
 </head>
 <body class="w-full h-full">
+    <div class="w-full h-full absolute top-0 z-10">
+        @include('templates.header')
+    </div>  
     <div class="flex">
         <div class="ml-auto lg:ml-auto">
             <div class="bg-gray-100 mt-28 rounded h-32 w-36 absolute z-20">
