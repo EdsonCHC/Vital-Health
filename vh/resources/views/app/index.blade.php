@@ -8,7 +8,7 @@
     <!-- @vite(['resources/js/app.js']) not used now  -->
 </head>
 <body class="w-full h-full">
-    <div class="w-full h-full absolute top-0 z-10">
+    <div class="w-full h-auto absolute top-0 z-10">
         @include('templates.header')
     </div>
 
@@ -80,6 +80,7 @@
                 <span class="font-bold text-lg">Brindamos Ayuda</span>
                 <span class="font-bold text-lg">En tu Futuro</span>
             </div>
+            
             <a href="/login" target="_self" class="w-4/5 h-8 text-white bg-vh-green text-sm shadow-xl mb-10 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green inline-block text-center pt-1 mx-4">
                 Logueate ahora
             </a>
