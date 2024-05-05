@@ -35,12 +35,26 @@
             
         </div>
     </div>
-    <div class="w-full flex flex-col lg:flex-row pt-8 lg:pt-16">
 
-<div class="lg:w-1/2 flex items-center justify-center lg:order-last">
-    <object data="{{asset('storage/svg/ad.svg')}}" type="image/svg+xml" class="w-96"></object>
-    <object data="{{asset('storage/svg/ad.svg')}}" type="image/svg+xml" class="w-96"></object>
-</div> 
+    <div class="w-full flex flex-col lg:flex-row pt-8 lg:pt-16">
+        <!-- Contenido para PC -->
+<div class="hidden lg:block lg:w-1/4 items-center justify-center lg:order-last rounded-xl relative ml-40 bg-gray-200 p-8">
+    <div class="absolute top-0 right-0 mr-[-48px] mt-[-48px] rounded-xl overflow-hidden">
+        <object data="{{asset('storage/svg/ad.svg')}}" type="image/svg+xml"></object>
+    </div>
+    <div class="absolute bottom-0 left-0 ml-[-48px] mb-[-48px] rounded-xl overflow-hidden">
+        <object data="{{asset('storage/svg/ad.svg')}}" type="image/svg+xml"></object>
+    </div>
+</div>
+
+<!-- Contenido para Tablet y Celular -->
+<div class="lg:hidden w-3/4 mx-auto flex items-center justify-center p-8 rounded-xl bg-gray-200">
+    <div class="flex w-full h-full items-center justify-center ">
+        <object data="{{asset('storage/svg/ad.svg')}}" type="image/svg+xml" class="w-full h-auto lg:w-96 lg:h-auto rounded-xl"></object>
+    </div>
+</div>
+
+
 
 <div class="lg:w-1/2 flex flex-col lg:pl-28 lg:order-first">
     <h2 class="text-star font-bold text-vh-green mb-5 text-4xl mt-8 mx-8">Mision</h2>
@@ -61,9 +75,16 @@
 
 
 <div class="w-full flex flex-col  lg:flex-row-reverse pt-8 lg:pt-16">
-    <div class="lg:w-1/2 flex items-center justify-center lg:order-last">
-        <object data="{{asset('storage/svg/ad.svg')}}" type="image/svg+xml" class="w-96"></object>
+
+
+<!-- Contenido para Tablet y Celular -->
+<div class="lg:hidden w-3/4 mx-auto flex items-center justify-center p-8 rounded-xl bg-gray-200">
+    <div class="flex w-full h-full items-center justify-center ">
+        <object data="{{asset('storage/svg/ad.svg')}}" type="image/svg+xml" class="w-full h-auto lg:w-96 lg:h-auto rounded-xl"></object>
     </div>
+</div>
+
+
     <div class="lg:w-1/2 flex flex-col lg:pl-28">
         <h2 class="text-end  lg:text-start  md:text-start font-bold text-vh-green mb-5 text-4xl mt-8 mx-8">Vision</h2>
         <div class="flex justify-center text-start">
