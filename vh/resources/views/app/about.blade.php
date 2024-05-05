@@ -12,7 +12,7 @@
         @include('templates.header')
     </div>    
       <div class="flex w-full pt-12 md:pl-16 pl-5 lg:pt-16 bg-vh-gray-light">
-        <div class="flex lg:w-1/2 lg:items-center lg:justify-center items-center">
+        <div class="flex lg:w-1/2 lg:items-center items-center  lg:justify-center ">
             <img class="lg:h-96 lg:w-96 md:h-80 md:w-80" src="{{asset('storage/svg/doctor.svg')}}" type="image/svg+xml" alt="Doctor Image"/>
         </div>
 
@@ -29,7 +29,7 @@
             </ul>
               
              <div class="w-3/5 h-8 font-bold my-4 text-white bg-vh-green text-sm shadow-xl rounded-md lg:w-1/5 hover:bg-white hover:text-vh-green inline-block text-center pt-1 lg:mt-3 mx-auto lg:mx-0">
-                <a href="/service" target="_self" class="block w-full h-full">Regístrate</a>
+                <a href="/registro" target="_self" class="block w-full h-full">Regístrate</a>
             </div>
 
             
@@ -74,7 +74,7 @@
 </div>
 
 
-<div class="w-full flex flex-col  lg:flex-row-reverse pt-8 lg:pt-16">
+<div class="w-full flex flex-col  mb-16 lg:flex-row-reverse pt-8 lg:pt-16">
 
 
 <!-- Contenido para Tablet y Celular -->
@@ -83,7 +83,12 @@
         <object data="{{asset('storage/svg/ad.svg')}}" type="image/svg+xml" class="w-full h-auto lg:w-96 lg:h-auto rounded-xl"></object>
     </div>
 </div>
-
+<!-- Contenido para pc -->
+<div class="hidden lg:w-1/2 lg:flex items-center justify-center lg:order-last">
+    <div class="lg:w-1/2 rounded-xl bg-gray-200 p-4">
+        <img src="{{asset('storage/svg/ad.svg')}}" alt="Anuncio" class="rounded-xl max-w-full max-h-full w-full h-auto xl:w-96 xl:h-96 mx-auto">
+    </div>
+  </div>
 
     <div class="lg:w-1/2 flex flex-col lg:pl-28">
         <h2 class="text-end  lg:text-start  md:text-start font-bold text-vh-green mb-5 text-4xl mt-8 mx-8">Vision</h2>
@@ -99,10 +104,16 @@
         </div> 
     </div> 
 </div>
-
-
-
-
+<div class="flex flex-col ">
+        <div class="flex flex-col lg:text-center lg:items-center ">
+               <h2 class="font-bold text-4xl mt-8 mb-5 text-center">Beneficios que ofrecemos al unirte a nosotros.</h2>
+               <h3 class="text-vh-green font-bold mx-8 text-2xl  text-start">Tus Beneficios</h3>
+            <div class="flex mx-8 ">
+               <p class="text-base leading-loose">Install our top-rated dropshipping app to your e-commerce site and get access to US Suppliers, AliExpress vendors, and the best.</p>
+            </div>
+        </div>
+        
+</div>
 
     
     @include('templates.footer') 
