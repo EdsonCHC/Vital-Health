@@ -28,10 +28,10 @@ Route::get('/registro', function () {
 Route::get('/medicina', function() {
     return view('app.medicine');
 });
+
 Route::get('/about', function() {
     return view('app.about');
 });
-
 
 Route::get('/examen', function() {
     return view('app.exams');
@@ -47,5 +47,9 @@ Route::get('/service', function() {
 
 Route::get('/chats', function() {
     return view('app.chats');
+});
+
+Route::get('/user', function() {
+    return view('app.user_info');
 });
 
