@@ -37,10 +37,6 @@ Route::get('/examen', function() {
     return view('app.exams');
 });
 
-Route::get('/examen', function() {
-    return view('app.exams');
-});
-
 Route::get('/service', function() {
     return view('app.service');
 });
@@ -52,4 +48,6 @@ Route::get('/chats', function() {
 Route::get('/user', function() {
     return view('app.user_info');
 });
-
+Route::get('/area', function () {
+    return view('app.area');
+});
