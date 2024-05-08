@@ -112,7 +112,163 @@
                <p class="text-base leading-loose">Install our top-rated dropshipping app to your e-commerce site and get access to US Suppliers, AliExpress vendors, and the best.</p>
             </div>
         </div>
+
+     <div class="hidden lg:flex">
+             <div class="flex flex-wrap m-16">
+                <div class="w-1/3 p-4">
+                     <div class="bg-blue-100">
+                         <h2 class="text-vh-green font-bold text-2xl p-2 ">01</h2>
+                         <h3 class="font-semibold text-xl p-2 ">Standardization</h3>
+                        <div class="text-container overflow-hidden">
+                            <p class="text-base leading-loose p-4 line-clamp-3">
+                             Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
+                            </p>
+                            <a href="#" class="text-vh-green hover:underline block p-4">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/3 p-4">
+                    <div class="border">
+                        <h2 class="text-vh-green font-bold text-2xl p-2 ">01</h2>
+                        <h3 class="font-semibold text-xl p-2 ">Standardization</h3>
+                        <div class="text-container overflow-hidden">
+                             <p class="text-base leading-loose p-4 line-clamp-3">
+                             Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
+                             </p>
+                             <a href="#" class="text-vh-green hover:underline block p-4">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/3 p-4">
+                    <div class="bg-blue-100">
+                         <h2 class="text-vh-green font-bold text-2xl p-2 ">01</h2>
+                         <h3 class="font-semibold text-xl p-2 ">Standardization</h3>
+                         <div class="text-container overflow-hidden">
+                              <p class="text-base leading-loose p-4 line-clamp-3">
+                              Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
+                              </p>
+                              <a href="#" class="text-vh-green hover:underline block p-4">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/3 p-4">
+                     <div class="bg-blue-100">
+                         <h2 class="text-vh-green font-bold text-2xl p-2 ">01</h2>
+                         <h3 class="font-semibold text-xl p-2 ">Standardization</h3>
+                        <div class="text-container overflow-hidden">
+                            <p class="text-base leading-loose p-4 line-clamp-3">
+                             Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
+                            </p>
+                            <a href="#" class="text-vh-green hover:underline block p-4">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/3 p-4">
+                    <div class="border">
+                        <h2 class="text-vh-green font-bold text-2xl p-2 ">01</h2>
+                        <h3 class="font-semibold text-xl p-2 ">Standardization</h3>
+                        <div class="text-container overflow-hidden">
+                             <p class="text-base leading-loose p-4 line-clamp-3">
+                             Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
+                             </p>
+                             <a href="#" class="text-vh-green hover:underline block p-4">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/3 p-4">
+                    <div class="bg-blue-100">
+                         <h2 class="text-vh-green font-bold text-2xl p-2 ">01</h2>
+                         <h3 class="font-semibold text-xl p-2 ">Standardization</h3>
+                         <div class="text-container overflow-hidden">
+                              <p class="text-base leading-loose p-4 line-clamp-3">
+                              Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
+                              </p>
+                              <a href="#" class="text-vh-green hover:underline block p-4">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+    </div>
+
+
+
+
+    <div class="lg:hidden m-10">
+        <div class="w-full p-4">
+             <div class="bg-blue-100">
+                  <h2 class="text-vh-green font-bold text-2xl p-2">01</h2>
+                  <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                  <div class="text-container overflow-hidden">
+                      <p class="text-base leading-loose p-4 line-clamp-3">
+                       Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
+                      </p>
+                      <a href="#" class="text-vh-green hover:underline block p-4">Learn More</a>
+                 </div>
+            </div>
+        </div>
+        <div class="w-full p-4">
+             <div class=" border ">
+                  <h2 class="text-vh-green font-bold text-2xl p-2">01</h2>
+                  <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                  <div class="text-container overflow-hidden">
+                      <p class="text-base leading-loose p-4 line-clamp-3">
+                       Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
+                      </p>
+                      <a href="#" class="text-vh-green hover:underline block p-4">Learn More</a>
+                 </div>
+            </div>
+        </div>
+        <div class="w-full p-4">
+             <div class="bg-blue-100">
+                  <h2 class="text-vh-green font-bold text-2xl p-2">01</h2>
+                  <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                  <div class="text-container overflow-hidden">
+                      <p class="text-base leading-loose p-4 line-clamp-3">
+                       Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
+                      </p>
+                      <a href="#" class="text-vh-green hover:underline block p-4">Learn More</a>
+                 </div>
+            </div>
+        </div>
+        <div class="w-full p-4">
+             <div class=" border ">
+                  <h2 class="text-vh-green font-bold text-2xl p-2">01</h2>
+                  <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                  <div class="text-container overflow-hidden">
+                      <p class="text-base leading-loose p-4 line-clamp-3">
+                       Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
+                      </p>
+                      <a href="#" class="text-vh-green hover:underline block p-4">Learn More</a>
+                 </div>
+            </div>
+        </div>
+        <div class="w-full p-4">
+             <div class="bg-blue-100">
+                  <h2 class="text-vh-green font-bold text-2xl p-2">01</h2>
+                  <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                  <div class="text-container overflow-hidden">
+                      <p class="text-base leading-loose p-4 line-clamp-3">
+                       Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
+                      </p>
+                      <a href="#" class="text-vh-green hover:underline block p-4">Learn More</a>
+                 </div>
+            </div>
+        </div>
         
+        <div class="w-full p-4">
+             <div class=" border ">
+                  <h2 class="text-vh-green font-bold text-2xl p-2">01</h2>
+                  <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                  <div class="text-container overflow-hidden">
+                      <p class="text-base leading-loose p-4 line-clamp-3">
+                       Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
+                      </p>
+                      <a href="#" class="text-vh-green hover:underline block p-4">Learn More</a>
+                 </div>
+            </div>
+        </div>
+    </div>
 </div>
 
     
