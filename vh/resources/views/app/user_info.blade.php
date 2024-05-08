@@ -7,12 +7,11 @@
     <title>User</title>
     @vite('resources/css/app.css')
 </head>
-
-<body>
+<body class="w-full h-screen overflow-scroll">
     <div>
         @include('templates.header')
     </div>
-    <main class="mb-5">
+    <main class="mb-5 w-full h-full">
         <section class="flex gap-10 justify-center p-2">
             <div class="w-28 h-28 rounded-full border-2 border-solid overflow-hidden">
                 <img src="{{asset('storage/svg/doctor.svg')}}" alt="" class="w-full h-full object-cover">
@@ -21,14 +20,14 @@
                 <h1 class="text-3xl">
                     John Doe
                 </h1>
-                <button class="w-24 h-10 bg-vh-green-light rounded-3xl">
+                <button class="w-24 h-10 bg-vh-green-light rounded-3xl mt-4">
                     New Photo
                 </button>
             </div>
         </section>
         <hr class="w-4/5 mx-auto my-0">
         <section class="flex justify-center">
-            <form action="" class="w-4/5 h-auto">
+            <form action="" class="w-4/5 h-auto md:w-1/2 lg:w-1/4">
                 <label for="" class="block mt-5 font-bold">
                     Nombre *
                     <input type="text" readonly class="w-full h-10 border-2 border-solid border-gray-400 rounded-lg">
@@ -60,7 +59,9 @@
             </form>
         </section>
     </main>
-    @include('templates.footer')
+    <div class="w-full h-auto">
+        @include('templates.footer')
+    </div>
 </body>
 
 </html>
