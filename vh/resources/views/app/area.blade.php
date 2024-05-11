@@ -75,17 +75,81 @@
         </div>
 
 
-
         <div class="flex flex-wrap m-4 lg:m-16">
             <div class="w-full lg:w-1/4 p-4">
-                <div class="bg-green-50 py-5  justify-center items-center">
-                    <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
-                    <h3 class="font-bold text-xl p-2">Pediatria</h3>
-                    <p class="text-gray-400"> Disponible</p>
-                    <div class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16"></div>
+                <div class="bg-green-50 py-5 justify-center items-center">
+                    <div class="flex justify-center items-center flex-col">
+                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
+                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
+                        <p class="text-gray-400"> Disponible</p>
+                        <div class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/4 p-4">
+                <div class="bg-green-50 py-5 justify-center items-center">
+                    <div class="flex justify-center items-center flex-col">
+                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
+                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
+                        <p class="text-gray-400"> Disponible</p>
+                        <div class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/4 p-4">
+                <div class="bg-green-50 py-5 justify-center items-center">
+                    <div class="flex justify-center items-center flex-col">
+                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
+                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
+                        <p class="text-gray-400"> Disponible</p>
+                        <div class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/4 p-4">
+                <div class="bg-green-50 py-5 justify-center items-center">
+                    <div class="flex justify-center items-center flex-col">
+                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
+                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
+                        <p class="text-gray-400"> Disponible</p>
+                        <div class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/4 p-4">
+                <div class="bg-green-50 py-5 justify-center items-center">
+                    <div class="flex justify-center items-center flex-col">
+                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
+                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
+                        <p class="text-gray-400"> Disponible</p>
+                        <div class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/4 p-4">
+                <div class="bg-green-50 py-5 justify-center items-center">
+                    <div class="flex justify-center items-center flex-col">
+                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
+                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
+                        <p class="text-gray-400"> Disponible</p>
+                        <div class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/4 p-4">
+                <div class="bg-green-50 py-5 justify-center items-center">
+                    <div class="flex justify-center items-center flex-col">
+                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
+                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
+                        <p class="text-gray-400"> Disponible</p>
+                        <div class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></div>
+                    </div>
                 </div>
             </div>
         </div>
+        
+
+
 
 
     </div>
