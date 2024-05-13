@@ -33,14 +33,31 @@
                     </div>
                 </form>
             </div>
-            <div class=" w-40 ml-4 ">
-                <div class="border-2 border-green-900 rounded-full flex items-center  justify-center  p-2">
-                    <h2 class="text-center  text-vh-green font-bold ">Todos</h2>
-                    <div class="ml-3">
+            <div class="w-40 ml-4">
+                <div class="border-2 border-green-900 rounded-full flex items-center justify-center p-2">
+                    <div class="ml-3 relative flex items-center">
                         <object data="{{asset('storage/svg/filtro.svg')}}" type="image/svg+xml"></object>
+                        <select id="filtro" name="filtro"
+                            class="absolute inset-0 w-full h-full border-none cursor-pointer bg-transparent appearance-none z-10 right-0">
+                            <option value="todos">Todos</option>
+                            <option value="clase1">Clase 1</option>
+                            <option value="clase2">Clase 2</option>
+                            <option value="clase3">Clase 3</option>
+                        </select>
+                        <span id="filtroSeleccionado"
+                            class="absolute inset-y-0 right-0 flex items-center pr-2 text-gray-700"></span>
                     </div>
                 </div>
             </div>
+
+            <script>
+                const selectFiltro = document.getElementById('filtro');
+                const filtroSeleccionado = document.getElementById('filtroSeleccionado');
+
+                selectFiltro.addEventListener('change', function () {
+                    filtroSeleccionado.textContent = selectFiltro.options[selectFiltro.selectedIndex].text;
+                });
+            </script>
         </div>
 
 
@@ -147,7 +164,7 @@
                 </div>
             </div>
         </div>
-        
+
 
 
 
