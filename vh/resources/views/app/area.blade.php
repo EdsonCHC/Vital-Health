@@ -34,33 +34,31 @@
                 </form>
             </div>
             <div class="w-40 ml-4">
-                <div class="border-2 border-green-900 rounded-full flex items-center justify-center p-2">
-                    <div class="ml-3 relative flex items-center">
-                        <object data="{{asset('storage/svg/filtro.svg')}}" type="image/svg+xml"></object>
-                        <select id="filtro" name="filtro"
-                            class="absolute inset-0 w-full h-full border-none cursor-pointer bg-transparent appearance-none z-10 right-0">
-                            <option value="todos">Todos</option>
-                            <option value="clase1">Clase 1</option>
-                            <option value="clase2">Clase 2</option>
-                            <option value="clase3">Clase 3</option>
-                        </select>
-                        <span id="filtroSeleccionado"
-                            class="absolute inset-y-0 right-0 flex items-center pr-2 text-gray-700"></span>
+                <label for="filtro"
+                    class="border-4 border-green-900 rounded-full flex items-center p-2 relative cursor-pointer">
+                    <select id="filtro" name="filtro"
+                        class="absolute inset-0 w-full h-full border-none cursor-pointer bg-transparent appearance-none z-10 right-0 focus:outline-none opacity-0">
+                        <option value="todos" selected>Todos</option>
+                        <option value="c1">Ascedente</option>
+                        <option value="c2">Descendente</option>
+                        <option value="c3">Silenciados</option>
+                    </select>
+                    <div class="flex justify-center items-center w-full">
+                        <div class="relative flex items-center">
+                            <span id="filtroSeleccionado" class="flex pr-2 text-gray-700">Todos</span>
+                            <object data="{{asset('storage/svg/filtro.svg')}}" type="image/svg+xml"></object>
+                        </div>
                     </div>
-                </div>
+                </label>
             </div>
 
             <script>
-                const selectFiltro = document.getElementById('filtro');
-                const filtroSeleccionado = document.getElementById('filtroSeleccionado');
-
-                selectFiltro.addEventListener('change', function () {
-                    filtroSeleccionado.textContent = selectFiltro.options[selectFiltro.selectedIndex].text;
+                document.getElementById("filtro").addEventListener("change", function () {
+                    var selectedOption = this.options[this.selectedIndex].text;
+                    document.getElementById("filtroSeleccionado").textContent = selectedOption;
                 });
             </script>
         </div>
-
-
         <div class=" lg:hidden px-8  pt-28 ">
             <div class="w-full">
                 <form method="get" action="#" class="relative z-50">
