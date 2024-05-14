@@ -75,24 +75,50 @@
 
         </div>
 
-        <div class="lg:hidden w-full px-16 my-5 flex ">
+        <div class="lg:hidden w-full px-8 my-5 flex ">
             <div class="w-1/2 flex items-center ">
                 <h2 class="font-bold text-2xl lg:text-4xl mb-6">Servicios</h2>
             </div>
             <div class="ml-4 w-1/2 flex justify-end">
-                <div class="w-40 border-2 border-green-900 rounded-full flex items-center justify-center p-2">
-                    <h2 class="text-center text-vh-green font-bold">Todos</h2>
-                    <div class="ml-3">
-                        <object data="{{asset('storage/svg/filtro.svg')}}" type="image/svg+xml"></object>
+                 <label for="filtro1"
+                    class="border-4 border-green-900 rounded-full flex items-center p-2 relative cursor-pointer">
+                    <select id="filtro1" name="filtro1"
+                        class="absolute inset-0 w-full h-full border-none cursor-pointer bg-transparent appearance-none z-10 right-0 focus:outline-none opacity-0">
+                        <option value="todos" selected>Todos</option>
+                        <option value="c1">Ascedente</option>
+                        <option value="c2">Descendente</option>
+                        <option value="c3">Silenciados</option>
+                    </select>
+                    <div class="flex justify-center items-center w-full">
+                        <div class="relative flex items-center">
+                            <span id="filtroSeleccionado1" class="flex pr-2 text-gray-700">Todos</span>
+                            <object data="{{asset('storage/svg/filtro.svg')}}" type="image/svg+xml"></object>
+                        </div>
                     </div>
-                </div>
+                </label>
             </div>
         </div>
+        <script>
+            document.getElementById("filtro1").addEventListener("change", function () {
+                var selectedOption = this.options[this.selectedIndex].text;
+                document.getElementById("filtroSeleccionado1").textContent = selectedOption;
+            });
+        </script>
 
 
         <div class="flex flex-wrap m-4 lg:m-16">
             <div class="w-full lg:w-1/4 p-4">
-                <div class="bg-green-50 py-5 justify-center items-center">
+                <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
+                    <div class="flex justify-center items-center flex-col">
+                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
+                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
+                        <p class="text-gray-400"> Disponible</p>
+                        <div class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/4 p-4"> 
+                <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
                     <div class="flex justify-center items-center flex-col">
                         <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
                         <h3 class="font-bold text-xl p-2">Pediatria</h3>
@@ -102,7 +128,7 @@
                 </div>
             </div>
             <div class="w-full lg:w-1/4 p-4">
-                <div class="bg-green-50 py-5 justify-center items-center">
+                <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
                     <div class="flex justify-center items-center flex-col">
                         <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
                         <h3 class="font-bold text-xl p-2">Pediatria</h3>
@@ -112,7 +138,7 @@
                 </div>
             </div>
             <div class="w-full lg:w-1/4 p-4">
-                <div class="bg-green-50 py-5 justify-center items-center">
+                <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
                     <div class="flex justify-center items-center flex-col">
                         <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
                         <h3 class="font-bold text-xl p-2">Pediatria</h3>
@@ -122,7 +148,17 @@
                 </div>
             </div>
             <div class="w-full lg:w-1/4 p-4">
-                <div class="bg-green-50 py-5 justify-center items-center">
+                <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
+                    <div class="flex justify-center items-center flex-col">
+                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
+                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
+                        <p class="text-gray-400"> Disponible</p>
+                        <div class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/4 p-4 ">
+                <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
                     <div class="flex justify-center items-center flex-col">
                         <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
                         <h3 class="font-bold text-xl p-2">Pediatria</h3>
@@ -132,27 +168,7 @@
                 </div>
             </div>
             <div class="w-full lg:w-1/4 p-4">
-                <div class="bg-green-50 py-5 justify-center items-center">
-                    <div class="flex justify-center items-center flex-col">
-                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
-                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
-                        <p class="text-gray-400"> Disponible</p>
-                        <div class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full lg:w-1/4 p-4">
-                <div class="bg-green-50 py-5 justify-center items-center">
-                    <div class="flex justify-center items-center flex-col">
-                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
-                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
-                        <p class="text-gray-400"> Disponible</p>
-                        <div class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full lg:w-1/4 p-4">
-                <div class="bg-green-50 py-5 justify-center items-center">
+                <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
                     <div class="flex justify-center items-center flex-col">
                         <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
                         <h3 class="font-bold text-xl p-2">Pediatria</h3>
@@ -168,6 +184,7 @@
 
 
     </div>
+    @include('templates.footer') 
 
 </body>
 
