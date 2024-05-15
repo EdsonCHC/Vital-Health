@@ -12,9 +12,10 @@
         @include('templates.header')
     </div>
 
+    <div class="grid grid-rows-3 grid-flow-col gap-4 mt-28"><!--Div padre-->
     <!-- inicio apartado de todo los contactos-->
-    <div id="uno" class="max-w-md mx-auto mt-40 px-5  border rounded-lg ">
-        <h1 class="pt-5 pb-5 text-lg font-bold"> Personas </h1>
+    <div class="mx-auto border rounded-lg row-span-3 ">
+        <h1 class="pt-5 pb-5 text-lg font-bold ml-10"> Personas </h1>
             <!-- Barra de navegación-->
             <div class="flex-1 flex px-2 lg:ml-6 ">
           <div class="max-w-lg w-full lg:max-w-xs">
@@ -34,7 +35,7 @@
         </div>
         
     <!-- Chast-->
-        <div class="chats mt-5">
+        <div class="chats mt-5 ml-5">
             <div class="chat  p-4 flex items-center">
                 <img src="{{asset('storage/svg/doctor.svg')}}" alt="Profile" class="w-12 h-12 rounded-full mr-4">
                 <div>
@@ -67,15 +68,19 @@
     </div>
 
 <!-- adaptacion de chat para pc -->
-<div id="dos" class="mb-4 mx-4 lg:mx-auto lg:w-1/2 border rounded-lg flex  flex-nowrap">
-    <div class="chat pt-4 pl-4 pb-4 flex items-center flex-grow">
+
+<!--Inicio del chat-->
+<div id="tres" class=" shadow-md border rounded-lg row-span-2 mr-32 border-b justify-between">
+
+    <div class="chat pt-4 pl-4 pb-4 flex items-center flex-grow border-b">
         <img src="{{asset('storage/svg/doctor.svg')}}" alt="Profile" class="w-12 h-12 rounded-full mr-4">
-        <div>
-            <div class="name font-semibold">Doc. Alvarenga</div>    
+        <div class="">
+            <div class="name font-semibold ">Doc. Alvarenga</div>    
             <div class="message text-gray-500">#CU6798H</div>
         </div>
-    </div>
-    <div class="between items-center p-4 flex-shrink-0">
+
+
+            <div class="between items-center p-4 flex-shrink-0">
         <svg width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18.4194 12.1334V8.38152C18.4194 7.79195 17.942 7.30957 17.3585 7.30957H4.62688C4.04335 7.30957 3.56592 7.79195 3.56592 8.38152V19.101C3.56592 19.6906 4.04335 20.173 4.62688 20.173H17.3585C17.942 20.173 18.4194 19.6906 18.4194 19.101V15.3492L22.6633 19.637V7.84555L18.4194 12.1334Z" fill="#155D1C"/>
         </svg>
@@ -83,12 +88,13 @@
             <path d="M13.6258 3.02148C7.76923 3.02148 3.01611 7.82383 3.01611 13.741C3.01611 19.6582 7.76923 24.4605 13.6258 24.4605C19.4823 24.4605 24.2354 19.6582 24.2354 13.741C24.2354 7.82383 19.4823 3.02148 13.6258 3.02148ZM14.6867 19.1008H12.5648V12.669H14.6867V19.1008ZM14.6867 10.5251H12.5648V8.38124H14.6867V10.5251Z" fill="#155D1C"/>
         </svg>
     </div>
-</div>
+    </div>
 
-<!--Inicio del chat-->
-<div id="tres" class="max-w-md mx-auto mt-10 shadow-md overflow-hidden mb-4 lg:mx-auto lg:w-1/2 border rounded-lg">
+
+
+
     
-    <div class="flex items-start p-4 border-b">
+    <div class="flex items-start p-4 ">
         <img src="{{asset('storage/svg/doctor.svg')}}" alt="Profile Picture" class="w-10 h-10 rounded-full mr-4">
         <div class="bg-gray-200 rounded-lg p-2">
             <p class="text-sm">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
@@ -97,15 +103,17 @@
     </div>
 
     
-    <div class="flex items-end justify-end p-4 border-b">
+    <div class="flex items-end justify-end p-4 ">
         <div class="bg-green-200 rounded-lg p-2">
             <p class="text-sm">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
             <p class="text-xs text-gray-500">10:01 AM</p>
         </div>
         <img src="{{asset('storage/svg/doctor.svg')}}" alt="Profile Picture" class="w-10 h-10 rounded-full ml-4">
     </div>
+
+    
     <!--  Barra para escribir mensaje -->
-    <div class="flex items-center p-4">
+    <div class="flex items-center p-4 border-t">
         <input type="text" id="message" class="flex-1 py-2 px-4 focus:outline-none" placeholder="Escribe tu mensaje...">
         <div class="ml-2 flex space-x-2">
             <svg width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -131,6 +139,8 @@
         </div>
     </div>
 </div>
+
+    </div>
 
     <div class="fixed bottom-0 left-0 right-0">
     @include('templates.footer') 
