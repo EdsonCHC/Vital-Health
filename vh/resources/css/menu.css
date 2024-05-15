@@ -18,7 +18,7 @@ body {
     position: absolute;
     top: 25px;
     left: 25px;
-    background: #03a9f4;
+    background: #155D1C;
     width: 30px;
     height: 5px;
     transition: 0.2s ease;
@@ -89,7 +89,7 @@ a {
 li.menu_list,
 a.menu_link {
     margin: 75px 0 -55px 0;
-    color: #03a9f4;
+    color: #155D1C;
     line-height: 1.8;
     font-weight: 700;
     text-decoration: none;
