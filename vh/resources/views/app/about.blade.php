@@ -140,238 +140,138 @@
                 }
             }
         </script>
-        <div class="hidden lg:flex">
-            <div class="flex flex-wrap m-16">
-                <div class="w-1/3 p-4">
-                    <div class="bg-green-50 pt-5">
-                        <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5  ">
-                            <h2 class="text-vh-green font-bold  text-2xl">01</h2>
-                        </div>
-                        <h3 class="font-semibold text-xl p-2 ">Standardization</h3>
-                        <div class="text-container overflow-hidden">
-                            <p id="text1" class="text-base leading-loose p-4 line-clamp-3">
-                                Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las
-                                experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación
-                                de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las
-                                cuales son riencias de capacitación de los estudiantes, las cuales son
-                            </p>
-                            <a href="#" onclick="toggleText('text1')"
-                                class="text-vh-green hover:underline block p-4">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-1/3 p-4">
-                    <div class=" pt-5 border ">
-                        <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5  ">
-                            <h2 class="text-vh-green font-bold  text-2xl">02</h2>
-                        </div>
-                        <h3 class="font-semibold text-xl p-2 ">Standardization</h3>
-                        <div class="text-container overflow-hidden">
-                            <p id="text2" class="text-base leading-loose p-4 line-clamp-3">
-                                Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las
-                                experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación
-                                de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las
-                                cuales son riencias de capacitación de los estudiantes, las cuales son
-                            </p>
-                            <a href="#" onclick="toggleText('text2')"
-                                class="text-vh-green hover:underline block p-4">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-1/3 p-4">
-                    <div class="bg-green-50 pt-5">
-                        <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5  ">
-                            <h2 class="text-vh-green font-bold  text-2xl">03</h2>
-                        </div>
-                        <h3 class="font-semibold text-xl p-2 ">Standardization</h3>
-                        <div class="text-container overflow-hidden">
-                            <p id="text3" class="text-base leading-loose p-4 line-clamp-3">
-                                Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las
-                                experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación
-                                de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las
-                                cuales son riencias de capacitación de los estudiantes, las cuales son
-                            </p>
-                            <a href="#" onclick="toggleText('text3')"
-                                class="text-vh-green hover:underline block p-4">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-1/3 p-4">
-                    <div class="bg-green-50 pt-5">
-                        <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5  ">
-                            <h2 class="text-vh-green font-bold  text-2xl">04</h2>
-                        </div>
-                        <h3 class="font-semibold text-xl p-2 ">Standardization</h3>
-                        <div class="text-container overflow-hidden">
-                            <p id="text4" class="text-base leading-loose p-4 line-clamp-3">
-                                Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las
-                                experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación
-                                de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las
-                                cuales son riencias de capacitación de los estudiantes, las cuales son
-                            </p>
-                            <a href="#" onclick="toggleText('text4')"
-                                class="text-vh-green hover:underline block p-4">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-1/3 p-4">
-                    <div class=" pt-5 border ">
-                        <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5  ">
-                            <h2 class="text-vh-green font-bold  text-2xl">05</h2>
-                        </div>
-                        <h3 class="font-semibold text-xl p-2 ">Standardization</h3>
-                        <div class="text-container overflow-hidden">
-                            <p id="text5" class="text-base leading-loose p-4 line-clamp-3">
-                                Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las
-                                experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación
-                                de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las
-                                cuales son riencias de capacitación de los estudiantes, las cuales son
-                            </p>
-                            <a href="#" onclick="toggleText('text5')"
-                                class="text-vh-green hover:underline block p-4">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-1/3 p-4">
-                    <div class="bg-green-50 pt-5">
-                        <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5  ">
-                            <h2 class="text-vh-green font-bold  text-2xl">06</h2>
-                        </div>
-                        <h3 class="font-semibold text-xl p-2">Standardization</h3>
-                        <div class="text-container overflow-hidden">
-                            <p id="text6" class="text-base leading-loose p-4 line-clamp-3">
-                                Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las
-                                experiencias de capacitación de los estudiantes, las cuales son riencias de capacitación
-                                de los estudiantes, las cuales son riencias de capacitación de los estudiantes, las
-                                cuales son riencias de capacitación de los estudiantes, las cuales son
-                            </p>
-                            <a href="#" onclick="toggleText('text6')"
-                                class="text-vh-green hover:underline block p-4">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-
-
-
-
-        <div class="lg:hidden m-10">
-            <div class="w-full p-4">
+        <div class="flex flex-wrap m-4 lg:m-16">
+            <div class="w-full lg:w-1/3 p-4">
                 <div class="bg-green-50 pt-5">
-                    <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5  ">
-                        <h2 class="text-vh-green font-bold  text-2xl">01</h2>
+                    <div class="  bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5">
+                        <h2 class="text-vh-green font-bold text-2xl">01</h2>
                     </div>
                     <h3 class="font-semibold text-xl p-2">Standardization</h3>
                     <div class="text-container overflow-hidden">
-                        <p id="text7" class=" text-base leading-loose p-4 line-clamp-3">
+                        <p id="text1" class="text-base leading-loose p-4 line-clamp-3">
                             Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
-                            de capacitación de los estudiantes, las cuales son riencias de capacitación de los
-                            estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
-                            riencias de capacitación de los estudiantes, las cuales son
+                            de
+                            capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes,
+                            las
+                            cuales son riencias de capacitación de los estudiantes, las cuales son riencias de
+                            capacitación de
+                            los estudiantes, las cuales son
                         </p>
-                        <a href="#" onclick="toggleText('text7')" class="text-vh-green hover:underline block p-4">Learn
+                        <a href="#" onclick="toggleText('text1')" class="text-vh-green hover:underline block p-4">Learn
                             More</a>
                     </div>
                 </div>
             </div>
-            <div class="w-full p-4">
-                <div class=" pt-5 border ">
-                    <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5  ">
-                        <h2 class="text-vh-green font-bold  text-2xl">02</h2>
-                    </div>
-                    <h3 class="font-semibold text-xl p-2">Standardization</h3>
-                    <div class="text-container overflow-hidden">
-                        <p id="text8" class="text-base leading-loose p-4 line-clamp-3">
-                            Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
-                            de capacitación de los estudiantes, las cuales son riencias de capacitación de los
-                            estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
-                            riencias de capacitación de los estudiantes, las cuales son
-                        </p>
-                        <a href="#" onclick="toggleText('text8')" class="text-vh-green hover:underline block p-4">Learn
-                            More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full p-4">
-                <div class="bg-green-50 pt-5">
-                    <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5  ">
-                        <h2 class="text-vh-green font-bold  text-2xl">03</h2>
-                    </div>
-                    <h3 class="font-semibold text-xl p-2">Standardization</h3>
-                    <div class="text-container overflow-hidden">
-                        <p id="text9" class="text-base leading-loose p-4 line-clamp-3">
-                            Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
-                            de capacitación de los estudiantes, las cuales son riencias de capacitación de los
-                            estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
-                            riencias de capacitación de los estudiantes, las cuales son
-                        </p>
-                        <a href="#" onclick="toggleText('text9')" class="text-vh-green hover:underline block p-4">Learn
-                            More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full p-4">
-                <div class=" pt-5 border ">
-                    <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5  ">
-                        <h2 class="text-vh-green font-bold  text-2xl">04</h2>
-                    </div>
-                    <h3 class="font-semibold text-xl p-2">Standardization</h3>
-                    <div class="text-container overflow-hidden">
-                        <p id="text10" class="text-base leading-loose p-4 line-clamp-3">
-                            Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
-                            de capacitación de los estudiantes, las cuales son riencias de capacitación de los
-                            estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
-                            riencias de capacitación de los estudiantes, las cuales son
-                        </p>
-                        <a href="#" onclick="toggleText('text10')" class="text-vh-green hover:underline block p-4">Learn
-                            More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full p-4">
-                <div class="bg-green-50 pt-5">
-                    <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5  ">
-                        <h2 class="text-vh-green font-bold  text-2xl">05</h2>
-                    </div>
-                    <h3 class="font-semibold text-xl p-2">Standardization</h3>
-                    <div class="text-container overflow-hidden">
-                        <p id="text11" class="text-base leading-loose p-4 line-clamp-3">
-                            Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
-                            de capacitación de los estudiantes, las cuales son riencias de capacitación de los
-                            estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
-                            riencias de capacitación de los estudiantes, las cuales son
-                        </p>
-                        <a href="#" onclick="toggleText('text11')" class="text-vh-green hover:underline block p-4">Learn
-                            More</a>
-                    </div>
-                </div>
-            </div>
+            <div class="w-full lg:w-1/3 p-4">
+                <div class="border pt-5">
+                    <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5">
 
-            <div class="w-full p-4">
-                <div class=" pt-5 border ">
-                    <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5  ">
-                        <h2 class="text-vh-green font-bold  text-2xl">06</h2>
+                        <h2 class="text-vh-green font-bold text-2xl">02</h2>
                     </div>
                     <h3 class="font-semibold text-xl p-2">Standardization</h3>
                     <div class="text-container overflow-hidden">
-                        <p id="text12" class="text-base leading-loose p-4 line-clamp-3">
+                        <p id="text2" class="text-base leading-loose p-4 line-clamp-3">
                             Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
-                            de capacitación de los estudiantes, las cuales son riencias de capacitación de los
-                            estudiantes, las cuales son riencias de capacitación de los estudiantes, las cuales son
-                            riencias de capacitación de los estudiantes, las cuales son
+                            de
+                            capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes,
+                            las
+                            cuales son riencias de capacitación de los estudiantes, las cuales son riencias de
+                            capacitación de
+                            los estudiantes, las cuales son
                         </p>
-                        <a href="#" onclick="toggleText('text12')" class="text-vh-green hover:underline block p-4">Learn
+                        <a href="#" onclick="toggleText('text2')" class="text-vh-green hover:underline block p-4">Learn
+                            More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/3 p-4">
+                <div class="bg-green-50 pt-5">
+                    <div class="  bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5">
+                        <h2 class="text-vh-green font-bold text-2xl">03</h2>
+                    </div>
+                    <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                    <div class="text-container overflow-hidden">
+                        <p id="text3" class="text-base leading-loose p-4 line-clamp-3">
+                            Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
+                            de
+                            capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes,
+                            las
+                            cuales son riencias de capacitación de los estudiantes, las cuales son riencias de
+                            capacitación de
+                            los estudiantes, las cuales son
+                        </p>
+                        <a href="#" onclick="toggleText('text3')" class="text-vh-green hover:underline block p-4">Learn
+                            More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/3 p-4">
+                <div class="border pt-5">
+                    <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5">
+
+                        <h2 class="text-vh-green font-bold text-2xl">04</h2>
+                    </div>
+                    <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                    <div class="text-container overflow-hidden">
+                        <p id="text4" class="text-base leading-loose p-4 line-clamp-3">
+                            Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
+                            de
+                            capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes,
+                            las
+                            cuales son riencias de capacitación de los estudiantes, las cuales son riencias de
+                            capacitación de
+                            los estudiantes, las cuales son
+                        </p>
+                        <a href="#" onclick="toggleText('text4')" class="text-vh-green hover:underline block p-4">Learn
+                            More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/3 p-4">
+                <div class="bg-green-50 pt-5">
+                    <div class="  bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5">
+                        <h2 class="text-vh-green font-bold text-2xl">05</h2>
+                    </div>
+                    <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                    <div class="text-container overflow-hidden">
+                        <p id="text5" class="text-base leading-loose p-4 line-clamp-3">
+                            Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
+                            de
+                            capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes,
+                            las
+                            cuales son riencias de capacitación de los estudiantes, las cuales son riencias de
+                            capacitación de
+                            los estudiantes, las cuales son
+                        </p>
+                        <a href="#" onclick="toggleText('text5')" class="text-vh-green hover:underline block p-4">Learn
+                            More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/3 p-4">
+                <div class="border pt-5">
+                    <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5">
+
+                        <h2 class="text-vh-green font-bold text-2xl">06</h2>
+                    </div>
+                    <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                    <div class="text-container overflow-hidden">
+                        <p id="text6" class="text-base leading-loose p-4 line-clamp-3">
+                            Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
+                            de
+                            capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes,
+                            las
+                            cuales son riencias de capacitación de los estudiantes, las cuales son riencias de
+                            capacitación de
+                            los estudiantes, las cuales son
+                        </p>
+                        <a href="#" onclick="toggleText('text6')" class="text-vh-green hover:underline block p-4">Learn
                             More</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
     @include('templates.footer') 
 </body>
 
