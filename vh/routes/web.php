@@ -52,7 +52,13 @@ Route::get('/area', function () {
     return view('app.area');
 });
 
+Route::get('/citas', function () {
+    return view('app.citas');
+});
+
 //Doctor
 Route::get('/index_d', function () {
     return view('doctor.index');
 });
+
+

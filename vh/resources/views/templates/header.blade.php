@@ -7,9 +7,9 @@
             <label for="menu--toggle" id="burger"></label>
             <ul id="menu">
                 <li class="menu_list"><a href="" class="menu_link">Home</a></li>
-                <li class="menu_list"><a href="" class="menu_link">Produtos</a></li>
-                <li class="menu_list"><a href="" class="menu_link">Serviços</a></li>
-                <li class="menu_list"><a href="" class="menu_link">Contato</a></li>
+                <li class="menu_list"><a href="" class="menu_link">Productos</a></li>
+                <li class="menu_list"><a href="" class="menu_link">Servicios</a></li>
+                <li class="menu_list"><a href="" class="menu_link">Contactos</a></li>
             </ul>
         </section>
         <ul class="hidden menu-list w-full mt-4 md:flex justify-center gap-10 items-center">
