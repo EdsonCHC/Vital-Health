@@ -8,7 +8,7 @@
     </head>
     <body class="w-full h-full">
         <div class="w-full h-auto absolute top-0 z-10">
-            @include('templates.header')
+            <!-- @include('templates.header') -->
         </div>
 
 
