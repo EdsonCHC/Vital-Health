@@ -27,10 +27,17 @@ $(document).ready(function () {
                         </div>
                     </div>
                 </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-xl font-bold mb-2">Modalidad</label>
+                    <input type="radio" id="radio-pre" name="modalidad" value="Presencial" class="mr-2" style="color: green;">
+                    <label for="radio-pre" class="mr-4">Presencial</label>
+                    <input type="radio" id="radio-virtual" name="modalidad" value="Virtual" class="mr-2" style="color: green;">
+                    <label for="radio-virtual">Virtual</label>
+                </div>
                 <input type="hidden" id="fecha" name="fecha">
             `,
             customClass: {
-                popup: "border-solid border-2 border-vh-green",
+                popup: "border-solid border-3 border-vh-green",
                 title: "text-2xl font-bold text-gray-800 mb-4",
             },
             showConfirmButton: true,
@@ -46,6 +53,9 @@ $(document).ready(function () {
             preConfirm: () => {
                 const selectedDate = document.getElementById("fecha").value;
                 const selectedTime = document.getElementById("time").value;
+                const selectedModalidad = document.querySelector(
+                    'input[name="modalidad"]:checked'
+                ).value;
                 if (!selectedDate) {
                     Swal.showValidationMessage(
                         "Por favor, seleccione una fecha."
@@ -58,13 +68,18 @@ $(document).ready(function () {
                     );
                     return false;
                 }
-                return { date: selectedDate, time: selectedTime };
+                return {
+                    date: selectedDate,
+                    time: selectedTime,
+                    modalidad: selectedModalidad,
+                };
             },
         });
 
         if (isConfirmed) {
             const selectedDate = `${result.date}`;
             const selectedTime = `${result.time}`;
+            const selectedModalidad = result.modalidad;
             Swal.fire({
                 position: "bottom-end",
                 icon: "info",
@@ -73,21 +88,26 @@ $(document).ready(function () {
                         <div>
                             <p class="text-gray-700 text-lg font-bold mb-6">Fecha</p>
                             <p class="text-gray-500 text-base font-bold mb-6">${selectedDate}</p>
-                            </div>
+                        </div>
                         <div>
                             <p class="text-gray-700 text-lg font-bold mb-6">Hora</p>
                             <p class="text-gray-500 text-base font-bold mb-6">${selectedTime}</p>
                         </div>
+                        <div>
+                            <p class="text-gray-700 text-lg font-bold mb-6">Modalidad</p>
+                            <p class="text-gray-500 text-base font-bold mb-6">${selectedModalidad}</p>
                         </div>
-                
+                        </div>
                 `,
-
                 showConfirmButton: false,
                 timer: 4000,
                 timerProgressBar: true,
             });
-            console.log(selectedDateTime);
-            return selectedDateTime;
+            return {
+                date: selectedDate,
+                time: selectedTime,
+                modalidad: selectedModalidad,
+            };
         } else {
             return false;
         }

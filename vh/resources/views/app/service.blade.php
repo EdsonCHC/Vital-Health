@@ -7,10 +7,9 @@
         @vite(['resources/css/app.css','resources/css/checkbox.css','resources/js/appointment.js'])
     </head>
     <body class="w-full h-full">
-        <div class="w-full h-auto absolute top-0 z-10">
-            <!-- @include('templates.header') -->
+        <div class="w-full h-auto absolute top-0 z-30">
+            @include('templates.header')
         </div>
-
 
         <!--Estilos Desktop-->
         <div class="hidden lg:flex lg:pt-28 mb-5 w-full bg-gray-100">
@@ -71,7 +70,6 @@
                 </div>
             </div>
         </div>
-
 
         <!--Estilos Mobile-->
         <div class="lg:hidden flex">
@@ -297,7 +295,6 @@
                 </div>
             </div>
 
-
             <!-- Segundo Bloque Desktop -->
             <div
                 class="hidden lg:flex flex-col items-center w-full text-center mb-8"
@@ -398,7 +395,6 @@
                 </div>
             </div>
 
-
             <!--Segundo Bloque Mobile-->
             <div class="lg:hidden w-full text-center mb-8">
                 <div class="mb-2">
@@ -482,7 +478,7 @@
                             <p>Matematics</p>
                             <div
                                 class="w-28 flex justify-around my-4 lg:ml-auto"
-                            >   
+                            >
                                 <div
                                     class="bg-vh-green-medium rounded-full h-10 w-10 border"
                                 >

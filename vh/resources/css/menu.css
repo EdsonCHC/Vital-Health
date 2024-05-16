@@ -69,7 +69,7 @@ body {
     padding: 0;
     width: 110px;
     height: 110px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.882);
     border-bottom-right-radius: 100%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
     animation: not-checked-anim 0.2s both;
