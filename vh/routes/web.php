@@ -57,7 +57,7 @@ Route::get('/citas', function () {
 });
 
 //Doctor
-Route::get('/index_d', function () {
+Route::get('/doctor', function () {
     return view('doctor.index');
 });
 

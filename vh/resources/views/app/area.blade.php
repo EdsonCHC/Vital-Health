@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="w-full h-full absolute top-0 z-10">
+    <div class="w-full h-auto absolute top-0 z-10">
         @include('templates.header')
     </div>
     <div class="w-full ">
@@ -22,7 +22,7 @@
 
         <div class=" hidden lg:flex px-44  py-8 ">
             <div class="w-3/4">
-                <form method="get" action="#" class="relative z-50">
+                <form method="get" action="#" class="relative">
                     <div class="relative ml-26">
                         <input type="text" name="s" id="s"
                             class="block w-full  pl-16 py-2 border border-gray-200 rounded-md leading-5 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none focus:bg-white focus:text-gray-900 sm:text-sm transition duration-150 ease-in-out"
@@ -61,7 +61,7 @@
         </div>
         <div class=" lg:hidden px-8  pt-28 ">
             <div class="w-full">
-                <form method="get" action="#" class="relative z-50">
+                <form method="get" action="#" class="relative">
                     <div class="relative ml-26">
                         <input type="text" name="s" id="s"
                             class="block w-full  pl-16 py-2 border border-gray-200 rounded-md leading-5 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none focus:bg-white focus:text-gray-900 sm:text-sm transition duration-150 ease-in-out"

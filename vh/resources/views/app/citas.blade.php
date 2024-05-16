@@ -5,19 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citas</title>
-    @vite(['resources/css/app.css', 'resources/css/swet.css', 'resources/js/citas.js'])
+    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js'])
 </head>
 
-<body class="w-full h-screen">
-    @include('templates.header')
-    <main class="w-full h-auto p-4 lg:bg-gray-100 lg:max-w-screen-2xl lg:mx-auto lg:rounded-md">
+<body class="w-full h-full">
+    <div class="w-full h-auto absolute top-0 z-10">
+        @include('templates.header')
+    </div>
+    <main class="w-full max-w-6xl h-auto p-4 lg:bg-gray-100 lg:rounded-md mt-24 mx-auto">
 
         <section class="flex justify-between ">
             <h2 class="font-bold text-lg text-vh-green-medium">Menú de Citas</h2>
             <div class="w-24 ml-4">
                 <label for="filtro"
                     class="border-4 border-green-900 rounded-full flex items-center p-1 relative cursor-pointer">
-                    <select id="filtro" name="filtro" class="absolute inset-0 w-full h-full border-none cursor-pointer bg-transparent appearance-none z-10 right-0 focus:outline-none opacity-0">
+                    <select id="filtro" name="filtro"
+                        class="absolute inset-0 w-full h-full border-none cursor-pointer bg-transparent appearance-none z-10 right-0 focus:outline-none opacity-0">
                         <option value="todos" selected>Todos</option>
                         <option value="c1">Ascedente</option>
                         <option value="c2">Descendente</option>
@@ -39,7 +42,8 @@
                     <div class="w-9/12 h-28 p-2 text-center">
                         <h2>Odontología</h2>
                         <h3>Doc: Alejandro García</h3>
-                        <button id="citas" class="bg-vh-green-light rounded-md text-white font-bold p-1" id="show-alert">En Proceso</button>
+                        <button id="citas" class="bg-vh-green-light rounded-md text-white font-bold p-1"
+                            id="show-alert">En Proceso</button>
                         <h4>Hora: 8:00 A.M</h4>
                         <h4>Fecha: 8 de junio de 2024</h4>
                     </div>
@@ -72,7 +76,7 @@
             </div>
         </section>
     </main>
-    <div class="w-full h-auto bottom-0 md:absolute lg:absolute">
+    <div class="w-full h-auto bottom-0 absolute">
         @include('templates.footer')
     </div>
 </body>
