@@ -14,9 +14,9 @@
         @include('templates.header')
     </div>
 
-    <div class="grid grid-rows-3 grid-flow-col gap-4 mt-28 "><!--Div padre-->
+    <div class="grid grid-flow-col justify-center gap-5 mt-28 "><!--Div padre-->
         <!-- inicio apartado de todo los contactos-->
-        <div class="mx-auto border rounded-lg row-span-3 bg-white-not-white">
+        <div class="mx-auto  border rounded-lg row-span-3 bg-white-not-white">
             <h1 class="pt-5 pb-5 text-lg font-bold ml-10"> Personas </h1>
             <!-- Barra de navegación-->
             <div class="flex-1 flex px-2 lg:ml-6 ">
@@ -77,17 +77,17 @@
         <!-- adaptacion de chat para pc -->
 
         <!--Inicio del chat-->
-        <div id="tres" class=" shadow-md border rounded-lg row-span-2 mr-32 border-b justify-between bg-white-not-white">
+        <div id="tres" class=" shadow-md w-full h-full overflow-auto border rounded-lg row-span-2 mr-32 border-b bg-white-not-white">
 
-            <div class="chat pt-4 pl-4 pb-4 flex items-center flex-grow border-b">
+            <div class="chat pt-4 pl-4 pb-4 flex items-center  border-b">
                 <img src="{{asset('storage/svg/doctor.svg')}}" alt="Profile" class="w-12 h-12 rounded-full mr-4">
-                <div class="">
-                    <div class="name font-semibold ">Doc. Alvarenga</div>
+                <div class="grow">
+                    <div class="name font-semibold shrink-1 ">Doc. Alvarenga</div>
                     <div class="message text-gray-500">#CU6798H</div>
                 </div>
 
 
-                <div class="between items-center p-4 flex-shrink-0">
+                <div class=" flex justify-end pr-5">
                     <svg width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M18.4194 12.1334V8.38152C18.4194 7.79195 17.942 7.30957 17.3585 7.30957H4.62688C4.04335 7.30957 3.56592 7.79195 3.56592 8.38152V19.101C3.56592 19.6906 4.04335 20.173 4.62688 20.173H17.3585C17.942 20.173 18.4194 19.6906 18.4194 19.101V15.3492L22.6633 19.637V7.84555L18.4194 12.1334Z"
@@ -103,9 +103,6 @@
             </div>
 
 
-
-
-
             <div class="flex items-start p-4 ">
                 <img src="{{asset('storage/svg/doctor.svg')}}" alt="Profile Picture"
                     class="w-10 h-10 rounded-full mr-4">
@@ -115,6 +112,14 @@
                 </div>
             </div>
 
+                        <div class="flex items-start p-4 ">
+                <img src="{{asset('storage/svg/doctor.svg')}}" alt="Profile Picture"
+                    class="w-10 h-10 rounded-full mr-4">
+                <div class="bg-gray-200 rounded-lg p-2">
+                    <p class="text-sm">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                    <p class="text-xs text-gray-500">10:00 AM</p>
+                </div>
+            </div>
 
             <div class="flex items-end justify-end p-4 ">
                 <div class="bg-green-200 rounded-lg p-2">
