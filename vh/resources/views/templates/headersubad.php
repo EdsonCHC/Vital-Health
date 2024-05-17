@@ -6,9 +6,11 @@
     <div class="flex items-center px-4">
       <img
         class=""
-        src="{{asset('storage/svg/logo.svg')}}"
+        src="http://127.0.0.1:8000/storage/svg/logo.svg" 
         type="image/svg+xml"
       />
+      <!-- No entiendo porque no lo agarra normal 
+      src="{{asset('storage/svg/logo.svg')}}"-->
     </div>
     <!-- Nav -->
     <div class="sidebar flex flex-col space-y-6 py-4 px-2 relative flex-grow">
