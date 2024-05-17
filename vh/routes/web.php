@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//User
 Route::get('/', function () {
     return view('app.index');
 });
@@ -56,9 +57,14 @@ Route::get('/citas', function () {
     return view('app.citas');
 });
 
+
 //Doctor
 Route::get('/doctor', function () {
     return view('doctor.index');
 });
 
 
+//Admin de Area
+Route::get('/subadmin', function () {
+    return view('subadmin.index');
+});
