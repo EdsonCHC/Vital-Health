@@ -23,10 +23,8 @@ $(document).ready(function () {
                 <h2 class="font-bold text-lg text-vh-green-medium">Requerimientos:</h2>
                 <div class="flex flex-row space-x-4 justify-evenly  ">
                     <div class="flex flex-col w-44 space-y-2">
-                        <button class="bg-green-500 text-white font-bold p-2 rounded-full">Examen de
-                            Sangre</button>
-                        <button class="bg-green-500 text-white font-bold p-2 rounded-full">Examen de
-                            Orina</button>
+                        <button class="bg-green-500 text-white font-bold p-2 rounded-full">Examen de sangre</button>
+                        <button class="bg-green-500 text-white font-bold p-2 rounded-full">Examen de orina</button>
                         <button class="bg-red-500 text-white font-bold p-2 rounded-full">Peso Corporal</button>
                     </div>
                 </div>
@@ -36,28 +34,22 @@ $(document).ready(function () {
                 <h2 class="font-bold text-lg text-vh-green-medium">Recomendaciones:</h2>
                 <ul>
                     <li class="flex items-center space-x-2">
-                        <img src="{{asset('storage/svg/check.svg')}}" alt="check" class="w-8 h-8">
+                        <img src="storage/svg/check.svg" alt="check" class="w-8 h-8">
                         <span>Llega 15 minutos antes de la cita.</span>
                     </li>
                     <li class="flex items-center space-x-2">
-                        <img src="{{asset('storage/svg/check.svg')}}" alt="check" class="w-8 h-8">
-                        <span>Lleva contigo cualquier documento médico relevante.</span>
+                        <img src="storage/svg/check.svg" alt="check" class="w-8 h-8">
+                        <span>Llevar documento médico relevante.</span>
                     </li>
                 </ul>
             </div>
         </div>
             `,
-            icon: "info",
-            showCancelButton: true,
-            acepptButtonText: "Aceptar",
+            confirmButtonText: "Aceptar",
             customClass: {
                 container: "custom-swal-container",
             },
         });
-
-        if (result.isConfirmed) {
-            console.log("La cita ha sido confirmada.");
-        }
     }
 
     // Event listener para cambiar el estilo de los botones de requisitos al hacer clic

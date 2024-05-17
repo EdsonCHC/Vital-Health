@@ -52,7 +52,7 @@
                 <div class="w-72 h-64 p-1 flex flex-col items-center bg-gray-100 rounded-lg lg:bg-white relative">
                     <div class="w-20 h-20 bg-green-200 rounded-full"></div>
                     <div class="w-9/12 h-28 p-2 text-center">
-                        <h2 class="relative z-10">Dermatología</h2>
+                        <h2>Dermatología</h2>
                         <h3>Doc: Víctor Guevara</h3>
                         <button class="bg-red-700 rounded-md text-white font-bold p-1">Rechazado</button>
                         <h4>Hora: 8:00 A.M</h4>
