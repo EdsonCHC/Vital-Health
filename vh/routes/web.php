@@ -66,5 +66,5 @@ Route::get('/doctor', function () {
 
 //Admin de Area
 Route::get('/subadmin', function () {
-    return view('subadmin.index');
+    return view('subadmin.statistics');
 });

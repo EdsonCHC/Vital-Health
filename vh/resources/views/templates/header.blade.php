@@ -2,7 +2,7 @@
 <header class="w-full h-auto flex justify-start">
     <div class="w-full h-full mx-auto flex justify-between">
         <section id="banner" class="sm:hidden">
-            <input type="checkbox" id="menu--toggle" class="chekbox-menu">
+            <input type="checkbox" id="menu--toggle" class="checkbox-menu">
             <label for="menu--toggle" id="trigger"></label>
             <label for="menu--toggle" id="burger"></label>
             <ul id="menu">

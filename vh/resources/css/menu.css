@@ -110,8 +110,8 @@ a.menu_link:focus {
     transition: all 0.5s;
 }
 
-[type="checkbox"]:not(:checked),
-[type="checkbox"]:checked {
+.checkbox-menu:not(:checked),
+.checkbox-menu:checked {
     display: none;
 }
 
