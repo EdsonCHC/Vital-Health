@@ -9,12 +9,12 @@
 </head>
 
 
-<body class="w-full h-full">
+<body class="w-full h-full bg-gray-200 ">
     <div class="flex ">
         <div>
             @include('templates.headerdoc')
         </div>
-        <div class=" flex  bg-vh-gray-light w-full">
+        <div class=" flex w-full px-5  ">
             <h2>hola</h2>
         </div>
 
