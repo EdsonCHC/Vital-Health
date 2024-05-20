@@ -9,6 +9,7 @@ export default {
         extend: {
             colors: {
                 "vh-green": "#166534",
+                "vh-green-medium-2": "#155D1C",
                 "vh-green-medium": "#1D9328",
                 "vh-green-light": "#4BC357",
                 "vh-gray-light": "#EEEEEE",

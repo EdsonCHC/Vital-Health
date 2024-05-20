@@ -25,7 +25,7 @@
               <a href="#" class="text-md">Citas</a>
             </div>
             <div class="flex items-center py-2 rounded transition duration-200 hover:bg-green-200 text-black w-full">
-              <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/programacion.svg')}}" type="image/svg+xml" />
+              <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" />
               <a href="#" class="text-md">Programación</a>
             </div>
           </div>
@@ -58,7 +58,7 @@
         <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/cita.svg')}}" type="image/svg+xml" />
     </a>
     <a href="#" class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
-        <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/programacion.svg')}}" type="image/svg+xml" />
+        <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" />
     </a>
 </div>
 
