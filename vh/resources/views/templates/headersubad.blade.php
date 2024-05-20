@@ -1,8 +1,8 @@
 <header>
-  <div class="relative min-h-screen flex font-sans">
+  <div class="min-h-screen flex font-sans">
     <nav class="hidden lg:flex fixed top-0 left-0 bottom-0 bg-vh-green text-black w-64 overflow-hidden z-10">
       <!-- Nav -->
-      <div class="sidebar flex flex-col relative flex-grow justify-center ">
+      <div class="sidebar flex flex-col flex-grow justify-center ">
         <div class="flex flex-col space-y-4">
           <div
             class="flex flex-grow items-center ml-14 h-14 rounded-l-3xl transition duration-300 hover:bg-white focus-within:bg-white">
