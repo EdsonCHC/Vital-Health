@@ -16,7 +16,7 @@
             <h1 class="text-2xl font-bold mb-5">Inicio de sesión</h1>
             <form action="" class="text-center w-full flex flex-col items-center">
                 <Input  class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-2 lg:w-2/5" type="text" placeholder="Nombre de Usuario o Email"></Input>
-                <input  class="block h-10 p-2 outli ne outline-1 outline-vh-green w-4/5 mb-10 lg:w-2/5" placeholder="Contraseña" type="password">
+                <input  class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-10 lg:w-2/5" placeholder="Contraseña" type="password">
                 <button class="w-4/5 h-10 text-white bg-vh-green font-bold text-1xl shadow-xl mb-10 rounded-lg lg:w-2/5 hover:bg-white hover:text-vh-green">
                 Ingresar</button>
             </form>
