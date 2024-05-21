@@ -10,7 +10,7 @@
 
 <body class="w-full h-full bg-vh-gray-light">
   <div class="w-auto h-auto absolute top-0 z-10">
-    @include('templates.headersubad')
+    @include('templates.header_sub_ad')
   </div>
 
   <!-- Estilos Desktop -->
