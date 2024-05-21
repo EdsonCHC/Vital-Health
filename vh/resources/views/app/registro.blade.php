@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    @vite(['resources/css/app.css', 'resources/css/swet.css', 'resources/js/register.js'])
+    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/register.js'])
 </head>
 <body class="w-full h-screen">
     <div class="w-full h-screen p-2 flex flex-col bg-white lg:flex-row">

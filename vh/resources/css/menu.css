@@ -8,7 +8,7 @@ body {
 
 #banner {
     overflow: hidden;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 #trigger,
@@ -85,6 +85,10 @@ body {
 a {
     display: block;
 }
+
+#menu--toggle:checked + #banner{
+    height: 100vh;
+} 
 
 li.menu_list,
 a.menu_link {
