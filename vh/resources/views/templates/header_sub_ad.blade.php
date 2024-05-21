@@ -6,10 +6,10 @@
         <div class="flex flex-col space-y-4">
           <div
             class="flex flex-grow items-center ml-14 h-14 rounded-l-3xl transition duration-300 hover:bg-white focus-within:bg-white">
-            <a href="#"
+            <a href="/statistics"
               class="flex items-center h-full w-full text-md font-bold text-white hover:text-black focus:text-black tracking-wider">
               <img id="menu-icon" class="h-8 w-8 mx-2" src="{{asset('storage/svg/homee.svg')}}" alt="Inicio" />
-              <span class="">Inicio</span>
+              <span class="">Statistics</span>
             </a>
           </div>
           <div class="flex flex-grow items-center ml-14 h-14 rounded-l-3xl transition duration-300 hover:bg-white">
