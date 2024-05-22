@@ -75,3 +75,8 @@ Route::get('/doctor', function () {
 Route::get('/statistics', function () {
     return view('subadmin.statistics');
 });
+
+Route::get('/appointment', function () {
+    return view('subadmin.appointment');
+});
+
