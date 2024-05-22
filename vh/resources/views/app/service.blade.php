@@ -27,7 +27,7 @@
                     </p>
                 </div>
                 <a href="/#" target="_self"
-                    class="w-4/5 h-12 text-white font-bold bg-vh-green text-lg tracking-wide shadow-xl mb-10 rounded-full lg:w-2/5 hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center py-2 mx-4">
+                    class="w-4/5 lg:w-2/5 h-12 text-white font-bold bg-vh-green text-lg tracking-wide shadow-xl mb-10 mx-4 rounded-full hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
                     Solicitar Cita
                 </a>
             </div>

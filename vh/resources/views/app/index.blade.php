@@ -10,10 +10,9 @@
 </head>
 
 <body class="w-full h-full">
-    <div class="w-full h-auto">
+    <div class="w-full h-auto absolute top-0 z-30">
         @include('templates.header')
     </div>
-
 
     <!-- para pc -->
     <div class="hidden lg:flex lg:pt-28 mb-5 bg-vh-gray-light w-full">
@@ -26,7 +25,7 @@
                         text of the printing and typesetting industry.</p>
                 </div>
                 <a href="/login" target="_self"
-                    class="w-1/4 h-8 text-white bg-vh-green text-sm shadow-xl mb-10 rounded-full hover:bg-white hover:text-vh-green inline-block text-center pt-1 mx-4">
+                    class="w-4/5 lg:w-2/5 h-12 text-white font-bold bg-vh-green text-lg tracking-wide shadow-xl my-10 mx-4 rounded-full hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
                     Logueate ahora
                 </a>
             </div>

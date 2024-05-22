@@ -29,18 +29,42 @@
             <li class="font-bold mb-4"><a href="/registro">Registro</a></li>
         </ul>
 
-        <div class="hidden w-2/5 h-auto md:flex items-center justify-end gap-4 p-4">
-            <object data="{{ asset('storage/svg/user.svg') }}" type="image/svg+xml"></object>
-            <div>
+        <div class="hidden w-1/2 h-auto md:flex items-center justify-end gap-4 p-4">
+            <div class="flex w-24 justify-between">
+                <a href="#">
+                    <img src="{{ asset('storage/svg/noti.svg') }}" alt="noti_icon"
+                        class="w-10 p-2 bg-vh-gray-light rounded-full">
+                </a>
+                <div class="relative group">
+                    <a href="#">
+                        <img src="{{ asset('storage/svg/config.svg') }}" alt="config_icon"
+                            class="w-10 p-2 bg-vh-gray-light rounded-full">
+                    </a>
+                    <ul class="absolute hidden bg-white p-1 shadow-md w-full z-10 group-hover:block border border-solid border-black rounded-xl">
+                        <li><a href="#" class="block py-1 w-8">
+                                <img src="{{ asset('storage/svg/calendar.svg') }}" alt="noti_icon"
+                                    class="w-full p-2 bg-vh-gray-light rounded-full">
+                            </a>
+                        </li>
+                        <li><a href="#" class="block py-1 w-8">
+                                <img src="{{ asset('storage/svg/chat-icon-second.svg') }}" alt="noti_icon"
+                                    class="w-full p-2 bg-vh-gray-light rounded-full">
+                            </a>
+                        </li>
+                        <li><a href="#" class="block py-1 w-8">
+                                <img src="{{ asset('storage/svg/health-icon.svg') }}" alt="noti_icon"
+                                    class="w-full p-2 bg-vh-gray-light rounded-full">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col items-start">
                 <p class="font-bold">John Doe</p>
-                <p>3rd year</p> <!--Esto para que?-->
+                <p class="text-vh-green font-bold">#1345</p>
             </div>
-            <div class="flex flex-col gap-2">
-                <a href="#" class="m-0"><img src="{{ asset('storage/svg/noti.svg') }}" alt="noti_icon"
-                        class="w-8 p-1 bg-gray-300 rounded-full"></a>
-                <a href="#" class="m-0"><img src="{{ asset('storage/svg/config.svg') }}" alt="config_icon"
-                        class="w-8 p-1 bg-gray-300 rounded-full"></a>
-            </div>
+            <object data="{{ asset('storage/svg/user.svg') }}" type="image/svg+xml" class="w-10 h-10"></object>
         </div>
+
     </div>
 </header>
