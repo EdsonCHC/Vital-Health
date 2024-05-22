@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,8 @@ Route::get('/login', function () {
 Route::get('/registro', function () {
     return view('app.registro');
 });
+
+Route::post('/registro',[UsuarioController::class, 'store']); //controlador post
 
 Route::get('/medicina', function() {
     return view('app.medicine');
