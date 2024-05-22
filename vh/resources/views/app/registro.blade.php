@@ -14,17 +14,17 @@
             <div class="flex flex-col items-center w-full h-full lg:justify-center">
                 <object data="{{asset('storage/svg/logo.svg')}}" type="image/svg+xml"></object><!--LOGO-->
                 <h1 class="font-bold text-2xl">Registrarse</h1>
-                <form action="" class="w-4/5 lg:flex flex-col items-center">
+                <form action="/" class="w-4/5 lg:flex flex-col items-center">
+                    @csrf
+                    <input type="hidden" id="_token" value="{{csrf_token()}}">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="text "
-                        placeholder="Nombres">
+                        placeholder="Nombres" id="name">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="text"
-                        placeholder="Apellidos">
-                    <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="text"
-                        placeholder="Fecha de nacimiento">
+                        placeholder="Apellidos" id="lastName">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="email"
-                        placeholder="Email">
+                        placeholder="Email" id="mail">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-10 lg:w-2/5 " type="password"
-                        placeholder="Contraseña">
+                        placeholder="Contraseña" id="password">
                     <button id="register" class="w-full p-2 rounded-md bg-vh-green text-white font-bold  lg:w-2/5"
                         id="show-alert">Registrarse</button>
                 </form>

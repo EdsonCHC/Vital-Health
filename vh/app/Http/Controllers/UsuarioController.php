@@ -28,7 +28,13 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $user = request()->all();
+            Usuario::create($user);
+            return redirect('/');
+        }catch(\Exception $e){
+            return response()->json("No Func: ". $e->getMessage(), 500);
+        }
     }
 
     /**
