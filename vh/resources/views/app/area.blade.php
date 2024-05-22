@@ -80,7 +80,7 @@
                 <h2 class="font-bold text-2xl lg:text-4xl mb-6">Servicios</h2>
             </div>
             <div class="ml-4 w-1/2 flex justify-end">
-                 <label for="filtro1"
+                <label for="filtro1"
                     class="border-4 border-green-900 rounded-full flex items-center p-2 relative cursor-pointer">
                     <select id="filtro1" name="filtro1"
                         class="absolute inset-0 w-full h-full border-none cursor-pointer bg-transparent appearance-none z-10 right-0 focus:outline-none opacity-0">
@@ -117,7 +117,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full lg:w-1/4 p-4"> 
+            <div class="w-full lg:w-1/4 p-4">
                 <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
                     <div class="flex justify-center items-center flex-col">
                         <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
@@ -178,11 +178,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
     </div>
     @include('templates.footer') 
 

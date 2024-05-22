@@ -76,7 +76,7 @@
             </div>
         </section>
     </main>
-    <div class="w-full h-auto bottom-0 absolute">
+    <div class="w-full h-auto lg:bottom-0 lg:absolute">
         @include('templates.footer')
     </div>
 </body>

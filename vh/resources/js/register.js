@@ -1,15 +1,52 @@
-import Swal from 'sweetalert2';
-import jQuery from 'jquery';
+import Swal from "sweetalert2";
+import jQuery from "jquery";
 window.$ = jQuery;
+
+let genre = "";
+let date = "";
+let blood_type = "";
+
 $(document).ready(function () {
-    
     $("#register").click((e) => {
         e.preventDefault();
 
-        secuencia();
+        secuencia().then((success) => {
+            if (success) {
+                const token = $("#_token").val();
+                const name = $("#name").val();
+                const lastName = $("#lastName").val();
+                const mail = $("#mail").val();
+                const password = $("#password").val();
+
+                $.ajax({
+                    url: "/registro",
+                    type: "POST",
+                    data: {
+                        _token: token,
+                        name: name,
+                        lastName: lastName,
+                        mail: mail,
+                        gender: genre,
+                        birth: date,
+                        blood: blood_type,
+                        password: password
+                    },
+                    success: (response) => {
+                        // Manejar la respuesta de éxito
+                        console.log("Registro exitoso", response);
+                    },
+                    error: (response) => {
+                        // Manejar la respuesta de error
+                        console.error("Error en el registro", response);
+                    },
+                });
+            } else {
+                console.error("El usuario canceló la secuencia de entrada.");
+            }
+        });
     });
 
-    //funciones
+    // Funciones asíncronas
     async function genere_input() {
         const result = await Swal.fire({
             title: "Género",
@@ -30,10 +67,10 @@ $(document).ready(function () {
         });
 
         if (result.isConfirmed) {
-            const selectOption = result.value;
-            console.log(selectOption);
-            return true; 
-        }else{
+            genre = result.value;
+            console.log(genre);
+            return true;
+        } else {
             return false;
         }
     }
@@ -54,15 +91,15 @@ $(document).ready(function () {
         });
 
         if (result.isConfirmed) {
-            const selectDate = result.value;
-            console.log(selectDate);
+            date = result.value;
+            console.log(date);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    async function blood_type(){
+    async function blood_type_input() {
         const result = await Swal.fire({
             title: "Tipo de sangre",
             text: "Por favor ingresa tu tipo de sangre, servirá más adelante",
@@ -73,14 +110,14 @@ $(document).ready(function () {
             },
             input: "select",
             inputOptions: {
-                'A+' : 'A+',
-                'O+': 'O+',
-                'B+': 'B+',
-                'AB+': 'AB+',
-                'A-': 'A-',
-                'O-': 'O-',
-                'B-': 'B-',
-                'AB-': 'AB-'
+                "A+": "A+",
+                "O+": "O+",
+                "B+": "B+",
+                "AB+": "AB+",
+                "A-": "A-",
+                "O-": "O-",
+                "B-": "B-",
+                "AB-": "AB-",
             },
             showCancelButton: true,
             confirmButtonText: "Seleccionar",
@@ -88,21 +125,30 @@ $(document).ready(function () {
         });
 
         if (result.isConfirmed) {
-            const selectBlood = result.value;
-            console.log(selectBlood);
+            blood_type = result.value;
+            console.log(blood_type);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
     async function secuencia() {
         const genereSelected = await genere_input();
-        if (genereSelected) {
-            const dateSelected = await date_input();
-            if(dateSelected){
-                await blood_type();
-            }
+        if (!genereSelected) {
+            return false;
         }
+
+        const dateSelected = await date_input();
+        if (!dateSelected) {
+            return false;
+        }
+
+        const bloodTypeSelected = await blood_type_input();
+        if (!bloodTypeSelected) {
+            return false;
+        }
+
+        return true;
     }
 });
