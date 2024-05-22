@@ -10,7 +10,7 @@
 </head>
 
 <body class="bg-gray-100">
-    <div class="w-full h-auto absolute top-0 z-10">
+    <div class="w-full h-auto">
         @include('templates.header')
     </div>
 

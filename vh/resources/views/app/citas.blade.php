@@ -9,7 +9,7 @@
 </head>
 
 <body class="w-full h-full">
-    <div class="w-full h-auto absolute top-0 z-10">
+    <div class="w-full h-auto">
         @include('templates.header')
     </div>
     <main class="w-full max-w-6xl h-auto p-4 lg:bg-gray-100 lg:rounded-md mt-24 mx-auto">

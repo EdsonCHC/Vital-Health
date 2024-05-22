@@ -9,7 +9,9 @@
 </head>
 
 <body class="w-full h-screen ">
-    @include('templates.header')
+    <div class="">
+        @include('templates.header')
+    </div>
     <div class="w-full h-auto flex flex-col items-start p-4 gap-2 lg:px-16 ">
         <h2 class="font-bold  text-xl text-vh-green lg:font-bold  lg:text-4xl">Medicamento Asignado </h2>
         <button class="text-sm font-bold">
@@ -19,13 +21,13 @@
     <div class="w-full h-auto  flex">
         <div class=" bg-cover w-full flex justify-center items-center">
             <div class="w-full bg-white lg:p-5 p-2 bg-opacity-40 backdrop-filter backdrop-blur-lg">
-                <div class="w-12/12 mx-auto rounded-2xl bg-white lg:p-5 p-2 bg-opacity-40 backdrop-filter backdrop-blur-lg">
+                <div
+                    class="w-12/12 mx-auto rounded-2xl bg-white lg:p-5 p-2 bg-opacity-40 backdrop-filter backdrop-blur-lg">
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-center px-2 mx-auto">
                         <article
                             class="bg-white  lg:p-6 p-3 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
-                            <a target="_self" href=""
-                                class="absolute opacity-0 top-0 right-0 left-0 bottom-0"></a>
+                            <a target="_self" href="" class="absolute opacity-0 top-0 right-0 left-0 bottom-0"></a>
                             <div class="relative mb-4 rounded-2xl">
                                 <object data="{{asset('storage/svg/medicine.svg')}}" type="image/svg+xml"
                                     class="max-h-80 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105"></object>

@@ -10,7 +10,7 @@
 </head>
 
 <body class="w-full h-full">
-    <div class="w-full h-auto absolute top-0 z-10">
+    <div class="w-full h-auto">
         @include('templates.header')
     </div>
     <div class="flex w-full pt-12 md:pl-16 pl-5 lg:pt-16 bg-vh-gray-light">
