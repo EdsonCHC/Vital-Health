@@ -12,7 +12,7 @@
 <body class="w-full h-full bg-gray-200 ">
     <div class="flex ">
         <div>
-            @include('templates.headerdoc')
+            @include('templates.header_doc')
         </div>
         <div class=" flex w-full px-5  ">
             <h2>hola</h2>
