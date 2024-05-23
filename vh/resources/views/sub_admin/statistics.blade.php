@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Statistics</title>
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css','resources/js/stats_chart.js'])
 </head>
 
 <body class="w-full h-full bg-vh-gray-light">
@@ -17,7 +17,7 @@
     <div class=" ml-40 mt-12 hidden lg:flex flex-col justify-between items-center ">
         <div class="mb-2">
             <h2 class=" font-bold text-2xl">
-                Admin del Area de Pediatria
+                Admin del Area de Pediatría
             </h2>
         </div>
         <div class="flex justify-between w-4/6 mt-4">
@@ -28,7 +28,7 @@
                         <p class="font-bold text-3xl text-vh-green">10</p>
                     </div>
                     <div>
-                        <img class="w-24 " src="{{ asset('storage/svg/doc-icon-green.svg') }}" alt="Inicio" />
+                        <img class="w-24 " src="{{ asset('storage/svg/doc-icon-green.svg') }}" alt="Inicio"/>
                     </div>
                 </div>
             </div>
@@ -61,6 +61,9 @@
         <div class="flex justify-between w-4/6 mt-4">
             <div class="w-118 h-108 m-4 bg-white opacity-80 rounded-lg shadow-xl">
                 <h2 class="font-bold text-xl mb-6 p-4">Usuarios Nuevos</h2>
+                <div class="w-full h-auto">
+                    <canvas id="users_chart"></canvas>
+                </div>
             </div>
             <div class="w-80 h-108 m-4 bg-white opacity-80 rounded-lg shadow-xl">
                 <h2 class="font-bold text-xl mb-6 p-4">Notificaciones</h2>
@@ -93,7 +96,7 @@
         <div class="">
             <div class="mb-2">
                 <h2 class="text-center font-bold text-2xl">
-                    Admin del Area de Pediatria
+                    Admin del Area de Pediatría
                 </h2>
             </div>
             <div class="flex-col w-full mt-4">

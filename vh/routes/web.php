@@ -73,10 +73,10 @@ Route::get('/doctor', function () {
 
 //Admin de Area
 Route::get('/statistics', function () {
-    return view('subadmin.statistics');
+    return view('sub_admin.statistics');
 });
 
 Route::get('/appointment', function () {
-    return view('subadmin.appointment');
+    return view('sub_admin.appointment');
 });
 

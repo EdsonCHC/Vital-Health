@@ -1,6 +1,6 @@
 <header>
     <div class="min-h-screen flex font-sans">
-        <nav class="hidden lg:flex fixed top-0 left-0 bottom-0 bg-vh-green text-black w-64 overflow-hidden z-10">
+        <nav class="hidden lg:flex fixed top-0 left-0 bottom-0 bg-vh-green-medium text-black w-64 overflow-hidden z-10">
             <!-- Nav -->
             <div class="sidebar flex flex-col flex-grow justify-center ">
                 <div class="flex flex-col space-y-4">
@@ -9,7 +9,7 @@
                         <a href="/statistics"
                             class="flex items-center h-full w-full text-md font-bold text-white hover:text-black focus:text-black tracking-wider">
                             <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/homee.svg') }}"
-                                alt="Inicio" />
+                                alt="Inicio"/>
                             <span class="">Statistics</span>
                         </a>
                     </div>
