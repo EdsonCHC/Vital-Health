@@ -34,9 +34,9 @@ class UsuarioController extends Controller
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:3684436668.
         $validator = Validator::make($request->all(),
         [
-            'name' => 'required',
-            'lastName' => 'required',
-            'mail' => 'required|email',
+            'name' => 'required|max:255',
+            'lastName' => 'required|max:255',
+            'mail' => 'required|email|unique:usuarios',
             'gender' => 'required',
             'birth' => 'required',
             'blood'=> 'required',
