@@ -69,6 +69,9 @@ Route::get('/citas', function () {
 Route::get('/doctor', function () {
     return view('doctor.index_doc');
 });
+Route::get('/exam_d', function () {
+    return view('doctor.exam_doc');
+});
 
 
 //Admin de Area
@@ -79,4 +82,5 @@ Route::get('/statistics', function () {
 Route::get('/appointment', function () {
     return view('sub_admin.appointment');
 });
+
 

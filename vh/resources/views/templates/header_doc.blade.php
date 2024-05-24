@@ -1,5 +1,5 @@
 <!-- Resoluciones altas -->
-<nav class="hidden lg:flex rounded-md w-72 h-screen flex-col justify-between">
+<nav class="hidden lg:flex rounded-md w-60 h-screen flex-col justify-between overflow-y-auto">
   <div class="bg-gray-50 h-full">
     <div class="flex justify-center py-10 shadow-sm pr-4">
       <object data="{{asset('storage/svg/logo.svg')}}" class="w-64" type="image/svg+xml"></object>
@@ -63,18 +63,9 @@
 </div>
 
 <!-- Resoluciones altas -->
-<div class="hidden lg:flex lg:fixed lg:top-0 lg:right-0 lg:items-center lg:justify-end lg:gap-4 lg:p-4">
-  <object data="{{asset('storage/svg/doc.svg')}}" type="image/svg+xml"></object>
-  <div>
-    <p class="font-bold">John Doe</p>
-    <p class="font-semibold text-center">Doctor</p>
-  </div>
-  <div class="flex gap-2">
-    <a href="#" class="m-0"><img src="{{asset('storage/svg/config.svg')}}" alt="config_icon" class="w-8 p-1 "></a>
-  </div>
-</div>
 
 
-<div class="hidden lg:flex  fixed bottom-0 right-0 mb-4 mr-4">
+
+<div class=" lg:flex  fixed bottom-16 lg:bottom-0 right-0 mb-4 mr-4">
   <a href="#" class=""><img src="{{asset('storage/svg/chat.svg')}}" alt="chat" class="w-16 p-1 "></a>
 </div>
