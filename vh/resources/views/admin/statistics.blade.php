@@ -5,16 +5,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Statistics</title>
-    @vite(['resources/css/app.css','resources/js/stats_chart.js'])
+    @vite(['resources/css/app.css'])
+    <!-- @vite(['resources/css/app.css','resources/js/stats_chart.js']) -->
 </head>
 
 <body class="w-full h-full bg-vh-gray-light">
-    <div class="w-full h-auto fixed top-0 z-10">
-        @include('templates.header_sub_ad')
+    <div class="w-auto h-auto fixed top-0 z-10">
+        @include('templates.header_ad')
     </div>
 
     <!-- Estilos Desktop -->
-    <div class=" ml-40 mt-12 hidden lg:flex flex-col justify-between items-center ">
+    <div class="hidden lg:flex flex-col justify-between items-center ml-40 mt-12">
         <div class="mb-2">
             <h2 class=" font-bold text-2xl">
                 Admin del Area de Pediatría
@@ -28,7 +29,7 @@
                         <p class="font-bold text-3xl text-vh-green">10</p>
                     </div>
                     <div>
-                        <img class="w-24 " src="{{ asset('storage/svg/doc-icon-green.svg') }}" alt="Inicio"/>
+                        <img class="w-24 " src="{{ asset('storage/svg/doc-icon-green.svg') }}" alt="Inicio" />
                     </div>
                 </div>
             </div>
@@ -74,8 +75,7 @@
                             <span class="flex justify-center font-bold text-white">Feb</span>
                         </div>
                         <div class="bg-vh-green-light rounded-md w-16 h-6 ">
-                            <a class="flex font-bold justify-center hover:bg-white transition duration-300"
-                                href="#">
+                            <a class="flex font-bold justify-center hover:bg-white transition duration-300" href="#">
                                 Ir
                             </a>
                         </div>
@@ -92,7 +92,7 @@
     </div>
 
     {{-- Estilos mobile --}}
-    <div class="lg:hidden flex m-8">
+    <div class="lg:hidden flex justify-center items-center m-4">
         <div class="">
             <div class="mb-2">
                 <h2 class="text-center font-bold text-2xl">
@@ -111,8 +111,7 @@
                         </div>
                     </div>
                 </div>
-                <div
-                    class="w-80h-36 m-4 bg-white opacity-80 rounded-lg shadow-xl border border-solid border-vh-green">
+                <div class="w-80h-36 m-4 bg-white opacity-80 rounded-lg shadow-xl border border-solid border-vh-green">
                     <div class="flex justify-evenly text-center">
                         <div class="flex-col my-auto">
                             <h3 class="font-bold text-2xl mx-auto">Citas</h3>

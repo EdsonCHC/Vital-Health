@@ -12,7 +12,7 @@
 
 <body class="w-full h-full bg-vh-gray-light">
     <div class="w-full h-auto fixed top-0 z-10">
-        @include('templates.header_sub_ad')
+        @include('templates.header_ad')
     </div>
     
 </body>
