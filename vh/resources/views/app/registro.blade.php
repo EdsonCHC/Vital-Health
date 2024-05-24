@@ -19,15 +19,23 @@
                     <input type="hidden" id="_token" value="{{csrf_token()}}">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="text "
                         placeholder="Nombres" id="name">
+                        placeholder="Nombres" id="name">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="text"
                         placeholder="Apellidos" id="lastName">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="email"
                         placeholder="Email" id="mail">
+                        placeholder="Email" id="mail">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-10 lg:w-2/5 " type="password"
+                        placeholder="Contraseña" id="password">
                         placeholder="Contraseña" id="password">
                     <button id="register" class="w-full p-2 rounded-md bg-vh-green text-white font-bold  lg:w-2/5"
                         id="show-alert">Registrarse</button>
                 </form>
+                <p class="my-8">¿Ya posees una cuenta?
+                    <a href="/login" class="text-vh-green font-bold">
+                        Iniciar Sesión
+                    </a>
+                </p>
             </div>
             <p class="flex grow items-end text-vh-green text-center lg:block">© 2024 Vital Health Todos los derechos
                 reservados</p>

@@ -9,7 +9,7 @@
 </head>
 
 <body class="w-full h-full">
-    <div class="w-full h-auto absolute top-0 z-30">
+    <div class="w-full h-auto">
         @include('templates.header')
     </div>
 
@@ -27,7 +27,7 @@
                     </p>
                 </div>
                 <a href="/#" target="_self"
-                    class="w-4/5 h-12 text-white font-bold bg-vh-green text-lg tracking-wide shadow-xl mb-10 rounded-full lg:w-2/5 hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center py-2 mx-4">
+                    class="w-4/5 lg:w-2/5 h-12 text-white font-bold bg-vh-green text-lg tracking-wide shadow-xl mb-10 mx-4 rounded-full hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
                     Solicitar Cita
                 </a>
             </div>
@@ -58,9 +58,9 @@
     </div>
 
     <!--Estilos Mobile-->
-    <div class="lg:hidden flex">
-        <div class="ml-auto lg:ml-auto">
-            <div class="bg-gray-100 mt-28 rounded h-32 w-36 absolute z-20">
+    <div class="lg:hidden flex justify-center">
+        <div class="lg:ml-auto">
+            <div class="bg-gray-100 mt-28 rounded-lg h-32 w-36 ">
                 <p class="pl-4 text-xl font-bold">Area</p>
                 <div class="flex flex-col pl-4 mt-1">
                     <span class="text-lg">Activa</span>
@@ -69,15 +69,8 @@
                 </div>
             </div>
         </div>
-        <div class="ml-auto lg:ml-auto">
-            <div class="ml-14 mt-5 absolute z-10">
-                <img class="h-56 lg:h-full" src="{{asset('storage/svg/doctor.svg')}}" type="image/svg+xml" />
-            </div>
-        </div>
-        <div class="ml-auto mt-12 lg:ml-auto">
-            <div class="bg-vh-green-light opacity-60 rounded-full h-60 w-60">
-                <span class="invisible">a</span>
-            </div>
+        <div class="ml-auto mt-12 lg:ml-auto absolute z-[-10] opacity-60">
+            <img class="h-56 lg:h-full" src="{{asset('storage/svg/doctor.svg')}}" type="image/svg+xml" />
         </div>
     </div>
     <div class="lg:hidden flex justify-center items-center">

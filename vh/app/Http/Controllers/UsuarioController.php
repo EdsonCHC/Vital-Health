@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
 {
@@ -28,12 +30,54 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
+
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:3684436668.
+        $validator = Validator::make($request->all(),
+        [
+            'name' => 'required|max:255',
+            'lastName' => 'required|max:255',
+            'mail' => 'required|email|unique:usuarios',
+            'gender' => 'required',
+            'birth' => 'required',
+            'blood'=> 'required',
+            'password' => 'required'
+        ]);
+
+        if($validator->fails()){
+            $data = [
+                'message' => 'Datos inválidos',
+                'errors'=> $validator->errors(),
+                'status'=> 200
+            ];
+            return response()->json($data, 500);
+        }
+
         try{
-            $user = request()->all();
-            Usuario::create($user);
-            return redirect('/');
+            $user = Usuario::create([
+                'name' => $request->name,
+                'lastName' => $request->lastName,
+                'mail' => $request->mail,
+                'gender' => $request->gender,
+                'birth' => $request->birth,
+                'blood'=> $request->blood,
+                'password' => $request->password
+            ]);
+            
+            if(!$user){
+                $data = [
+                    'message' => 'No se pudo crear el usuario',
+                    'status'=> 200
+                ];
+                return response()->json($data, 500);
+            }
+
+            $data = [
+                'message' => 'Usuario creado correctamente',
+                'status'=> 200
+            ];
+            return response()->json($data, 200);
         }catch(\Exception $e){
-            return response()->json("No Func: ". $e->getMessage(), 500);
+            return response()->json("DIANTRES: ". $e->getMessage(), 500);
         }
     }
 

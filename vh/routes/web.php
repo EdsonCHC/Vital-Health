@@ -67,11 +67,21 @@ Route::get('/citas', function () {
 
 //Doctor
 Route::get('/doctor', function () {
-    return view('doctor.index');
+    return view('doctor.index_doc');
+});
+
+Route::get('/exam_d', function () {
+    return view('doctor.exam_doc');
 });
 
 
-//Admin de Area
+// Admin
 Route::get('/statistics', function () {
-    return view('subadmin.statistics');
+    return view('admin.statistics');
 });
+
+Route::get('/appointment', function () {
+    return view('admin.appointment');
+});
+
+

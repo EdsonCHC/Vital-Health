@@ -13,7 +13,9 @@
 
 <body class="w-full h-screen p-2 flex flex-col bg-white lg:flex-row overflow-hidden">
   <div class="w-full h-screen flex flex-col items-center flex-1 lg:w-3/5">
-    <object data="{{asset('storage/svg/logo.svg')}}" type="image/svg+xml"></object><!--LOGO-->
+    <a href="/" class="">
+      <img src="{{asset('storage/svg/logo.svg')}}" type="image/svg+xml"></img><!--LOGO-->
+    </a>
     <div id="form-div" class="grid place-items-center w-full">
       <h1 class="text-2xl font-bold mb-5">Inicio de sesión</h1>
       <form action="" class="text-center w-full flex flex-col items-center">
