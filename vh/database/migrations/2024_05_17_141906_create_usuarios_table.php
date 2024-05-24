@@ -21,15 +21,6 @@ return new class extends Migration {
             $table->string('password');
             $table->timestamps();
         });
-
-        Schema::create('citas', function (Blueprint $table) {
-            $table->id();
-            $table->string('state');
-            $table->date('date');
-            $table->string("description");
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('usuarios');          
-        });
     }
 
     /**
@@ -37,7 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuarios');
-        Schema::dropIfExists('citas');
+        Schema::dropIfExists('usuarios'); 
     }
 };
