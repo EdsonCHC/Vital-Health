@@ -14,5 +14,5 @@ class citas extends Model
         "date",
         "description",
         "id_user"
-    ]
+    ];
 }

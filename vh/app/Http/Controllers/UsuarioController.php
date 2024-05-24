@@ -32,44 +32,52 @@ class UsuarioController extends Controller
     {
 
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:3684436668.
-        $validator = Validator:make($request->all(),
+        $validator = Validator::make($request->all(),
         [
             'name' => 'required',
             'lastName' => 'required',
-            'mail' => 'required|mail',
+            'mail' => 'required|email',
             'gender' => 'required',
             'birth' => 'required',
             'blood'=> 'required',
             'password' => 'required'
-        ])
+        ]);
 
         if($validator->fails()){
             $data = [
-                'message' => 'Datos invalidos',
+                'message' => 'Datos inválidos',
                 'errors'=> $validator->errors(),
                 'status'=> 200
-            ]
+            ];
             return response()->json($data, 500);
         }
 
         try{
-            $user = Usuario::create($request()->all());
+            $user = Usuario::create([
+                'name' => $request->name,
+                'lastName' => $request->lastName,
+                'mail' => $request->mail,
+                'gender' => $request->gender,
+                'birth' => $request->birth,
+                'blood'=> $request->blood,
+                'password' => $request->password
+            ]);
             
             if(!$user){
                 $data = [
                     'message' => 'No se pudo crear el usuario',
                     'status'=> 200
-                ]
+                ];
                 return response()->json($data, 500);
             }
 
             $data = [
-                'message' => 'Usuario creado correctamente',,
+                'message' => 'Usuario creado correctamente',
                 'status'=> 200
-            ]
+            ];
             return response()->json($data, 200);
         }catch(\Exception $e){
-            return response()->json("No Funca: ". $e->getMessage(), 500);
+            return response()->json("DIANTRES: ". $e->getMessage(), 500);
         }
     }
 
