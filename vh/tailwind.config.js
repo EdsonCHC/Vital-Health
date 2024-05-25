@@ -15,6 +15,7 @@ export default {
                 "vh-gray": "#E4E1E1",
                 "vh-gray-light": "#EEEEEE",
                 "white-not-white": "#f9f9f9",
+                "vh-alice-blue": "#EDF4FC",
             },
             width: {
                 100: "28rem",
