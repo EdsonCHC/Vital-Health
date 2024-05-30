@@ -13,7 +13,7 @@
     <div class="w-auto h-auto fixed top-0 z-10">
         @include('templates.header_ad')
     </div>
-
+    <!-- Chats -->
 </body>
 
 </html>
