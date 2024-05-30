@@ -14,6 +14,81 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//* USER ROUTES //
+
+Route::get('/', function () {
+    return view('app.index');
+});  //?  should it have a name?
+
+Route::get('/login', function () {
+    return view('app.login');
+})->name('login');
+
+Route::get('/registro', function () {
+    return view('app.registro');
+}); //?  should it have a name?
+
+Route::post('/registro',[UsuarioController::class, 'store']); //controlador post
+
+Route::get('/medicina', function() {
+    return view('app.medicine');
+})->middleware('auth');
+
+Route::get('/about', function() {
+    return view('app.about');
+}); //?  should it have a name?
+
+Route::get('/report', function() {
+    return view('app.report');
+})->middleware('auth'); //?  should it have a name?
+
+Route::get('/examen', function() {
+    return view('app.exams');
+})->middleware('auth'); //?  should it have a name?
+
+Route::get('/service', function() {
+    return view('app.service'); //?  should it have a name?
+});
+
+Route::get('/chats', function() {
+    return view('app.chats');
+})->middleware('auth'); //?  should it have a name?
+
+Route::get('/user', function() {
+    return view('app.user_info');
+})->middleware('auth'); //?  should it have a name?
+
+Route::POST('/user', [UsuarioController::class, 'destroy']); //?  should it have a name?
+
+Route::get('/area', function () {
+    return view('app.area');
+})->middleware('auth'); //?  should it have a name?
+
+Route::get('/citas', function () {
+    return view('app.citas');
+})->middleware('auth'); //?  should it have a name?
+
+
+//* DOCTOR ROUTES //
+
+Route::get('/doctor', function () {
+    return view('doctor.index_doc'); // ?
+});
+
+Route::get('/exam_d', function () {
+    return view('doctor.exam_doc');
+});
+
+
+//* ADMIN ROUTES // 
+
+Route::get('/statistics', function () {
+    return view('admin.statistics');
+});
+
+Route::get('/appointment', function () {
+    return view('admin.appointment');
+});
 
 
 

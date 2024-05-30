@@ -95,7 +95,7 @@ class UsuarioController extends Controller
      */
     public function show(Usuario $usuario)
     {
-        //
+        //TODO: Log in
     }
 
     /**
