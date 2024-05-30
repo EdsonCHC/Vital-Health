@@ -32,8 +32,12 @@ $(document).ready(function () {
                         password: password
                     },
                     success: (response) => {
-                        // Manejar la respuesta de éxito
-                        console.log("Registro exitoso", response);
+                        if (response.success) {
+                            window.location.href = response.redirect_url;
+                        } else {
+                            //  validation errors 
+                            console.log('Registration failed');
+                        }
                     },
                     error: (response) => {
                         // Manejar la respuesta de error

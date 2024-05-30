@@ -33,7 +33,8 @@
         <hr class="w-4/5 mx-auto my-5 border-1 lg:hidden">
         <section class="w-1/2 h-auto flex flex-col items-center">
             <h1 class="font-bold text-[#252525] text-xl">Información del usuario</h1>
-            <form action="" class="w-4/5 h-auto md:w-1/2 lg:w-full">
+            <form action="/user" method="POST" class="w-4/5 h-auto md:w-1/2 lg:w-full">
+                @csrf
                 <div class="w-full h-auto flex justify-between mb-5 border-b-2 p-2">
                     <h3 class="text-xl">Información Basica</h3>
                     <div>
@@ -84,6 +85,7 @@
                     <input type="text" readonly value="Lorem ipsum"
                         class="w-full h-10 border-2 border-solid border-gray-400 rounded-lg p-2">
                 </label>
+                <button type="submit">LOG out</button>
             </form>
         </section>
     </main>
