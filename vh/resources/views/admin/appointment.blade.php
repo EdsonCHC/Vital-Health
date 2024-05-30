@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Appointment</title>
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/admin_appointment.js'])
 
 </head>
 
@@ -44,19 +44,23 @@
             </div>
             <div
                 class="w-128 h-20 flex justify-around items-center my-5 mx-auto bg-vh-green-light opacity-70 rounded-md">
-                <p class="font-bold text-lg">#lorem</p>
+                <p class="font-bold text-lg">#00000</p>
                 <p class="font-bold text-lg">lorem</p>
                 <p class="font-bold text-lg">lorem</p>
                 <p class="font-bold text-lg">lorem</p>
                 <div class="w-2/12 flex justify-around items-center">
-                    <a href="#">
+                    <button target="_self" id="assign_appointment"">
+                        <a href=" #">
                         <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
                             class="w-10 h-10 p-2 bg-vh-gray-light rounded">
-                    </a>
-                    <a href="#">
-                        <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
-                            class="w-10 h-10 p-2 bg-vh-gray-light rounded">
-                    </a>
+                        </a>
+                    </button>
+                    <button>
+                        <a href="#">
+                            <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
+                                class="w-10 h-10 p-2 bg-vh-gray-light rounded">
+                        </a>
+                    </button>
                 </div>
             </div>
             <div
@@ -66,14 +70,18 @@
                 <p class="font-bold text-lg">lorem</p>
                 <p class="font-bold text-lg">lorem</p>
                 <div class="w-2/12 flex justify-around items-center">
-                    <a href="#">
+                    <button target="_self" id="assign_appointment"">
+                        <a href=" #">
                         <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
                             class="w-10 h-10 p-2 bg-vh-gray-light rounded">
-                    </a>
-                    <a href="#">
-                        <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
-                            class="w-10 h-10 p-2 bg-vh-gray-light rounded">
-                    </a>
+                        </a>
+                    </button>
+                    <button>
+                        <a href="#">
+                            <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
+                                class="w-10 h-10 p-2 bg-vh-gray-light rounded">
+                        </a>
+                    </button>
                 </div>
             </div>
             <div
@@ -83,14 +91,18 @@
                 <p class="font-bold text-lg">lorem</p>
                 <p class="font-bold text-lg">lorem</p>
                 <div class="w-2/12 flex justify-around items-center">
-                    <a href="#">
+                    <button target="_self" id="assign_appointment"">
+                        <a href=" #">
                         <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
                             class="w-10 h-10 p-2 bg-vh-gray-light rounded">
-                    </a>
-                    <a href="#">
-                        <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
-                            class="w-10 h-10 p-2 bg-vh-gray-light rounded">
-                    </a>
+                        </a>
+                    </button>
+                    <button>
+                        <a href="#">
+                            <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
+                                class="w-10 h-10 p-2 bg-vh-gray-light rounded">
+                        </a>
+                    </button>
                 </div>
             </div>
             <div
@@ -100,14 +112,18 @@
                 <p class="font-bold text-lg">lorem</p>
                 <p class="font-bold text-lg">lorem</p>
                 <div class="w-2/12 flex justify-around items-center">
-                    <a href="#">
+                    <button target="_self" id="assign_appointment"">
+                        <a href=" #">
                         <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
                             class="w-10 h-10 p-2 bg-vh-gray-light rounded">
-                    </a>
-                    <a href="#">
-                        <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
-                            class="w-10 h-10 p-2 bg-vh-gray-light rounded">
-                    </a>
+                        </a>
+                    </button>
+                    <button>
+                        <a href="#">
+                            <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
+                                class="w-10 h-10 p-2 bg-vh-gray-light rounded">
+                        </a>
+                    </button>
                 </div>
             </div>
         </div>
