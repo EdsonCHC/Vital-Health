@@ -1,6 +1,6 @@
 <header>
     <div class="min-h-screen flex font-sans">
-        <nav class="hidden lg:flex fixed top-0 left-0 bottom-0 bg-vh-green-medium text-black w-64 overflow-hidden z-10">
+        <nav class="hidden lg:flex fixed top-0 left-0 bottom-0 bg-vh-green text-black w-64 overflow-hidden z-10">
             <!-- Nav -->
             <div class="sidebar flex flex-col flex-grow justify-center ">
                 <div class="flex flex-col space-y-4">
@@ -23,7 +23,7 @@
                     </div>
                     <div
                         class="flex flex-grow items-center ml-14 h-14 rounded-l-3xl transition duration-300 hover:bg-white">
-                        <a href="#"
+                        <a href="/records"
                             class="flex items-center h-full w-full text-md font-bold text-white hover:text-black tracking-wider">
                             <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/doc-icon-black.svg') }}"
                                 alt="Inicio" />
@@ -32,7 +32,7 @@
                     </div>
                     <div
                         class="flex flex-grow items-center ml-14 h-14 rounded-l-3xl transition duration-300 hover:bg-white">
-                        <a href="#"
+                        <a href="/ad_chats"
                             class="flex items-center h-full w-full text-md font-bold text-white hover:text-black tracking-wider">
                             <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/chat.svg') }}" alt="Inicio" />
                             <span class="">Chats</span>
@@ -40,7 +40,7 @@
                     </div>
                     <div
                         class="flex flex-grow items-center ml-14 h-14 rounded-l-3xl transition duration-300 hover:bg-white">
-                        <a href="#"
+                        <a href="/staff"
                             class="flex items-center h-full w-full text-md font-bold text-white hover:text-black tracking-wider">
                             <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/staff-icon-black.svg') }}"
                                 alt="Inicio" />
@@ -49,7 +49,7 @@
                     </div>
                     <div
                         class="flex flex-grow items-center ml-14 h-14 rounded-l-3xl transition duration-300 hover:bg-white">
-                        <a href="#"
+                        <a href="/calendar"
                             class="flex items-center h-full w-full text-md font-bold text-white hover:text-black tracking-wider">
                             <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/calendar.svg') }}" alt="Inicio" />
                             <span class="">Agenta</span>
@@ -81,20 +81,20 @@
 
         <div
             class="md:flex lg:hidden fixed bottom-0 w-full rounded-tl-3xl rounded-tr-3xl  bg-white shadow flex justify-between px-6 py-4">
-            <a href="#" class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
-                <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/servicio.svg') }}" type="image/svg+xml" />
-            </a>
-            <a href="#" class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
-                <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/paciente.svg') }}" type="image/svg+xml" />
-            </a>
-            <a href="#"
-                class="relative inline-block bg-green-500 rounded-full py-2 px-2 hover:bg-gray-400 transition-colors duration-300">
-                <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/homee.svg') }}" type="image/svg+xml" />
-            </a>
-            <a href="#" class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
+            <a href="/appointment" class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
                 <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/cita.svg') }}" type="image/svg+xml" />
             </a>
-            <a href="#" class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
+            <a href="/records"
+                class="hover:bg-green-500 rounded-full py-2 px-2 transition-colors duration-300">
+                <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/doc-icon-black.svg') }}" type="image/svg+xml" />
+            </a>
+            <a href="/statistics" class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
+                <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/homee.svg') }}" type="image/svg+xml" />
+            </a>
+            <a href="/ad_chats" class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
+                <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/cita.svg') }}" type="image/svg+xml" />
+            </a>
+            <a href="/calendar" class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
                 <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/calendar.svg') }}" type="image/svg+xml" />
             </a>
         </div>

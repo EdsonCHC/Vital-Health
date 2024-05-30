@@ -129,7 +129,6 @@
                             <span class="ml-2">Opción 4</span>
                         </label>
                     </div>
-                    <!--Solo falta el pop-up-->
                     <button target="_self" id="make_appointment"
                         class="w-4/5 py-4 my-4 border border-solid border-vh-green font-bold text-base lg:w-2/5 hover:bg-vh-green transition duration-300 hover:text-white inline-block text-center">
                         Agendar
