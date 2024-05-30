@@ -70,8 +70,11 @@ Route::get('/doctor', function () {
     return view('doctor.index_doc');
 });
 
-Route::get('/exam_d', function () {
-    return view('doctor.exam_doc');
+Route::get('/allocation', function () {
+    return view('doctor.allocation');
+});
+Route::get('/exams_doc', function () {
+    return view('doctor.exams_doc');
 });
 
 
@@ -83,5 +86,6 @@ Route::get('/statistics', function () {
 Route::get('/appointment', function () {
     return view('admin.appointment');
 });
+
 
 

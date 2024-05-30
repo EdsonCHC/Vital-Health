@@ -1,6 +1,6 @@
 <header>
     <div class="min-h-screen flex font-sans">
-        <nav class="hidden lg:flex fixed top-0 left-0 bottom-0 bg-vh-green-medium text-black w-64 overflow-hidden z-10">
+        <nav class="hidden lg:flex fixed top-0 left-0 bottom-0 bg-vh-green text-black w-64 overflow-hidden z-10">
             <!-- Nav -->
             <div class="sidebar flex flex-col flex-grow justify-center ">
                 <div class="flex flex-col space-y-4">
