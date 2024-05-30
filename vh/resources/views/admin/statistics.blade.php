@@ -96,7 +96,7 @@
         <div class="">
             <div class="mb-2">
                 <h2 class="text-center font-bold text-2xl">
-                    Admin del Area de Pediatría
+                    Administrador
                 </h2>
             </div>
             <div class="flex-col w-full mt-4">
