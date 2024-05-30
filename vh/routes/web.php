@@ -76,7 +76,15 @@ Route::get('/allocation', function () {
 Route::get('/exams_doc', function () {
     return view('doctor.exams_doc');
 });
-
+Route::get('/medicine_doc', function () {
+    return view('doctor.medicine_doc');
+});
+Route::get('/files_doc', function () {
+    return view('doctor.files_doc');
+});
+Route::get('/citas_doc', function () {
+    return view('doctor.citas_doc');
+});
 
 // Admin
 Route::get('/statistics', function () {
