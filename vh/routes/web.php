@@ -94,7 +94,12 @@ Route::get('/medicine_doc', function () {
 Route::get('/files_doc', function () {
     return view('doctor.files_doc');
 });
-
+Route::get('/service_doc', function () {
+    return view('doctor.service_doc');
+});
+Route::get('/program_doc', function () {
+    return view('doctor.program_doc');
+});
 //* ADMIN ROUTES // 
 
 Route::get('/statistics', function () {
@@ -103,22 +108,6 @@ Route::get('/statistics', function () {
 
 Route::get('/appointment', function () {
     return view('admin.appointment');
-});
-
-Route::get('/records', function () {
-    return view('admin.records');
-});
-
-Route::get('/ad_chats', function () {
-    return view('admin.ad_chats');
-});
-
-Route::get('/staff', function () {
-    return view('admin.staff');
-});
-
-Route::get('/calendar', function () {
-    return view('admin.calendar');
 });
 
 Route::get('/records', function () {

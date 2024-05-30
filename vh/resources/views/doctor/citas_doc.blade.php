@@ -10,12 +10,14 @@
 </head>
 
 <body class="w-full h-screen bg-gray-200">
-    <!-- Encabezado -->
-    <div class="flex w-full">
+    <!-- Contenedor principal -->
+    <div class="flex w-full h-full">
+        <!-- Encabezado -->
         <div class="h-full">
             @include('templates.header_doc')
         </div>
-        <div class="w-full h-auto  ">
+        <!-- Contenido principal -->
+        <div class="w-full h-full overflow-y-auto flex-grow">
             <div class="w-auto h-auto my-4 mx-4 lg:mx-16  lg:mt-10 ">
                 <div class=" md:w-full w-full ">
                     <h2 class=" font-bold  text-2xl text-vh-green">Citas de Usuarios </h2>
