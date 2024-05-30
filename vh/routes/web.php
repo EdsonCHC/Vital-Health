@@ -79,6 +79,9 @@ Route::get('/exams_doc', function () {
 Route::get('/medicine_doc', function () {
     return view('doctor.medicine_doc');
 });
+Route::get('/files_doc', function () {
+    return view('doctor.files_doc');
+});
 
 
 // Admin
