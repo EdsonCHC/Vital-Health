@@ -9,7 +9,7 @@
     <!-- @vite(['resources/css/app.css','resources/js/stats_chart.js']) -->
 </head>
 
-<body class="w-full h-full bg-vh-gray-light">
+<body class="w-full h-full bg-vh-alice-blue">
     <div class="w-auto h-auto fixed top-0 z-10">
         @include('templates.header_ad')
     </div>
@@ -18,7 +18,7 @@
     <div class="hidden lg:flex flex-col justify-between items-center ml-40 mt-12">
         <div class="mb-2">
             <h2 class=" font-bold text-2xl">
-                Admin del Area de Pediatría
+                Administrador 
             </h2>
         </div>
         <div class="flex justify-between w-4/6 mt-4">

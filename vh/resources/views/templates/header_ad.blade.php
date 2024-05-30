@@ -10,7 +10,7 @@
                             class="flex items-center h-full w-full text-md font-bold text-white hover:text-black focus:text-black tracking-wider">
                             <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/homee.svg') }}"
                                 alt="Inicio"/>
-                            <span class="">Statistics</span>
+                            <span class="">Estadisticas</span>
                         </a>
                     </div>
                     <div
