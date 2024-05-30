@@ -82,7 +82,9 @@ Route::get('/medicine_doc', function () {
 Route::get('/files_doc', function () {
     return view('doctor.files_doc');
 });
-
+Route::get('/citas_doc', function () {
+    return view('doctor.citas_doc');
+});
 
 // Admin
 Route::get('/statistics', function () {
