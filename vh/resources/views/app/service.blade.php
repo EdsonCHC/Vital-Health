@@ -113,19 +113,19 @@
                     <hr class="mx-6 my-2" />
                     <div class="flex flex-col px-8">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom" />
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 1</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom" />
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 2</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom" />
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 3</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom" />
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 4</span>
                         </label>
                     </div>
@@ -146,19 +146,19 @@
                     <hr class="mx-6 my-2" />
                     <div class="flex flex-col px-8">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom" />
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 1</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom" />
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 2</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom" />
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 3</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom" />
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 4</span>
                         </label>
                     </div>
@@ -177,19 +177,19 @@
                     <hr class="mx-6 my-2" />
                     <div class="flex flex-col px-8">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom" />
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 1</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom" />
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 2</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom" />
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 3</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox h-4 w-4 checkbox-custom" />
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 4</span>
                         </label>
                     </div>
