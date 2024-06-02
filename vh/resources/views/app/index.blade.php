@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-    @vite(['resources/css/app.css','resources/js/animation.js','resources/css/animation.css'])
+    @vite(['resources/css/loader.css', 'resources/js/preloader.js', 'resources/css/app.css', 'resources/js/animation.js', 'resources/css/animation.css'])
 </head>
 
 <body class="w-full h-full overflow-x-hidden">
+    @include('templates.loader')
     <div class="w-full h-auto">
         @include('templates.header')
     </div>
@@ -83,7 +84,7 @@
 
                 <a href="/login" target="_self"
                     class="w-4/5 h-8 text-white bg-vh-green text-sm shadow-xl mb-10 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green inline-block text-center pt-1 mx-4">
-                    Regístrate ahora 
+                    Regístrate ahora
                     <!-- TODO: cambiar a solo una componente por dispositivo  -->
                 </a>
             </div>
@@ -151,33 +152,41 @@
         </div>
         <div class="w-full flex flex-col lg:flex-row">
             <div class="m-8 flex items-center justify-center lg:mx-0 lg:w-1/2">
-                <h2 class="font-bold text-left lg:pl-28  text-xl text-vh-green lg:font-bold lg:text-4xl lg:ml-12 animation">Las
+                <h2
+                    class="font-bold text-left lg:pl-28  text-xl text-vh-green lg:font-bold lg:text-4xl lg:ml-12 animation">
+                    Las
                     ventajas que posee con nuestros servicios son:</h2>
             </div>
             <div
                 class="w-full flex flex-wrap justify-center items-center gap-5 lg:w-1/2 lg:flex-row lg:flex-wrap lg:justify-start lg:ml-8 lg:mr-8 lg:flex-grow">
                 <!-- Elementos en dos filas y tres columnas -->
-                <div class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center  lg:w-1/3 animation3">
+                <div
+                    class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center  lg:w-1/3 animation3">
                     <object data="{{asset('storage/svg/dental.svg')}}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Cuidado dental</p>
                 </div>
-                <div class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
+                <div
+                    class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
                     <object data="{{asset('storage/svg/eye_closed.svg')}}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Oculista</p>
                 </div>
-                <div class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
+                <div
+                    class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
                     <object data="{{asset('storage/svg/derma_hand.svg')}}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Dermatología</p>
                 </div>
-                <div class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
+                <div
+                    class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
                     <object data="{{asset('storage/svg/baby.svg')}}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Pediatría</p>
                 </div>
-                <div class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
+                <div
+                    class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
                     <object data="{{asset('storage/svg/heart.svg')}}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Atención primaria</p>
                 </div>
-                <div class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
+                <div
+                    class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
                     <object data="{{asset('storage/svg/brain.svg')}}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Psiquiátrico</p>
                 </div>
@@ -190,7 +199,8 @@
                 class="mx-auto my-0 w-full lg:w-3/4 lg:ml-auto"></object>
         </div>
         <div class="flex justify-center text-left items-center flex-col">
-            <h2 class="font-bold  text-xl text-vh-green lg:font-bold lg:text-left lg:text-4xl lg:ml-12 animation2">Por qué elegir
+            <h2 class="font-bold  text-xl text-vh-green lg:font-bold lg:text-left lg:text-4xl lg:ml-12 animation2">Por
+                qué elegir
                 nuestros servicios?</h2>
             <div class="flex justify-center lg:text-center items-center">
                 <div class="flex flex-col">
