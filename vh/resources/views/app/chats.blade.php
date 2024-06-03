@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chats</title>
-    @vite(['resources/css/app.css', 'resources/css/chatsv1.css', 'resources/js/chatsv1.js' , 'resources/js/colorsChat.css'  ])
-    <!-- @vite(['resources/js/app.js']) not used now  -->
+    @vite(['resources/css/app.css', 'resources/css/chatsv1.css', 'resources/js/chatsv1.js', 'resources/js/colorsChat.css','resources/css/loader.css', 'resources/js/preloader.js'])
 </head>
 
 <body class="bg-gray-100">
+    @include('templates.loader')
     <div class="w-full h-auto">
         @include('templates.header')
     </div>

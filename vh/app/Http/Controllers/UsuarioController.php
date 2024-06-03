@@ -15,7 +15,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        return view('app.user_info', ['user'=> $user]);
     }
 
     /**
@@ -93,9 +94,23 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Usuario $usuario)
+    public function show(Request $request)
     {
-        //TODO: Log in
+        $credentials = [
+            "mail" => $request->mail,
+            "password" => $request->password
+        ];
+
+        try {
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+                return response()->json(['success' => true, 'redirect_url' => '/user'], 200);
+            } else {
+                return response()->json(['message' => 'Credenciales incorrectas'], 401);
+            }
+        } catch (\Exception $e) {
+            return response()->json("Error: " . $e->getMessage(), 500);
+        }
     }
 
     /**
@@ -120,7 +135,7 @@ class UsuarioController extends Controller
     public function destroy(Request $request)
     {
         //log out
-        
+
         Auth::logout();
 
         $request->session()->invalidate();

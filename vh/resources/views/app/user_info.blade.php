@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User</title>
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js'])
 </head>
 
 <body class="w-full h-screen overflow-scroll">
+    @include('templates.loader')
     <div class="w-full h-auto">
         @include('templates.header')
     </div>
@@ -47,45 +48,41 @@
                 <div class="flex gap-5 mt-5">
                     <label for="" class="w-1/2 block font-semi-bold">
                         Nombre *
-                        <input type="text" readonly value="Lorem ipsum"
+                        <input type="text" readonly value="{{$user->name}}"
                             class="w-full h-10 border-2 border-solid border-gray-400 rounded-lg p-2">
                     </label>
                     <label for="" class="w-1/2 block font-semi-bold">
                         Apellido *
-                        <input type="text" readonly value="Lorem ipsum"
+                        <input type="text" readonly value="{{$user->lastName}}"
                             class="w-full h-10 border-2 border-solid border-gray-400 rounded-lg p-2">
                     </label>
                 </div>
                 <div class="flex gap-5 mt-5">
                     <label for="" class="w-1/2 block font-semi-bold">
                         Apellido *
-                        <input type="text" readonly value="Lorem ipsum"
+                        <input type="text" readonly value="lorem ipsum"
                             class="w-full h-10 border-2 border-solid border-gray-400 rounded-lg p-2">
                     </label>
                     <label for="" class="w-1/2 block font-semi-bold">
                         Genero *
-                        <input type="text" readonly value="Lorem ipsum"
+                        <input type="text" readonly value="{{$user->gender}}"
                             class="w-full h-10 border-2 border-solid border-gray-400 rounded-lg p-2">
                     </label>
                 </div>
                 <div class="flex gap-5 mt-5">
                     <label for="" class="w-1/2 block font-semi-bold">
-                        Numero de Telefono *
-                        <input type="text" readonly value="Lorem ipsum"
+                        Fecha de nacimiento *
+                        <input type="text" readonly value="{{$user->birth}}"
                             class="w-full h-10 border-2 border-solid border-gray-400 rounded-lg p-2">
                     </label>
                     <label for="" class="w-1/2 block font-semi-bold">
-                        Fecha de nacimiento *
-                        <input type="text" readonly value="Lorem ipsum"
+                        Correo *
+                        <input type="text" readonly value="{{$user->mail}}"
                             class="w-full h-10 border-2 border-solid border-gray-400 rounded-lg p-2">
                     </label>
                 </div>
-                <label for="" class="block mt-3 font-semi-bold">
-                    Correo *
-                    <input type="text" readonly value="Lorem ipsum"
-                        class="w-full h-10 border-2 border-solid border-gray-400 rounded-lg p-2">
-                </label>
-                <button type="submit">LOG out</button>
+
+                <button type="submit" class="w-auto h-auto bg-rose-600 text-white-not-white p-2 rounded-lg mt-3">LOG out</button>
             </form>
         </section>
     </main>

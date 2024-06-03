@@ -5,10 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Servicio</title>
-    @vite(['resources/css/app.css', 'resources/css/checkbox.css', 'resources/js/appointment.js'])
+    @vite(['resources/css/app.css', 'resources/css/checkbox.css', 'resources/js/appointment.js','resources/css/loader.css', 'resources/js/preloader.js'])
 </head>
 
 <body class="w-full h-full">
+    @include('templates.loader')
     <div class="w-full h-auto">
         @include('templates.header')
     </div>

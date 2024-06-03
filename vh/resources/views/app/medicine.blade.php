@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medicina</title>
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css','resources/css/app.css','resources/css/loader.css', 'resources/js/preloader.js'])
 </head>
 
 <body class="w-full h-screen ">
+    @include('templates.loader')
     <div class="">
         @include('templates.header')
     </div>

@@ -6,12 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
   <title>Inicio de sesión</title>
-  @vite(['resources/css/app.css', 'resources/css/swet.css', 'resources/js/app.js'])
-  <!-- CDNs -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/app.js', 'resources/css/loader.css', 'resources/js/preloader.js','resources/js/login.js'])
 </head>
 
 <body class="w-full h-screen p-2 flex flex-col bg-white lg:flex-row overflow-hidden">
+  @include('templates.loader')
   <div class="w-full h-screen flex flex-col items-center flex-1 lg:w-3/5">
     <a href="/" class="">
       <img src="{{asset('storage/svg/logo.svg')}}" type="image/svg+xml"></img><!--LOGO-->
@@ -19,12 +18,14 @@
     <div id="form-div" class="grid place-items-center w-full">
       <h1 class="text-2xl font-bold mb-5">Inicio de sesión</h1>
       <form action="" class="text-center w-full flex flex-col items-center">
-        <Input class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-2 lg:w-2/5" type="text"
+        @csrf
+        <input type="hidden" id="_token" value="{{csrf_token()}}">
+        <Input class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-2 lg:w-2/5" type="text" id="mail"
           placeholder="Nombre de Usuario o Email"></Input>
         <input class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-10 lg:w-2/5" placeholder="Contraseña"
-          type="password">
+          type="password" id="password">
         <button
-          class="w-4/5 h-10 text-white bg-vh-green font-bold text-1xl shadow-xl mb-10 rounded-lg lg:w-2/5 hover:bg-white hover:text-vh-green">
+           id="login_btn" class="w-4/5 h-10 text-white bg-vh-green font-bold text-1xl shadow-xl mb-10 rounded-lg lg:w-2/5 hover:bg-white hover:text-vh-green">
           Ingresar</button>
       </form>
     </div>
@@ -45,27 +46,6 @@
       <img src="{{asset('storage/svg/n_doctor.svg')}}" alt="doctor_svg" class="absolute end-2 bottom-2">
     </div>
   </div>
-  <!--COSO DE GOOGLE-->
-  <script>
-    function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    }
-    function onFailure(error) {
-      console.log(error);
-    }
-    function renderButton() {
-      gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
-        'width': 250,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'white',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure,
-      });
-    }
-  </script>
-  <!-- <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> API DE GOOGLE -->
 </body>
 
 </html>
