@@ -3,7 +3,7 @@
     <div class="w-full h-full mx-auto flex justify-between">
         <section id="banner" class="sm:hidden">
             <input type="checkbox" id="menu--toggle" class="checkbox-menu">
-            <label for="menu--toggle" id="trigger"></label>
+            <label for="menu--toggle" id="trigger" class="z-index-1"></label>
             <label for="menu--toggle" id="burger"></label>
             <ul id="menu">
                 <li class="menu_list"><a href="/" class="menu_link">Home</a></li>
@@ -36,7 +36,7 @@
                         class="w-10 p-2 bg-vh-gray-light rounded-full">
                 </a>
                 <div class="relative group">
-                    <a href="#">
+                    <a href="">
                         <img src="{{ asset('storage/svg/config.svg') }}" alt="config_icon"
                             class="w-10 p-2 bg-vh-gray-light rounded-full">
                     </a>
