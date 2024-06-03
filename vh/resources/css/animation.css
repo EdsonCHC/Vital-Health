@@ -1,0 +1,58 @@
+/* This css is only for the animation on index.blade.php */
+
+
+.animation {
+    opacity: 0;
+    filter: blur(3px);
+    transform: translateX(-100%);
+    transition: all 1s;
+}
+
+.animation2{
+    opacity: 0;
+    filter: blur(3px);
+    transform: translateX(100%);
+    transition: all 1s;
+}
+
+.animation3{
+    opacity: 0;
+    filter: blur(3px);
+    transform: translateY(-100%);
+    transition: all 1s;
+}
+
+.animation3:nth-child(2){
+    transition-delay: 400ms;
+}
+
+.animation3:nth-child(3){
+    transition-delay: 700ms;
+}
+
+.animation3:nth-child(4){
+    transition-delay: 1000ms;
+}
+
+.animation3:nth-child(5){
+    transition-delay: 1300ms;
+}
+
+.animation3:nth-child(6){
+    transition-delay: 1600ms;
+}
+
+
+
+.show {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+    transform: translateY(0);
+}
+
+@media(prefers-reduced-motion) {
+    .animation {
+        transition: none;
+    }
+}

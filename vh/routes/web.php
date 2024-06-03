@@ -24,6 +24,8 @@ Route::get('/login', function () {
     return view('app.login');
 })->name('login');
 
+Route::post('/login',[UsuarioController::class, 'show']);
+
 Route::get('/registro', function () {
     return view('app.registro');
 }); //?  should it have a name?
@@ -54,9 +56,7 @@ Route::get('/chats', function() {
     return view('app.chats');
 })->middleware('auth'); //?  should it have a name?
 
-Route::get('/user', function() {
-    return view('app.user_info');
-})->middleware('auth'); //?  should it have a name?
+Route::get('/user',[UsuarioController::class, 'index'])->middleware('auth')->name('user'); 
 
 Route::POST('/user', [UsuarioController::class, 'destroy']); //?  should it have a name?
 

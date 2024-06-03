@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/register.js'])
+    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/register.js','resources/css/loader.css', 'resources/js/preloader.js'])
 </head>
 
 <body class="w-full h-screen">
+    @include('templates.loader')
     <div class="w-full h-screen p-2 flex flex-col bg-white lg:flex-row">
         <div class="flex flex-col w-full h-full lg:w-3/5 lg:order-2">
             <div class="flex flex-col items-center w-full h-full lg:justify-center">
