@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Staff</title>
-    @vite(['resources/css/app.css', 'resources/css/admin_staff.css', 'resources/js/admin_staff.js'])
+    @vite(['resources/css/app.css', 'resources/css/admin_staff.css', 'resources/js/admin_new_staff.js', 'resources/js/admin_edit_staff.js', 'resources/js/admin_history_staff.js'])
 </head>
 
 <body class="w-full h-full bg-vh-alice-blue">
@@ -38,8 +38,8 @@
                     </button>
                     <div id="menuOptions"
                         class="hidden absolute bg-white border border-gray-300 shadow-lg py-2 w-32 rounded-md">
-                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
-                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
+                        <a href="" id="edit_staff" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
+                        <a href="" id="history_staff" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
                     </div>
                 </div>
                 <div class="flex justify-center items-center flex-col">
