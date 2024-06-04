@@ -36,7 +36,7 @@
                         class="w-10 p-2 bg-vh-gray-light rounded-full">
                 </a>
                 <div class="relative group">
-                    <a href="#">
+                    <a href="">
                         <img src="{{ asset('storage/svg/config.svg') }}" alt="config_icon"
                             class="w-10 p-2 bg-vh-gray-light rounded-full">
                     </a>

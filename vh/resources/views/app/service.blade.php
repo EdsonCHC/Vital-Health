@@ -28,10 +28,10 @@
                         typesetting industry.
                     </p>
                 </div>
-                <a href="/#" target="_self"
+                <button target="_self" id="make_appointment"
                     class="w-4/5 lg:w-2/5 h-12 text-white font-bold bg-vh-green text-lg tracking-wide shadow-xl mb-10 mx-4 rounded-full hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
                     Solicitar Cita
-                </a>
+                    <button />
             </div>
             <div class="mr-6">
                 <div class="bg-gray-200 rounded w-60 p-4">
@@ -62,8 +62,8 @@
     <!--Estilos Mobile-->
     <div class="lg:hidden flex justify-center">
         <div class="lg:ml-auto">
-            <div class="bg-gray-100 mt-28 rounded-lg h-32 w-36 ">
-                <p class="pl-4 text-xl font-bold">Area</p>
+            <div class="bg-gray-100 mt-32 ml-52 rounded-lg w-36 h-32">
+                <p class="pl-4 py-1 text-xl font-bold">Area</p>
                 <div class="flex flex-col pl-4 mt-1">
                     <span class="text-lg">Activa</span>
                     <span class="text-lg">Personal</span>
@@ -76,8 +76,8 @@
         </div>
     </div>
     <div class="lg:hidden flex justify-center items-center">
-        <div class="w-64">
-            <div class="flex flex-col ml-4 mt-2 mb-2">
+        <div class="w-64 mt-10">
+            <div class="flex flex-col ml-4 my-2">
                 <span class="font-bold text-lg">Area de Cardiologia</span>
                 <span class="font-bold text-lg">Justo a tu Alcanze!!</span>
                 <span class="font-bold text-sm">Administración de Area designada</span>
@@ -88,10 +88,10 @@
                     typesetting industry.
                 </p>
             </div>
-            <a href="/#" target="_self"
-                class="w-4/5 h-9 text-white font-bold bg-vh-green text-sm shadow-xl mb-10 rounded-full lg:w-2/5 hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center py-2 mx-4">
+            <button target="_self" 
+                class="make_appointment w-4/5 h-9 text-white font-bold bg-vh-green text-sm shadow-xl mb-10 rounded-full lg:w-2/5 hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center py-2 mx-4">
                 Solicitar Cita
-            </a>
+                <button />
         </div>
     </div>
     <div class="flex justify-center text-center flex-col items-center">
@@ -115,23 +115,27 @@
                     <hr class="mx-6 my-2" />
                     <div class="flex flex-col px-8">
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                                class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 1</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                                class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 2</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                                class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 3</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                                class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 4</span>
                         </label>
                     </div>
-                    <button target="_self" id="make_appointment"
+                    <button target="_self"
                         class="w-4/5 py-4 my-4 border border-solid border-vh-green font-bold text-base lg:w-2/5 hover:bg-vh-green transition duration-300 hover:text-white inline-block text-center">
                         Agendar
                     </button>
@@ -148,19 +152,23 @@
                     <hr class="mx-6 my-2" />
                     <div class="flex flex-col px-8">
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                                class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 1</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                                class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 2</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                                class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 3</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                                class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 4</span>
                         </label>
                     </div>
@@ -179,19 +187,23 @@
                     <hr class="mx-6 my-2" />
                     <div class="flex flex-col px-8">
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                                class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 1</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                                class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 2</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                                class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 3</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml" class="w-6 h-auto"></object>
+                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                                class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 4</span>
                         </label>
                     </div>
