@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
   <title>Inicio de sesión</title>
+  <link rel="shortcut icon" href="{{asset('storage/svg/favicon.png')}}" type="image/x-icon">
   @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/app.js', 'resources/css/loader.css', 'resources/js/preloader.js','resources/js/login.js'])
 </head>
 

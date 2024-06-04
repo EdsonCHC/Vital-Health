@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
+    <link rel="shortcut icon" href="{{asset('storage/svg/favicon.png')}}" type="image/x-icon">
     @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/register.js','resources/css/loader.css', 'resources/js/preloader.js'])
 </head>
 

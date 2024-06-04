@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
+    <link rel="shortcut icon" href="{{asset('storage/svg/favicon.png')}}" type="image/x-icon">
     @vite(['resources/css/loader.css', 'resources/js/preloader.js', 'resources/css/app.css', 'resources/js/animation.js', 'resources/css/animation.css'])
 </head>
 
