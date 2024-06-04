@@ -18,61 +18,61 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('app.index');
-});  //?  should it have a name?
+})->name('index');
 
 Route::get('/login', function () {
     return view('app.login');
 })->name('login');
 
-Route::post('/login',[UsuarioController::class, 'show']);
+Route::post('/login', [UsuarioController::class, 'show']);
 
 Route::get('/registro', function () {
     return view('app.registro');
-}); //?  should it have a name?
+});
 
-Route::post('/registro',[UsuarioController::class, 'store']); //controlador post
+Route::post('/registro', [UsuarioController::class, 'store']); //controlador post
 
-Route::get('/medicina', function() {
+Route::get('/medicina', function () {
     return view('app.medicine');
 })->middleware('auth');
 
-Route::get('/about', function() {
+Route::get('/about', function () {
     return view('app.about');
-}); //?  should it have a name?
-
-Route::get('/report', function() {
-    return view('app.report');
-})->middleware('auth'); //?  should it have a name?
-
-Route::get('/examen', function() {
-    return view('app.exams');
-})->middleware('auth'); //?  should it have a name?
-
-Route::get('/service', function() {
-    return view('app.service'); //?  should it have a name?
 });
 
-Route::get('/chats', function() {
+Route::get('/report', function () {
+    return view('app.report');
+})->middleware('auth');
+
+Route::get('/examen', function () {
+    return view('app.exams');
+})->middleware('auth');
+
+Route::get('/service', function () {
+    return view('app.service');
+});
+
+Route::get('/chats', function () {
     return view('app.chats');
-})->middleware('auth'); //?  should it have a name?
+})->middleware('auth');
 
-Route::get('/user',[UsuarioController::class, 'index'])->middleware('auth')->name('user'); 
+Route::get('/user', [UsuarioController::class, 'index'])->middleware('auth')->name('user');
 
-Route::POST('/user', [UsuarioController::class, 'destroy']); //?  should it have a name?
+Route::POST('/user', [UsuarioController::class, 'destroy']);
 
 Route::get('/area', function () {
     return view('app.area');
-})->middleware('auth'); //?  should it have a name?
+})->middleware('auth');
 
 Route::get('/citas', function () {
     return view('app.citas');
-})->middleware('auth'); //?  should it have a name?
+})->middleware('auth');
 
 
 //* DOCTOR ROUTES //
 
 Route::get('/doctor', function () {
-    return view('doctor.index_doc'); // ?
+    return view('doctor.index_doc');
 });
 
 Route::get('/exam_d', function () {
@@ -104,24 +104,24 @@ Route::get('/program_doc', function () {
 
 Route::get('/statistics', function () {
     return view('admin.statistics');
-});
+})->middleware('auth.admin')->name('statistic');
 
 Route::get('/appointment', function () {
     return view('admin.appointment');
-});
+})->middleware('auth.admin')->name('appointment');
 
 Route::get('/records', function () {
     return view('admin.records');
-});
+})->middleware('auth.admin')->name('records');
 
 Route::get('/ad_chats', function () {
     return view('admin.ad_chats');
-});
+})->middleware('auth.admin')->name('admin_chat');
 
 Route::get('/staff', function () {
     return view('admin.staff');
-});
+})->middleware('auth.admin')->name('staff');
 
 Route::get('/calendar', function () {
     return view('admin.calendar');
-});
+})->middleware('auth.admin')->name('calendar');
