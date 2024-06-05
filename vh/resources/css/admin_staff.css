@@ -1,5 +1,0 @@
-#menuButton:hover + #menuOptions,
-#menuOptions:hover {
-    display: block;
-    margin-left: 10rem;
-}
