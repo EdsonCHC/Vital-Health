@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Appointment</title>
-    @vite(['resources/css/app.css', 'resources/js/admin_appointment.js'])
+    @vite(['resources/css/app.css', 'resources/js/ad_appointment.js'])
 </head>
 
 <body class="w-full h-full bg-vh-alice-blue">

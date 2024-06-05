@@ -75,13 +75,6 @@
             </div>
         </nav>
 
-        <!-- Chat -->
-        <div class="hidden lg:flex  fixed bottom-0 right-0 mb-4 mr-4">
-            <a href="#" class="">
-                <img src="{{ asset('storage/svg/chat.svg') }}" alt="chat" class="w-16 p-1 ">
-            </a>
-        </div>
-
         <div
             class="md:flex lg:hidden fixed bottom-0 w-full rounded-tl-3xl rounded-tr-3xl  bg-white shadow flex justify-between px-6 py-4">
             <a href="/appointment" class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
