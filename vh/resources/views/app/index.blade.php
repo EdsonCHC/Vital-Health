@@ -200,16 +200,17 @@
                 class="mx-auto my-0 w-full lg:w-3/4 lg:ml-auto"></object>
         </div>
         <div class="flex justify-center text-left items-center flex-col">
-            <h2 class="font-bold  text-xl text-vh-green lg:font-bold lg:text-left lg:text-4xl lg:ml-12 animation2">Por
+            <h2 class="font-bold p-2 text-xl text-vh-green lg:font-bold lg:text-left lg:text-4xl lg:ml-12 animation2">
+                Por
                 qué elegir
                 nuestros servicios?</h2>
             <div class="flex justify-center lg:text-center items-center">
                 <div class="flex flex-col">
-                    <p class="text-base lg:text-2xl font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area
+                    <p class="text-base lg:text-xl font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area
                         looking for a new provider.</p>
-                    <p class="text-base lg:text-2xl font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area
+                    <p class="text-base lg:text-xl font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area
                         looking for a new provider.</p>
-                    <p class="text-base lg:text-2xl font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area
+                    <p class="text-base lg:text-xl font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area
                         looking for a new provider.</p>
                 </div>
             </div>
@@ -220,42 +221,38 @@
         </div>
 
     </div>
-    <div class="w-11/12 mx-auto m-2 pt-5 pb-10 bg-blue-100 rounded-2xl shadow-lg px-8">
-        <h2 class="font-bold text-center text-xl  pb-8 text-vh-green">Servicios</h2>
-        <div class="flex justify-between">
-            <ul class="w-5/12 list-disc pl-0">
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 1
-                </li>
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 2
-                </li>
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 3
-                </li>
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 4
-                </li>
-            </ul>
 
-            <ul class="w-5/12 list-disc pl-0">
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 5
-                </li>
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 6
-                </li>
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 7
-                </li>
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 8
-                </li>
-            </ul>
-
+    <div class="max-w-7xl mx-auto lg:p-10">
+        <div class="rounded-lg shadow-md overflow-hidden">
+            <div class="p-8">
+                <h2 class="font-bold text-3xl text-vh-green  lg:text-4xl lg:py-6">
+                    Nuestras Características
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    <div class="bg-blue-100 border border-blue-400 rounded-lg p-8 animate-fade-in-up">
+                        <h3 class="text-2xl font-semibold text-blue-800 mb-4">Característica 1</h3>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+                            dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="bg-green-100 border border-green-400 rounded-lg p-8 animate-fade-in-up">
+                        <h3 class="text-2xl font-semibold text-green-800 mb-4">Característica 2</h3>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+                            dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="bg-green-100 border border-green-400 rounded-lg p-8 animate-fade-in-up">
+                        <h3 class="text-2xl font-semibold text-green-800 mb-4">Característica 3</h3>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+                            dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="bg-blue-100 border border-blue-400 rounded-lg p-8 animate-fade-in-up">
+                        <h3 class="text-2xl font-semibold text-blue-800 mb-4">Característica 4</h3>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+                            dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
     <div class="flex w-full flex-col lg:flex-row  ">
         <div class=" lg:w-1/2 lg:items-center flex flex-col lg:flex-row">
             <div class="lg:pl-28  ">
