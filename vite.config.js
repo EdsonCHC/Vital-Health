@@ -30,7 +30,7 @@ export default defineConfig({
                 "resources/js/register.js",
                 "resources/js/scroll.js",
                 "resources/js/stats_chart.js",
-                "resources/js/view.js"
+                "resources/js/view.js",
             ],
             refresh: true,
         }),
@@ -39,5 +39,5 @@ export default defineConfig({
         alias: {
             $: "jQuery",
         },
-    },
+    }
 });
