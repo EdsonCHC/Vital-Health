@@ -10,6 +10,7 @@
 </head>
 
 <body class="w-full h-screen ">
+    //TODO: Arreglar z-index
     @include('templates.loader')
     <div class="">
         @include('templates.header')
