@@ -83,9 +83,9 @@
             </div>
             <div class="ml-4 w-1/2 flex justify-end">
                 <label for="filtro1"
-                    class="border-4 border-green-900 rounded-full flex items-center p-2 md:relative cursor-pointer">
+                    class="border-4 border-green-900 rounded-full flex  items-center p-2 md:relative cursor-pointer">
                     <select id="filtro1" name="filtro1"
-                        class="absolute inset-0 w-full h-full border-none cursor-pointer bg-transparent appearance-none z-10 right-0 focus:outline-none opacity-0">
+                        class="absolute  border-none cursor-pointer bg-transparent appearance-none z-10 right-0 focus:outline-none opacity-0">
                         <option value="todos" selected>Todos</option>
                         <option value="c1">Ascedente</option>
                         <option value="c2">Descendente</option>

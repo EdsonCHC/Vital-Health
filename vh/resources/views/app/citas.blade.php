@@ -39,7 +39,7 @@
 
         <section class="w-full h-auto my-4 font-bold">
             <div class="flex gap-8 flex-wrap justify-center lg:justify-start">
-                <div class="w-72 h-64 py-4 lg:bg-gray-100  flex flex-col items-center bg-gray-100 rounded-lg  relative">
+                <div class="w-72 h-64 py-4 lg:bg-gray-100  flex flex-col items-center bg-gray-100 rounded-lg  lg:relative">
                     <div class="w-20 h-20 bg-green-200 rounded-full"></div>
                     <div class="w-9/12 h-28 p-2 text-center">
                         <h2>Odontología</h2>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
 
-                <div class="w-72 h-64 py-4 lg:bg-gray-100  flex flex-col items-center bg-gray-100 rounded-lg  relative">
+                <div class="w-72 h-64 py-4 lg:bg-gray-100  flex flex-col items-center bg-gray-100 rounded-lg  lg:relative">
                     <div class="w-20 h-20 bg-green-200 rounded-full"></div>
                     <div class="w-9/12 h-28 p-2 text-center">
                         <h2>Odontología</h2>
@@ -63,7 +63,7 @@
                     </div>
                 </div>
 
-                <div class="w-72 h-64 py-4 lg:bg-gray-100  flex flex-col items-center bg-gray-100 rounded-lg  relative">
+                <div class="w-72 h-64 py-4 lg:bg-gray-100  flex flex-col items-center bg-gray-100 rounded-lg  lg:relative">
                     <div class="w-20 h-20 bg-green-200 rounded-full"></div>
                     <div class="w-9/12 h-28 p-2 text-center">
                         <h2>Odontología</h2>
