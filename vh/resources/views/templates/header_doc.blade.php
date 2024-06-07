@@ -70,6 +70,6 @@
 
 
 
-<div class=" lg:flex  fixed bottom-16 lg:bottom-0 right-0 mb-4 mr-4">
+<div class="hidden lg:flex fixed bottom-16 lg:bottom-0 right-0 mb-4 mr-4">
   <a href="#" class=""><img src="{{asset('storage/svg/chat.svg')}}" alt="chat" class="w-16 p-1 "></a>
 </div>
