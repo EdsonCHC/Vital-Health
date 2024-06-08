@@ -66,7 +66,7 @@ Route::get('/area', function () {
 
 Route::get('/citas', function () {
     return view('app.citas');
-}); //?  should it have a name?
+})->middleware('auth'); //?  should it have a name?
 
 
 //* DOCTOR ROUTES //
