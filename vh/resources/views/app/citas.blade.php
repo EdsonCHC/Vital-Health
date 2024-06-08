@@ -18,7 +18,7 @@
 
         <section class="flex justify-between">
             <h2 class="font-bold text-center text-2xl text-vh-green">Menu de Citas</h2>
-            <div class="relative inline-block text-left">
+            <div class="lg:relative inline-block text-left">
                 <div>
                     <button type="button"
                         class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-vh-green px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-vh-green-medium "
