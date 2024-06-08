@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 import jQuery from "jquery";
 window.$ = jQuery;
 $(document).ready(function () {
-    $("#citas").click((e) => {
+    $("#show-alert").click((e) => {
         e.preventDefault();
 
         mostrarAlerta();
@@ -21,11 +21,11 @@ $(document).ready(function () {
             </div>
             <div class="bg-gray-200 border border-black p-4 mt-4 rounded-lg items-center">
                 <h2 class="font-bold text-lg text-vh-green-medium">Requerimientos:</h2>
-                <div class="flex flex-row space-x-4 justify-evenly  ">
+                <div class="flex flex-row space-x-4 justify-center mt-2">
                     <div class="flex flex-col w-44 space-y-2">
-                        <button class="bg-green-500 text-white font-bold p-2 rounded-full">Examen de sangre</button>
-                        <button class="bg-green-500 text-white font-bold p-2 rounded-full">Examen de orina</button>
-                        <button class="bg-red-500 text-white font-bold p-2 rounded-full">Peso Corporal</button>
+                        <button class="bg-green-600 text-white font-bold p-2 rounded-full">Examen de sangre</button>
+                        <button class="bg-green-600 text-white font-bold p-2 rounded-full">Examen de orina</button>
+                        <button class="bg-red-600 text-white font-bold p-2 rounded-full">Peso Corporal</button>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,8 @@ $(document).ready(function () {
             `,
             confirmButtonText: "Aceptar",
             customClass: {
-                container: "custom-swal-container",
+                container:"custom-swal-container",
+                confirmButton:"hover:bg-vh-green text-white font-bold py-2 px-4 rounded"          
             },
         });
     }
@@ -57,3 +58,4 @@ $(document).ready(function () {
         $(this).toggleClass("btn-requisito-selected");
     });
 });
+

@@ -1,5 +1,5 @@
 @vite('resources/css/menu.css')
-<header class="w-full h-auto flex justify-start">
+<header class="w-full h-auto flex justify-start z-20">
     <div class="w-full h-full mx-auto flex justify-between">
         <section id="banner" class="sm:hidden">
             <input type="checkbox" id="menu--toggle" class="checkbox-menu">
