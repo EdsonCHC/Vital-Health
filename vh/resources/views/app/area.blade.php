@@ -17,7 +17,7 @@
     </div>
     <div class="w-full ">
 
-        <div class=" hidden lg:flex  px-44  pt-24 ">
+        <div class=" hidden lg:flex  px-44  pt-16 ">
             <h2 class="font-bold text-2xl lg:text-4xl  mb-6">
                 Servicios</h2>
         </div>

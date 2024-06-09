@@ -74,14 +74,12 @@ Route::get('/citas', function () {
 Route::get('/doctor', function () {
     return view('doctor.index_doc'); // ?
 });
-
 Route::get('/exam_d', function () {
     return view('doctor.exam_doc');
 });
 Route::get('/citas_doc', function () {
     return view('doctor.citas_doc');
 });
-
 Route::get('/allocation', function () {
     return view('doctor.allocation');
 });
@@ -100,28 +98,24 @@ Route::get('/service_doc', function () {
 Route::get('/program_doc', function () {
     return view('doctor.program_doc');
 });
-//* ADMIN ROUTES // 
 
+
+//* ADMIN ROUTES // 
 Route::get('/statistics', function () {
     return view('admin.statistics');
 });
-
 Route::get('/appointment', function () {
     return view('admin.appointment');
 });
-
 Route::get('/records', function () {
     return view('admin.records');
 });
-
 Route::get('/ad_chats', function () {
     return view('admin.ad_chats');
 });
-
 Route::get('/staff', function () {
     return view('admin.staff');
 });
-
 Route::get('/calendar', function () {
     return view('admin.calendar');
 });

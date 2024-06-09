@@ -15,7 +15,7 @@
         @include('templates.header')
     </div>
 
-    <!-- para pc -->
+    <!-- Styles pc -->
     <div class="hidden lg:flex lg:pt-28 mb-5 bg-vh-gray-light w-full">
         <div class="w-1/2 hidden lg:flex justify-center items-center">
             <div class="w-4/5">
@@ -31,13 +31,11 @@
                 </a>
             </div>
         </div>
-
         <div class="w-1/2 hidden lg:flex">
             <div class="w-full flex justify-center items-center">
                 <img class="h-full lg:h-auto lg:w-full" src="{{asset('storage/svg/doctor.svg')}}"
                     type="image/svg+xml" />
             </div>
-
             <div class="">
                 <div class="flex flex-col  items-end">
                     <div class="w-16 h-5 mb-6  bg-vh-green-light">
@@ -51,9 +49,7 @@
         </div>
     </div>
 
-
-    <!-- para cel --->
-
+    <!-- Styles Mobile --->
     <div class="lg:hidden">
         <div class="flex mb-5 pt-16 bg-vh-gray-light w-full">
             <div class="w-3/4 flex justify-center items-center">
@@ -96,9 +92,6 @@
         </div>
     </div>
 
-
-
-
     <div class="flex justify-center text-center flex-col items-center">
         <div class="w-full h-auto">
             <div>
@@ -106,7 +99,6 @@
                 <p class="text-sm font-bold text-gray-400 mx-4 mt-2">Lorem Ipsum is simply dummy text of the printing
                     and typesetting industry.</p>
             </div>
-
             <div class="w-full flex grow-0 flex-wrap items-center justify-center mb-8">
                 <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
                     <h2 class="text-lg font-bold mb-2 text-vh-green">Juan Jose Galdamez</h2>
@@ -219,7 +211,6 @@
                 Comienza ya
             </a>
         </div>
-
     </div>
 
     <div class="max-w-7xl mx-auto lg:p-10">
@@ -265,13 +256,9 @@
                         class="w-3/5  h-8 lg:h-8 text-white bg-vh-green text-sm lg:text-base xl:text-lg shadow-xl my-5 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center pt-1 mx-4">
                         Únete ya
                     </a>
-
                 </div>
             </div>
-
         </div>
-
-
         <div class="lg:w-1/2">
             <div class="m-8 flex items-center justify-center">
                 <object data="{{asset('storage/svg/hands.svg')}}" type="image/svg+xml"
@@ -280,9 +267,9 @@
         </div>
     </div>
 
-
+    <div class="w-full h-auto">
+        @include('templates.footer')
     </div>
-    @include('templates.footer') 
 </body>
 
 </html>

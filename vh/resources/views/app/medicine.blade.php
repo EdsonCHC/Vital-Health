@@ -15,7 +15,7 @@
     <div class="">
         @include('templates.header')
     </div>
-    <div class="w-full h-auto flex flex-col mt-8 items-center lg:items-start p-4 gap-2 lg:px-16 ">
+    <div class="w-full h-auto flex flex-col pt-12 lg:items-start items-center p-4 gap-2 lg:px-16 ">
         <h2 class="font-bold  text-xl text-vh-green lg:font-bold  lg:text-4xl">Medicamento Asignado </h2>
         <button class="text-sm font-bold">
             Solicitudes de medicamentos
@@ -23,11 +23,27 @@
     </div>
     <div class="w-full h-auto  flex">
         <div class=" bg-cover w-full flex justify-center items-center">
-            <div class="w-full bg-white lg:p-5 p-2 ">
-                <div class="w-12/12 mx-auto rounded-2xl bg-white lg:p-5 p-2">
+            <div class="w-full bg-white lg:p-5 p-2 bg-opacity-40 backdrop-filter backdrop-blur-lg">
+                <div
+                    class="w-12/12 mx-auto rounded-2xl bg-white lg:p-5 p-2 bg-opacity-40 backdrop-filter backdrop-blur-lg">
+
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-center px-2 mx-auto">
-                        <article class="bg-white  lg:p-6 p-3 mb-6 shadow transition duration-300 group  hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
-                            <button target="_self" class="absolute opacity-0 top-0 right-0 left-0 bottom-0"></button>
+                        <article
+                            class="bg-white  lg:p-6 p-3 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
+                            <a target="_self" href="" class="absolute opacity-0 top-0 right-0 left-0 bottom-0"></a>
+                            <div class="relative mb-4 rounded-2xl">
+                                <object data="{{asset('storage/svg/medicine.svg')}}" type="image/svg+xml"
+                                    class="max-h-80 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105"></object>
+                                <a class="flex justify-center items-center bg-green-700 bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100"
+                                    href="" target="_self" rel="noopener noreferrer">
+                                    Ver Medicamento
+                                    <svg class="ml-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                            </div>
                             <div class="flex justify-between items-center w-full pb-4 mb-auto">
                                 <div class="flex items-center">
                                     <div class="pr-3">
@@ -55,7 +71,7 @@
                             </div>
                             <h3 class="font-medium text-xl leading-8">
                                 <a href=""
-                                    class="block lg:elative group-hover:text-vh-green transition-colors duration-200 ">
+                                    class="block relative group-hover:text-vh-green transition-colors duration-200 ">
                                     Instant Help at Your Fingertips
                                 </a>
                             </h3>
