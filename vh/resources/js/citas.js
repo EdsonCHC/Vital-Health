@@ -57,5 +57,41 @@ $(document).ready(function () {
     $(document).on("click", ".btn-requisito", function () {
         $(this).toggleClass("btn-requisito-selected");
     });
+
+    document.addEventListener("click", function (event) {
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        dropdownToggles.forEach(function (toggle) {
+            const dropdownMenu = toggle.nextElementSibling;
+            if (toggle.contains(event.target) && dropdownMenu.classList.contains('hidden')) {
+                dropdownMenu.classList.remove('hidden');
+            } else {
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("menu-items").classList.add("hidden");
+    });
+
+    var menuButton = document.getElementById("menu-button");
+    var menuItems = document.getElementById("menu-items");
+
+    menuButton.addEventListener("click", function () {
+        var expanded = this.getAttribute("aria-expanded") === "true";
+        this.setAttribute("aria-expanded", !expanded);
+        menuItems.classList.toggle("hidden");
+    });
+
+    document.addEventListener("click", function (event) {
+        var isClickInsideMenu = menuButton.contains(event.target) || menuItems.contains(event.target);
+        if (!isClickInsideMenu) {
+            menuItems.classList.add("hidden");
+        }
+    });
+
+
+
 });
 

@@ -10,12 +10,11 @@
 </head>
 
 <body class="w-full h-screen ">
-    //TODO: Arreglar z-index
     @include('templates.loader')
     <div class="">
         @include('templates.header')
     </div>
-    <div class="w-full h-auto flex flex-col pt-12 lg:items-start items-center p-4 gap-2 lg:px-16 ">
+    <div class="w-full h-auto flex flex-col items-start p-4 gap-2 lg:px-16 ">
         <h2 class="font-bold  text-xl text-vh-green lg:font-bold  lg:text-4xl">Medicamento Asignado </h2>
         <button class="text-sm font-bold">
             Solicitudes de medicamentos
