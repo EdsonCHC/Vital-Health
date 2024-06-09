@@ -13,6 +13,10 @@
             </ul>
         </section>
         <ul class="hidden menu-list w-full mt-4 md:flex justify-center gap-10 items-center">
+            <li class="-mt-4 mr-auto"><a href="/"><img src="{{ asset('storage/svg/logo.svg') }}" alt="noti_icon"
+                        class="h-24">
+                </a>
+            </li>
             <li class="font-bold mb-4"><a href="/">Inicio</a></li>
             <li class="font-bold mb-4 relative group">
                 <a href="/service">Atención al cliente</a>
@@ -40,7 +44,8 @@
                         <img src="{{ asset('storage/svg/config.svg') }}" alt="config_icon"
                             class="w-10 p-2 bg-vh-gray-light rounded-full">
                     </a>
-                    <ul class="absolute hidden bg-white p-1 shadow-md w-full z-10 group-hover:block border border-solid border-black rounded-xl">
+                    <ul
+                        class="absolute hidden bg-white p-1 shadow-md w-full z-10 group-hover:block border border-solid border-black rounded-xl">
                         <li><a href="#" class="block py-1 w-8">
                                 <img src="{{ asset('storage/svg/calendar.svg') }}" alt="noti_icon"
                                     class="w-full p-2 bg-vh-gray-light rounded-full">
