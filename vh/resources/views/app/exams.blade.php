@@ -99,6 +99,9 @@
     <div class="w-full h-auto lg:absolute  lg:bottom-0">
         @include('templates.footer')
     </div>
+    <div class="w-full h-auto">
+        @include('templates.chat_ia')
+    </div>
 </body>
 
 </html>

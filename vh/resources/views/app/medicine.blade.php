@@ -77,6 +77,9 @@
     <div class="w-full h-auto bottom-0 absolute">
         @include('templates.footer')    
     </div>
+    <div class="w-full h-auto">
+        @include('templates.chat_ia')
+    </div>
 </body>
 
 </html>

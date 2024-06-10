@@ -182,7 +182,9 @@
         </div>
     </div>
     @include('templates.footer') 
-
+    <div class="w-full h-auto">
+        @include('templates.chat_ia')
+    </div>
 </body>
 
 </html>
