@@ -270,6 +270,9 @@
     <div class="w-full h-auto">
         @include('templates.footer')
     </div>
+    <div class="w-full h-auto">
+        @include('templates.chat_ia')
+    </div>
 </body>
 
 </html>

@@ -56,11 +56,7 @@
                                     class="w-full p-2 bg-vh-gray-light rounded-full">
                             </a>
                         </li>
-                        <li><a href="#" class="block py-1 w-8">
-                                <img src="{{ asset('storage/svg/health-icon.svg') }}" alt="noti_icon"
-                                    class="w-full p-2 bg-vh-gray-light rounded-full">
-                            </a>
-                        </li>
+                       
                     </ul>
                 </div>
             </div>
