@@ -32,45 +32,8 @@
                         </svg>
                     </button>
                 </div>
-
-                <div id="menu-items"
-                    class="absolute right-0 mt-2 w-36 origin-top-right rounded-xl bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10 hidden"
-                    role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-                    <div class="py-1 bg-green-50 rounded-xl" role="none">
-                        <a href="#" class="block px-4 py-2 text-sm text-black font-bold hover:bg-green-200 rounded-md"
-                            role="menuitem" tabindex="-1" id="menu-item-0">Todos</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-black font-bold hover:bg-green-200 rounded-md"
-                            role="menuitem" tabindex="-1" id="menu-item-1">Completados</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-black font-bold hover:bg-green-200 rounded-md"
-                            role="menuitem" tabindex="-1" id="menu-item-2">En proceso</a>
-                    </div>
-                </div>
             </div>
         </section>
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                document.getElementById("menu-items").classList.add("hidden");
-            });
-
-            var menuButton = document.getElementById("menu-button");
-            var menuItems = document.getElementById("menu-items");
-
-            menuButton.addEventListener("click", function () {
-                var expanded = this.getAttribute("aria-expanded") === "true";
-                this.setAttribute("aria-expanded", !expanded);
-                menuItems.classList.toggle("hidden");
-            });
-
-            document.addEventListener("click", function (event) {
-                var isClickInsideMenu = menuButton.contains(event.target) || menuItems.contains(event.target);
-                if (!isClickInsideMenu) {
-                    menuItems.classList.add("hidden");
-                }
-            });
-        </script>
-
-
 
         <section class="w-full h-auto my-4 font-bold mt-12">
 
@@ -184,29 +147,7 @@
                                     clip-rule="evenodd" />
                             </svg>
                         </button>
-                        <div id="customMenu"
-                            class="absolute top-10 right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-md z-10 hidden">
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Elimiar historial </a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Historial</a>
-                        </div>
                     </div>
-
-                    <script>
-                        const customMenuButton = document.getElementById("customMenuButton");
-                        const customMenu = document.getElementById("customMenu");
-
-                        customMenuButton.addEventListener("click", function () {
-                            customMenu.classList.toggle("hidden");
-                        });
-
-                        document.addEventListener("click", function (event) {
-                            if (!customMenu.contains(event.target) && event.target !== customMenuButton) {
-                                customMenu.classList.add("hidden");
-                            }
-                        });
-                    </script>
-
-
                     <button
                         class="h-8 w-8 flex items-center justify-center bg-gray-300 rounded-full focus:outline-none ml-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
@@ -233,20 +174,6 @@
 
         </section>
 
-
-        <script>
-            document.addEventListener("click", function (event) {
-                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-                dropdownToggles.forEach(function (toggle) {
-                    const dropdownMenu = toggle.nextElementSibling;
-                    if (toggle.contains(event.target) && dropdownMenu.classList.contains('hidden')) {
-                        dropdownMenu.classList.remove('hidden');
-                    } else {
-                        dropdownMenu.classList.add('hidden');
-                    }
-                });
-            });
-        </script>
 
 
     </main>
