@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Area</title>
     <link rel="shortcut icon" href="{{asset('storage/svg/favicon.png')}}" type="image/x-icon">
-    @vite(['resources/css/app.css','resources/css/loader.css', 'resources/js/preloader.js'])
-    <!-- @vite(['resources/js/app.js']) not used now  -->
+    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js'])
 </head>
-
 <body>
     @include('templates.loader')
     <div class="w-full h-auto">
@@ -109,7 +107,7 @@
 
 
         <div class="flex flex-wrap m-4 lg:m-16">
-            <div class="w-full lg:w-1/4 p-4"  >
+            <div class="w-full lg:w-1/4 p-4">
                 <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
                     <div class="flex justify-center items-center flex-col">
                         <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>

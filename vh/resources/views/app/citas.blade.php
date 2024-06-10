@@ -181,7 +181,7 @@
     <div class="w-full h-auto">
         @include('templates.chat_ia')
     </div>
-    <div class="w-full h-auto   bottom-0">
+    <div class="w-full h-auto absolute  bottom-0">
         @include('templates.footer')
     </div>
 </body>
