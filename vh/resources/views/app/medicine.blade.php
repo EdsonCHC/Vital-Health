@@ -29,7 +29,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-center px-2 mx-auto">
                         <article
                             class="bg-white  lg:p-6 p-3 mb-6 shadow transition duration-300  hover:shadow-2xl rounded-2xl cursor-pointer border">
-                            <a target="_self" href="" class="absolute opacity-0 top-0 right-0 left-0 bottom-0"></a>
+                            <a target="_self" href=""></a>
 
                             <div class="flex justify-between items-center w-full pb-4 mb-auto">
                                 <div class="flex items-center">
