@@ -34,10 +34,42 @@ $(document).ready(function () {
                             }
                         },
                         error(response) {
-                            console.log("ups, algo ha salido mal :v")
+                            console.log("ups, algo ha salido mal :v");
                         },
                     });
                 });
+            }
+        });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const menuLinks = document.querySelectorAll(".menu-link");
+    const contents = document.querySelectorAll(".content");
+
+    // Mostrar por defecto la primera opción (Perfil)
+    const defaultContent = document.getElementById("opcion1");
+    defaultContent.classList.remove("hidden");
+
+    menuLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+            // Ocultar todo el contenido
+            contents.forEach((content) => {
+                content.classList.add("hidden");
+            });
+
+            // Quitar clase 'active' de todos los enlaces
+            menuLinks.forEach((link) => {
+                link.classList.remove("active");
+            });
+
+            // Mostrar el contenido seleccionado y añadir clase 'active' al enlace
+            const targetId = link.getAttribute("data-target");
+            const targetContent = document.getElementById(targetId);
+            if (targetContent) {
+                targetContent.classList.remove("hidden");
+                link.classList.add("active");
             }
         });
     });

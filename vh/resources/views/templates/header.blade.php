@@ -1,5 +1,5 @@
 @vite('resources/css/menu.css')
-<header class="w-full h-auto flex justify-start z-20">
+<header class="w-full h-20 flex z-20">
     <div class="w-full h-full mx-auto flex justify-between">
         <section id="banner" class="sm:hidden">
             <input type="checkbox" id="menu--toggle" class="checkbox-menu">
@@ -12,7 +12,7 @@
                 <li class="menu_list"><a href="" class="menu_link">Contacto</a></li>
             </ul>
         </section>
-        <ul class="hidden menu-list w-full mt-4 md:flex justify-center gap-10 items-center">
+        <ul class="hidden menu-list w-full mt-8 md:flex justify-center gap-10 items-center">
             <li class="-mt-4 mr-auto"><a href="/"><img src="{{ asset('storage/svg/logo.svg') }}" alt="noti_icon"
                         class="h-24">
                 </a>
@@ -33,7 +33,7 @@
             <li class="font-bold mb-4"><a href="/registro">Registro</a></li>
         </ul>
 
-        <div class="hidden w-1/2 h-auto md:flex items-center justify-end gap-4 p-4">
+        <div class="hidden w-1/2 h-auto md:flex items-center justify-end gap-4 pr-4 mt-4">
             <div class="flex w-24 justify-between">
                 <a href="#">
                     <img src="{{ asset('storage/svg/noti.svg') }}" alt="noti_icon"
@@ -56,7 +56,7 @@
                                     class="w-full p-2 bg-vh-gray-light rounded-full">
                             </a>
                         </li>
-                       
+
                     </ul>
                 </div>
             </div>
