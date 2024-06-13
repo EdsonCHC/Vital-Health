@@ -12,7 +12,7 @@
     <div class="h-full">
         @include('templates.header_doc')
     </div>
-    <div  class="content lg:hidden ">
+    <div  class="content lg:hidden">
         <!--Estilos Desktop-->
         <div class="content hidden lg:flex lg:pt-28 mb-5 w-full bg-gray-100">
             <div class="flex justify-center items-center">

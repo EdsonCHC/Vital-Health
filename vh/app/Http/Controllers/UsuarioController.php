@@ -16,7 +16,7 @@ class UsuarioController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('app.user_info', ['user'=> $user]);
+        return view('app.user_info', ['user' => $user]);
     }
 
     /**
@@ -138,9 +138,13 @@ class UsuarioController extends Controller
 
         Auth::logout();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        try {
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+            return response()->json(['success' => true, 'url' => '/'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false], 500);
+        }
     }
 }

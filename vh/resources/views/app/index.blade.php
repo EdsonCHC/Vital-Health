@@ -268,7 +268,7 @@
     </div>
 
     <div class="w-full h-auto">
-        @include('templates.footer')
+        @include('templates.footer_two')
     </div>
     <div class="w-full h-auto">
         @include('templates.chat_ia')

@@ -34,10 +34,10 @@
         </div>
 
         <!-- Barra de búsqueda -->
-        <div class="w-full flex justify-center mt-4">
-            <div class="w-11/12">
+        <div class="flex w-full px-5 justify-center">
+            <div class="w-11/12 m-4">
                 <input type="text" placeholder="Buscar..."
-                    class="w-full p-2 border border-gray-300 rounded-lg shadow-sm">
+                    class="w-full p-2 border border-gray-300 rounded-lg shadow-sm outline-none">
             </div>
         </div>
 
@@ -80,42 +80,6 @@
                         <div class="w-full h-108 m-4 bg-white rounded-lg shadow-xl">
                             <h2 class="font-bold text-xl mb-6 p-4">Notificaciones</h2>
                             <div class="w-auto h-32 m-4 bg-gray-100 rounded-lg flex shadow-lg">
-                                <div class="mt-4 lg:ml-auto">
-                                    <div class="flex-col bg-green-800 rounded-md w-16 h-16 mb-2 content-center">
-                                        <span class="flex justify-center font-bold text-white">27</span>
-                                        <span class="flex justify-center font-bold text-white">Feb</span>
-                                    </div>
-                                    <div class="bg-green-200 rounded-md w-16 h-6">
-                                        <a class="flex font-bold justify-center hover:bg-white transition duration-300"
-                                            href="#">Nuevo</a>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col mt-4 mx-auto">
-                                    <h3 class="font-bold text-base">Notificaciones de cita</h3>
-                                    <p class="text-vh-green-light mb-2">Paciente: Juan José</p>
-                                    <span class="font-bold text-sm opacity-70">Hola buenas el motivo de este mensaje
-                                        es...</span>
-                                </div>
-                            </div>
-                            <div class="w-auto h-32 m-4 bg-gray-100 rounded-lg flex shadow-lg ">
-                                <div class="mt-4 lg:ml-auto">
-                                    <div class="flex-col bg-green-800 rounded-md w-16 h-16 mb-2 content-center">
-                                        <span class="flex justify-center font-bold text-white">27</span>
-                                        <span class="flex justify-center font-bold text-white">Feb</span>
-                                    </div>
-                                    <div class="bg-green-200 rounded-md w-16 h-6">
-                                        <a class="flex font-bold justify-center hover:bg-white transition duration-300"
-                                            href="#">Nuevo</a>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col mt-4 mx-auto">
-                                    <h3 class="font-bold text-base">Notificaciones de cita</h3>
-                                    <p class="text-vh-green-light mb-2">Paciente: Juan José</p>
-                                    <span class="font-bold text-sm opacity-70">Hola buenas el motivo de este mensaje
-                                        es...</span>
-                                </div>
-                            </div>
-                            <div class="w-auto h-32 m-4 bg-gray-100 rounded-lg flex shadow-lg ">
                                 <div class="mt-4 lg:ml-auto">
                                     <div class="flex-col bg-green-800 rounded-md w-16 h-16 mb-2 content-center">
                                         <span class="flex justify-center font-bold text-white">27</span>

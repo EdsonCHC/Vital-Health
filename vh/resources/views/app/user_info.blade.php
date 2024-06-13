@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User</title>
     <link rel="shortcut icon" href="{{asset('storage/svg/favicon.png')}}" type="image/x-icon">
-    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js','resources/js/scroll.js'])
+    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js','resources/js/scroll.js','resources/js/user.js'])
 </head>
 
 <body class="w-full h-screen overflow-scroll">
@@ -33,7 +33,7 @@
         <hr class="w-4/5 mx-auto my-5 border-1 lg:hidden">
         <section class="w-full lg:w-1/2 h-auto flex flex-col items-center lg:flex lg:flex-col">
             <h1 class="font-bold text-[#252525] text-xl">Información del usuario</h1>
-            <form action="/user" method="POST" class="w-4/5 h-auto md:w-1/2 lg:w-full">
+            <form class="w-4/5 h-auto md:w-1/2 lg:w-full">
                 @csrf
                 <div class="w-full h-auto flex lg:justify-end justify-center mb-5 border-b-2 p-2">
                     <div class="flex ">
@@ -79,12 +79,13 @@
                             class="w-full h-10 border-2 border-solid border-gray-400 rounded-lg p-2">
                     </label>
                 </div>
-                <button type="submit" class="w-auto h-auto bg-rose-600 text-white-not-white p-2 rounded-lg mt-3">LOG
+                <input type="hidden" id="_token" value="{{csrf_token()}}">
+                <button type="submit" id="log_out" class="w-auto h-auto bg-rose-600 text-white-not-white p-2 rounded-lg mt-3">LOG
                     out</button>
             </form>
         </section>
     </main>
-    <div class="w-full h-auto absolute  lg:bottom-0">
+    <div class="w-full h-auto absolute bottom-0">
         @include('templates.footer')
     </div>
 </body>

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('app.index');
-});  //?  should it have a name?
+})->name('home');  //?  should it have a name?
 
 Route::get('/login', function () {
     return view('app.login');
@@ -73,9 +73,6 @@ Route::get('/citas', function () {
 
 Route::get('/doctor', function () {
     return view('doctor.index_doc'); // ?
-});
-Route::get('/exam_d', function () {
-    return view('doctor.exam_doc');
 });
 Route::get('/citas_doc', function () {
     return view('doctor.citas_doc');
