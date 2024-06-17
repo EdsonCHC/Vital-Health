@@ -12,7 +12,7 @@
                 <li class="menu_list"><a href="" class="menu_link">Contacto</a></li>
             </ul>
         </section>
-        <ul class="hidden menu-list w-full mt-8 md:flex justify-center gap-10 items-center">
+        <ul class="hidden menu-list w-full mt-4 md:flex justify-center gap-10 items-center">
             <li class="-mt-4 mr-auto"><a href="/"><img src="{{ asset('storage/svg/logo.svg') }}" alt="noti_icon"
                         class="h-24">
                 </a>
@@ -33,7 +33,7 @@
             <li class="font-bold mb-4"><a href="/registro">Registro</a></li>
         </ul>
 
-        <div class="hidden w-1/2 h-auto md:flex items-center justify-end gap-4 pr-4 mt-4">
+        <div class="hidden w-1/2 h-auto md:flex items-center justify-end gap-4 pr-4 mt-2">
             <div class="flex w-24 justify-between">
                 <a href="#">
                     <img src="{{ asset('storage/svg/noti.svg') }}" alt="noti_icon"
@@ -64,7 +64,10 @@
                 <p class="font-bold">John Doe</p>
                 <p class="text-vh-green font-bold">#1345</p>
             </div>
-            <object data="{{ asset('storage/svg/user.svg') }}" type="image/svg+xml" class="w-10 h-10"></object>
+            <a href="/user">
+                <img src="{{ asset('storage/svg/user.svg') }}" alt="noti_icon"
+                    class="w-10 h10">
+            </a>
         </div>
 
     </div>
