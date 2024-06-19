@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div
-                class="w-128 h-20 flex justify-around items-center my-5 mx-auto bg-vh-green-light rounded-md">
+                class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light rounded-md">
                 <p class="font-bold text-lg">#00000</p>
                 <p class="font-bold text-lg">lorem</p>
                 <p class="font-bold text-lg">lorem</p>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div
-                class="w-128 h-20 flex justify-around items-center my-5 mx-auto bg-vh-green-light rounded-md">
+                class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light rounded-md">
                 <p class="font-bold text-lg">#lorem</p>
                 <p class="font-bold text-lg">lorem</p>
                 <p class="font-bold text-lg">lorem</p>
@@ -80,7 +80,7 @@
                 </div>
             </div>
             <div
-                class="w-128 h-20 flex justify-around items-center my-5 mx-auto bg-vh-green-light  rounded-md">
+                class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light  rounded-md">
                 <p class="font-bold text-lg">#lorem</p>
                 <p class="font-bold text-lg">lorem</p>
                 <p class="font-bold text-lg">lorem</p>
@@ -101,7 +101,7 @@
                 </div>
             </div>
             <div
-                class="w-128 h-20 flex justify-around items-center my-5 mx-auto bg-vh-green-light rounded-md">
+                class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light rounded-md">
                 <p class="font-bold text-lg">#lorem</p>
                 <p class="font-bold text-lg">lorem</p>
                 <p class="font-bold text-lg">lorem</p>

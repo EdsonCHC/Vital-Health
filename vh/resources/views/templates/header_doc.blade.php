@@ -8,25 +8,40 @@
       <ul class="space-y-8">
         <div class="sidebar flex flex-col space-y-6 py-4 px-2 relative flex-grow">
           <div class="flex flex-col space-y-4">
-            <div class="flex items-center py-2 rounded transition duration-200 hover:bg-green-200 text-black w-full cursor-pointer">
-              <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/homee.svg')}}" type="image/svg+xml" />
-              <a href="/doctor" class="text-md">Inicio</a>
+            <div
+              class="flex items-center py-2 rounded transition duration-200 hover:bg-green-200 text-black w-full cursor-pointer">
+              <a href="/doctor" class="w-full flex items-center">
+                <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/homee.svg')}}" type="image/svg+xml" />
+                <p>Inicio</p>
+              </a>
             </div>
-            <div class="flex items-center py-2 rounded transition duration-200 hover:bg-green-200 text-black w-full cursor-pointer">
-              <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/servicio.svg')}}" type="image/svg+xml" />
-              <a href="/service_doc" class="text-md">Servicio</a>
+            <div
+              class="flex items-center py-2 rounded transition duration-200 hover:bg-green-200 text-black w-full cursor-pointer">
+              <a href="/service_doc" class="w-full flex items-center">
+                <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/servicio.svg')}}" type="image/svg+xml" />
+                <p>Servicio</p>
+              </a>
             </div>
-            <div class="flex items-center py-2 rounded transition duration-200 hover:bg-green-200 text-black w-full cursor-pointer">
-              <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/paciente.svg')}}" type="image/svg+xml" />
-              <a href="/files_doc" class="text-md">Expedientes</a>
+            <div
+              class="flex items-center py-2 rounded transition duration-200 hover:bg-green-200 text-black w-full cursor-pointer">
+              <a href="/files_doc" class="w-full flex items-center">
+                <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/paciente.svg')}}" type="image/svg+xml" />
+                <p>Expedientes</p>
+              </a>
             </div>
-            <div class="flex items-center py-2 rounded transition duration-200 hover:bg-green-200 text-black w-full cursor-pointer">
-              <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/cita.svg')}}" type="image/svg+xml" />
-              <a href="/citas_doc" class="text-md">Citas</a>
+            <div
+              class="flex items-center py-2 rounded transition duration-200 hover:bg-green-200 text-black w-full cursor-pointer">
+              <a href="/citas_doc" class="w-full flex items-center">
+                <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/cita.svg')}}" type="image/svg+xml" />
+                <p>Citas</p>
+              </a>
             </div>
-            <div class="flex items-center py-2 rounded transition duration-200 hover:bg-green-200 text-black w-full cursor-pointer">
-              <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" />
-              <a href="/program_doc" class="text-md">Programación</a>
+            <div
+              class="flex items-center py-2 rounded transition duration-200 hover:bg-green-200 text-black w-full cursor-pointer">
+              <a href="/program_doc" class="w-full flex items-center">
+                <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" />
+                <p>Programación</p>
+              </a>
             </div>
           </div>
         </div>
