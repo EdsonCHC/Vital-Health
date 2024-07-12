@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('app.index');
-})->name('index');
+})->name('home');  //?  should it have a name?
 
 Route::get('/login', function () {
     return view('app.login');
@@ -72,16 +72,11 @@ Route::get('/citas', function () {
 //* DOCTOR ROUTES //
 
 Route::get('/doctor', function () {
-    return view('doctor.index_doc');
-});
-
-Route::get('/exam_d', function () {
-    return view('doctor.exam_doc');
+    return view('doctor.index_doc'); // ?
 });
 Route::get('/citas_doc', function () {
     return view('doctor.citas_doc');
 });
-
 Route::get('/allocation', function () {
     return view('doctor.allocation');
 });
@@ -100,28 +95,24 @@ Route::get('/service_doc', function () {
 Route::get('/program_doc', function () {
     return view('doctor.program_doc');
 });
-//* ADMIN ROUTES // 
 
+
+//* ADMIN ROUTES // 
 Route::get('/statistics', function () {
     return view('admin.statistics');
-})->middleware('auth.admin')->name('statistic');
-
+});
 Route::get('/appointment', function () {
     return view('admin.appointment');
-})->middleware('auth.admin')->name('appointment');
-
+});
 Route::get('/records', function () {
     return view('admin.records');
-})->middleware('auth.admin')->name('records');
-
+});
 Route::get('/ad_chats', function () {
     return view('admin.ad_chats');
-})->middleware('auth.admin')->name('admin_chat');
-
+});
 Route::get('/staff', function () {
     return view('admin.staff');
-})->middleware('auth.admin')->name('staff');
-
+});
 Route::get('/calendar', function () {
     return view('admin.calendar');
 })->middleware('auth.admin')->name('calendar');

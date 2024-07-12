@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Records</title>
+    <title>Expediente</title>
     @vite(['resources/css/app.css'])
 </head>
 
@@ -39,13 +39,12 @@
                     <p class="font-semibold text-xl text-vh-green">Herramientas</p>
                 </div>
             </div>
-            <div
-                class="w-128 h-20 flex justify-around items-center my-5 mx-auto bg-vh-green-light  rounded-md">
+            <div class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light  rounded-md">
                 <div class="w-7/12 flex justify-around items-center content-center">
                     <p class="font-bold text-lg">#00000</p>
                     <p class="font-bold text-lg">Juan Jose</p>
                     <button target="_self" id=""
-                        class="w-44 h-10 my-4 font-bold text-base bg-vh-green hover:bg-white transition duration-300 hover:text-black inline-block text-center rounded-md">
+                        class="w-44 h-10 my-4 font-bold text-white text-base bg-vh-green hover:bg-white transition duration-300 hover:text-black inline-block text-center rounded-md">
                         Expediente
                     </button>
                 </div>
@@ -70,13 +69,12 @@
                     </button>
                 </div>
             </div>
-            <div
-                class="w-128 h-20 flex justify-around items-center my-5 mx-auto bg-vh-green-light rounded-md">
+            <div class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light  rounded-md">
                 <div class="w-7/12 flex justify-around items-center content-center">
                     <p class="font-bold text-lg">#00000</p>
                     <p class="font-bold text-lg">Juan Jose</p>
                     <button target="_self" id=""
-                        class="w-44 h-10 my-4 font-bold text-base bg-vh-green hover:bg-white transition duration-300 hover:text-black inline-block text-center rounded-md">
+                        class="w-44 h-10 my-4 font-bold text-white text-base bg-vh-green hover:bg-white transition duration-300 hover:text-black inline-block text-center rounded-md">
                         Expediente
                     </button>
                 </div>
@@ -101,13 +99,12 @@
                     </button>
                 </div>
             </div>
-            <div
-                class="w-128 h-20 flex justify-around items-center my-5 mx-auto bg-vh-green-light rounded-md">
+            <div class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light  rounded-md">
                 <div class="w-7/12 flex justify-around items-center content-center">
                     <p class="font-bold text-lg">#00000</p>
                     <p class="font-bold text-lg">Juan Jose</p>
                     <button target="_self" id=""
-                        class="w-44 h-10 my-4 font-bold text-base bg-vh-green hover:bg-white transition duration-300 hover:text-black inline-block text-center rounded-md">
+                        class="w-44 h-10 my-4 font-bold text-white text-base bg-vh-green hover:bg-white transition duration-300 hover:text-black inline-block text-center rounded-md">
                         Expediente
                     </button>
                 </div>
@@ -132,13 +129,12 @@
                     </button>
                 </div>
             </div>
-            <div
-                class="w-128 h-20 flex justify-around items-center my-5 mx-auto bg-vh-green-light rounded-md">
+            <div class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light  rounded-md">
                 <div class="w-7/12 flex justify-around items-center content-center">
                     <p class="font-bold text-lg">#00000</p>
                     <p class="font-bold text-lg">Juan Jose</p>
                     <button target="_self" id=""
-                        class="w-44 h-10 my-4 font-bold text-base bg-vh-green hover:bg-white transition duration-300 hover:text-black inline-block text-center rounded-md">
+                        class="w-44 h-10 my-4 font-bold text-white text-base bg-vh-green hover:bg-white transition duration-300 hover:text-black inline-block text-center rounded-md">
                         Expediente
                     </button>
                 </div>

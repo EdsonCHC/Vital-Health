@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <link rel="shortcut icon" href="{{asset('storage/svg/favicon.png')}}" type="image/x-icon">
-    @vite(['resources/css/loader.css', 'resources/js/preloader.js', 'resources/css/app.css', 'resources/js/animation.js', 'resources/css/animation.css'])
+    @vite(['resources/css/loader.css', 'resources/js/preloader.js', 'resources/css/app.css', 'resources/js/animation.js', 'resources/css/animation.css','resources/js/scroll.js'])
 </head>
 
 <body class="w-full h-full overflow-x-hidden">
@@ -15,7 +15,7 @@
         @include('templates.header')
     </div>
 
-    <!-- para pc -->
+    <!-- Styles pc -->
     <div class="hidden lg:flex lg:pt-28 mb-5 bg-vh-gray-light w-full">
         <div class="w-1/2 hidden lg:flex justify-center items-center">
             <div class="w-4/5">
@@ -31,13 +31,11 @@
                 </a>
             </div>
         </div>
-
         <div class="w-1/2 hidden lg:flex">
             <div class="w-full flex justify-center items-center">
                 <img class="h-full lg:h-auto lg:w-full" src="{{asset('storage/svg/doctor.svg')}}"
                     type="image/svg+xml" />
             </div>
-
             <div class="">
                 <div class="flex flex-col  items-end">
                     <div class="w-16 h-5 mb-6  bg-vh-green-light">
@@ -51,9 +49,7 @@
         </div>
     </div>
 
-
-    <!-- para cel --->
-
+    <!-- Styles Mobile --->
     <div class="lg:hidden">
         <div class="flex mb-5 pt-16 bg-vh-gray-light w-full">
             <div class="w-3/4 flex justify-center items-center">
@@ -96,9 +92,6 @@
         </div>
     </div>
 
-
-
-
     <div class="flex justify-center text-center flex-col items-center">
         <div class="w-full h-auto">
             <div>
@@ -106,7 +99,6 @@
                 <p class="text-sm font-bold text-gray-400 mx-4 mt-2">Lorem Ipsum is simply dummy text of the printing
                     and typesetting industry.</p>
             </div>
-
             <div class="w-full flex grow-0 flex-wrap items-center justify-center mb-8">
                 <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
                     <h2 class="text-lg font-bold mb-2 text-vh-green">Juan Jose Galdamez</h2>
@@ -200,16 +192,17 @@
                 class="mx-auto my-0 w-full lg:w-3/4 lg:ml-auto"></object>
         </div>
         <div class="flex justify-center text-left items-center flex-col">
-            <h2 class="font-bold  text-xl text-vh-green lg:font-bold lg:text-left lg:text-4xl lg:ml-12 animation2">Por
+            <h2 class="font-bold p-2 text-xl text-vh-green lg:font-bold lg:text-left lg:text-4xl lg:ml-12 animation2">
+                Por
                 qué elegir
                 nuestros servicios?</h2>
             <div class="flex justify-center lg:text-center items-center">
                 <div class="flex flex-col">
-                    <p class="text-base lg:text-2xl font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area
+                    <p class="text-base lg:text-xl font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area
                         looking for a new provider.</p>
-                    <p class="text-base lg:text-2xl font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area
+                    <p class="text-base lg:text-xl font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area
                         looking for a new provider.</p>
-                    <p class="text-base lg:text-2xl font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area
+                    <p class="text-base lg:text-xl font-bold text-gray-400 mx-6 mt-2">- Reach patients in your area
                         looking for a new provider.</p>
                 </div>
             </div>
@@ -218,44 +211,39 @@
                 Comienza ya
             </a>
         </div>
-
     </div>
-    <div class="w-11/12 mx-auto m-2 pt-5 pb-10 bg-blue-100 rounded-2xl shadow-lg px-8">
-        <h2 class="font-bold text-center text-xl  pb-8 text-vh-green">Servicios</h2>
-        <div class="flex justify-between">
-            <ul class="w-5/12 list-disc pl-0">
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 1
-                </li>
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 2
-                </li>
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 3
-                </li>
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 4
-                </li>
-            </ul>
 
-            <ul class="w-5/12 list-disc pl-0">
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 5
-                </li>
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 6
-                </li>
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 7
-                </li>
-                <li class="text-vh-green relative pl-5 mb-2 ml-4">
-                    Servicio 8
-                </li>
-            </ul>
-
+    <div class="max-w-7xl mx-auto lg:p-10">
+        <div class="rounded-lg shadow-md overflow-hidden">
+            <div class="p-8">
+                <h2 class="font-bold text-3xl text-vh-green  lg:text-4xl lg:py-6">
+                    Nuestras Características
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    <div class="bg-blue-100 border border-blue-400 rounded-lg p-8 animate-fade-in-up">
+                        <h3 class="text-2xl font-semibold text-blue-800 mb-4">Característica 1</h3>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+                            dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="bg-green-100 border border-green-400 rounded-lg p-8 animate-fade-in-up">
+                        <h3 class="text-2xl font-semibold text-green-800 mb-4">Característica 2</h3>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+                            dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="bg-green-100 border border-green-400 rounded-lg p-8 animate-fade-in-up">
+                        <h3 class="text-2xl font-semibold text-green-800 mb-4">Característica 3</h3>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+                            dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="bg-blue-100 border border-blue-400 rounded-lg p-8 animate-fade-in-up">
+                        <h3 class="text-2xl font-semibold text-blue-800 mb-4">Característica 4</h3>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+                            dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
     <div class="flex w-full flex-col lg:flex-row  ">
         <div class=" lg:w-1/2 lg:items-center flex flex-col lg:flex-row">
             <div class="lg:pl-28  ">
@@ -268,13 +256,9 @@
                         class="w-3/5  h-8 lg:h-8 text-white bg-vh-green text-sm lg:text-base xl:text-lg shadow-xl my-5 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center pt-1 mx-4">
                         Únete ya
                     </a>
-
                 </div>
             </div>
-
         </div>
-
-
         <div class="lg:w-1/2">
             <div class="m-8 flex items-center justify-center">
                 <object data="{{asset('storage/svg/hands.svg')}}" type="image/svg+xml"
@@ -283,9 +267,12 @@
         </div>
     </div>
 
-
+    <div class="w-full h-auto">
+        @include('templates.footer_two')
     </div>
-    @include('templates.footer') 
+    <div class="w-full h-auto">
+        @include('templates.chat_ia')
+    </div>
 </body>
 
 </html>

@@ -15,3 +15,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/.idx/dev.nix
+node_modules

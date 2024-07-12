@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Servicio</title>
     <link rel="shortcut icon" href="{{asset('storage/svg/favicon.png')}}" type="image/x-icon">
-    @vite(['resources/css/app.css', 'resources/css/checkbox.css', 'resources/js/appointment.js','resources/css/loader.css', 'resources/js/preloader.js','resources/js/scroll.js'])
+    @vite(['resources/css/app.css', 'resources/css/checkbox.css', 'resources/js/appointment.js', 'resources/css/loader.css', 'resources/js/preloader.js','resources/js/scroll.js'])
 </head>
 
 <body class="w-full h-full">
@@ -88,7 +88,7 @@
                     typesetting industry.
                 </p>
             </div>
-            <button target="_self" 
+            <button target="_self"
                 class="make_appointment w-4/5 h-9 text-white font-bold bg-vh-green text-sm shadow-xl mb-10 rounded-full lg:w-2/5 hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center py-2 mx-4">
                 Solicitar Cita
                 <button />
@@ -216,68 +216,90 @@
         <!-- Segundo Bloque Desktop -->
         <div class="hidden lg:flex flex-col items-center w-full text-center mb-8">
             <div class="mb-2">
-                <h2 class="font-bold text-2xl text-vh-green">
+                <h2 class="font-bold text-2xl tracking-wide text-vh-green">
                     Doctores de Area
                 </h2>
             </div>
-            <div class="flex justify-between w-4/6 mt-4 mx-">
-                <div class="w-80 max-w-80 m-4 bg-vh-green-light opacity-80 rounded-xl flex">
-                    <div class="mt-8 lg:ml-auto">
-                        <div class="bg-vh-green-medium rounded-full h-16 w-16">
-                            <span class="invisible">a</span>
+            <div class="w-full my-4 flex flex-wrap justify-center">
+                <div class="w-56 h-92 m-5 p-4 bg-green-200 py-5 justify-center items-center rounded-xl">
+                    <div class="relative">
+                        <button id="menu_opti" class="flex ml-auto">
+                            <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/option-icon.svg') }}"
+                                alt="Inicio" />
+                        </button>
+                        <div id="menuOptions"
+                            class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
+                            <a href="#" id="edit_staff"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
+                            <a href="#" id="history_staff"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
                         </div>
                     </div>
-                    <div class="flex flex-col pl-4 mt-5 mx-auto">
-                        <h3 class="font-bold text-2xl">Juan</h3>
-                        <p>Matematics</p>
-                        <div class="w-28 flex justify-around my-4 lg:ml-auto">
-                            <div class="bg-vh-green-medium rounded-full h-10 w-10">
-                                <span class="invisible">a</span>
-                            </div>
-                            <div class="bg-vh-green-medium rounded-full h-10 w-10">
-                                <span class="invisible">a</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-80 max-w-80 m-4 bg-vh-green-light opacity-80 rounded-xl flex">
-                    <div class="ml-8 mt-8 lg:ml-auto">
-                        <div class="bg-vh-green-medium rounded-full h-16 w-16">
-                            <span class="invisible">a</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-col pl-4 mt-5 mx-auto">
-                        <h3 class="font-bold text-2xl">Epico Palo</h3>
-                        <p>Matematics</p>
-                        <div class="w-28 flex justify-around my-4 lg:ml-auto">
-                            <div class="bg-vh-green-medium rounded-full h-10 w-10">
-                                <span class="invisible">a</span>
-                            </div>
-                            <div class="bg-vh-green-medium rounded-full h-10 w-10">
-                                <span class="invisible">a</span>
-                            </div>
+                    <div class="flex justify-center items-center flex-col">
+                        <div class="bg-green-400 rounded-full w-24 h-24 mb-4"></div>
+                        <h3 class="font-bold text-xl p-2">Alvarenga</h3>
+                        <p class="text-gray-400 text-lg mb-4">Pediatria</p>
+                        <div class="">
+                            <button id="delete_doc">
+                                <img id="menu-icon" class="h-14 w-14 mx-2 " src="{{ asset('storage/svg/info.svg') }}"
+                                    alt="Inicio" />
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="w-80 max-w-80 m-4 bg-vh-green-light opacity-80 rounded-xl flex">
-                    <div class="ml-8 mt-8 lg:ml-auto">
-                        <div class="bg-vh-green-medium rounded-full h-16 w-16">
-                            <span class="invisible">a</span>
+                <div class="w-56 h-92 m-5 p-4 bg-green-200 py-5 justify-center items-center rounded-xl">
+                    <div class="relative">
+                        <button id="menu_opti" class="flex ml-auto">
+                            <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/option-icon.svg') }}"
+                                alt="Inicio" />
+                        </button>
+                        <div id="menuOptions"
+                            class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
+                            <a href="#" id="edit_staff"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
+                            <a href="#" id="history_staff"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
                         </div>
                     </div>
-                    <div class="flex flex-col pl-4 mt-5 mx-auto">
-                        <h3 class="font-bold text-2xl">Alvarenga</h3>
-                        <p>Matematics</p>
-                        <div class="w-28 flex justify-around my-4 lg:ml-auto">
-                            <div class="bg-vh-green-medium rounded-full h-10 w-10">
-                                <span class="invisible">a</span>
-                            </div>
-                            <div class="bg-vh-green-medium rounded-full h-10 w-10">
-                                <span class="invisible">a</span>
-                            </div>
+                    <div class="flex justify-center items-center flex-col">
+                        <div class="bg-green-400 rounded-full w-24 h-24 mb-4"></div>
+                        <h3 class="font-bold text-xl p-2">Alvarenga</h3>
+                        <p class="text-gray-400 text-lg mb-4">Pediatria</p>
+                        <div class="">
+                            <button id="delete_doc">
+                                <img id="menu-icon" class="h-14 w-14 mx-2 " src="{{ asset('storage/svg/info.svg') }}"
+                                    alt="Inicio" />
+                            </button>
                         </div>
                     </div>
                 </div>
+                <div class="w-56 h-92 m-5 p-4 bg-green-200 py-5 justify-center items-center rounded-xl">
+                    <div class="relative">
+                        <button id="menu_opti" class="flex ml-auto">
+                            <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/option-icon.svg') }}"
+                                alt="Inicio" />
+                        </button>
+                        <div id="menuOptions"
+                            class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
+                            <a href="#" id="edit_staff"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
+                            <a href="#" id="history_staff"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
+                        </div>
+                    </div>
+                    <div class="flex justify-center items-center flex-col">
+                        <div class="bg-green-400 rounded-full w-24 h-24 mb-4"></div>
+                        <h3 class="font-bold text-xl p-2">Alvarenga</h3>
+                        <p class="text-gray-400 text-lg mb-4">Pediatria</p>
+                        <div class="">
+                            <button id="delete_doc">
+                                <img id="menu-icon" class="h-14 w-14 mx-2 " src="{{ asset('storage/svg/info.svg') }}"
+                                    alt="Inicio" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Demas cartas -->
             </div>
         </div>
 
@@ -288,66 +310,65 @@
                     Doctores de Area
                 </h2>
             </div>
-            <div class="w-full h-auto flex flex-wrap items-center justify-center mt-4">
-                <div class="w-80 max-w-72 my-4 bg-vh-green-light opacity-80 rounded-xl flex">
-                    <div class="ml-8 mt-8 lg:ml-auto">
-                        <div class="bg-vh-green-medium rounded-full h-16 w-16">
-                            <span class="invisible">a</span>
+            <div class="w-full my-10 flex flex-wrap">
+                <div class="w-40 h-60 mx-4 bg-green-200 py-2 justify-center items-center rounded-xl">
+                    <div class="relative">
+                        <button id="menu_opti" class="menu_opti flex ml-auto">
+                            <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/option-icon.svg') }}"
+                                alt="Inicio" />
+                        </button>
+                        <div id="menuOptions"
+                            class="w-32 ml-10 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
+                            <a href="#" id="edit_staff"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
+                            <a href="#" id="history_staff"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
                         </div>
                     </div>
-                    <div class="flex flex-col pl-4 mt-5 mx-auto">
-                        <h3 class="font-bold text-2xl">Juan</h3>
-                        <p>Matematics</p>
-                        <div class="w-28 flex justify-around my-4 lg:ml-auto">
-                            <div class="bg-vh-green-medium rounded-full h-10 w-10">
-                                <span class="invisible">a</span>
-                            </div>
-                            <div class="bg-vh-green-medium rounded-full h-10 w-10">
-                                <span class="invisible">a</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-80 max-w-72 my-4 bg-vh-green-light opacity-80 rounded-xl flex">
-                    <div class="ml-8 mt-8 lg:ml-auto">
-                        <div class="bg-vh-green-medium rounded-full h-16 w-16">
-                            <span class="invisible">a</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-col pl-4 mt-5 mx-auto">
-                        <h3 class="font-bold text-2xl">Epico Palo</h3>
-                        <p>Matematics</p>
-                        <div class="w-28 flex justify-around my-4 lg:ml-auto">
-                            <div class="bg-vh-green-medium rounded-full h-10 w-10">
-                                <span class="invisible">a</span>
-                            </div>
-                            <div class="bg-vh-green-medium rounded-full h-10 w-10">
-                                <span class="invisible">a</span>
-                            </div>
+                    <div class="flex justify-center items-center flex-col">
+                        <div class="bg-green-400 rounded-full w-20 h-20"></div>
+                        <h3 class="font-bold text-xl pt-2">Alvarenga</h3>
+                        <p class="text-gray-400 text-lg">Pediatria</p>
+                        <div class="mt-2 flex items-center">
+                            <button id="">
+                                <img id="menu-icon" class="h-10 w-10 mx-2 " src="{{ asset('storage/svg/info.svg') }}"
+                                    alt="Inicio" />
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="w-80 max-w-72 my-4 bg-vh-green-light opacity-80 rounded-xl flex">
-                    <div class="ml-8 mt-8 lg:ml-auto">
-                        <div class="bg-vh-green-medium rounded-full h-16 w-16">
-                            <span class="invisible">a</span>
+                <div class="w-40 h-60 mx-4 bg-green-200 py-2 justify-center items-center rounded-xl">
+                    <div class="relative">
+                        <button id="menu_opti" class="menu_opti flex ml-auto">
+                            <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/option-icon.svg') }}"
+                                alt="Inicio" />
+                        </button>
+                        <div id="menuOptions"
+                            class="w-32 ml-10 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
+                            <a href="#" id="edit_staff"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
+                            <a href="#" id="history_staff"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
                         </div>
                     </div>
-                    <div class="flex flex-col pl-4 mt-5 mx-auto">
-                        <h3 class="font-bold text-2xl">Alvarenga</h3>
-                        <p>Matematics</p>
-                        <div class="w-28 flex justify-around my-4 lg:ml-auto">
-                            <div class="bg-vh-green-medium rounded-full h-10 w-10 border">
-                                <span class="invisible">a</span>
-                            </div>
-                            <div class="bg-vh-green-medium rounded-full h-10 w-10">
-                                <span class="invisible">a</span>
-                            </div>
+                    <div class="flex justify-center items-center flex-col">
+                        <div class="bg-green-400 rounded-full w-20 h-20"></div>
+                        <h3 class="font-bold text-xl pt-2">Alvarenga</h3>
+                        <p class="text-gray-400 text-lg">Pediatria</p>
+                        <div class="mt-2 flex items-center">
+                            <button id="">
+                                <img id="menu-icon" class="h-10 w-10 mx-2 " src="{{ asset('storage/svg/info.svg') }}"
+                                    alt="Inicio" />
+                            </button>
                         </div>
                     </div>
                 </div>
+                <!-- Demas Cartas -->
             </div>
         </div>
+    </div>
+    <div class="w-full h-auto">
+        @include('templates.footer_two')
     </div>
 </body>
 

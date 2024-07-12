@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chats</title>
     <link rel="shortcut icon" href="{{asset('storage/svg/favicon.png')}}" type="image/x-icon">
-    @vite(['resources/css/app.css', 'resources/css/chatsv1.css', 'resources/js/chatsv1.js', 'resources/js/colorsChat.css','resources/css/loader.css', 'resources/js/preloader.js'])
+        <!-- Remix icons (Iconos del chat) -->
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+    @vite(['resources/css/app.css', 'resources/css/chatsv1.css', 'resources/js/chatsv1.js', 'resources/js/colorsChat.css','resources/css/loader.css', 'resources/js/preloader.js','resources/js/scroll.js'])
 </head>
 
 <body class="bg-gray-100">
@@ -15,200 +17,129 @@
         @include('templates.header')
     </div>
 
-        <!-- Inicio del Chat -->
-    <section class="min-h-screen flex items-center justify-center">
-        <div class="max-w-screen-xl w-full h-[720px] shadow-lg bg-slate-50 relative">
-            <!-- Inicio: Contenido -->
-            <div class="chat-content">
-                <!-- Inicio: lista de chats -->
-                <div class="content-sidebar flex flex-col via-vh-green h-full absolute top-0 left-4">
-                    <div class="content-sidebar-title text-lg font-semibold text-black p-4">Chats</div>
-                    <form action="" class="content-sidebar-form relative p-4">
-                        <input type="search" class="content-sidebar-input p-2 border border-slate-300 outline-none w-full rounded pr-8 text-sm" placeholder="Buscar...">
-                        <button type="submit" class="content-sidebar-submit absolute top-1/2 transform -translate-y-1/2 right-8 text-slate-400 bg-transparent outline-none border-none cursor-pointer transition-colors duration-150 hover:text-slate-600"><i class="ri-search-line"></i></button>
-                    </form>
-                    <div class="content-messages overflow-y-auto h-full mt-4">
-                        <ul class="content-messages-list list-none p-2">
-                            <li class="content-message-title ml-4 mr-4  text-xs font-medium mb-1 relative"><span>Recientes</span></li>
-                            <li>
-                                <a href="#" data-conversation="#conversation-1" class="flex items-center  p-2 pr-6 hover:bg-slate-50">
-                                    <img class="content-message-image w-8 h-8 rounded-full object-cover flex-shrink-0 mr-3" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
-                                    <span class="content-message-info grid mr-3 w-full">
-                                        <span class="content-message-name block text-sm font-medium mb-1">Someone</span>
-                                        <span class="content-message-text text-xs truncate">Lorem ipsum dolor sit amet consectetur.</span>
-                                    </span>
-                                    <span class="content-message-more text-right">
-                                        <span class="content-message-unread text-xs font-medium   p-1 rounded-full">5</span>
-                                        <span class="content-message-time text-xs  font-medium">12:30</span>
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" data-conversation="#conversation-2" class="flex items-center p-2 pr-6 hover:bg-slate-50">
-                                    <img class="content-message-image w-8 h-8 rounded-full object-cover flex-shrink-0 mr-3" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
-                                    <span class="content-message-info grid mr-3 w-full">
-                                        <span class="content-message-name block text-sm font-medium mb-1">Someone</span>
-                                        <span class="content-message-text text-xs  truncate">Lorem ipsum dolor sit amet consectetur.</span>
-                                    </span>
-                                    <span class="content-message-more text-right">
-                                        <span class="content-message-time text-xs  font-medium">12:30</span>
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="flex items-center  p-2 pr-6 hover:bg-slate-50">
-                                    <img class="content-message-image w-8 h-8 rounded-full object-cover flex-shrink-0 mr-3" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
-                                    <span class="content-message-info grid mr-3 w-full">
-                                        <span class="content-message-name block text-sm font-medium mb-1">Someone</span>
-                                        <span class="content-message-text text-xs  truncate">Lorem ipsum dolor sit amet consectetur.</span>
-                                    </span>
-                                    <span class="content-message-more text-right">
-                                        <span class="content-message-unread text-xs font-medium   p-1 rounded-full">5</span>
-                                        <span class="content-message-time text-xs  font-medium">12:30</span>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
+    <section class="bg-gray-100 h-screen flex items-center justify-center">
+        <section class="w-full lg:w-11/12 xl:w-3/4 h-5/6 bg-white rounded-lg shadow-lg flex flex-col md:flex-row overflow-hidden mx-4 lg:mx-0">
+            <!-- Sidebar de Chats -->
+            <div id="chat-sidebar" class="w-full md:w-1/3 bg-white border-r overflow-y-auto">
+                <div class="p-2 border-b">
+                    <h2 class="text-xl font-semibold text-gray-700">Personas</h2>
+                    <div class="flex items-center mt-2">
+                        <div class="relative flex-grow">
+                            <span class="absolute inset-y-0 left-0 pl-2 flex items-center text-gray-400">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <input type="text" placeholder="Buscar chat" class="w-full pl-8 p-1 border rounded-lg focus:outline-none focus:border-green-500">
+                        </div>
+                        <button class="ml-2 text-green-900 px-2 py-1 rounded-lg font-bold uppercase">Chat+</button>
                     </div>
                 </div>
-                <!-- fin: lista de chats -->
-                <!-- Inicio: Apartado de conversacion -->
-                <div class="conversation conversation-default flex items-center justify-center p-4 pl-64 ">
-                    <i class="ri-chat-3-line text-2xl"></i>
-                    <p class="mt-4">Seleccione un chat!</p>
-                </div>
-                <div class="conversation hidden bg-slate-100 h-full pl-52 flex-col" id="conversation-1">
-                    <div class="conversation-top p-2 px-4 bg-white flex items-center">
-                        <button type="button" class="conversation-back hidden"><i class="ri-arrow-left-line"></i></button>
-                        <div class="conversation-user flex items-center">
-                            <img class="conversation-user-image w-10 h-10 rounded-full object-cover mr-2" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
-                            <div>
-                                <div class="conversation-user-name font-medium text-base">Doctor</div>
-                                <div class="conversation-user-status  text-xs flex items-center">
-                                    <span class="inline-block w-2 h-2  rounded-full mr-1"></span>online
-                                </div>
-                            </div>
+                <div id="chat-list">
+                    <!-- Chat Item -->
+                    <div class="flex items-center p-2 cursor-pointer hover:bg-gray-100" onclick="openChat()">
+                        <img class="h-8 w-8 rounded-full" src="./solonegociosserios.jpeg" alt="Perfil">
+                        <div class="ml-2 flex-grow overflow-hidden">
+                            <div class="font-semibold text-gray-700">Doctor</div>
+                            <div class="text-xs text-gray-500 overflow-hidden whitespace-nowrap text-ellipsis">Pesquisar chat</div>
                         </div>
-                        <div class="conversation-buttons flex items-center ml-auto">
-                            <button type="button" class="w-9 h-9 flex items-center justify-center rounded  hover:bg-slate-100 "><i class="ri-vidicon-line"></i></button>
-                            <button type="button" class="w-9 h-9 flex items-center justify-center rounded  hover:bg-slate-100 "><i class="ri-information-line"></i></button>
+                        <div class="ml-auto flex flex-col items-end">
+                            <div class="bg-green-400 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center mb-1">3</div>
+                            <div class="text-xs text-gray-400">12:34 PM</div>
                         </div>
                     </div>
-                    <div class="conversation-main overflow-y-auto h-full p-4">
-                        <ul class="conversation-wrapper list-none">
-                            <div class="coversation-divider text-center text-xs  mb-4 relative">
-                                <span class="bg-slate-100 px-2 relative z-10">Hoy</span>
-                                <span class="absolute top-1/2 left-0 w-full h-px bg-slate-300 z-0"></span>
-                            </div>
-                            <li class="conversation-item me flex items-end mb-4 flex-row-reverse">
-                                <div class="conversation-item-side ml-2">
-                                    <img class="conversation-item-image w-6 h-6 rounded-full object-cover block" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
-                                </div>
-                                <div class="conversation-item-content w-full">
-                                    <div class="conversation-item-wrapper mb-2">
-                                        <div class="conversation-item-box max-w-4xl relative ml-auto">
-                                            <div class="conversation-item-text p-3  shadow-lg text-white text-opacity-80 rounded">
-                                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet natus repudiandae quisquam sequi nobis suscipit consequatur rerum alias odio repellat!</p>
-                                                <div class="conversation-item-time text-xs text-right  text-opacity-70 mt-1">12:30</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="conversation-item flex items-end mb-4">
-                                <div class="conversation-item-side mr-2">
-                                    <img class="conversation-item-image w-6 h-6 rounded-full object-cover block" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
-                                </div>
-                                <div class="conversation-item-content w-full">
-                                    <div class="conversation-item-wrapper mb-2">
-                                        <div class="conversation-item-box max-w-4xl relative mr-auto">
-                                            <div class="conversation-item-text p-3 shadow-lg  rounded">
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum accusantium repellendus provident ex, tempora corrupti suscipit, aut quidem esse beatae!</p>
-                                                <div class="conversation-item-time text-xs text-right text-slate-400 mt-1">12:30</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="conversation-bottom p-4 flex items-center bg-white">
-                        <div class="conversation-form flex items-center w-full">
-                            <button type="button" class="conversation-upload flex justify-center items-center bg-slate-100 text-xl text-slate-500 h-10 w-10 rounded-lg"><i class="ri-attachment-2"></i></button>
-                            <input type="text" class="conversation-input border border-slate-200 rounded-lg bg-slate-100 h-10 w-full px-2 mx-2 text-sm text-slate-700" placeholder="Escribe un mensaje...">
-                            <button type="submit" class="conversation-submit flex justify-center items-center bg-emerald-500 text-xl text-white h-10 w-10 rounded-lg"><i class="ri-send-plane-2-line"></i></button>
+                    <div class="flex items-center p-2 cursor-pointer hover:bg-gray-100" onclick="openChat()">
+                        <img class="h-8 w-8 rounded-full" src="./solonegociosserios.jpeg" alt="Perfil">
+                        <div class="ml-2 flex-grow overflow-hidden">
+                            <div class="font-semibold text-gray-700">Admin</div>
+                            <div class="text-xs text-gray-500 overflow-hidden whitespace-nowrap text-ellipsis">Último mensaje</div>
+                        </div>
+                        <div class="ml-auto flex flex-col items-end">
+                            <div class="bg-green-400 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center mb-1">5</div>
+                            <div class="text-xs text-gray-400">12:34 PM</div>
                         </div>
                     </div>
-                </div>
-                <div class="conversation hidden bg-slate-100 h-full pl-52 flex-col" id="conversation-2">
-                    <div class="conversation-top p-2 px-4 bg-white flex items-center">
-                        <button type="button" class="conversation-back hidden"><i class="ri-arrow-left-line"></i></button>
-                        <div class="conversation-user flex items-center">
-                            <img class="conversation-user-image w-10 h-10 rounded-full object-cover mr-2" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
-                            <div>
-                                <div class="conversation-user-name font-medium text-base">Alguien</div>
-                                <div class="conversation-user-status text-slate-400 text-xs flex items-center">
-                                    <span class="inline-block w-2 h-2 bg-emerald-500 rounded-full mr-1"></span>online
-                                </div>
-                            </div>
-                        </div>
-                        <div class="conversation-buttons flex items-center ml-auto">
-                            <button type="button" class="w-9 h-9 flex items-center justify-center rounded text-slate-600 hover:bg-slate-100 hover:text-slate-700"><i class="ri-vidicon-line"></i></button>
-                            <button type="button" class="w-9 h-9 flex items-center justify-center rounded text-slate-600 hover:bg-slate-100 hover:text-slate-700"><i class="ri-information-line"></i></button>
-                        </div>
-                    </div>
-                    <div class="conversation-main overflow-y-auto h-full p-4">
-                        <ul class="conversation-wrapper list-none">
-                            <div class="coversation-divider text-center text-xs text-slate-400 mb-4 relative">
-                                <span class="bg-slate-100 px-2 relative z-10">Hoy</span>
-                                <span class="absolute top-1/2 left-0 w-full h-px bg-slate-300 z-0"></span>
-                            </div>
-                            <li class="conversation-item me flex items-end mb-4 flex-row-reverse">
-                                <div class="conversation-item-side ml-2">
-                                    <img class="conversation-item-image w-6 h-6 rounded-full object-cover block" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
-                                </div>
-                                <div class="conversation-item-content w-full">
-                                    <div class="conversation-item-wrapper mb-2">
-                                        <div class="conversation-item-box max-w-4xl relative ml-auto">
-                                            <div class="conversation-item-text p-3 bg-emerald-500 shadow-lg text-white text-opacity-80 rounded">
-                                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet natus repudiandae quisquam sequi nobis suscipit consequatur rerum alias odio repellat!</p>
-                                                <div class="conversation-item-time text-xs text-right text-white text-opacity-70 mt-1">12:30</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="conversation-item flex items-end mb-4">
-                                <div class="conversation-item-side mr-2">
-                                    <img class="conversation-item-image w-6 h-6 rounded-full object-cover block" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
-                                </div>
-                                <div class="conversation-item-content w-full">
-                                    <div class="conversation-item-wrapper mb-2">
-                                        <div class="conversation-item-box max-w-4xl relative mr-auto">
-                                            <div class="conversation-item-text p-3 bg-white shadow-lg text-slate-800 rounded">
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum accusantium repellendus provident ex, tempora corrupti suscipit, aut quidem esse beatae!</p>
-                                                <div class="conversation-item-time text-xs text-right text-slate-400 mt-1">12:30</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="conversation-bottom p-4 flex items-center bg-white">
-                        <div class="conversation-form flex items-center w-full">
-                            <button type="button" class="conversation-upload flex justify-center items-center bg-slate-100 text-xl text-slate-500 h-10 w-10 rounded-lg"><i class="ri-attachment-2"></i></button>
-                            <input type="text" class="conversation-input border border-slate-200 rounded-lg bg-slate-100 h-10 w-full px-2 mx-2 text-sm text-slate-700" placeholder="Escribe un mensaje...">
-                            <button type="submit" class="conversation-submit flex justify-center items-center bg-emerald-500 text-xl text-white h-10 w-10 rounded-lg"><i class="ri-send-plane-2-line"></i></button>
-                        </div>
-                    </div>
+                    <!-- Más elementos de chat pueden ser añadidos aquí -->
                 </div>
             </div>
-            
-            
-            <!-- fin: Contenido -->
-        </div>
+    
+            <!-- Ventana de Chat -->
+            <div id="chat-window" class="hidden-on-mobile flex flex-col w-full md:w-2/3 h-full">
+                <!-- Barra Superior del Chat -->
+                <div class="flex items-center p-2 bg-white border-b">
+                    <button class="text-green-800 hover:text-green-500 mr-2 show-on-mobile" onclick="closeChat()">
+                        <i class="ri-arrow-left-line text-2xl"></i>
+                    </button>
+                    <img class="h-8 w-8 rounded-full" src="./solonegociosserios.jpeg" alt="Perfil">
+                    <div class="ml-2">
+                        <div class="font-semibold text-gray-700">Doctor</div>
+                        <div class="text-xs text-gray-500">En línea</div>
+                    </div>
+                    <div class="ml-auto flex space-x-2">
+                        <button class="text-green-800 hover:text-green-500">
+                            <i class="ri-video-on-fill text-2xl"></i>
+                        </button>
+                        <button class="text-green-800 hover:text-green-500">
+                            <i class="ri-information-fill text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Área de Mensajes -->
+                <div class="flex-1 p-2 overflow-y-auto" id="chat-box">
+                    <!-- Mensaje Enviado -->
+                    <div class="flex items-end mb-2">
+                        <img class="h-6 w-6 rounded-full mr-2" src="./solonegociosserios.jpeg" alt="Perfil">
+                        <div class="flex flex-col">
+                            <div class="border-2 border-green-800 text-green-900 p-2 rounded-lg text-sm">
+                                ¡Hola! ¿Cómo estás?
+                            </div>
+                            <span class="text-xs text-gray-500 mt-1">12:34 PM</span>
+                        </div>
+                    </div>
+                    <!-- Mensaje Recibido -->
+                    <div class="flex items-end justify-end mb-2">
+                        <div class="flex flex-col items-end">
+                            <div class="bg-green-700 text-white p-2 rounded-lg text-sm">
+                                ¡Hola! Estoy bien, ¿y tú?
+                            </div>
+                            <span class="text-xs text-gray-500 mt-1">12:35 PM</span>
+                        </div>
+                        <img class="h-6 w-6 rounded-full ml-2" src="./solonegociosserios.jpeg" alt="Perfil">
+                    </div>
+                </div>
+                <!-- Barra de Entrada de Mensaje -->
+                <div class="p-2 bg-white border-t sticky bottom-0">
+                    <form id="chat-form" class="flex items-center">
+                        <input type="text" id="message-input" class="flex-grow p-1 border rounded-l-lg focus:outline-none focus:border-green-500" placeholder="Digite un mensaje">
+                        <button type="button" class="text-green-800 hover:text-green-500 px-1">
+                            <i class="ri-attachment-line text-2xl"></i>
+                        </button>
+                        <button type="button" class="text-green-800 hover:text-green-500 px-1">
+                            <i class="ri-check-fill text-2xl"></i>
+                        </button>
+                        <button type="submit" class="text-white bg-green-900 px-2 py-1 rounded-r-lg hover:bg-green-500">
+                            <i class="ri-send-plane-2-fill text-lg"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </section>
+    
+    <!--Scrip para mostrar y ocultar chat en movil-->
+    <script>
+        function openChat() {
+            if (window.innerWidth <= 768) {
+                document.getElementById('chat-sidebar').classList.add('hidden');
+                document.getElementById('chat-window').classList.remove('hidden-on-mobile');
+            }
+        }
+
+        function closeChat() {
+            if (window.innerWidth <= 768) {
+                document.getElementById('chat-sidebar').classList.remove('hidden');
+                document.getElementById('chat-window').classList.add('hidden-on-mobile');
+            }
+        }
+    </script>
 
     <div class="w-full h-auto">
         @include('templates.footer')
