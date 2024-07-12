@@ -72,7 +72,7 @@ Route::get('/citas', function () {
 //* DOCTOR ROUTES //
 
 Route::get('/doctor', function () {
-    return view('doctor.index_doc'); // ?
+    return view('doctor.index_doc');
 });
 Route::get('/citas_doc', function () {
     return view('doctor.citas_doc');
@@ -101,18 +101,23 @@ Route::get('/program_doc', function () {
 Route::get('/statistics', function () {
     return view('admin.statistics');
 });
+
 Route::get('/appointment', function () {
     return view('admin.appointment');
 });
+
 Route::get('/records', function () {
     return view('admin.records');
 });
+
 Route::get('/ad_chats', function () {
     return view('admin.ad_chats');
 });
+
 Route::get('/staff', function () {
     return view('admin.staff');
 });
+
 Route::get('/calendar', function () {
     return view('admin.calendar');
 })->middleware('auth.admin')->name('calendar');
