@@ -15,6 +15,15 @@ $(document).ready(function () {
         const mail = escapeHtml($("#mail").val());
         const password = $("#password").val();
 
+        if (containsScript(name) || containsScript(lastName) || containsScript(mail)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error...',
+                text: 'La entrada contiene contenido peligroso.',
+            });
+            return;
+        }
+
         if (!name || !lastName || !mail || !password) {
             Swal.fire({
                 icon: 'error',
@@ -24,11 +33,29 @@ $(document).ready(function () {
             return; 
         }
 
+        if (!validateName(name) || !validateName(lastName)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error...',
+                text: 'El nombre y el apellido solo pueden contener letras.',
+            });
+            return;
+        }
+
         if (!validateEmail(mail)) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error...',
                 text: 'Ingresa un correo electrónico válido',
+            });
+            return;
+        }
+
+        if (!validatePassword(password)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error...',
+                text: 'La contraseña debe tener al menos 5 caracteres.',
             });
             return;
         }
@@ -110,7 +137,6 @@ $(document).ready(function () {
         });
     });
 
-    
     async function secuencia() {
         const genereSelected = await genere_input();
         if (!genereSelected) {
@@ -130,7 +156,6 @@ $(document).ready(function () {
         return true;
     }
 
-    
     async function genere_input() {
         const result = await Swal.fire({
             title: "Género",
@@ -156,16 +181,23 @@ $(document).ready(function () {
     }
 
     async function date_input() {
+        const today = new Date();
+        today.setDate(today.getDate() - 1); 
+        const day = today.toISOString().split('T')[0];
+    
         const result = await Swal.fire({
             title: "Fecha de nacimiento",
             text: "Por favor ingresa tu fecha de nacimiento.",
             icon: "info",
             input: "date",
+            inputAttributes: {
+                max: day 
+            },
             showCancelButton: true,
             confirmButtonText: "Seleccionar",
             cancelButtonText: "Cancelar",
         });
-
+    
         if (result.isConfirmed) {
             date = escapeHtml(result.value);
             console.log(date);
@@ -174,6 +206,7 @@ $(document).ready(function () {
             return false;
         }
     }
+    
 
     async function blood_type_input() {
         const result = await Swal.fire({
@@ -204,9 +237,7 @@ $(document).ready(function () {
             return false;
         }
     }
-    // No se que es pero dicen que funca asi que good
 
-    
     function escapeHtml(unsafe) {
         return String(unsafe).replace(/[&<>"'`=\/]/g, function (s) {
             return entityMap[s];
@@ -223,6 +254,20 @@ $(document).ready(function () {
         "`": '&#x60;',
         "=": '&#x3D;'
     };
+
+    function containsScript(input) {
+        const scriptPattern = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
+        return scriptPattern.test(input);
+    }
+
+    function validateName(name) {
+        const namePattern = /^[a-zA-Z]+$/;
+        return namePattern.test(name);
+    }
+
+    function validatePassword(password) {
+        return password.length > 4;
+    }
 
     function validateEmail(email) {
         const re = /\S+@\S+\.\S+/;
