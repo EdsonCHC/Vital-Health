@@ -1,4 +1,5 @@
 <!-- Resoluciones altas -->
+<doc
 <nav class="hidden lg:flex rounded-md w-60 h-screen flex-col justify-between overflow-y-auto">
   <div class="bg-gray-50 h-full">
     <div class="flex justify-center py-10 shadow-sm pr-4">

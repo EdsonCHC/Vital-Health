@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-    <link rel="shortcut icon" href="{{asset('storage/svg/favicon.png')}}" type="image/x-icon">
-    @vite(['resources/css/loader.css', 'resources/js/preloader.js', 'resources/css/app.css', 'resources/js/animation.js', 'resources/css/animation.css','resources/js/scroll.js'])
+    <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        
+    @vite(['resources/css/loader.css', 'resources/js/preloader.js', 'resources/css/app.css', 'resources/js/animation.js', 'resources/css/animation.css', 'resources/js/scroll.js'])
 </head>
 
 <body class="w-full h-full overflow-x-hidden">
@@ -33,7 +35,7 @@
         </div>
         <div class="w-1/2 hidden lg:flex">
             <div class="w-full flex justify-center items-center">
-                <img class="h-full lg:h-auto lg:w-full" src="{{asset('storage/svg/doctor.svg')}}"
+                <img class="h-full lg:h-auto lg:w-full" src="{{ asset('storage/svg/doctor.svg') }}"
                     type="image/svg+xml" />
             </div>
             <div class="">
@@ -53,7 +55,7 @@
     <div class="lg:hidden">
         <div class="flex mb-5 pt-16 bg-vh-gray-light w-full">
             <div class="w-3/4 flex justify-center items-center">
-                <img class="h-full" src="{{asset('storage/svg/doctor.svg')}}" type="image/svg+xml" />
+                <img class="h-full" src="{{ asset('storage/svg/doctor.svg') }}" type="image/svg+xml" />
             </div>
             <div class="w-1/4 flex items-center justify-end">
                 <div class="flex flex-col justify-center">
@@ -155,32 +157,34 @@
                 <!-- Elementos en dos filas y tres columnas -->
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center  lg:w-1/3 animation3">
-                    <object data="{{asset('storage/svg/dental.svg')}}" type="image/svg+xml" class="w-10"></object>
+                    <object data="{{ asset('storage/svg/dental.svg') }}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Cuidado dental</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{asset('storage/svg/eye_closed.svg')}}" type="image/svg+xml" class="w-10"></object>
+                    <object data="{{ asset('storage/svg/eye_closed.svg') }}" type="image/svg+xml"
+                        class="w-10"></object>
                     <p class="font-bold">Oculista</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{asset('storage/svg/derma_hand.svg')}}" type="image/svg+xml" class="w-10"></object>
+                    <object data="{{ asset('storage/svg/derma_hand.svg') }}" type="image/svg+xml"
+                        class="w-10"></object>
                     <p class="font-bold">Dermatología</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{asset('storage/svg/baby.svg')}}" type="image/svg+xml" class="w-10"></object>
+                    <object data="{{ asset('storage/svg/baby.svg') }}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Pediatría</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{asset('storage/svg/heart.svg')}}" type="image/svg+xml" class="w-10"></object>
+                    <object data="{{ asset('storage/svg/heart.svg') }}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Atención primaria</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{asset('storage/svg/brain.svg')}}" type="image/svg+xml" class="w-10"></object>
+                    <object data="{{ asset('storage/svg/brain.svg') }}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Psiquiátrico</p>
                 </div>
             </div>
@@ -188,7 +192,7 @@
     </div>
     <div class="w-full flex flex-col lg:flex-row  ">
         <div class="m-8 flex items-center justify-center lg:w-1/2">
-            <object data="{{asset('storage/svg/observations.svg')}}" type="image/svg+xml"
+            <object data="{{ asset('storage/svg/observations.svg') }}" type="image/svg+xml"
                 class="mx-auto my-0 w-full lg:w-3/4 lg:ml-auto"></object>
         </div>
         <div class="flex justify-center text-left items-center flex-col">
@@ -247,9 +251,11 @@
     <div class="flex w-full flex-col lg:flex-row  ">
         <div class=" lg:w-1/2 lg:items-center flex flex-col lg:flex-row">
             <div class="lg:pl-28  ">
-                <h3 class="text-left lg:text-start   m-4 text-vh-green font-semibold lg:text-xl xl:text-4xl">Vital Healt
+                <h3 class="text-left lg:text-start   m-4 text-vh-green font-semibold lg:text-xl xl:text-4xl">Vital
+                    Healt
                 </h3>
-                <h2 class="text-center  lg:text-start font-bold mt-3 lg:pl-5 lg:mx-0 mx-9 lg:text-3xl xl:text-4xl">Únase
+                <h2 class="text-center  lg:text-start font-bold mt-3 lg:pl-5 lg:mx-0 mx-9 lg:text-3xl xl:text-4xl">
+                    Únase
                     a nosotros y brindaremos una asistencia sanitaria de calidad.</h2>
                 <div class="flex lg:justify-start justify-center">
                     <a href="/login" target="_self"
@@ -261,7 +267,7 @@
         </div>
         <div class="lg:w-1/2">
             <div class="m-8 flex items-center justify-center">
-                <object data="{{asset('storage/svg/hands.svg')}}" type="image/svg+xml"
+                <object data="{{ asset('storage/svg/hands.svg') }}" type="image/svg+xml"
                     class="mx-auto my-0 w-full lg:w-3/4 lg:ml-auto"></object>
             </div>
         </div>

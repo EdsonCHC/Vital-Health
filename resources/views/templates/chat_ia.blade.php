@@ -61,11 +61,11 @@
     const openChatButton = document.getElementById("open-chat");
     const closeChatButton = document.getElementById("close-chat");
 
-    let isChatboxOpen = false; 
+    let isChatboxOpen = false;
 
     function toggleChatbox() {
         chatContainer.classList.toggle("hidden");
-        isChatboxOpen = !isChatboxOpen; 
+        isChatboxOpen = !isChatboxOpen;
     }
 
     openChatButton.addEventListener("click", toggleChatbox);

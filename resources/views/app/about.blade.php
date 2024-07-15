@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+
 
 <head>
     <meta charset="UTF-8">
@@ -267,7 +266,7 @@
             </div>
         </div>
     </div>
-    @include('templates.footer') 
+    @include('templates.footer')
     <div class="w-full h-auto">
         @include('templates.chat_ia')
     </div>

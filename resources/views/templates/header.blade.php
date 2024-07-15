@@ -1,5 +1,5 @@
 @vite('resources/css/menu.css')
-<header class="w-full h-20 flex z-20">
+<header class="w-full h-20 flex z-20 bg-vh-green-medium-2">
     <div class="w-full h-full mx-auto flex justify-between">
         <section id="banner" class="sm:hidden">
             <input type="checkbox" id="menu--toggle" class="checkbox-menu">
@@ -12,13 +12,16 @@
                 <li class="menu_list"><a href="" class="menu_link">Contacto</a></li>
             </ul>
         </section>
+
+
+        {{-- View Desktop --}}
         <ul class="hidden menu-list w-full mt-4 md:flex justify-center gap-10 items-center">
-            <li class="-mt-4 mr-auto"><a href="/"><img src="{{ asset('storage/svg/logo.svg') }}" alt="noti_icon"
+            <li class="-mt-4 mr-auto"><a href="/"><img src="{{ asset('storage/svg/logo-icon-white.svg') }}" alt="noti_icon"
                         class="h-24">
                 </a>
             </li>
-            <li class="font-bold mb-4"><a href="/">Inicio</a></li>
-            <li class="font-bold mb-4 relative group">
+            <li class="font-bold text-white tracking-wider mb-4"><a href="/">Inicio</a></li>
+            <li class="font-bold mb-4 relative group text-white tracking-wider">
                 <a href="/service">Atención al cliente</a>
                 <ul class="absolute hidden bg-white py-2 px-4 shadow-md w-full z-10 group-hover:block">
                     <li><a href="/service/support" class="block py-1 hover:bg-gray-100">Medicina</a></li>
@@ -27,17 +30,15 @@
                     <li><a href="/service/contact" class="block py-1 hover:bg-gray-100">Control Personal</a></li>
                 </ul>
             </li>
-            <li class="font-bold mb-4"><a href="/service">Servicios</a></li>
-            <li class="font-bold mb-4"><a href="/report">Reporte</a></li>
-            <li class="font-bold mb-4"><a href="/about">Acerca de</a></li>
-            <li class="font-bold mb-4"><a href="/registro">Registro</a></li>
+            <li class="font-bold mb-4 text-white tracking-wider"><a href="/service">Servicios</a></li>
+            <li class="font-bold mb-4 text-white tracking-wider"><a href="/report">Reporte</a></li>
+            <li class="font-bold mb-4 text-white tracking-wider"><a href="/about">Acerca de</a></li>
+            <li class="font-bold mb-4 text-white tracking-wider"><a href="/registro">Registro</a></li>
         </ul>
-
         <div class="hidden w-1/2 h-auto md:flex items-center justify-end gap-4 pr-4 mt-2">
             <div class="flex w-24 justify-between">
                 <a href="#">
-                    <img src="{{ asset('storage/svg/noti.svg') }}" alt="noti_icon"
-                        class="w-10 p-2 bg-vh-gray-light rounded-full">
+                    <i class="fa-solid fa-gear text-xl"></i>
                 </a>
                 <div class="relative group">
                     <a href="">
