@@ -25,7 +25,13 @@ return new class extends Migration
             $table->string("Allergies");
             $table->string("previous_surgeries.");
             $table->string("previous_medical_treatments.");
-            $table->string("personal_habits");
+            $table->string("personal_bad_habits");
+            $table->string("current_symptoms");
+            $table->string("physical_signs");
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('usuarios');
+            $table->unsignedBigInteger("id_Diagnose");
+            $table->foreign('id_Diagnsoe')->references('id')->on('Diagnoses');     
         });
     }
 

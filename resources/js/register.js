@@ -15,47 +15,51 @@ $(document).ready(function () {
         const mail = escapeHtml($("#mail").val());
         const password = $("#password").val();
 
-        if (containsScript(name) || containsScript(lastName) || containsScript(mail)) {
+        if (
+            containsScript(name) ||
+            containsScript(lastName) ||
+            containsScript(mail)
+        ) {
             Swal.fire({
-                icon: 'error',
-                title: 'Error...',
-                text: 'La entrada contiene contenido peligroso.',
+                icon: "error",
+                title: "Error...",
+                text: "La entrada contiene contenido peligroso.",
             });
             return;
         }
 
         if (!name || !lastName || !mail || !password) {
             Swal.fire({
-                icon: 'error',
-                title: 'Error...',
-                text: 'Todos los campos son obligatorios',
+                icon: "error",
+                title: "Error...",
+                text: "Todos los campos son obligatorios",
             });
-            return; 
+            return;
         }
 
         if (!validateName(name) || !validateName(lastName)) {
             Swal.fire({
-                icon: 'error',
-                title: 'Error...',
-                text: 'El nombre y el apellido solo pueden contener letras.',
+                icon: "error",
+                title: "Error...",
+                text: "El nombre y el apellido solo pueden contener letras.",
             });
             return;
         }
 
         if (!validateEmail(mail)) {
             Swal.fire({
-                icon: 'error',
-                title: 'Error...',
-                text: 'Ingresa un correo electrónico válido',
+                icon: "error",
+                title: "Error...",
+                text: "Ingresa un correo electrónico válido",
             });
             return;
         }
 
         if (!validatePassword(password)) {
             Swal.fire({
-                icon: 'error',
-                title: 'Error...',
-                text: 'La contraseña debe tener al menos 5 caracteres.',
+                icon: "info",
+                title: "Error...",
+                text: "Por su seguridad la contraseña debe tener al menos 8 caracteres.",
             });
             return;
         }
@@ -69,9 +73,9 @@ $(document).ready(function () {
 
                 if (!gender || !birth || !blood) {
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Error...',
-                        text: 'Debes completar todos los campos antes de continuar',
+                        icon: "error",
+                        title: "Error...",
+                        text: "Debes completar todos los campos antes de continuar",
                     });
                     return;
                 }
@@ -87,16 +91,16 @@ $(document).ready(function () {
                         gender: gender,
                         birth: birth,
                         blood: blood,
-                        password: password
+                        password: password,
                     },
                     success: (response) => {
                         if (response.success) {
                             Swal.fire({
-                                icon: 'success',
-                                title: 'Registro exitoso!',
-                                text: 'Te has registrado correctamente.',
+                                icon: "success",
+                                title: "Registro exitoso!",
+                                text: "Te has registrado correctamente.",
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 1500,
                             });
                             setTimeout(() => {
                                 //  login
@@ -104,20 +108,21 @@ $(document).ready(function () {
                             }, 1500);
                         } else {
                             if (response.errors) {
-                                let errorMessage = "Hubo un problema con tu registro:";
+                                let errorMessage =
+                                    "Hubo un problema con tu registro:";
                                 for (const errorField in response.errors) {
                                     errorMessage += `${response.errors[errorField]}<br>`;
                                 }
                                 Swal.fire({
-                                    icon: 'error',
-                                    title: 'Error...',
+                                    icon: "error",
+                                    title: "Error...",
                                     html: errorMessage,
                                 });
                             } else {
                                 Swal.fire({
-                                    icon: 'error',
-                                    title: 'Error...',
-                                    text: 'Hubo un problema con tu registro, por favor intenta de nuevo.',
+                                    icon: "error",
+                                    title: "Error...",
+                                    text: "Hubo un problema con tu registro, por favor intenta de nuevo.",
                                 });
                             }
                         }
@@ -125,9 +130,9 @@ $(document).ready(function () {
                     error: (response) => {
                         console.error("Error en el registro", response);
                         Swal.fire({
-                            icon: 'error',
-                            title: 'Error...',
-                            text: 'Correo Invalido, ya se encuentra en uso',
+                            icon: "error",
+                            title: "Error...",
+                            text: "Correo Invalido, ya se encuentra en uso",
                         });
                     },
                 });
@@ -182,22 +187,23 @@ $(document).ready(function () {
 
     async function date_input() {
         const today = new Date();
-        today.setDate(today.getDate() - 1); 
-        const day = today.toISOString().split('T')[0];
-    
+        today.setDate(today.getDate() - 1);
+        const day = today.toISOString().split("T")[0];
+
         const result = await Swal.fire({
             title: "Fecha de nacimiento",
             text: "Por favor ingresa tu fecha de nacimiento.",
             icon: "info",
             input: "date",
             inputAttributes: {
-                max: day 
+                min: "1950-01-01",
+                max: day,
             },
             showCancelButton: true,
             confirmButtonText: "Seleccionar",
             cancelButtonText: "Cancelar",
         });
-    
+
         if (result.isConfirmed) {
             date = escapeHtml(result.value);
             console.log(date);
@@ -206,7 +212,6 @@ $(document).ready(function () {
             return false;
         }
     }
-    
 
     async function blood_type_input() {
         const result = await Swal.fire({
@@ -248,15 +253,16 @@ $(document).ready(function () {
         "&": "&amp;",
         "<": "&lt;",
         ">": "&gt;",
-        '"': '&quot;',
-        "'": '&#39;',
-        "/": '&#x2F;',
-        "`": '&#x60;',
-        "=": '&#x3D;'
+        '"': "&quot;",
+        "'": "&#39;",
+        "/": "&#x2F;",
+        "`": "&#x60;",
+        "=": "&#x3D;",
     };
 
     function containsScript(input) {
-        const scriptPattern = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
+        const scriptPattern =
+            /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
         return scriptPattern.test(input);
     }
 
@@ -266,7 +272,7 @@ $(document).ready(function () {
     }
 
     function validatePassword(password) {
-        return password.length > 4;
+        return password.length > 8;
     }
 
     function validateEmail(email) {
