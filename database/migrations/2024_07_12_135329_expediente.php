@@ -27,9 +27,9 @@ return new class extends Migration
             $table->string('previous_medical_treatments');
             $table->string('personal_bad_habits');
             $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('usuarios');
+            $table->foreign('id_patient')->references('id')->on('patients')->onDelete('cascade');
             $table->unsignedBigInteger('id_Diagnose');
-            $table->foreign('id_Diagnose')->references('id')->on('Diagnoses');     
+            $table->foreign('id_Diagnose')->references('id')->on('Diagnoses')->onDelete('cascade');     
             $table->timestamps();
         });
     }

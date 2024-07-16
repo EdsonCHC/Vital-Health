@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('citas', function (Blueprint $table) {
-            $table->id();
-            $table->string('state');
-            $table->date('date');
-            $table->string("description");
+        Schema::create('heart_rate', function(Blueprint $table){
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('id_patient');
-            $table->foreign('id_patient')->references('id')->on('patients')->onDelete('cascade');          
+            $table->integer('rate');
+            $table->timestamps();
+            $table->foreign('id_patient')->references('id')->on('patients')->onDelete('cascade');
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('citas');
+        Schema::dropIfExists('heart_rate');
     }
 };
