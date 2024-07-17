@@ -12,11 +12,11 @@ class CreatePatientsTable extends Migration
     public function up(): void
     {
         Schema::create('patients', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 255);
-            $table->string('lastName', 255);
-            $table->string('mail', 255)->unique(); // Agregar índice único
-            $table->enum('gender', ['male', 'female', 'other']); // Usar enum para consistencia
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('lastName');
+            $table->string('mail');
+            $table->string('gender');
             $table->date('birth');
             $table->string('blood', 3); // Considera un tamaño menor si es suficiente
             $table->string('password'); // Asegúrate de almacenar el hash
