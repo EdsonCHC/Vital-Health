@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->longText('mail');
             $table->string('area');
             $table->string('password');
+            $table->string('role');
             $table->timestamps();
         });
     }

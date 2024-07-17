@@ -11,6 +11,22 @@ use Illuminate\Support\Facades\Hash;
 class UsuarioController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $user = Auth::user();
+        return view('app.user_info', ['user' => $user]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -68,9 +84,63 @@ class UsuarioController extends Controller
         }
     }
 
-    // Otras funciones del controlador (index, show, edit, update, destroy) pueden permanecer según tus necesidades específicas.
+    /**
+     * Display the specified resource.
+     */
+    public function show(Request $request)
+    {
+        $credentials = [
+            "mail" => $request->mail,
+            "password" => $request->password
+        ];
 
-    // ...
+        try {
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+                if (auth()->user()->role == 'admin') {
+                    return response()->json(['success' => true, 'redirect_url' => '/statistics'], 200);
+                }
+                return response()->json(['success' => true, 'redirect_url' => '/user'], 200);
+            } else {
+                return response()->json(['message' => 'Credenciales incorrectas'], 401);
+            }
+        } catch (\Exception $e) {
+            return response()->json("Error: " . $e->getMessage(), 500);
+        }
+    }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Usuario $usuario)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Usuario $usuario)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Request $request)
+    {
+        //log out
+
+        Auth::logout();
+
+        try {
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return response()->json(['success' => true, 'url' => '/'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false], 500);
+        }
+    }
 }
-

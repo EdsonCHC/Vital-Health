@@ -12,7 +12,7 @@ class Usuario extends Model implements AuthenticatableContract
     use Authenticatable;
     use HasFactory;
 
-    protected $table = 'patients'; // Nombre de la tabla
+    protected $table = 'patients'; // tabla a modificar
 
     protected $fillable = [
         'name',
