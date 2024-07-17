@@ -13,14 +13,14 @@ class CreatePatientsTable extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('lastName');
-            $table->string('mail');
-            $table->string('gender');
+            $table->string('name', 255);
+            $table->string('lastName', 255);
+            $table->string('mail', 255)->unique(); // Agregar índice único
+            $table->enum('gender', ['male', 'female', 'other']); // Usar enum para consistencia
             $table->date('birth');
-            $table->string('blood');
-            $table->string('password');
-            $table->string('role')->default('user');
+            $table->string('blood', 3); // Considera un tamaño menor si es suficiente
+            $table->string('password'); // Asegúrate de almacenar el hash
+            $table->string('role', 50)->default('user');
             $table->timestamps();
         });
     }

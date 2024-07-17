@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->id();
-            $table->string('state');
+            $table->string('state'); // Puedes considerar usar un enum si hay estados predefinidos
             $table->date('date');
-            $table->string("description");
+            $table->string('description', 1000); // Ajusta la longitud según tus necesidades
+            $table->timestamp('published_at')->index(); // Timestamp con índice
+            $table->timestamps(); // Marcas de tiempo para created_at y updated_at
             $table->unsignedBigInteger('id_patient');
-            $table->foreign('id_patient')->references('id')->on('patients')->onDelete('cascade');          
+            $table->foreign('id_patient')->references('id')->on('patients')->onDelete('cascade');
         });
     }
 
