@@ -13,6 +13,6 @@ class citas extends Model
         "state",
         "date",
         "description",
-        "id_user"
+        "id_patient"
     ];
 }
