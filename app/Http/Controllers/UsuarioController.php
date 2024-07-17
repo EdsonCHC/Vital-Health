@@ -104,10 +104,14 @@ class UsuarioController extends Controller
         try {
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
-                if(auth()->user()->role == 'admin'){
-                    return response()->json(['success' => true, 'redirect_url' => '/statistics'], 200);
-                }   
-                return response()->json(['success' => true, 'redirect_url' => '/user'], 200);
+                
+                $response = match (auth()->user()->role) {
+                    'admin' => response()->json(['success' => true, 'redirect_url' => '/statistics'], 200),
+                    'user' => response()->json(['success' => true, 'redirect_url' => '/user'], 200),
+                    default => response()->json(['success' => true, 'redirect_url' => '/etc'], 200),
+                };
+    
+                return $response;
             } else {
                 return response()->json(['message' => 'Credenciales incorrectas'], 401);
             }
