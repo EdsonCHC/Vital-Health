@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,15 +14,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('lastName');
-            $table->longText('mail');
+            $table->string('mail');
             $table->string('specialty');
             $table->string('gender');
             $table->date('birth');
             $table->string('password');
             $table->string('doctor_number'); // Nuevo campo para el número de identificación del doctor
+            $table->string('role');
             $table->timestamps();
         });
-        
+
     }
 
     /**

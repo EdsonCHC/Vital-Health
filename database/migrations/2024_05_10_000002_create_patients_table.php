@@ -20,6 +20,7 @@ class CreatePatientsTable extends Migration
             $table->date('birth');
             $table->string('blood');
             $table->string('password');
+            $table->string('role')->default('user');
             $table->timestamps();
         });
     }
