@@ -11,55 +11,30 @@ use Illuminate\Support\Facades\Hash;
 class UsuarioController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $user = Auth::user();
-        return view('app.user_info', ['user' => $user]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        // Validar datos
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'lastName' => 'required|max:255',
+            'mail' => 'required|email|unique:patients', // Cambiado a 'patients'
+            'gender' => 'required',
+            'birth' => 'required|date',
+            'blood' => 'required',
+            'password' => 'required|min:3',
+        ]);
 
-        // Suggested code may be subject to a license. Learn more: ~LicenseLog:3684436668.
-
-        //validar datos
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'name' => 'required|max:255',
-                'lastName' => 'required|max:255',
-                'mail' => 'required|email|unique:usuarios',
-                'gender' => 'required',
-                'birth' => 'required',
-                'blood' => 'required',
-                'password' => 'required|min:3'
-            ]
-        );
-
-        //si la validación falla
+        // Si la validación falla
         if ($validator->fails()) {
-            $data = [
+            return response()->json([
                 'message' => 'Datos inválidos',
                 'errors' => $validator->errors(),
-                'status' => 200
-            ];
-            return response()->json($data, 500);
+            ], 422);
         }
 
-        //si la validación es correcta
+        // Crear usuario
         try {
             $user = Usuario::create([
                 'name' => $request->name,
@@ -68,86 +43,34 @@ class UsuarioController extends Controller
                 'gender' => $request->gender,
                 'birth' => $request->birth,
                 'blood' => $request->blood,
-                'password' => Hash::make($request->password) //cifrado de contraseña
+                'password' => Hash::make($request->password), // Cifrado de contraseña
             ]);
 
             if (!$user) {
-                $data = [
-                    'message' => 'failed',
-                    'status' => 200
-                ];
-                return response()->json($data, 500);
+                return response()->json([
+                    'message' => 'Error al crear el usuario',
+                ], 500);
             }
 
-            $data = [
-                'success' => true,
-                'status' => 200,
-                'redirect_url' => '/user'
-            ];
+            // Autenticar al usuario después de crearlo
             Auth::login($user);
-            return response()->json($data, 200);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Usuario registrado exitosamente',
+                'redirect_url' => '/user',
+            ], 201); // 201 Created
         } catch (\Exception $e) {
-            return response()->json("DIANTRES: " . $e->getMessage(), 500);
+            return response()->json([
+                'message' => 'Error interno del servidor',
+                'error' => $e->getMessage(),
+            ], 500);
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Request $request)
-    {
-        $credentials = [
-            "mail" => $request->mail,
-            "password" => $request->password
-        ];
+    // Otras funciones del controlador (index, show, edit, update, destroy) pueden permanecer según tus necesidades específicas.
 
-        try {
-            if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
-                if(auth()->user()->role == 'admin'){
-                    return response()->json(['success' => true, 'redirect_url' => '/statistics'], 200);
-                }   
-                return response()->json(['success' => true, 'redirect_url' => '/user'], 200);
-            } else {
-                return response()->json(['message' => 'Credenciales incorrectas'], 401);
-            }
-        } catch (\Exception $e) {
-            return response()->json("Error: " . $e->getMessage(), 500);
-        }
-    }
+    // ...
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Usuario $usuario)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Usuario $usuario)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Request $request)
-    {
-        //log out
-
-        Auth::logout();
-
-        try {
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
-
-            return response()->json(['success' => true, 'url' => '/'], 200);
-        } catch (\Exception $e) {
-            return response()->json(['success' => false], 500);
-        }
-    }
 }
+

@@ -10,10 +10,9 @@ use Illuminate\Auth\Authenticatable;
 class Usuario extends Model implements AuthenticatableContract
 {
     use Authenticatable;
-
     use HasFactory;
 
-    protected $table = 'usuarios'; //tabla de modificar
+    protected $table = 'patients'; // Nombre de la tabla
 
     protected $fillable = [
         'name',
@@ -22,13 +21,11 @@ class Usuario extends Model implements AuthenticatableContract
         'gender',
         'birth',
         'blood',
-        'password'
+        'password',
     ];
-
 
     protected $hidden = [
         'password',
-        'remember_token'
+        'remember_token',
     ];
-    
 }
