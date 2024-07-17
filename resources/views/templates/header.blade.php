@@ -1,6 +1,7 @@
 @vite('resources/css/menu.css')
 <header class="w-full h-20 flex z-20 bg-vh-green-medium-2">
     <div class="w-full h-full mx-auto flex justify-between">
+        {{-- View Mobile --}}
         <section id="banner" class="sm:hidden">
             <input type="checkbox" id="menu--toggle" class="checkbox-menu">
             <label for="menu--toggle" id="trigger"></label>
