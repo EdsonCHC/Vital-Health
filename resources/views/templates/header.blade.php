@@ -16,8 +16,8 @@
 
         {{-- View Desktop --}}
         <ul class="hidden menu-list w-full mt-4 md:flex justify-center gap-10 items-center">
-            <li class="-mt-4 mr-auto"><a href="/"><img src="{{ asset('storage/svg/logo-icon-white.svg') }}" alt="noti_icon"
-                        class="h-24">
+            <li class="-mt-4 mr-auto"><a href="/"><img src="{{ asset('storage/svg/logo-icon-white.svg') }}"
+                        alt="noti_icon" class="h-24">
                 </a>
             </li>
             <li class="font-bold text-white tracking-wider mb-4"><a href="/">Inicio</a></li>
@@ -38,8 +38,8 @@
         <div class="hidden w-1/2 h-auto md:flex items-center justify-end gap-4 pr-4 mt-2">
             <div class="flex w-24 justify-between">
                 <a href="#">
-                    <i class="fa-solid fa-gear text-xl"></i>
-                </a>
+                    <img src="{{ asset('storage/svg/noti.svg') }}" alt="config_icon"
+                        class="w-10 p-2 bg-vh-gray-light rounded-full"> </a>
                 <div class="relative group">
                     <a href="">
                         <img src="{{ asset('storage/svg/config.svg') }}" alt="config_icon"
@@ -61,13 +61,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="flex flex-col items-start">
-                <p class="font-bold">John Doe</p>
-                <p class="text-vh-green font-bold">#1345</p>
-            </div>
             <a href="/user">
-                <img src="{{ asset('storage/svg/user.svg') }}" alt="noti_icon"
-                    class="w-10 h10">
+                <img src="{{ asset('storage/svg/user.svg') }}" alt="noti_icon" class="w-full p-2 bg-vh-gray-light rounded-full">
             </a>
         </div>
 

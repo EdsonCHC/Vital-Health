@@ -7,7 +7,7 @@
     <title>Inicio</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        
+
     @vite(['resources/css/loader.css', 'resources/js/preloader.js', 'resources/css/app.css', 'resources/js/animation.js', 'resources/css/animation.css', 'resources/js/scroll.js'])
 </head>
 
@@ -259,7 +259,7 @@
                     a nosotros y brindaremos una asistencia sanitaria de calidad.</h2>
                 <div class="flex lg:justify-start justify-center">
                     <a href="/login" target="_self"
-                        class="w-3/5  h-8 lg:h-8 text-white bg-vh-green text-sm lg:text-base xl:text-lg shadow-xl my-5 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center pt-1 mx-4">
+                        class="w-3/5  h-10 content-center text-white bg-vh-green text-sm lg:text-base xl:text-lg shadow-xl my-5 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center mx-4">
                         Únete ya
                     </a>
                 </div>
