@@ -121,3 +121,9 @@ Route::get('/staff', function () {
 Route::get('/calendar', function () {
     return view('admin.calendar');
 })->middleware('auth.admin')->name('calendar');
+
+
+//ruta fallback
+Route::fallback(function () {
+    return response()->view('errors.404page', [], 404);
+});
