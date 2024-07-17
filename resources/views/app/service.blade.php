@@ -273,6 +273,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="w-56 h-92 m-5 p-4 bg-green-200 py-5 justify-center items-center rounded-xl">
                     <div class="relative">
                         <button id="menu_opti" class="flex ml-auto">
@@ -311,7 +312,7 @@
                 </h2>
             </div>
             <div class="w-full my-10 flex flex-wrap">
-                <div class="w-40 h-60 mx-4 bg-green-200 py-2 justify-center items-center rounded-xl">
+                <div class="w-40 h-60 mx-4 my-2 bg-green-200 py-2 justify-center items-center rounded-xl">
                     <div class="relative">
                         <button id="menu_opti" class="menu_opti flex ml-auto">
                             <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/option-icon.svg') }}"

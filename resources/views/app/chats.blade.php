@@ -60,7 +60,7 @@
                     <!-- Más elementos de chat pueden ser añadidos aquí -->
                 </div>
             </div>
-    
+
             <!-- Ventana de Chat -->
             <div id="chat-window" class="hidden-on-mobile flex flex-col w-full md:w-2/3 h-full">
                 <!-- Barra Superior del Chat -->
@@ -123,7 +123,6 @@
             </div>
         </section>
     </section>
-    
     <!--Scrip para mostrar y ocultar chat en movil-->
     <script>
         function openChat() {
@@ -140,11 +139,8 @@
             }
         }
     </script>
-
     <div class="w-full h-auto">
-        @include('templates.footer')
+        @include('templates.footer_two')
     </div>
-
 </body>
-
 </html>
