@@ -2,20 +2,18 @@ import Swal from "sweetalert2";
 import jQuery, { error } from "jquery";
 window.$ = jQuery;
 
+const menuLinks = document.querySelectorAll(".menu-link");
+const contents = document.querySelectorAll(".content");
 
+menuLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+        menuLinks.forEach((link) => link.classList.remove("active"));
+        link.classList.add("active");
 
-const menuLinks = document.querySelectorAll('.menu-link');
-const contents = document.querySelectorAll('.content');
-
-menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        menuLinks.forEach(link => link.classList.remove('active'));
-        link.classList.add('active');
-
-        contents.forEach(content => content.classList.add('hidden'));
+        contents.forEach((content) => content.classList.add("hidden"));
         const target = document.querySelector(`#${link.dataset.target}`);
         if (target) {
-            target.classList.remove('hidden');
+            target.classList.remove("hidden");
         }
     });
 });
@@ -59,8 +57,42 @@ $(document).ready(function () {
             }
         });
     });
+
+    // $("#edit").click((e) => {
+    //     e.preventDefault();
+
+    //     $(".text-input").each(function () {
+    //         this.removeAttribute("readonly");
+    //     });
+
+    //     $("#save").removeClass("hidden");
+
+    //     $("#save").click((e) => {
+    //         e.preventDefault();
+
+    //         Swal.fire({
+    //             title: "¿Desea Editar y guardar su información?",
+    //             icon: "question",
+                
+    //             showCancelButton: true,
+    //             showConfirmButton: true,
+    //         }).then((result) => {
+    //             if (result.isConfirmed) {
+    //                 // espacio para ajax
+    //             } else {
+
+    //                 $('#user_form')[0].reset();
+    //                 $(".text-input").each(function () {
+    //                     this.setAttribute("readonly", true);
+    //                 });
+    //                 return false;
+    //             }
+    //         });
+    //     });
+    // });
 });
 
+// Alvarenga pregunta seria, esto para que es????
 document.addEventListener("DOMContentLoaded", () => {
     const menuLinks = document.querySelectorAll(".menu-link");
     const contents = document.querySelectorAll(".content");
@@ -92,14 +124,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
-$("#cancel_button").click(function () {
-    console.log("Cancel button clicked");
 
-    const form = $(this).closest('form');
-    if (form.length) {
-        form[0].reset();
-        console.log("Form reset");
-    } else {
-        console.error("Form not found");
-    }
-});
+// $("#cancel_button").click(function () {
+//     console.log("Cancel button clicked");
+
+//     const form = $(this).closest("form");
+//     if (form.length) {
+//         form[0].reset();
+//         console.log("Form reset");
+//     } else {
+//         console.error("Form not found");
+//     }
+// });

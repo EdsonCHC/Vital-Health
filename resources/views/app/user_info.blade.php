@@ -59,50 +59,54 @@
                     <hr class="w-4/5 mx-auto my-5 lg:hidden border">
                     <section class="w-full lg:w-1/2 h-auto flex flex-col items-center">
                         <h1 class="font-bold text-xl lg:text-3xl">Información</h1>
-                        <form method="POST" action="{{ route('user.update') }}">
+                        <form method="POST" action="{{ route('user.update') }}" id="user_form">
                             @csrf
                             @method('POST')
                             <div class="flex flex-col gap-5 mt-5">
                                 <label class="block text-lg font-semibold">
                                     Nombre *
                                     <input type="text" name="name" value="{{ $user->name }}"
-                                        class="w-full h-10 font-normal border-2 border-solid border-vh-green rounded-lg p-2"
-                                        required>
+                                        class="w-full h-10 font-normal border-2 border-solid border-vh-green rounded-lg p-2 outline-0 text-input"
+                                        required readonly>
                                 </label>
                                 <label class="block text-lg font-semibold">
                                     Apellido *
                                     <input type="text" name="lastName" value="{{ $user->lastName }}"
-                                        class="w-full h-10 font-normal border-2 border-solid border-vh-green rounded-lg p-2"
-                                        required>
+                                        class="w-full h-10 font-normal border-2 border-solid border-vh-green rounded-lg p-2 outline-0 text-input"
+                                        required readonly>
                                 </label>
                                 <label class="block text-lg font-semibold">
                                     Género *
                                     <input type="text" name="gender" value="{{ $user->gender }}"
-                                        class="w-full h-10 font-normal border-2 border-solid border-vh-green rounded-lg p-2"
-                                        required>
+                                        class="w-full h-10 font-normal border-2 border-solid border-vh-green rounded-lg p-2 outline-0 text-input"
+                                        required readonly>
                                 </label>
                                 <label class="block text-lg font-semibold">
                                     Fecha de nacimiento *
                                     <input type="date" name="birth" value="{{ $user->birth }}"
-                                        class="w-full h-10 font-normal border-2 border-solid border-vh-green rounded-lg p-2"
-                                        required>
+                                        class="w-full h-10 font-normal border-2 border-solid border-vh-green rounded-lg p-2 outline-0 text-input"
+                                        required readonly>
                                 </label>
                                 <label class="block text-lg font-semibold">
                                     Correo *
                                     <input type="email" name="mail" value="{{ $user->mail }}"
-                                        class="w-full h-10 font-normal border-2 border-solid border-vh-green rounded-lg p-2"
-                                        required>
+                                        class="w-full h-10 font-normal border-2 border-solid border-vh-green rounded-lg p-2 outline-0 text-input"
+                                        required readonly>
                                 </label>
                             </div>
                             <div class="w-full flex justify-center my-6 border-b-2 p-2">
                                 <div class="flex">
-                                    <button type="button" id="cancel_button"
+                                    <!-- por si acaso  -->
+                                    <!-- <button type="button" id="cancel_button"
                                         class="mx-2 p-2 border-2 border-vh-green-medium rounded-md text-lg transition hover:bg-vh-green hover:text-white">
                                         Cancelar
-                                    </button>
+                                    </button> -->
 
-                                    <button type="submit"
-                                        class="mx-2 p-2 border-2 border-vh-green-medium rounded-md text-lg transition hover:bg-vh-green hover:text-white">Guardar</button>
+                                    <button id="edit"
+                                        class="mx-2 p-2 border-2 border-vh-green-medium rounded-md text-lg transition hover:bg-vh-green hover:text-white">Editar</button>
+
+                                    <button id="save"
+                                        class="mx-2 p-2 border-2 border-vh-green-medium rounded-md text-lg transition hover:bg-vh-green hover:text-white hidden">Guardar</button>
                                 </div>
                             </div>
                             <div class="w-full">
