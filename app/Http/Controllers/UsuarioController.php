@@ -134,14 +134,26 @@ class UsuarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
+            'gender' => 'required|string|max:255',
+            'birth' => 'required|date',
+            'mail' => 'required|email|max:255',
+            'blood' => 'nullable|string|max:255',
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
+        $user = Auth::user(); 
+        $user->update($request->only([
+            'name', 'lastName', 'gender', 'birth', 'mail', 'blood'
+        ]));
+
+        return redirect()->back()->with('success', 'Perfil actualizado correctamente');
+    }
+    
+
     public function destroy(Request $request)
     {
         //log out

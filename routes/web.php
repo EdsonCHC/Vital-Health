@@ -60,6 +60,9 @@ Route::get('/user', [UsuarioController::class, 'index'])->middleware('auth')->na
 
 Route::POST('/user', [UsuarioController::class, 'destroy']);
 
+Route::post('/user', [UsuarioController::class, 'update'])->name('user.update');
+
+
 Route::get('/area', function () {
     return view('app.area');
 })->middleware('auth');
