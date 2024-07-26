@@ -1,4 +1,4 @@
-/* CODIGO GRACIAS  A: https://codepen.io/alexandrevale/pen/VqWwNj */
+/* CODIGO GRACIAS A: https://codepen.io/alexandrevale/pen/VqWwNj */
 
 body {
     margin: 0;
@@ -17,7 +17,7 @@ body {
     position: absolute;
     top: 25px;
     left: 25px;
-    background: #155D1C;
+    background: #eee;
     width: 30px;
     height: 5px;
     transition: 0.2s ease;
@@ -46,6 +46,7 @@ body {
     top: 35px;
     transform: rotate(180deg);
     transition: transform 0.2s ease;
+    background: #155D1C; /* Cambia la flecha a verde cuando está desplegado */
 }
 
 #menu--toggle:checked + #trigger + #burger::before {
@@ -54,12 +55,14 @@ body {
     left: 18px;
     transform: rotate(45deg) translateX(-5px);
     transition: transform 0.2s ease;
+    background: #155D1C; /* Cambia la flecha a verde cuando está desplegado */
 }
 
 #menu--toggle:checked + #trigger + #burger::after {
     width: 20px;
     transform: rotate(-45deg) translateX(20px);
     transition: transform 0.2s ease;
+    background: #155D1C; /* Cambia la flecha a verde cuando está desplegado */
 }
 
 #menu {
@@ -70,15 +73,15 @@ body {
     padding: 0;
     width: 95px;
     height: 95px;
-    background: rgba(255, 255, 255, 0.882);
+    background: transparent; /* Fondo transparente inicialmente */
     border-bottom-right-radius: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
     animation: not-checked-anim 0.2s both;
-    transition: 0.2s;
+    transition: background 0.2s, width 0.2s, height 0.2s;
     overflow: hidden;
 }
 
 #menu--toggle:checked + #trigger + #burger + #menu {
+    background: rgba(255, 255, 255, 0.882); /* Fondo visible cuando se selecciona */
     animation: checked-anim 1s ease both;
 }
 
@@ -87,9 +90,9 @@ a {
     display: block;
 }
 
-#menu--toggle:checked + #banner{
+#menu--toggle:checked + #banner {
     height: 100vh;
-} 
+}
 
 li.menu_list,
 a.menu_link {
@@ -111,7 +114,7 @@ li.menu_list {
 a.menu_link:focus {
     display: block;
     color: #333;
-    background-color: #eee;
+    background-color: #155D1C;
     transition: all 0.5s;
 }
 
