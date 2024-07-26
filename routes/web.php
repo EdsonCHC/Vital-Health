@@ -60,6 +60,9 @@ Route::get('/user', [UsuarioController::class, 'index'])->middleware('auth')->na
 
 Route::POST('/user', [UsuarioController::class, 'destroy']);
 
+Route::post('/user', [UsuarioController::class, 'update'])->name('user.update');
+
+
 Route::get('/area', function () {
     return view('app.area');
 })->middleware('auth');
@@ -100,23 +103,23 @@ Route::get('/program_doc', function () {
 //* ADMIN ROUTES // 
 Route::get('/statistics', function () {
     return view('admin.statistics');
-});
+})->middleware('auth.admin');
 
 Route::get('/appointment', function () {
     return view('admin.appointment');
-});
+})->middleware('auth.admin');
 
 Route::get('/records', function () {
     return view('admin.records');
-});
+})->middleware('auth.admin');
 
 Route::get('/ad_chats', function () {
     return view('admin.ad_chats');
-});
+})->middleware('auth.admin');
 
 Route::get('/staff', function () {
     return view('admin.staff');
-});
+})->middleware('auth.admin');
 
 Route::get('/calendar', function () {
     return view('admin.calendar');

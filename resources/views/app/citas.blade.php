@@ -55,12 +55,12 @@
                                     <div class="py-1">
                                         <button id="show-alert" href="#"
                                             class="block px-4 py-2 text-sm text-black hover:bg-gray-100 w-full">
-                                            <img src="{{asset('storage/svg/info.svg')}}"
+                                            <img src="{{ asset('storage/svg/info.svg') }}"
                                                 class="w-4 h-4 inline-block mr-2" alt="">
                                             Información
                                         </button>
                                         <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-100">
-                                            <img src="{{asset('storage/svg/trash.svg')}}"
+                                            <img src="{{ asset('storage/svg/trash.svg') }}"
                                                 class="w-4 h-4 inline-block mr-2" alt="">
                                             Eliminar
                                         </a>
@@ -125,11 +125,11 @@
                         const filterButton = document.getElementById('filterButton');
                         const filterMenu = document.getElementById('filterMenu');
 
-                        filterButton.addEventListener('click', function () {
+                        filterButton.addEventListener('click', function() {
                             filterMenu.classList.toggle('hidden');
                         });
 
-                        document.addEventListener('click', function (event) {
+                        document.addEventListener('click', function(event) {
                             const isClickInside = filterButton.contains(event.target) || filterMenu.contains(event.target);
                             if (!isClickInside) {
                                 filterMenu.classList.add('hidden');
@@ -156,11 +156,9 @@
                             </path>
                         </svg>
                     </button>
-
                     <div class="ml-2 flex items-center justify-center w-8 h-8 bg-white rounded-md shadow-md">
                         <span class="text-sm">1</span>
                     </div>
-
                     <button
                         class="h-8 w-8 flex items-center justify-center bg-gray-300 rounded-full focus:outline-none ml-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
@@ -170,19 +168,14 @@
                         </svg>
                     </button>
                 </div>
-
-
         </section>
-
-      
     </main>
-  
-  
+
     <div class="w-full h-auto">
         @include('templates.chat_ia')
     </div>
-    <div class="w-full h-auto absolute  bottom-0">
-        @include('templates.footer')
+    <div class="w-full h-auto">
+        @include('templates.footer_two')
     </div>
 </body>
 

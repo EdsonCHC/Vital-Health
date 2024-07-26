@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Area</title>
-    <link rel="shortcut icon" href="{{asset('storage/svg/favicon.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
     @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js'])
 </head>
+
 <body>
     @include('templates.loader')
     <div class="w-full h-auto">
@@ -28,7 +29,7 @@
                             class="block w-full  pl-16 py-2 border border-gray-200 rounded-md leading-5 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none focus:bg-white focus:text-gray-900 sm:text-sm transition duration-150 ease-in-out"
                             placeholder="Buscar chat">
                         <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
-                            <object data="{{asset('storage/svg/lupa.svg')}}" type="image/svg+xml"></object>
+                            <object data="{{ asset('storage/svg/lupa.svg') }}" type="image/svg+xml"></object>
                         </span>
                     </div>
                 </form>
@@ -46,14 +47,14 @@
                     <div class="flex justify-center items-center w-full">
                         <div class="relative flex items-center">
                             <span id="filtroSeleccionado" class="flex pr-2 text-gray-700">Todos</span>
-                            <object data="{{asset('storage/svg/filtro.svg')}}" type="image/svg+xml"></object>
+                            <object data="{{ asset('storage/svg/filtro.svg') }}" type="image/svg+xml"></object>
                         </div>
                     </div>
                 </label>
             </div>
 
             <script>
-                document.getElementById("filtro").addEventListener("change", function () {
+                document.getElementById("filtro").addEventListener("change", function() {
                     var selectedOption = this.options[this.selectedIndex].text;
                     document.getElementById("filtroSeleccionado").textContent = selectedOption;
                 });
@@ -67,7 +68,7 @@
                             class="block w-full  pl-3 py-2 border border-gray-200 rounded-md leading-5 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none focus:bg-white focus:text-gray-900 sm:text-sm transition duration-150 ease-in-out"
                             placeholder="Buscar chat">
                         <span class="pl-3 flex items-center">
-                            <object data="{{asset('storage/svg/lupa.svg')}}" type="image/svg+xml"></object>
+                            <object data="{{ asset('storage/svg/lupa.svg') }}" type="image/svg+xml"></object>
                         </span>
                     </div>
                 </form>
@@ -92,14 +93,14 @@
                     <div class="flex justify-center items-center w-full">
                         <div class=" flex items-center">
                             <span id="filtroSeleccionado1" class="flex pr-2 text-gray-700">Todos</span>
-                            <object data="{{asset('storage/svg/filtro.svg')}}" type="image/svg+xml"></object>
+                            <object data="{{ asset('storage/svg/filtro.svg') }}" type="image/svg+xml"></object>
                         </div>
                     </div>
                 </label>
             </div>
         </div>
         <script>
-            document.getElementById("filtro1").addEventListener("change", function () {
+            document.getElementById("filtro1").addEventListener("change", function() {
                 var selectedOption = this.options[this.selectedIndex].text;
                 document.getElementById("filtroSeleccionado1").textContent = selectedOption;
             });
@@ -179,7 +180,9 @@
             </div>
         </div>
     </div>
-    @include('templates.footer') 
+    <div class="w-full h-auto">
+        @include('templates.footer_two')
+    </div>
     <div class="w-full h-auto">
         @include('templates.chat_ia')
     </div>

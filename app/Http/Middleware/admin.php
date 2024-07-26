@@ -16,11 +16,11 @@ class admin
     public function handle(Request $request, Closure $next): Response
     {
 
-        if (auth()->check()) {
-            if (auth()->user()->role == 'admin') {
+        if (auth()->guard('admin')->check()) {
+            if (auth()->guard('admin')->user()->role == 'admin') {
                 return $next($request);
             }
         }
-        return redirect()->route('index');
+        return redirect()->route('home');
     }
 }

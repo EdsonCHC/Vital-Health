@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medicina</title>
-    <link rel="shortcut icon" href="{{asset('storage/svg/favicon.png')}}" type="image/x-icon">
-    @vite(['resources/css/app.css', 'resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js','resources/js/scroll.js'])
+    <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
+    @vite(['resources/css/app.css', 'resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js'])
 </head>
 
 <body class="w-full h-screen ">
@@ -35,7 +35,7 @@
                                 <div class="flex items-center">
                                     <div class="pr-3">
                                         <object class="h-10 w-10 rounded-full object-cover"
-                                            data="{{asset('storage/svg/medicine_example.svg')}}"
+                                            data="{{ asset('storage/svg/medicine_example.svg') }}"
                                             type="image/svg+xml"></object>
                                     </div>
                                     <div class="flex flex-1">
@@ -48,8 +48,8 @@
                                 <div class="flex justify-end">
                                     <div class="text-sm flex items-center text-gray-500 ">
                                         2 Days ago
-                                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
+                                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
                                                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
@@ -62,20 +62,14 @@
                                     Instant Help at Your Fingertips
                                 </a>
                             </h3>
-
                         </article>
                     </div>
-
                 </div>
             </div>
-
         </div>
-
     </div>
-    </div>
-
-    <div class="w-full h-auto bottom-0 absolute">
-        @include('templates.footer')    
+    <div class="w-full h-auto">
+        @include('templates.footer_two')
     </div>
     <div class="w-full h-auto">
         @include('templates.chat_ia')

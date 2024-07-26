@@ -211,7 +211,7 @@
                 </div>
             </div>
             <a href="/login" target="_self"
-                class="w-2/5 lg:w-2/3 h-12 text-white bg-vh-green text-base lg:text-3xl shadow-xl m-5 rounded-full hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center pt-2 lg:pt-1 mx-4">
+                class="w-2/5 lg:w-2/3 h-12 text-white bg-vh-green text-base lg:text-2xl shadow-xl m-5 rounded-full hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center content-center">
                 Comienza ya
             </a>
         </div>

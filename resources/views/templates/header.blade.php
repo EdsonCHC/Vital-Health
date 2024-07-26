@@ -1,6 +1,7 @@
 @vite('resources/css/menu.css')
 <header class="w-full h-20 flex z-20 bg-vh-green-medium-2">
     <div class="w-full h-full mx-auto flex justify-between">
+        {{-- View Mobile --}}
         <section id="banner" class="sm:hidden">
             <input type="checkbox" id="menu--toggle" class="checkbox-menu">
             <label for="menu--toggle" id="trigger"></label>
@@ -23,17 +24,16 @@
             <li class="font-bold text-white tracking-wider mb-4"><a href="/">Inicio</a></li>
             <li class="font-bold mb-4 relative group text-white tracking-wider">
                 <a href="/service">Atención al cliente</a>
-                <ul class="absolute hidden bg-white py-2 px-4 shadow-md w-full z-10 group-hover:block">
-                    <li><a href="/service/support" class="block py-1 hover:bg-gray-100">Medicina</a></li>
-                    <li><a href="/service/faq" class="block py-1 hover:bg-gray-100">Citas</a></li>
-                    <li><a href="/service/contact" class="block py-1 hover:bg-gray-100">Examenes</a></li>
-                    <li><a href="/service/contact" class="block py-1 hover:bg-gray-100">Control Personal</a></li>
+                <ul class="absolute hidden bg-white py-2 px-4 shadow-md w-full z-10 group-hover:block rounded-sm">
+                    <li><a href="/service/support" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Medicina</a></li>
+                    <li><a href="/service/faq" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Citas</a></li>
+                    <li><a href="/service/contact" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Examenes</a></li>
+                    <li><a href="/service/contact" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Control Personal</a></li>
                 </ul>
             </li>
             <li class="font-bold mb-4 text-white tracking-wider"><a href="/service">Servicios</a></li>
             <li class="font-bold mb-4 text-white tracking-wider"><a href="/report">Reporte</a></li>
             <li class="font-bold mb-4 text-white tracking-wider"><a href="/about">Acerca de</a></li>
-            <li class="font-bold mb-4 text-white tracking-wider"><a href="/registro">Registro</a></li>
         </ul>
         <div class="hidden w-1/2 h-auto md:flex items-center justify-end gap-4 pr-4 mt-2">
             <div class="flex w-24 justify-between">
