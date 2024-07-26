@@ -58,9 +58,9 @@ Route::get('/chats', function () {
 
 Route::get('/user', [UsuarioController::class, 'index'])->middleware('auth')->name('user');
 
-Route::POST('/user', [UsuarioController::class, 'destroy']);
+Route::post('/user', [UsuarioController::class, 'destroy']);
 
-Route::post('/user', [UsuarioController::class, 'update'])->name('user.update');
+Route::put('/user', [UsuarioController::class, 'update']);
 
 
 Route::get('/area', function () {

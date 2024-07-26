@@ -58,38 +58,44 @@ $(document).ready(function () {
         });
     });
 
-    // $("#edit").click((e) => {
-    //     e.preventDefault();
+    $("#edit").click((e) => {
+        e.preventDefault();
 
-    //     $(".text-input").each(function () {
-    //         this.removeAttribute("readonly");
-    //     });
+        $(".text-input").each(function () {
+            this.removeAttribute("readonly");
+        });
 
-    //     $("#save").removeClass("hidden");
+        $("#save").removeClass("hidden");
 
-    //     $("#save").click((e) => {
-    //         e.preventDefault();
+        $("#save").click((e) => {
+            e.preventDefault();
 
-    //         Swal.fire({
-    //             title: "¿Desea Editar y guardar su información?",
-    //             icon: "question",
-                
-    //             showCancelButton: true,
-    //             showConfirmButton: true,
-    //         }).then((result) => {
-    //             if (result.isConfirmed) {
-    //                 // espacio para ajax
-    //             } else {
+            Swal.fire({
+                title: "¿Desea Editar y guardar su información?",
+                icon: "question",
 
-    //                 $('#user_form')[0].reset();
-    //                 $(".text-input").each(function () {
-    //                     this.setAttribute("readonly", true);
-    //                 });
-    //                 return false;
-    //             }
-    //         });
-    //     });
-    // });
+                showCancelButton: true,
+                showConfirmButton: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "/user",
+                        type: "PUT",
+                        data: {
+
+                        },
+                   })
+                } else {
+
+                    $('#user_form')[0].reset();
+                    $(".text-input").each(function () {
+                        this.setAttribute("readonly", true);
+                    });
+                    return false;
+                }
+            });
+        });
+    });
 });
 
 // Alvarenga pregunta seria, esto para que es????
@@ -125,14 +131,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// $("#cancel_button").click(function () {
-//     console.log("Cancel button clicked");
 
-//     const form = $(this).closest("form");
-//     if (form.length) {
-//         form[0].reset();
-//         console.log("Form reset");
-//     } else {
-//         console.error("Form not found");
-//     }
-// });

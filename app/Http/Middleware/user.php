@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\Guard;
 use Symfony\Component\HttpFoundation\Response;
 
 class user
@@ -15,8 +16,8 @@ class user
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check()) {
-            if (auth()->user()->role == 'user') {
+        if (auth()->guard('web')->check()) {
+            if (auth()->guard('web')->user()->role == 'user') {
                 return $next($request);
             }
         }
