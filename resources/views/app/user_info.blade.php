@@ -94,6 +94,7 @@
                                         required readonly>
                                 </label>
                             </div>
+                            <input type="hidden" id="_token" value="{{ csrf_token() }}">
                             <div class="w-full flex justify-center my-6 border-b-2 p-2">
                                 <div class="flex">
                                     <!-- por si acaso  -->

@@ -109,7 +109,7 @@ class UsuarioController extends Controller
             $admin = Admin::where('mail', $credentials['mail'])->first();
 
             if ($admin && Hash::check($credentials['password'], $admin->password)) {
-                Auth::login($admin);
+                Auth::guard('admin')->login($admin);
                 $request->session()->regenerate();
                 return response()->json(['success' => true, 'redirect_url' => '/statistics'], 200);
 
