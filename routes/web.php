@@ -14,93 +14,131 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//* USER ROUTES //
+/**
+ * Rutas del usuario
+ *
+ */
 
+//  ruta principal
 Route::get('/', function () {
     return view('app.index');
-})->name('home');  //?  should it have a name?
+})->name('home');
 
+// ruta hacia el login 
 Route::get('/login', function () {
     return view('app.login');
 })->name('login');
 
+// ruta de respuesta del login
 Route::post('/login', [UsuarioController::class, 'show']);
 
+//ruta hacia el registro
 Route::get('/registro', function () {
     return view('app.registro');
-});
+})->name('registro');
 
-Route::post('/registro', [UsuarioController::class, 'store']); //controlador post
+//ruta para registrar
+Route::post('/registro', [UsuarioController::class, 'store'])->name('register'); //controlador post
 
+//ruta hacia medicina
 Route::get('/medicina', function () {
     return view('app.medicine');
-})->middleware('auth');
+})->middleware('auth')->name('medicine');
 
+//ruta hacia about us
 Route::get('/about', function () {
     return view('app.about');
-});
+})->name('about');
 
+//ruta hacia los reportes
 Route::get('/report', function () {
     return view('app.report');
-})->middleware('auth');
+})->middleware('auth')->name('report');
 
+//ruta de examenes
 Route::get('/examen', function () {
     return view('app.exams');
-})->middleware('auth');
+})->middleware('auth')->name('tests');
 
+//ruta hacia los servicios
 Route::get('/service', function () {
     return view('app.service');
-});
+})->name('services');
 
+//ruta hacia los chats
 Route::get('/chats', function () {
     return view('app.chats');
-})->middleware('auth');
+})->middleware('auth')->name('chats');
 
+//ruta hacia el usuario
 Route::get('/user', [UsuarioController::class, 'index'])->middleware('auth')->name('user');
 
-Route::post('/user', [UsuarioController::class, 'destroy']);
+//ruta depara logout del usuario
+Route::post('/user', [UsuarioController::class, 'destroy'])->name('user_logout');
 
-Route::put('/user', [UsuarioController::class, 'update']);
+//ruta de actulizacion del usuario
+Route::patch('/user', [UsuarioController::class, 'update'])->name('user_update');
 
-
+//ruta hacia el area de usuario
 Route::get('/area', function () {
     return view('app.area');
-})->middleware('auth');
+})->middleware('auth')->name('area');
 
+//ruta hacia las citas
 Route::get('/citas', function () {
     return view('app.citas');
-})->middleware('auth');
+})->middleware('auth')->name('citas');
 
 
-//* DOCTOR ROUTES //
+/**
+ *  Rutas para el doctor
+ */
 
+//ruta pagina principal doctor
 Route::get('/doctor', function () {
     return view('doctor.index_doc');
 });
+
+//ruta para las citas del doctor
 Route::get('/citas_doc', function () {
     return view('doctor.citas_doc');
 });
+
+//rutas para ----
 Route::get('/allocation', function () {
     return view('doctor.allocation');
 });
+
+//rutas para los exmenes pendientes asignados al doctor
 Route::get('/exams_doc', function () {
     return view('doctor.exams_doc');
 });
+
+//ruta para las medicinas recetasdas por el doctor
 Route::get('/medicine_doc', function () {
     return view('doctor.medicine_doc');
 });
+
+//ruta para -----
 Route::get('/files_doc', function () {
     return view('doctor.files_doc');
 });
+
+//ruta para los servicios del doctor ?????
 Route::get('/service_doc', function () {
     return view('doctor.service_doc');
 });
+
+//ruta para el programa del doctor 
 Route::get('/program_doc', function () {
     return view('doctor.program_doc');
 });
 
 
-//* ADMIN ROUTES // 
+/**
+ * Rutas para el administrador
+ */
+
 Route::get('/statistics', function () {
     return view('admin.statistics');
 })->middleware('auth.admin');
