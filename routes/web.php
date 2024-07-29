@@ -16,117 +16,57 @@ use Illuminate\Support\Facades\Route;
 
 //* USER ROUTES //
 
-Route::get('/', function () {
-    return view('app.index');
-})->name('home');  //?  should it have a name?
+Route::view('/', 'app.index')->name('home'); // Renombrado a Route::view
 
-Route::get('/login', function () {
-    return view('app.login');
-})->name('login');
-
+Route::view('/login', 'app.login')->name('login');
 Route::post('/login', [UsuarioController::class, 'show']);
 
-Route::get('/registro', function () {
-    return view('app.registro');
+Route::view('/registro', 'app.registro');
+Route::post('/registro', [UsuarioController::class, 'store']);
+
+Route::middleware('auth')->group(function () {
+    Route::view('/medicina', 'app.medicine');
+    Route::view('/report', 'app.report');
+    Route::view('/examen', 'app.exams');
+    Route::view('/chats', 'app.chats');
+    Route::view('/area', 'app.area');
+    Route::view('/citas', 'app.citas');
+
+
+    //CRUD User
+    Route::get('/user', [UsuarioController::class, 'index'])->name('user');
+    Route::post('/user', [UsuarioController::class, 'destroy']);
+    Route::post('/user/update', [UsuarioController::class, 'update'])->name('user.update');
 });
 
-Route::post('/registro', [UsuarioController::class, 'store']); //controlador post
-
-Route::get('/medicina', function () {
-    return view('app.medicine');
-})->middleware('auth');
-
-Route::get('/about', function () {
-    return view('app.about');
-});
-
-Route::get('/report', function () {
-    return view('app.report');
-})->middleware('auth');
-
-Route::get('/examen', function () {
-    return view('app.exams');
-})->middleware('auth');
-
-Route::get('/service', function () {
-    return view('app.service');
-});
-
-Route::get('/chats', function () {
-    return view('app.chats');
-})->middleware('auth');
-
-Route::get('/user', [UsuarioController::class, 'index'])->middleware('auth')->name('user');
-
-Route::POST('/user', [UsuarioController::class, 'destroy']);
-
-Route::post('/user', [UsuarioController::class, 'update'])->name('user.update');
-
-
-Route::get('/area', function () {
-    return view('app.area');
-})->middleware('auth');
-
-Route::get('/citas', function () {
-    return view('app.citas');
-})->middleware('auth');
-
+Route::view('/service', 'app.service');
 
 //* DOCTOR ROUTES //
 
-Route::get('/doctor', function () {
-    return view('doctor.index_doc');
-});
-Route::get('/citas_doc', function () {
-    return view('doctor.citas_doc');
-});
-Route::get('/allocation', function () {
-    return view('doctor.allocation');
-});
-Route::get('/exams_doc', function () {
-    return view('doctor.exams_doc');
-});
-Route::get('/medicine_doc', function () {
-    return view('doctor.medicine_doc');
-});
-Route::get('/files_doc', function () {
-    return view('doctor.files_doc');
-});
-Route::get('/service_doc', function () {
-    return view('doctor.service_doc');
-});
-Route::get('/program_doc', function () {
-    return view('doctor.program_doc');
+Route::prefix('doctor')->group(function () {
+    Route::view('/', 'doctor.index_doc');
+    Route::view('/citas_doc', 'doctor.citas_doc');
+    Route::view('/allocation', 'doctor.allocation');
+    Route::view('/exams_doc', 'doctor.exams_doc');
+    Route::view('/medicine_doc', 'doctor.medicine_doc');
+    Route::view('/files_doc', 'doctor.files_doc');
+    Route::view('/service_doc', 'doctor.service_doc');
+    Route::view('/program_doc', 'doctor.program_doc');
 });
 
+//* ADMIN ROUTES //
 
-//* ADMIN ROUTES // 
-Route::get('/statistics', function () {
-    return view('admin.statistics');
-})->middleware('auth.admin');
+Route::middleware('auth.admin')->group(function () {
+    Route::view('/statistics', 'admin.statistics');
+    Route::view('/appointment', 'admin.appointment');
+    Route::view('/records', 'admin.records');
+    Route::view('/ad_chats', 'admin.ad_chats');
+    Route::view('/staff', 'admin.staff');
+    Route::view('/calendar', 'admin.calendar')->name('calendar');
+});
 
-Route::get('/appointment', function () {
-    return view('admin.appointment');
-})->middleware('auth.admin');
+//* FALLBACK ROUTE //
 
-Route::get('/records', function () {
-    return view('admin.records');
-})->middleware('auth.admin');
-
-Route::get('/ad_chats', function () {
-    return view('admin.ad_chats');
-})->middleware('auth.admin');
-
-Route::get('/staff', function () {
-    return view('admin.staff');
-})->middleware('auth.admin');
-
-Route::get('/calendar', function () {
-    return view('admin.calendar');
-})->middleware('auth.admin')->name('calendar');
-
-
-//ruta fallback
 Route::fallback(function () {
     return response()->view('errors.404page', [], 404);
 });
