@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->date('birth');
             $table->string('password');
             $table->string('doctor_number'); // Nuevo campo para el número de identificación del doctor
-            $table->string('role');
+            $table->string('role')->default('doctor');
             $table->timestamps();
         });
 

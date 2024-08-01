@@ -49,8 +49,8 @@ Route::view('/service', 'app.service');
  *  Rutas para el doctor
  */
 
-Route::prefix('doctor')->group(function () {
-    Route::view('/', 'doctor.index_doc');
+Route::middleware('auth.doctor')->group(function () {
+    Route::view('/doctor', 'doctor.index_doc');
     Route::view('/citas_doc', 'doctor.citas_doc');
     Route::view('/allocation', 'doctor.allocation');
     Route::view('/exams_doc', 'doctor.exams_doc');
