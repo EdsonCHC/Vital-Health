@@ -27,6 +27,7 @@ Route::post('/login', [UsuarioController::class, 'show']);
 Route::view('/registro', 'app.registro');
 Route::post('/registro', [UsuarioController::class, 'store']);
 
+// middlewares para el usuario
 Route::middleware('auth')->group(function () {
     Route::view('/medicina', 'app.medicine');
     Route::view('/report', 'app.report');
@@ -59,8 +60,11 @@ Route::prefix('doctor')->group(function () {
     Route::view('/program_doc', 'doctor.program_doc');
 });
 
-//* ADMIN ROUTES //
+/**
+ * Rutas del administrador
+ */
 
+// Middlewares para el administrador 
 Route::middleware('auth.admin')->group(function () {
     Route::view('/statistics', 'admin.statistics');
     Route::view('/appointment', 'admin.appointment');
@@ -70,8 +74,11 @@ Route::middleware('auth.admin')->group(function () {
     Route::view('/calendar', 'admin.calendar')->name('calendar');
 });
 
-//* FALLBACK ROUTE //
 
+/**
+ * Fallback rute (404)
+ * 
+ */
 Route::fallback(function () {
     return response()->view('errors.404page', [], 404);
 });
