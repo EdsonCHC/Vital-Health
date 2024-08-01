@@ -55,7 +55,7 @@ Route::get('/report', function () {
     return view('app.report');
 })->middleware('auth')->name('report');
 
-//ruta de examenes
+//ruta de exámenes
 Route::get('/examen', function () {
     return view('app.exams');
 })->middleware('auth')->name('tests');
@@ -76,7 +76,7 @@ Route::get('/user', [UsuarioController::class, 'index'])->middleware('auth')->na
 //ruta depara logout del usuario
 Route::post('/user', [UsuarioController::class, 'destroy'])->name('user_logout');
 
-//ruta de actulizacion del usuario
+//ruta de actualización del usuario
 Route::patch('/user', [UsuarioController::class, 'update'])->name('user_update');
 
 //ruta hacia el area de usuario
