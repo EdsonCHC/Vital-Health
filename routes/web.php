@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
     //CRUD User
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
     Route::post('/user', [UsuarioController::class, 'destroy']);
-    Route::post('/user/update', [UsuarioController::class, 'update'])->name('user.update');
+    Route::put('/user', [UsuarioController::class, 'update'])->name('user.update');
 });
 
 Route::view('/service', 'app.service');

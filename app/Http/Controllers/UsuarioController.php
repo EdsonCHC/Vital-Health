@@ -144,14 +144,18 @@ class UsuarioController extends Controller
             'mail' => 'required|email|max:255',
             'blood' => 'nullable|string|max:255',
         ]);
-
+    
         $user = Auth::user(); 
         $user->update($request->only([
             'name', 'lastName', 'gender', 'birth', 'mail', 'blood'
         ]));
-
-        return redirect()->back()->with('success', 'Perfil actualizado correctamente');
+    
+        return response()->json([
+            'success' => true,
+            'message' => 'Perfil actualizado correctamente'
+        ], 200);
     }
+    
     
 
     public function destroy(Request $request)
