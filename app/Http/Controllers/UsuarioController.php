@@ -40,17 +40,23 @@ class UsuarioController extends Controller
             'gender' => 'required',
             'birth' => 'required|date',
             'blood' => 'required',
-            'password' => 'required|min:3',
-        ]);
-
-        // Si la validación falla
+            'password' => 'required|min:8',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validar imagen
+        ]); 
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Datos inválidos',
                 'errors' => $validator->errors(),
             ], 422);
         }
-
+    
+        // Subir la imagen si se proporciona
+        if ($request->hasFile('img')) {
+            $imagePath = $request->file('img')->store('profile_images', 'public');
+        } else {
+            $imagePath = null;
+        }
+    
         // Crear usuario
         try {
             $user = Usuario::create([
@@ -60,23 +66,24 @@ class UsuarioController extends Controller
                 'gender' => $request->gender,
                 'birth' => $request->birth,
                 'blood' => $request->blood,
-                'password' => Hash::make($request->password), // Cifrado de contraseña
+                'password' => Hash::make($request->password), 
+                'img' => $imagePath,
             ]);
-
+    
             if (!$user) {
                 return response()->json([
                     'message' => 'Error al crear el usuario',
                 ], 500);
-            }
+            }   
 
-            // Autenticar al usuario después de crearlo
+            // Autenticar y redirigir al usuario
             Auth::login($user);
-
+    
             return response()->json([
                 'success' => true,
                 'message' => 'Usuario registrado exitosamente',
                 'redirect_url' => '/user',
-            ], 201); // 201 Created
+            ], 201); 
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error interno del servidor',

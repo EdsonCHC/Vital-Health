@@ -15,17 +15,10 @@ class Usuario extends Model implements AuthenticatableContract
     protected $table = 'patients'; // tabla a modificar
 
     protected $fillable = [
-        'name',
-        'lastName',
-        'mail',
-        'gender',
-        'birth',
-        'blood',
-        'password',
+        'name', 'lastName', 'mail', 'gender', 'birth', 'blood', 'password', 'img'
     ];
 
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password', 'remember_token',
     ];
 }

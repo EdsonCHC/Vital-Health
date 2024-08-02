@@ -20,6 +20,7 @@ class CreatePatientsTable extends Migration
             $table->date('birth');
             $table->string('blood', 3); // Considera un tamaño menor si es suficiente
             $table->string('password'); // Asegúrate de almacenar el hash
+            $table->string('img')->nullable(); // Nueva columna para la imagen de perfil
             $table->string('role', 50)->default('user');
             $table->timestamps();
         });
