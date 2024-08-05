@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CitaController;
+
+// Rutas para manejar  citas
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +21,9 @@ use Illuminate\Support\Facades\Route;
  * Rutas del usuario
  *
  */
+Route::post('/appointments', [CitaController::class, 'store']);
 
 Route::view('/', 'app.index')->name('home'); // Renombrado a Route::view
-
 Route::view('/login', 'app.login')->name('login');
 Route::post('/login', [UsuarioController::class, 'show']);
 

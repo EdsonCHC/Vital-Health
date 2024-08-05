@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePatientsTable extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -18,9 +17,9 @@ class CreatePatientsTable extends Migration
             $table->string('mail');
             $table->string('gender');
             $table->date('birth');
-            $table->string('blood', 3); // Considera un tamaño menor si es suficiente
-            $table->string('password'); // Asegúrate de almacenar el hash
-            $table->string('img')->nullable(); // Nueva columna para la imagen de perfil
+            $table->string('blood', 3);
+            $table->string('password');
+            $table->string('img')->nullable();
             $table->string('role', 50)->default('user');
             $table->timestamps();
         });
@@ -33,4 +32,4 @@ class CreatePatientsTable extends Migration
     {
         Schema::dropIfExists('patients');
     }
-}
+};

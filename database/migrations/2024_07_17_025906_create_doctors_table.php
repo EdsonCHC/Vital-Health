@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('doctors', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id'); // Asegúrate de que sea unsignedBigInteger
             $table->string('name');
             $table->string('lastName');
             $table->string('mail');
@@ -23,7 +23,6 @@ return new class extends Migration {
             $table->string('role')->default('doctor');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -34,3 +33,4 @@ return new class extends Migration {
         Schema::dropIfExists('doctors');
     }
 };
+

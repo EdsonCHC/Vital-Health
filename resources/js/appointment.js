@@ -1,6 +1,5 @@
 import Swal from "sweetalert2";
-import jQuery from "jquery";
-window.$ = jQuery;
+import $ from "jquery";
 
 $(document).ready(function () {
     $("#make_appointment, .make_appointment").click((e) => {
@@ -29,9 +28,9 @@ $(document).ready(function () {
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-xl font-bold mb-2">Modalidad</label>
-                    <input type="radio" id="radio-pre" name="modalidad" value="Presencial" class="mr-2" style="color: green;">
+                    <input type="radio" id="radio-pre" name="modalidad" value="Presencial" class="mr-2">
                     <label for="radio-pre" class="mr-4">Presencial</label>
-                    <input type="radio" id="radio-virtual" name="modalidad" value="Virtual" class="mr-2" style="color: green;">
+                    <input type="radio" id="radio-virtual" name="modalidad" value="Virtual" class="mr-2">
                     <label for="radio-virtual">Virtual</label>
                 </div>
                 <input type="hidden" id="fecha" name="fecha">
@@ -55,22 +54,23 @@ $(document).ready(function () {
                 const selectedTime = document.getElementById("time").value;
                 const selectedModalidad = document.querySelector(
                     'input[name="modalidad"]:checked'
-                ).value;
+                )?.value;
+                
                 if (!selectedDate) {
-                    Swal.showValidationMessage(
-                        "Por favor, seleccione una fecha."
-                    );
+                    Swal.showValidationMessage("Por favor, seleccione una fecha.");
                     return false;
                 }
                 if (!selectedTime) {
-                    Swal.showValidationMessage(
-                        "Por favor, seleccione una hora."
-                    );
+                    Swal.showValidationMessage("Por favor, seleccione una hora.");
+                    return false;
+                }
+                if (!selectedModalidad) {
+                    Swal.showValidationMessage("Por favor, seleccione una modalidad.");
                     return false;
                 }
                 return {
                     date: selectedDate,
-                    time: selectedTime,
+                    hour: selectedTime,
                     modalidad: selectedModalidad,
                 };
             },
@@ -78,12 +78,12 @@ $(document).ready(function () {
 
         if (isConfirmed) {
             const selectedDate = `${result.date}`;
-            const selectedTime = `${result.time}`;
+            const selectedTime = `${result.hour}`;
             const selectedModalidad = result.modalidad;
             Swal.fire({
                 position: "bottom-end",
                 icon: "info",
-                html: `<h1 class="text-gray-700 text-xl font-bold mb-6">Se registro su cita</h1>
+                html: `<h1 class="text-gray-700 text-xl font-bold mb-6">Se registró su cita</h1>
                         <div class="flex text-center justify-around">
                         <div>
                             <p class="text-gray-700 text-lg font-bold mb-6">Fecha</p>
@@ -105,7 +105,7 @@ $(document).ready(function () {
             });
             return {
                 date: selectedDate,
-                time: selectedTime,
+                hour: selectedTime,
                 modalidad: selectedModalidad,
             };
         } else {
@@ -182,26 +182,26 @@ $(document).ready(function () {
 
     function createCalendarDay(content) {
         const dayElement = document.createElement("div");
-        dayElement.className =
-            "p-2 text-center cursor-pointer select-none calendar-day";
+        dayElement.className = "text-center p-2 cursor-pointer";
         dayElement.textContent = content;
         return dayElement;
     }
 
     function handleDayClick(day, date, dayElement) {
-        const selectedDate = new Date(date.getFullYear(), date.getMonth(), day);
-        document.getElementById("fecha").value = selectedDate
-            .toISOString()
-            .split("T")[0];
-
-        // Remove the 'selected' class from all day elements
-        const allDayElements = document.querySelectorAll(".calendar-day");
-        allDayElements.forEach((el) =>
-            el.classList.remove("bg-vh-green", "text-white")
+        document.querySelectorAll(".calendar-day").forEach((el) =>
+            el.classList.remove("bg-gray-200")
         );
+        dayElement.classList.add("bg-gray-200");
 
-        // Add the 'selected' class to the clicked day element
-        dayElement.classList.add("bg-vh-green", "text-white");
+        date.setDate(day);
+        document.getElementById("fecha").value = formatDate(date);
+    }
+
+    function formatDate(date) {
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const year = date.getFullYear();
+        return `${year}-${month}-${day}`;
     }
 
     function getMonthName(monthIndex) {
@@ -223,23 +223,45 @@ $(document).ready(function () {
     }
 
     function generateTimeOptions() {
-        const times = [];
-        for (let hour = 0; hour < 24; hour++) {
-            for (let minutes = 0; minutes < 60; minutes += 30) {
-                const time = `${String(hour).padStart(2, "0")}:${String(
-                    minutes
-                ).padStart(2, "0")}`;
-                times.push(`<option value="${time}">${time}</option>`);
-            }
+        const options = [];
+        for (let i = 8; i <= 17; i++) {
+            options.push(`<option value="${i}:00">${i}:00</option>`);
+            options.push(`<option value="${i}:30">${i}:30</option>`);
         }
-        return times.join("");
+        return options.join("");
     }
 
     async function secuencia() {
-        const selectedDateTime = await genere_input();
-        if (selectedDateTime) {
-            // Aquí puedes manejar los datos seleccionados, como enviarlos a un servidor
-            console.log("Datos seleccionados:", selectedDateTime);
+        const result = await genere_input();
+        if (result) {
+            try {
+                const response = await $.ajax({
+                    url: "/appointments",
+                    type: "POST",
+                    data: {
+                        date: result.date,
+                        hour: result.hour,
+                        modalidad: result.modalidad,
+                        description: result.description || "",
+                        _token: $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    dataType: "json",
+                });
+
+                console.log("Success:", response);
+                Swal.fire({
+                    icon: "success",
+                    title: "Cita Agendada",
+                    text: "Tu cita ha sido programada con éxito.",
+                });
+            } catch (error) {
+                console.error("Error:", error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Hubo un problema al programar la cita. Por favor, inténtalo de nuevo.",
+                });
+            }
         }
     }
 });
