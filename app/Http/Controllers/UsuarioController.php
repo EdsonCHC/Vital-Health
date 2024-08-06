@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use App\Models\Admin;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -98,37 +99,47 @@ class UsuarioController extends Controller
     public function show(Request $request)
     {
         $credentials = [
-            "mail" => $request->mail,
-            "password" => $request->password
+            'mail' => $request->mail,
+            'password' => $request->password,
         ];
-
+    
         try {
             // Intentar autenticar como usuario normal
             $user = Usuario::where('mail', $credentials['mail'])->first();
-
+    
             if ($user && Hash::check($credentials['password'], $user->password)) {
                 Auth::login($user);
                 $request->session()->regenerate();
                 return response()->json(['success' => true, 'redirect_url' => '/user'], 200);
             }
-
+    
+            // Intentar autenticar como doctor
+            $doctor = Doctor::where('mail', $credentials['mail'])->first();
+    
+            if ($doctor && Hash::check($credentials['password'], $doctor->password)) {
+                Auth::guard('doctor')->login($doctor);
+                $request->session()->regenerate();
+                return response()->json(['success' => true, 'redirect_url' => '/doctor'], 200);
+            }
+    
             // Intentar autenticar como administrador
             $admin = Admin::where('mail', $credentials['mail'])->first();
-
+    
             if ($admin && Hash::check($credentials['password'], $admin->password)) {
                 Auth::guard('admin')->login($admin);
                 $request->session()->regenerate();
                 return response()->json(['success' => true, 'redirect_url' => '/statistics'], 200);
-
             }
-
+    
             // Si no se encontraron credenciales válidas
             return response()->json(['message' => 'Credenciales incorrectas'], 401);
-
+    
         } catch (\Exception $e) {
-            return response()->json("Error: " . $e->getMessage(), 500);
+            return response()->json(['error' => "Error: " . $e->getMessage()], 500);
         }
     }
+    
+    
 
     /**
      * Show the form for editing the specified resource.

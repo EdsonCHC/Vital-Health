@@ -3,13 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Doctor extends Model implements AuthenticatableContract
+class Doctor extends Authenticatable
 {
-    use Authenticatable;
     use HasFactory;
 
     protected $table = 'doctors';
@@ -25,5 +22,8 @@ class Doctor extends Model implements AuthenticatableContract
         'doctor_number',
     ];
 
-    protected $hidden = 'password';
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 }
+
