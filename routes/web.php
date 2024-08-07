@@ -61,6 +61,7 @@ Route::middleware(['web', 'auth:doctor'])->group(function () {
 
 // Rutas del administrador
 Route::middleware('auth:admin')->group(function () {
+    Route::view('/home', 'admin.home');
     Route::view('/statistics', 'admin.statistics');
     Route::view('/appointment', 'admin.appointment');
     Route::view('/records', 'admin.records');

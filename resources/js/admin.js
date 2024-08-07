@@ -3,14 +3,11 @@ import jQuery from "jquery";
 window.$ = jQuery;
 
 $(document).ready(function () {
-    // Obtener el token CSRF desde el meta tag
-    const _token = $("meta[name='csrf-token']").attr("content");
+    const _token = $('meta[name="csrf-token"]').attr('content');
 
-    // Manejar el clic en el botón de cerrar sesión
     $("#log_out_admin").click((e) => {
         e.preventDefault();
 
-        // Confirmación de SweetAlert
         Swal.fire({
             title: "¿Desea cerrar la sesión?",
             showCancelButton: true,
@@ -19,18 +16,15 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                    title: "Sera enviado al inicio en breve",
+                    title: "Será enviado al inicio en breve",
                     icon: "success",
                     timer: 3000,
                     showConfirmButton: false,
                     timerProgressBar: true,
                 }).then(() => {
                     $.ajax({
-                        url: "/admin/logout",  // Endpoint específico para cerrar sesión del admin
+                        url: "/admin/logout",
                         type: "POST",
-                        headers: {
-                            'X-CSRF-TOKEN': _token  // Incluye el token CSRF en los encabezados
-                        },
                         data: {
                             _token: _token,
                         },

@@ -9,14 +9,15 @@ class Doctor extends Controller
 {
     public function destroy(Request $request)
     {
-        // Cerrar sesión del doctor
-        Auth::guard('doctor')->logout();
+        if (Auth::guard('doctor')->check()) {
+            Auth::guard('doctor')->logout();
 
-        // Invalidar la sesión y regenerar el token CSRF
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
 
-        // Redirigir a la página de inicio de sesión
-        return response()->json(['success' => true, 'url' => '/login'], 200);
+            return response()->json(['success' => true, 'url' => '/'], 200);
+        }
+
+        return response()->json(['success' => false, 'message' => 'No estás autenticado'], 401);
     }
 }
