@@ -58,81 +58,64 @@ $(document).ready(function () {
         });
     });
 
-    // $("#edit").click((e) => {
-    //     e.preventDefault();
+    $("#edit").click((e) => {
+        e.preventDefault();
+        $(".text-input").removeAttr("readonly");
+        $("#edit").addClass("hidden");
+        $("#save, #cancel_button").removeClass("hidden");
+    });
 
-    //     $(".text-input").each(function () {
-    //         this.removeAttribute("readonly");
-    //     });
+    $("#cancel_button").click((e) => {
+        e.preventDefault();
+        location.reload();
+    });
 
-    //     $("#save").removeClass("hidden");
+    $("#save").click((e) => {
+        e.preventDefault();
 
-    //     $("#save").click((e) => {
-    //         e.preventDefault();
-
-    //         Swal.fire({
-    //             title: "¿Desea Editar y guardar su información?",
-    //             icon: "question",
-                
-    //             showCancelButton: true,
-    //             showConfirmButton: true,
-    //         }).then((result) => {
-    //             if (result.isConfirmed) {
-    //                 // espacio para ajax
-    //             } else {
-
-    //                 $('#user_form')[0].reset();
-    //                 $(".text-input").each(function () {
-    //                     this.setAttribute("readonly", true);
-    //                 });
-    //                 return false;
-    //             }
-    //         });
-    //     });
-    // });
-});
-
-// Alvarenga pregunta seria, esto para que es????
-document.addEventListener("DOMContentLoaded", () => {
-    const menuLinks = document.querySelectorAll(".menu-link");
-    const contents = document.querySelectorAll(".content");
-
-    // Mostrar por defecto la primera opción (Perfil)
-    const defaultContent = document.getElementById("opcion1");
-    defaultContent.classList.remove("hidden");
-
-    menuLinks.forEach((link) => {
-        link.addEventListener("click", (event) => {
-            event.preventDefault();
-            // Ocultar todo el contenido
-            contents.forEach((content) => {
-                content.classList.add("hidden");
-            });
-
-            // Quitar clase 'active' de todos los enlaces
-            menuLinks.forEach((link) => {
-                link.classList.remove("active");
-            });
-
-            // Mostrar el contenido seleccionado y añadir clase 'active' al enlace
-            const targetId = link.getAttribute("data-target");
-            const targetContent = document.getElementById(targetId);
-            if (targetContent) {
-                targetContent.classList.remove("hidden");
-                link.classList.add("active");
+        Swal.fire({
+            title: "¿Desea Editar y guardar su información?",
+            icon: "question",
+            showCancelButton: true,
+            showConfirmButton: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "/user",
+                    type: "PUT",
+                    data: $("#user_form").serialize(),
+                    success(response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: "Información actualizada correctamente",
+                                icon: "success",
+                                timer: 2000,
+                                showConfirmButton: false,
+                                timerProgressBar: true,
+                            }).then(() => {
+                                location.reload();
+                            });
+                        }
+                    },
+                    error(response) {
+                        Swal.fire({
+                            title: "Error al actualizar la información",
+                            icon: "error",
+                            text: response.responseJSON.message,
+                        });
+                    },
+                });
+            } else {
+                $(".text-input").attr("readonly", true);
+                $("#save, #cancel_button").addClass("hidden");
+                $("#edit").removeClass("hidden");
             }
         });
     });
 });
 
-// $("#cancel_button").click(function () {
-//     console.log("Cancel button clicked");
-
-//     const form = $(this).closest("form");
-//     if (form.length) {
-//         form[0].reset();
-//         console.log("Form reset");
-//     } else {
-//         console.error("Form not found");
-//     }
-// });
+// Mostrar por defecto la primera opción (Perfil)
+document.addEventListener("DOMContentLoaded", () => {
+    const defaultContent = document.getElementById("opcion1");
+    defaultContent.classList.remove("hidden");
+});

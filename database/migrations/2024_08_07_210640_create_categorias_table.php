@@ -10,13 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('area_admins', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->longText('mail');
-            $table->string('area');
-            $table->string('password');
-            $table->string('role');
+        Schema::create('categorias', function (Blueprint $table) {
+            $table->id(); 
+            $table->string('nombre'); 
+            $table->text('descripcion')->nullable(); 
+            $table->text('caracteristicas')->nullable(); 
+            $table->string('img')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('area_admins');
+        Schema::dropIfExists('categorias');
     }
 };

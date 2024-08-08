@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\Doctor;
+use App\Http\Controllers\CitaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,16 +17,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//* USER ROUTES //
-
-Route::view('/', 'app.index')->name('home'); // Renombrado a Route::view
-
+// Rutas del usuario
+Route::post('/appointments', [CitaController::class, 'store']);
+Route::post('/login', [UsuarioController::class, 'show']);
+Route::view('/', 'app.index')->name('home');
 Route::view('/login', 'app.login')->name('login');
 Route::post('/login', [UsuarioController::class, 'show']);
 
 Route::view('/registro', 'app.registro');
 Route::post('/registro', [UsuarioController::class, 'store']);
 
+// Middlewares para el usuario
 Route::middleware('auth')->group(function () {
     Route::view('/medicina', 'app.medicine');
     Route::view('/report', 'app.report');
@@ -32,19 +36,17 @@ Route::middleware('auth')->group(function () {
     Route::view('/area', 'app.area');
     Route::view('/citas', 'app.citas');
 
-
-    //CRUD User
+    // CRUD User
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
     Route::post('/user', [UsuarioController::class, 'destroy']);
-    Route::post('/user/update', [UsuarioController::class, 'update'])->name('user.update');
+    Route::put('/user', [UsuarioController::class, 'update'])->name('user.update');
 });
 
 Route::view('/service', 'app.service');
 
-//* DOCTOR ROUTES //
-
-Route::prefix('doctor')->group(function () {
-    Route::view('/', 'doctor.index_doc');
+// Rutas para el doctor
+Route::middleware(['web', 'auth:doctor'])->group(function () {
+    Route::view('/doctor', 'doctor.index_doc');
     Route::view('/citas_doc', 'doctor.citas_doc');
     Route::view('/allocation', 'doctor.allocation');
     Route::view('/exams_doc', 'doctor.exams_doc');
@@ -52,21 +54,27 @@ Route::prefix('doctor')->group(function () {
     Route::view('/files_doc', 'doctor.files_doc');
     Route::view('/service_doc', 'doctor.service_doc');
     Route::view('/program_doc', 'doctor.program_doc');
+
+    Route::post('/doctor/logout', [Doctor::class, 'destroy'])->name('doctor.logout');
 });
 
-//* ADMIN ROUTES //
 
-Route::middleware('auth.admin')->group(function () {
+// Rutas del administrador
+Route::middleware('auth:admin')->group(function () {
+    Route::view('/home', 'admin.home');
     Route::view('/statistics', 'admin.statistics');
     Route::view('/appointment', 'admin.appointment');
     Route::view('/records', 'admin.records');
     Route::view('/ad_chats', 'admin.ad_chats');
     Route::view('/staff', 'admin.staff');
     Route::view('/calendar', 'admin.calendar')->name('calendar');
+
+    // web.php o api.php
+    Route::post('/admin/logout', [adminController::class, 'destroy'])->name('admin.logout');
+
 });
 
-//* FALLBACK ROUTE //
-
+// Fallback route (404)
 Route::fallback(function () {
     return response()->view('errors.404page', [], 404);
 });

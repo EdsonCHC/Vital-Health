@@ -10,9 +10,22 @@ class citas extends Model
     use HasFactory;
 
     protected $fillable = [
-        "state",
-        "date",
-        "description",
-        "id_patient"
+        'state',
+        'date',
+        'hour',
+        'description',
+        'id_patient',
+        'id_doctor',
+        'modo',
     ];
+
+    public function patient()
+    {
+        return $this->belongsTo('App\Models\patients', 'id_patient');
+    }
+
+    public function doctor()
+    {
+        return $this->belongsTo('App\Models\doctors', 'id_doctor');
+    }
 }

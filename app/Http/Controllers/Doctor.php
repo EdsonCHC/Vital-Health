@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class adminController extends Controller
+class Doctor extends Controller
 {
     public function destroy(Request $request)
     {
-        if (Auth::guard('admin')->check()) {
-            Auth::guard('admin')->logout();
+        if (Auth::guard('doctor')->check()) {
+            Auth::guard('doctor')->logout();
 
             $request->session()->invalidate();
             $request->session()->regenerateToken();

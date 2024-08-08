@@ -3,7 +3,6 @@ import jQuery, { post } from "jquery";
 window.$ = jQuery;
 
 $(document).ready(function(){
-
     $("#login_btn").click((e)=>{
         e.preventDefault();
 
@@ -27,7 +26,6 @@ $(document).ready(function(){
             error(response){
                 console.log(response);
             }
-
-        })
-    })
+        });
+    });
 });

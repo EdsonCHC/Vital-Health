@@ -4,7 +4,8 @@
             <!-- Nav -->
             <div class="sidebar flex flex-col flex-grow justify-center ">
                 <div class="-mt-52 shadow-sm ">
-                    <object data="{{asset('storage/svg/logo-icon-white.svg')}}" class="w-100 -ml-24" type="image/svg+xml"></object>
+                    <object data="{{asset('storage/svg/logo-icon-white.svg')}}" class="w-100 -ml-24"
+                        type="image/svg+xml"></object>
                 </div>
                 <div class="flex flex-col space-y-4">
                     <div
@@ -63,7 +64,7 @@
 
             <!-- Bottom Section -->
             <div class="absolute bottom-0 left-0 right-0 mb-4 px-2">
-                <a href="#"
+                <a href="#" id="log_out_admin"
                     class="flex items-center justify-center mb-5 h-14 rounded transition duration-300 hover:bg-white hover:text-black text-white tracking-widest">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -73,6 +74,7 @@
                     <span class="ml-2 text-base font-bold">Salir</span>
                 </a>
             </div>
+
         </nav>
 
         <div

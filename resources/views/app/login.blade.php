@@ -35,13 +35,13 @@
       <p>Ingresa También con</p>
       <hr class="border border-vh-green   opacity-25 w-14">
     </div>
-    <div id="my-signin2"></div>
     <p class="flex grow items-end text-vh-green text-center lg:grow-0 mt-8">&copy 2024 Vital Health Todos los derechos
       reservados</p>
   </div>
-  <div class="hidden lg:block bg-vh-green w-2/5 rounded-xl p-11">
-    <div class="lg:bg-black opacity-20 w-full h-full rounded-xl relative">
+  <div class="hidden lg:block bg-vh-green w-2/5 rounded-xl p-11 relative">
+    <div class="lg:bg-black opacity-20 w-full h-full rounded-xl">
     </div>
+    <h3 class="text-5xl text-white-not-white font-semibold leading-relaxed absolute  inset-20 text-center opacity-90 font-mono">Estamos aquí para cuidar de ti, cada paso del camino.</h3>
     <div class="">
       <img src="{{asset('storage/svg/n_doctor.svg')}}" alt="doctor_svg" class="absolute end-2 bottom-2">
     </div>
