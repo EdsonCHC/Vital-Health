@@ -13,7 +13,6 @@ return new class extends Migration {
         Schema::create('area_admins', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('lastName');
             $table->longText('mail');
             $table->string('area');
             $table->string('password');

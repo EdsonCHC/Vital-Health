@@ -13,7 +13,6 @@ return new class extends Migration {
         Schema::create('admins', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('lastName');
             $table->string('mail');
             $table->string('password');
             $table->string('role')->default('admin');

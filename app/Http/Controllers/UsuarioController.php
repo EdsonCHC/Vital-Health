@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use App\Models\Admin;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+
 
 class UsuarioController extends Controller
 {
@@ -19,6 +21,7 @@ class UsuarioController extends Controller
         $user = Auth::user();
         return view('app.user_info', ['user' => $user]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -40,16 +43,24 @@ class UsuarioController extends Controller
             'gender' => 'required',
             'birth' => 'required|date',
             'blood' => 'required',
-            'password' => 'required|min:3',
+            'password' => 'required|min:8',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validar imagen
         ]);
-
-        // Si la validación falla
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Datos inválidos',
                 'errors' => $validator->errors(),
             ], 422);
         }
+
+
+        // Subir la imagen si se proporciona
+        if ($request->hasFile('img')) {
+            $imagePath = $request->file('img')->store('profile_images', 'public');
+        } else {
+            $imagePath = null;
+        }
+
 
         // Crear usuario
         try {
@@ -60,8 +71,10 @@ class UsuarioController extends Controller
                 'gender' => $request->gender,
                 'birth' => $request->birth,
                 'blood' => $request->blood,
-                'password' => Hash::make($request->password), // Cifrado de contraseña
+                'password' => Hash::make($request->password),
+                'img' => $imagePath,
             ]);
+
 
             if (!$user) {
                 return response()->json([
@@ -69,14 +82,16 @@ class UsuarioController extends Controller
                 ], 500);
             }
 
-            // Autenticar al usuario después de crearlo
+
+            // Autenticar y redirigir al usuario
             Auth::login($user);
+
 
             return response()->json([
                 'success' => true,
                 'message' => 'Usuario registrado exitosamente',
                 'redirect_url' => '/user',
-            ], 201); // 201 Created
+            ], 201);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error interno del servidor',
@@ -85,24 +100,36 @@ class UsuarioController extends Controller
         }
     }
 
+
     /**
      * Display the specified resource.
      */
     public function show(Request $request)
     {
         $credentials = [
-            "mail" => $request->mail,
-            "password" => $request->password
+            'mail' => $request->mail,
+            'password' => $request->password,
         ];
 
         try {
             // Intentar autenticar como usuario normal
             $user = Usuario::where('mail', $credentials['mail'])->first();
 
+
             if ($user && Hash::check($credentials['password'], $user->password)) {
                 Auth::login($user);
                 $request->session()->regenerate();
                 return response()->json(['success' => true, 'redirect_url' => '/user'], 200);
+            }
+
+            // Intentar autenticar como doctor
+            $doctor = Doctor::where('mail', $credentials['mail'])->first();
+
+
+            if ($doctor && Hash::check($credentials['password'], $doctor->password)) {
+                Auth::guard('doctor')->login($doctor);
+                $request->session()->regenerate();
+                return response()->json(['success' => true, 'redirect_url' => '/doctor'], 200);
             }
 
             // Intentar autenticar como administrador
@@ -112,14 +139,13 @@ class UsuarioController extends Controller
                 Auth::guard('admin')->login($admin);
                 $request->session()->regenerate();
                 return response()->json(['success' => true, 'redirect_url' => '/statistics'], 200);
-
             }
+
 
             // Si no se encontraron credenciales válidas
             return response()->json(['message' => 'Credenciales incorrectas'], 401);
-
         } catch (\Exception $e) {
-            return response()->json("Error: " . $e->getMessage(), 500);
+            return response()->json(['error' => "Error: " . $e->getMessage()], 500);
         }
     }
 
@@ -134,30 +160,38 @@ class UsuarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, Usuario $user)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'lastName' => 'required|string|max:255',
-            'gender' => 'required|string|max:255',
-            'birth' => 'required|date',
-            'mail' => 'required|email|max:255',
-            'blood' => 'nullable|string|max:255',
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'lastName' => 'required|string|max:255',
+                'gender' => 'required|string|max:255',
+                'birth' => 'required|date',
+                'mail' => 'required|email|max:255',
+                'blood' => 'nullable|string|max:255',
+            ]);
 
-        $user = Auth::user(); 
-        $user->update($request->only([
-            'name', 'lastName', 'gender', 'birth', 'mail', 'blood'
-        ]));
+            $user = Auth::user();
+            $user->update($request->only([
+                'name', 'lastName', 'gender', 'birth', 'mail', 'blood'
+            ]));
 
-        return redirect()->back()->with('success', 'Perfil actualizado correctamente');
+            return response()->json([
+                'success' => true,
+                'message' => 'Perfil actualizado correctamente'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
-    
 
     public function destroy(Request $request)
     {
         //log out
-
         Auth::logout();
 
         try {

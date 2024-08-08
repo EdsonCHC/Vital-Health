@@ -19,7 +19,7 @@
                 <div class="contant_box_404">
                     <h3 class="text-2xl font-semibold text-gray-800 mb-4">Parece que te has perdido</h3>
                     <p class="text-gray-600 mb-6">La página que buscas no está disponible!</p>
-                    <a href="/" class="link_404 rounded-lg">Volver al inicio</a>
+                    <a href="/" class="link_404 text-lg font-semibold rounded-lg">Volver al inicio</a>
                 </div>
             </div>
         </div>
