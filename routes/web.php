@@ -5,6 +5,8 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\CitaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -68,9 +70,11 @@ Route::middleware('auth:admin')->group(function () {
     Route::view('/ad_chats', 'admin.ad_chats');
     Route::view('/staff', 'admin.staff');
     Route::view('/calendar', 'admin.calendar')->name('calendar');
-
+    Route::get('/home', [CategoriaController::class, 'index'])->name('home');
+    Route::post('/categorias', [CategoriaController::class, 'store']);
     // web.php o api.php
     Route::post('/admin/logout', [adminController::class, 'destroy'])->name('admin.logout');
+    Route::resource('categorias', CategoriaController::class);
 
 });
 
