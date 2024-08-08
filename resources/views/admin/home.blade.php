@@ -6,18 +6,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    @vite(['resources/css/app.css', 'resources/js/admin.js','resources/js/ad_cate.js'])
-    <!-- @vite(['resources/css/app.css','resources/js/stats_chart.js']) -->
+    @vite(['resources/css/app.css', 'resources/js/admin.js', 'resources/js/ad_cate.js'])
 </head>
 
 <body class="bg-gray-100">
-
-
     <div class="container mx-auto p-8">
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-3xl font-bold">Admin General</h1>
             <a href="#" id="add_category"
-                class="flex items-center justify-center h-10 w-48  bg-vh-green-medium  rounded transition duration-300  hover:bg-white hover:text-black text-white tracking-widest">
+                class="flex items-center justify-center h-10 w-48 bg-vh-green-medium rounded transition duration-300 hover:bg-white hover:text-black text-white tracking-widest">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -26,43 +23,31 @@
             </a>
         </div>
 
+        <!-- Tarjetas de categorías -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Tarjeta de Cardiología 1 -->
+            @foreach ($categorias as $categoria)
             <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold mb-4">Cardiología</h2>
-                <button
-                    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300 observe-btn">
-                    Observar &rarr;
+                @if($categoria->img)
+                <img src="{{ asset('storage/images/' . $categoria->img) }}" alt="{{ $categoria->nombre }}" class="w-full h-auto mb-4">
+                @endif
+                <h2 class="text-xl font-bold mb-4">{{ $categoria->nombre }}</h2>
+                <p class="mb-4">{{ $categoria->descripcion }}</p>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300" onclick="editCategory({{ $categoria->id }})">
+                    Editar
+                </button>
+                <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-300" onclick="deleteCategory({{ $categoria->id }})">
+                    Eliminar
+                </button>
+                <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300" onclick="editCategory({{ $categoria->id }})">
+                    Administrar
                 </button>
             </div>
-            <!-- Tarjeta de Cardiología 2 -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold mb-4">Cardiología</h2>
-                <button
-                    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300 observe-btn">
-                    Observar &rarr;
-                </button>
-            </div>
-            <!-- Tarjeta de Cardiología 3 -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold mb-4">Cardiología</h2>
-                <button
-                    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300 observe-btn">
-                    Observar &rarr;
-                </button>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold mb-4">Cardiología</h2>
-                <button
-                    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300 observe-btn">
-                    Observar &rarr;
-                </button>
-            </div>
-
+            @endforeach
         </div>
-        <div class="absolute bottom-0 left-0  px-8 my-2">
+
+        <div class="absolute bottom-0 left-0 px-8 my-2">
             <a href="#" id="log_out_admin"
-                class="flex items-center justify-center p-4 mb-5 h-14  rounded transition duration-300 bg-vh-green-medium hover:bg-white hover:text-black text-white tracking-widest">
+                class="flex items-center justify-center p-4 mb-5 h-14 rounded transition duration-300 bg-vh-green-medium hover:bg-white hover:text-black text-white tracking-widest">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -71,11 +56,7 @@
                 <span class="ml-2 text-base font-bold">Cerrar Sesión</span>
             </a>
         </div>
-
     </div>
-
-
-
 </body>
 
 </html>
