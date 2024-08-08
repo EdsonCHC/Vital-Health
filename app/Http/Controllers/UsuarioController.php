@@ -186,8 +186,10 @@ class UsuarioController extends Controller
 
     public function destroy(Request $request)
     {
-        //log out
-        Auth::logout();
+        if (Auth::check()) {
+            // Cerrar sesión
+            Auth::logout();
+        }
 
         try {
             $request->session()->invalidate();
@@ -195,7 +197,8 @@ class UsuarioController extends Controller
 
             return response()->json(['success' => true, 'url' => '/'], 200);
         } catch (\Exception $e) {
-            return response()->json(['success' => false], 500);
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
+
 }
