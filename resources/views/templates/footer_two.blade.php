@@ -1,4 +1,4 @@
-<footer class="hidden lg:flex flex-wrap mt-auto py-[2%] bg-gray-300">
+<footer class="hidden lg:flex flex-wrap mt-auto py-[2%] bg-gray-300" id="footer_animation">
     <div class="w-full flex justify-between items-center">
         <div class="w-full sm:w-1/2 md:w-1/4 mb-6 text-center">
             <h4 class="mb-4 text-2xl font-bold capitalize">Pagina Web</h4>
