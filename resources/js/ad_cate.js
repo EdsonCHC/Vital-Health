@@ -139,6 +139,9 @@ $(document).ready(function () {
             });
         });
     }
+    window.viewCategory = function (id) {
+        window.location.href = `/statistics/${id}`;
+    }
 
     window.deleteCategory = function (id) {
         Swal.fire({

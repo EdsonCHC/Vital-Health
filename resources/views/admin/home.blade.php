@@ -26,22 +26,27 @@
         <!-- Tarjetas de categorías -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach ($categorias as $categoria)
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                @if($categoria->img)
-                <img src="{{ asset('storage/images/' . $categoria->img) }}" alt="{{ $categoria->nombre }}" class="w-full h-auto mb-4">
-                @endif
-                <h2 class="text-xl font-bold mb-4">{{ $categoria->nombre }}</h2>
-                <p class="mb-4">{{ $categoria->descripcion }}</p>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300" onclick="editCategory({{ $categoria->id }})">
-                    Editar
-                </button>
-                <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-300" onclick="deleteCategory({{ $categoria->id }})">
-                    Eliminar
-                </button>
-                <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300" onclick="editCategory({{ $categoria->id }})">
-                    Administrar
-                </button>
-            </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    @if($categoria->img)
+                        <img src="{{ asset('storage/images/' . $categoria->img) }}" alt="{{ $categoria->nombre }}"
+                            class="w-full h-auto mb-4">
+                    @endif
+                    <h2 class="text-xl font-bold mb-4">{{ $categoria->nombre }}</h2>
+                    <p class="mb-4">{{ $categoria->descripcion }}</p>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300"
+                        onclick="editCategory({{ $categoria->id }})">
+                        Editar
+                    </button>
+                    <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-300"
+                        onclick="deleteCategory({{ $categoria->id }})">
+                        Eliminar
+                    </button>
+                    <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300"
+                        onclick="viewCategory({{ $categoria->id }})">
+                        Administrar
+                    </button>
+
+                </div>
             @endforeach
         </div>
 

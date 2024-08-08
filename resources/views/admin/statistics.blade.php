@@ -18,9 +18,9 @@
     <!-- Estilos Desktop -->
     <div class="hidden lg:flex flex-col justify-between items-center ml-40 mt-12">
         <div class="mb-2">
-            <h2 class=" font-bold text-2xl">
-                Administrador 
-            </h2>
+        <h2 class="text-xl font-bold mb-4">{{ $categoria->nombre }}</h2>
+        <p class="mb-4">{{ $categoria->descripcion }}</p>
+        <p class="mb-4">{{ $categoria->caracteristicas }}</p>
         </div>
         <div class="flex justify-between w-4/6 mt-4">
             <div class="w-80 max-w-80 h-auto m-4 bg-white opacity-80 rounded-lg shadow-xl">
