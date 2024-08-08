@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\adminController;
-use App\Http\Controllers\Doctor;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\CitaController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,14 +39,14 @@ Route::middleware('auth')->group(function () {
     // CRUD User
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
     Route::post('/user', [UsuarioController::class, 'destroy']);
-    Route::put('/user', [UsuarioController::class, 'update'])->name('user.update');
+    Route::put('/user/update', [UsuarioController::class, 'update'])->name('user.update');
 });
 
 Route::view('/service', 'app.service');
 
 // Rutas para el doctor
-Route::middleware(['web', 'auth:doctor'])->group(function () {
-    Route::view('/doctor', 'doctor.index_doc');
+Route::middleware(['auth:doctor'])->group(function () {
+    Route::get('/doctor', [DoctorController::class, 'index'])->name('doctor');
     Route::view('/citas_doc', 'doctor.citas_doc');
     Route::view('/allocation', 'doctor.allocation');
     Route::view('/exams_doc', 'doctor.exams_doc');
@@ -55,7 +55,7 @@ Route::middleware(['web', 'auth:doctor'])->group(function () {
     Route::view('/service_doc', 'doctor.service_doc');
     Route::view('/program_doc', 'doctor.program_doc');
 
-    Route::post('/doctor/logout', [Doctor::class, 'destroy'])->name('doctor.logout');
+    Route::post('/doctor/logout', [DoctorController::class, 'destroy'])->name('doctor.logout');
 });
 
 

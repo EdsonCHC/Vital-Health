@@ -9,15 +9,17 @@ class adminController extends Controller
 {
     public function destroy(Request $request)
     {
-        if (Auth::guard('admin')->check()) {
-            Auth::guard('admin')->logout();
 
+        Auth::guard('admin')->logout();
+        
+        try {
             $request->session()->invalidate();
             $request->session()->regenerateToken();
 
             return response()->json(['success' => true, 'url' => '/'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false], 500);
         }
 
-        return response()->json(['success' => false, 'message' => 'No estás autenticado'], 401);
     }
 }

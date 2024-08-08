@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <!-- Incluir Tailwind CSS -->
-    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js','resources/js/doctor.js'])
+    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/doctor.js'])
 </head>
 
 <body class="w-full h-full bg-gray-200">
@@ -24,7 +24,7 @@
                 <div class="flex justify-start mt-5">
                     <div class="flex-col ml-8 mt-16">
                         <p class="font-bold text-md text-gray-400">Septiembre 4, 2024</p>
-                        <h3 class="font-bold text-2xl text-white">Doctor Alejandro Alvarenga</h3>
+                        <h3 class="font-bold text-2xl text-white">{{$doctor->name}}</h3>
                         <p class="font-bold text-xl text-gray-400">Área: Cardiología.</p>
                     </div>
                 </div>
