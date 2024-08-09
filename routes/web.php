@@ -5,7 +5,7 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\CitaController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\CategoríaController;
 use App\Http\Controllers\StatisticsController;
 
 /*
@@ -70,11 +70,11 @@ Route::middleware('auth:admin')->group(function () {
     Route::view('/ad_chats', 'admin.ad_chats');
     Route::view('/staff', 'admin.staff');
     Route::view('/calendar', 'admin.calendar')->name('calendar');
-    Route::get('/home', [CategoriaController::class, 'index'])->name('home');
-    Route::post('/categorias', [CategoriaController::class, 'store']);
+    Route::get('/home', [CategoríaController::class, 'index'])->name('home');
+    Route::post('/categorías', [CategoríaController::class, 'store']);
     Route::get('/statistics/{id}', [StatisticsController::class, 'show'])->name('statistics.show');
     Route::post('/admin/logout', [adminController::class, 'destroy'])->name('admin.logout');
-    Route::resource('categorias', CategoriaController::class);
+    Route::resource('/Categorias', CategoríaController::class);
 
 });
 

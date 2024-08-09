@@ -3,23 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Categoria;
+use App\Models\Categoría;
 use Illuminate\Support\Facades\Storage;
 
-class CategoriaController extends Controller
+class CategoríaController extends Controller
 {
     public function index()
     {
-        $categorias = Categoria::all();
-        return view('admin.home', compact('categorias'));
+        $Categorías = Categoría::all();
+        return view('admin.home', compact('Categorías'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'descripcion' => 'nullable|string',
-            'caracteristicas' => 'nullable|string',
+            'descripción' => 'nullable|string',
+            'características' => 'nullable|string',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -29,10 +29,10 @@ class CategoriaController extends Controller
             $request->img->storeAs('public/images', $imageName);
         }
 
-        Categoria::create([
+        Categoría::create([
             'nombre' => $request->nombre,
-            'descripcion' => $request->descripcion,
-            'caracteristicas' => $request->caracteristicas,
+            'descripción' => $request->descripción,
+            'características' => $request->características,
             'img' => $imageName,
         ]);
 
@@ -41,34 +41,34 @@ class CategoriaController extends Controller
 
     public function edit($id)
     {
-        $categoria = Categoria::find($id);
-        return response()->json($categoria);
+        $categoría = Categoría::find($id);
+        return response()->json($categoría);
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'descripcion' => 'nullable|string',
-            'caracteristicas' => 'nullable|string',
+            'descripción' => 'nullable|string',
+            'características' => 'nullable|string',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $categoria = Categoria::find($id);
+        $categoría = Categoría::find($id);
 
         if ($request->hasFile('img')) {
-            if ($categoria->img) {
-                Storage::delete('public/images/' . $categoria->img);
+            if ($categoría->img) {
+                Storage::delete('public/images/' . $categoría->img);
             }
             $imageName = time() . '.' . $request->img->extension();
             $request->img->storeAs('public/images', $imageName);
-            $categoria->img = $imageName;
+            $categoría->img = $imageName;
         }
 
-        $categoria->update([
+        $categoría->update([
             'nombre' => $request->nombre,
-            'descripcion' => $request->descripcion,
-            'caracteristicas' => $request->caracteristicas,
+            'descripción' => $request->descripción,
+            'características' => $request->características,
         ]);
 
         return response()->json(['message' => 'Categoría actualizada exitosamente']);
@@ -76,11 +76,11 @@ class CategoriaController extends Controller
 
     public function destroy($id)
     {
-        $categoria = Categoria::find($id);
-        if ($categoria->img) {
-            Storage::delete('public/images/' . $categoria->img);
+        $categoría = Categoría::find($id);
+        if ($categoría->img) {
+            Storage::delete('public/images/' . $categoría->img);
         }
-        $categoria->delete();
+        $categoría->delete();
 
         return response()->json(['message' => 'Categoría eliminada exitosamente']);
     }

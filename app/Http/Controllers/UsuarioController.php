@@ -19,7 +19,7 @@ class UsuarioController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('app.user_info', ['user' => $user]);
+        return view('app.user_info', compact('user'));
     }
 
 
