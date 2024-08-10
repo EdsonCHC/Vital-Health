@@ -70,6 +70,44 @@ $(document).ready(function () {
             }
         });
     });
+    window.deleteCategory = function (categoryId) {
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "¿Quieres eliminar esta categoría?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, eliminar!",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: `/categorias/${categoryId}`,
+                    type: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (response) {
+                        Swal.fire(
+                            'Eliminado!',
+                            response.success,
+                            'success'
+                        ).then(() => {
+                            location.reload();
+                        });
+                    },
+                    error: function (xhr) {
+                        Swal.fire(
+                            'Error!',
+                            'Hubo un problema al eliminar la categoría.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+    };
 
     // Editar categoría
     window.editCategory = function (id) {
@@ -146,6 +184,7 @@ $(document).ready(function () {
     window.viewCategory = function (id) {
         window.location.href = `/statistics/${id}`;
     };
+
 
     // Suspender categoría
     window.suspendCategory = function (id) {

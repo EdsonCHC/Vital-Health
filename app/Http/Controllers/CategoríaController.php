@@ -88,22 +88,56 @@ class CategoríaController extends Controller
 
     public function suspend(Request $request, $id)
     {
-        $categoría = categoría::findOrFail($id);
-        $categoría->activa = false; 
+        $categoría = Categoría::findOrFail($id);
+        $categoría->activa = false;
         $categoría->save();
-    
+
         return response()->json(['message' => 'Categoría suspendida exitosamente']);
     }
-    
 
     public function activate(Request $request, $id)
     {
-        $categoría = categoría::findOrFail($id);
-        $categoría->activa = true; 
+        $categoría = Categoría::findOrFail($id);
+        $categoría->activa = true;
         $categoría->save();
-    
+
         return response()->json(['message' => 'Categoría activada exitosamente']);
     }
-    
-    
+
+    public function showStatistics($id)
+    {
+        $categoria = Categoría::findOrFail($id);
+        return view('admin.statistics', ['categoria' => $categoria]);
+    }
+
+    public function showAppointments($id)
+    {
+        $categoria = Categoría::findOrFail($id);
+        return view('admin.appointment', ['categoria' => $categoria]);
+    }
+
+    public function showRecords($id)
+    {
+        $categoria = Categoría::findOrFail($id);
+        return view('admin.records', ['categoria' => $categoria]);
+    }
+
+    public function showChats($id)
+    {
+        $categoria = Categoría::findOrFail($id);
+        return view('admin.ad_chats', ['categoria' => $categoria]);
+    }
+
+    public function showStaff($id)
+    {
+        $categoria = Categoría::findOrFail($id);
+        return view('admin.staff', ['categoria' => $categoria]);
+    }
+
+    public function showCalendar($id)
+    {
+        $categoria = Categoría::findOrFail($id);
+        return view('admin.calendar', ['categoria' => $categoria]);
+    }
+
 }
