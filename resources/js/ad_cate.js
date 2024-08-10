@@ -29,9 +29,7 @@ $(document).ready(function () {
                 const img = $("#category_img").prop("files")[0];
 
                 if (!name || !description || !features) {
-                    Swal.showValidationMessage(
-                        "Por favor completa todos los campos"
-                    );
+                    Swal.showValidationMessage("Por favor completa todos los campos");
                     return false;
                 }
 
@@ -60,21 +58,13 @@ $(document).ready(function () {
                     data: formData,
                     success: function (response) {
                         console.log("Categoría agregada exitosamente:", response);
-                        Swal.fire(
-                            "Éxito",
-                            "La categoría se ha agregado exitosamente",
-                            "success"
-                        ).then(() => {
+                        Swal.fire("Éxito", "La categoría se ha agregado exitosamente", "success").then(() => {
                             location.reload();
                         });
                     },
                     error: function (error) {
                         console.error("Error al agregar la categoría:", error);
-                        Swal.fire(
-                            "Error",
-                            "Hubo un error al agregar la categoría",
-                            "error"
-                        );
+                        Swal.fire("Error", "Hubo un error al agregar la categoría", "error");
                     },
                 });
             }
@@ -106,9 +96,7 @@ $(document).ready(function () {
                     const img = $("#category_img").prop("files")[0];
 
                     if (!name || !description || !features) {
-                        Swal.showValidationMessage(
-                            "Por favor completa todos los campos"
-                        );
+                        Swal.showValidationMessage("Por favor completa todos los campos");
                         return false;
                     }
 
@@ -138,21 +126,13 @@ $(document).ready(function () {
                         data: formData,
                         success: function (response) {
                             console.log("Categoría actualizada exitosamente:", response);
-                            Swal.fire(
-                                "Éxito",
-                                "La categoría se ha actualizado exitosamente",
-                                "success"
-                            ).then(() => {
+                            Swal.fire("Éxito", "La categoría se ha actualizado exitosamente", "success").then(() => {
                                 location.reload();
                             });
                         },
                         error: function (xhr, status, error) {
                             console.error("Error al actualizar la categoría:", xhr.responseText);
-                            Swal.fire(
-                                "Error",
-                                "Hubo un error al actualizar la categoría",
-                                "error"
-                            );
+                            Swal.fire("Error", "Hubo un error al actualizar la categoría", "error");
                         },
                     });
                 }
@@ -161,50 +141,86 @@ $(document).ready(function () {
             Swal.fire("Error", "No se pudo encontrar la categoría", "error");
         });
     };
+
+    // Ver categoría
     window.viewCategory = function (id) {
         window.location.href = `/statistics/${id}`;
-    }
-    // Eliminar categoría
-    window.deleteCategory = function (id) {
+    };
+
+    // Suspender categoría
+    window.suspendCategory = function (id) {
         Swal.fire({
             title: "¿Estás seguro?",
-            text: "No podrás recuperar esta categoría!",
+            text: "¿Quieres suspender esta categoría? ¡Puedes volver a activarla más tarde!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Sí, eliminar!",
+            confirmButtonText: "Sí, suspender!",
         }).then((result) => {
             if (result.isConfirmed) {
+                console.log("Suspender categoría con ID:", id);
                 $.ajax({
-                    url: `/categorias/${id}`,
+                    url: `/categorias/${id}/suspend`,
                     method: "POST",
                     headers: {
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                     },
                     data: {
-                        _method: "DELETE",
+                        _method: "PUT",
+                        activa: false,
                     },
                     success: function (response) {
-                        console.log("Categoría eliminada exitosamente:", response);
-                        Swal.fire(
-                            "Eliminado!",
-                            "La categoría ha sido eliminada.",
-                            "success"
-                        ).then(() => {
+                        console.log("Categoría suspendida exitosamente:", response);
+                        Swal.fire("Suspendida!", "La categoría ha sido suspendida.", "success").then(() => {
                             location.reload();
                         });
                     },
                     error: function (xhr, status, error) {
-                        console.error("Error al eliminar la categoría:", xhr.responseText);
-                        Swal.fire(
-                            "Error",
-                            "Hubo un error al eliminar la categoría",
-                            "error"
-                        );
+                        console.error("Error al suspender la categoría:", xhr.responseText);
+                        Swal.fire("Error", "Hubo un error al suspender la categoría", "error");
                     },
                 });
             }
         });
     };
+
+
+    window.activateCategory = function (id) {
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "¿Quieres activar esta categoría?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, activar!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log("Activando categoría con ID:", id); // Agregado para depuración
+                $.ajax({
+                    url: `/categorias/${id}/activate`,
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                    },
+                    data: {
+                        _method: "PUT",
+                        activa: true, // Usar 'activa' en lugar de 'active'
+                    },
+                    success: function (response) {
+                        console.log("Categoría activada exitosamente:", response);
+                        Swal.fire("Activada!", "La categoría ha sido activada.", "success").then(() => {
+                            location.reload();
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error al activar la categoría:", xhr.responseText);
+                        Swal.fire("Error", "Hubo un error al activar la categoría", "error");
+                    },
+                });
+            }
+        });
+    };
+
 });

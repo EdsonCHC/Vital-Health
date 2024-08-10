@@ -41,6 +41,18 @@
                         onclick="deleteCategory({{ $categoría->id }})">
                         Eliminar
                     </button>
+                    @if ($categoría->activa)
+                        <button class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-700 transition duration-300"
+                            onclick="suspendCategory({{ $categoría->id }})">
+                            Suspender
+                        </button>
+                    @else
+                        <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300"
+                            onclick="activateCategory({{ $categoría->id }})">
+                            Activar
+                        </button>
+                    @endif
+
                     <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300"
                         onclick="viewCategory({{ $categoría->id }})">
                         Administrar

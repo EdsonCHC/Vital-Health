@@ -16,5 +16,6 @@ class Categoría extends Model
         'descripción',
         'características',
         'img',
+        'activa',
     ];
 }

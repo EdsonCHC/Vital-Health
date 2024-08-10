@@ -74,7 +74,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/statistics/{id}', [StatisticsController::class, 'show'])->name('statistics.show');
     Route::post('/admin/logout', [adminController::class, 'destroy'])->name('admin.logout');
     Route::resource('categorias', CategoríaController::class);
-
+    Route::put('/categorias/{id}/activate', [CategoríaController::class, 'activate'])->name('categorias.activate');
+    Route::put('/categorias/{id}/suspend', [CategoríaController::class, 'suspend'])->name('categorias.suspend');
 
 });
 

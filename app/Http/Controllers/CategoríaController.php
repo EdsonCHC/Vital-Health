@@ -34,6 +34,7 @@ class CategoríaController extends Controller
             'descripción' => $request->descripción,
             'características' => $request->características,
             'img' => $imageName,
+            'activa' => true,
         ]);
 
         return response()->json(['message' => 'Categoría agregada exitosamente']);
@@ -84,4 +85,25 @@ class CategoríaController extends Controller
 
         return response()->json(['success' => 'Categoría eliminada correctamente.']);
     }
+
+    public function suspend(Request $request, $id)
+    {
+        $categoría = categoría::findOrFail($id);
+        $categoría->activa = false; 
+        $categoría->save();
+    
+        return response()->json(['message' => 'Categoría suspendida exitosamente']);
+    }
+    
+
+    public function activate(Request $request, $id)
+    {
+        $categoría = categoría::findOrFail($id);
+        $categoría->activa = true; 
+        $categoría->save();
+    
+        return response()->json(['message' => 'Categoría activada exitosamente']);
+    }
+    
+    
 }

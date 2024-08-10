@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->text('descripción')->nullable();
             $table->text('características')->nullable();
             $table->string('img')->nullable();
+            $table->boolean('activa')->default(true); 
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('categorias');
+        Schema::dropIfExists('categorias'); 
     }
 };
