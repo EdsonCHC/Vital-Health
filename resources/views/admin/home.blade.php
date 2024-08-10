@@ -25,7 +25,7 @@
 
         <!-- Tarjetas de categorías -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach ($Categorías as $categoría)
+            @foreach ($categorías as $categoría) <!-- Usa el nombre correcto aquí -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
                     @if($categoría->img)
                         <img src="{{ asset('storage/images/' . $categoría->img) }}" alt="{{ $categoría->nombre }}"
@@ -45,22 +45,23 @@
                         onclick="viewCategory({{ $categoría->id }})">
                         Administrar
                     </button>
-
                 </div>
             @endforeach
         </div>
+    </div>
 
-        <div class="absolute bottom-0 left-0 px-8 my-2">
-            <a href="#" id="log_out_admin"
-                class="flex items-center justify-center p-4 mb-5 h-14 rounded transition duration-300 bg-vh-green-medium hover:bg-white hover:text-black text-white tracking-widest">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                </svg>
-                <span class="ml-2 text-base font-bold">Cerrar Sesión</span>
-            </a>
-        </div>
+
+    <div class="absolute bottom-0 left-0 px-8 my-2">
+        <a href="#" id="log_out_admin"
+            class="flex items-center justify-center p-4 mb-5 h-14 rounded transition duration-300 bg-vh-green-medium hover:bg-white hover:text-black text-white tracking-widest">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            <span class="ml-2 text-base font-bold">Cerrar Sesión</span>
+        </a>
+    </div>
     </div>
 </body>
 

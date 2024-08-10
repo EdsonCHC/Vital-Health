@@ -71,10 +71,10 @@ Route::middleware('auth:admin')->group(function () {
     Route::view('/staff', 'admin.staff');
     Route::view('/calendar', 'admin.calendar')->name('calendar');
     Route::get('/home', [CategoríaController::class, 'index'])->name('home');
-    Route::post('/categorías', [CategoríaController::class, 'store']);
     Route::get('/statistics/{id}', [StatisticsController::class, 'show'])->name('statistics.show');
     Route::post('/admin/logout', [adminController::class, 'destroy'])->name('admin.logout');
-    Route::resource('/Categorias', CategoríaController::class);
+    Route::resource('categorias', CategoríaController::class);
+
 
 });
 

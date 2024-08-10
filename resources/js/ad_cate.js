@@ -3,6 +3,7 @@ import jQuery from "jquery";
 window.$ = jQuery;
 
 $(document).ready(function () {
+    // Agregar nueva categoría
     $("#add_category").on("click", function (e) {
         e.preventDefault();
 
@@ -36,8 +37,8 @@ $(document).ready(function () {
 
                 const formData = new FormData();
                 formData.append("nombre", name);
-                formData.append("descripcion", description);
-                formData.append("caracteristicas", features);
+                formData.append("descripción", description);
+                formData.append("características", features);
                 if (img) {
                     formData.append("img", img);
                 }
@@ -49,27 +50,22 @@ $(document).ready(function () {
                 const formData = result.value;
 
                 $.ajax({
-                    url: "/Categorias",
+                    url: "/categorias",
                     method: "POST",
                     headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                            "content"
-                        ),
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                     },
                     processData: false,
                     contentType: false,
                     data: formData,
                     success: function (response) {
-                        console.log(
-                            "Categoría agregada exitosamente:",
-                            response
-                        );
+                        console.log("Categoría agregada exitosamente:", response);
                         Swal.fire(
                             "Éxito",
                             "La categoría se ha agregado exitosamente",
                             "success"
                         ).then(() => {
-                            location.reload(); //i hate that pod i hate that pod
+                            location.reload();
                         });
                     },
                     error: function (error) {
@@ -85,6 +81,7 @@ $(document).ready(function () {
         });
     });
 
+    // Editar categoría
     window.editCategory = function (id) {
         $.get(`/categorias/${id}/edit`, function (data) {
             Swal.fire({
@@ -93,9 +90,9 @@ $(document).ready(function () {
                     <label for="category_name">Nombre</label>
                     <input id="category_name" class="swal2-input" type="text" value="${data.nombre}" placeholder="Nombre">
                     <label for="category_description">Descripción</label>
-                    <textarea id="category_description" class="swal2-textarea" placeholder="Descripción">${data.descripcion}</textarea>
+                    <textarea id="category_description" class="swal2-textarea" placeholder="Descripción">${data.descripción}</textarea>
                     <label for="category_features">Características</label>
-                    <textarea id="category_features" class="swal2-textarea" placeholder="Características">${data.caracteristicas}</textarea>
+                    <textarea id="category_features" class="swal2-textarea" placeholder="Características">${data.características}</textarea>
                     <label for="category_img">Imagen</label>
                     <input id="category_img" class="swal2-input" type="file" accept="image/*">
                 `,
@@ -118,8 +115,8 @@ $(document).ready(function () {
                     const formData = new FormData();
                     formData.append("_method", "PUT");
                     formData.append("nombre", name);
-                    formData.append("descripcion", description);
-                    formData.append("caracteristicas", features);
+                    formData.append("descripción", description);
+                    formData.append("características", features);
                     if (img) {
                         formData.append("img", img);
                     }
@@ -134,18 +131,13 @@ $(document).ready(function () {
                         url: `/categorias/${id}`,
                         method: "POST",
                         headers: {
-                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                                "content"
-                            ),
+                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                         },
                         processData: false,
                         contentType: false,
                         data: formData,
                         success: function (response) {
-                            console.log(
-                                "Categoría actualizada exitosamente:",
-                                response
-                            );
+                            console.log("Categoría actualizada exitosamente:", response);
                             Swal.fire(
                                 "Éxito",
                                 "La categoría se ha actualizado exitosamente",
@@ -154,11 +146,8 @@ $(document).ready(function () {
                                 location.reload();
                             });
                         },
-                        error: function (error) {
-                            console.error(
-                                "Error al actualizar la categoría:",
-                                error
-                            );
+                        error: function (xhr, status, error) {
+                            console.error("Error al actualizar la categoría:", xhr.responseText);
                             Swal.fire(
                                 "Error",
                                 "Hubo un error al actualizar la categoría",
@@ -168,12 +157,14 @@ $(document).ready(function () {
                     });
                 }
             });
+        }).fail(function () {
+            Swal.fire("Error", "No se pudo encontrar la categoría", "error");
         });
     };
     window.viewCategory = function (id) {
         window.location.href = `/statistics/${id}`;
-    };
-
+    }
+    // Eliminar categoría
     window.deleteCategory = function (id) {
         Swal.fire({
             title: "¿Estás seguro?",
@@ -189,18 +180,13 @@ $(document).ready(function () {
                     url: `/categorias/${id}`,
                     method: "POST",
                     headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                            "content"
-                        ),
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                     },
                     data: {
                         _method: "DELETE",
                     },
                     success: function (response) {
-                        console.log(
-                            "Categoría eliminada exitosamente:",
-                            response
-                        );
+                        console.log("Categoría eliminada exitosamente:", response);
                         Swal.fire(
                             "Eliminado!",
                             "La categoría ha sido eliminada.",
@@ -209,8 +195,8 @@ $(document).ready(function () {
                             location.reload();
                         });
                     },
-                    error: function (error) {
-                        console.error("Error al eliminar la categoría:", error);
+                    error: function (xhr, status, error) {
+                        console.error("Error al eliminar la categoría:", xhr.responseText);
                         Swal.fire(
                             "Error",
                             "Hubo un error al eliminar la categoría",

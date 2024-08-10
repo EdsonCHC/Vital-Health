@@ -131,7 +131,7 @@ class UsuarioController extends Controller
             if ($admin && Hash::check($credentials['password'], $admin->password)) {
                 Auth::guard('admin')->login($admin);
                 $request->session()->regenerate();
-                return response()->json(['success' => true, 'redirect_url' => '/statistics'], 200);
+                return response()->json(['success' => true, 'redirect_url' => '/home'], 200);
             }
     
             // Si no se encontraron credenciales válidas

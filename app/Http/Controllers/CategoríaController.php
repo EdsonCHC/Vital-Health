@@ -10,8 +10,8 @@ class CategoríaController extends Controller
 {
     public function index()
     {
-        $Categorías = Categoría::all();
-        return view('admin.home', compact('Categorías'));
+        $categorías = Categoría::all();
+        return view('admin.home', compact('categorías'));
     }
 
     public function store(Request $request)
@@ -41,7 +41,7 @@ class CategoríaController extends Controller
 
     public function edit($id)
     {
-        $categoría = Categoría::find($id);
+        $categoría = Categoría::findOrFail($id);
         return response()->json($categoría);
     }
 
@@ -76,12 +76,12 @@ class CategoríaController extends Controller
 
     public function destroy($id)
     {
-        $categoría = Categoría::find($id);
+        $categoría = Categoría::findOrFail($id);
         if ($categoría->img) {
             Storage::delete('public/images/' . $categoría->img);
         }
         $categoría->delete();
 
-        return response()->json(['message' => 'Categoría eliminada exitosamente']);
+        return response()->json(['success' => 'Categoría eliminada correctamente.']);
     }
 }
