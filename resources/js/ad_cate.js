@@ -137,17 +137,14 @@ $(document).ready(function () {
                 title: "Editar Categoría",
                 html: `
                 <label for="category_name">Nombre</label>
-                <input id="category_name" class="swal2-input" type="text" value="${
-                    data.nombre
-                }" placeholder="Nombre">
+                <input id="category_name" class="swal2-input" type="text" value="${data.nombre
+                    }" placeholder="Nombre">
                 <label for="category_description">Descripción</label>
-                <textarea id="category_description" class="swal2-textarea" placeholder="Descripción">${
-                    data.descripcion || ""
-                }</textarea>
+                <textarea id="category_description" class="swal2-textarea" placeholder="Descripción">${data.descripcion || ""
+                    }</textarea>
                 <label for="category_features">Características</label>
-                <textarea id="category_features" class="swal2-textarea" placeholder="Características">${
-                    data.caracteristicas || ""
-                }</textarea>
+                <textarea id="category_features" class="swal2-textarea" placeholder="Características">${data.caracteristicas || ""
+                    }</textarea>
                 <label for="category_img">Imagen</label>
                 <input id="category_img" class="swal2-input" type="file" accept="image/*">
             `,

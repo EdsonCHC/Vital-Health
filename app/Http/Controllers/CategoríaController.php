@@ -56,52 +56,67 @@ class CategoríaController extends Controller
 
     public function show($id)
     {
-        // Buscar la categoría por ID
         $categoria = Categoría::find($id);
         if (!$categoria) {
-            return redirect('/')->with('error', 'Categoría no encontrada');
+            return redirect()->back()->with('error', 'La categoría no existe.');
         }
-
-        // Pasar la categoría a la vista
         return view('admin.statistics', ['categoria' => $categoria]);
     }
-
+    
     public function showAppointments($id)
     {
         $categoria = Categoría::find($id);
+        if (!$categoria) {
+            return redirect()->back()->with('error', 'La categoría no existe.');
+        }
         return view('admin.appointment', ['categoria' => $categoria]);
     }
-
+    
     public function showRecords($id)
     {
         $categoria = Categoría::find($id);
+        if (!$categoria) {
+            return redirect()->back()->with('error', 'La categoría no existe.');
+        }
         return view('admin.records', ['categoria' => $categoria]);
     }
-
+    
     public function showAd_chats($id)
     {
         $categoria = Categoría::find($id);
+        if (!$categoria) {
+            return redirect()->back()->with('error', 'La categoría no existe.');
+        }
         return view('admin.ad_chats', ['categoria' => $categoria]);
     }
-
+    
     public function showStaff($id)
     {
         $categoria = Categoría::find($id);
+        if (!$categoria) {
+            return redirect()->back()->with('error', 'La categoría no existe.');
+        }
         return view('admin.staff', ['categoria' => $categoria]);
     }
-
+    
     public function showCalendar($id)
     {
         $categoria = Categoría::find($id);
+        if (!$categoria) {
+            return redirect()->back()->with('error', 'La categoría no existe.');
+        }
         return view('admin.calendar', ['categoria' => $categoria]);
     }
-
-
+    
     public function edit($id)
     {
-        $categoria = Categoría::findOrFail($id);
+        $categoria = Categoría::find($id);
+        if (!$categoria) {
+            return response()->json(['error' => 'La categoría no existe.'], 404);
+        }
         return response()->json($categoria);
     }
+    
 
     public function update(Request $request, $id)
     {
