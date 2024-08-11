@@ -4,9 +4,9 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\CitaController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoríaController;
 use App\Http\Controllers\StatisticsController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,21 +63,21 @@ Route::middleware(['auth:doctor'])->group(function () {
 
 // Rutas del administrador
 Route::middleware('auth:admin')->group(function () {
-    Route::view('/home', 'admin.home');
-    Route::view('/statistics', 'admin.statistics');
-    Route::view('/appointment', 'admin.appointment');
-    Route::view('/records', 'admin.records');
-    Route::view('/ad_chats', 'admin.ad_chats');
-    Route::view('/staff', 'admin.staff');
-    Route::view('/calendar', 'admin.calendar')->name('calendar');
     Route::get('/home', [CategoríaController::class, 'index'])->name('home');
-    Route::get('/statistics/{id}', [StatisticsController::class, 'show'])->name('statistics.show');
-    Route::post('/admin/logout', [adminController::class, 'destroy'])->name('admin.logout');
+
+    Route::get('/statistics/{id}', [CategoríaController::class, 'show'])->name('statistics.show');
+    Route::get('/appointments/{id}', [CategoríaController::class, 'showAppointments'])->name('categorias.appointments');
+    Route::get('/records/{id}', [CategoríaController::class, 'showRecords'])->name('categorias.records');
+    Route::get('/ad_chats/{id}', [CategoríaController::class, 'showAd_chats'])->name('categorias.ad_chats');
+    Route::get('/staff/{id}', [CategoríaController::class, 'showStaff'])->name('categorias.staff');
+    Route::get('/calendar/{id}', [CategoríaController::class, 'showCalendar'])->name('categorias.calendar');
+    
+    Route::post('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
     Route::resource('categorias', CategoríaController::class);
     Route::put('/categorias/{id}/activate', [CategoríaController::class, 'activate'])->name('categorias.activate');
     Route::put('/categorias/{id}/suspend', [CategoríaController::class, 'suspend'])->name('categorias.suspend');
-
 });
+
 
 // Fallback route (404)
 Route::fallback(function () {

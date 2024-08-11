@@ -21,7 +21,7 @@
         @csrf
         <input type="hidden" id="_token" value="{{csrf_token()}}">
         <Input class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-2 lg:w-2/5" type="text" id="mail"
-          placeholder="Nombre de Usuario o Email"></Input>
+          placeholder="Correo Electronico"></Input>
         <input class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-10 lg:w-2/5" placeholder="Contraseña"
           type="password" id="password">
         <button

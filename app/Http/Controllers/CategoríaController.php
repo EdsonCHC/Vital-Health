@@ -10,16 +10,16 @@ class CategoríaController extends Controller
 {
     public function index()
     {
-        $categorías = Categoría::all();
-        return view('admin.home', compact('categorías'));
+        $categorias = Categoría::all();
+        return view('admin.home', compact('categorias'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'descripción' => 'nullable|string',
-            'características' => 'nullable|string',
+            'descripcion' => 'nullable|string',
+            'caracteristicas' => 'nullable|string',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -31,8 +31,8 @@ class CategoríaController extends Controller
 
         Categoría::create([
             'nombre' => $request->nombre,
-            'descripción' => $request->descripción,
-            'características' => $request->características,
+            'descripcion' => $request->descripcion,
+            'caracteristicas' => $request->caracteristicas,
             'img' => $imageName,
             'activa' => true,
         ]);
@@ -40,36 +40,79 @@ class CategoríaController extends Controller
         return response()->json(['message' => 'Categoría agregada exitosamente']);
     }
 
+    public function show($id)
+    {
+        // Buscar la categoría por ID
+        $categoria = Categoría::find($id);
+        if (!$categoria) {
+            return redirect('/')->with('error', 'Categoría no encontrada');
+        }
+
+        // Pasar la categoría a la vista
+        return view('admin.statistics', ['categoria' => $categoria]);
+    }
+
+    public function showAppointments($id)
+    {
+        $categoria = Categoría::find($id);
+        return view('admin.appointment', ['categoria' => $categoria]);
+    }
+
+    public function showRecords($id)
+    {
+        $categoria = Categoría::find($id);
+        return view('admin.records', ['categoria' => $categoria]);
+    }
+
+    public function showAd_chats($id)
+    {
+        $categoria = Categoría::find($id);
+        return view('admin.ad_chats', ['categoria' => $categoria]);
+    }
+
+    public function showStaff($id)
+    {
+        $categoria = Categoría::find($id);
+        return view('admin.staff', ['categoria' => $categoria]);
+    }
+
+    public function showCalendar($id)
+    {
+        $categoria = Categoría::find($id);
+        return view('admin.calendar', ['categoria' => $categoria]);
+    }
+
+
     public function edit($id)
     {
-        $categoría = Categoría::findOrFail($id);
-        return response()->json($categoría);
+        $categoria = Categoría::findOrFail($id);
+        return response()->json($categoria);
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'descripción' => 'nullable|string',
-            'características' => 'nullable|string',
+            'descripcion' => 'nullable|string',
+            'caracteristicas' => 'nullable|string',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $categoría = Categoría::find($id);
+        $categoria = Categoría::find($id);
 
         if ($request->hasFile('img')) {
-            if ($categoría->img) {
-                Storage::delete('public/images/' . $categoría->img);
+            if ($categoria->img) {
+                Storage::delete('public/images/' . $categoria->img);
             }
             $imageName = time() . '.' . $request->img->extension();
             $request->img->storeAs('public/images', $imageName);
-            $categoría->img = $imageName;
+            $categoria->img = $imageName;
         }
 
-        $categoría->update([
+        $categoria->update([
             'nombre' => $request->nombre,
-            'descripción' => $request->descripción,
-            'características' => $request->características,
+            'descripcion' => $request->descripcion,
+            'caracteristicas' => $request->caracteristicas,
         ]);
 
         return response()->json(['message' => 'Categoría actualizada exitosamente']);
@@ -77,33 +120,30 @@ class CategoríaController extends Controller
 
     public function destroy($id)
     {
-        $categoría = Categoría::findOrFail($id);
-        if ($categoría->img) {
-            Storage::delete('public/images/' . $categoría->img);
+        $categoria = Categoría::findOrFail($id);
+        if ($categoria->img) {
+            Storage::delete('public/images/' . $categoria->img);
         }
-        $categoría->delete();
+        $categoria->delete();
 
         return response()->json(['success' => 'Categoría eliminada correctamente.']);
     }
 
     public function suspend(Request $request, $id)
     {
-        $categoría = categoría::findOrFail($id);
-        $categoría->activa = false; 
-        $categoría->save();
-    
+        $categoria = Categoría::findOrFail($id);
+        $categoria->activa = false;
+        $categoria->save();
+
         return response()->json(['message' => 'Categoría suspendida exitosamente']);
     }
-    
 
     public function activate(Request $request, $id)
     {
-        $categoría = categoría::findOrFail($id);
-        $categoría->activa = true; 
-        $categoría->save();
-    
+        $categoria = Categoría::findOrFail($id);
+        $categoria->activa = true;
+        $categoria->save();
+
         return response()->json(['message' => 'Categoría activada exitosamente']);
     }
-    
-    
 }

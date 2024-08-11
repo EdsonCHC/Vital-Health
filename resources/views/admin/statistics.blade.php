@@ -6,8 +6,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Statistics</title>
-    @vite(['resources/css/app.css','resources/js/admin.js'])
-    <!-- @vite(['resources/css/app.css','resources/js/stats_chart.js']) -->
+    @vite(['resources/css/app.css', 'resources/js/admin.js'])
+    <!-- @vite(['resources/css/app.css', 'resources/js/stats_chart.js']) -->
 </head>
 
 <body class="w-full h-full bg-vh-alice-blue">
@@ -18,9 +18,9 @@
     <!-- Estilos Desktop -->
     <div class="hidden lg:flex flex-col justify-between items-center ml-40 mt-12">
         <div class="mb-2">
-        <h2 class="text-xl font-bold mb-4">{{ $categoría->nombre }}</h2>
-        <p class="mb-4">{{ $categoría->descripción }}</p>
-        <p class="mb-4">{{ $categoría->características }}</p>
+            <h2 class="text-xl font-bold mb-4">{{ $categoria->nombre }}</h2>
+            <p class="mb-4">{{ $categoria->descripcion }}</p>
+            <p class="mb-4">{{ $categoria->caracteristicas }}</p>
         </div>
         <div class="flex justify-between w-4/6 mt-4">
             <div class="w-80 max-w-80 h-auto m-4 bg-white opacity-80 rounded-lg shadow-xl">
@@ -30,7 +30,7 @@
                         <p class="font-bold text-3xl text-vh-green">10</p>
                     </div>
                     <div>
-                        <img class="w-24 " src="{{ asset('storage/svg/doc-icon-green.svg') }}" alt="Inicio" />
+                        <img class="w-24" src="{{ asset('storage/svg/doc-icon-green.svg') }}" alt="Inicio" />
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="w-80 max-w-80 h-auto m-4 bg-white opacity-80 rounded-lg shadow-xl">
-                <div class="flex justify-evenly  mt-5">
+                <div class="flex justify-evenly mt-5">
                     <div class="flex-col">
                         <h3 class="font-bold text-2xl mb-6">Expedientes</h3>
                         <p class="font-bold text-3xl text-vh-green">10</p>
@@ -75,15 +75,16 @@
                             <span class="flex justify-center font-bold text-white">27</span>
                             <span class="flex justify-center font-bold text-white">Feb</span>
                         </div>
-                        <div class="bg-vh-green-light rounded-md w-16 h-6 ">
-                            <a class="flex font-bold justify-center hover:bg-white transition duration-300" href="#">
+                        <div class="bg-vh-green-light rounded-md w-16 h-6">
+                            <a class="flex font-bold justify-center hover:bg-white transition duration-300"
+                                href="#">
                                 Ir
                             </a>
                         </div>
                     </div>
                     <div class="flex flex-col mt-4 mx-auto">
                         <h3 class="font-bold text-base">Notificaciones de cita</h3>
-                        <p class="text-vh-green-light mb-2">Paciente: Juan José</p>
+                        <p class="text-vh-green-light mb-2">Paciente: Juan Jose</p>
                         <span class="font-bold text-sm opacity-70">Hora: 8am</span>
                         <span class="font-bold text-sm opacity-70">Fecha: 10 de Marzo</span>
                     </div>
@@ -128,7 +129,7 @@
                     <div class="flex justify-evenly text-center">
                         <div class="flex-col my-auto">
                             <h3 class="font-bold text-2xl mx-auto">Expediente</h3>
-                            <p class="font-bold text-3xl  text-vh-green">10</p>
+                            <p class="font-bold text-3xl text-vh-green">10</p>
                         </div>
                         <div class="my-5">
                             <img class="w-28" src="{{ asset('storage/svg/file-icon-second-green.svg') }}"
@@ -157,7 +158,7 @@
                         </div>
                         <div class="flex flex-col mt-2 mx-auto">
                             <h3 class="font-bold text-base">Notificaciones de cita</h3>
-                            <p class="text-vh-green-light mb-1">Paciente: Juan José</p>
+                            <p class="text-vh-green-light mb-1">Paciente: Juan Jose</p>
                             <span class="font-bold text-sm opacity-70">Hora: 8am</span>
                             <span class="font-bold text-sm opacity-70">Fecha: 10 de Marzo</span>
                         </div>

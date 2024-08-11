@@ -73,11 +73,31 @@ class DatabaseSeeder extends Seeder
             ]
         ];
 
+        // Crear categorías de ejemplo
+        $categorias = [
+            [
+                'nombre' => 'Cardiología',
+                'descripcion' => 'Especialidad médica que se ocupa del corazón.',
+                'caracteristicas' => 'Consulta, Diagnóstico, Tratamiento',
+                'img' => 'cardiologia.jpg',
+                'activa' => true,
+            ],
+            [
+                'nombre' => 'Dermatología',
+                'descripcion' => 'Especialidad médica que se ocupa de la piel.',
+                'caracteristicas' => 'Consulta, Diagnóstico, Tratamiento',
+                'img' => 'dermatologia.jpg',
+                'activa' => true,
+            ],
+            // Añadir más categorías según sea necesario
+        ];
+
         // Insertar los registros en la base de datos
-        DB::transaction(function () use ($patients, $admin, $doctors) {
+        DB::transaction(function () use ($patients, $admin, $doctors, $categorias) {
             DB::table('patients')->insert($patients);
             DB::table('admins')->insert($admin);
             DB::table('doctors')->insert($doctors);
+            DB::table('categorias')->insert($categorias);
         });
     }
 }

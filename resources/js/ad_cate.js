@@ -29,7 +29,9 @@ $(document).ready(function () {
                 const img = $("#category_img").prop("files")[0];
 
                 if (!name || !description || !features) {
-                    Swal.showValidationMessage("Por favor completa todos los campos");
+                    Swal.showValidationMessage(
+                        "Por favor completa todos los campos"
+                    );
                     return false;
                 }
 
@@ -51,25 +53,79 @@ $(document).ready(function () {
                     url: "/categorias",
                     method: "POST",
                     headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ),
                     },
                     processData: false,
                     contentType: false,
                     data: formData,
                     success: function (response) {
-                        console.log("Categoría agregada exitosamente:", response);
-                        Swal.fire("Éxito", "La categoría se ha agregado exitosamente", "success").then(() => {
+                        console.log(
+                            "Categoría agregada exitosamente:",
+                            response
+                        );
+                        Swal.fire(
+                            "Éxito",
+                            "La categoría se ha agregado exitosamente",
+                            "success"
+                        ).then(() => {
                             location.reload();
                         });
                     },
                     error: function (error) {
                         console.error("Error al agregar la categoría:", error);
-                        Swal.fire("Error", "Hubo un error al agregar la categoría", "error");
+                        Swal.fire(
+                            "Error",
+                            "Hubo un error al agregar la categoría",
+                            "error"
+                        );
                     },
                 });
             }
         });
     });
+
+    window.deleteCategory = function (categoryId) {
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "¿Quieres eliminar esta categoría?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, eliminar!",
+            cancelButtonText: "Cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: `/categorias/${categoryId}`,
+                    type: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ),
+                    },
+                    success: function (response) {
+                        Swal.fire(
+                            "Eliminado!",
+                            response.success,
+                            "success"
+                        ).then(() => {
+                            location.reload();
+                        });
+                    },
+                    error: function (xhr) {
+                        Swal.fire(
+                            "Error!",
+                            "Hubo un problema al eliminar la categoría.",
+                            "error"
+                        );
+                    },
+                });
+            }
+        });
+    };
 
     // Editar categoría
     window.editCategory = function (id) {
@@ -96,7 +152,9 @@ $(document).ready(function () {
                     const img = $("#category_img").prop("files")[0];
 
                     if (!name || !description || !features) {
-                        Swal.showValidationMessage("Por favor completa todos los campos");
+                        Swal.showValidationMessage(
+                            "Por favor completa todos los campos"
+                        );
                         return false;
                     }
 
@@ -119,20 +177,36 @@ $(document).ready(function () {
                         url: `/categorias/${id}`,
                         method: "POST",
                         headers: {
-                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                                "content"
+                            ),
                         },
                         processData: false,
                         contentType: false,
                         data: formData,
                         success: function (response) {
-                            console.log("Categoría actualizada exitosamente:", response);
-                            Swal.fire("Éxito", "La categoría se ha actualizado exitosamente", "success").then(() => {
+                            console.log(
+                                "Categoría actualizada exitosamente:",
+                                response
+                            );
+                            Swal.fire(
+                                "Éxito",
+                                "La categoría se ha actualizado exitosamente",
+                                "success"
+                            ).then(() => {
                                 location.reload();
                             });
                         },
                         error: function (xhr, status, error) {
-                            console.error("Error al actualizar la categoría:", xhr.responseText);
-                            Swal.fire("Error", "Hubo un error al actualizar la categoría", "error");
+                            console.error(
+                                "Error al actualizar la categoría:",
+                                xhr.responseText
+                            );
+                            Swal.fire(
+                                "Error",
+                                "Hubo un error al actualizar la categoría",
+                                "error"
+                            );
                         },
                     });
                 }
@@ -164,27 +238,42 @@ $(document).ready(function () {
                     url: `/categorias/${id}/suspend`,
                     method: "POST",
                     headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ),
                     },
                     data: {
                         _method: "PUT",
                         activa: false,
                     },
                     success: function (response) {
-                        console.log("Categoría suspendida exitosamente:", response);
-                        Swal.fire("Suspendida!", "La categoría ha sido suspendida.", "success").then(() => {
+                        console.log(
+                            "Categoría suspendida exitosamente:",
+                            response
+                        );
+                        Swal.fire(
+                            "Suspendida!",
+                            "La categoría ha sido suspendida.",
+                            "success"
+                        ).then(() => {
                             location.reload();
                         });
                     },
                     error: function (xhr, status, error) {
-                        console.error("Error al suspender la categoría:", xhr.responseText);
-                        Swal.fire("Error", "Hubo un error al suspender la categoría", "error");
+                        console.error(
+                            "Error al suspender la categoría:",
+                            xhr.responseText
+                        );
+                        Swal.fire(
+                            "Error",
+                            "Hubo un error al suspender la categoría",
+                            "error"
+                        );
                     },
                 });
             }
         });
     };
-
 
     window.activateCategory = function (id) {
         Swal.fire({
@@ -202,25 +291,40 @@ $(document).ready(function () {
                     url: `/categorias/${id}/activate`,
                     method: "POST",
                     headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ),
                     },
                     data: {
                         _method: "PUT",
                         activa: true, // Usar 'activa' en lugar de 'active'
                     },
                     success: function (response) {
-                        console.log("Categoría activada exitosamente:", response);
-                        Swal.fire("Activada!", "La categoría ha sido activada.", "success").then(() => {
+                        console.log(
+                            "Categoría activada exitosamente:",
+                            response
+                        );
+                        Swal.fire(
+                            "Activada!",
+                            "La categoría ha sido activada.",
+                            "success"
+                        ).then(() => {
                             location.reload();
                         });
                     },
                     error: function (xhr, status, error) {
-                        console.error("Error al activar la categoría:", xhr.responseText);
-                        Swal.fire("Error", "Hubo un error al activar la categoría", "error");
+                        console.error(
+                            "Error al activar la categoría:",
+                            xhr.responseText
+                        );
+                        Swal.fire(
+                            "Error",
+                            "Hubo un error al activar la categoría",
+                            "error"
+                        );
                     },
                 });
             }
         });
     };
-
 });
