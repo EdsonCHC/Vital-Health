@@ -10,15 +10,15 @@ $(document).ready(function () {
         Swal.fire({
             title: "Nueva Categoría",
             html: `
-            <label for="category_name">Nombre</label>
-            <input id="category_name" class="swal2-input" type="text" placeholder="Nombre">
-            <label for="category_description">Descripción</label>
-            <textarea id="category_description" class="swal2-textarea" placeholder="Descripción"></textarea>
-            <label for="category_features">Características</label>
-            <textarea id="category_features" class="swal2-textarea" placeholder="Características"></textarea>
-            <label for="category_img">Imagen</label>
-            <input id="category_img" class="swal2-input" type="file" accept="image/*">
-        `,
+        <label for="category_name">Nombre</label>
+        <input id="category_name" class="swal2-input" type="text" placeholder="Nombre">
+        <label for="category_description">Descripción</label>
+        <textarea id="category_description" class="swal2-textarea" placeholder="Descripción"></textarea>
+        <label for="category_features">Características</label>
+        <textarea id="category_features" class="swal2-textarea" placeholder="Características"></textarea>
+        <label for="category_img">Imagen</label>
+        <input id="category_img" class="swal2-input" type="file" accept="image/*">
+    `,
             showCancelButton: true,
             confirmButtonText: "Agregar",
             cancelButtonText: "Cancelar",
@@ -27,13 +27,6 @@ $(document).ready(function () {
                 const description = $("#category_description").val();
                 const features = $("#category_features").val();
                 const img = $("#category_img").prop("files")[0];
-
-                if (!name || !description || !features) {
-                    Swal.showValidationMessage(
-                        "Por favor completa todos los campos"
-                    );
-                    return false;
-                }
 
                 const formData = new FormData();
                 formData.append("nombre", name);
@@ -69,59 +62,32 @@ $(document).ready(function () {
                             }
                         );
                     },
-                    error: function (error) {
-                        console.error("Error al agregar la categoría:", error);
-                        Swal.fire(
-                            "Error",
-                            "Hubo un error al agregar la categoría",
-                            "error"
-                        );
+                    error: function (xhr) {
+                        console.log("Error response:", xhr); // Depuración
+
+                        let errorMessage =
+                            "Hubo un error al agregar la categoría";
+
+                        if (xhr.status === 422) {
+                            const errors = xhr.responseJSON.errors;
+                            errorMessage = Object.values(errors)
+                                .map((error) => error.join("<br>"))
+                                .join("<br>");
+                        } else if (
+                            xhr.responseJSON &&
+                            xhr.responseJSON.message
+                        ) {
+                            errorMessage = xhr.responseJSON.message;
+                        }
+
+                        console.log("Error message:", errorMessage); // Depuración
+
+                        Swal.fire("Error", errorMessage, "error");
                     },
                 });
             }
         });
     });
-
-    window.deleteCategory = function (categoryId) {
-        Swal.fire({
-            title: "¿Estás seguro?",
-            text: "¿Quieres eliminar esta categoría?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Sí, eliminar!",
-            cancelButtonText: "Cancelar",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: `/categorias/${categoryId}`,
-                    type: "DELETE",
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                            "content"
-                        ),
-                    },
-                    success: function (response) {
-                        Swal.fire(
-                            "Eliminado!",
-                            response.success,
-                            "success"
-                        ).then(() => {
-                            location.reload();
-                        });
-                    },
-                    error: function (xhr) {
-                        Swal.fire(
-                            "Error!",
-                            "Hubo un problema al eliminar la categoría.",
-                            "error"
-                        );
-                    },
-                });
-            }
-        });
-    };
 
     window.deleteCategory = function (categoryId) {
         Swal.fire({
@@ -170,15 +136,21 @@ $(document).ready(function () {
             Swal.fire({
                 title: "Editar Categoría",
                 html: `
-                    <label for="category_name">Nombre</label>
-                    <input id="category_name" class="swal2-input" type="text" value="${data.nombre}" placeholder="Nombre">
-                    <label for="category_description">Descripción</label>
-                    <textarea id="category_description" class="swal2-textarea" placeholder="Descripción">${data.descripción}</textarea>
-                    <label for="category_features">Características</label>
-                    <textarea id="category_features" class="swal2-textarea" placeholder="Características">${data.características}</textarea>
-                    <label for="category_img">Imagen</label>
-                    <input id="category_img" class="swal2-input" type="file" accept="image/*">
-                `,
+                <label for="category_name">Nombre</label>
+                <input id="category_name" class="swal2-input" type="text" value="${
+                    data.nombre
+                }" placeholder="Nombre">
+                <label for="category_description">Descripción</label>
+                <textarea id="category_description" class="swal2-textarea" placeholder="Descripción">${
+                    data.descripcion || ""
+                }</textarea>
+                <label for="category_features">Características</label>
+                <textarea id="category_features" class="swal2-textarea" placeholder="Características">${
+                    data.caracteristicas || ""
+                }</textarea>
+                <label for="category_img">Imagen</label>
+                <input id="category_img" class="swal2-input" type="file" accept="image/*">
+            `,
                 showCancelButton: true,
                 confirmButtonText: "Guardar",
                 cancelButtonText: "Cancelar",
@@ -198,56 +170,73 @@ $(document).ready(function () {
                     const formData = new FormData();
                     formData.append("_method", "PUT");
                     formData.append("nombre", name);
-                    formData.append("descripción", description);
-                    formData.append("características", features);
+                    formData.append("descripcion", description);
+                    formData.append("caracteristicas", features);
                     if (img) {
                         formData.append("img", img);
                     }
 
                     return formData;
                 },
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    const formData = result.value;
+            })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `/categorias/${id}`,
+                            method: "POST",
+                            headers: {
+                                "X-CSRF-TOKEN": $(
+                                    'meta[name="csrf-token"]'
+                                ).attr("content"),
+                            },
+                            processData: false,
+                            contentType: false,
+                            data: result.value,
+                            success: function (response) {
+                                console.log(
+                                    "Categoría actualizada exitosamente:",
+                                    response
+                                );
+                                Swal.fire(
+                                    "Éxito",
+                                    response.message,
+                                    "success"
+                                ).then(() => {
+                                    location.reload();
+                                });
+                            },
+                            error: function (xhr) {
+                                console.log("Error response:", xhr); // Depuración
 
-                    $.ajax({
-                        url: `/categorias/${id}`,
-                        method: "POST",
-                        headers: {
-                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                                "content"
-                            ),
-                        },
-                        processData: false,
-                        contentType: false,
-                        data: formData,
-                        success: function (response) {
-                            console.log(
-                                "Categoría actualizada exitosamente:",
-                                response
-                            );
-                            Swal.fire(
-                                "Éxito",
-                                "La categoría se ha actualizado exitosamente",
-                                "success"
-                            ).then(() => {
-                                location.reload();
-                            });
-                        },
-                        error: function (xhr, status, error) {
-                            console.error(
-                                "Error al actualizar la categoría:",
-                                xhr.responseText
-                            );
-                            Swal.fire(
-                                "Error",
-                                "Hubo un error al actualizar la categoría",
-                                "error"
-                            );
-                        },
-                    });
-                }
-            });
+                                let errorMessage =
+                                    "Hubo un error al actualizar la categoría";
+
+                                if (xhr.status === 422) {
+                                    const errors = xhr.responseJSON.errors;
+                                    errorMessage = Object.values(errors)
+                                        .map((error) => error.join("<br>"))
+                                        .join("<br>");
+                                } else if (
+                                    xhr.responseJSON &&
+                                    xhr.responseJSON.message
+                                ) {
+                                    errorMessage = xhr.responseJSON.message;
+                                }
+
+                                console.log("Error message:", errorMessage); // Depuración
+
+                                Swal.fire("Error", errorMessage, "error");
+                            },
+                        });
+                    }
+                })
+                .fail(function () {
+                    Swal.fire(
+                        "Error",
+                        "No se pudo encontrar la categoría",
+                        "error"
+                    );
+                });
         }).fail(function () {
             Swal.fire("Error", "No se pudo encontrar la categoría", "error");
         });

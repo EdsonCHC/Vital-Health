@@ -17,8 +17,8 @@ class CategoríaController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required|string|max:255',
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:255|unique:categorias,nombre',
             'descripcion' => 'nullable|string',
             'caracteristicas' => 'nullable|string',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -31,7 +31,6 @@ class CategoríaController extends Controller
             $categoria->descripcion = $request->input('descripcion');
             $categoria->caracteristicas = $request->input('caracteristicas');
 
-            // Manejar la imagen
             if ($request->hasFile('img')) {
                 $image = $request->file('img');
                 $imagePath = $image->move(public_path('img'), $image->getClientOriginalName());
@@ -40,7 +39,6 @@ class CategoríaController extends Controller
 
             $categoria->save();
 
-            // Devolver respuesta en formato JSON
             return response()->json([
                 'message' => 'Categoría agregada exitosamente',
                 'data' => $categoria
@@ -49,11 +47,10 @@ class CategoríaController extends Controller
             // Registrar el error
             Log::error('Error al agregar categoría: ' . $e->getMessage());
 
-            // Devolver una respuesta de error en formato JSON
             return response()->json([
                 'message' => 'Hubo un error al agregar la categoría',
                 'error' => $e->getMessage()
-            ], 500); // Código de estado HTTP 500 para error del servidor
+            ], 500);
         }
     }
 
@@ -109,7 +106,7 @@ class CategoríaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255|unique:categorias,nombre,' . $id,
             'descripcion' => 'nullable|string',
             'caracteristicas' => 'nullable|string',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -117,22 +114,40 @@ class CategoríaController extends Controller
 
         $categoria = Categoría::find($id);
 
-        if ($request->hasFile('img')) {
-            if ($categoria->img) {
-                Storage::delete('public/images/' . $categoria->img);
-            }
-            $imageName = time() . '.' . $request->img->extension();
-            $request->img->storeAs('public/images', $imageName);
-            $categoria->img = $imageName;
+        if (!$categoria) {
+            return response()->json(['message' => 'Categoría no encontrada'], 404);
         }
 
-        $categoria->update([
-            'nombre' => $request->nombre,
-            'descripcion' => $request->descripcion,
-            'caracteristicas' => $request->caracteristicas,
-        ]);
+        try {
+            // Manejo de la imagen
+            if ($request->hasFile('img')) {
+                // Borra la imagen antigua si existe
+                if ($categoria->img && file_exists(public_path('img/' . $categoria->img))) {
+                    Storage::delete('public/images/' . $categoria->img);
+                }
 
-        return response()->json(['message' => 'Categoría actualizada exitosamente']);
+                // Guarda la nueva imagen
+                $image = $request->file('img');
+                $imageName = time() . '.' . $image->extension();
+                $imagePath = $image->move(public_path('img'), $imageName);
+                $categoria->img = 'img/' . $imageName;
+            }
+
+            $categoria->update([
+                'nombre' => $request->input('nombre'),
+                'descripcion' => $request->input('descripcion'),
+                'caracteristicas' => $request->input('caracteristicas'),
+            ]);
+
+            return response()->json(['message' => 'Categoría actualizada exitosamente', 'data' => $categoria]);
+        } catch (\Exception $e) {
+            Log::error('Error al actualizar la categoría: ' . $e->getMessage());
+
+            return response()->json([
+                'message' => 'Hubo un error al actualizar la categoría',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function destroy($id)
@@ -167,6 +182,4 @@ class CategoríaController extends Controller
 
         return response()->json(['message' => 'Categoría activada exitosamente']);
     }
-    
-    
 }

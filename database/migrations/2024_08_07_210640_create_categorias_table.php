@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->id();
             $table->string('nombre')->unique(); 
             $table->text('descripcion')->nullable(); 
-            $table->text('caracteristicas')->nullable(); 
-            $table->string('img')->nullable();
+            $table->text('caracteristicas')->nullable();
+            $table->string('img', 2048)->nullable();
             $table->boolean('activa')->default(true);
             $table->timestamps();
             
