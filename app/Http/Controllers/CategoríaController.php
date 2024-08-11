@@ -135,6 +135,10 @@ class CategoríaController extends Controller
         $categoria->activa = false;
         $categoria->save();
 
+        $categoría = Categoría::findOrFail($id);
+        $categoría->activa = false;
+        $categoría->save();
+
         return response()->json(['message' => 'Categoría suspendida exitosamente']);
     }
 

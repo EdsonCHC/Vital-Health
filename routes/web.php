@@ -63,6 +63,7 @@ Route::middleware(['auth:doctor'])->group(function () {
 
 // Rutas del administrador
 Route::middleware('auth:admin')->group(function () {
+    Route::view('/home', 'admin.home');
     Route::get('/home', [CategoríaController::class, 'index'])->name('home');
 
     Route::get('/statistics/{id}', [CategoríaController::class, 'show'])->name('statistics.show');
