@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Categoría;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class CategoríaController extends Controller
 {
@@ -23,21 +24,37 @@ class CategoríaController extends Controller
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $imageName = null;
-        if ($request->hasFile('img')) {
-            $imageName = time() . '.' . $request->img->extension();
-            $request->img->storeAs('public/images', $imageName);
+        try {
+            // Crear una nueva categoría
+            $categoria = new Categoría();
+            $categoria->nombre = $request->input('nombre');
+            $categoria->descripcion = $request->input('descripcion');
+            $categoria->caracteristicas = $request->input('caracteristicas');
+
+            // Manejar la imagen
+            if ($request->hasFile('img')) {
+                $image = $request->file('img');
+                $imagePath = $image->move(public_path('img'), $image->getClientOriginalName());
+                $categoria->img = 'img/' . $image->getClientOriginalName();
+            }
+
+            $categoria->save();
+
+            // Devolver respuesta en formato JSON
+            return response()->json([
+                'message' => 'Categoría agregada exitosamente',
+                'data' => $categoria
+            ]);
+        } catch (\Exception $e) {
+            // Registrar el error
+            Log::error('Error al agregar categoría: ' . $e->getMessage());
+
+            // Devolver una respuesta de error en formato JSON
+            return response()->json([
+                'message' => 'Hubo un error al agregar la categoría',
+                'error' => $e->getMessage()
+            ], 500); // Código de estado HTTP 500 para error del servidor
         }
-
-        Categoría::create([
-            'nombre' => $request->nombre,
-            'descripcion' => $request->descripcion,
-            'caracteristicas' => $request->caracteristicas,
-            'img' => $imageName,
-            'activa' => true,
-        ]);
-
-        return response()->json(['message' => 'Categoría agregada exitosamente']);
     }
 
     public function show($id)
@@ -150,4 +167,6 @@ class CategoríaController extends Controller
 
         return response()->json(['message' => 'Categoría activada exitosamente']);
     }
+    
+    
 }

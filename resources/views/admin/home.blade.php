@@ -25,11 +25,12 @@
 
         <!-- Tarjetas de categorías -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach ($categorias as $categoria) <!-- Usa el nombre correcto aquí -->
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    @if($categoria->img)
-                        <img src="{{ asset('storage/images/' . $categoria->img) }}" alt="{{ $categoria->nombre }}"
-                            class="w-full h-auto mb-4">
+            @foreach ($categorias as $categoria)
+                <!-- Usa el nombre correcto aquí -->
+                <div class="h-80 bg-white p-6 rounded-lg shadow-lg">
+                    @if ($categoria->img)
+                        <img src="{{ asset($categoria->img) }}" alt="{{ $categoria->nombre }}"
+                            class="mx-auto max-h-40 mb-4">
                     @endif
                     <h2 class="text-xl font-bold mb-4">{{ $categoria->nombre }}</h2>
                     <p class="mb-4">{{ $categoria->descripción }}</p>
@@ -42,12 +43,14 @@
                         Eliminar
                     </button>
                     @if ($categoria->activa)
-                        <button class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-700 transition duration-300"
+                        <button
+                            class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-700 transition duration-300"
                             onclick="suspendCategory({{ $categoria->id }})">
                             Suspender
                         </button>
                     @else
-                        <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300"
+                        <button
+                            class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300"
                             onclick="activateCategory({{ $categoria->id }})">
                             Activar
                         </button>

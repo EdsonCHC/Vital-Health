@@ -10,15 +10,15 @@ $(document).ready(function () {
         Swal.fire({
             title: "Nueva Categoría",
             html: `
-                <label for="category_name">Nombre</label>
-                <input id="category_name" class="swal2-input" type="text" placeholder="Nombre">
-                <label for="category_description">Descripción</label>
-                <textarea id="category_description" class="swal2-textarea" placeholder="Descripción"></textarea>
-                <label for="category_features">Características</label>
-                <textarea id="category_features" class="swal2-textarea" placeholder="Características"></textarea>
-                <label for="category_img">Imagen</label>
-                <input id="category_img" class="swal2-input" type="file" accept="image/*">
-            `,
+            <label for="category_name">Nombre</label>
+            <input id="category_name" class="swal2-input" type="text" placeholder="Nombre">
+            <label for="category_description">Descripción</label>
+            <textarea id="category_description" class="swal2-textarea" placeholder="Descripción"></textarea>
+            <label for="category_features">Características</label>
+            <textarea id="category_features" class="swal2-textarea" placeholder="Características"></textarea>
+            <label for="category_img">Imagen</label>
+            <input id="category_img" class="swal2-input" type="file" accept="image/*">
+        `,
             showCancelButton: true,
             confirmButtonText: "Agregar",
             cancelButtonText: "Cancelar",
@@ -37,8 +37,8 @@ $(document).ready(function () {
 
                 const formData = new FormData();
                 formData.append("nombre", name);
-                formData.append("descripción", description);
-                formData.append("características", features);
+                formData.append("descripcion", description);
+                formData.append("caracteristicas", features);
                 if (img) {
                     formData.append("img", img);
                 }
@@ -47,8 +47,6 @@ $(document).ready(function () {
             },
         }).then((result) => {
             if (result.isConfirmed) {
-                const formData = result.value;
-
                 $.ajax({
                     url: "/categorias",
                     method: "POST",
@@ -59,19 +57,17 @@ $(document).ready(function () {
                     },
                     processData: false,
                     contentType: false,
-                    data: formData,
+                    data: result.value,
                     success: function (response) {
                         console.log(
                             "Categoría agregada exitosamente:",
                             response
                         );
-                        Swal.fire(
-                            "Éxito",
-                            "La categoría se ha agregado exitosamente",
-                            "success"
-                        ).then(() => {
-                            location.reload();
-                        });
+                        Swal.fire("Éxito", response.message, "success").then(
+                            () => {
+                                location.reload();
+                            }
+                        );
                     },
                     error: function (error) {
                         console.error("Error al agregar la categoría:", error);
@@ -85,6 +81,7 @@ $(document).ready(function () {
             }
         });
     });
+
     window.deleteCategory = function (categoryId) {
         Swal.fire({
             title: "¿Estás seguro?",
@@ -94,31 +91,33 @@ $(document).ready(function () {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Sí, eliminar!",
-            cancelButtonText: "Cancelar"
+            cancelButtonText: "Cancelar",
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
                     url: `/categorias/${categoryId}`,
-                    type: 'DELETE',
+                    type: "DELETE",
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ),
                     },
                     success: function (response) {
                         Swal.fire(
-                            'Eliminado!',
+                            "Eliminado!",
                             response.success,
-                            'success'
+                            "success"
                         ).then(() => {
                             location.reload();
                         });
                     },
                     error: function (xhr) {
                         Swal.fire(
-                            'Error!',
-                            'Hubo un problema al eliminar la categoría.',
-                            'error'
+                            "Error!",
+                            "Hubo un problema al eliminar la categoría.",
+                            "error"
                         );
-                    }
+                    },
                 });
             }
         });
@@ -258,7 +257,6 @@ $(document).ready(function () {
     window.viewCategory = function (id) {
         window.location.href = `/statistics/${id}`;
     };
-
 
     // Suspender categoría
     window.suspendCategory = function (id) {

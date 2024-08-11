@@ -81,6 +81,8 @@ class DatabaseSeeder extends Seeder
                 'caracteristicas' => 'Consulta, Diagnóstico, Tratamiento',
                 'img' => 'cardiologia.jpg',
                 'activa' => true,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'nombre' => 'Dermatología',
@@ -88,6 +90,8 @@ class DatabaseSeeder extends Seeder
                 'caracteristicas' => 'Consulta, Diagnóstico, Tratamiento',
                 'img' => 'dermatologia.jpg',
                 'activa' => true,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             // Añadir más categorías según sea necesario
         ];
