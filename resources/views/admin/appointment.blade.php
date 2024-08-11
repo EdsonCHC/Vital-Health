@@ -18,7 +18,7 @@
     <div class="hidden lg:flex flex-col justify-between items-center ml-40 mt-12">
         <div class="mb-2">
             <h2 class="font-bold text-2xl">
-                Citas del Area de Pediatria
+                Citas del Area de {{ $categoria->nombre }}
             </h2>
         </div>
         <div class="flex-col w-132 h-auto m-4 bg-white opacity-80 rounded-xl shadow-xl mt-4 ">
@@ -37,8 +37,7 @@
                     <p class="font-semibold text-xl text-vh-green">Herramientas</p>
                 </div>
             </div>
-            <div
-                class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light rounded-md">
+            <div class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light rounded-md">
                 <p class="font-bold text-lg">#00000</p>
                 <p class="font-bold text-lg">lorem</p>
                 <p class="font-bold text-lg">lorem</p>
@@ -58,8 +57,7 @@
                     </button>
                 </div>
             </div>
-            <div
-                class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light rounded-md">
+            <div class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light rounded-md">
                 <p class="font-bold text-lg">#lorem</p>
                 <p class="font-bold text-lg">lorem</p>
                 <p class="font-bold text-lg">lorem</p>
@@ -79,8 +77,7 @@
                     </button>
                 </div>
             </div>
-            <div
-                class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light  rounded-md">
+            <div class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light  rounded-md">
                 <p class="font-bold text-lg">#lorem</p>
                 <p class="font-bold text-lg">lorem</p>
                 <p class="font-bold text-lg">lorem</p>
@@ -100,8 +97,7 @@
                     </button>
                 </div>
             </div>
-            <div
-                class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light rounded-md">
+            <div class="w-128 h-16 flex justify-around items-center my-5 mx-auto bg-vh-green-light rounded-md">
                 <p class="font-bold text-lg">#lorem</p>
                 <p class="font-bold text-lg">lorem</p>
                 <p class="font-bold text-lg">lorem</p>
@@ -137,7 +133,8 @@
                     <ul class="w-6/12  mx-4 border border-solid border-vh-green rounded-3xl">
                         <li class="font-semibold ml-2 p-2 relative group">
                             <a href="/appointment" class="flex text-vh-green">Presencial <img id="menu-icon"
-                                    class="w-4 mx-6" src="{{ asset('storage/svg/filtro.svg') }}" alt="Inicio" /></a>
+                                    class="w-4 mx-6" src="{{ asset('storage/svg/filtro.svg') }}"
+                                    alt="Inicio" /></a>
                         </li>
                     </ul>
                 </div>

@@ -32,7 +32,6 @@
                     </div>
                     <div>
                         <img class="w-24" src="{{ asset('storage/svg/doc-icon-green.svg') }}" alt="Inicio" />
-                        <img class="w-24" src="{{ asset('storage/svg/doc-icon-green.svg') }}" alt="Inicio" />
                     </div>
                 </div>
             </div>

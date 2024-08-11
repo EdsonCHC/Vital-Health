@@ -29,7 +29,6 @@
                     <div
                         class="flex flex-grow items-center ml-14 h-14 rounded-l-3xl transition duration-300 hover:bg-white">
                         <a href="{{ route('categorias.records', ['id' => $categoria->id]) }}"
-                        <a href="{{ route('categorias.records', ['id' => $categoria->id]) }}"
                             class="flex items-center h-full w-full text-md font-bold text-white hover:text-black tracking-wider">
                             <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/doc-icon-black.svg') }}"
                                 alt="Expedientes" />
@@ -47,7 +46,6 @@
                     <div
                         class="flex flex-grow items-center ml-14 h-14 rounded-l-3xl transition duration-300 hover:bg-white">
                         <a href="{{ route('categorias.staff', ['id' => $categoria->id]) }}"
-                        <a href="{{ route('categorias.staff', ['id' => $categoria->id]) }}"
                             class="flex items-center h-full w-full text-md font-bold text-white hover:text-black tracking-wider">
                             <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/staff-icon-black.svg') }}"
                                 alt="Personal" />
@@ -56,7 +54,6 @@
                     </div>
                     <div
                         class="flex flex-grow items-center ml-14 h-14 rounded-l-3xl transition duration-300 hover:bg-white">
-                        <a href="{{ route('categorias.calendar', ['id' => $categoria->id]) }}"
                         <a href="{{ route('categorias.calendar', ['id' => $categoria->id]) }}"
                             class="flex items-center h-full w-full text-md font-bold text-white hover:text-black tracking-wider">
                             <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/calendar.svg') }}" alt="Calendario" />
@@ -75,7 +72,6 @@
                             d="M17 16l-4-4m0 0l4-4m-4 4h10m-6-4v1a3 3 0 013 3h4a3 3 0 01-3 3v1" />
                     </svg>
                     <span class="ml-2 text-base font-bold">Regresar</span>
-                    <span class="ml-2 text-base font-bold">Regresar</span>
                 </a>
             </div>
 
@@ -91,7 +87,7 @@
                 class="hover:bg-green-500 rounded-full py-2 px-2 transition-colors duration-300">
                 <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/doc-icon-black.svg') }}" type="image/svg+xml" />
             </a>
-            <a href="{{ route('categorias.statistics', ['id' => $categoria->id]) }}"
+            <a href="{{ route('statistics.show', ['id' => $categoria->id]) }}"
                 class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
                 <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/homee.svg') }}" type="image/svg+xml" />
             </a>
@@ -99,7 +95,7 @@
                 class="hover:bg-green-500 rounded-full py-2 px-2 transition-colors duration-300">
                 <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/staff-icon-black.svg') }}" type="image/svg+xml" />
             </a>
-            <a href="{{ route('categorias.chats', ['id' => $categoria->id]) }}"
+            <a href="{{ route('categorias.ad_chats', ['id' => $categoria->id]) }}"
                 class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
                 <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/chat.svg') }}" type="image/svg+xml" />
             </a>
