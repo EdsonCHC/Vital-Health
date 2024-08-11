@@ -3,25 +3,32 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
-class Doctor extends Authenticatable
+class Doctor extends Model
 {
     use HasFactory;
-
-    protected $table = 'doctors';
 
     protected $fillable = [
         'name',
         'lastName',
-        'mail',
-        'specialty',
+        'number',
+        'age',
         'gender',
+        'mail',
         'password',
-        'doctor_number',
+        'role',
+        'category_id',
     ];
 
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Categoría::class, 'category_id');
+    }
 }

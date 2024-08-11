@@ -17,9 +17,7 @@
     <!-- Estilos Desktop -->
     <div class="hidden lg:flex flex-col justify-between items-center ml-72 mt-12">
         <div class="mb-2">
-            <h2 class="font-bold text-3xl tracking-wider">
-                Personal
-            </h2>
+            <h2 class="text-xl font-bold mb-4">Personal de la Categoria:{{ $categoria->nombre }}</h2>
         </div>
         <div class="flex ml-auto mr-10">
             <button target="_self" id="create_staff"
