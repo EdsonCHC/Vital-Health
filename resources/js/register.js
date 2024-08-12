@@ -6,9 +6,28 @@ let genre = "";
 let date = "";
 let blood_type = "";
 let imgFile = null;
-let step = 0; 
+let step = 0;
 
 $(document).ready(function () {
+    let is_opaque = false;
+
+    $("#see_password_label").click((e) => {
+        const pass = $("#password");
+        const pass_img = $("#see_password_img");
+        //
+        const pass_type =
+            pass.attr("type") === "password" ? "text" : "password";
+        pass.attr("type", pass_type);
+
+        if (is_opaque) {
+            pass_img.css("opacity", "1");
+        } else {
+            pass_img.css("opacity", "0.5");
+        }
+
+        is_opaque = !is_opaque;
+    });
+
     $("#register").click((e) => {
         e.preventDefault();
         handleRegistration();
@@ -129,16 +148,16 @@ $(document).ready(function () {
                 }
 
                 const formData = new FormData();
-                formData.append('_token', token);
-                formData.append('name', escapeHtml($("#name").val()));
-                formData.append('lastName', escapeHtml($("#lastName").val()));
-                formData.append('mail', escapeHtml($("#mail").val()));
-                formData.append('gender', gender);
-                formData.append('birth', birth);
-                formData.append('blood', blood);
-                formData.append('password', $("#password").val());
+                formData.append("_token", token);
+                formData.append("name", escapeHtml($("#name").val()));
+                formData.append("lastName", escapeHtml($("#lastName").val()));
+                formData.append("mail", escapeHtml($("#mail").val()));
+                formData.append("gender", gender);
+                formData.append("birth", birth);
+                formData.append("blood", blood);
+                formData.append("password", $("#password").val());
                 if (imgFile) {
-                    formData.append('img', imgFile);
+                    formData.append("img", imgFile);
                 }
 
                 $.ajax({
@@ -286,41 +305,43 @@ $(document).ready(function () {
 
     async function image_input() {
         const { value: file } = await Swal.fire({
-            title: 'Selecciona una imagen',
-            input: 'file',
+            title: "Selecciona una imagen",
+            input: "file",
             inputAttributes: {
-                'accept': 'image/*',
-                'aria-label': 'Sube tu imagen de perfil'
+                accept: "image/*",
+                "aria-label": "Sube tu imagen de perfil",
             },
             showCancelButton: step === 4,
-            confirmButtonText: 'Aceptar',
-            cancelButtonText: 'Retroceder',
+            confirmButtonText: "Aceptar",
+            cancelButtonText: "Retroceder",
             preConfirm: (file) => {
                 if (file) {
                     const reader = new FileReader();
                     return new Promise((resolve) => {
                         reader.onload = (e) => {
                             Swal.fire({
-                                title: 'Vista previa de la imagen',
+                                title: "Vista previa de la imagen",
                                 html: `<div style="display: flex; justify-content: center; align-items: center; height: 200px;">
                                             <img src="${e.target.result}" alt="Vista previa" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
                                         </div>`,
                                 showCancelButton: true,
-                                cancelButtonText: 'Retroceder',
-                                confirmButtonText: 'Aceptar',
+                                cancelButtonText: "Retroceder",
+                                confirmButtonText: "Aceptar",
                                 preConfirm: () => {
                                     imgFile = file;
                                     resolve(true);
-                                }
+                                },
                             });
                         };
                         reader.readAsDataURL(file);
                     });
                 } else {
-                    Swal.showValidationMessage('Por favor selecciona una imagen');
+                    Swal.showValidationMessage(
+                        "Por favor selecciona una imagen"
+                    );
                     return false;
                 }
-            }
+            },
         });
 
         if (file) {
@@ -363,15 +384,21 @@ $(document).ready(function () {
     function validatePassword() {
         let passwordOne = $("#password").val();
         let passwordTwo = $("#password_confirm").val();
-        
+
         if (passwordOne !== passwordTwo) {
-            return { valid: false, message: "Las contraseñas ingresadas no coinciden." };
+            return {
+                valid: false,
+                message: "Las contraseñas ingresadas no coinciden.",
+            };
         }
-    
+
         if (passwordOne.length < 8) {
-            return { valid: false, message: "La contraseña debe tener al menos 8 caracteres." };
+            return {
+                valid: false,
+                message: "La contraseña debe tener al menos 8 caracteres.",
+            };
         }
-    
+
         return { valid: true, message: "La contraseña es válida." };
     }
 
@@ -381,7 +408,13 @@ $(document).ready(function () {
     }
 
     function validateImage(file) {
-        const validImageTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/svg+xml'];
+        const validImageTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/jpg",
+            "image/gif",
+            "image/svg+xml",
+        ];
         return validImageTypes.includes(file.type);
     }
 });
