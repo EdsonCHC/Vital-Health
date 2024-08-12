@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('lastName');
+            $table->text('description');
             $table->string('number');
             $table->integer('age');
             $table->string('gender');
