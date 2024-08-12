@@ -61,14 +61,21 @@ $(document).ready(function () {
                 return;
             }
 
-            if (!validatePassword(password)) {
+            const result = validatePassword();
+            if (!result.valid) {
                 Swal.fire({
                     icon: "info",
                     title: "Error...",
-                    text: "Por su seguridad la contraseña debe tener al menos 8 caracteres.",
+                    text: result.message,
                 });
-                return;
+            } else {
+                Swal.fire({
+                    icon: "success",
+                    title: "Éxito!",
+                    text: "La contraseña es válida.",
+                });
             }
+            return;
 
             step = 1;
             await secuencia();
@@ -353,8 +360,19 @@ $(document).ready(function () {
         return namePattern.test(name);
     }
 
-    function validatePassword(password) {
-        return password.length >= 8;
+    function validatePassword() {
+        let passwordOne = $("#password").val();
+        let passwordTwo = $("#password_confirm").val();
+        
+        if (passwordOne !== passwordTwo) {
+            return { valid: false, message: "Las contraseñas ingresadas no coinciden." };
+        }
+    
+        if (passwordOne.length < 8) {
+            return { valid: false, message: "La contraseña debe tener al menos 8 caracteres." };
+        }
+    
+        return { valid: true, message: "La contraseña es válida." };
     }
 
     function validateEmail(email) {
