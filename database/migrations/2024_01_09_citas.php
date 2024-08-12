@@ -21,12 +21,12 @@ return new class extends Migration {
             $table->timestamps();
             $table->unsignedBigInteger('id_patient'); // Make id_patient required
             $table->unsignedBigInteger('id_doctor')->nullable();
-        
+
             $table->foreign('id_patient')->references('id')->on('patients')->onDelete('cascade'); // Adjust onDelete behavior as needed
             $table->foreign('id_doctor')->references('id')->on('doctors')->onDelete('set null');
         });
-        
-        
+
+
     }
 
     /**

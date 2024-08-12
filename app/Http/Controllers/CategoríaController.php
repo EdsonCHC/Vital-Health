@@ -62,7 +62,7 @@ class CategoríaController extends Controller
         }
         return view('admin.statistics', ['categoria' => $categoria]);
     }
-    
+
     public function showAppointments($id)
     {
         $categoria = Categoría::find($id);
@@ -71,7 +71,7 @@ class CategoríaController extends Controller
         }
         return view('admin.appointment', ['categoria' => $categoria]);
     }
-    
+
     public function showRecords($id)
     {
         $categoria = Categoría::find($id);
@@ -80,7 +80,7 @@ class CategoríaController extends Controller
         }
         return view('admin.records', ['categoria' => $categoria]);
     }
-    
+
     public function showAd_chats($id)
     {
         $categoria = Categoría::find($id);
@@ -89,7 +89,7 @@ class CategoríaController extends Controller
         }
         return view('admin.ad_chats', ['categoria' => $categoria]);
     }
-    
+
     public function showStaff($id)
     {
         $categoria = Categoría::find($id);
@@ -98,7 +98,7 @@ class CategoríaController extends Controller
         }
         return view('admin.staff', ['categoria' => $categoria]);
     }
-    
+
     public function showCalendar($id)
     {
         $categoria = Categoría::find($id);
@@ -107,7 +107,7 @@ class CategoríaController extends Controller
         }
         return view('admin.calendar', ['categoria' => $categoria]);
     }
-    
+
     public function edit($id)
     {
         $categoria = Categoría::find($id);
@@ -116,7 +116,7 @@ class CategoríaController extends Controller
         }
         return response()->json($categoria);
     }
-    
+
 
     public function update(Request $request, $id)
     {
@@ -138,7 +138,7 @@ class CategoríaController extends Controller
             if ($request->hasFile('img')) {
                 // Borra la imagen antigua si existe
                 if ($categoria->img && file_exists(public_path('img/' . $categoria->img))) {
-                    Storage::delete('public/images/' . $categoria->img);
+                    unlink(public_path($categoria->img));
                 }
 
                 // Guarda la nueva imagen
@@ -169,7 +169,7 @@ class CategoríaController extends Controller
     {
         $categoria = Categoría::findOrFail($id);
         if ($categoria->img) {
-            Storage::delete('public/images/' . $categoria->img);
+            unlink(public_path($categoria->img));
         }
         $categoria->delete();
 
