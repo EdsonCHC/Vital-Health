@@ -29,6 +29,10 @@ Route::post('/login', [UsuarioController::class, 'show']);
 Route::view('/registro', 'app.registro');
 Route::post('/registro', [UsuarioController::class, 'store']);
 
+// Ruta para mostrar el doctor en usuario
+Route::get('/', [DoctorController::class, 'indexUser'])->name('user.index');
+
+
 // Middlewares para el usuario
 Route::middleware('auth')->group(function () {
     Route::view('/medicina', 'app.medicine');
@@ -42,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
     Route::post('/user', [UsuarioController::class, 'destroy']);
     Route::put('/user/update', [UsuarioController::class, 'update'])->name('user.update');
+
 });
 
 Route::view('/service', 'app.service');

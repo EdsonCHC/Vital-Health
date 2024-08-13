@@ -15,7 +15,12 @@ class DoctorController extends Controller
     {
         $doctor = Auth::guard('doctor')->user();
         return view('doctor.index_doc', compact('doctor'));
+    }
 
+    public function indexUser($name)
+    {
+        $doctor = Doctor::find($name);
+        return view('app.index', compact('doctor'));
     }
 
     public function create(Request $request)
@@ -26,7 +31,7 @@ class DoctorController extends Controller
             'phone' => 'required|max:25',
             'age' => 'required|numeric|min:18',
             'gender' => 'required',
-            'email' => 'required|email',
+            'mail' => 'required|email',
             'password' => 'required',
             'category_id' => 'required|numeric',
         ]);
@@ -56,7 +61,6 @@ class DoctorController extends Controller
                     'message' => 'Error al crear el usuario',
                 ], 500);
             }
-
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error interno del servidor',
@@ -64,9 +68,6 @@ class DoctorController extends Controller
             ], 500);
         }
     }
-
-
-
 
     public function destroy(Request $request)
     {
@@ -81,6 +82,5 @@ class DoctorController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false], 500);
         }
-
     }
 }

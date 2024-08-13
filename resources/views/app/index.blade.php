@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    @vite(['resources/css/loader.css', 'resources/js/preloader.js', 'resources/css/app.css', 'resources/js/animation.js', 'resources/css/animation.css', 'resources/js/scroll.js','resources/css/footer.css'])
+    @vite(['resources/css/loader.css', 'resources/js/preloader.js', 'resources/css/app.css', 'resources/js/animation.js', 'resources/css/animation.css', 'resources/js/scroll.js', 'resources/css/footer.css'])
 </head>
 
 <body class="w-full h-full overflow-x-hidden">
@@ -97,29 +97,18 @@
     <div class="flex justify-center text-center flex-col items-center">
         <div class="w-full h-auto">
             <div>
-                <h2 class="font-bold  text-xl text-vh-green lg:font-bold  lg:text-4xl">Lorem Ipsum</h2>
+                <h2 class="font-bold  text-xl text-vh-green lg:font-bold  lg:text-4xl">Doctores</h2>
                 <p class="text-sm font-bold text-gray-400 mx-4 mt-2">Lorem Ipsum is simply dummy text of the printing
                     and typesetting industry.</p>
             </div>
             <div class="w-full flex grow-0 flex-wrap items-center justify-center mb-8">
                 <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                    <h2 class="text-lg font-bold mb-2 text-vh-green">Juan Jose Galdamez</h2>
+                    <h2 class="text-lg font-bold mb-2 text-vh-green">{{ $doctor->name }}</h2>
                     <p class="text-sm font-bold text-gray-400 mt-2">Primary Care Doctor</p>
                     <a class="text-md text-justify text-vh-green block leading-7">Very personable and good listener.
                         Makes you feel comfortable and open immediately. Felt well taken care...</a>
                 </div>
-                <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                    <h2 class="text-lg font-bold mb-2 text-vh-green">Juan Jose Galdamez</h2>
-                    <p class="text-sm font-bold text-gray-400 mt-2">Primary Care Doctor</p>
-                    <a class="text-md text-justify text-vh-green block leading-7">Very personable and good listener.
-                        Makes you feel comfortable and open immediately. Felt well taken care...</a>
-                </div>
-                <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                    <h2 class="text-lg font-bold mb-2 text-vh-green">Juan Jose Galdamez</h2>
-                    <p class="text-sm font-bold text-gray-400 mt-2">Primary Care Doctor</p>
-                    <a class="text-md text-justify text-vh-green block leading-7">Very personable and good listener.
-                        Makes you feel comfortable and open immediately. Felt well taken care...</a>
-                </div>
+
             </div>
         </div>
         <div class="w-full text-center mb-8">
