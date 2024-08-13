@@ -28,7 +28,6 @@ class DoctorsTableSeeder extends Seeder
             [
                 'name' => 'Victor',
                 'lastName' => 'Alexander',
-                'description' => 'El Dr. Victor es un médico especialista en  con más de 30 años de experiencia, conocido por su enfoque integral y humano en el tratamiento de sus pacientes. Formado en [nombre de la universidad] y con una residencia en [hospital o centro médico], ha trabajado en reconocidos hospitales, destacándose en [procedimientos o técnicas específicas]. Es miembro de [asociaciones profesionales] y ha recibido varios premios por su excelencia médica. Además de su práctica clínica, participa activamente en investigaciones y es un defensor del [enfoque particular en la salud, como la salud preventiva]',
                 'number' => '5555-5555',
                 'age' => 55,
                 'gender' => 'male',

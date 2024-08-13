@@ -60,7 +60,7 @@ class CategoríaController extends Controller
         if (!$categoria) {
             return redirect()->back()->with('error', 'La categoría no existe.');
         }
-        return view('admin.statistics', ['categoria' => $categoria]);
+        return view('admin.statistics', compact('categoria'));
     }
 
     public function showAppointments($id)
@@ -69,7 +69,7 @@ class CategoríaController extends Controller
         if (!$categoria) {
             return redirect()->back()->with('error', 'La categoría no existe.');
         }
-        return view('admin.appointment', ['categoria' => $categoria]);
+        return view('admin.appointment', compact('categoria'));
     }
 
     public function showRecords($id)
@@ -78,7 +78,7 @@ class CategoríaController extends Controller
         if (!$categoria) {
             return redirect()->back()->with('error', 'La categoría no existe.');
         }
-        return view('admin.records', ['categoria' => $categoria]);
+        return view('admin.records', compact('categoria'));
     }
 
     public function showAd_chats($id)
@@ -87,7 +87,7 @@ class CategoríaController extends Controller
         if (!$categoria) {
             return redirect()->back()->with('error', 'La categoría no existe.');
         }
-        return view('admin.ad_chats', ['categoria' => $categoria]);
+        return view('admin.ad_chats', compact('categoria'));
     }
 
     public function showStaff($id)
@@ -96,7 +96,7 @@ class CategoríaController extends Controller
         if (!$categoria) {
             return redirect()->back()->with('error', 'La categoría no existe.');
         }
-        return view('admin.staff', ['categoria' => $categoria]);
+        return view('admin.staff', compact('categoria'));
     }
 
     public function showCalendar($id)
@@ -105,7 +105,7 @@ class CategoríaController extends Controller
         if (!$categoria) {
             return redirect()->back()->with('error', 'La categoría no existe.');
         }
-        return view('admin.calendar', ['categoria' => $categoria]);
+        return view('admin.calendar', compact('categoria'));
     }
 
     public function edit($id)

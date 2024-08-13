@@ -4,23 +4,22 @@ window.$ = jQuery;
 
 // Editar info del Doc
 $(document).ready(function () {
-    $("#edit_staff").click((e) => {
-        e.preventDefault();
-        secuencia();
-    });
 
-    async function showFirstForm() {
-        const { value: formValues, isConfirmed } = await Swal.fire({
-            title: "Datos del Doctor",
-            html: `
-                <form id="firstForm" class="space-y-4">
+    const url = new URL(window.location.href);
+
+    
+    const pathSegments = url.pathname.split('/');
+    const id = pathSegments[pathSegments.length - 1];
+
+    const firstForm = `
+                <form id="firstForm" class="space-y-4" autocomplete="off">
                     <div class="flex flex-col">
                         <label class="mr-auto font-semibold text-xl">Nombre</label>
                         <input id="name" name="name" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
                     </div>
                     <div class="flex flex-col">
                         <label class="mr-auto font-semibold text-xl">Apellidos</label>
-                        <input id="lastname" name="lastname" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
+                        <input id="lastName" name="lastName" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
                     </div>
                     <div class="flex flex-col">
                         <label class="mr-auto font-semibold text-xl">Número Telefónico</label>
@@ -37,14 +36,37 @@ $(document).ready(function () {
                     </div>
                     <div class="flex flex-col">
                         <label class="mr-auto font-semibold text-xl">Edad</label>
-                        <input id="age" name="age" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="number">
+                        <input id="age" name="age" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="number" min="18" max="100">
                     </div>
                     <div class="flex flex-col">
                         <label class="mr-auto font-semibold text-xl">Dirección</label>
                         <input id="address" name="address" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
                     </div>
                 </form>
-            `,
+            `;
+
+    const secondForm = `
+                <form id="secondForm" class="space-y-4" autocomplete="off">
+                    <div class="flex flex-col">
+                        <label class="mr-auto font-semibold text-xl">Correo</label>
+                        <input id="email" name="email" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="email">
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="mr-auto font-semibold text-xl">Contraseña</label>
+                        <input id="password" name="password" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="password">
+                    </div>
+                </form>
+            `;
+
+    $("#edit_staff").click((e) => {
+        e.preventDefault();
+        secuencia();
+    });
+
+    async function showFirstForm() {
+        const { value: formValues, isConfirmed } = await Swal.fire({
+            title: "Datos del Doctor",
+            html: firstForm,
             showConfirmButton: true,
             confirmButtonText: "Siguiente",
             confirmButtonColor: "#166534",
@@ -53,14 +75,14 @@ $(document).ready(function () {
             preConfirm: () => {
                 const form = Swal.getPopup().querySelector("#firstForm");
                 const name = form.name.value.trim();
-                const lastname = form.lastname.value.trim();
+                const lastName = form.lastName.value.trim();
                 const phone = form.phone.value.trim();
                 const gender = form.gender.value;
                 const age = form.age.value;
                 const address = form.address.value.trim();
                 if (
                     !name ||
-                    !lastname ||
+                    !lastName ||
                     !phone ||
                     !gender ||
                     !age ||
@@ -71,7 +93,7 @@ $(document).ready(function () {
                     );
                     return false;
                 }
-                return { name, lastname, phone, gender, age, address };
+                return { name, lastName, phone, gender, age, address };
             },
         });
 
@@ -81,18 +103,7 @@ $(document).ready(function () {
     async function showSecondForm() {
         const { value: formValues, isConfirmed } = await Swal.fire({
             title: "Credenciales del Doctor",
-            html: `
-                <form id="secondForm" class="space-y-4">
-                    <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Correo</label>
-                        <input id="email" name="email" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="email">
-                    </div>
-                    <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Contraseña</label>
-                        <input id="password" name="password" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="password">
-                    </div>
-                </form>
-            `,
+            html: secondForm,
             showConfirmButton: true,
             confirmButtonText: "Crear",
             confirmButtonColor: "#166534",
@@ -115,24 +126,7 @@ $(document).ready(function () {
         return { formValues, isConfirmed };
     }
 
-    async function secuencia() {
-        const { formValues: firstFormValues, isConfirmed: firstFormConfirmed } =
-            await showFirstForm();
-        if (firstFormConfirmed) {
-            const {
-                formValues: secondFormValues,
-                isConfirmed: secondFormConfirmed,
-            } = await showSecondForm();
-            if (secondFormConfirmed) {
-                console.log("Datos del Doctor:", firstFormValues);
-                console.log("Credenciales del Doctor:", secondFormValues);
-            }
-        }
-    }
-});
-
-// Crear datos del Doc
-$(document).ready(function () {
+    // Crear datos del Doc
     $("#create_staff").click((e) => {
         e.preventDefault();
         secuencia();
@@ -141,39 +135,7 @@ $(document).ready(function () {
     async function showFirstForm() {
         const { value: formValues, isConfirmed } = await Swal.fire({
             title: "Datos del Nuevo Doctor",
-            html: `
-                <form id="firstForm" class="space-y-4">
-                    <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Nombre</label>
-                        <input id="name" name="name" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
-                    </div>
-                    <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Apellidos</label>
-                        <input id="lastname" name="lastname" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
-                    </div>
-                    <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Número Telefónico</label>
-                        <input id="phone" name="phone" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
-                    </div>
-                    <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Género</label>
-                        <select id="gender" name="gender" class="w-full h-10 my-2 px-2 border border-solid rounded-sm">
-                            <option value="" disabled selected>Seleccione un género</option>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Femenino">Femenino</option>
-                            <option value="Otro">Otro</option>
-                        </select>
-                    </div>
-                    <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Edad</label>
-                        <input id="age" name="age" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="number">
-                    </div>
-                    <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Dirección</label>
-                        <input id="address" name="address" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
-                    </div>
-                </form>
-            `,
+            html: firstForm,
             showConfirmButton: true,
             confirmButtonText: "Siguiente",
             confirmButtonColor: "#166534",
@@ -182,14 +144,14 @@ $(document).ready(function () {
             preConfirm: () => {
                 const form = Swal.getPopup().querySelector("#firstForm");
                 const name = form.name.value.trim();
-                const lastname = form.lastname.value.trim();
+                const lastName = form.lastName.value.trim();
                 const phone = form.phone.value.trim();
                 const gender = form.gender.value;
                 const age = form.age.value;
                 const address = form.address.value.trim();
                 if (
                     !name ||
-                    !lastname ||
+                    !lastName ||
                     !phone ||
                     !gender ||
                     !age ||
@@ -200,7 +162,7 @@ $(document).ready(function () {
                     );
                     return false;
                 }
-                return { name, lastname, phone, gender, age, address };
+                return { name, lastName, phone, gender, age, address };
             },
         });
 
@@ -210,18 +172,7 @@ $(document).ready(function () {
     async function showSecondForm() {
         const { value: formValues, isConfirmed } = await Swal.fire({
             title: "Credenciales del Nuevo Doctor",
-            html: `
-                <form id="secondForm" class="space-y-4">
-                    <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Correo</label>
-                        <input id="email" name="email" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="email">
-                    </div>
-                    <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Contraseña</label>
-                        <input id="password" name="password" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="password">
-                    </div>
-                </form>
-            `,
+            html: secondForm,
             showConfirmButton: true,
             confirmButtonText: "Crear",
             confirmButtonColor: "#166534",
@@ -253,8 +204,22 @@ $(document).ready(function () {
                 isConfirmed: secondFormConfirmed,
             } = await showSecondForm();
             if (secondFormConfirmed) {
-                console.log("Datos del Doctor:", firstFormValues);
-                console.log("Credenciales del Doctor:", secondFormValues);
+                const concatArrays = {...firstFormValues, ...secondFormValues, category_id : id};
+                console.log(concatArrays);
+                $.ajax({
+                    url: '/staff/{id}',
+                    type:  'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')  // Incluye el token CSRF
+                    },
+                    data: concatArrays,
+                    success: (response) =>{
+                        console.log("Datos enviados", response);
+                    },
+                    error: (response)=>{
+                        console.log("error al enviar los Datos", response);
+                    }
+                });
             }
         }
     }

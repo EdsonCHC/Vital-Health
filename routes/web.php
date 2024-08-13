@@ -70,8 +70,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/records/{id}', [CategoríaController::class, 'showRecords'])->name('categorias.records');
     Route::get('/ad_chats/{id}', [CategoríaController::class, 'showAd_chats'])->name('categorias.ad_chats');
     Route::get('/staff/{id}', [CategoríaController::class, 'showStaff'])->name('categorias.staff');
+    Route::post('/staff/{id}', [DoctorController::class, 'create'])->name('staff.create');
     Route::get('/calendar/{id}', [CategoríaController::class, 'showCalendar'])->name('categorias.calendar');
-    
+
     Route::post('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
     Route::resource('categorias', CategoríaController::class);
     Route::put('/categorias/{id}/activate', [CategoríaController::class, 'activate'])->name('categorias.activate');
