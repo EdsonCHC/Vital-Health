@@ -52,6 +52,20 @@ class DoctorsTableSeeder extends Seeder
                 'category_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Geovanni',
+                'lastName' => 'Jacinto',
+                'description' => 'El Dr. Geovanni es un experto en [especialidad], conocido por su habilidad técnica y trato excepcional con los pacientes. Su enfoque profesional y empático garantiza una atención de alta calidad y una experiencia positiva para cada paciente.',
+                'number' => '5555-5555',
+                'age' => 50,
+                'gender' => 'male',
+                'mail' => 'doc_geo@gmail.com',
+                'password' => Hash::make('doctor789'),
+                'role' => 'doctor',
+                'category_id' => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]
         ];
 
