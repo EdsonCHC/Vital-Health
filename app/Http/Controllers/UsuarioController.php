@@ -19,16 +19,17 @@ class UsuarioController extends Controller
     public function index()
     {
         $user = Auth::user(); // Obtiene al usuario autenticado
-        // $doctor = Doctor::where('user_id', $user->id)->first(); // Supongamos que hay una relación donde el doctor está asociado al usuario
         return view('app.user_info', compact('user'));
-        // $doctor = Doctor::where('user_id', $user->id)->first();
-
-        // return view('app.main_view')
-        // ->with('user', $user)
-        // ->with('doctor', $doctor)
-        //     ->with('content1', view('app.user_info', compact('user', 'doctor')))
-        //     ->with('content2', view('app.doctor_info', compact('doctor')));
     }
+
+    public function showDoctors()
+    {
+        $doctors = Doctor::all(); // Devuelve una colección de objetos
+        return view('app.index', compact('doctors'));
+    }
+
+
+
     /**
      * 
      * Show the form for creating a new resource.

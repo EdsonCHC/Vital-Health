@@ -23,9 +23,9 @@
             <div class="w-4/5">
                 <div class="ml-4 mt-4 mb-2">
                     <span class="font-bold text-5xl">Brindamos Ayuda</span>
-                    <span class="font-bold text-5xl">En tu Futuro</span>
-                    <p class="text-3xl text-justify mb-4 font-bold text-gray-400 mx-4 -mt-1">Lorem Ipsum is simply dummy
-                        text of the printing and typesetting industry.</p>
+                    <span class="font-bold text-5xl"> En tu Futuro</span>
+                    <p class="text-3xl text-justify mb-4 font-bold text-gray-400 mx-4 -mt-1">Transformamos tu bienestar
+                        con atención médica de calidad, dedicada a mantenerte saludable y en óptimas condiciones</p>
                 </div>
                 <a href="/login" target="_self"
                     class="w-4/5 lg:w-2/5 h-12 text-white font-bold bg-vh-green text-lg tracking-wide shadow-xl my-10 mx-4 rounded-full hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
@@ -78,7 +78,7 @@
             <div class="w-1/2">
                 <div class="ml-4 mt-4 mb-2">
                     <span class="font-bold text-lg">Brindamos Ayuda</span>
-                    <span class="font-bold text-lg">En tu Futuro</span>
+                    <span class="font-bold text-lg"> En tu Futuro</span>
                 </div>
 
                 <a href="/login" target="_self"
@@ -88,8 +88,8 @@
                 </a>
             </div>
             <div class="w-1/2">
-                <p class="text-xs text-justify mb-4 font-bold text-gray-400 mx-4 -mt-1">Lorem Ipsum is simply dummy text
-                    of the printing and typesetting industry.</p>
+                <p class="text-xs text-justify mb-4 font-bold text-gray-400 mx-4 -mt-1">Tu Salud es Nuestra Prioridad
+                </p>
             </div>
         </div>
     </div>
@@ -97,17 +97,57 @@
     <div class="flex justify-center text-center flex-col items-center">
         <div class="w-full h-auto">
             <div>
-                <h2 class="font-bold  text-xl text-vh-green lg:font-bold  lg:text-4xl">Doctores</h2>
-                <p class="text-sm font-bold text-gray-400 mx-4 mt-2">Lorem Ipsum is simply dummy text of the printing
-                    and typesetting industry.</p>
+                <h2 class="font-bold text-xl text-vh-green lg:font-bold  lg:text-4xl">Nuestros Doctores</h2>
+                <p class="text-sm font-bold text-gray-400 mx-96 mt-2">Los doctores son esenciales para la salud y el
+                    bienestar de la sociedad,</p>
+                <p class="text-sm font-bold text-gray-400 mx-96 mt-2"> ya que proporcionan atención médica crucial,
+                    diagnósticos precisos y
+                    tratamientos eficaces.</p>
             </div>
-            <div class="w-full flex grow-0 flex-wrap items-center justify-center mb-8">
-                <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                    <h2 class="text-lg font-bold mb-2 text-vh-green"></h2>
-                    <p class="text-sm font-bold text-gray-400 mt-2">Primary Care Doctor</p>
-                    <a class="text-md text-justify text-vh-green block leading-7">Very personable and good listener.
-                        Makes you feel comfortable and open immediately. Felt well taken care...</a>
-                </div>
+            <div class="w-full flex grow-0 flex-wrap items-center justify-center my-8">
+                @php
+                    $maxDoctors = 3;
+                    $count = 0;
+                @endphp
+
+                @if ($doctors->isEmpty())
+                    <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
+                        <h2 class="text-lg font-bold mb-2 text-vh-green">Alonso</h2>
+                        <p class="text-sm font-bold text-gray-400 mt-2">Cardio</p>
+                        <p class="text-md text-justify text-vh-green block leading-7">Lorem ipsum dolor sit amet
+                            consectetur adipisicing elit. Et esse a culpa aut autem porro quos labore sed temporibus
+                            vitae quod dicta nobis, repudiandae, dolor alias dignissimos cumque. Excepturi, inventore?
+                        </p>
+                    </div>
+                    <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
+                        <h2 class="text-lg font-bold mb-2 text-vh-green">Frederico</h2>
+                        <p class="text-sm font-bold text-gray-400 mt-2">Dermatología</p>
+                        <p class="text-md text-justify text-vh-green block leading-7">Lorem ipsum dolor sit amet
+                            consectetur adipisicing elit. Et esse a culpa aut autem porro quos labore sed temporibus
+                            vitae quod dicta nobis, repudiandae, dolor alias dignissimos cumque. Excepturi, inventore?
+                        </p>
+                    </div>
+                    <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
+                        <h2 class="text-lg font-bold mb-2 text-vh-green">Soto</h2>
+                        <p class="text-sm font-bold text-gray-400 mt-2">Cirugia</p>
+                        <p class="text-md text-justify text-vh-green block leading-7">Lorem ipsum dolor sit amet
+                            consectetur adipisicing elit. Et esse a culpa aut autem porro quos labore sed temporibus
+                            vitae quod dicta nobis, repudiandae, dolor alias dignissimos cumque. Excepturi, inventore?
+                        </p>
+                    </div>
+                @else
+                    @foreach ($doctors as $doctor)
+                        @if ($count < $maxDoctors)
+                            <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
+                                <h2 class="text-lg font-bold mb-2 text-vh-green">{{ $doctor->name }}</h2>
+                                <p class="text-sm font-bold text-gray-400 mt-2">{{ $doctor->category_id }}</p>
+                                <p class="text-md text-justify text-vh-green block leading-7">{{ $doctor->description }}
+                                </p>
+                            </div>
+                            @php $count++; @endphp
+                        @endif
+                    @endforeach
+                @endif
 
             </div>
         </div>
@@ -168,12 +208,14 @@
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{ asset('storage/svg/heart.svg') }}" type="image/svg+xml" class="w-10"></object>
+                    <object data="{{ asset('storage/svg/heart.svg') }}" type="image/svg+xml"
+                        class="w-10"></object>
                     <p class="font-bold">Atención primaria</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{ asset('storage/svg/brain.svg') }}" type="image/svg+xml" class="w-10"></object>
+                    <object data="{{ asset('storage/svg/brain.svg') }}" type="image/svg+xml"
+                        class="w-10"></object>
                     <p class="font-bold">Psiquiátrico</p>
                 </div>
             </div>

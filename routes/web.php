@@ -22,7 +22,9 @@ use Illuminate\Support\Facades\Route;
 // Rutas del usuario
 Route::post('/appointments', [CitaController::class, 'store']);
 Route::post('/login', [UsuarioController::class, 'show']);
-Route::view('/', 'app.index')->name('home');
+
+//Show Doctor
+Route::get('/', [UsuarioController::class, 'showDoctors']);
 Route::view('/login', 'app.login')->name('login');
 Route::post('/login', [UsuarioController::class, 'show']);
 
