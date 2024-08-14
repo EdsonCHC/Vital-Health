@@ -12,21 +12,20 @@ return new class extends Migration {
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('state')->default('1'); // Default state is 1
+            $table->string('state')->default('1'); 
             $table->date('date');
             $table->time('hour');
             $table->string('description', 1000);
-            $table->string('modo'); // New column for virtual or in-person
+            $table->string('modo');
+            $table->string('enlace')->nullable(); 
             $table->timestamp('published_at')->nullable()->index();
             $table->timestamps();
-            $table->unsignedBigInteger('id_patient'); // Make id_patient required
+            $table->unsignedBigInteger('id_patient');
             $table->unsignedBigInteger('id_doctor')->nullable();
 
-            $table->foreign('id_patient')->references('id')->on('patients')->onDelete('cascade'); // Adjust onDelete behavior as needed
+            $table->foreign('id_patient')->references('id')->on('patients')->onDelete('cascade'); 
             $table->foreign('id_doctor')->references('id')->on('doctors')->onDelete('set null');
         });
-
-
     }
 
     /**

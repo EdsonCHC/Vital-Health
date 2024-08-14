@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Area</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
-    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js'])
+    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js','resources/js/area.js'])
 </head>
 
 <body>
@@ -52,13 +52,6 @@
                     </div>
                 </label>
             </div>
-
-            <script>
-                document.getElementById("filtro").addEventListener("change", function() {
-                    var selectedOption = this.options[this.selectedIndex].text;
-                    document.getElementById("filtroSeleccionado").textContent = selectedOption;
-                });
-            </script>
         </div>
         <div class=" lg:hidden px-8  pt-28 ">
             <div class="w-full">
@@ -99,86 +92,28 @@
                 </label>
             </div>
         </div>
-        <script>
-            document.getElementById("filtro1").addEventListener("change", function() {
-                var selectedOption = this.options[this.selectedIndex].text;
-                document.getElementById("filtroSeleccionado1").textContent = selectedOption;
-            });
-        </script>
-
 
         <div class="flex flex-wrap m-4 lg:m-16">
-            <div class="w-full lg:w-1/4 p-4">
-                <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
-                    <div class="flex justify-center items-center flex-col">
-                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
-                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
-                        <p class="text-gray-400"> Disponible</p>
-                        <a href="/#" class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></a>
+            @foreach($categorias as $categoria) <!-- Corregido el nombre de la variable -->
+                <div class="w-full lg:w-1/4 p-4">
+                    <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
+                        <div class="flex justify-center items-center flex-col">
+                            <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"> @if ($categoria->img)
+                                <!-- Corregido el nombre de la variable -->
+                                <img src="{{ asset($categoria->img) }}" alt="{{ $categoria->nombre }}"
+                                    class="mx-auto max-h-40 mb-4">
+                            @endif  
+                         </div>
+                            <h3 class="font-bold text-xl p-2">{{ $categoria->nombre }}</h3>
+                            <p class="text-gray-400">Disponible</p>
+                            <a href="{{ route('service', ['id' => $categoria->id]) }}" class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="w-full lg:w-1/4 p-4">
-                <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
-                    <div class="flex justify-center items-center flex-col">
-                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
-                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
-                        <p class="text-gray-400"> Disponible</p>
-                        <a href="/#" class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></a>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full lg:w-1/4 p-4">
-                <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
-                    <div class="flex justify-center items-center flex-col">
-                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
-                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
-                        <p class="text-gray-400"> Disponible</p>
-                        <a href="/#" class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></a>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full lg:w-1/4 p-4">
-                <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
-                    <div class="flex justify-center items-center flex-col">
-                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
-                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
-                        <p class="text-gray-400"> Disponible</p>
-                        <a href="/#" class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></a>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full lg:w-1/4 p-4">
-                <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
-                    <div class="flex justify-center items-center flex-col">
-                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
-                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
-                        <p class="text-gray-400"> Disponible</p>
-                        <div class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full lg:w-1/4 p-4 ">
-                <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
-                    <div class="flex justify-center items-center flex-col">
-                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
-                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
-                        <p class="text-gray-400"> Disponible</p>
-                        <div class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full lg:w-1/4 p-4">
-                <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
-                    <div class="flex justify-center items-center flex-col">
-                        <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"></div>
-                        <h3 class="font-bold text-xl p-2">Pediatria</h3>
-                        <p class="text-gray-400"> Disponible</p>
-                        <div class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
+
+    </div>
     </div>
     <div class="w-full h-auto">
         @include('templates.footer_two')

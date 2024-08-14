@@ -7,6 +7,7 @@ use App\Models\Categoría;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 
+
 class CategoríaController extends Controller
 {
     public function index()
