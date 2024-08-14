@@ -87,14 +87,8 @@ $(document).ready(function () {
                     title: "Error...",
                     text: result.message,
                 });
-            } else {
-                Swal.fire({
-                    icon: "success",
-                    title: "Éxito!",
-                    text: "La contraseña es válida.",
-                });
+                return;
             }
-            return;
 
             step = 1;
             await secuencia();
@@ -306,6 +300,7 @@ $(document).ready(function () {
     async function image_input() {
         const { value: file } = await Swal.fire({
             title: "Selecciona una imagen",
+            text: "(opcional)",
             input: "file",
             inputAttributes: {
                 accept: "image/*",
@@ -335,11 +330,6 @@ $(document).ready(function () {
                         };
                         reader.readAsDataURL(file);
                     });
-                } else {
-                    Swal.showValidationMessage(
-                        "Por favor selecciona una imagen"
-                    );
-                    return false;
                 }
             },
         });
@@ -350,7 +340,7 @@ $(document).ready(function () {
             step--;
             return false;
         }
-        return false;
+        return true;
     }
 
     function escapeHtml(unsafe) {
@@ -399,7 +389,7 @@ $(document).ready(function () {
             };
         }
 
-        return { valid: true, message: "La contraseña es válida." };
+        return { valid: true };
     }
 
     function validateEmail(email) {
