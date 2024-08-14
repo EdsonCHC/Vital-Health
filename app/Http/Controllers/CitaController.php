@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 class CitaController extends Controller
 {
+
+
+    
     public function store(Request $request)
     {
         $validatedData = $request->validate([

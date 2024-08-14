@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use App\Models\Admin;
 use App\Models\Doctor;
+use App\Models\Categoría;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,14 @@ class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+     */  
+     public function indexu()
+    {
+        $categorias = Categoría::all();
+        return view('app.area', compact('categorias'));
+    }
+    
+
     public function index()
     {
         $user = Auth::user(); // Obtiene al usuario autenticado

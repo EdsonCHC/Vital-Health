@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Servicio</title>
     <link rel="shortcut icon" href="{{asset('storage/svg/favicon.png')}}" type="image/x-icon">
-    @vite(['resources/css/app.css', 'resources/css/checkbox.css', 'resources/js/appointment.js', 'resources/css/loader.css', 'resources/js/preloader.js','resources/js/scroll.js'])
+    @vite(['resources/css/app.css', 'resources/css/checkbox.css', 'resources/js/appointment.js', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js'])
 </head>
 
 <body class="w-full h-full">
@@ -20,13 +20,13 @@
     <div class="hidden lg:flex lg:pt-28 mb-5 w-full bg-gray-100">
         <div class="flex justify-center items-center">
             <div class="w-auto flex flex-col ml-40">
-                <span class="font-bold text-4xl mb-2">Area de Cardiologia</span>
-                <span class="font-bold text-4xl mb-4">Justo a tu Alcanze!!</span>
-                <span class="font-bold text-2xl">Administración de Area designada</span>
+                <span class="font-bold text-4xl mb-2">
+                    Bienvenido al Área de {{ $categoria->nombre }}
+                </span> <span class="font-bold text-4xl mb-4">Justo a tu Alcanze!!</span>
+                <span class="font-bold text-2xl">La Salud Es importancia para tu salud</span>
                 <div class="my-6 w-3/5">
                     <p class="text-xl text-justify mb-4 font-bold text-gray-400">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry.
+                        {{ $categoria->descripcion }}
                     </p>
                 </div>
                 <button target="_self" id="make_appointment"
@@ -36,12 +36,19 @@
             </div>
             <div class="mr-6">
                 <div class="bg-gray-200 rounded w-60 p-4">
-                    <p class="text-2xl font-bold mb-4">Area</p>
-                    <div class="flex flex-col pl-4 mt-1">
-                        <span class="text-xl">Activa</span>
-                        <span class="text-xl">Personal</span>
-                        <span class="text-xl">Personalizado</span>
+                    <p class="text-2xl font-bold mb-4">Caracteristicas de Area</p>
+                    <div class="mb-4">
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            @php
+                                $caracteristicas = explode(',', $categoria->caracteristicas);
+                            @endphp
+
+                            @foreach ($caracteristicas as $caracteristica)
+                                <span class="text-xl">{{ trim($caracteristica) }}</span>
+                            @endforeach
+                        </div>
                     </div>
+
                 </div>
             </div>
             <div class="flex justify-center items-center w-auto">
@@ -274,7 +281,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="w-56 h-92 m-5 p-4 bg-green-200 py-5 justify-center items-center rounded-xl">
                     <div class="relative">
                         <button id="menu_opti" class="flex ml-auto">

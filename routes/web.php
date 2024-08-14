@@ -5,6 +5,7 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\CategoríaController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StatisticsController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,15 +41,16 @@ Route::middleware('auth')->group(function () {
     Route::view('/chats', 'app.chats');
     Route::view('/area', 'app.area');
     Route::view('/citas', 'app.citas');
+    Route::view('/service', 'app.service');
 
     // CRUD User
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
     Route::post('/user', [UsuarioController::class, 'destroy']);
     Route::put('/user/update', [UsuarioController::class, 'update'])->name('user.update');
+    Route::get('/area', [UsuarioController::class, 'indexu'])->name('user');
+    Route::get('/service/{id}', [ServiceController::class, 'show'])->name('service');
 
 });
-
-Route::view('/service', 'app.service');
 
 // Rutas para el doctor
 Route::middleware(['auth:doctor'])->group(function () {
