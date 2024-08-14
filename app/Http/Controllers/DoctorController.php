@@ -37,7 +37,7 @@ class DoctorController extends Controller
             ], 422);
         }
 
-        // Crear usuario
+        // Crear
         try {
             $doctor = Doctor::create([
                 'name' => $request->name,

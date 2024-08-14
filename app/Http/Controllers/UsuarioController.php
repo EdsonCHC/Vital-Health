@@ -16,18 +16,17 @@ class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */  
-     public function indexu()
+     */
+    public function indexu()
     {
         $categorias = Categoría::all();
         return view('app.area', compact('categorias'));
     }
-    
+
     public function index()
     {
         $user = Auth::user(); // Obtiene al usuario autenticado
         return view('app.user_info', compact('user'));
-        
     }
 
     public function showDoctors()
@@ -119,13 +118,12 @@ class UsuarioController extends Controller
                 return response()->json(['success' => true, 'redirect_url' => '/user'], 200);
             }
 
-            // Intentar autenticar como doctor
             $doctor = Doctor::where('mail', $credentials['mail'])->first();
 
             if ($doctor && Hash::check($credentials['password'], $doctor->password)) {
                 Auth::guard('doctor')->login($doctor);
                 $request->session()->regenerate();
-                return response()->json(['success' => true, 'redirect_url' => '/doctor'], 200);
+                return response()->json(['success' => true, 'redirect_url' => '/doctor/doctor'], 200);
             }
 
             // Intentar autenticar como administrador
