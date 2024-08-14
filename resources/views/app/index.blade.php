@@ -137,15 +137,12 @@
                     </div>
                 @else
                     @foreach ($doctors as $doctor)
-                        @if ($count < $maxDoctors)
                             <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
                                 <h2 class="text-lg font-bold mb-2 text-vh-green">{{ $doctor->name }}</h2>
-                                <p class="text-sm font-bold text-gray-400 mt-2">{{ $doctor->category_id }}</p>
+                                <p class="text-sm font-bold text-gray-400 mt-2">{{ $doctor->category->nombre }}</p>
                                 <p class="text-md text-justify text-vh-green block leading-7">{{ $doctor->description }}
                                 </p>
                             </div>
-                            @php $count++; @endphp
-                        @endif
                     @endforeach
                 @endif
 
@@ -191,7 +188,7 @@
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{ asset('storage/svg/eye_closed.svg') }}" type="image/svg+xml"
+                    <object data="{{ asset('storage/svg/eye.svg') }}" type="image/svg+xml"
                         class="w-10"></object>
                     <p class="font-bold">Oculista</p>
                 </div>

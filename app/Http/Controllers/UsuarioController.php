@@ -23,32 +23,19 @@ class UsuarioController extends Controller
         return view('app.area', compact('categorias'));
     }
     
-
     public function index()
     {
         $user = Auth::user(); // Obtiene al usuario autenticado
         return view('app.user_info', compact('user'));
+        
     }
 
     public function showDoctors()
     {
-        $doctors = Doctor::all(); // Devuelve una colección de objetos
+        $doctors = Doctor::with('category')->get();
         return view('app.index', compact('doctors'));
     }
 
-
-
-    /**
-     * 
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         // Validar datos

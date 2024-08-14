@@ -25,7 +25,7 @@ class DoctorController extends Controller
             'phone' => 'required|max:25',
             'age' => 'required|numeric|min:18',
             'gender' => 'required',
-            'mail' => 'required|email',
+            'email' => 'required|email',
             'password' => 'required',
             'category_id' => 'required|numeric',
         ]);
