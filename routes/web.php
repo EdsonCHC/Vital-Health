@@ -29,9 +29,6 @@ Route::post('/login', [UsuarioController::class, 'show']);
 Route::view('/registro', 'app.registro');
 Route::post('/registro', [UsuarioController::class, 'store']);
 
-// Ruta para mostrar el doctor en usuario
-Route::get('/', [DoctorController::class, 'indexUser'])->name('user.index');
-
 
 // Middlewares para el usuario
 Route::middleware('auth')->group(function () {

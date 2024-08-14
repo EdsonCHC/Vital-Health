@@ -103,7 +103,7 @@
             </div>
             <div class="w-full flex grow-0 flex-wrap items-center justify-center mb-8">
                 <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                    <h2 class="text-lg font-bold mb-2 text-vh-green">{{ $doctor->name }}</h2>
+                    <h2 class="text-lg font-bold mb-2 text-vh-green"></h2>
                     <p class="text-sm font-bold text-gray-400 mt-2">Primary Care Doctor</p>
                     <a class="text-md text-justify text-vh-green block leading-7">Very personable and good listener.
                         Makes you feel comfortable and open immediately. Felt well taken care...</a>

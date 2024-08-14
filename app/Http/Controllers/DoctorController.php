@@ -17,12 +17,6 @@ class DoctorController extends Controller
         return view('doctor.index_doc', compact('doctor'));
     }
 
-    public function indexUser($name)
-    {
-        $doctor = Doctor::find($name);
-        return view('app.index', compact('doctor'));
-    }
-
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
