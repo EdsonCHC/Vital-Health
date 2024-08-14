@@ -81,7 +81,7 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "/user",
+                    url: "/user/update",
                     type: "PUT",
                     data: $("#user_form").serialize(),
                     success(response) {

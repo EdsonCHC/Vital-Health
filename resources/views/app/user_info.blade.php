@@ -62,7 +62,6 @@
                         <h1 class="font-bold text-xl lg:text-3xl">Información</h1>
                         <form id="user_form" class="w-full">
                             @csrf
-                            @method('POST')
                             <div class="flex flex-col gap-5 mt-5">
                                 <label class="block text-lg font-semibold">
                                     Nombre *
