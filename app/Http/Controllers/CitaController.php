@@ -2,32 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Citas;
+use App\Models\citas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CitaController extends Controller
 {
-
-
-    
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'date' => 'required|date',
             'hour' => 'required|string',
             'modalidad' => 'required|string',
-            'description' => 'nullable|string' // Se permite que la descripción sea opcional
+            'description' => 'nullable|string',
+            'category_id' => 'required|exists:categorias,id', // Asegúrate de que la categoría existe
         ]);
 
         try {
             $appointment = Citas::create([
                 'date' => $validatedData['date'],
                 'hour' => $validatedData['hour'],
-                'modo' => $validatedData['modalidad'], // Asegúrate de que este campo coincide con el nombre del campo en la base de datos
-                'description' => $validatedData['description'] ?? '', // Si la descripción no está presente, se establece como cadena vacía
+                'modo' => $validatedData['modalidad'], 
+                'description' => $validatedData['description'] ?? '',
                 'id_patient' => Auth::id(),
-                'state' => 1, // Estado inicial 'inicio'
+                'id_category' => $validatedData['category_id'], // Agrega el ID de la categoría
+                'state' => 1, 
             ]);
 
             return response()->json([

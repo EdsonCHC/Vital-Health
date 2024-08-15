@@ -15,7 +15,8 @@
     <div class="w-full h-auto">
         @include('templates.header')
     </div>
-
+    <!-- Hidden Input for Category ID -->
+    <input type="hidden" id="category_id" value="{{ $categoria->id }}"> 
     <!--Estilos Desktop-->
     <div class="hidden lg:flex lg:pt-28 mb-5 w-full bg-gray-100">
         <div class="flex justify-center items-center">
@@ -32,7 +33,7 @@
                 <button target="_self" id="make_appointment"
                     class="w-4/5 lg:w-2/5 h-12 text-white font-bold bg-vh-green text-lg tracking-wide shadow-xl mb-10 mx-4 rounded-full hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
                     Solicitar Cita
-                    <button />
+                </button>
             </div>
             <div class="mr-6">
                 <div class="bg-gray-200 rounded w-60 p-4">

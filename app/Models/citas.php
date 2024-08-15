@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Citas extends Model
+class citas extends Model
 {
     use HasFactory;
 
@@ -28,11 +28,11 @@ class Citas extends Model
 
     public function category()
     {
-        return $this->belongsTo('App\Models\Categoria', 'id_category');
+        return $this->belongsTo('App\Models\Categoría', 'id_category');
     }
 
     public function doctor()
     {
-        return $this->belongsTo('App\Models\Doctor', 'id_doctor'); 
+        return $this->belongsTo('App\Models\Doctor', 'id_doctor');
     }
 }
