@@ -123,7 +123,7 @@ class UsuarioController extends Controller
             if ($doctor && Hash::check($credentials['password'], $doctor->password)) {
                 Auth::guard('doctor')->login($doctor);
                 $request->session()->regenerate();
-                return response()->json(['success' => true, 'redirect_url' => '/doctor/doctor'], 200);
+                return response()->json(['success' => true, 'redirect_url' => '/doctor'], 200);
             }
 
             // Intentar autenticar como administrador
