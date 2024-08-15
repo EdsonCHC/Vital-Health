@@ -93,7 +93,7 @@ class CategoríaController extends Controller
 
     public function showStaff($id)
     {
-        $categoria = Categoría::find($id);
+        $categoria = Categoría::with('doctors')->find($id);
         if (!$categoria) {
             return redirect()->back()->with('error', 'La categoría no existe.');
         }

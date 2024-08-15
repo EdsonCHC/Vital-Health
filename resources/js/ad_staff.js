@@ -4,11 +4,9 @@ window.$ = jQuery;
 
 // Editar info del Doc
 $(document).ready(function () {
-
     const url = new URL(window.location.href);
 
-    
-    const pathSegments = url.pathname.split('/');
+    const pathSegments = url.pathname.split("/");
     const id = pathSegments[pathSegments.length - 1];
 
     const firstForm = `
@@ -31,7 +29,6 @@ $(document).ready(function () {
                             <option value="" disabled selected>Seleccione un género</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
-                            <option value="Otro">Otro</option>
                         </select>
                     </div>
                     <div class="flex flex-col">
@@ -41,6 +38,10 @@ $(document).ready(function () {
                     <div class="flex flex-col">
                         <label class="mr-auto font-semibold text-xl">Dirección</label>
                         <input id="address" name="address" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="mr-auto font-semibold text-xl">Descripcion</label>
+                        <input id="description" name="description" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
                     </div>
                 </form>
             `;
@@ -80,20 +81,30 @@ $(document).ready(function () {
                 const gender = form.gender.value;
                 const age = form.age.value;
                 const address = form.address.value.trim();
+                const description = form.description.value.trim();
                 if (
                     !name ||
                     !lastName ||
                     !phone ||
                     !gender ||
                     !age ||
-                    !address
+                    !address ||
+                    !description
                 ) {
                     Swal.showValidationMessage(
                         "Por favor, complete todos los campos"
                     );
                     return false;
                 }
-                return { name, lastName, phone, gender, age, address };
+                return {
+                    name,
+                    lastName,
+                    phone,
+                    gender,
+                    age,
+                    address,
+                    description,
+                };
             },
         });
 
@@ -149,20 +160,30 @@ $(document).ready(function () {
                 const gender = form.gender.value;
                 const age = form.age.value;
                 const address = form.address.value.trim();
+                const description = form.description.value.trim();
                 if (
                     !name ||
                     !lastName ||
                     !phone ||
                     !gender ||
                     !age ||
-                    !address
+                    !address ||
+                    !description
                 ) {
                     Swal.showValidationMessage(
                         "Por favor, complete todos los campos"
                     );
                     return false;
                 }
-                return { name, lastName, phone, gender, age, address };
+                return {
+                    name,
+                    lastName,
+                    phone,
+                    gender,
+                    age,
+                    address,
+                    description,
+                };
             },
         });
 
@@ -204,21 +225,27 @@ $(document).ready(function () {
                 isConfirmed: secondFormConfirmed,
             } = await showSecondForm();
             if (secondFormConfirmed) {
-                const concatArrays = {...firstFormValues, ...secondFormValues, category_id : id};
+                const concatArrays = {
+                    ...firstFormValues,
+                    ...secondFormValues,
+                    category_id: id,
+                };
                 console.log(concatArrays);
                 $.ajax({
-                    url: '/staff/{id}',
-                    type:  'POST',
+                    url: "/staff/{id}",
+                    type: "POST",
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')  // Incluye el token CSRF
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ), // Incluye el token CSRF
                     },
                     data: concatArrays,
-                    success: (response) =>{
+                    success: (response) => {
                         console.log("Datos enviados", response);
                     },
-                    error: (response)=>{
+                    error: (response) => {
                         console.log("error al enviar los Datos", response);
-                    }
+                    },
                 });
             }
         }

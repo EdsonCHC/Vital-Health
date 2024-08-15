@@ -28,6 +28,7 @@ class DoctorController extends Controller
             'email' => 'required|email',
             'password' => 'required',
             'category_id' => 'required|numeric',
+            'description' => 'required|max:1000',
         ]);
 
         if ($validator->fails()) {
@@ -48,6 +49,7 @@ class DoctorController extends Controller
                 'mail' => $request->email,
                 'password' => Hash::make($request->password),
                 'category_id' => $request->category_id,
+                'description' => $request->description
             ]);
 
             if (!$doctor) {

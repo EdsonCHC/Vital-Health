@@ -53,4 +53,9 @@ class Categoría extends Model
      * @var string
      */
     protected $table = 'categorias';
+
+    public function doctors()
+    {
+        return $this->hasMany(Doctor::class, 'category_id');
+    }
 }
