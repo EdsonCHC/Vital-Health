@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Servicio</title>
-    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js','resources/js/doctor.js'])
+    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/js/doctor.js'])
+    <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
 
 <body class="w-full h-full">
@@ -40,7 +41,7 @@
             <div class="flex justify-center items-center w-auto">
                 <div class="ml-auto lg:ml-auto">
                     <div class="">
-                        <img class="w-96 absolute z-10 -mt-52" src="{{asset('storage/svg/doctor.svg')}}"
+                        <img class="w-96 absolute z-10 -mt-52" src="{{ asset('storage/svg/doctor.svg') }}"
                             type="image/svg+xml" />
                     </div>
                 </div>
@@ -66,7 +67,7 @@
             </div>
         </div>
         <div class="ml-auto mt-12 lg:ml-auto absolute z-[-10] opacity-60">
-            <img class="h-56 lg:h-full" src="{{asset('storage/svg/doctor.svg')}}" type="image/svg+xml" />
+            <img class="h-56 lg:h-full" src="{{ asset('storage/svg/doctor.svg') }}" type="image/svg+xml" />
         </div>
     </div>
     <div class="lg:hidden flex justify-center items-center">
@@ -109,22 +110,22 @@
                     <hr class="mx-6 my-2" />
                     <div class="flex flex-col px-8">
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                            <object data="{{ asset('storage/svg/check.svg') }}" type="image/svg+xml"
                                 class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 1</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                            <object data="{{ asset('storage/svg/check.svg') }}" type="image/svg+xml"
                                 class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 2</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                            <object data="{{ asset('storage/svg/check.svg') }}" type="image/svg+xml"
                                 class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 3</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                            <object data="{{ asset('storage/svg/check.svg') }}" type="image/svg+xml"
                                 class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 4</span>
                         </label>
@@ -146,22 +147,22 @@
                     <hr class="mx-6 my-2" />
                     <div class="flex flex-col px-8">
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                            <object data="{{ asset('storage/svg/check.svg') }}" type="image/svg+xml"
                                 class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 1</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                            <object data="{{ asset('storage/svg/check.svg') }}" type="image/svg+xml"
                                 class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 2</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                            <object data="{{ asset('storage/svg/check.svg') }}" type="image/svg+xml"
                                 class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 3</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                            <object data="{{ asset('storage/svg/check.svg') }}" type="image/svg+xml"
                                 class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 4</span>
                         </label>
@@ -181,22 +182,22 @@
                     <hr class="mx-6 my-2" />
                     <div class="flex flex-col px-8">
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                            <object data="{{ asset('storage/svg/check.svg') }}" type="image/svg+xml"
                                 class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 1</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                            <object data="{{ asset('storage/svg/check.svg') }}" type="image/svg+xml"
                                 class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 2</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                            <object data="{{ asset('storage/svg/check.svg') }}" type="image/svg+xml"
                                 class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 3</span>
                         </label>
                         <label class="flex items-center">
-                            <object data="{{asset('storage/svg/check.svg')}}" type="image/svg+xml"
+                            <object data="{{ asset('storage/svg/check.svg') }}" type="image/svg+xml"
                                 class="w-6 h-auto"></object>
                             <span class="ml-2">Opción 4</span>
                         </label>
@@ -218,8 +219,8 @@
                 <div class="w-56 h-92 m-5 p-4 bg-green-200 py-5 justify-center items-center rounded-xl">
                     <div class="relative">
                         <button id="menu_opti" class="flex ml-auto">
-                            <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/option-icon.svg') }}"
-                                alt="Inicio" />
+                            <img id="menu-icon" class="h-8 w-8 mx-2"
+                                src="{{ asset('storage/svg/option-icon.svg') }}" alt="Inicio" />
                         </button>
                         <div id="menuOptions"
                             class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
@@ -235,8 +236,8 @@
                         <p class="text-gray-400 text-lg mb-4">Pediatria</p>
                         <div class="">
                             <button id="delete_doc">
-                                <img id="menu-icon" class="h-14 w-14 mx-2 " src="{{ asset('storage/svg/info.svg') }}"
-                                    alt="Inicio" />
+                                <img id="menu-icon" class="h-14 w-14 mx-2 "
+                                    src="{{ asset('storage/svg/info.svg') }}" alt="Inicio" />
                             </button>
                         </div>
                     </div>
@@ -244,8 +245,8 @@
                 <div class="w-56 h-92 m-5 p-4 bg-green-200 py-5 justify-center items-center rounded-xl">
                     <div class="relative">
                         <button id="menu_opti" class="flex ml-auto">
-                            <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/option-icon.svg') }}"
-                                alt="Inicio" />
+                            <img id="menu-icon" class="h-8 w-8 mx-2"
+                                src="{{ asset('storage/svg/option-icon.svg') }}" alt="Inicio" />
                         </button>
                         <div id="menuOptions"
                             class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
@@ -261,8 +262,8 @@
                         <p class="text-gray-400 text-lg mb-4">Pediatria</p>
                         <div class="">
                             <button id="delete_doc">
-                                <img id="menu-icon" class="h-14 w-14 mx-2 " src="{{ asset('storage/svg/info.svg') }}"
-                                    alt="Inicio" />
+                                <img id="menu-icon" class="h-14 w-14 mx-2 "
+                                    src="{{ asset('storage/svg/info.svg') }}" alt="Inicio" />
                             </button>
                         </div>
                     </div>
@@ -270,8 +271,8 @@
                 <div class="w-56 h-92 m-5 p-4 bg-green-200 py-5 justify-center items-center rounded-xl">
                     <div class="relative">
                         <button id="menu_opti" class="flex ml-auto">
-                            <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/option-icon.svg') }}"
-                                alt="Inicio" />
+                            <img id="menu-icon" class="h-8 w-8 mx-2"
+                                src="{{ asset('storage/svg/option-icon.svg') }}" alt="Inicio" />
                         </button>
                         <div id="menuOptions"
                             class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
@@ -287,8 +288,8 @@
                         <p class="text-gray-400 text-lg mb-4">Pediatria</p>
                         <div class="">
                             <button id="delete_doc">
-                                <img id="menu-icon" class="h-14 w-14 mx-2 " src="{{ asset('storage/svg/info.svg') }}"
-                                    alt="Inicio" />
+                                <img id="menu-icon" class="h-14 w-14 mx-2 "
+                                    src="{{ asset('storage/svg/info.svg') }}" alt="Inicio" />
                             </button>
                         </div>
                     </div>
@@ -308,8 +309,8 @@
                 <div class="w-40 h-60 mx-4 bg-green-200 py-2 justify-center items-center rounded-xl">
                     <div class="relative">
                         <button id="menu_opti" class="menu_opti flex ml-auto">
-                            <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/option-icon.svg') }}"
-                                alt="Inicio" />
+                            <img id="menu-icon" class="h-8 w-8 mx-2"
+                                src="{{ asset('storage/svg/option-icon.svg') }}" alt="Inicio" />
                         </button>
                         <div id="menuOptions"
                             class="w-32 ml-10 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
@@ -325,8 +326,8 @@
                         <p class="text-gray-400 text-lg">Pediatria</p>
                         <div class="mt-2 flex items-center">
                             <button id="">
-                                <img id="menu-icon" class="h-10 w-10 mx-2 " src="{{ asset('storage/svg/info.svg') }}"
-                                    alt="Inicio" />
+                                <img id="menu-icon" class="h-10 w-10 mx-2 "
+                                    src="{{ asset('storage/svg/info.svg') }}" alt="Inicio" />
                             </button>
                         </div>
                     </div>
@@ -334,8 +335,8 @@
                 <div class="w-40 h-60 mx-4 bg-green-200 py-2 justify-center items-center rounded-xl">
                     <div class="relative">
                         <button id="menu_opti" class="menu_opti flex ml-auto">
-                            <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/option-icon.svg') }}"
-                                alt="Inicio" />
+                            <img id="menu-icon" class="h-8 w-8 mx-2"
+                                src="{{ asset('storage/svg/option-icon.svg') }}" alt="Inicio" />
                         </button>
                         <div id="menuOptions"
                             class="w-32 ml-10 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
@@ -351,8 +352,8 @@
                         <p class="text-gray-400 text-lg">Pediatria</p>
                         <div class="mt-2 flex items-center">
                             <button id="">
-                                <img id="menu-icon" class="h-10 w-10 mx-2 " src="{{ asset('storage/svg/info.svg') }}"
-                                    alt="Inicio" />
+                                <img id="menu-icon" class="h-10 w-10 mx-2 "
+                                    src="{{ asset('storage/svg/info.svg') }}" alt="Inicio" />
                             </button>
                         </div>
                     </div>

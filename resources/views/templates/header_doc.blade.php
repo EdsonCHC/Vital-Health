@@ -50,7 +50,7 @@
         <!-- Botón de Cierre de Sesión -->
         <div class="absolute bottom-0 left-0 right-0 mb-4 px-2">
           <a href="#" id="log_out"
-            class="flex items-center justify-center mb-5 h-14 rounded transition duration-300 hover:bg-white hover:text-black text-white tracking-widest">
+            class="flex items-center justify-center mb-5 h-14 rounded transition duration-300 bg-vh-green hover:bg-vh-gray hover:text-black text-white tracking-widest">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

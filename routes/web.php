@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::view('/service', 'app.service');
 
     // CRUD User
+    Route::get('create', [CitaController::class, 'create'])->name('citas.create');
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
     Route::post('/user', [UsuarioController::class, 'destroy']);
     Route::put('/user/update', [UsuarioController::class, 'update'])->name('user.update');

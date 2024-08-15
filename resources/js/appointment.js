@@ -55,7 +55,7 @@ $(document).ready(function () {
                 const selectedModalidad = document.querySelector(
                     'input[name="modalidad"]:checked'
                 )?.value;
-                
+
                 if (!selectedDate) {
                     Swal.showValidationMessage("Por favor, seleccione una fecha.");
                     return false;
@@ -159,8 +159,8 @@ $(document).ready(function () {
         header.innerHTML = `
             <button id="prevMonth" class="px-5 py-3 bg-vh-green text-white rounded font-bold"><</button>
             <h2 id="currentMonth" class="text-2xl font-bold text-gray-800">${getMonthName(
-                date.getMonth()
-            )} ${date.getFullYear()}</h2>
+            date.getMonth()
+        )} ${date.getFullYear()}</h2>
             <button id="nextMonth" class="px-5 py-3 bg-vh-green text-white rounded">></button>
         `;
         return header;
@@ -243,6 +243,7 @@ $(document).ready(function () {
                         hour: result.hour,
                         modalidad: result.modalidad,
                         description: result.description || "",
+                        category_id: getCategoryId(), // Obtén el ID de la categoría aquí
                         _token: $('meta[name="csrf-token"]').attr('content'),
                     },
                     dataType: "json",
@@ -264,4 +265,9 @@ $(document).ready(function () {
             }
         }
     }
+
+    function getCategoryId() {
+        return $('#category_id').val();
+    }
+
 });

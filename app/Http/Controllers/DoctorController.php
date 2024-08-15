@@ -14,7 +14,7 @@ class DoctorController extends Controller
     public function index()
     {
         $doctor = Auth::guard('doctor')->user();
-        return view('doctor.index_doc', compact('doctor'));
+        return view('doctor.doctor', compact('doctor'));
     }
 
     public function create(Request $request)
@@ -38,7 +38,7 @@ class DoctorController extends Controller
             ], 422);
         }
 
-        // Crear usuario
+        // Crear
         try {
             $doctor = Doctor::create([
                 'name' => $request->name,

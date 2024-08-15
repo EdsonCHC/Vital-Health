@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Appointment</title>
     @vite(['resources/css/app.css', 'resources/js/ad_appointment.js'])
+    <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
+
 </head>
 
 <body class="w-full h-full bg-vh-alice-blue">

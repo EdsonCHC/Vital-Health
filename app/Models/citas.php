@@ -14,19 +14,25 @@ class citas extends Model
         'date',
         'hour',
         'description',
-        'id_patient',
-        'id_doctor',
         'modo',
         'enlace',
+        'id_patient',
+        'id_category',
+        'id_doctor',
     ];
 
     public function patient()
     {
-        return $this->belongsTo('App\Models\patients', 'id_patient');
+        return $this->belongsTo('App\Models\Usuario', 'id_patient');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Categoría', 'id_category');
     }
 
     public function doctor()
     {
-        return $this->belongsTo('App\Models\doctors', 'id_doctor');
+        return $this->belongsTo('App\Models\Doctor', 'id_doctor');
     }
 }
