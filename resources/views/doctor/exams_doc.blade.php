@@ -7,6 +7,7 @@
     <title>Examenes</title>
     <!-- Incluir Tailwind CSS -->
     @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js','resources/js/doctor.js'])
+    <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
 
 <body class="w-full h-screen bg-gray-200">

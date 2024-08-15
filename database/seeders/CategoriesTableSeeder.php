@@ -18,7 +18,6 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run(): void
     {
-
         // Crear categorías de ejemplo
         $categorias = [
             [
@@ -41,7 +40,6 @@ class CategoriesTableSeeder extends Seeder
             ],
             // Añadir más categorías según sea necesario
         ];
-
 
         // Insertar los registros en la base de datos
         DB::transaction(function () use ($categorias) {

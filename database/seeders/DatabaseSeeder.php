@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             CategoriesTableSeeder::class,
             DoctorsTableSeeder::class,
             PatientsTableSeeder::class,
+            ExamsTableSeeder::class,
             AdminTableSeeder::class,
         ]);
     }

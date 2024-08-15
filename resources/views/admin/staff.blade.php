@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Staff</title>
     @vite(['resources/css/app.css', 'resources/js/ad_staff.js'])
+    <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
 
 <body class="w-full h-full bg-vh-alice-blue">
@@ -35,7 +36,8 @@
                     </button>
                     <div id="menuOptions"
                         class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
-                        <a href="#" id="edit_staff" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
+                        <a href="#" id="edit_staff"
+                            class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
                         <a href="#" id="history_staff"
                             class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
                     </div>
@@ -76,7 +78,8 @@
                     </button>
                     <div id="menuOptions"
                         class="w-32 ml-10 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
-                        <a href="#" id="edit_staff" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
+                        <a href="#" id="edit_staff"
+                            class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
                         <a href="#" id="history_staff"
                             class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
                     </div>
@@ -100,8 +103,8 @@
         </div>
     </div>
     <script>
-        document.querySelectorAll('#menu_opti, .menu_opti').forEach(function (element) {
-            element.addEventListener('click', function (event) {
+        document.querySelectorAll('#menu_opti, .menu_opti').forEach(function(element) {
+            element.addEventListener('click', function(event) {
                 event.preventDefault();
                 var menuOptions = this.nextElementSibling;
                 menuOptions.classList.toggle('hidden');

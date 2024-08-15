@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agenda</title>
     <!-- Incluir Tailwind CSS -->
-    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js','resources/js/doctor.js'])
+    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/js/doctor.js'])
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
-
+    <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
 
 <body class="w-full h-screen bg-gray-200">
@@ -164,7 +164,8 @@
                         </div>
                         <div class="w-76 h-36 m-4 bg-vh-gray-light rounded-lg flex">
                             <div class="m-4">
-                                <div class="w-16 h-16 mb-2 flex-col content-center items-center bg-vh-green rounded-md">
+                                <div
+                                    class="w-16 h-16 mb-2 flex-col content-center items-center bg-vh-green rounded-md">
                                     <span class="flex justify-center font-semibold text-white text-lg">27</span>
                                     <span class="flex justify-center font-semibold text-white text-lg">Feb</span>
                                 </div>

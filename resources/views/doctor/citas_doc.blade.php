@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citas</title>
     <!-- Incluir Tailwind CSS -->
-    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js','resources/js/doctor.js'])
+    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/js/doctor.js'])
+    <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
 
 <body class="w-full h-screen bg-gray-200">
@@ -26,7 +27,7 @@
                                 class="block w-full h-12 pl-16 py-2 border border-gray-200 rounded-md leading-5 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none focus:bg-white focus:text-gray-900 sm:text-sm transition duration-150 ease-in-out"
                                 placeholder="Buscar">
                             <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
-                                <object data="{{asset('storage/svg/lupa.svg')}}" type="image/svg+xml"></object>
+                                <object data="{{ asset('storage/svg/lupa.svg') }}" type="image/svg+xml"></object>
                             </span>
                         </form>
                     </div>
@@ -46,7 +47,7 @@
                                     </select>
                                     <div class="flex justify-center items-center w-full">
                                         <span id="filtroSeleccionado1" class="flex pr-2 text-gray-700">Todos</span>
-                                        <img src="{{asset('storage/svg/filtro.svg')}}" alt="Filtro" class="h-5 w-5">
+                                        <img src="{{ asset('storage/svg/filtro.svg') }}" alt="Filtro" class="h-5 w-5">
                                     </div>
                                 </label>
                             </div>
@@ -93,7 +94,7 @@
                         </div>
                     </div>
                     <script>
-                        document.getElementById("filtro1").addEventListener("change", function () {
+                        document.getElementById("filtro1").addEventListener("change", function() {
                             var selectedOption = this.options[this.selectedIndex].text;
                             document.getElementById("filtroSeleccionado1").textContent = selectedOption;
                         });

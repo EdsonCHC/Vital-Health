@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Expediente</title>
     @vite(['resources/css/app.css'])
+    <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
 
 <body class="w-full h-full bg-vh-alice-blue">

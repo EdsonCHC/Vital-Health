@@ -14,6 +14,7 @@ class Exams extends Model
         'doctor_id',
         'exam_type',
         'results',
+        'exam_hour',
         'exam_date',
         'notes',
     ];
