@@ -18,4 +18,14 @@ class Exams extends Model
         'exam_date',
         'notes',
     ];
+    
+    public function patient()
+    {
+        return $this->belongsTo(Usuario::class);
+    }
+
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class);
+    }
 }
