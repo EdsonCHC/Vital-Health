@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use App\Models\Admin;
 use App\Models\Doctor;
+use App\Models\Laboratorio;
 use App\Models\Categoría;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -107,11 +108,11 @@ class UsuarioController extends Controller
             'mail' => $request->mail,
             'password' => $request->password,
         ];
-
+    
         try {
             // Intentar autenticar como usuario normal
             $user = Usuario::where('mail', $credentials['mail'])->first();
-
+    
             if ($user && Hash::check($credentials['password'], $user->password)) {
                 Auth::login($user);
                 $request->session()->regenerate();
@@ -119,29 +120,36 @@ class UsuarioController extends Controller
             }
 
             $doctor = Doctor::where('mail', $credentials['mail'])->first();
-
+    
             if ($doctor && Hash::check($credentials['password'], $doctor->password)) {
                 Auth::guard('doctor')->login($doctor);
                 $request->session()->regenerate();
                 return response()->json(['success' => true, 'redirect_url' => '/doctor'], 200);
             }
-
+    
             // Intentar autenticar como administrador
             $admin = Admin::where('mail', $credentials['mail'])->first();
-
+    
             if ($admin && Hash::check($credentials['password'], $admin->password)) {
                 Auth::guard('admin')->login($admin);
                 $request->session()->regenerate();
                 return response()->json(['success' => true, 'redirect_url' => '/home'], 200);
             }
-
-            // Si no se encontraron credenciales válidas
+    
+            $laboratorio = Laboratorio::where('mail', $credentials['mail'])->first();
+    
+            if ($laboratorio && Hash::check($credentials['password'], $laboratorio->password)) {
+                Auth::guard('laboratorio')->login($laboratorio);
+                $request->session()->regenerate();
+                return response()->json(['success' => true, 'redirect_url' => '/index'], 200);
+            }
+    
             return response()->json(['message' => 'Credenciales incorrectas'], 401);
         } catch (\Exception $e) {
             return response()->json(['error' => "Error: " . $e->getMessage()], 500);
         }
     }
-
+    
 
 
     /**

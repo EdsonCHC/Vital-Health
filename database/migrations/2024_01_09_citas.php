@@ -20,13 +20,11 @@ return new class extends Migration {
             $table->string('enlace')->nullable(); 
             $table->timestamp('published_at')->nullable()->index();
             $table->timestamps();
-            $table->unsignedBigInteger('id_patient');
-            $table->unsignedBigInteger('id_category');
-            $table->unsignedBigInteger('id_doctor')->nullable();  
-            
-            $table->foreign('id_patient')->references('id')->on('patients')->onDelete('cascade');
-            $table->foreign('id_category')->references('id')->on('categorias')->onDelete('cascade');
-            $table->foreign('id_doctor')->references('id')->on('doctors')->onDelete('set null');
+
+            // Usando constrained para simplificar las claves foráneas
+            $table->foreignId('category_id')->constrained('categorias')->cascadeOnDelete();
+            $table->foreignId('doctor_id')->nullable()->constrained('doctors')->nullOnDelete();
+            $table->foreignId('patient_id')->constrained('patients')->cascadeOnDelete();
         });
     }
 

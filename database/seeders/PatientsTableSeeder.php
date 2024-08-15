@@ -48,6 +48,17 @@ class PatientsTableSeeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'name' => 'Francisco',
+                'lastName' => 'Soto',
+                'mail' => 'fran.soto@example.com',
+                'gender' => 'male',
+                'birth' => '2000-05-15',
+                'blood' => 'B-',
+                'password' => Hash::make('password789'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ];
 
 

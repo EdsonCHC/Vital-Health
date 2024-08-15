@@ -62,36 +62,40 @@
                             <p class="font-semibold text-xl text-vh-green">Codigo</p>
                             <p class="font-semibold text-xl text-vh-green">Paciente</p>
                             <p class="font-semibold text-xl text-vh-green">Fecha</p>
-                            <p class="font-semibold text-xl text-vh-green">Expediente</p>
+                            <p class="font-semibold text-xl text-vh-green">Examen</p>
                             <div class="w-2/12">
                                 <p class="font-semibold text-xl text-vh-green">Herramientas</p>
                             </div>
                         </div>
-                        <div class="w-auto h-16 flex justify-around items-center my-5 mx-4 bg-green-200 rounded-md">
-                            <p class="font-bold text-lg">lorem</p>
-                            <p class="font-bold text-lg">lorem</p>
-                            <p class="font-bold text-lg">lorem</p>
-                            <button target="_self" class="assign_appointment">
-                                <a href="#">
-                                    <img src="{{ asset('storage/svg/eye-icon.svg') }}" alt="noti_icon"
-                                        class="w-10 h-10 p-2 ">
-                                </a>
-                            </button>
-                            <div class="w-2/12 flex items-center space-x-10">
-                                <button target="_self" class="assign_appointment ml-4">
+                        @foreach ($citas as $cita)
+                            <div class="w-auto h-14 flex justify-around items-center my-5 mx-4 bg-green-200 rounded-md">
+                                <p class="ml-4 font-semibold text-xl text-vh-green">{{ $cita->id }}</p>
+                                <p class="ml-12 font-semibold text-xl text-vh-green">{{ $cita->patient->name }}
+                                </p> <!-- Asegúrate de que 'patient' es una relación definida en tu modelo -->
+                                <p class=" font-semibold text-xl text-vh-green">{{ $cita->date }}</p>
+                                <button target="_self" class="assign_appointment">
                                     <a href="#">
-                                        <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
-                                            class="w-10 h-10 p-2  rounded">
+                                        <img src="{{ asset('storage/svg/eye-icon.svg') }}" alt="noti_icon"
+                                            class="w-10 h-10 p-2 ">
                                     </a>
                                 </button>
-                                <button>
-                                    <a href="#">
-                                        <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
-                                            class="w-10 h-10 p-2 rounded">
-                                    </a>
-                                </button>
+                                <div class="w-2/12 flex items-center space-x-10">
+                                    <button target="_self" class="assign_appointment ml-4">
+                                        <a href="#">
+                                            <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
+                                                class="w-10 h-10 p-2  rounded">
+                                        </a>
+                                    </button>
+                                    <button>
+                                        <a href="#">
+                                            <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
+                                                class="w-10 h-10 p-2 rounded">
+                                        </a>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
+
                     </div>
                     <script>
                         document.getElementById("filtro1").addEventListener("change", function() {
