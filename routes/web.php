@@ -50,13 +50,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/user/update', [UsuarioController::class, 'update'])->name('user.update');
     Route::get('/area', [UsuarioController::class, 'indexu'])->name('user');
     Route::get('/service/{id}', [ServiceController::class, 'show'])->name('service');
-
 });
 
 // Rutas para el doctor
 Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/doctor', [DoctorController::class, 'index'])->name('doctor');
-    Route::view('/citas_doc', 'doctor.citas_doc');
+    Route::get('/citas_doc', [CitaController::class, 'index'])->name('doctor.citas_doc');
     Route::view('/allocation', 'doctor.allocation');
     Route::view('/exams_doc', 'doctor.exams_doc');
     Route::view('/medicine_doc', 'doctor.medicine_doc');

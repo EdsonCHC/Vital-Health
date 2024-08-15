@@ -39,6 +39,17 @@ class ExamsTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'patient_id' => 3,
+                'doctor_id' => 3,
+                'exam_type' => "stool",
+                'results' => true,
+                'exam_hour' => '11:00',
+                'exam_date' => '2024-08-14',
+                'notes' => 'El examen esta en regla',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
             // Añadir más examenes según sea necesario
         ];
 

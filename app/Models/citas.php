@@ -17,22 +17,22 @@ class citas extends Model
         'modo',
         'enlace',
         'id_patient',
-        'id_category',
+        'category_id',
         'id_doctor',
     ];
 
     public function patient()
     {
-        return $this->belongsTo('App\Models\Usuario', 'id_patient');
+        return $this->belongsTo('App\Models\Usuario', 'patient_id');
     }
 
     public function category()
     {
-        return $this->belongsTo('App\Models\Categoría', 'id_category');
+        return $this->belongsTo('App\Models\Categoría', 'category_id');
     }
 
     public function doctor()
     {
-        return $this->belongsTo('App\Models\Doctor', 'id_doctor');
+        return $this->belongsTo('App\Models\Doctor', 'doctor_id');
     }
 }

@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class CitaController extends Controller
 {
+    public function index()
+    {
+        $citas = citas::all();
+        return view('doctor.citas_doc', compact('citas'));
+    }
+    
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -22,11 +28,11 @@ class CitaController extends Controller
             $appointment = Citas::create([
                 'date' => $validatedData['date'],
                 'hour' => $validatedData['hour'],
-                'modo' => $validatedData['modalidad'], 
+                'modo' => $validatedData['modalidad'],
                 'description' => $validatedData['description'] ?? '',
-                'id_patient' => Auth::id(),
-                'id_category' => $validatedData['category_id'], // Agrega el ID de la categoría
-                'state' => 1, 
+                'patient_id' => Auth::id(),
+                'category_id' => $validatedData['category_id'], // Agrega el ID de la categoría
+                'state' => 1,
             ]);
 
             return response()->json([
