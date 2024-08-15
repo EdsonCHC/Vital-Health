@@ -3,6 +3,7 @@
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\LaboratorioController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\CategoríaController;
 use App\Http\Controllers\ServiceController;
@@ -84,6 +85,11 @@ Route::middleware('auth:admin')->group(function () {
     Route::put('/categorias/{id}/suspend', [CategoríaController::class, 'suspend'])->name('categorias.suspend');
 });
 
+Route::middleware('auth:laboratorio')->group(function () {
+    Route::view('/index', 'laboratorio.index')->name('laboratorio');
+    Route::view('/Exam', 'laboratorio.Exam')->name('Exam');
+    Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');
+});   
 
 // Fallback route (404)
 Route::fallback(function () {
