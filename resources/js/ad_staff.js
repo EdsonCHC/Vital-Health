@@ -36,7 +36,7 @@ $(document).ready(function () {
                     </div>
                     <div class="flex flex-col">
                         <label class="mr-auto font-semibold text-xl">Descripción</label>
-                        <input id="description" name="description" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
+                        <textarea id="description" name="description" class="w-full h-10 my-2 px-2 border border-solid rounded-sm"></textarea>
                     </div>
                 </form>
             `;
@@ -54,44 +54,63 @@ $(document).ready(function () {
                 </form>
             `;
 
-    const firstFormEdit = `
+    function firstFormEdit(doctorInfo) {
+        return `
             <form id="firstForm" class="space-y-4" autocomplete="off">
                 <div class="flex flex-col">
                     <label class="mr-auto font-semibold text-xl">Nombre</label>
-                    <input id="name" name="name" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
+                    <input id="name" name="name" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text" value="${
+                        doctorInfo.name
+                    }">
                 </div>
                 <div class="flex flex-col">
                     <label class="mr-auto font-semibold text-xl">Apellidos</label>
-                    <input id="lastName" name="lastName" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
+                    <input id="lastName" name="lastName" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text" value="${
+                        doctorInfo.lastName
+                    }">
                 </div>
                 <div class="flex flex-col">
                     <label class="mr-auto font-semibold text-xl">Número Telefónico</label>
-                    <input id="phone" name="phone" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
+                    <input id="phone" name="phone" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text" value="${
+                        doctorInfo.number
+                    }">
                 </div>
                 <div class="flex flex-col">
                     <label class="mr-auto font-semibold text-xl">Género</label>
                     <select id="gender" name="gender" class="w-full h-10 my-2 px-2 border border-solid rounded-sm">
-                        <option value="" disabled selected>Seleccione un género</option>
-                        <option value="Masculino">Masculino</option>
-                        <option value="Femenino">Femenino</option>
+                    <option value="" ${
+                        !doctorInfo.gender ? "selected" : ""
+                    } disabled>Seleccione un género</option>
+                    <option value="Masculino" ${
+                        doctorInfo.gender === "Masculino" ? "selected" : ""
+                    }>Masculino</option>
+                    <option value="Femenino" ${
+                        doctorInfo.gender === "Femenino" ? "selected" : ""
+                    }>Femenino</option>
                     </select>
                 </div>
                 <div class="flex flex-col">
                     <label class="mr-auto font-semibold text-xl">Edad</label>
-                    <input id="age" name="age" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="number" min="18" max="100">
+                    <input id="age" name="age" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="number" min="18" max="100" value="${
+                        doctorInfo.age
+                    }">
                 </div>
                 <div class="flex flex-col">
                     <label class="mr-auto font-semibold text-xl">Descripción</label>
-                    <input id="description" name="description" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
+                    <textarea id="description" name="description" class="w-full h-10 my-2 px-2 border border-solid rounded-sm">${
+                        doctorInfo.description
+                    }</textarea>
                 </div>
             </form>
         `;
+    }
 
-    const secondFormEdit = `
+    function secondFormEdit(doctorInfo) {
+        return `
             <form id="secondForm" class="space-y-4" autocomplete="off">
                 <div class="flex flex-col">
                     <label class="mr-auto font-semibold text-xl">Correo</label>
-                    <input id="email" name="email" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="email">
+                    <input id="email" name="email" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="email" value="${doctorInfo.mail}">
                 </div>
                 <div class="flex flex-col">
                     <label class="mr-auto font-semibold text-xl">Contraseña</label>
@@ -99,11 +118,12 @@ $(document).ready(function () {
                 </div>
             </form>
         `;
+    }
 
     // Crear datos del Doc
     $("#create_staff").click((e) => {
         e.preventDefault();
-        secuencia();
+        crearSecuencia();
     });
 
     async function showFirstForm() {
@@ -176,15 +196,39 @@ $(document).ready(function () {
         return { formValues, isConfirmed };
     }
 
-    $("#edit_staff").click((e) => {
+    $(document).on("click", ".edit_staff", function (e) {
         e.preventDefault();
-        secuencia(doctorId);
+        const id = $(this).data("id");
+
+        $.ajax({
+            url: `/staff/doctor/${id}`,
+            type: "GET",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success(response) {
+                let doctorInfo = response;
+                actualizarSecuencia(doctorInfo)
+            },
+            error(response) {
+                console.error(
+                    "Error al obtener la información del doctor:",
+                    response
+                );
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "No se pudo obtener la información del doctor.",
+                });
+            },
+        });
     });
 
-    async function showFirstForm(doctorId) {
+    async function showFirstFormEdit(doctorInfo) {
         const { value: formValues, isConfirmed } = await Swal.fire({
             title: "Datos del Doctor",
-            html: firstFormEdit,
+            html: firstFormEdit(doctorInfo),
             showConfirmButton: true,
             confirmButtonText: "Siguiente",
             confirmButtonColor: "#166534",
@@ -225,10 +269,10 @@ $(document).ready(function () {
         return { formValues, isConfirmed };
     }
 
-    async function showSecondForm(doctorInfo) {
+    async function showSecondFormEdit(doctorInfo) {
         const { value: formValues, isConfirmed } = await Swal.fire({
             title: "Credenciales del Doctor",
-            html: secondFormEdit,
+            html: secondFormEdit(doctorInfo),
             showConfirmButton: true,
             confirmButtonText: "Crear",
             confirmButtonColor: "#166534",
@@ -238,7 +282,7 @@ $(document).ready(function () {
                 const form = Swal.getPopup().querySelector("#secondForm");
                 const email = form.email.value.trim();
                 const password = form.password.value.trim();
-                if (!email || !password) {
+                if (!email) {
                     Swal.showValidationMessage(
                         "Por favor, complete todos los campos"
                     );
@@ -251,7 +295,7 @@ $(document).ready(function () {
         return { formValues, isConfirmed };
     }
 
-    async function secuencia() {
+    async function crearSecuencia() {
         const { formValues: firstFormValues, isConfirmed: firstFormConfirmed } =
             await showFirstForm();
         if (firstFormConfirmed) {
@@ -286,14 +330,14 @@ $(document).ready(function () {
         }
     }
 
-    async function secuencia(doctorId) {
+    async function actualizarSecuencia(doctorInfo) {
         const { formValues: firstFormValues, isConfirmed: firstFormConfirmed } =
-            await showFirstForm(doctorId);
+            await showFirstFormEdit(doctorInfo);
         if (firstFormConfirmed) {
             const {
                 formValues: secondFormValues,
                 isConfirmed: secondFormConfirmed,
-            } = await showSecondForm();
+            } = await showSecondFormEdit(doctorInfo);
             if (secondFormConfirmed) {
                 const concatArrays = {
                     ...firstFormValues,
@@ -302,8 +346,8 @@ $(document).ready(function () {
                 };
                 console.log(concatArrays);
                 $.ajax({
-                    url: "/staff/{id}",
-                    type: "POST",
+                    url: `/staff/${doctorInfo.id}`,
+                    type: "PUT",
                     headers: {
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                             "content"
@@ -411,9 +455,9 @@ $(document).ready(function () {
 
     // Confirmar la eliminación del Doc
 
-    $(document).on('click', '.delete_doc',function(e) {
+    $(document).on("click", ".delete_doc", function (e) {
         e.preventDefault();
-        const id = $(this).data('id');
+        const id = $(this).data("id");
         try {
             showConfirmDeleteButton(id);
         } catch (error) {

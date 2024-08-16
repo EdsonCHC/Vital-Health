@@ -65,7 +65,7 @@
                             </button>
                             <div id="menuOptions"
                                 class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
-                                <a href="#" id="edit_staff"
+                                <a href="#" class="edit_staff" data-id="{{$doctor->id}}"
                                     class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
                                 <a href="#" id="history_staff"
                                     class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
