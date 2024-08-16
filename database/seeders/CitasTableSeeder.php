@@ -25,7 +25,7 @@ class CitasTableSeeder extends Seeder
                 'enlace' => null,
                 'published_at' => Carbon::now(),
                 'category_id' => 2,
-                'doctor_id' => 1,
+                'doctor_id' => 0,
                 'patient_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -39,7 +39,7 @@ class CitasTableSeeder extends Seeder
                 'enlace' => 'https://meet.example.com/123456',
                 'published_at' => Carbon::now(),
                 'category_id' => 1,
-                'doctor_id' => 2,
+                'doctor_id' => 0,
                 'patient_id' => 2,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -53,7 +53,7 @@ class CitasTableSeeder extends Seeder
                 'enlace' => null,
                 'published_at' => Carbon::now(),
                 'category_id' => 3,
-                'doctor_id' => 3, // Doctor aún no asignado
+                'doctor_id' => 0, // Doctor aún no asignado
                 'patient_id' => 3,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

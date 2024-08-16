@@ -6,6 +6,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\LaboratorioController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\CategoríaController;
+use App\Http\Controllers\ZoomController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StatisticsController;
 use Illuminate\Support\Facades\Route;
@@ -23,12 +24,16 @@ use Illuminate\Support\Facades\Route;
 
 // Rutas del usuario
 Route::post('/appointments', [CitaController::class, 'store']);
+//
 Route::post('/login', [UsuarioController::class, 'show']);
+//
 Route::view('/login', 'app.login')->name('login');
+//
 Route::post('/login', [UsuarioController::class, 'show']);
+//
 Route::view('/registro', 'app.registro');
+//
 Route::post('/registro', [UsuarioController::class, 'store']);
-
 //Show Doctor in user
 Route::get('/', [UsuarioController::class, 'showDoctors']);
 
@@ -36,39 +41,56 @@ Route::get('/', [UsuarioController::class, 'showDoctors']);
 // Middlewares para el usuario
 Route::middleware('auth')->group(function () {
     Route::view('/medicina', 'app.medicine');
+    //
     Route::view('/report', 'app.report');
+    //
     Route::view('/examen', 'app.exams');
+    //
     Route::view('/area', 'app.area');
+    //
     Route::view('/chats', 'app.chats');
+    //
     Route::view('/service', 'app.service');
-
+    //
     //Citas
     Route::get('create', [CitaController::class, 'create'])->name('citas.create');
+    //
     Route::view('/citas', 'app.citas');
-
+    //
     // Route::view('/area', [CitaController::class, 'index'])->name('app.area');
     Route::get('/area', [UsuarioController::class, 'indexu'])->name('user');
+    //
     Route::get('/service/{id}', [ServiceController::class, 'show'])->name('service');
-
+    //
     //Account user
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
+    //
     Route::post('/user', [UsuarioController::class, 'destroy']);
+    //
     Route::put('/user/update', [UsuarioController::class, 'update'])->name('user.update');
+    //
 });
 
 // Rutas para el doctor
 Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/doctor', [DoctorController::class, 'index'])->name('doctor');
+    //
     Route::get('/citas_doc', [CitaController::class, 'index'])->name('doctor.citas_doc');
-
+    //
     Route::view('/allocation', 'doctor.allocation');
+    //
     Route::view('/exams_doc', 'doctor.exams_doc');
+    //
     Route::view('/medicine_doc', 'doctor.medicine_doc');
+    //
     Route::view('/files_doc', 'doctor.files_doc');
+    //
     Route::view('/service_doc', 'doctor.service_doc');
+    //
     Route::view('/program_doc', 'doctor.program_doc');
-
+    //
     Route::post('/doctor/logout', [DoctorController::class, 'destroy'])->name('doctor.logout');
+    //
 });
 
 
@@ -86,7 +108,11 @@ Route::middleware('auth:admin')->group(function () {
     //
     Route::post('/staff/{id}', [DoctorController::class, 'create'])->name('staff.create');
     //
+    Route::get('/staff/doctor/{id}', [DoctorController::class, 'getDoctor'])->name('doctor.info');
+    //
     Route::delete('/staff/{id}', [DoctorController::class, 'deleteDoctor'])->name('staff.delete');
+    //
+    Route::put('/staff/{id}', [DoctorController::class, 'updateDoctor'])->name('staff.update');
     //
     Route::get('/calendar/{id}', [CategoríaController::class, 'showCalendar'])->name('categorias.calendar');
     //
@@ -94,6 +120,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/appointments/{id}', [CitaController::class, 'show'])->name('appointments.show');
     Route::get('/categorias/{id}/doctores', [CitaController::class, 'getDoctorsByCategory']);
     Route::get('/appointments/{id}', [CitaController::class, 'showAppointments'])->name('categorias.appointments');
+    Route::put('/citas/{id}', [CitaController::class, 'update']);
     //
     Route::post('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
     //
@@ -103,11 +130,19 @@ Route::middleware('auth:admin')->group(function () {
     Route::put('/categorias/{id}/suspend', [CategoríaController::class, 'suspend'])->name('categorias.suspend');
 });
 
+//Rutas del laboratorio
 Route::middleware('auth:laboratorio')->group(function () {
     Route::view('/index', 'laboratorio.index')->name('laboratorio');
+    //
     Route::view('/Exam', 'laboratorio.Exam')->name('Exam');
+    //
     Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');
+    //
 });
+
+// Route zoom
+Route::get('/zoom-meeting', [ZoomController::class, 'createMeeting']);
+
 
 // Fallback route (404)
 Route::fallback(function () {

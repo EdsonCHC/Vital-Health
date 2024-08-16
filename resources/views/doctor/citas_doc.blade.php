@@ -75,29 +75,24 @@
                                     <div
                                         class="w-auto h-14 flex justify-around items-center text-center my-5 mx-4 bg-green-200 rounded-md">
                                         <p class="ml-4 font-semibold text-xl text-vh-green">{{ $cita->id }}</p>
-                                        <p class="ml-12 font-semibold text-xl text-vh-green">{{ $cita->patient->name }} {{ $cita->patient->lastName }}
+                                        <p class="ml-12 font-semibold text-xl text-vh-green">{{ $cita->patient->name }}
+                                            {{ $cita->patient->lastName }}
                                         </p>
-                                        <p class="font-semibold text-xl text-vh-green">
+                                        <p class="-ml-6 font-semibold text-xl text-vh-green">
                                             {{ $cita->category->nombre }}</p>
                                         <p class="font-semibold text-xl text-vh-green">{{ $cita->date }}</p>
-                                        <button target="_self" class="assign_appointment">
-                                            <a href="#">
-                                                <img src="{{ asset('storage/svg/eye-icon.svg') }}" alt="noti_icon"
-                                                    class="w-10 h-10 p-2">
-                                            </a>
+                                        <button target="_self" class="option-button">
+                                            <img src="{{ asset('storage/svg/option-icon.svg') }}" alt="noti_icon"
+                                                class="w-10 h-10 p-2">
                                         </button>
                                         <div class="w-2/12 flex items-center space-x-10">
-                                            <button target="_self" class="assign_appointment ml-4">
-                                                <a href="#">
-                                                    <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
-                                                        class="w-10 h-10 p-2 rounded">
-                                                </a>
+                                            <button target="_self" class="ml-4">
+                                                <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
+                                                    class="w-10 h-10 p-2 rounded">
                                             </button>
                                             <button>
-                                                <a href="#">
-                                                    <img src="{{ asset('storage/svg/trash-icon.svg') }}"
-                                                        alt="config_icon" class="w-10 h-10 p-2 rounded">
-                                                </a>
+                                                <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
+                                                    class="w-10 h-10 p-2 rounded">
                                             </button>
                                         </div>
                                     </div>

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreignId('doctor_id')->constrained('doctors');
             $table->string('exam_type');
             $table->boolean('results')->default(true);
-            $table->time('exam_hour');
             $table->date('exam_date');
             $table->text('notes')->nullable();
             $table->timestamps();

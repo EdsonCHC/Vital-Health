@@ -12,7 +12,7 @@ $.ajaxSetup({
 $(document).ready(function () {
 
     // Delegate click event for delete buttons
-    $(document).on('click', '#delete-appointment', function(e) {
+    $(document).on('click', '#delete-appointment', function (e) {
         e.preventDefault();
         const appointmentId = $(this).data('id');
 
@@ -51,10 +51,10 @@ $(document).ready(function () {
     });
 
     // Event to handle showing appointment info
-    $(document).on('click', '.info-button', function(e) {
+    $(document).on('click', '.info-button', function (e) {
         e.preventDefault();
         const appointmentId = $(this).data('id');
-
+    
         $.ajax({
             url: `/appointments/${appointmentId}`,
             type: 'GET',
@@ -65,12 +65,12 @@ $(document).ready(function () {
                         <strong>ID:</strong> ${response.id || 'No disponible'} <br>
                         <strong>Fecha:</strong> ${response.date || 'No disponible'} <br>
                         <strong>Hora:</strong> ${response.hour || 'No disponible'} <br>
-                        <strong>Modalidad:</strong> ${response.modalidad || 'No disponible'} <br>
+                        <strong>Modalidad:</strong> ${response.modo || 'No disponible'} <br>
                         <strong>Descripción:</strong> ${response.description || 'No disponible'} <br>
                         <strong>Estado:</strong> ${response.state || 'No disponible'} <br>
                         <strong>Paciente ID:</strong> ${response.patient_id || 'No disponible'} <br>
                         <strong>Categoría ID:</strong> ${response.category_id || 'No disponible'} <br>
-                        <strong>Doctor ID:</strong> ${response.doctor_id ? response.doctor_id : 'No asignado'} <br>
+                        <strong>Doctor ID:</strong> ${response.doctor_id || 'No asignado'} <br>
                     `,
                     customClass: {
                         popup: "border-solid border-3 border-vh-green w-11/12 max-w-4xl",
@@ -82,6 +82,7 @@ $(document).ready(function () {
                 });
             },
             error: function (xhr) {
+                console.error('Error:', xhr); // Verifica el error aquí
                 Swal.fire(
                     'Error!',
                     'No se pudo obtener la información de la cita.',
@@ -90,9 +91,12 @@ $(document).ready(function () {
             }
         });
     });
+    
+    
+    
+    
 
-    // Event to handle assigning a doctor to an appointment
-    $(document).on('click', '#new-appointment-btn', async function(e) {
+    $(document).on('click', '#new-appointment-btn', async function (e) {
         e.preventDefault();
         const appointmentId = $(this).data('id'); // Obtener el ID de la cita
         const categoryId = $('#category-id').val(); // Obtener el ID de la categoría
@@ -135,7 +139,7 @@ $(document).ready(function () {
             }
         });
 
-        if (isConfirmed) {
+        if (isConfirmed && doctorId) {
             $.ajax({
                 url: `/citas/${appointmentId}`,
                 type: 'PUT',
@@ -161,4 +165,5 @@ $(document).ready(function () {
     });
 
 });
+
 
