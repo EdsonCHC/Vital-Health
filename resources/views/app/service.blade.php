@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ $categoria->nombre}}</title>
+    <title>{{ $categoria->nombre }}</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
     @vite(['resources/css/app.css', 'resources/css/checkbox.css', 'resources/js/appointment.js', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js'])
 </head>
@@ -230,86 +230,34 @@
                 </h2>
             </div>
             <div class="w-full my-4 flex flex-wrap justify-center">
-                <div class="w-56 h-92 m-5 p-4 bg-green-200 py-5 justify-center items-center rounded-xl">
-                    <div class="relative">
-                        <button id="menu_opti" class="flex ml-auto">
-                            <img id="menu-icon" class="h-8 w-8 mx-2"
-                                src="{{ asset('storage/svg/option-icon.svg') }}" alt="Inicio" />
-                        </button>
-                        <div id="menuOptions"
-                            class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
-                            <a href="#" id="edit_staff"
-                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
-                            <a href="#" id="history_staff"
-                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
-                        </div>
-                    </div>
-                    <div class="flex justify-center items-center flex-col">
-                        <div class="bg-green-400 rounded-full w-24 h-24 mb-4"></div>
-                        <h3 class="font-bold text-xl p-2">Alvarenga</h3>
-                        <p class="text-gray-400 text-lg mb-4">Pediatria</p>
-                        <div class="">
-                            <button id="delete_doc">
-                                <img id="menu-icon" class="h-14 w-14 mx-2 "
-                                    src="{{ asset('storage/svg/info.svg') }}" alt="Inicio" />
+                @foreach ($categoria->doctors as $doctor)
+                    <div class="w-56 h-92 m-5 p-4 bg-green-200 py-5 justify-center items-center rounded-xl">
+                        <div class="relative">
+                            <button id="menu_opti" class="flex ml-auto">
+                                <img id="menu-icon" class="h-8 w-8 mx-2"
+                                    src="{{ asset('storage/svg/option-icon.svg') }}" alt="Inicio" />
                             </button>
+                            <div id="menuOptions"
+                                class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
+                                <a href="#" id="edit_staff"
+                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
+                                <a href="#" id="history_staff"
+                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
+                            </div>
+                        </div>
+                        <div class="flex justify-center items-center flex-col">
+                            <div class="bg-green-400 rounded-full w-24 h-24 mb-4"></div>
+                            <h3 class="font-bold text-xl p-2">{{ $doctor->name }}</h3>
+                            <p class="text-gray-400 text-lg mb-4">{{ $doctor->category->nombre }}</p>
+                            <div class="">
+                                <button class="info_doc" data-description="{{ $doctor->description }}">
+                                    <img id="menu-icon" class="h-14 w-14 mx-2 "
+                                        src="{{ asset('storage/svg/info.svg') }}" alt="Inicio" />
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="w-56 h-92 m-5 p-4 bg-green-200 py-5 justify-center items-center rounded-xl">
-                    <div class="relative">
-                        <button id="menu_opti" class="flex ml-auto">
-                            <img id="menu-icon" class="h-8 w-8 mx-2"
-                                src="{{ asset('storage/svg/option-icon.svg') }}" alt="Inicio" />
-                        </button>
-                        <div id="menuOptions"
-                            class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
-                            <a href="#" id="edit_staff"
-                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
-                            <a href="#" id="history_staff"
-                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
-                        </div>
-                    </div>
-                    <div class="flex justify-center items-center flex-col">
-                        <div class="bg-green-400 rounded-full w-24 h-24 mb-4"></div>
-                        <h3 class="font-bold text-xl p-2">Alvarenga</h3>
-                        <p class="text-gray-400 text-lg mb-4">Pediatria</p>
-                        <div class="">
-                            <button id="delete_doc">
-                                <img id="menu-icon" class="h-14 w-14 mx-2 "
-                                    src="{{ asset('storage/svg/info.svg') }}" alt="Inicio" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w-56 h-92 m-5 p-4 bg-green-200 py-5 justify-center items-center rounded-xl">
-                    <div class="relative">
-                        <button id="menu_opti" class="flex ml-auto">
-                            <img id="menu-icon" class="h-8 w-8 mx-2"
-                                src="{{ asset('storage/svg/option-icon.svg') }}" alt="Inicio" />
-                        </button>
-                        <div id="menuOptions"
-                            class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
-                            <a href="#" id="edit_staff"
-                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
-                            <a href="#" id="history_staff"
-                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
-                        </div>
-                    </div>
-                    <div class="flex justify-center items-center flex-col">
-                        <div class="bg-green-400 rounded-full w-24 h-24 mb-4"></div>
-                        <h3 class="font-bold text-xl p-2">Alvarenga</h3>
-                        <p class="text-gray-400 text-lg mb-4">Pediatria</p>
-                        <div class="">
-                            <button id="delete_doc">
-                                <img id="menu-icon" class="h-14 w-14 mx-2 "
-                                    src="{{ asset('storage/svg/info.svg') }}" alt="Inicio" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Demas cartas -->
+                @endforeach
             </div>
         </div>
 
@@ -321,59 +269,34 @@
                 </h2>
             </div>
             <div class="w-full my-10 flex flex-wrap">
-                <div class="w-40 h-60 mx-4 my-2 bg-green-200 py-2 justify-center items-center rounded-xl">
-                    <div class="relative">
-                        <button id="menu_opti" class="menu_opti flex ml-auto">
-                            <img id="menu-icon" class="h-8 w-8 mx-2"
-                                src="{{ asset('storage/svg/option-icon.svg') }}" alt="Inicio" />
-                        </button>
-                        <div id="menuOptions"
-                            class="w-32 ml-10 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
-                            <a href="#" id="edit_staff"
-                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
-                            <a href="#" id="history_staff"
-                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
-                        </div>
-                    </div>
-                    <div class="flex justify-center items-center flex-col">
-                        <div class="bg-green-400 rounded-full w-20 h-20"></div>
-                        <h3 class="font-bold text-xl pt-2">Alvarenga</h3>
-                        <p class="text-gray-400 text-lg">Pediatria</p>
-                        <div class="mt-2 flex items-center">
-                            <button id="">
-                                <img id="menu-icon" class="h-10 w-10 mx-2 "
-                                    src="{{ asset('storage/svg/info.svg') }}" alt="Inicio" />
+                @foreach ($categoria->doctors as $doctor)
+                    <div class="w-40 h-60 mx-4 my-2 bg-green-200 py-2 justify-center items-center rounded-xl">
+                        <div class="relative">
+                            <button id="menu_opti" class="menu_opti flex ml-auto">
+                                <img id="menu-icon" class="h-8 w-8 mx-2"
+                                    src="{{ asset('storage/svg/option-icon.svg') }}" alt="Inicio" />
                             </button>
+                            <div id="menuOptions"
+                                class="w-32 ml-10 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
+                                <a href="#" id="edit_staff"
+                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
+                                <a href="#" id="history_staff"
+                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
+                            </div>
+                        </div>
+                        <div class="flex justify-center items-center flex-col">
+                            <div class="bg-green-400 rounded-full w-20 h-20"></div>
+                            <h3 class="font-bold text-xl pt-2">{{ $doctor->name }}</h3>
+                            <p class="text-gray-400 text-lg">{{ $doctor->category->nombre }}</p>
+                            <div class="mt-2 flex items-center">
+                                <button id="">
+                                    <img id="menu-icon" class="h-10 w-10 mx-2 "
+                                        src="{{ asset('storage/svg/info.svg') }}" alt="Inicio" />
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="w-40 h-60 mx-4 bg-green-200 py-2 justify-center items-center rounded-xl">
-                    <div class="relative">
-                        <button id="menu_opti" class="menu_opti flex ml-auto">
-                            <img id="menu-icon" class="h-8 w-8 mx-2"
-                                src="{{ asset('storage/svg/option-icon.svg') }}" alt="Inicio" />
-                        </button>
-                        <div id="menuOptions"
-                            class="w-32 ml-10 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
-                            <a href="#" id="edit_staff"
-                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
-                            <a href="#" id="history_staff"
-                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
-                        </div>
-                    </div>
-                    <div class="flex justify-center items-center flex-col">
-                        <div class="bg-green-400 rounded-full w-20 h-20"></div>
-                        <h3 class="font-bold text-xl pt-2">Alvarenga</h3>
-                        <p class="text-gray-400 text-lg">Pediatria</p>
-                        <div class="mt-2 flex items-center">
-                            <button id="">
-                                <img id="menu-icon" class="h-10 w-10 mx-2 "
-                                    src="{{ asset('storage/svg/info.svg') }}" alt="Inicio" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Demas Cartas -->
+                @endforeach
             </div>
         </div>
     </div>

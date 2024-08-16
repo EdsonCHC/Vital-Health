@@ -20,7 +20,7 @@
         <div class="ml-60 w-full h-full overflow-y-auto flex-grow">
             <div class="w-auto h-auto my-4 mx-4 lg:mx-16 lg:mt-10">
                 <div class="w-full">
-                    <h2 class="font-bold text-2xl text-vh-green">Citas</h2>
+                    <h2 class="font-bold text-2xl text-vh-green">Citas del Area:</h2>
                     <div class="w-full mt-5">
                         <form method="get" action="#" class="relative">
                             <input type="text" name="s" id="s"

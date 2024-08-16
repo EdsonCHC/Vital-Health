@@ -38,23 +38,29 @@ Route::middleware('auth')->group(function () {
     Route::view('/medicina', 'app.medicine');
     Route::view('/report', 'app.report');
     Route::view('/examen', 'app.exams');
-    Route::view('/chats', 'app.chats');
     Route::view('/area', 'app.area');
-    Route::view('/citas', 'app.citas');
+    Route::view('/chats', 'app.chats');
     Route::view('/service', 'app.service');
 
+    //Citas
     Route::get('create', [CitaController::class, 'create'])->name('citas.create');
+    Route::view('/citas', 'app.citas');
+
+    // Route::view('/area', [CitaController::class, 'index'])->name('app.area');
+    Route::get('/area', [UsuarioController::class, 'indexu'])->name('user');
+    Route::get('/service/{id}', [ServiceController::class, 'show'])->name('service');
+
+    //Account user
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
     Route::post('/user', [UsuarioController::class, 'destroy']);
     Route::put('/user/update', [UsuarioController::class, 'update'])->name('user.update');
-    Route::get('/area', [UsuarioController::class, 'indexu'])->name('user');
-    Route::get('/service/{id}', [ServiceController::class, 'show'])->name('service');
 });
 
 // Rutas para el doctor
 Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/doctor', [DoctorController::class, 'index'])->name('doctor');
     Route::get('/citas_doc', [CitaController::class, 'index'])->name('doctor.citas_doc');
+    
     Route::view('/allocation', 'doctor.allocation');
     Route::view('/exams_doc', 'doctor.exams_doc');
     Route::view('/medicine_doc', 'doctor.medicine_doc');

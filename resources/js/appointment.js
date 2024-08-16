@@ -2,6 +2,24 @@ import Swal from "sweetalert2";
 import $ from "jquery";
 
 $(document).ready(function () {
+    // Información del doctor
+    $(".info_doc").click(function (e) {
+        e.preventDefault();
+
+        const doctorDescription = $(this).data("description");
+
+        Swal.fire({
+            title: `<strong>Información del Doctor</strong>`,
+            icon: "info",
+            html: `
+                <p>Categoría: ${doctorDescription}</p>
+            `,
+            showCloseButton: true,
+            focusConfirm: false,
+            confirmButtonText: "Cerrar",
+        });
+    });
+
     $("#make_appointment, .make_appointment").click((e) => {
         e.preventDefault();
         secuencia();
@@ -57,15 +75,21 @@ $(document).ready(function () {
                 )?.value;
 
                 if (!selectedDate) {
-                    Swal.showValidationMessage("Por favor, seleccione una fecha.");
+                    Swal.showValidationMessage(
+                        "Por favor, seleccione una fecha."
+                    );
                     return false;
                 }
                 if (!selectedTime) {
-                    Swal.showValidationMessage("Por favor, seleccione una hora.");
+                    Swal.showValidationMessage(
+                        "Por favor, seleccione una hora."
+                    );
                     return false;
                 }
                 if (!selectedModalidad) {
-                    Swal.showValidationMessage("Por favor, seleccione una modalidad.");
+                    Swal.showValidationMessage(
+                        "Por favor, seleccione una modalidad."
+                    );
                     return false;
                 }
                 return {
@@ -159,8 +183,8 @@ $(document).ready(function () {
         header.innerHTML = `
             <button id="prevMonth" class="px-5 py-3 bg-vh-green text-white rounded font-bold"><</button>
             <h2 id="currentMonth" class="text-2xl font-bold text-gray-800">${getMonthName(
-            date.getMonth()
-        )} ${date.getFullYear()}</h2>
+                date.getMonth()
+            )} ${date.getFullYear()}</h2>
             <button id="nextMonth" class="px-5 py-3 bg-vh-green text-white rounded">></button>
         `;
         return header;
@@ -188,9 +212,9 @@ $(document).ready(function () {
     }
 
     function handleDayClick(day, date, dayElement) {
-        document.querySelectorAll(".calendar-day").forEach((el) =>
-            el.classList.remove("bg-gray-200")
-        );
+        document
+            .querySelectorAll(".calendar-day")
+            .forEach((el) => el.classList.remove("bg-gray-200"));
         dayElement.classList.add("bg-gray-200");
 
         date.setDate(day);
@@ -244,7 +268,7 @@ $(document).ready(function () {
                         modalidad: result.modalidad,
                         description: result.description || "",
                         category_id: getCategoryId(), // Obtén el ID de la categoría aquí
-                        _token: $('meta[name="csrf-token"]').attr('content'),
+                        _token: $('meta[name="csrf-token"]').attr("content"),
                     },
                     dataType: "json",
                 });
@@ -267,7 +291,6 @@ $(document).ready(function () {
     }
 
     function getCategoryId() {
-        return $('#category_id').val();
+        return $("#category_id").val();
     }
-
 });

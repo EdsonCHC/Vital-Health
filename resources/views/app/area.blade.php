@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Area</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
-    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js','resources/js/area.js'])
+    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js', 'resources/js/area.js'])
 </head>
 
 <body>
@@ -18,7 +18,7 @@
 
         <div class=" hidden lg:flex  px-44  pt-16 ">
             <h2 class="font-bold text-2xl lg:text-4xl  mb-6">
-                Especialidades Medicas</h2>
+                Especialidades Médicas</h2>
         </div>
 
         <div class=" hidden lg:flex px-44  py-8 ">
@@ -94,27 +94,30 @@
         </div>
 
         <div class="flex flex-wrap m-4 lg:m-16">
-            @foreach($categorias as $categoria) <!-- Corregido el nombre de la variable -->
-                <div class="w-full lg:w-1/4 p-4">
+            @foreach ($categorias as $categoria)
+                <div class="w-80 lg:w-124 p-4 mx-auto">
                     <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
                         <div class="flex justify-center items-center flex-col">
-                            <div class="bg-green-200 rounded-full h-28 w-24 lg:h-40 lg:w-36"> @if ($categoria->img)
-                                <!-- Corregido el nombre de la variable -->
-                                <img src="{{ asset($categoria->img) }}" alt="{{ $categoria->nombre }}"
-                                    class="mx-auto max-h-40 mb-4">
-                            @endif  
-                         </div>
+                            <div class="h-28 w-24 lg:h-36 lg:w-36 bg-green-200 rounded-full">
+                                @if ($categoria->img)
+                                    <img src="{{ asset($categoria->img) }}" alt="{{ $categoria->nombre }}"
+                                        class="mx-auto max-h-40 mb-4">
+                                @endif
+                            </div>
                             <h3 class="font-bold text-xl p-2">{{ $categoria->nombre }}</h3>
                             <p class="text-gray-400">Disponible</p>
-                            <a href="{{ route('service', ['id' => $categoria->id]) }}" class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6"></a>
+                            <a href="{{ route('service', ['id' => $categoria->id]) }}"
+                                class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6 justify-center items-center content-center">
+                                <img id="menu-icon" class="h-14 w-14 ml-1" src="{{ asset('storage/svg/info.svg') }}"
+                                    alt="Inicio" />
+                            </a>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
+    </div>
 
-    </div>
-    </div>
     <div class="w-full h-auto">
         @include('templates.footer_two')
     </div>

@@ -26,7 +26,7 @@
                 <a href="/area">Especialidades Medicas</a>
                 <ul class="absolute hidden bg-white py-2 px-4 shadow-md w-full z-10 group-hover:block rounded-sm">
                     <li><a href="/service/support" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Medicina</a></li>
-                    <li><a href="/service/faq" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Citas</a></li>
+                    <li><a href="/citas" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Citas</a></li>
                     <li><a href="/service/contact" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Examenes</a></li>
                     <li><a href="/service/contact" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Control Personal</a></li>
                 </ul>

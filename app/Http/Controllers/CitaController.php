@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\citas;
 use App\Models\Categoría;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -15,6 +16,7 @@ class CitaController extends Controller
         $citas = citas::all();
         return view('doctor.citas_doc', compact('citas'));
     }
+    
     public function showAppointments($id)
     {
         $categoria = Categoría::find($id);
