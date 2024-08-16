@@ -76,9 +76,9 @@
                             <h3 class="font-bold text-xl p-2">{{ $doctor->name }}</h3>
                             <p class="text-gray-400 mb-4">Disponible</p>
                             <div class="">
-                                <button id="delete_doc">
+                                <button class="delete_doc" data-id="{{$doctor->id}}">
                                     <img id="menu-icon" class="h-8 w-8 mx-2 "
-                                        src="{{ asset('storage/svg/trash-icon.svg') }}" alt="Inicio" />
+                                        src="{{ asset('storage/svg/trash-icon.svg') }}" alt="Borrar_icon" />
                                 </button>
                             </div>
                         </div>

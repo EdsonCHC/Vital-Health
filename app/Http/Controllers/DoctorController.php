@@ -65,6 +65,27 @@ class DoctorController extends Controller
         }
     }
 
+    public function deleteDoctor($id)
+    {
+        try {
+            $doctor = Doctor::findOrFail($id);
+
+            if ($doctor) {
+
+                $doctor->delete();
+
+                return response()->json(['success' => 'El doctor ha sido eliminado']);
+            }
+            return response()->json(['message' => 'El doctor no pudo eliminarse'], 404);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error interno del servidor',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function destroy(Request $request)
     {
 

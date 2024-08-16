@@ -284,7 +284,7 @@ $(document).ready(function () {
                 });
             }
         }
-    } 
+    }
 
     async function secuencia(doctorId) {
         const { formValues: firstFormValues, isConfirmed: firstFormConfirmed } =
@@ -293,7 +293,7 @@ $(document).ready(function () {
             const {
                 formValues: secondFormValues,
                 isConfirmed: secondFormConfirmed,
-            } = await showSecondForm(doctorInfo);
+            } = await showSecondForm();
             if (secondFormConfirmed) {
                 const concatArrays = {
                     ...firstFormValues,
@@ -411,10 +411,11 @@ $(document).ready(function () {
 
     // Confirmar la eliminación del Doc
 
-    $("#delete_doc").click((e) => {
+    $(document).on('click', '.delete_doc',function(e) {
         e.preventDefault();
+        const id = $(this).data('id');
         try {
-            showConfirmDeleteButton();
+            showConfirmDeleteButton(id);
         } catch (error) {
             console.error(
                 "Error al mostrar la confirmación de eliminación:",
@@ -423,7 +424,7 @@ $(document).ready(function () {
         }
     });
 
-    function showConfirmDeleteButton() {
+    function showConfirmDeleteButton(id) {
         Swal.fire({
             title: "¿Estás seguro?",
             text: "¡No podrás revertir esto!",
@@ -436,9 +437,23 @@ $(document).ready(function () {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    console.log("Se eliminó con éxito");
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    // Acción si se cancela
+                    try {
+                        $.ajax({
+                            url: `/staff/${id}`,
+                            type: "delete",
+                            headers: {
+                                "X-CSRF-TOKEN": $(
+                                    'meta[name="csrf-token"]'
+                                ).attr("content"), // Incluye el token CSRF
+                            },
+                            success(response) {
+                                console.log(response);
+                            },
+                            error(response) {
+                                console.log(response);
+                            },
+                        });
+                    } catch (error) {}
                 }
             })
             .catch((error) => {

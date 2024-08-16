@@ -34,15 +34,14 @@ $(document).ready(() => {
                     });
                 }
             })
-            .fail((jqXHR) => {
-                // Mostrar el error completo en la consola
-                console.error("Error: ", jqXHR);
+            .fail((response) => {
+                let errorMessage = response.responseJSON ? response.responseJSON.message : "Ocurrió un error";
 
                 // Mostrar la alerta de error
                 Swal.fire({
                     icon: "error",
-                    title: "Error",
-                    text: "Ocurrió un error inesperado. Por favor, inténtelo de nuevo.",
+                    title: "Ops",
+                    text: errorMessage,
                 });
             });
     });
