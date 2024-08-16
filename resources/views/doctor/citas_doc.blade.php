@@ -20,7 +20,7 @@
         <div class="ml-60 w-full h-full overflow-y-auto flex-grow">
             <div class="w-auto h-auto my-4 mx-4 lg:mx-16 lg:mt-10">
                 <div class="w-full">
-                    <h2 class="font-bold text-2xl text-vh-green">Citas del Area:</h2>
+                    <h2 class="font-bold text-2xl text-vh-green">Citas del Doctor: {{ $doctor->name }}</h2>
                     <div class="w-full mt-5">
                         <form method="get" action="#" class="relative">
                             <input type="text" name="s" id="s"
@@ -61,41 +61,51 @@
                         <div class="w-auto h-14 flex justify-around items-center my-5 mx-4 bg-vh-alice-blue rounded-md">
                             <p class="font-semibold text-xl text-vh-green">Codigo</p>
                             <p class="font-semibold text-xl text-vh-green">Paciente</p>
+                            <p class="font-semibold text-xl text-vh-green">Especialidad</p>
                             <p class="font-semibold text-xl text-vh-green">Fecha</p>
                             <p class="font-semibold text-xl text-vh-green">Examen</p>
                             <div class="w-2/12">
                                 <p class="font-semibold text-xl text-vh-green">Herramientas</p>
                             </div>
                         </div>
-                        @foreach ($citas as $cita)
-                            <div class="w-auto h-14 flex justify-around items-center my-5 mx-4 bg-green-200 rounded-md">
-                                <p class="ml-4 font-semibold text-xl text-vh-green">{{ $cita->id }}</p>
-                                <p class="ml-12 font-semibold text-xl text-vh-green">{{ $cita->patient->name }}
-                                </p> <!-- Asegúrate de que 'patient' es una relación definida en tu modelo -->
-                                <p class=" font-semibold text-xl text-vh-green">{{ $cita->date }}</p>
-                                <button target="_self" class="assign_appointment">
-                                    <a href="#">
-                                        <img src="{{ asset('storage/svg/eye-icon.svg') }}" alt="noti_icon"
-                                            class="w-10 h-10 p-2 ">
-                                    </a>
-                                </button>
-                                <div class="w-2/12 flex items-center space-x-10">
-                                    <button target="_self" class="assign_appointment ml-4">
-                                        <a href="#">
-                                            <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
-                                                class="w-10 h-10 p-2  rounded">
-                                        </a>
-                                    </button>
-                                    <button>
-                                        <a href="#">
-                                            <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
-                                                class="w-10 h-10 p-2 rounded">
-                                        </a>
-                                    </button>
-                                </div>
-                            </div>
-                        @endforeach
 
+                        @if ($citas->isNotEmpty())
+                            @foreach ($citas as $cita)
+                                @if ($cita->category_id == $doctor->category_id)
+                                    <div
+                                        class="w-auto h-14 flex justify-around items-center text-center my-5 mx-4 bg-green-200 rounded-md">
+                                        <p class="ml-4 font-semibold text-xl text-vh-green">{{ $cita->id }}</p>
+                                        <p class="ml-12 font-semibold text-xl text-vh-green">{{ $cita->patient->name }} {{ $cita->patient->lastName }}
+                                        </p>
+                                        <p class="font-semibold text-xl text-vh-green">
+                                            {{ $cita->category->nombre }}</p>
+                                        <p class="font-semibold text-xl text-vh-green">{{ $cita->date }}</p>
+                                        <button target="_self" class="assign_appointment">
+                                            <a href="#">
+                                                <img src="{{ asset('storage/svg/eye-icon.svg') }}" alt="noti_icon"
+                                                    class="w-10 h-10 p-2">
+                                            </a>
+                                        </button>
+                                        <div class="w-2/12 flex items-center space-x-10">
+                                            <button target="_self" class="assign_appointment ml-4">
+                                                <a href="#">
+                                                    <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
+                                                        class="w-10 h-10 p-2 rounded">
+                                                </a>
+                                            </button>
+                                            <button>
+                                                <a href="#">
+                                                    <img src="{{ asset('storage/svg/trash-icon.svg') }}"
+                                                        alt="config_icon" class="w-10 h-10 p-2 rounded">
+                                                </a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @else
+                            <p>No hay citas disponibles para mostrar.</p>
+                        @endif
                     </div>
                     <script>
                         document.getElementById("filtro1").addEventListener("change", function() {

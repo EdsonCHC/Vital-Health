@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/doctor', [DoctorController::class, 'index'])->name('doctor');
     Route::get('/citas_doc', [CitaController::class, 'index'])->name('doctor.citas_doc');
-    
+
     Route::view('/allocation', 'doctor.allocation');
     Route::view('/exams_doc', 'doctor.exams_doc');
     Route::view('/medicine_doc', 'doctor.medicine_doc');

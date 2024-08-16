@@ -10,6 +10,7 @@ class Exams extends Model
     use HasFactory;
 
     protected $fillable = [
+        'state',
         'patient_id',
         'doctor_id',
         'exam_type',

@@ -13,10 +13,13 @@ class CitaController extends Controller
 {
     public function index()
     {
-        $citas = citas::all();
-        return view('doctor.citas_doc', compact('citas'));
+        $citas = Citas::with('doctor')->get();
+        $doctor = $citas->first()->doctor ?? null;
+
+        return view('doctor.citas_doc', compact('citas', 'doctor'));
     }
-    
+
+
     public function showAppointments($id)
     {
         $categoria = Categoría::find($id);
