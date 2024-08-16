@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\citas;
+use App\Models\Categoría;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -14,6 +15,16 @@ class CitaController extends Controller
         $citas = citas::all();
         return view('doctor.citas_doc', compact('citas'));
     }
+    public function showAppointments($id)
+    {
+        $categoria = Categoría::find($id);
+        if (!$categoria) {
+            return redirect()->back()->with('error', 'La categoría no existe.');
+        }
+        $citas = Citas::where('category_id', $id)->get();
+        return view('admin.appointment', compact('categoria', 'citas'));
+    }
+    
     
     public function store(Request $request)
 {
