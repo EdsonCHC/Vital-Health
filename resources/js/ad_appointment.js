@@ -2,113 +2,107 @@ import Swal from "sweetalert2";
 import jQuery from "jquery";
 window.$ = jQuery;
 
+// CSRF Token setup
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 $(document).ready(function () {
-    $("#new-appointment-btn").click((e) => {
+
+    // Delegate click event for delete buttons
+    $(document).on('click', '#delete-appointment', function(e) {
         e.preventDefault();
-        showAppointmentTable();
-    });
-
-    async function showAppointmentTable() {
-        const nombres = [
-            "Dr. Juan Pérez",
-            "Dr. Ana Gómez",
-            "Dr. Luis Martínez",
-            "Dr. Carmen Rodríguez",
-        ];
-
-        const selectHTML = nombres
-            .map((nombre) => `<option value="${nombre}">${nombre}</option>`)
-            .join("");
+        const appointmentId = $(this).data('id');
 
         Swal.fire({
-            title: "Nueva Solicitud de Cita",
-            html: `
-                <div class="table-container">
-                    <div class="grid grid-cols-5 gap-2 bg-vh-alice-blue rounded-md px-4 py-3 mt-4 lg:my-5">
-                        <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">#</p>
-                        <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Paciente</p>
-                        <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Hora</p>
-                        <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Fecha</p>
-                        <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Acciones</p>
-                    </div>
-                    <!-- Cuerpo de la tabla -->
-                    <div class="grid grid-cols-5 gap-2 bg-vh-green-light rounded-md p-4 my-4">
-                        <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-                        <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-                        <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-                        <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-                        <div class="flex justify-around col-span-5 lg:col-span-1 lg:ml-auto mt-2 lg:mt-0">
-                            <button class="assign_appointment">
-                                <img src="/storage/svg/check-icon.svg" alt="accept_icon" class="w-8 h-8 lg:w-10 lg:h-10 p-2 bg-white shadow-xl rounded">
-                            </button>
-                            <button>
-                                <a href="#">
-                                    <img src="/storage/svg/trash-icon.svg" alt="delete_icon" class="w-8 h-8 lg:w-10 lg:h-10 p-2 bg-white shadow-xl rounded">
-                                </a>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-5 gap-2 bg-vh-green-light rounded-md p-4 my-4">
-                        <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-                        <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-                        <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-                        <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-                        <div class="flex justify-around col-span-5 lg:col-span-1 lg:ml-auto mt-2 lg:mt-0">
-                            <button class="assign_appointment">
-                                <img src="/storage/svg/check-icon.svg" alt="accept_icon" class="w-8 h-8 lg:w-10 lg:h-10 p-2 bg-white shadow-xl rounded">
-                            </button>
-                            <button>
-                                <a href="#">
-                                    <img src="/storage/svg/trash-icon.svg" alt="delete_icon" class="w-8 h-8 lg:w-10 lg:h-10 p-2 bg-white shadow-xl rounded">
-                                </a>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `,
-            customClass: {
-                popup: "border-solid border-3 border-vh-green w-11/12 max-w-4xl",
-                title: "text-2xl font-bold text-gray-800 mb-4",
-                htmlContainer: "py-4",
-                confirmButton: "absolute bottom-2 right-2",
-                content: "mb-6", // Adjusted margin at the bottom
-                // Add any additional styles to the table container here if needed
-            },
-            showConfirmButton: true,
-            confirmButtonText: "Cerrar",
-            confirmButtonColor: "#166534",
-            didOpen: () => {
-                // Attach click event to dynamically created buttons
-                $(".assign_appointment").click(() => {
-                    handleAssignAppointmentClick();
+            title: '¿Estás seguro?',
+            text: "Esta acción no se puede deshacer.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: `/appointments/${appointmentId}`,
+                    type: 'DELETE',
+                    success: function (response) {
+                        Swal.fire(
+                            'Eliminado!',
+                            'La cita ha sido eliminada.',
+                            'success'
+                        ).then(() => {
+                            window.location.reload();
+                        });
+                    },
+                    error: function (xhr) {
+                        Swal.fire(
+                            'Error!',
+                            'No se pudo eliminar la cita.',
+                            'error'
+                        );
+                    }
                 });
-
-                // Add event listener for the close button
-                $(".swal2-confirm").click(() => {
-                    Swal.close();
-                });
-            },
+            }
         });
-    }
+    });
 
-    async function handleAssignAppointmentClick() {
-        const nombres = [
-            "Dr. Juan Pérez",
-            "Dr. Ana Gómez",
-            "Dr. Luis Martínez",
-            "Dr. Carmen Rodríguez",
-        ];
+    // Event to handle showing appointment info
+    $(document).on('click', '.info-button', function(e) {
+        e.preventDefault();
+        const appointmentId = $(this).data('id');
 
-        const selectHTML = nombres
-            .map((nombre) => `<option value="${nombre}">${nombre}</option>`)
-            .join("");
+        $.ajax({
+            url: `/appointments/${appointmentId}`,
+            type: 'GET',
+            success: function (response) {
+                Swal.fire({
+                    title: 'Información de la Cita',
+                    html: `
+                        <strong>ID:</strong> ${response.id || 'No disponible'} <br>
+                        <strong>Fecha:</strong> ${response.date || 'No disponible'} <br>
+                        <strong>Hora:</strong> ${response.hour || 'No disponible'} <br>
+                        <strong>Modalidad:</strong> ${response.modalidad || 'No disponible'} <br>
+                        <strong>Descripción:</strong> ${response.description || 'No disponible'} <br>
+                        <strong>Estado:</strong> ${response.state || 'No disponible'} <br>
+                        <strong>Paciente ID:</strong> ${response.patient_id || 'No disponible'} <br>
+                        <strong>Categoría ID:</strong> ${response.category_id || 'No disponible'} <br>
+                        <strong>Doctor ID:</strong> ${response.doctor_id ? response.doctor_id : 'No asignado'} <br>
+                    `,
+                    customClass: {
+                        popup: "border-solid border-3 border-vh-green w-11/12 max-w-4xl",
+                        title: "text-2xl font-bold text-gray-800 mb-4",
+                        htmlContainer: "py-4",
+                    },
+                    confirmButtonColor: "#166534",
+                    confirmButtonText: "Cerrar",
+                });
+            },
+            error: function (xhr) {
+                Swal.fire(
+                    'Error!',
+                    'No se pudo obtener la información de la cita.',
+                    'error'
+                );
+            }
+        });
+    });
 
-        const { value: result, isConfirmed } = await Swal.fire({
-            title: "Seleccione al Doctor",
+    // Event to handle assigning a doctor to an appointment
+    $(document).on('click', '#new-appointment-btn', async function(e) {
+        e.preventDefault();
+        const appointmentId = $(this).data('id'); // Obtener el ID de la cita
+        const categoryId = $('#category-id').val(); // Obtener el ID de la categoría
+
+        const { value: doctorId, isConfirmed } = await Swal.fire({
+            title: 'Seleccione al Doctor',
             html: `
                 <h2 class="text-gray-700 text-xl font-bold mb-6">Seleccione al Doctor</h2>
-                <select id="doctorSelect" class="swal2-input appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                    ${selectHTML}
+                <select id="doctorSelect" class="swal2-input">
+                    <!-- Las opciones se agregarán aquí dinámicamente -->
                 </select>
             `,
             customClass: {
@@ -120,32 +114,51 @@ $(document).ready(function () {
             confirmButtonText: "Confirmar",
             confirmButtonColor: "#166534",
             showCancelButton: true,
-            cancelButtonText: "Retroceder",
+            cancelButtonText: "Cancelar",
             preConfirm: () => {
                 return document.getElementById("doctorSelect").value;
             },
+            didOpen: async () => {
+                try {
+                    const response = await fetch(`/categorias/${categoryId}/doctores`);
+                    const doctors = await response.json();
+
+                    if (Array.isArray(doctors)) {
+                        const options = doctors.map(doctor => `<option value="${doctor.id}">${doctor.name}</option>`).join('');
+                        $('#doctorSelect').html(options);
+                    } else {
+                        $('#doctorSelect').html('<option>No hay doctores disponibles</option>');
+                    }
+                } catch (error) {
+                    console.error('Error al cargar los doctores:', error);
+                }
+            }
         });
 
         if (isConfirmed) {
-            const selectedDoctor = result;
-            Swal.fire({
-                position: "bottom-end",
-                title: "Cita Confirmada",
-                html: `
-                    <div class="flex text-center justify-around">
-                        <div>
-                            <p class="text-gray-700 text-lg font-bold mb-6">Doctor Asignado</p>
-                            <p class="text-gray-500 text-base font-bold mb-6">${selectedDoctor}</p>
-                        </div>
-                    </div>
-                `,
-                showConfirmButton: false,
-                timer: 4000,
-                timerProgressBar: true,
+            $.ajax({
+                url: `/citas/${appointmentId}`,
+                type: 'PUT',
+                data: { doctor_id: doctorId },
+                success: function (response) {
+                    Swal.fire(
+                        'Actualizado!',
+                        'La cita ha sido actualizada con el doctor seleccionado.',
+                        'success'
+                    ).then(() => {
+                        window.location.reload();
+                    });
+                },
+                error: function (xhr) {
+                    Swal.fire(
+                        'Error!',
+                        'No se pudo actualizar la cita.',
+                        'error'
+                    );
+                }
             });
-        } else {
-            // Show the first alert again if "Retroceder" is clicked
-            showAppointmentTable();
         }
-    }
+    });
+
 });
+

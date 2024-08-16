@@ -90,6 +90,9 @@ Route::middleware('auth:admin')->group(function () {
     //
     Route::get('/calendar/{id}', [CategoríaController::class, 'showCalendar'])->name('categorias.calendar');
     //
+    Route::delete('/appointments/{id}', [CitaController::class, 'destroy'])->name('appointments.destroy');
+    Route::get('/appointments/{id}', [CitaController::class, 'show'])->name('appointments.show');
+    Route::get('/categorias/{id}/doctores', [CitaController::class, 'getDoctorsByCategory']);
     Route::get('/appointments/{id}', [CitaController::class, 'showAppointments'])->name('categorias.appointments');
     //
     Route::post('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
