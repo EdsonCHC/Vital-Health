@@ -27,7 +27,7 @@ $(document).ready(function () {
                 }).then(() => {
                     // Realizar la solicitud AJAX para cerrar sesión
                     $.ajax({
-                        url: "/doctor/logout",  // Endpoint para cerrar sesión del doctor
+                        url: "/doctor/logout", // Endpoint para cerrar sesión del doctor
                         type: "POST",
                         data: {
                             _token: _token,
@@ -45,4 +45,56 @@ $(document).ready(function () {
             }
         });
     });
+
+    // Manejar el clic en el botón de opciones
+    $(".option-button").click(function () {
+        showOptionsAlert();
+    });
 });
+
+// Función para mostrar la alerta de opciones
+function showOptionsAlert() {
+    Swal.fire({
+        title: "Selecciona una opción",
+        showConfirmButton: false,
+        icon: "info",
+        html: `
+            <div class="flex justify-center content-center items-center gap-10">
+                <button id="option2" class="bg-green-400 swal2-confirm swal2-styled">Crear</button>
+                <button id="option3" class="swal2-confirm swal2-styled">Editar</button>
+                <button id="option3" class="bg-red-600 swal2-confirm swal2-styled">Eliminar</button>
+            </div>
+        `,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Has seleccionado Opción 1",
+                icon: "success",
+                timer: 2000,
+                showConfirmButton: false,
+                timerProgressBar: true,
+            });
+        }
+    });
+
+    // Manejo de clics en botones adicionales en el footer
+    $(document).on("click", "#option2", function () {
+        Swal.fire({
+            title: "Has seleccionado Opción 2",
+            icon: "info",
+            timer: 2000,
+            showConfirmButton: false,
+            timerProgressBar: true,
+        });
+    });
+
+    $(document).on("click", "#option3", function () {
+        Swal.fire({
+            title: "Has seleccionado Opción 3",
+            icon: "info",
+            timer: 2000,
+            showConfirmButton: false,
+            timerProgressBar: true,
+        });
+    });
+}
