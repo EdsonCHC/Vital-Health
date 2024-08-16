@@ -65,6 +65,12 @@ class DoctorController extends Controller
         }
     }
 
+    public function getDoctor($id)
+    {
+        $doctor = Doctor::findOrFail($id);
+        return response()->json($doctor);
+    }
+
     public function deleteDoctor($id)
     {
         try {
@@ -84,6 +90,33 @@ class DoctorController extends Controller
                 'error' => $e->getMessage(),
             ], 500);
         }
+    }
+
+    public function updateDoctor(Request $request, $id)
+    {
+        $validateInfo = $request->validate([
+            'name' => 'required|max:255',
+            'lastName' => 'required|max:255',
+            'phone' => 'required|max:25',
+            'age' => 'required|numeric|min:18',
+            'gender' => 'required',
+            'email' => 'required|email',
+            'password' => '',
+            'description' => 'required|max:1000',
+        ]);
+
+        try {
+            $doctor = Doctor::findOrFail($id);
+
+            $doctor->update($validateInfo);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error interno del servidor',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+
     }
 
     public function destroy(Request $request)
