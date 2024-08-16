@@ -23,7 +23,7 @@
             </li>
             <li class="font-bold text-white tracking-wider mb-4"><a href="/">Inicio</a></li>
             <li class="font-bold mb-4 relative group text-white tracking-wider">
-                <a href="/service">Atención al cliente</a>
+                <a href="/area">Especialidades Medicas</a>
                 <ul class="absolute hidden bg-white py-2 px-4 shadow-md w-full z-10 group-hover:block rounded-sm">
                     <li><a href="/service/support" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Medicina</a></li>
                     <li><a href="/service/faq" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Citas</a></li>
@@ -31,7 +31,6 @@
                     <li><a href="/service/contact" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Control Personal</a></li>
                 </ul>
             </li>
-            <li class="font-bold mb-4 text-white tracking-wider"><a href="/service">Servicios</a></li>
             <li class="font-bold mb-4 text-white tracking-wider"><a href="/report">Reporte</a></li>
             <li class="font-bold mb-4 text-white tracking-wider"><a href="/about">Acerca de</a></li>
         </ul>

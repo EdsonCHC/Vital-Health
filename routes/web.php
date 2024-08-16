@@ -24,14 +24,13 @@ use Illuminate\Support\Facades\Route;
 // Rutas del usuario
 Route::post('/appointments', [CitaController::class, 'store']);
 Route::post('/login', [UsuarioController::class, 'show']);
-
-//Show Doctor
-Route::get('/', [UsuarioController::class, 'showDoctors']);
 Route::view('/login', 'app.login')->name('login');
 Route::post('/login', [UsuarioController::class, 'show']);
-
 Route::view('/registro', 'app.registro');
 Route::post('/registro', [UsuarioController::class, 'store']);
+
+//Show Doctor in user
+Route::get('/', [UsuarioController::class, 'showDoctors']);
 
 
 // Middlewares para el usuario
@@ -88,7 +87,7 @@ Route::middleware('auth:laboratorio')->group(function () {
     Route::view('/index', 'laboratorio.index')->name('laboratorio');
     Route::view('/Exam', 'laboratorio.Exam')->name('Exam');
     Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');
-});   
+});
 
 // Fallback route (404)
 Route::fallback(function () {

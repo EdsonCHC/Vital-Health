@@ -16,9 +16,9 @@ class citas extends Model
         'description',
         'modo',
         'enlace',
-        'id_patient',
+        'patient_id',
         'category_id',
-        'id_doctor',
+        'category_id',
     ];
 
     public function patient()
