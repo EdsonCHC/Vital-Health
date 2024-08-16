@@ -24,7 +24,6 @@
                 class="bg-vh-green text-white font-bold py-2 px-4 rounded-lg shadow-lg hover:bg-vh-green-dark">
                 Nuevas Solicitudes
             </a>
-
         </div>
 
         <div class="flex flex-col bg-white opacity-80 rounded-xl shadow-xl p-4 lg:w-132 lg:ml-40 lg:mt-4">
@@ -37,57 +36,37 @@
                 </li>
             </ul>
 
-            <!-- Header de la tabla -->
             <div class="grid grid-cols-5 gap-2 bg-vh-alice-blue rounded-md p-2 mt-4 lg:my-5">
-    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">#</p>
-    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Paciente</p>
-    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Hora</p>
-    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Fecha</p>
-    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center"></p>
-</div>
+                <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">#</p>
+                <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Paciente</p>
+                <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Hora</p>
+                <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Fecha</p>
+                <p class="font-semibold text-sm lg:text-xl text-vh-green text-center"></p>
+            </div>
 
-<!-- Cuerpo de la tabla -->
-<div class="grid grid-cols-5 gap-2 bg-vh-green-light rounded-md p-2 my-2">
-    <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-    <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-    <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-    <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-    <div class="flex items-center justify-center space-x-2">
-        <!-- Hidden on large screens -->
-        <button class="info-button lg:hidden text-white bg-vh-green py-1 px-2 rounded-md shadow-lg flex items-center justify-center">
-            <!-- Magnifying Glass icon SVG -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-        </button>
-        <!-- Visible on large screens -->
-        <button class="info-button hidden lg:flex text-white bg-vh-green py-1 px-3 rounded-md shadow-lg">
-            Información
-        </button>
-    </div>
-</div>
+            @foreach($citas as $cita)
+                <div class="grid grid-cols-5 gap-2 bg-vh-green-light rounded-md p-2 my-2">
+                    <p class="font-bold text-sm lg:text-lg text-center">{{ $cita->id }}</p>
+                    <p class="font-bold text-sm lg:text-lg text-center">{{ $cita->patient->name ?? 'No asignado' }}</p>
+                    <p class="font-bold text-sm lg:text-lg text-center">{{ $cita->hour }}</p>
+                    <p class="font-bold text-sm lg:text-lg text-center">{{ $cita->date }}</p>
+                    <div class="flex items-center justify-center space-x-2">
+                        <button
+                            class="info-button lg:hidden text-white bg-vh-green py-1 px-2 rounded-md shadow-lg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg>
+                        </button>
+                        <button class="info-button hidden lg:flex text-white bg-vh-green py-1 px-3 rounded-md shadow-lg">
+                            Información
+                        </button>
+                    </div>
 
-<div class="grid grid-cols-5 gap-2 bg-vh-green-light rounded-md p-2 my-2">
-    <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-    <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-    <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-    <p class="font-bold text-sm lg:text-lg text-center">kj</p>
-    <div class="flex items-center justify-center space-x-2">
-        <!-- Hidden on large screens -->
-        <button class="info-button lg:hidden text-white bg-vh-green py-1 px-2 rounded-md shadow-lg flex items-center justify-center">
-            <!-- Magnifying Glass icon SVG -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-        </button>
-        <!-- Visible on large screens -->
-        <button class="info-button hidden lg:flex text-white bg-vh-green py-1 px-3 rounded-md shadow-lg">
-            Información
-        </button>
-    </div>
-</div>
+                </div>
+            @endforeach
+
 
         </div>
     </div>

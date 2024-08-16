@@ -64,15 +64,6 @@ class CategoríaController extends Controller
         return view('admin.statistics', compact('categoria'));
     }
 
-    public function showAppointments($id)
-    {
-        $categoria = Categoría::find($id);
-        if (!$categoria) {
-            return redirect()->back()->with('error', 'La categoría no existe.');
-        }
-        return view('admin.appointment', compact('categoria'));
-    }
-
     public function showRecords($id)
     {
         $categoria = Categoría::find($id);
