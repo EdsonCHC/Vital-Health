@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Servicio</title>
+    <title>{{ $categoria->nombre}}</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
     @vite(['resources/css/app.css', 'resources/css/checkbox.css', 'resources/js/appointment.js', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js'])
 </head>
@@ -16,7 +16,7 @@
         @include('templates.header')
     </div>
     <!-- Hidden Input for Category ID -->
-    <input type="hidden" id="category_id" value="{{ $categorias->id }}">
+    <input type="hidden" id="category_id" value="{{ $categoria->id }}">
     <!--Estilos Desktop-->
     <div class="hidden lg:flex lg:pt-28 mb-5 w-full bg-gray-100">
         <div class="flex justify-center items-center">

@@ -18,7 +18,7 @@
 
         <div class=" hidden lg:flex  px-44  pt-16 ">
             <h2 class="font-bold text-2xl lg:text-4xl  mb-6">
-                Servicios</h2>
+                Especialidades Medicas</h2>
         </div>
 
         <div class=" hidden lg:flex px-44  py-8 ">
