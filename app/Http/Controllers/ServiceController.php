@@ -11,6 +11,4 @@ class ServiceController extends Controller
         $categoria = Categoría::findOrFail($id);
         return view('app.service', compact('categoria'));
     }
-
-    
 }
