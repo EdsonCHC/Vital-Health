@@ -68,7 +68,7 @@ function showOptionsAlert() {
     }).then((result) => {
         if (result.isConfirmed) {
             Swal.fire({
-                title: "Has seleccionado Opción 1",
+                title: "Has seleccionado Opción crear",
                 icon: "success",
                 timer: 2000,
                 showConfirmButton: false,
@@ -80,7 +80,7 @@ function showOptionsAlert() {
     // Manejo de clics en botones adicionales en el footer
     $(document).on("click", "#option2", function () {
         Swal.fire({
-            title: "Has seleccionado Opción 2",
+            title: "Has seleccionado Opción editar",
             icon: "info",
             timer: 2000,
             showConfirmButton: false,
@@ -90,7 +90,7 @@ function showOptionsAlert() {
 
     $(document).on("click", "#option3", function () {
         Swal.fire({
-            title: "Has seleccionado Opción 3",
+            title: "Has seleccionado Opción eliminar",
             icon: "info",
             timer: 2000,
             showConfirmButton: false,
