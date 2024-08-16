@@ -94,6 +94,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/appointments/{id}', [CitaController::class, 'show'])->name('appointments.show');
     Route::get('/categorias/{id}/doctores', [CitaController::class, 'getDoctorsByCategory']);
     Route::get('/appointments/{id}', [CitaController::class, 'showAppointments'])->name('categorias.appointments');
+    Route::put('/citas/{id}', [CitaController::class, 'update']);
     //
     Route::post('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
     //
