@@ -6,6 +6,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\LaboratorioController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\CategoríaController;
+use App\Http\Controllers\ZoomController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StatisticsController;
 use Illuminate\Support\Facades\Route;
@@ -109,6 +110,10 @@ Route::middleware('auth:laboratorio')->group(function () {
     Route::view('/Exam', 'laboratorio.Exam')->name('Exam');
     Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');
 });
+
+// Route zoom
+Route::get('/zoom-meeting', [ZoomController::class, 'createMeeting']);
+
 
 // Fallback route (404)
 Route::fallback(function () {
