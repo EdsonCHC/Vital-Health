@@ -15,16 +15,85 @@ class CitaController extends Controller
         $citas = citas::all();
         return view('doctor.citas_doc', compact('citas'));
     }
+
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $appointment = Citas::findOrFail($id);
+            $appointment->doctor_id = $request->input('doctor_id');
+            $appointment->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Cita actualizada exitosamente',
+                'appointment' => $appointment // Devolver la cita actualizada
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error updating appointment: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'Error interno del servidor',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function show($id)
+    {
+        try {
+            $cita = Citas::findOrFail($id);
+            return response()->json($cita);
+        } catch (\Exception $e) {
+            Log::error('Error fetching appointment: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'Error interno del servidor',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+
     public function showAppointments($id)
     {
         $categoria = Categoría::find($id);
         if (!$categoria) {
             return redirect()->back()->with('error', 'La categoría no existe.');
         }
-        $citas = Citas::where('category_id', $id)->get();
-        return view('admin.appointment', compact('categoria', 'citas'));
+        $citasAsignadas = Citas::where('category_id', $id)->whereNotNull('doctor_id')->get();
+        $citasNoAsignadas = Citas::where('category_id', $id)->whereNull('doctor_id')->get();
+
+        return view('admin.appointment', compact('categoria', 'citasAsignadas', 'citasNoAsignadas'));
     }
 
+    public function getDoctorsByCategory($id)
+    {
+        $categoria = Categoría::find($id);
+        if (!$categoria) {
+            return response()->json(['error' => 'Categoría no encontrada'], 404);
+        }
+
+        $doctores = $categoria->doctors;
+        return response()->json($doctores);
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $appointment = Citas::findOrFail($id);
+            $appointment->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Cita eliminada exitosamente',
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error deleting appointment: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'Error interno del servidor',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
 
     public function store(Request $request)
     {
