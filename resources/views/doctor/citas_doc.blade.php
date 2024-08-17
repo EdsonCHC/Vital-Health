@@ -81,15 +81,17 @@
                             @foreach ($citas as $cita)
                                 <div id="cita-{{ $cita->id }}" data-cita-id="{{ $cita->id }}"
                                     class="w-auto h-14 flex justify-around items-center text-center my-5 mx-4 rounded-md ">
-                                    <input type="hidden" id="cita_id" value="{{ $cita->id }}">
+                                    <input type="hidden" id="cita_id" data-cita-id="{{ $cita->id }}">
+                                    <input type="hidden" id="patient_id" data-patient-id="{{ $cita->patient->id }}">
+                                    <input type="hidden" id="doctor_id" data-doctor-id="{{ $cita->doctor->id }}">
+
                                     <p class="ml-4 font-semibold text-xl text-vh-green">{{ $cita->id }}</p>
                                     <p class="ml-12 font-semibold text-xl text-vh-green">{{ $cita->patient->name }}
                                         {{ $cita->patient->lastName }}
                                     </p>
-                                    <p class="-ml-6 font-semibold text-xl text-vh-green">{{ $cita->category->nombre }}</p>
+                                    <p class="-ml-6 font-semibold text-xl text-vh-green">{{ $cita->category->nombre }}
+                                    </p>
                                     <p class="font-semibold text-xl text-vh-green">{{ $cita->date }}</p>
-
-
                                     <button class="option-button" data-cita-id="{{ $cita->id }}">
                                         <img src="{{ asset('storage/svg/option-icon.svg') }}" alt="noti_icon"
                                             class="w-10 h-10 p-2">
@@ -109,7 +111,6 @@
                                                     class="w-10 h-10 p-2 rounded">
                                             </a>
                                         @endif
-
                                     </div>
                                 </div>
                             @endforeach
@@ -118,7 +119,6 @@
                                 mostrar.</p>
                         @endif
                     </div>
-
                 </div>
             </div>
         </div>

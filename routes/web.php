@@ -80,8 +80,6 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/citas_doc', [CitaController::class, 'showCitas'])->name('doctor.citas_doc');
     // 
     Route::delete('/citas/{id}', [CitaController::class, 'destroy'])->name('citas.destroy');
-    // 
-    Route::post('/citas_doc', [ExamController::class, 'createExam'])->name('exam.create');
     //
     Route::view('/allocation', 'doctor.allocation');
     //
@@ -97,10 +95,15 @@ Route::middleware(['auth:doctor'])->group(function () {
     //
     Route::post('/doctor/logout', [DoctorController::class, 'destroy'])->name('doctor.logout');
     //
-    Route::get('/citas/{cita_id}/exams', [ExamController::class, 'getExams']);
-    Route::post('/citas/{cita_id}/exams', [ExamController::class, 'store']);
-    Route::delete('/citas/{cita_id}/exams/{exam_id}', [ExamController::class, 'destroy']);
+    // Ruta para obtener exámenes de una cita específica
+    Route::get('/citas/{cita_id}/exams', [ExamController::class, 'getExams'])->name('exams.get');
 
+    // Rutas para el controlador de exámenes (resource controller)
+    Route::post('/citas/{cita_id}/{doctor_id}/exams', [ExamController::class, 'create'])->name('citas.create');
+    // Route::resource('/citas/{cita_id}/exams', ExamController::class)->except(['index', 'show']);
+
+    // Ruta para eliminar un examen específico
+    Route::delete('/citas/{cita_id}/exams/{exam_id}', [ExamController::class, 'destroy'])->name('exams.destroy');
 });
 
 
@@ -127,14 +130,19 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/calendar/{id}', [CategoríaController::class, 'showCalendar'])->name('categorias.calendar');
     //
     Route::delete('/appointments/{id}', [CitaController::class, 'destroy'])->name('appointments.destroy');
+    //
     Route::get('/appointments/{id}', [CitaController::class, 'show'])->name('appointments.show');
+    //
     Route::get('/categorias/{id}/doctores', [CitaController::class, 'getDoctorsByCategory']);
+    //
     Route::get('/appointments/{id}', [CitaController::class, 'showAppointments'])->name('categorias.appointments');
+    //
     Route::put('/citas/{id}', [CitaController::class, 'update']);
     //
     Route::post('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
     //
     Route::resource('categorias', CategoríaController::class);
+    //
     Route::put('/categorias/{id}/activate', [CategoríaController::class, 'activate'])->name('categorias.activate');
     //
     Route::put('/categorias/{id}/suspend', [CategoríaController::class, 'suspend'])->name('categorias.suspend');
@@ -143,7 +151,7 @@ Route::middleware('auth:admin')->group(function () {
 //Rutas del laboratorio
 Route::middleware('auth:laboratorio')->group(function () {
     Route::get('/index', [LaboratorioController::class, 'index'])->name('index');
-    // Rutas del controlador de recursos
+    // 
     Route::resource('medicine', LaboratorioController::class);
     // 
     Route::view('/Exam', 'laboratorio.Exam')->name('Exam');
@@ -152,8 +160,6 @@ Route::middleware('auth:laboratorio')->group(function () {
     Route::view('/Medicina', 'laboratorio.Medicina')->name('Medicina');
     //
     Route::get('/', [LaboratorioController::class, 'index'])->name('index');
-    //
-    //
 });
 
 // Route zoom

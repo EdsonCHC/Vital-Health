@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Exams; // Asegúrate de que el nombre del modelo sea correcto
+use App\Models\Exams;
+use App\Models\citas;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Log;
 
 class ExamController extends Controller
@@ -28,38 +30,41 @@ class ExamController extends Controller
         }
     }
 
-    public function store(Request $request, $cita_id)
+    public function create(Request $request, $cita_id, $doctor_id)
     {
-        $validated = $request->validate([
-            'exam_type' => 'required|string',
-            'exam_date' => 'required|date',
-            'notes' => 'nullable|string',
-        ]);
-
         try {
-            // Crear el nuevo examen
-            $exam = new Exams(); // Usa el nombre correcto del modelo
-            $exam->cita_id = $cita_id;
-            $exam->exam_type = $validated['exam_type'];
-            $exam->exam_date = $validated['exam_date'];
-            $exam->notes = $validated['notes'] ?? '';
-            $exam->pdf_file = null; // Campo pdf_file establecido en null
+            // Validación de datos
+            $validatedData = $request->validate([
+                'exam_type' => 'required',
+                'exam_date' => 'required|date',
+                'notes' => 'required'
+            ]);
+
+            // Verificar si la cita existe y obtener el patient_id
+            $cita = citas::findOrFail($cita_id);
+            $patient_id = $cita->patient_id;
+
+            // Crear un nuevo examen y asociarlo con la cita, el paciente y el doctor
+            $exam = new Exams($validatedData);
+            $exam->cita_id = $cita->id;
+            $exam->patient_id = $patient_id;
+            $exam->doctor_id = $doctor_id;
             $exam->save();
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Examen creado correctamente',
-            ]);
+            return response()->json(['success' => true, 'message' => 'Examen creado exitosamente.']);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['success' => false, 'message' => 'Cita no encontrada.']);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json(['success' => false, 'message' => $e->validator->errors()->first()]);
         } catch (\Exception $e) {
-            Log::error('Error al crear el examen', ['error' => $e->getMessage()]);
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Error al crear el examen',
-                'error' => $e->getMessage(),
-            ], 500);
+            return response()->json(['success' => false, 'message' => 'Error al crear el examen: ' . $e->getMessage()]);
         }
     }
+
+
+
+
+
 
     public function destroy($cita_id, $exam_id)
     {
