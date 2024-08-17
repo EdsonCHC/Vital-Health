@@ -10,15 +10,34 @@ use Illuminate\Support\Facades\Log;
 
 class ExamController extends Controller
 {
-    public function getExams($cita_id)
+    public function getExams($cita_id, $user_id)
     {
+        Log::info("Cita ID: $cita_id, User ID: $user_id"); // Verificar los valores recibidos
         try {
-            $exams = Exams::where('cita_id', $cita_id)->get();
+            // Verificar si la cita existe y obtener el patient_id
+            $cita = Citas::findOrFail($cita_id);
+            $patient_id = $cita->patient_id;
+
+            // Verificar si el usuario es el paciente
+            if ($patient_id != $user_id) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No autorizado para ver estos exámenes',
+                ], 403);
+            }
+
+            // Obtener los exámenes relacionados con la cita y el paciente
+            $exams = Exams::where('cita_id', $cita_id)->where('patient_id', $patient_id)->get();
 
             return response()->json([
                 'success' => true,
                 'exams' => $exams,
             ]);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Cita no encontrada',
+            ], 404);
         } catch (\Exception $e) {
             Log::error('Error al obtener los exámenes', ['error' => $e->getMessage()]);
 

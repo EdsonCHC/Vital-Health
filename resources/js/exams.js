@@ -3,13 +3,17 @@ import jQuery from "jquery";
 window.$ = jQuery;
 
 $(document).on("click", ".option-button", function () {
-    const citaId = $(this).data("cita-id");
-    showExamsInModal(citaId);
+    const citaId = $("#cita_id").data("cita-id");
+    const patientId = $("#patient_id").data("patient-id");
+    console.log(`Cita ID: ${citaId}, Patient ID: ${patientId}`); // Verificar los valores
+    showExamsInModal(citaId, patientId); // Pasa los parámetros separados
 });
 
-function showExamsInModal(citaId) {
+function showExamsInModal(citaId, userId) {
+    const url = `/citas/${citaId}/exams/${userId}`;
+    console.log(`URL: ${url}`); // Verificar la URL
     $.ajax({
-        url: `/citas/${citaId}/exams`,
+        url: url,
         type: "GET",
     })
         .done((response) => {
@@ -18,16 +22,16 @@ function showExamsInModal(citaId) {
                 let examsHtml = '<div class="mb-4">';
                 response.exams.forEach((exam) => {
                     examsHtml += `
-                    <div class="exam-item p-4 border-b border-gray-200" data-exam-id="${
-                        exam.id
-                    }" data-cita-id="${citaId}">
-                        <h4 class="text-lg font-semibold">${exam.exam_type}</h4>
-                        <p>Fecha: ${exam.exam_date}</p>
-                        <p>Notas: ${exam.notes || "N/A"}</p>
-                        <div class="flex gap-2 mt-2">
-                            <button class="bg-red-600 text-white rounded px-4 py-2 w-32 btn-delete">Eliminar</button>
-                        </div>
+                <div class="exam-item p-4 border-b border-gray-200" data-exam-id="${
+                    exam.id
+                }" data-cita-id="${citaId}">
+                    <h4 class="text-lg font-semibold">${exam.exam_type}</h4>
+                    <p>Fecha: ${exam.exam_date}</p>
+                    <p>Notas: ${exam.notes || "N/A"}</p>
+                    <div class="flex gap-2 mt-2">
+                        <button class="bg-red-600 text-white rounded px-4 py-2 w-32 btn-delete">Eliminar</button>
                     </div>
+                </div>
                 `;
                 });
                 examsHtml += "</div>";
@@ -35,10 +39,10 @@ function showExamsInModal(citaId) {
                 Swal.fire({
                     title: "Lista de Exámenes",
                     html: `
-                    ${examsHtml}
-                    <div class="flex flex-wrap justify-center items-center gap-4 p-4">
-                        <button id="option-create" data-cita-id="${citaId}" class="bg-green-400 text-white rounded px-4 py-2 w-32">Crear</button>
-                    </div>
+                ${examsHtml}
+                <div class="flex flex-wrap justify-center items-center gap-4 p-4">
+                    <button id="option-create" data-cita-id="${citaId}" class="bg-green-400 text-white rounded px-4 py-2 w-32">Crear</button>
+                </div>
                 `,
                     showConfirmButton: false,
                     showCancelButton: false,
@@ -56,6 +60,7 @@ function showExamsInModal(citaId) {
             Swal.fire("Error", "No se pudieron cargar los exámenes", "error");
         });
 }
+
 
 $(document).on("click", "#option-create", function () {
     Swal.fire({
