@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->string('nombre')->unique();  
             $table->text('descripcion')->nullable(); 
             $table->string('tipo');
-            $table->string('dosis'); 
+            $table->string('stock'); 
             $table->string('estado')->default('Disponible'); 
             $table->timestamps(); 
         });

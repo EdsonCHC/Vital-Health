@@ -28,7 +28,6 @@ class DatabaseSeeder extends Seeder
             ExamsTableSeeder::class,
             LaboratorioTableSeeder::class,
             AdminTableSeeder::class,
-            LabTableSeeder::class,
         ]);
     }
 }

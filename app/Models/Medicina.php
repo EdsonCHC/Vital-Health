@@ -15,7 +15,7 @@ class Medicina extends Model
         'nombre', 
         'descripcion', 
         'tipo', 
-        'dosis', 
+        'stock', 
         'estado'
     ];
 
