@@ -81,9 +81,11 @@
                             @foreach ($citas as $cita)
                                 <div id="cita-{{ $cita->id }}" data-cita-id="{{ $cita->id }}"
                                     class="w-auto h-14 flex justify-around items-center text-center my-5 mx-4 rounded-md ">
-                                    <input type="hidden" id="cita_id" data-cita-id="{{ $cita->id }}">
-                                    <input type="hidden" id="patient_id" data-patient-id="{{ $cita->patient->id }}">
-                                    <input type="hidden" id="doctor_id" data-doctor-id="{{ $cita->doctor->id }}">
+                                    <input type="hidden" id="cita_id_{{ $cita->id }}" data-cita-id="{{ $cita->id }}">
+                                    <input type="hidden" id="patient_id_{{ $cita->id }}"
+                                        data-patient-id="{{ $cita->patient->id }}">
+                                    <input type="hidden" id="doctor_id_{{ $cita->id }}"
+                                        data-doctor-id="{{ $cita->doctor->id }}">
 
                                     <p class="ml-4 font-semibold text-xl text-vh-green">{{ $cita->id }}</p>
                                     <p class="ml-12 font-semibold text-xl text-vh-green">{{ $cita->patient->name }}
@@ -114,6 +116,7 @@
                                     </div>
                                 </div>
                             @endforeach
+
                         @else
                             <p class="text-center font-semibold text-xl text-vh-green">No hay citas disponibles para
                                 mostrar.</p>

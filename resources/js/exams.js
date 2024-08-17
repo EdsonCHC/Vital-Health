@@ -3,66 +3,61 @@ import jQuery from "jquery";
 window.$ = jQuery;
 
 $(document).on("click", ".option-button", function () {
-    const citaId = $("#cita_id").data("cita-id");
-    const patientId = $("#patient_id").data("patient-id");
-    console.log(`Cita ID: ${citaId}, Patient ID: ${patientId}`); // Verificar los valores
-    showExamsInModal(citaId, patientId); // Pasa los parámetros separados
+    const citaId = $(this).data("cita-id");
+    const patientId = $(`#patient_id_${citaId}`).data("patient-id");
+    showExamsInModal(citaId, patientId);
 });
 
 function showExamsInModal(citaId, userId) {
     const url = `/citas/${citaId}/exams/${userId}`;
-    console.log(`URL: ${url}`); // Verificar la URL
     $.ajax({
         url: url,
         type: "GET",
     })
-        .done((response) => {
-            console.log("Respuesta del servidor:", response);
-            if (response.success) {
-                let examsHtml = '<div class="mb-4">';
+    .done((response) => {
+        if (response.success) {
+            let examsHtml = '<div class="mb-4">';
+            if (response.exams.length > 0) {
                 response.exams.forEach((exam) => {
                     examsHtml += `
-                <div class="exam-item p-4 border-b border-gray-200" data-exam-id="${
-                    exam.id
-                }" data-cita-id="${citaId}">
-                    <h4 class="text-lg font-semibold">${exam.exam_type}</h4>
-                    <p>Fecha: ${exam.exam_date}</p>
-                    <p>Notas: ${exam.notes || "N/A"}</p>
-                    <div class="flex gap-2 mt-2">
-                        <button class="bg-red-600 text-white rounded px-4 py-2 w-32 btn-delete">Eliminar</button>
+                    <div class="exam-item p-4 border-b border-gray-200" data-exam-id="${exam.id}" data-cita-id="${citaId}">
+                        <h4 class="text-lg font-semibold">${exam.exam_type}</h4>
+                        <p>Fecha: ${exam.exam_date}</p>
+                        <p>Notas: ${exam.notes || "N/A"}</p>
+                        <div class="flex gap-2 mt-2">
+                            <button class="bg-red-600 text-white rounded px-4 py-2 w-32 btn-delete">Eliminar</button>
+                        </div>
                     </div>
-                </div>
-                `;
+                    `;
                 });
-                examsHtml += "</div>";
+            } else {
+                examsHtml = '<p>No hay exámenes para esta cita. Puedes crear uno nuevo.</p>';
+            }
+            examsHtml += "</div>";
 
-                Swal.fire({
-                    title: "Lista de Exámenes",
-                    html: `
+            Swal.fire({
+                title: "Lista de Exámenes",
+                html: `
                 ${examsHtml}
                 <div class="flex flex-wrap justify-center items-center gap-4 p-4">
                     <button id="option-create" data-cita-id="${citaId}" class="bg-green-400 text-white rounded px-4 py-2 w-32">Crear</button>
                 </div>
                 `,
-                    showConfirmButton: false,
-                    showCancelButton: false,
-                });
-            } else {
-                Swal.fire(
-                    "Error",
-                    "No se pudieron cargar los exámenes",
-                    "error"
-                );
-            }
-        })
-        .fail((jqXHR, textStatus, errorThrown) => {
-            console.log("Error al cargar exámenes:", textStatus, errorThrown);
+                showConfirmButton: false,
+                showCancelButton: false,
+            });
+        } else {
             Swal.fire("Error", "No se pudieron cargar los exámenes", "error");
-        });
+        }
+    })
+    .fail((jqXHR, textStatus, errorThrown) => {
+        Swal.fire("Error", "No se pudieron cargar los exámenes", "error");
+    });
 }
 
-
 $(document).on("click", "#option-create", function () {
+    const citaId = $(this).data("cita-id");
+
     Swal.fire({
         title: "Crear Nuevo Examen",
         html: `
@@ -86,9 +81,7 @@ $(document).on("click", "#option-create", function () {
             const notes = document.querySelector("#create-field3").value;
 
             if (!examType || !examDate) {
-                Swal.showValidationMessage(
-                    "Por favor, completa todos los campos"
-                );
+                Swal.showValidationMessage("Por favor, completa todos los campos");
                 return false;
             }
 
@@ -96,13 +89,13 @@ $(document).on("click", "#option-create", function () {
                 exam_type: examType,
                 exam_date: examDate,
                 notes: notes || "",
+                cita_id: citaId 
             };
         },
     }).then((result) => {
         if (result.isConfirmed) {
             const _token = $('meta[name="csrf-token"]').attr("content");
-            const citaId = $("#cita_id").data("cita-id");
-            const doctorId = $("#doctor_id").data("doctor-id");
+            const doctorId = $(`#doctor_id_${citaId}`).data("doctor-id");
 
             if (!doctorId) {
                 Swal.fire("Error", "Doctor ID no está definido", "error");
@@ -119,13 +112,9 @@ $(document).on("click", "#option-create", function () {
                 success(response) {
                     if (response.success) {
                         Swal.fire("Examen creado correctamente", "", "success");
-                        showExamsInModal(citaId); // Recargar la lista para la cita correcta
+                        showExamsInModal(citaId, $(`#patient_id_${citaId}`).data("patient-id")); 
                     } else {
-                        Swal.fire(
-                            "Error al crear el examen",
-                            response.message || "No se pudo crear el examen",
-                            "error"
-                        );
+                        Swal.fire("Error al crear el examen", response.message || "No se pudo crear el examen", "error");
                     }
                 },
                 error(jqXHR, textStatus, errorThrown) {
@@ -153,32 +142,17 @@ $(document).on("click", ".btn-delete", function () {
                 url: `/citas/${citaId}/exams/${examId}`,
                 type: "DELETE",
                 headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                 },
                 success(response) {
                     if (response.success) {
-                        Swal.fire(
-                            "Examen eliminado correctamente",
-                            "",
-                            "success"
-                        );
-                        showExamsInModal(citaId); // Recargar la lista para la cita correcta
+                        Swal.fire("Examen eliminado correctamente", "", "success");
+                        showExamsInModal(citaId, $(`#patient_id_${citaId}`).data("patient-id"));
                     } else {
-                        Swal.fire(
-                            "Error al eliminar el examen",
-                            response.message || "No se pudo eliminar el examen",
-                            "error"
-                        );
+                        Swal.fire("Error al eliminar el examen", response.message || "No se pudo eliminar el examen", "error");
                     }
                 },
                 error(jqXHR, textStatus, errorThrown) {
-                    console.log(
-                        "Error al eliminar examen:",
-                        textStatus,
-                        errorThrown
-                    );
                     Swal.fire("Error al eliminar el examen", "", "error");
                 },
             });

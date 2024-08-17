@@ -95,13 +95,11 @@ Route::middleware(['auth:doctor'])->group(function () {
     //
     Route::post('/doctor/logout', [DoctorController::class, 'destroy'])->name('doctor.logout');
     //
-    // Ruta para obtener exámenes de una cita específica
-    Route::get('/citas/{cita_id}/exams/{user_id}', [ExamController::class, 'getExams'])->name('exams.get');
-    // Route::get('/citas/{cita_id}/exams', [ExamController::class, 'getExams'])->name('exams.get');
     //
-    Route::post('/citas/{cita_id}/{doctor_id}/exams', [ExamController::class, 'create'])->name('citas.create');
-    // Ruta para eliminar un examen específico
-    Route::delete('/citas/{cita_id}/exams/{exam_id}', [ExamController::class, 'destroy'])->name('exams.destroy');
+    Route::get('/citas/{cita_id}/exams/{user_id}', [ExamController::class, 'getExams']);
+    Route::post('/citas/{cita_id}/{doctor_id}/exams', [ExamController::class, 'create']);
+    Route::delete('/citas/{cita_id}/exams/{exam_id}', [ExamController::class, 'destroy']);
+    //
 });
 
 

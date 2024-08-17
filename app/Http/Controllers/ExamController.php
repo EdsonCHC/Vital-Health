@@ -29,6 +29,11 @@ class ExamController extends Controller
             // Obtener los exámenes relacionados con la cita y el paciente
             $exams = Exams::where('cita_id', $cita_id)->where('patient_id', $patient_id)->get();
 
+            // Verificar si hay exámenes
+            if ($exams->isEmpty()) {
+                Log::info("No hay exámenes para Cita ID: $cita_id, Patient ID: $patient_id");
+            }
+
             return response()->json([
                 'success' => true,
                 'exams' => $exams,
@@ -48,6 +53,7 @@ class ExamController extends Controller
             ], 500);
         }
     }
+
 
     public function create(Request $request, $cita_id, $doctor_id)
     {
