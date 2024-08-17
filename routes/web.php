@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\DoctorController;
@@ -74,8 +75,12 @@ Route::middleware('auth')->group(function () {
 // Rutas para el doctor
 Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/doctor', [DoctorController::class, 'index'])->name('doctor');
-    //
-    Route::get('/citas_doc', [CitaController::class, 'index'])->name('doctor.citas_doc');
+    // 
+    Route::get('/citas_doc', [CitaController::class, 'showDoctorCita'])->name('doctor.citas_doc');
+    // 
+    Route::delete('/citas/{id}', [CitaController::class, 'destroy'])->name('citas.destroy');
+    // Ruta
+    Route::post('/citas/{id}/examenes', [ExamController::class, 'store'])->name('examenes.store');
     //
     Route::view('/allocation', 'doctor.allocation');
     //

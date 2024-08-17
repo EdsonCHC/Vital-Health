@@ -19,9 +19,9 @@ class ExamsTableSeeder extends Seeder
         $exams = [
             [
                 'patient_id' => 1,
+                'cita_id' => 1,
                 'doctor_id' => 1,
                 'exam_type' => "blood",
-                'results' => true,
                 'exam_date' => '2024-08-14',
                 'notes' => 'El examen esta en regla',
                 'created_at' => Carbon::now(),
@@ -29,9 +29,9 @@ class ExamsTableSeeder extends Seeder
             ],
             [
                 'patient_id' => 2,
+                'cita_id' => 2,
                 'doctor_id' => 2,
                 'exam_type' => "urine",
-                'results' => true,
                 'exam_date' => '2024-08-14',
                 'notes' => 'El examen esta en regla',
                 'created_at' => Carbon::now(),
@@ -39,9 +39,9 @@ class ExamsTableSeeder extends Seeder
             ],
             [
                 'patient_id' => 3,
+                'cita_id' => 3,
                 'doctor_id' => 3,
                 'exam_type' => "stool",
-                'results' => true,
                 'exam_date' => '2024-08-14',
                 'notes' => 'El examen esta en regla',
                 'created_at' => Carbon::now(),

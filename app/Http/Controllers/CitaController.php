@@ -19,6 +19,19 @@ class CitaController extends Controller
         return view('doctor.citas_doc', compact('citas', 'doctor'));
     }
 
+    public function showDoctorCita()
+    {
+        // Obtener todas las citas con los doctores asociados
+        $citas = Citas::with('doctor')->get();
+
+        // Buscar la primera cita que tenga un doctor asociado
+        $doctor = $citas->firstWhere('doctor_id', '!=', null)->doctor ?? null;
+
+        // Pasar las citas y el doctor a la vista
+        return view('doctor.citas_doc', compact('citas', 'doctor'));
+    }
+
+
 
     public function update(Request $request, $id)
     {

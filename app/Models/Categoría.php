@@ -42,8 +42,8 @@ class Categoría extends Model
     protected function nombre(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => ucwords($value), // Convierte el valor a capitalizar al recuperar
-            set: fn($value) => strtolower($value) // Convierte el valor a minúsculas al guardar
+            get: fn($value) => ucwords($value), 
+            set: fn($value) => strtolower($value) 
         );
     }
 

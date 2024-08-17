@@ -49,7 +49,7 @@ class DoctorsTableSeeder extends Seeder
                 'mail' => 'doc_alealvarenga@gmail.com',
                 'password' => Hash::make('doctor456'),
                 'role' => 'doctor',
-                'category_id' => 1,
+                'category_id' => 2,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -63,7 +63,7 @@ class DoctorsTableSeeder extends Seeder
                 'mail' => 'doc_geo@gmail.com',
                 'password' => Hash::make('doctor789'),
                 'role' => 'doctor',
-                'category_id' => 1,
+                'category_id' => 3,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]

@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Citas</title>
     <!-- Incluir Tailwind CSS -->
-    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/js/doctor.js'])
+    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/js/doctor.js', 'resources/js/exams.js'])
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
 
@@ -20,7 +21,11 @@
         <div class="ml-60 w-full h-full overflow-y-auto flex-grow">
             <div class="w-auto h-auto my-4 mx-4 lg:mx-16 lg:mt-10">
                 <div class="w-full">
-                    <h2 class="font-bold text-2xl text-vh-green">Citas del Doctor: {{ $doctor->name }}</h2>
+                    @if ($doctor)
+                        <h2 class="font-bold text-2xl text-vh-green">Citas del Doctor: {{ $doctor->name }}</h2>
+                    @else
+                        <h2 class="font-bold text-2xl text-vh-green">No hay doctor activo asignado.</h2>
+                    @endif
                     <div class="w-full mt-5">
                         <form method="get" action="#" class="relative">
                             <input type="text" name="s" id="s"
@@ -72,7 +77,7 @@
                         @if ($citas->isNotEmpty())
                             @foreach ($citas as $cita)
                                 @if ($cita->category_id == $doctor->category_id)
-                                    <div
+                                    <div id="cita-{{ $cita->id }}" data-cita-id="{{ $cita->id }}"
                                         class="w-auto h-14 flex justify-around items-center text-center my-5 mx-4 bg-green-200 rounded-md">
                                         <p class="ml-4 font-semibold text-xl text-vh-green">{{ $cita->id }}</p>
                                         <p class="ml-12 font-semibold text-xl text-vh-green">{{ $cita->patient->name }}
@@ -81,16 +86,18 @@
                                         <p class="-ml-6 font-semibold text-xl text-vh-green">
                                             {{ $cita->category->nombre }}</p>
                                         <p class="font-semibold text-xl text-vh-green">{{ $cita->date }}</p>
-                                        <button target="_self" class="option-button">
+                                        <button target="_self" class="option-button"
+                                            data-cita-id="{{ $cita->id }}">
                                             <img src="{{ asset('storage/svg/option-icon.svg') }}" alt="noti_icon"
                                                 class="w-10 h-10 p-2">
                                         </button>
                                         <div class="w-2/12 flex items-center space-x-10">
-                                            <button target="_self" class="ml-4">
+                                            <button target="_self" class="ml-4" id="aceptar">
                                                 <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
                                                     class="w-10 h-10 p-2 rounded">
                                             </button>
-                                            <button>
+                                            <button target="_self" class="delete-cita"
+                                                data-cita-id="{{ $cita->id }}">
                                                 <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
                                                     class="w-10 h-10 p-2 rounded">
                                             </button>
@@ -101,7 +108,10 @@
                         @else
                             <p>No hay citas disponibles para mostrar.</p>
                         @endif
+
                     </div>
+                    <input type="hidden" id="_token" value="{{ csrf_token() }}">
+
                     <script>
                         document.getElementById("filtro1").addEventListener("change", function() {
                             var selectedOption = this.options[this.selectedIndex].text;

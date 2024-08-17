@@ -25,7 +25,7 @@ class CitasTableSeeder extends Seeder
                 'enlace' => null,
                 'published_at' => Carbon::now(),
                 'category_id' => 2,
-                'doctor_id' => 0,
+                // No incluimos doctor_id para dejarlo vacío
                 'patient_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -39,7 +39,7 @@ class CitasTableSeeder extends Seeder
                 'enlace' => 'https://meet.example.com/123456',
                 'published_at' => Carbon::now(),
                 'category_id' => 1,
-                'doctor_id' => 0,
+                // No incluimos doctor_id para dejarlo vacío
                 'patient_id' => 2,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -50,10 +50,10 @@ class CitasTableSeeder extends Seeder
                 'hour' => '09:00:00',
                 'description' => 'Primera consulta de pediatría.',
                 'modo' => 'Presencial',
-                'enlace' => null,
+                // No incluimos doctor_id para dejarlo vacío
                 'published_at' => Carbon::now(),
                 'category_id' => 3,
-                'doctor_id' => 0, // Doctor aún no asignado
+                'doctor_id' => null,
                 'patient_id' => 3,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
