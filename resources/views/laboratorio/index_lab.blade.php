@@ -74,10 +74,11 @@
                     <p class="mb-4 text-sm text-gray-600 text-center">Administrar la medicina para pacientes</p>
 
                     <div class="mb-4">
-                        <a href="{{ route('medicinas.index') }}" id="view_medicines"
-                            class="bg-green-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-green-700 transition duration-300">
-                            Ver 
+                        <a href="{{ route('medicinas.index') }}"
+                            class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-300 w-full text-center inline-block">
+                            Ver
                         </a>
+
                     </div>
                 </div>
             </div>

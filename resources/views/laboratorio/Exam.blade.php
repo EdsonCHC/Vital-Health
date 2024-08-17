@@ -24,12 +24,6 @@
     </header>
 
     <main class="flex-1 p-6 flex flex-col gap-6">
-        <div class="mb-4">
-            <a href="#"
-                class="bg-green-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-green-700 transition duration-300">
-                Nuevo
-            </a>
-        </div>
 
         <div class="bg-white shadow-lg rounded-lg border border-gray-200 overflow-x-auto">
             <table class="w-full text-sm text-gray-700">
@@ -38,12 +32,10 @@
                         <th class="py-4 px-6 border-b text-left font-medium">ID</th>
                         <th class="py-4 px-6 border-b text-left font-medium">Paciente</th>
                         <th class="py-4 px-6 border-b text-left font-medium">Doctor</th>
-                        <th class="py-4 px-6 border-b text-left font-medium">Tipo</th>
-                        <th class="py-4 px-6 border-b text-left font-medium">Resultados</th>
-                        <th class="py-4 px-6 border-b text-left font-medium">Hora</th>
-                        <th class="py-4 px-6 border-b text-left font-medium">Fecha</th>
-                        <th class="py-4 px-6 border-b text-left font-medium">Notas</th>
-                        <th class="py-4 px-6 border-b text-left font-medium">Acciones</th>
+                        <th class="py-4 px-6 border-b text-left font-medium">Tipo de Examen</th>
+                        <td class="py-3 px-6 border-b">Resultado</td>
+                        <th class="py-4 px-6 border-b text-left font-medium">Dia</th>
+                        <th class="py-4 px-6 border-b  font-medium text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-300">
@@ -52,14 +44,19 @@
                         <td class="py-3 px-6 border-b">John Doe</td>
                         <td class="py-3 px-6 border-b">Dr. Smith</td>
                         <td class="py-3 px-6 border-b">Blood Test</td>
-                        <td class="py-3 px-6 border-b">Positivo</td>
-                        <td class="py-3 px-6 border-b">10:00 AM</td>
+                        <td class="py-3 px-6 border-b">Resultado</td>
                         <td class="py-3 px-6 border-b">2024-08-14</td>
-                        <td class="py-3 px-6 border-b">No</td>
                         <td class="py-3 px-6 border-b text-center">
-                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">l</a> |
-                            <a href="#" class="text-red-600 hover:text-red-800 font-medium">l</a>
+                            <a href="#"
+                                class="inline-block px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600 font-medium transition-colors duration-300">Actualizar</a>
+                            <span class="mx-2">|</span>
+                            <a href="#"
+                                class="inline-block px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 font-medium transition-colors duration-300">Finalizar</a>
+                            <span class="mx-2">|</span>
+                            <a href="#"
+                                class="inline-block px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600 font-medium transition-colors duration-300">Eliminar</a>
                         </td>
+
                     </tr>
                 </tbody>
             </table>
