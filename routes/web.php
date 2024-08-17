@@ -80,7 +80,7 @@ Route::middleware(['auth:doctor'])->group(function () {
     // 
     Route::delete('/citas/{id}', [CitaController::class, 'destroy'])->name('citas.destroy');
     // Ruta
-    Route::post('/citas/{id}/examenes', [ExamController::class, 'store'])->name('examenes.store');
+    Route::post('/citas/{id}', [ExamController::class, 'store'])->name('examenes.store');
     //
     Route::view('/allocation', 'doctor.allocation');
     //

@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citas</title>
     <!-- Incluir Tailwind CSS -->
     @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/js/doctor.js', 'resources/js/exams.js'])
@@ -108,10 +108,7 @@
                         @else
                             <p>No hay citas disponibles para mostrar.</p>
                         @endif
-
                     </div>
-                    <input type="hidden" id="_token" value="{{ csrf_token() }}">
-
                     <script>
                         document.getElementById("filtro1").addEventListener("change", function() {
                             var selectedOption = this.options[this.selectedIndex].text;

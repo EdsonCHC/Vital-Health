@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Staff</title>
     @vite(['resources/css/app.css', 'resources/js/ad_staff.js'])
-    <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">    
 </head>
 
 <body class="w-full h-full bg-vh-alice-blue">
