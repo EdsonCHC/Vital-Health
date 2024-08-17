@@ -17,6 +17,7 @@ class Exams extends Model
         'exam_type',
         'exam_date',
         'notes',
+        'pdf_file', 
     ];
 
     public function patient()
