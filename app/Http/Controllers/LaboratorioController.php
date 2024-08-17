@@ -12,7 +12,7 @@ class LaboratorioController extends Controller
     public function index()
     {
         $medicines = Medicine::all();
-        return view('laboratorio.home', compact('medicines'));
+        return view('laboratorio.index', compact('medicines'));
 
     }
 

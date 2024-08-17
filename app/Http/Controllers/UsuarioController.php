@@ -141,7 +141,7 @@ class UsuarioController extends Controller
             if ($laboratorio && Hash::check($credentials['password'], $laboratorio->password)) {
                 Auth::guard('laboratorio')->login($laboratorio);
                 $request->session()->regenerate();
-                return response()->json(['success' => true, 'redirect_url' => '/home'], 200);
+                return response()->json(['success' => true, 'redirect_url' => '/index'], 200);
             }
     
             return response()->json(['message' => 'Credenciales incorrectas'], 401);

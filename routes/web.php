@@ -142,7 +142,7 @@ Route::middleware('auth:admin')->group(function () {
 
 //Rutas del laboratorio
 Route::middleware('auth:laboratorio')->group(function () {
-    Route::get('/home', [LaboratorioController::class, 'index'])->name('home');
+    Route::get('/index', [LaboratorioController::class, 'index'])->name('index');
     // Rutas del controlador de recursos
     Route::resource('medicine', LaboratorioController::class);
     // 
