@@ -77,7 +77,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/doctor', [DoctorController::class, 'index'])->name('doctor');
     // 
-    Route::get('/citas_doc', [CitaController::class, 'showDoctorCita'])->name('doctor.citas_doc');
+    Route::get('/citas_doc', [CitaController::class, 'showCitas'])->name('doctor.citas_doc');
     // 
     Route::delete('/citas/{id}', [CitaController::class, 'destroy'])->name('citas.destroy');
     // 
@@ -97,6 +97,10 @@ Route::middleware(['auth:doctor'])->group(function () {
     //
     Route::post('/doctor/logout', [DoctorController::class, 'destroy'])->name('doctor.logout');
     //
+    Route::get('/citas/{cita_id}/exams', [ExamController::class, 'getExams']);
+    Route::post('/citas/{cita_id}/exams', [ExamController::class, 'store']);
+    Route::delete('/citas/{cita_id}/exams/{exam_id}', [ExamController::class, 'destroy']);
+
 });
 
 
@@ -145,6 +149,10 @@ Route::middleware('auth:laboratorio')->group(function () {
     Route::view('/Exam', 'laboratorio.Exam')->name('Exam');
     //
     Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');
+    Route::view('/Medicina', 'laboratorio.Medicina')->name('Medicina');
+    //
+    Route::get('/', [LaboratorioController::class, 'index'])->name('index');
+    //
     //
 });
 

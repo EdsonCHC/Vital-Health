@@ -11,25 +11,19 @@ use Illuminate\Support\Facades\Log;
 
 class CitaController extends Controller
 {
-    public function index()
+    public function showCitas()
     {
-        $citas = Citas::with('doctor')->get();
-        $doctor = $citas->first()->doctor ?? null;
-
-        return view('doctor.citas_doc', compact('citas', 'doctor'));
+        // Obtén el doctor autenticado
+        $doctor = auth()->user();
+        
+        // Obtén las citas del doctor autenticado
+        $citas = Citas::where('doctor_id', $doctor->id)->get();
+    
+        // Devuelve la vista con los datos
+        return view('doctor.citas_doc', compact('doctor', 'citas'));
     }
-
-    public function showDoctorCita()
-    {
-        // Obtener todas las citas con los doctores asociados
-        $citas = Citas::with('doctor')->get();
-
-        // Buscar la primera cita que tenga un doctor asociado
-        $doctor = $citas->firstWhere('doctor_id', '!=', null)->doctor ?? null;
-
-        // Pasar las citas y el doctor a la vista
-        return view('doctor.citas_doc', compact('citas', 'doctor'));
-    }
+   
+    
 
 
 

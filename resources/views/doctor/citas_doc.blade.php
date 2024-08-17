@@ -64,8 +64,9 @@
                                 </a>
                             </div>
                         </div>
+                        <!-- Encabezado de la tabla -->
                         <div class="w-auto h-14 flex justify-around items-center my-5 mx-4 bg-vh-alice-blue rounded-md">
-                            <p class="font-semibold text-xl text-vh-green">Codigo</p>
+                            <p class="font-semibold text-xl text-vh-green">Código</p>
                             <p class="font-semibold text-xl text-vh-green">Paciente</p>
                             <p class="font-semibold text-xl text-vh-green">Especialidad</p>
                             <p class="font-semibold text-xl text-vh-green">Fecha</p>
@@ -75,49 +76,49 @@
                             </div>
                         </div>
 
+                        <!-- Datos de las citas -->
                         @if ($citas->isNotEmpty())
                             @foreach ($citas as $cita)
-                                @if ($cita->category_id == $doctor->category_id)
-                                    <div id="cita-{{ $cita->id }}" data-cita-id="{{ $cita->id }}"
-                                        class="w-auto h-14 flex justify-around items-center text-center my-5 mx-4 bg-green-200 rounded-md">
-                                        {{-- Obtengo categoria id  --}} 
-                                        <input type="hidden" id="cita_id" value="{{ $cita->id }}">
-                                        <p class="ml-4 font-semibold text-xl text-vh-green">{{ $cita->id }}</p>
-                                        <p class="ml-12 font-semibold text-xl text-vh-green">{{ $cita->patient->name }}
-                                            {{ $cita->patient->lastName }}
-                                        </p>
-                                        <p class="-ml-6 font-semibold text-xl text-vh-green">
-                                            {{ $cita->category->nombre }}</p>
-                                        <p class="font-semibold text-xl text-vh-green">{{ $cita->date }}</p>
-                                        <button target="_self" class="option-button"
-                                            data-cita-id="{{ $cita->id }}">
-                                            <img src="{{ asset('storage/svg/option-icon.svg') }}" alt="noti_icon"
-                                                class="w-10 h-10 p-2">
+                                <div id="cita-{{ $cita->id }}" data-cita-id="{{ $cita->id }}"
+                                    class="w-auto h-14 flex justify-around items-center text-center my-5 mx-4 rounded-md ">
+                                    <input type="hidden" id="cita_id" value="{{ $cita->id }}">
+                                    <p class="ml-4 font-semibold text-xl text-vh-green">{{ $cita->id }}</p>
+                                    <p class="ml-12 font-semibold text-xl text-vh-green">{{ $cita->patient->name }}
+                                        {{ $cita->patient->lastName }}
+                                    </p>
+                                    <p class="-ml-6 font-semibold text-xl text-vh-green">{{ $cita->category->nombre }}</p>
+                                    <p class="font-semibold text-xl text-vh-green">{{ $cita->date }}</p>
+
+
+                                    <button class="option-button" data-cita-id="{{ $cita->id }}">
+                                        <img src="{{ asset('storage/svg/option-icon.svg') }}" alt="noti_icon"
+                                            class="w-10 h-10 p-2">
+                                    </button>
+                                    <div class="w-2/12 flex items-center space-x-10">
+                                        <button target="_self" class="ml-4" id="aceptar">
+                                            <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
+                                                class="w-10 h-10 p-2 rounded">
                                         </button>
-                                        <div class="w-2/12 flex items-center space-x-10">
-                                            <button target="_self" class="ml-4" id="aceptar">
-                                                <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
+                                        <button target="_self" class="delete-cita" data-cita-id="{{ $cita->id }}">
+                                            <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
+                                                class="w-10 h-10 p-2 rounded">
+                                        </button>
+                                        @if ($cita->modo == 'Virtual')
+                                            <a href="{{ $cita->modo }}" class="ml-4" target="_blank">
+                                                <img src="{{ asset('storage/svg/eye.svg') }}" alt="Ver Cita"
                                                     class="w-10 h-10 p-2 rounded">
-                                            </button>
-                                            <button target="_self" class="delete-cita"
-                                                data-cita-id="{{ $cita->id }}">
-                                                <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
-                                                    class="w-10 h-10 p-2 rounded">
-                                            </button>
-                                        </div>
+                                            </a>
+                                        @endif
+
                                     </div>
-                                @endif
+                                </div>
                             @endforeach
                         @else
-                            <p>No hay citas disponibles para mostrar.</p>
+                            <p class="text-center font-semibold text-xl text-vh-green">No hay citas disponibles para
+                                mostrar.</p>
                         @endif
                     </div>
-                    <script>
-                        document.getElementById("filtro1").addEventListener("change", function() {
-                            var selectedOption = this.options[this.selectedIndex].text;
-                            document.getElementById("filtroSeleccionado1").textContent = selectedOption;
-                        });
-                    </script>
+
                 </div>
             </div>
         </div>
