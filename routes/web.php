@@ -148,16 +148,20 @@ Route::middleware('auth:admin')->group(function () {
 
 //Rutas del laboratorio
 Route::middleware('auth:laboratorio')->group(function () {
-    Route::get('/index', [LaboratorioController::class, 'index'])->name('index');
-    // 
-    Route::resource('medicine', LaboratorioController::class);
+    Route::get('/index_lab', [LaboratorioController::class, 'index'])->name('index');
     // 
     Route::view('/Exam', 'laboratorio.Exam')->name('Exam');
     //
-    Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');
     Route::view('/Medicina', 'laboratorio.Medicina')->name('Medicina');
     //
-    Route::get('/', [LaboratorioController::class, 'index'])->name('index');
+    Route::get('/medicinas', [MedicineController::class, 'index'])->name('medicinas.index');
+    Route::post('medicinas', [MedicineController::class, 'store'])->name('medicinas.store');
+    Route::get('medicinas/{medicina}/edit', [MedicineController::class, 'edit'])->name('medicinas.edit');
+    Route::put('medicinas/{medicina}', [MedicineController::class, 'update'])->name('medicinas.update');
+    Route::delete('/medicinas/{medicina}', [MedicineController::class, 'destroy'])->name('medicinas.destroy');
+    Route::patch('/medicinas/{medicina}/toggleStatus', [MedicineController::class, 'toggleStatus'])->name('medicinas.toggleStatus');
+
+    Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');
 });
 
 // Route zoom
