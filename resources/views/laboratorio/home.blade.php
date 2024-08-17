@@ -46,22 +46,6 @@
                     </a>
                 </div>
 
-                <!-- Medicina Card -->
-                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex justify-center mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-600" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center">Medicina</h3>
-                    <p class="mb-4 text-sm text-gray-600 text-center">Administrar la medicina para pacientes</p>
-                    <a href="{{ route('Medicina') }}"
-                        class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-300 w-full text-center block">
-                        Ver
-                    </a>
-                </div>
-
                 <!-- Recetas Card -->
                 <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <div class="flex justify-center mb-4">
