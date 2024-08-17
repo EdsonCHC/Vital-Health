@@ -3,10 +3,11 @@ import jQuery from "jquery";
 window.$ = jQuery;
 
 $(document).ready(function () {
-    // Manejar el clic en el botón de opciones
-    $(document).on("click", ".option-button", function () {
-        const citaId = $(this).data("cita-id");
+    function getCitaId() {
+        return $("#cita_id").val();
+    }
 
+    $(document).on("click", ".option-button", function () {
         Swal.fire({
             title: "Selecciona una opción",
             showConfirmButton: false,
@@ -20,38 +21,37 @@ $(document).ready(function () {
             `,
         });
 
-        // Manejar el clic en el botón de crear
         $(document).on("click", "#option-create", function () {
             Swal.fire({
                 title: "Crear Nuevo Examen",
                 html: `
-                    <form id="create-form" style="display: flex; flex-direction: column; gap: 10px;">
-                        <select id="create-field1" class="form-select rounded-md border border-solid border-gray-300 p-2">
-                            <option value="" disabled selected>Tipo de Examen</option>
-                            <option value="blood">Sangre</option>
-                            <option value="urine">Orina</option>
-                            <option value="stool">Heces</option>
-                        </select>
-                        <input type="date" id="create-field2" class="form-input rounded-md border border-solid border-gray-300 p-2" placeholder="Fecha">
-                        <textarea id="create-field3" class="form-textarea rounded-md border border-solid border-gray-300 p-2 h-24" placeholder="Notas"></textarea>
-                    </form>
-                `,
+            <form id="create-form">
+                <select id="create-field1" class="form-select">
+                    <option value="" disabled selected>Tipo de Examen</option>
+                    <option value="blood">Sangre</option>
+                    <option value="urine">Orina</option>
+                    <option value="stool">Heces</option>
+                </select>
+                <input type="date" id="create-field2" class="form-input" placeholder="Fecha">
+                <textarea id="create-field3" class="form-textarea h-24" placeholder="Notas"></textarea>
+            </form>
+        `,
                 confirmButtonText: "Guardar",
                 showCancelButton: true,
                 cancelButtonText: "Cancelar",
                 preConfirm: () => {
-                    const popup = Swal.getPopup();
                     const examType =
-                        popup.querySelector("#create-field1").value;
+                        document.querySelector("#create-field1").value;
                     const examDate =
-                        popup.querySelector("#create-field2").value;
-                    const notes = popup.querySelector("#create-field3").value;
+                        document.querySelector("#create-field2").value;
+                    const notes =
+                        document.querySelector("#create-field3").value;
 
                     if (!examType || !examDate) {
                         Swal.showValidationMessage(
                             "Por favor, completa todos los campos"
                         );
-                        returnfalse;
+                        return false;
                     }
 
                     return {
@@ -60,86 +60,39 @@ $(document).ready(function () {
                         notes: notes || "",
                     };
                 },
-            })
-                .then((result) => {
-                    if (result.isConfirmed) {
-                        const token = $('meta[name="csrf-token"]').attr(
-                            "content"
-                        );
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const token = $('meta[name="csrf-token"]').attr("content");
+                    const citaId = getCitaId();
 
-                        $.ajax({
-                            url: `/citas/${citaId}`,
-                            type: "POST",
-                            headers: {
-                                "X-CSRF-TOKEN": token,
-                            },
-                            data: {
-                                exam_type: result.value.exam_type,
-                                exam_date: result.value.exam_date,
-                                notes: result.value.notes,
-                            },
-                            success(response) {
-                                Swal.fire({
-                                    title: "Examen creado",
-                                    text: response.message,
-                                    icon: "success",
-                                    timer: 2000,
-                                    showConfirmButton: false,
-                                    timerProgressBar: true,
-                                });
-                            },
-                            error(xhr, textStatus, errorThrown) {
-                                let errorMessage =
-                                    "Ocurrió un error al crear el examen";
-
-                                if (xhr.status === 0) {
-                                    errorMessage =
-                                        "Error de red: No se pudo conectar al servidor";
-                                }
-                                elseif(xhr.status >= 400 && xhr.status < 500);
-                                {
-                                    errorMessage =
-                                        "Error en la solicitud: " +
-                                        (xhr.responseJSON?.message ||
-                                            "Revise los datos enviados");
-                                }
-                                elseif(xhr.status >= 500);
-                                {
-                                    errorMessage =
-                                        "Error del servidor: " +
-                                        (xhr.responseJSON?.message ||
-                                            "Intente de nuevo más tarde");
-                                }
-
-                                console.error("Error en la solicitud AJAX:", {
-                                    xhr,
-                                    textStatus,
-                                    errorThrown,
-                                });
-
-                                Swal.fire({
-                                    title: "Error",
-                                    text: errorMessage,
-                                    icon: "error",
-                                });
-                            },
-                        }).fail((jqXHR, textStatus, errorThrown) => {
-                            Swal.fire({
-                                title: "Error",
-                                text:
-                                    "Error de red o de conexión: " + textStatus,
-                                icon: "error",
-                            });
-                        });
-                    }
-                })
-                .catch((error) => {
-                    Swal.fire({
-                        title: "Error",
-                        text: "Ocurrió un error inesperado: " + error.message,
-                        icon: "error",
+                    $.ajax({
+                        url: `/citas/${citaId}`,
+                        type: "POST",
+                        headers: {
+                            "X-CSRF-TOKEN": token,
+                        },
+                        data: {
+                            exam_type: result.value.exam_type,
+                            exam_date: result.value.exam_date,
+                            notes: result.value.notes,
+                        },
+                        success(response) {
+                            Swal.fire(
+                                "Examen guardado correctamente",
+                                "",
+                                "success"
+                            );
+                        },
+                        error() {
+                            Swal.fire(
+                                "Error al guardar el examen",
+                                "",
+                                "error"
+                            );
+                        },
                     });
-                });
+                }
+            });
         });
     });
 });

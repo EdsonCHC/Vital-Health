@@ -17,10 +17,9 @@ class ExamController extends Controller
         return view('doctor.exams_doc', compact('exams'));
     }
 
-    public function store(Request $request, $id)
+    public function createExam()
     {
-        // Validar la solicitud
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make(request()->all(), [
             'exam_type' => 'required|string',
             'exam_date' => 'required|date',
             'notes' => 'nullable|string',
@@ -34,18 +33,16 @@ class ExamController extends Controller
         }
 
         try {
-            // Verificar si la cita existe
-            $cita = citas::findOrFail($id);
+            $cita = citas::findOrFail(request('cita_id'));
 
-            // Crear un nuevo examen asociado con la cita
             $exam = Exams::create([
-                'state' => $request->input('state', '1'),
+                'state' => request('state', '1'),
                 'patient_id' => $cita->patient_id,
-                'cita_id' => $request->cita_id,
+                'cita_id' => request('cita_id'),
                 'doctor_id' => $cita->doctor_id,
-                'exam_type' => $request->input('exam_type'),
-                'exam_date' => $request->input('exam_date'),
-                'notes' => $request->input('notes'),
+                'exam_type' => request('exam_type'),
+                'exam_date' => request('exam_date'),
+                'notes' => request('notes'),
             ]);
 
             return response()->json([

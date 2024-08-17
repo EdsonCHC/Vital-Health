@@ -19,27 +19,18 @@ class Exams extends Model
         'notes',
     ];
 
-    /**
-     * Define la relación con el modelo Patient.
-     */
     public function patient()
     {
         return $this->belongsTo(Usuario::class);
     }
 
-    /**
-     * Define la relación con el modelo Doctor.
-     */
     public function doctor()
     {
         return $this->belongsTo(Doctor::class);
     }
 
-    /**
-     * Define la relación con el modelo Cita.
-     */
     public function cita()
     {
-        return $this->belongsTo(Citas::class);
+        return $this->belongsTo(citas::class);
     }
 }

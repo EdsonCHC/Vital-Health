@@ -17,6 +17,7 @@
         <div class="fixed top-0 h-full z-10">
             @include('templates.header_doc')
         </div>
+
         <!-- Contenido principal -->
         <div class="ml-60 w-full h-full overflow-y-auto flex-grow">
             <div class="w-auto h-auto my-4 mx-4 lg:mx-16 lg:mt-10">
@@ -79,6 +80,8 @@
                                 @if ($cita->category_id == $doctor->category_id)
                                     <div id="cita-{{ $cita->id }}" data-cita-id="{{ $cita->id }}"
                                         class="w-auto h-14 flex justify-around items-center text-center my-5 mx-4 bg-green-200 rounded-md">
+                                        {{-- Obtengo categoria id  --}} 
+                                        <input type="hidden" id="cita_id" value="{{ $cita->id }}">
                                         <p class="ml-4 font-semibold text-xl text-vh-green">{{ $cita->id }}</p>
                                         <p class="ml-12 font-semibold text-xl text-vh-green">{{ $cita->patient->name }}
                                             {{ $cita->patient->lastName }}
