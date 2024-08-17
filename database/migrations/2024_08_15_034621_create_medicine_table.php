@@ -9,17 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('medicine', function (Blueprint $table) {
+        Schema::create('medicines', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('batch_number');
             $table->integer('quantity');
             $table->date('expiration_date');
             $table->text('description')->nullable();
-            $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade');
-            // $table->foreignId('laboratorist_id')->constrained('laboratorists')->onDelete('cascade');
+            $table->foreignId('doctor_id')->constrained();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('medicine');
+        Schema::dropIfExists('medicines');
     }
 };

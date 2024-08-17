@@ -10,6 +10,7 @@ use App\Http\Controllers\CategoríaController;
 use App\Http\Controllers\ZoomController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -79,7 +80,7 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/citas_doc', [CitaController::class, 'showDoctorCita'])->name('doctor.citas_doc');
     // 
     Route::delete('/citas/{id}', [CitaController::class, 'destroy'])->name('citas.destroy');
-    // Ruta
+    // 
     Route::post('/citas_doc', [ExamController::class, 'createExam'])->name('exam.create');
     //
     Route::view('/allocation', 'doctor.allocation');
@@ -137,8 +138,10 @@ Route::middleware('auth:admin')->group(function () {
 
 //Rutas del laboratorio
 Route::middleware('auth:laboratorio')->group(function () {
-    Route::view('/index', 'laboratorio.index')->name('laboratorio');
-    //
+    Route::get('/home', [LaboratorioController::class, 'index'])->name('home');
+    // Rutas del controlador de recursos
+    Route::resource('medicine', LaboratorioController::class);
+    // 
     Route::view('/Exam', 'laboratorio.Exam')->name('Exam');
     //
     Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');

@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Laboratorio</title>
-    @vite(['resources/css/app.css', 'resources/js/admin.js', 'resources/js/ad_cate.js','resources/js/lab.js'])
+    @vite(['resources/css/app.css', 'resources/js/admin.js', 'resources/js/ad_cate.js', 'resources/js/lab.js', 'resources/js/medicine.js'])
 </head>
 
 <body class="bg-gray-100 flex flex-col h-screen">
@@ -71,9 +71,34 @@
                     </div>
                     <h3 class="text-xl font-semibold mb-2 text-center">Medicina</h3>
                     <p class="mb-4 text-sm text-gray-600 text-center">Administrar la medicina para pacientes</p>
+                    <div class="container mx-auto p-4">
+                        <h1 class="text-2xl font-bold mb-4">Medicinas Registradas</h1>
+                        <div class="flex flex-col flex-wrap gap-4">
+                            @foreach ($medicines as $medicine)
+                                <div class="w-full my-4 bg-white shadow-md rounded-lg overflow-hidden relative">
+                                    <div class="p-4">
+                                        <button
+                                            class="up-medicine absolute top-2 right-2 bg-blue-500 text-white px-2 py-1 rounded">Actualizar</button>
+                                        <h2 class="text-xl font-bold mb-2">{{ $medicine->name }}</h2>
+                                        <p class="text-gray-700 mb-1"><strong>Número de Lote:</strong>
+                                            {{ $medicine->batch_number }}</p>
+                                        <p class="text-gray-700 mb-1"><strong>Cantidad:</strong>
+                                            {{ $medicine->quantity }}</p>
+                                        <p class="text-gray-700 mb-1"><strong>Fecha de Expiración:</strong>
+                                            {{ $medicine->expiration_date }}</p>
+                                        <p class="text-gray-700 mb-1"><strong>Descripción:</strong>
+                                            {{ $medicine->description }}</p>
+                                        <p class="text-gray-700 mb-1"><strong>ID del Doctor:</strong>
+                                            {{ $medicine->doctor_id }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                    </div>
                     <button
-                        class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-300 w-full">
-                        Ver
+                        class="add-medicine bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-300 w-full">
+                        Crear
                     </button>
                 </div>
             </div>
