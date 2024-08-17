@@ -142,6 +142,10 @@ Route::middleware('auth:laboratorio')->group(function () {
     Route::view('/Exam', 'laboratorio.Exam')->name('Exam');
     //
     Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');
+    Route::view('/Medicina', 'laboratorio.Medicina')->name('Medicina');
+    //
+    Route::get('/', [LaboratorioController::class, 'index'])->name('index');
+    //
     //
 });
 
