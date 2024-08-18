@@ -58,9 +58,11 @@
                                         class="add-results inline-block px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600 font-medium transition-colors duration-300 result-btn"
                                          >Resultados</button>
                                     <span class="mx-2">|</span>
-                                    <button
-                                        class="end-btn inline-block px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 font-medium transition-colors duration-300">Finalizar</button>
-                                    <span class="mx-2">|</span>
+                                    @if ($examen->state !== '0')
+                                        <button
+                                            class="end-btn inline-block px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 font-medium transition-colors duration-300">Finalizar</button>
+                                        <span class="mx-2">|</span>
+                                    @endif
                                     <button
                                         class="delete-btn inline-block px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600 font-medium transition-colors duration-300">Eliminar</button>
                                 </td>
