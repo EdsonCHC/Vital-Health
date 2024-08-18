@@ -5,11 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Exams;
 use App\Models\citas;
-use GuzzleHttp\Promise\Create;
-use Illuminate\Support\Facades\Log;
 
 class ExamController extends Controller
 {
+
+    public function index()
+    {
+        $exams = Exams::with([
+            'patient:id,name',
+            'doctor:id,name',
+        ])->get();
+
+        return view('laboratorio.Exam', compact('exams'));
+    }
+
     public function getExams($cita_id, $user_id)
     {
         Log::info("Cita ID: $cita_id, User ID: $user_id"); // Verificar los valores recibidos
@@ -44,8 +53,6 @@ class ExamController extends Controller
                 'message' => 'Cita no encontrada',
             ], 404);
         } catch (\Exception $e) {
-            Log::error('Error al obtener los exámenes', ['error' => $e->getMessage()]);
-
             return response()->json([
                 'success' => false,
                 'message' => 'Error al obtener los exámenes',
@@ -86,11 +93,6 @@ class ExamController extends Controller
         }
     }
 
-
-
-
-
-
     public function destroy($cita_id, $exam_id)
     {
         try {
@@ -102,13 +104,51 @@ class ExamController extends Controller
                 'message' => 'Examen eliminado correctamente',
             ]);
         } catch (\Exception $e) {
-            Log::error('Error al eliminar el examen', ['error' => $e->getMessage()]);
-
             return response()->json([
                 'success' => false,
                 'message' => 'Error al eliminar el examen',
                 'error' => $e->getMessage(),
             ], 500);
         }
+    }
+
+    public function delete($exam_id)
+    {
+        try {
+            $exam = Exams::findOrFail($exam_id);
+            $exam->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Examen eliminado correctamente',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al eliminar el examen',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function endExamen($exam_id)
+    {
+        try {
+            $examen = Exams::findOrFail($exam_id);
+            $examen->state = '0';
+            $examen->save();
+    
+            return response()->json([
+                'success' => true,
+                'message' => 'Examen Finalizado correctamente',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error Finalizar el examen',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+
     }
 }

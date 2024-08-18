@@ -153,18 +153,27 @@ Route::middleware('auth:admin')->group(function () {
 Route::middleware('auth:laboratorio')->group(function () {
     Route::get('/index_lab', [LaboratorioController::class, 'index'])->name('index');
     // 
-    Route::view('/Exam', 'laboratorio.Exam')->name('Exam');
+    Route::get('/Exam', [ExamController::class, 'index'])->name('Exam');
     //
     Route::view('/Medicina', 'laboratorio.Medicina')->name('Medicina');
     //
     Route::get('/medicinas', [MedicineController::class, 'index'])->name('medicinas.index');
+    //
     Route::post('medicinas', [MedicineController::class, 'store'])->name('medicinas.store');
+    //
     Route::get('medicinas/{medicina}/edit', [MedicineController::class, 'edit'])->name('medicinas.edit');
+    //
     Route::put('medicinas/{medicina}', [MedicineController::class, 'update'])->name('medicinas.update');
+    //
     Route::delete('/medicinas/{medicina}', [MedicineController::class, 'destroy'])->name('medicinas.destroy');
+    //
     Route::patch('/medicinas/{medicina}/toggleStatus', [MedicineController::class, 'toggleStatus'])->name('medicinas.toggleStatus');
-
+    //
     Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');
+    //
+    Route::delete('/exams/delete/{id}', [ExamController::class, 'delete'])->name('exams.delete');
+    //
+    Route::patch('/exams/end/{id}', [ExamController::class, 'endExamen'])->name('exams.delete');
 });
 
 
@@ -186,4 +195,8 @@ Route::fallback(function () {
 //qr
 Route::get('/qrcode', function () {
     return QrCode::size(200)->generate('https://google.com'); // Da error
+});
+
+Route::get('/pdf', function () {
+    return view('pdf.pdf_citas');
 });

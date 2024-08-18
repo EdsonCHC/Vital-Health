@@ -87,8 +87,7 @@ class UsuarioController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Usuario registrado exitosamente',
-                'redirect_url' => '/user',
+                'message' => 'Usuario registrado exitosamente'
             ], 201);
         } catch (\Exception $e) {
             return response()->json([

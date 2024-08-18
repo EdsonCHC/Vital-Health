@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exámenes</title>
-    @vite(['resources/css/app.css', 'resources/js/admin.js'])
+    @vite(['resources/css/app.css', 'resources/js/exams.js'])
 </head>
 
 <body class="bg-gray-100 flex flex-col h-screen">
@@ -24,40 +25,49 @@
     </header>
 
     <main class="flex-1 p-6 flex flex-col gap-6">
-
         <div class="bg-white shadow-lg rounded-lg border border-gray-200 overflow-x-auto">
             <table class="w-full text-sm text-gray-700">
                 <thead class="bg-gradient-to-r from-green-700 to-green-800 text-white">
                     <tr>
-                        <th class="py-4 px-6 border-b text-left font-medium">ID</th>
+                        <th class="py-4 px-6 border-b text-left font-medium">#</th>
                         <th class="py-4 px-6 border-b text-left font-medium">Paciente</th>
                         <th class="py-4 px-6 border-b text-left font-medium">Doctor</th>
                         <th class="py-4 px-6 border-b text-left font-medium">Tipo de Examen</th>
-                        <td class="py-3 px-6 border-b">Resultado</td>
                         <th class="py-4 px-6 border-b text-left font-medium">Dia</th>
+                        <th class="py-4 px-6 border-b text-left font-medium">Estado</th>
                         <th class="py-4 px-6 border-b  font-medium text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-300">
-                    <tr class="hover:bg-green-50 transition duration-300">
-                        <td class="py-3 px-6 border-b text-gray-800">1</td>
-                        <td class="py-3 px-6 border-b">John Doe</td>
-                        <td class="py-3 px-6 border-b">Dr. Smith</td>
-                        <td class="py-3 px-6 border-b">Blood Test</td>
-                        <td class="py-3 px-6 border-b">Resultado</td>
-                        <td class="py-3 px-6 border-b">2024-08-14</td>
-                        <td class="py-3 px-6 border-b text-center">
-                            <a href="#"
-                                class="inline-block px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600 font-medium transition-colors duration-300">Actualizar</a>
-                            <span class="mx-2">|</span>
-                            <a href="#"
-                                class="inline-block px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 font-medium transition-colors duration-300">Finalizar</a>
-                            <span class="mx-2">|</span>
-                            <a href="#"
-                                class="inline-block px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600 font-medium transition-colors duration-300">Eliminar</a>
-                        </td>
+                    @if ($exams->isEmpty())
+                        <h1>No hay exámenes pendientes</h1>
+                    @else
+                    @php
+                             $i = 1;
+                    @endphp
+                        @foreach ($exams as $examen)
+                            <tr class="hover:bg-green-50 transition duration-300" data-id="{{$examen->id}}" datad-doctor-id="{{$examen->doctor->id}}">
+                                <td class="py-3 px-6 border-b text-gray-800">{{ $i++ }}</td>
+                                <td class="py-3 px-6 border-b">{{$examen->patient->name}}</td>
+                                <td class="py-3 px-6 border-b">{{$examen->doctor->name}}</td>
+                                <td class="py-3 px-6 border-b">{{$examen->exam_type}}</td>
+                                <td class="py-3 px-6 border-b">{{$examen->exam_date}}</td>
+                                <td class="py-3 px-6 border-b">{{$examen->state === '1' ? "Pendiente" : "Finalizado"}}</td>
+                                <td class="py-3 px-6 border-b text-center">
+                                    <button
+                                        class="inline-block px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600 font-medium transition-colors duration-300 result-btn"
+                                         >Resultados</button>
+                                    <span class="mx-2">|</span>
+                                    <button
+                                        class="end-btn inline-block px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 font-medium transition-colors duration-300">Finalizar</button>
+                                    <span class="mx-2">|</span>
+                                    <button
+                                        class="delete-btn inline-block px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600 font-medium transition-colors duration-300">Eliminar</button>
+                                </td>
 
-                    </tr>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>
