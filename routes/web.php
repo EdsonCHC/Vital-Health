@@ -105,6 +105,9 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::post('/citas/{cita_id}/{doctor_id}/exams', [ExamController::class, 'create']);
     Route::delete('/citas/{cita_id}/exams/{exam_id}', [ExamController::class, 'destroy']);
     //
+    Route::get('/citas/{cita_id}/check-end', [ExamController::class, 'checkAndEndCita']);
+    Route::post('/citas/{cita_id}/end', [ExamController::class, 'endCita']);
+
 });
 
 

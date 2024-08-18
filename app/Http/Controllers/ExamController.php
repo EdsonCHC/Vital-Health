@@ -19,15 +19,75 @@ class ExamController extends Controller
 
         return view('laboratorio.Exam', compact('exams'));
     }
+    public function checkAndEndCita($cita_id)
+    {
+        try {
+            $cita = Citas::findOrFail($cita_id);
+            $exams = Exams::where('cita_id', $cita_id)->get();
+            $allExamsInStateZero = $exams->every(function ($exam) {
+                return $exam->state === '0';
+            });
+            if ($allExamsInStateZero) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Todos los exámenes están Completados. Puedes  terminar la cita.',
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No todos los exámenes están Completos. Completar todos los exámenes antes de terminar la cita.',
+                ]);
+            }
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Cita no encontrada',
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al verificar los exámenes',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+
+    public function endCita(Request $request, $cita_id)
+    {
+        try {
+            $cita = Citas::findOrFail($cita_id);
+            $cita->description = $request->input('description');
+            $cita->state = '0'; 
+            $cita->save();
+    
+            Exams::where('cita_id', $cita_id)->update(['state' => '0']);
+    
+            return response()->json([
+                'success' => true,
+                'message' => 'Cita finalizada y descripción actualizada correctamente.',
+            ]);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Cita no encontrada',
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al finalizar la cita',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+    
 
     public function getExams($cita_id, $user_id)
     {
         try {
-            // Verificar si la cita existe y obtener el patient_id
             $cita = Citas::findOrFail($cita_id);
             $patient_id = $cita->patient_id;
 
-            // Verificar si el usuario es el paciente
             if ($patient_id != $user_id) {
                 return response()->json([
                     'success' => false,
@@ -132,7 +192,7 @@ class ExamController extends Controller
             $examen = Exams::findOrFail($exam_id);
             $examen->state = '0';
             $examen->save();
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'Examen Finalizado correctamente',

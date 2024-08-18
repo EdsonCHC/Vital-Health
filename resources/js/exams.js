@@ -8,6 +8,106 @@ $(document).ready(function () {
         const patientId = $(`#patient_id_${citaId}`).data("patient-id");
         showExamsInModal(citaId, patientId);
     });
+    $(document).ready(function () {
+        $(document).on('click', '#aceptar', function () {
+            const citaId = $(this).closest('[data-cita-id]').data('cita-id');
+
+            $.ajax({
+                url: `/citas/${citaId}/check-end`,
+                type: 'GET',
+            })
+                .done((response) => {
+                    if (response.success) {
+                        Swal.fire({
+                            title: 'Terminar Cita',
+                            text: 'Todos los exámenes están completos. ¿Deseas terminar la cita y editar su descripción?',
+                            icon: 'info',
+                            showCancelButton: true,
+                            confirmButtonText: 'Sí, continuar',
+                            cancelButtonText: 'Cancelar',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire({
+                                    title: 'Editar Descripción de la Cita',
+                                    input: 'textarea',
+                                    inputLabel: 'Descripción',
+                                    inputPlaceholder: 'Escribe la descripción aquí...',
+                                    inputValue: '', 
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Guardar',
+                                    cancelButtonText: 'Cancelar',
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        $.ajax({
+                                            url: `/citas/${citaId}/end`,
+                                            type: 'POST',
+                                            data: {
+                                                description: result.value,
+                                                _token: $('meta[name="csrf-token"]').attr('content') 
+                                            },
+                                        })
+                                            .done((response) => {
+                                                if (response.success) {
+                                                    Swal.fire({
+                                                        title: 'Éxito',
+                                                        text: response.message,
+                                                        icon: 'success',
+                                                    }).then(() => {
+                                                        Swal.fire({
+                                                            title: 'Acción Final',
+                                                            text: '¿Deseas finalizar la cita o agregar una receta?',
+                                                            icon: 'question',
+                                                            showCancelButton: true,
+                                                            confirmButtonText: 'Finalizar Cita',
+                                                            cancelButtonText: 'Agregar Receta',
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                window.location.reload();
+                                                            } else {
+                                                                window.location.href = `/recetas/${citaId}/create`;
+                                                            }
+                                                        });
+                                                    });
+                                                } else {
+                                                    Swal.fire({
+                                                        title: 'Error',
+                                                        text: response.message,
+                                                        icon: 'error',
+                                                    });
+                                                }
+                                            })
+                                            .fail((response) => {
+                                                console.log(response);
+                                                Swal.fire({
+                                                    title: 'Error',
+                                                    text: 'No se pudo finalizar la cita',
+                                                    icon: 'error',
+                                                });
+                                            });
+
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.message,
+                            icon: 'error',
+                        });
+                    }
+                })
+                .fail((response) => {
+                    console.log(response);
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'No se pudo verificar el estado de los exámenes',
+                        icon: 'error',
+                    });
+                });
+        });
+    });
+
 
     function showExamsInModal(citaId, userId) {
         const url = `/citas/${citaId}/exams/${userId}`;
@@ -21,16 +121,15 @@ $(document).ready(function () {
                     if (response.exams.length > 0) {
                         response.exams.forEach((exam) => {
                             examsHtml += `
-                    <div class="exam-item p-4 border-b border-gray-200" data-exam-id="${
-                        exam.id
-                    }" data-cita-id="${citaId}">
-                        <h4 class="text-lg font-semibold">${exam.exam_type}</h4>
-                        <p>Fecha: ${exam.exam_date}</p>
-                        <p>Notas: ${exam.notes || "N/A"}</p>
-                        <div class="flex gap-2 mt-2">
-                            <button class="bg-red-600 text-white rounded px-4 py-2 w-32 btn-delete">Eliminar</button>
-                        </div>
-                    </div>
+                 <div class="exam-item p-4 border-b border-gray-200" data-exam-id="${exam.id}" data-cita-id="${citaId}">
+                      <h4 class="text-lg font-semibold">${exam.exam_type}</h4>
+                      <p>Fecha: ${exam.exam_date}</p>
+                      <p>Estado: ${exam.state === '1' ? 'En proceso' : 'Finalizado'}</p>
+                      <p>Notas: ${exam.notes || "N/A"}</p>
+                      <div class="flex gap-2 mt-2">
+                       <button class="bg-red-600 text-white rounded px-4 py-2 w-32 btn-delete">Eliminar</button>
+                     </div>
+                 </div>
                     `;
                         });
                     } else {
@@ -68,23 +167,23 @@ $(document).ready(function () {
             });
     }
 
-    $(document).on('click','#option-create',function () {
+    $(document).on('click', '#option-create', function () {
         const citaId = $(this).data("cita-id");
 
         Swal.fire({
             title: "Crear Nuevo Examen",
             html: `
-            <form id="create-form">
-                <select id="create-field1" class="form-select">
-                    <option value="" disabled selected>Tipo de Examen</option>
-                    <option value="blood">Sangre</option>
-                    <option value="urine">Orina</option>
-                    <option value="stool">Heces</option>
-                </select>
-                <input type="date" id="create-field2" class="form-input" placeholder="Fecha">
-                <textarea id="create-field3" class="form-textarea h-24" placeholder="Notas"></textarea>
-            </form>
-        `,
+    <form id="create-form">
+        <select id="create-field1" class="form-select">
+            <option value="" disabled selected>Tipo de Examen</option>
+            <option value="blood">Sangre</option>
+            <option value="urine">Orina</option>
+            <option value="stool">Heces</option>
+        </select>
+        <input type="date" id="create-field2" class="form-input" placeholder="Fecha" min="${new Date().toISOString().split('T')[0]}">
+        <textarea id="create-field3" class="form-textarea h-24" placeholder="Notas"></textarea>
+    </form>
+    `,
             confirmButtonText: "Guardar",
             showCancelButton: true,
             cancelButtonText: "Cancelar",
@@ -96,6 +195,13 @@ $(document).ready(function () {
                 if (!examType || !examDate) {
                     Swal.showValidationMessage(
                         "Por favor, completa todos los campos"
+                    );
+                    return false;
+                }
+
+                if (new Date(examDate) < new Date()) {
+                    Swal.showValidationMessage(
+                        "Fecha incorrecta ,Agregar fecha para futuro"
                     );
                     return false;
                 }
@@ -153,7 +259,7 @@ $(document).ready(function () {
         });
     });
 
-    $(".btn-delete").click(function () {
+    $(document).on('click', '.btn-delete', function () {
         const examId = $(this).closest(".exam-item").data("exam-id");
         const citaId = $(this).closest(".exam-item").data("cita-id");
 
@@ -185,6 +291,12 @@ $(document).ready(function () {
                                 citaId,
                                 $(`#patient_id_${citaId}`).data("patient-id")
                             );
+                        } else {
+                            Swal.fire(
+                                "Error",
+                                response.message || "No se pudo eliminar el examen",
+                                "error"
+                            );
                         }
                     },
                     error(response) {
@@ -196,85 +308,9 @@ $(document).ready(function () {
         });
     });
 
-    //eliminar examen
-    $(".delete-btn").click(function () {
-        Swal.fire({
-            icon: "warning",
-            title: "¿Esta seguro?",
-            text: "Esta acción no puede revertirse",
-            showConfirmButton: true,
-            showCancelButton: true,
-            confirmButtonText: "Si, eliminar",
-            cancelButtonText: "Cancelar",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const tr = $(this).closest("tr");
-                const id = tr.data('id');
-                console.log(id);
-                $.ajax({
-                    url: `/exams/delete/${id}`,
-                    type: "DELETE",
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                            "content"
-                        ),
-                    },
-                    success(response) {
-                        console.log(response);
-                        Swal.fire({
-                            icon: "success",
-                            title: "Examen eliminado",
-                            timer: 1500,
-                        }).then(() => {
-                            window.location.reload();
-                        });
-                    },
-                    error(response) {
-                        console.log(response);
-                    },
-                });
-            }
-        });
-    });
 
-    $(".end-btn").click(function () {
-        Swal.fire({
-            icon: 'question',
-            title: '¿Desea eliminar este examen?',
-            showConfirmButton: true,
-            showCancelButton: true,
-            confirmButtonText: 'Si, Finalizar'
-        }).then((result)=>{
-            if(result.isConfirmed){
-                const tr = $(this).closest("tr");
-                const id = tr.data('id');
-                $.ajax({
-                    url: `/exams/end/${id}}`,
-                    type: 'patch',
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                            "content"
-                        ),
-                    },
-                    success(response){
-                        console.log(response);
-                        Swal.fire({
-                            icon: "success",
-                            title: "Examen Finalizado",
-                            timer: 1500,
-                        }).then(() => {
-                            window.location.reload();
-                        });
-                    },
-                    error(response){
-                        console.log(response);
-                    }
-                })
-            }
-        });
-    });
 
-    $('.add-results').click(function(){
+    $(document).on('click', '.add-results', function () {
         Swal.fire({
             title: "Resultado del examen",
             html: `
@@ -288,6 +324,50 @@ $(document).ready(function () {
                 <input type="date" id="create-field2" class="form-input" placeholder="Fecha">
                 <textarea id="create-field3" class="form-textarea h-24" placeholder="Notas"></textarea>
             </form>`
+        });
+    });
+    $(document).on('click', '.end-btn', function () {
+        Swal.fire({
+            icon: 'question',
+            title: '¿Desea finalizar este examen?',
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Sí, finalizar',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const tr = $(this).closest("tr");
+                const id = tr.data('id');
+                $.ajax({
+                    url: `/exams/end/${id}`,
+                    type: 'PATCH',
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ),
+                    },
+                    success(response) {
+                        if (response.success) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Examen Finalizado",
+                                timer: 1500,
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        } else {
+                            Swal.fire(
+                                "Error",
+                                response.message || "No se pudo finalizar el examen",
+                                "error"
+                            );
+                        }
+                    },
+                    error(response) {
+                        console.log(response);
+                    }
+                })
+            }
         });
     });
 });
