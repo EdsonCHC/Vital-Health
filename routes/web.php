@@ -92,7 +92,7 @@ Route::middleware(['auth:doctor'])->group(function () {
     //
     Route::view('/files_doc', 'doctor.files_doc');
     //
-    Route::resource('expedientes', ExpedienteController::class);    
+    Route::resource('expedientes', ExpedienteController::class);
     //
     Route::view('/service_doc', 'doctor.service_doc');
     //
@@ -177,6 +177,8 @@ Route::middleware('auth:laboratorio')->group(function () {
     Route::delete('/exams/delete/{id}', [ExamController::class, 'delete'])->name('exams.delete');
     //
     Route::patch('/exams/end/{id}', [ExamController::class, 'endExamen'])->name('exams.delete');
+    //    
+    Route::post('/exams/pdf/{id}', [ExamController::class, 'updatePDF'])->name('exams.delete');
 });
 
 

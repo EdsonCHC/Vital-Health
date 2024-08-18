@@ -58,11 +58,11 @@ class ExamController extends Controller
         try {
             $cita = Citas::findOrFail($cita_id);
             $cita->description = $request->input('description');
-            $cita->state = '0'; 
+            $cita->state = '0';
             $cita->save();
-    
+
             Exams::where('cita_id', $cita_id)->update(['state' => '0']);
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'Cita finalizada y descripción actualizada correctamente.',
@@ -80,7 +80,7 @@ class ExamController extends Controller
             ], 500);
         }
     }
-    
+
 
     public function getExams($cita_id, $user_id)
     {
@@ -205,5 +205,37 @@ class ExamController extends Controller
             ], 500);
         }
 
+    }
+
+    public function updatePDF(Request $request, $exam_id)
+    {
+
+        try {
+
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $path = $file->store('pdf_files', 'public');
+
+                // Buscar y actualizar el registro del examen
+                $examen = Exams::findOrFail($exam_id);
+                $examen->pdf_file = $path;
+                $examen->save();
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Archivo enviado correctamente',
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No se ha recibido ningún archivo.',
+                ], 400);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 }
