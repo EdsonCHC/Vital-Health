@@ -5,35 +5,33 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class citas extends Model
+class Videollamada extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'state',
+        'room_name',
         'date',
         'hour',
-        'description',
-        'modo',
         'link',
         'patient_id',
-        'category_id',
         'doctor_id',
+        'cita_id',
     ];
 
     public function patient()
     {
-        return $this->belongsTo('App\Models\Usuario', 'patient_id');
-    }
-
-    public function category()
-    {
-        return $this->belongsTo('App\Models\Categoría', 'category_id');
+        return $this->belongsTo(Usuario::class);
     }
 
     public function doctor()
     {
-        return $this->belongsTo('App\Models\Doctor', 'doctor_id');
+        return $this->belongsTo(Doctor::class);
+    }
+
+    public function cita()
+    {
+        return $this->belongsTo(Citas::class);
     }
 
     public function link()
@@ -41,3 +39,4 @@ class citas extends Model
         return $this->belongsTo(Videollamada::class);
     }
 }
+

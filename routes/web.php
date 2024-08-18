@@ -7,7 +7,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\LaboratorioController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\CategoríaController;
-use App\Http\Controllers\ZoomController;
+use App\Http\Controllers\VideollamadaController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\MedicineController;
@@ -162,8 +162,11 @@ Route::middleware('auth:laboratorio')->group(function () {
     Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');
 });
 
-// Route zoom
-Route::get('/zoom-meeting', [ZoomController::class, 'createMeeting']);
+// routes/web.php
+Route::post('/videollamada/create', [VideollamadaController::class, 'create']);
+Route::get('/videollamada/{uuid}', [VideollamadaController::class, 'show']);
+// Route::view('/videoCall', 'app.videoCall');
+// Route::get('/videollamada/{uuid}', [VideollamadaController::class, 'show']);
 
 
 // Fallback route (404)

@@ -17,11 +17,11 @@ return new class extends Migration {
             $table->time('hour');
             $table->string('description', 1000)->nullable(); 
             $table->string('modo');
-            $table->string('enlace')->nullable(); 
             $table->timestamp('published_at')->nullable()->index();
             $table->timestamps();
 
             // Usando constrained para simplificar las claves foráneas
+            $table->string('link')->constrained('videollamadas')->cascadeOnDelete(); 
             $table->foreignId('category_id')->constrained('categorias')->cascadeOnDelete();
             $table->foreignId('doctor_id')->nullable()->constrained('doctors')->nullOnDelete();
             $table->foreignId('patient_id')->constrained('patients')->cascadeOnDelete();
