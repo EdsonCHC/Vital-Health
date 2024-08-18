@@ -146,6 +146,7 @@ $(document).ready(function () {
                 formData.append("name", escapeHtml($("#name").val()));
                 formData.append("lastName", escapeHtml($("#lastName").val()));
                 formData.append("mail", escapeHtml($("#mail").val()));
+                formData.append("address", escapeHtml($("#address").val()));
                 formData.append("gender", gender);
                 formData.append("birth", birth);
                 formData.append("blood", blood);

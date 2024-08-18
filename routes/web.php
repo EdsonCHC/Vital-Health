@@ -26,7 +26,6 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 */
 
 // Rutas del usuario
-Route::post('/appointments', [CitaController::class, 'store']);
 //
 Route::post('/login', [UsuarioController::class, 'show']);
 //
@@ -72,6 +71,8 @@ Route::middleware('auth')->group(function () {
     //
     Route::put('/user/update', [UsuarioController::class, 'update'])->name('user.update');
     //
+    Route::post('/appointments', [CitaController::class, 'store']);
+
 });
 
 // Rutas para el doctor

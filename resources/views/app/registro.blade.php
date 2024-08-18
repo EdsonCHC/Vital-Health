@@ -27,6 +27,8 @@
                         placeholder="Apellidos" id="lastName">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="email"
                         placeholder="Email" id="mail">
+                    <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="text"
+                        placeholder="Dirección" id="address" name="address">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="password"
                         placeholder="Contraseña" id="password">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="password"

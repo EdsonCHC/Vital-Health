@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('lastName');
             $table->string('mail');
+            $table->string('address');
             $table->string('gender');
             $table->date('birth');
             $table->string('blood', 3);

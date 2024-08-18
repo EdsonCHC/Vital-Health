@@ -206,7 +206,7 @@ $(document).ready(function () {
 
     function createCalendarDay(content) {
         const dayElement = document.createElement("div");
-        dayElement.className = "text-center p-2 cursor-pointer";
+        dayElement.className = "text-center p-2 cursor-pointer calendar-day";
         dayElement.textContent = content;
         return dayElement;
     }
@@ -215,6 +215,7 @@ $(document).ready(function () {
         document
             .querySelectorAll(".calendar-day")
             .forEach((el) => el.classList.remove("bg-gray-200"));
+
         dayElement.classList.add("bg-gray-200");
 
         date.setDate(day);

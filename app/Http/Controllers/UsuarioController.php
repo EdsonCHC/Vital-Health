@@ -42,12 +42,13 @@ class UsuarioController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'lastName' => 'required|max:255',
-            'mail' => 'required|email|unique:patients', // Cambiado a 'patients'
+            'mail' => 'required|email|unique:patients', 
+            'address' => 'required|max:255', 
             'gender' => 'required',
             'birth' => 'required|date',
             'blood' => 'required',
             'password' => 'required|min:8',
-            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validar imagen
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -56,7 +57,6 @@ class UsuarioController extends Controller
             ], 422);
         }
 
-        // Subir la imagen si se proporciona
         if ($request->hasFile('img')) {
             $imagePath = $request->file('img')->store('profile_images', 'public');
         } else {
@@ -69,6 +69,7 @@ class UsuarioController extends Controller
                 'name' => $request->name,
                 'lastName' => $request->lastName,
                 'mail' => $request->mail,
+                'address' => $request->address,
                 'gender' => $request->gender,
                 'birth' => $request->birth,
                 'blood' => $request->blood,
@@ -82,7 +83,6 @@ class UsuarioController extends Controller
                 ], 500);
             }
 
-            // Autenticar y redirigir al usuario
             Auth::login($user);
 
             return response()->json([
@@ -169,10 +169,10 @@ class UsuarioController extends Controller
             $request->validate([
                 'name' => 'required|string|max:255',
                 'lastName' => 'required|string|max:255',
-                'gender' => 'required|string|max:255',
+                'gender' => 'required|string|max:50',
                 'birth' => 'required|date',
                 'mail' => 'required|email|max:255',
-                'blood' => 'nullable|string|max:255',
+                'address' => 'required|string|max:255', 
             ]);
 
             $user = Auth::user();
@@ -182,6 +182,7 @@ class UsuarioController extends Controller
                 'gender',
                 'birth',
                 'mail',
+                'address',
                 'blood'
             ]));
 

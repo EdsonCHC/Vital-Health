@@ -93,6 +93,12 @@
                                         class="w-full h-10 font-normal border-2 border-solid border-vh-green rounded-lg p-2 outline-none text-input"
                                         required readonly>
                                 </label>
+                                <label class="block text-lg font-semibold">
+                                    Dirección *
+                                    <input type="text" name="address" value="{{ $user->address }}"
+                                        class="w-full h-10 font-normal border-2 border-solid border-vh-green rounded-lg p-2 outline-none text-input"
+                                        required readonly>
+                                </label>
                             </div>
                             <input type="hidden" id="_token" value="{{ csrf_token() }}">
                             <div class="w-full flex justify-center my-6 border-b-2 p-2">

@@ -12,7 +12,7 @@ class Usuario extends Authenticatable
     protected $table = 'patients'; // tabla a modificar
 
     protected $fillable = [
-        'name', 'lastName', 'mail', 'gender', 'birth', 'blood', 'password', 'img'
+        'name', 'lastName', 'mail', 'address','gender', 'birth', 'blood', 'password', 'img'
     ];
 
     protected $hidden = [
