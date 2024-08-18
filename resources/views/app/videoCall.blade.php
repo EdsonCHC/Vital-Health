@@ -16,6 +16,7 @@
     <div id="meet"></div>
     <script src="https://meet.jit.si/external_api.js"></script>
     <script>
+        //Cambiar
         const domain = 'meet.jit.si';
         const options = {
             roomName: '{{ $roomName }}',

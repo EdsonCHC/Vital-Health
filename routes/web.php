@@ -169,7 +169,7 @@ Route::middleware('auth:laboratorio')->group(function () {
 
 // routes/web.php
 Route::post('/videollamada/create', [VideollamadaController::class, 'create']);
-Route::get('/videollamada/{uuid}', [VideollamadaController::class, 'show']);
+Route::get('/videollamada/{patient_id}', [VideollamadaController::class, 'show']);
 // Route::view('/videoCall', 'app.videoCall');
 // Route::get('/videollamada/{uuid}', [VideollamadaController::class, 'show']);
 
@@ -178,6 +178,7 @@ Route::get('/videollamada/{uuid}', [VideollamadaController::class, 'show']);
 Route::fallback(function () {
     return response()->view('errors.404page', [], 404);
 });
+
 //qr
 Route::get('/qrcode', function () {
     return QrCode::size(200)->generate('https://google.com');
