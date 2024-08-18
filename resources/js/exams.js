@@ -68,7 +68,7 @@ $(document).ready(function () {
             });
     }
 
-    $("#option-create").click(function () {
+    $(document).on('click','#option-create',function () {
         const citaId = $(this).data("cita-id");
 
         Swal.fire({

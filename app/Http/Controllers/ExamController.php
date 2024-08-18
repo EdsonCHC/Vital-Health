@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Exams;
 use App\Models\citas;
 
+
 class ExamController extends Controller
 {
 
@@ -21,7 +22,6 @@ class ExamController extends Controller
 
     public function getExams($cita_id, $user_id)
     {
-        Log::info("Cita ID: $cita_id, User ID: $user_id"); // Verificar los valores recibidos
         try {
             // Verificar si la cita existe y obtener el patient_id
             $cita = Citas::findOrFail($cita_id);
@@ -37,11 +37,6 @@ class ExamController extends Controller
 
             // Obtener los exámenes relacionados con la cita y el paciente
             $exams = Exams::where('cita_id', $cita_id)->where('patient_id', $patient_id)->get();
-
-            // Verificar si hay exámenes
-            if ($exams->isEmpty()) {
-                Log::info("No hay exámenes para Cita ID: $cita_id, Patient ID: $patient_id");
-            }
 
             return response()->json([
                 'success' => true,
