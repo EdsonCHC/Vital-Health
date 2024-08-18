@@ -128,22 +128,43 @@
             <label for="sexo_femenino">Femenino</label>
         </div>
         <div class="section-title">Datos Del examen</div>
-        <div class="form-group">
-            <label for="examen">Tipo de examen:</label>
-            <input type="text" id="examen" name="examen">
-        </div>
-        <div class="form-group">
-            <label for="fecha">Fecha:</label>
-            <input type="date" id="fecha" name="fecha">
-        </div>
-        <div class="form-group">
-            <label for="hora">Hora:</label>
-            <input type="text" id="hora" name="hora">
-        </div>
-        <div class="form-group">
-            <label for="resultado">Resultado de examen:</label>
-            <input type="text" id="resultado" name="resultado">
-        </div>
+        <table class="table-container">
+            <thead>
+                <tr>
+                    <td>Examen</td>
+                    <td>Fecha</td>
+                    <td>Hora</td>
+                    <td>Resultado</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+       
         <div class="footer">
             <p>Vital Health 2024 &copy todos los derechos reservados</p>
         </div>

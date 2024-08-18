@@ -198,5 +198,5 @@ Route::get('/qrcode', function () {
 });
 
 Route::get('/pdf', function () {
-    return view('pdf.pdf_citas');
+    return view('pdf.pdf_examen');
 });

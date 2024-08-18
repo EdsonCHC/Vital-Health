@@ -273,4 +273,21 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('.add-results').click(function(){
+        Swal.fire({
+            title: "Resultado del examen",
+            html: `
+            <form id="create-form">
+                <select id="create-field1" class="form-select">
+                    <option value="" disabled selected>Tipo de Examen</option>
+                    <option value="blood">Sangre</option>
+                    <option value="urine">Orina</option>
+                    <option value="stool">Heces</option>
+                </select>
+                <input type="date" id="create-field2" class="form-input" placeholder="Fecha">
+                <textarea id="create-field3" class="form-textarea h-24" placeholder="Notas"></textarea>
+            </form>`
+        });
+    });
 });
