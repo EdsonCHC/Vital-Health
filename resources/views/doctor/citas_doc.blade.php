@@ -79,48 +79,49 @@
                         <!-- Datos de las citas -->
                         @if ($citas->isNotEmpty())
                             @foreach ($citas as $cita)
-                                <div id="cita-{{ $cita->id }}" data-cita-id="{{ $cita->id }}"
-                                    class="w-auto h-14 flex justify-around items-center text-center my-5 mx-4 rounded-md ">
-                                    <input type="hidden" id="cita_id_{{ $cita->id }}" data-cita-id="{{ $cita->id }}">
-                                    <input type="hidden" id="patient_id_{{ $cita->id }}"
-                                        data-patient-id="{{ $cita->patient->id }}">
-                                    <input type="hidden" id="doctor_id_{{ $cita->id }}"
-                                        data-doctor-id="{{ $cita->doctor->id }}">
+                                @if ($cita->state == 1) <!-- Filtra solo las citas con state = 1 -->
+                                    <div id="cita-{{ $cita->id }}" data-cita-id="{{ $cita->id }}"
+                                        class="w-auto h-14 flex justify-around items-center text-center my-5 mx-4 rounded-md ">
+                                        <input type="hidden" id="cita_id_{{ $cita->id }}" data-cita-id="{{ $cita->id }}">
+                                        <input type="hidden" id="patient_id_{{ $cita->id }}"
+                                            data-patient-id="{{ $cita->patient->id }}">
+                                        <input type="hidden" id="doctor_id_{{ $cita->id }}"
+                                            data-doctor-id="{{ $cita->doctor->id }}">
 
-                                    <p class="ml-4 font-semibold text-xl text-vh-green">{{ $cita->id }}</p>
-                                    <p class="ml-12 font-semibold text-xl text-vh-green">{{ $cita->patient->name }}
-                                        {{ $cita->patient->lastName }}
-                                    </p>
-                                    <p class="-ml-6 font-semibold text-xl text-vh-green">{{ $cita->category->nombre }}
-                                    </p>
-                                    <p class="font-semibold text-xl text-vh-green">{{ $cita->date }}</p>
-                                    <button class="option-button" data-cita-id="{{ $cita->id }}">
-                                        <img src="{{ asset('storage/svg/option-icon.svg') }}" alt="noti_icon"
-                                            class="w-10 h-10 p-2">
-                                    </button>
-                                    <div class="w-2/12 flex items-center space-x-10">
-                                        <button target="_self" class="ml-4" id="aceptar">
-                                            <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
-                                                class="w-10 h-10 p-2 rounded">
+                                        <p class="ml-4 font-semibold text-xl text-vh-green">{{ $cita->id }}</p>
+                                        <p class="ml-12 font-semibold text-xl text-vh-green">{{ $cita->patient->name }}
+                                            {{ $cita->patient->lastName }}
+                                        </p>
+                                        <p class="-ml-6 font-semibold text-xl text-vh-green">{{ $cita->category->nombre }}</p>
+                                        <p class="font-semibold text-xl text-vh-green">{{ $cita->date }}</p>
+                                        <button class="option-button" data-cita-id="{{ $cita->id }}">
+                                            <img src="{{ asset('storage/svg/option-icon.svg') }}" alt="noti_icon"
+                                                class="w-10 h-10 p-2">
                                         </button>
-                                        <button target="_self" class="delete-cita" data-cita-id="{{ $cita->id }}">
-                                            <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
-                                                class="w-10 h-10 p-2 rounded">
-                                        </button>
-                                        @if ($cita->modo == 'Virtual')
-                                            <a href="{{ $cita->modo }}" class="ml-4" target="_blank">
-                                                <img src="{{ asset('storage/svg/eye.svg') }}" alt="Ver Cita"
+                                        <div class="w-2/12 flex items-center space-x-10">
+                                            <button target="_self" class="ml-4" id="aceptar">
+                                                <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
                                                     class="w-10 h-10 p-2 rounded">
-                                            </a>
-                                        @endif
+                                            </button>
+                                            <button target="_self" class="delete-cita" data-cita-id="{{ $cita->id }}">
+                                                <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
+                                                    class="w-10 h-10 p-2 rounded">
+                                            </button>
+                                            @if ($cita->modo == 'Virtual')
+                                                <a href="{{ $cita->modo }}" class="ml-4" target="_blank">
+                                                    <img src="{{ asset('storage/svg/eye.svg') }}" alt="Ver Cita"
+                                                        class="w-10 h-10 p-2 rounded">
+                                                </a>
+                                            @endif
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             @endforeach
-
                         @else
                             <p class="text-center font-semibold text-xl text-vh-green">No hay citas disponibles para
                                 mostrar.</p>
-                        @endif
+                        @endif 
+
                     </div>
                 </div>
             </div>

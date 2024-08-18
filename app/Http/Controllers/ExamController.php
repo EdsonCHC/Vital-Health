@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Exams;
 use App\Models\citas;
+use App\Models\Receta;
+use App\Models\Medicina;
+use Illuminate\Support\Facades\Log;
+
+
 
 
 class ExamController extends Controller
@@ -52,6 +57,52 @@ class ExamController extends Controller
         }
     }
 
+    public function fetchPrescriptionFormData(Request $request)
+    {
+        $cita = Citas::find($request->cita_id);
+
+        if (!$cita) {
+            return response()->json(['success' => false, 'message' => 'Cita no encontrada'], 404);
+        }
+
+        $doctor_id = $cita->doctor_id;
+        $patient_id = $cita->patient_id;
+
+        $medicinas = Medicina::all();
+
+        return response()->json([
+            'success' => true,
+            'doctor_id' => $doctor_id,
+            'patient_id' => $patient_id,
+            'medicinas' => $medicinas
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'cita_id' => 'required|exists:citas,id',
+            'doctor_id' => 'required|exists:doctors,id',
+            'patient_id' => 'required|exists:patients,id',
+            'fecha_entrega' => 'required|date',
+            'hora_entrega' => 'required|date_format:H:i',
+            'titulo' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'codigo_receta' => 'required|string|max:255',
+            'medicinas' => 'required|array',
+            'medicinas.*.id' => 'required|exists:medicinas,id',
+            'medicinas.*.cantidad' => 'required|integer|min:1'
+        ]);
+
+        $receta = Receta::create($validatedData);
+        return response()->json(['success' => true, 'receta' => $receta]);
+    }
+
+
+    private function generateCodigoReceta()
+    {
+        return strtoupper(uniqid('REC', true));
+    }
 
     public function endCita(Request $request, $cita_id)
     {

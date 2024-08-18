@@ -9,14 +9,17 @@ class Medicina extends Model
 {
     use HasFactory;
 
-    protected $table = 'medicinas'; 
-
     protected $fillable = [
-        'nombre', 
-        'descripcion', 
-        'tipo', 
-        'stock', 
-        'estado'
+        'nombre',
+        'descripcion',
+        'tipo',
+        'stock',
+        'estado',
     ];
 
+    public function recetas()
+    {
+        return $this->belongsToMany(Receta::class, 'receta_medicina')
+                    ->withPivot('cantidad');
+    }
 }

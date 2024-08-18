@@ -20,8 +20,7 @@ return new class extends Migration {
             $table->timestamp('published_at')->nullable()->index();
             $table->timestamps();
 
-            // Usando constrained para simplificar las claves foráneas
-            $table->string('link')->constrained('videollamadas')->cascadeOnDelete(); 
+            $table->string('link')->nullable()->constrained('videollamadas')->cascadeOnDelete();
             $table->foreignId('category_id')->constrained('categorias')->cascadeOnDelete();
             $table->foreignId('doctor_id')->nullable()->constrained('doctors')->nullOnDelete();
             $table->foreignId('patient_id')->constrained('patients')->cascadeOnDelete();
