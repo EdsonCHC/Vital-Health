@@ -11,6 +11,7 @@ use App\Http\Controllers\VideollamadaController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\ExpedienteController;
 use Illuminate\Support\Facades\Route;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -90,6 +91,8 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::view('/medicine_doc', 'doctor.medicine_doc');
     //
     Route::view('/files_doc', 'doctor.files_doc');
+    //
+    Route::resource('expedientes', ExpedienteController::class);    
     //
     Route::view('/service_doc', 'doctor.service_doc');
     //
@@ -182,5 +185,5 @@ Route::fallback(function () {
 
 //qr
 Route::get('/qrcode', function () {
-    return QrCode::size(200)->generate('https://google.com');
+    return QrCode::size(200)->generate('https://google.com'); // Da error
 });

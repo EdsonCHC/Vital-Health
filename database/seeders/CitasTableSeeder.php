@@ -22,7 +22,7 @@ class CitasTableSeeder extends Seeder
                 'hour' => '10:00:00',
                 'description' => 'Consulta general de seguimiento.',
                 'modo' => 'Presencial',
-                'enlace' => null,
+                'link' => 'https://meet.example.com/123456',
                 'published_at' => Carbon::now(),
                 'category_id' => 2,
                 // No incluimos doctor_id para dejarlo vacío
@@ -36,7 +36,7 @@ class CitasTableSeeder extends Seeder
                 'hour' => '14:30:00',
                 'description' => 'Consulta para revisión de exámenes de laboratorio.',
                 'modo' => 'Virtual',
-                'enlace' => 'https://meet.example.com/123456',
+                'link' => 'https://meet.example.com/123456',
                 'published_at' => Carbon::now(),
                 'category_id' => 1,
                 // No incluimos doctor_id para dejarlo vacío
@@ -50,10 +50,10 @@ class CitasTableSeeder extends Seeder
                 'hour' => '09:00:00',
                 'description' => 'Primera consulta de pediatría.',
                 'modo' => 'Presencial',
-                // No incluimos doctor_id para dejarlo vacío
+                'link' => 'https://meet.example.com/123456',
                 'published_at' => Carbon::now(),
                 'category_id' => 3,
-                'doctor_id' => null,
+                // No incluimos doctor_id para dejarlo vacío
                 'patient_id' => 3,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
