@@ -12,6 +12,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 /*
 |--------------------------------------------------------------------------
@@ -162,6 +163,10 @@ Route::middleware('auth:laboratorio')->group(function () {
     Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');
 });
 
+
+
+//-------API ROUTES--------//
+
 // routes/web.php
 Route::post('/videollamada/create', [VideollamadaController::class, 'create']);
 Route::get('/videollamada/{uuid}', [VideollamadaController::class, 'show']);
@@ -172,4 +177,8 @@ Route::get('/videollamada/{uuid}', [VideollamadaController::class, 'show']);
 // Fallback route (404)
 Route::fallback(function () {
     return response()->view('errors.404page', [], 404);
+});
+//qr
+Route::get('/qrcode', function () {
+    return QrCode::size(200)->generate('https://google.com');
 });
