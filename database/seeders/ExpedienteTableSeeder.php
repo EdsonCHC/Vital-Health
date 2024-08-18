@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class ExpedienteTableSeeder extends Seeder
 {
@@ -13,7 +16,7 @@ class ExpedienteTableSeeder extends Seeder
     public function run(): void
     {
         // No funicona pero no me da cabeza ahorita
-        DB::table('expediente')->insert([
+        $expediente = [
             [
                 'nacimiento' => '1985-05-15',
                 'gender' => 'Male',
@@ -56,7 +59,10 @@ class ExpedienteTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-        ]);
-    }
+        ];
+        // Insertar los registros en la base de datos
+        DB::transaction(function () use ($expediente) {
+            DB::table('expediente')->insert($expediente);
+        });
     }
 }
