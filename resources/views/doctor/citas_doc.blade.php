@@ -6,26 +6,24 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citas</title>
-    <!-- Incluir Tailwind CSS -->
     @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/js/doc_citas.js', 'resources/js/doc_examenes.js','resources/js/doc_appointment.js', 'resources/js/doctor.js', 'resources/js/videollamada.js'])
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
 
 <body class="w-full h-screen bg-gray-200">
     <div class="flex w-full h-full">
-        <!-- Encabezado -->
         <div class="fixed top-0 h-full z-10">
             @include('templates.header_doc')
         </div>
 
-        <!-- Contenido principal -->
+        
         <div class="ml-60 w-full h-full overflow-y-auto flex-grow">
             <div class="w-auto h-auto my-4 mx-4 lg:mx-16 lg:mt-10">
                 <div class="w-full">
                     @if ($doctor)
                         <h2 class="font-bold text-2xl text-vh-green">Citas del Doctor: {{ $doctor->name }}</h2>
                     @else
-                        <h2 class="font-bold text-2xl text-vh-green">No hay doctor activo asignado.</h2>
+                        <h2 class="font-bold text-2xl text-vh-green">No hay doctor  activo asignado.</h2>
                     @endif
                     <div class="w-full mt-5">
                         <form method="get" action="#" class="relative">
@@ -72,7 +70,6 @@
 
 
                         </div>
-                        <!-- Encabezado de la tabla -->
                         <div class="w-auto h-14 flex justify-around items-center my-5 mx-4 bg-vh-alice-blue rounded-md">
                             <p class="font-semibold text-xl text-vh-green">Código</p>
                             <p class="font-semibold text-xl text-vh-green">Paciente</p>
@@ -82,10 +79,9 @@
                             <p class="font-semibold text-xl text-vh-green">Herramientas</p>
                         </div>
 
-                        <!-- Datos de las citas -->
                         @if ($citas->isNotEmpty())
                             @foreach ($citas as $cita)
-                                @if ($cita->state == 1) <!-- Filtra solo las citas con state = 1 -->
+                                @if ($cita->state == 1) 
                                     <div id="cita-{{ $cita->id }}" data-cita-id="{{ $cita->id }}"
                                         class="w-auto h-14 flex justify-around items-center text-center my-5 mx-4 rounded-md ">
                                         <input type="hidden" id="cita_id_{{ $cita->id }}" data-cita-id="{{ $cita->id }}">
