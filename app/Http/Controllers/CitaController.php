@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\citas;
 use App\Models\Categoría;
+use App\Models\Usuario;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,18 +15,18 @@ class CitaController extends Controller
     public function showCitas()
     {
         $doctor = auth()->user();
-        
+
         $citas = Citas::where('doctor_id', $doctor->id)->get();
-    
+
         return view('doctor.citas_doc', compact('doctor', 'citas'));
     }
-   
+
     public function historicalAppointments($doctorId)
     {
         $appointments = Citas::with(['patient', 'category'])
-                             ->where('doctor_id', $doctorId)
-                             ->where('state', 0)
-                             ->get();
+            ->where('doctor_id', $doctorId)
+            ->where('state', 0)
+            ->get();
 
         return response()->json($appointments);
     }
@@ -106,6 +107,71 @@ class CitaController extends Controller
                 'message' => 'Error interno del servidor',
                 'error' => $e->getMessage(),
             ], 500);
+        }
+    }
+
+    public function store_doc(Request $request)
+    {
+        $validatedData = $request->validate([
+            'date' => 'required|date',
+            'hour' => 'required|string|date_format:H:i',
+            'modalidad' => 'required|string',
+            'description' => 'nullable|string',
+            'doctor_id' => 'required|exists:doctors,id',
+            'category_id' => 'required|exists:categorias,id',
+            'patient_id' => 'required|exists:patients,id',
+        ]);
+    
+        try {
+            $doctor = Doctor::find($validatedData['doctor_id']);
+            if (!$doctor) {
+                return response()->json(['success' => false, 'message' => 'Doctor no encontrado.'], 404);
+            }
+    
+            if ($doctor->category_id != $validatedData['category_id']) {
+                return response()->json(['success' => false, 'message' => 'Categoría no coincide con el doctor.'], 400);
+            }
+    
+            $appointment = Citas::create([
+                'date' => $validatedData['date'],
+                'hour' => $validatedData['hour'],
+                'modo' => $validatedData['modalidad'], 
+                'description' => $validatedData['description'] ?? '',
+                'doctor_id' => $validatedData['doctor_id'],
+                'category_id' => $validatedData['category_id'],
+                'patient_id' => $validatedData['patient_id'],
+                'state' => 1, 
+            ]);
+    
+            return response()->json([
+                'success' => true,
+                'message' => 'Cita creada exitosamente',
+                'appointment' => $appointment,
+            ], 201);
+        } catch (\Exception $e) {
+            Log::error('Error creating appointment: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Error interno del servidor',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+    
+
+    public function getPatients()
+    {
+        $patients = Usuario::all();
+        return response()->json(['patients' => $patients]);
+    }
+
+    public function show_doc($id)
+    {
+        try {
+            $doctor = Doctor::findOrFail($id); 
+            return response()->json($doctor); 
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Doctor not found'], 404);
         }
     }
 

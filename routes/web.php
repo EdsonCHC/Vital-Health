@@ -110,7 +110,9 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::post('/recetas', [ExamController::class, 'store'])->name('recetas.create');
     Route::get('/recetas/fetch-prescription-form-data', [ExamController::class, 'fetchPrescriptionFormData'])->name('recetas.fetchFormData');
     Route::get('/historical-appointments/{doctorId}', [CitaController::class, 'historicalAppointments'])->name('historical.appointments');
-
+    Route::post('/citas', [CitaController::class, 'store_doc']);
+    Route::get('/pacientes', [CitaController::class, 'getPatients']);
+    Route::get('/citas/{id}', [CitaController::class, 'show_doc']);
 
 });
 
