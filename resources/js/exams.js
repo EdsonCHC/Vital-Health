@@ -55,50 +55,76 @@ $(document).ready(function () {
                 console.log(response);
             },
         });
-        $(document).on("click", ".end-btn", function () {
-            Swal.fire({
-                icon: "question",
-                title: "¿Desea finalizar este examen?",
-                showConfirmButton: true,
-                showCancelButton: true,
-                confirmButtonText: "Sí, finalizar",
-                cancelButtonText: "Cancelar",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    const tr = $(this).closest("tr");
-                    const id = tr.data("id");
-                    $.ajax({
-                        url: `/exams/end/${id}`,
-                        type: "PATCH",
-                        headers: {
-                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                                "content"
-                            ),
-                        },
-                        success(response) {
-                            if (response.success) {
-                                Swal.fire({
-                                    icon: "success",
-                                    title: "Examen Finalizado",
-                                    timer: 1500,
-                                }).then(() => {
-                                    window.location.reload();
+    });
+
+    $(".end-btn").click(function () {
+        Swal.fire({
+            icon: "question",
+            title: "¿Desea finalizar este examen?",
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Sí, finalizar",
+            cancelButtonText: "Cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const tr = $(this).closest("tr");
+                const id = tr.data("id");
+
+                Swal.fire({
+                    title: "Selecciona un archivo",
+                    input: "file",
+                    inputAttributes: {
+                        accept: ".pdf",
+                        "aria-label": "Sube El pdf",
+                    },
+                }).then((file) => {
+                    if (file.value) {
+                        const selectedFile = file.value;
+                        const formData = new FormData();
+                        formData.append("file", selectedFile);
+                        $.ajax({
+                            url: `/exams/pdf/${id}`,
+                            type: "POST",
+                            headers: {
+                                "X-CSRF-TOKEN": $(
+                                    'meta[name="csrf-token"]'
+                                ).attr("content"),
+                            },
+                            processData: false,
+                            contentType: false,
+                            data: formData,
+                            success(response) {
+                                console.log(response);
+                                $.ajax({
+                                    url: `/exams/end/${id}`,
+                                    type: "PATCH",
+                                    headers: {
+                                        "X-CSRF-TOKEN": $(
+                                            'meta[name="csrf-token"]'
+                                        ).attr("content"),
+                                    },
+                                    success(response) {
+                                        console.log(response);
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "Examen Finalizado",
+                                            timer: 1500,
+                                        }).then(() => {
+                                            window.location.reload();
+                                        });
+                                    },
+                                    error(response) {
+                                        console.log(response);
+                                    },
                                 });
-                            } else {
-                                Swal.fire(
-                                    "Error",
-                                    response.message ||
-                                        "No se pudo finalizar el examen",
-                                    "error"
-                                );
-                            }
-                        },
-                        error(response) {
-                            console.log(response);
-                        },
-                    });
-                }
-            });
+                            },
+                            error(response) {
+                                console.log(response);
+                            },
+                        });
+                    }
+                });
+            }
         });
     });
 });
