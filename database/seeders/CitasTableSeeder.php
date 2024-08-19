@@ -31,7 +31,7 @@ class CitasTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'state' => '0',
+                'state' => '1',
                 'date' => '2024-08-22',
                 'hour' => '14:30:00',
                 'description' => 'Consulta para revisión de exámenes de laboratorio.',
