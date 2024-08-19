@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expediente</title>
     <!-- Incluir Tailwind CSS -->
-    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/js/doctor.js'])
+    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/js/doctor.js', 'resources/js/expediente.js'])
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
 
@@ -36,9 +36,10 @@
                 <div class=" md:w-full w-full ">
                     <div class="flex-col p-4 h-auto  bg-white  rounded-xl shadow- mt-4 ">
                         <div class=" md:w-full w-full lg:items-end lg:justify-end">
-                            <a href="/" target="_self"
-                                class="w-2/5 lg:text-base text-base p-2 lg:w-40 h-12 text-white font-semibold bg-vh-green tracking-wide shadow-xl lg:my-2 lg:mx-4 rounded-lg hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
-                                Nuevo Expediente </a>
+                            {{-- <button target="_self" data-patien-id="{{ $expedientes->$patients->Nombre}}"
+                                class="create-exp w-2/5 lg:text-base text-base p-2 lg:w-40 h-12 text-white font-semibold bg-vh-green tracking-wide shadow-xl lg:my-2 lg:mx-4 rounded-lg hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
+                                Nuevo Expediente
+                            </button> --}}
                         </div>
                         <div class="w-auto h-14 flex justify-around items-center my-5 mx-4 bg-vh-alice-blue rounded-md">
                             <p class="font-semibold text-xl text-vh-green">Codigo</p>
@@ -48,7 +49,7 @@
                                 <p class="font-semibold text-xl text-vh-green">Herramientas</p>
                             </div>
                         </div>
-                        {{-- @if ($expedientes->isEmpty())
+                        @if ($expedientes->isEmpty())
                             <div class="w-auto h-16 flex justify-around items-center my-5 mx-4 bg-green-200 rounded-md">
                                 <p class="font-bold text-lg">No hay expedientes registrados.</p>
                             </div>
@@ -61,7 +62,7 @@
                                     <button target="_self" class="assign_appointment">
                                         <a href="#">
                                             <img src="{{ asset('storage/svg/eye-icon.svg') }}" alt="noti_icon"
-                                                class="w-10 h-10 p-2 ">
+                                                class="w-10 h-10 p-2">
                                         </a>
                                     </button>
                                     <div class="w-2/12 flex items-center space-x-10">
@@ -80,8 +81,7 @@
                                     </div>
                                 </div>
                             @endforeach
-                        @endif --}}
-
+                        @endif
                     </div>
                 </div>
             </div>

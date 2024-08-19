@@ -13,13 +13,6 @@ return new class extends Migration
     {
         Schema::create('expediente', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('Nombre');
-            $table->date('nacimiento');
-            $table->string('gender');
-            $table->string('mail');
-            $table->string('status_civil');
-            $table->string('occupation');
-            $table->string('Allergies');
             
             // Foreing keys
             $table->foreignId('examen_id')->constrained('exams');

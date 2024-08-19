@@ -37,7 +37,7 @@ Route::post('/login', [UsuarioController::class, 'show']);
 Route::view('/registro', 'app.registro');
 //
 Route::post('/registro', [UsuarioController::class, 'store']);
-//Show Doctor in user
+//  
 Route::get('/', [UsuarioController::class, 'showDoctors']);
 
 
@@ -55,7 +55,6 @@ Route::middleware('auth')->group(function () {
     //
     Route::view('/service', 'app.service');
     //
-    //Citas
     Route::get('create', [CitaController::class, 'create'])->name('citas.create');
     //
     Route::view('/citas', 'app.citas');
@@ -65,7 +64,6 @@ Route::middleware('auth')->group(function () {
     //
     Route::get('/service/{id}', [ServiceController::class, 'show'])->name('service');
     //
-    //Account user
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
     //
     Route::post('/user', [UsuarioController::class, 'destroy']);
@@ -73,7 +71,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/user/update', [UsuarioController::class, 'update'])->name('user.update');
     //
     Route::post('/appointments', [CitaController::class, 'store']);
-
 });
 
 // Rutas para el doctor
@@ -90,9 +87,9 @@ Route::middleware(['auth:doctor'])->group(function () {
     //
     Route::view('/medicine_doc', 'doctor.medicine_doc');
     //
-    Route::view('/files_doc', 'doctor.files_doc');
+    // Route::view('/files_doc', 'doctor.files_doc');
+    Route::resource('/files_doc', ExpedienteController::class);
     //
-    Route::resource('expedientes', ExpedienteController::class);    
     //
     Route::view('/service_doc', 'doctor.service_doc');
     //
@@ -107,7 +104,8 @@ Route::middleware(['auth:doctor'])->group(function () {
     //
     Route::get('/citas/{cita_id}/check-end', [ExamController::class, 'checkAndEndCita']);
     Route::post('/citas/{cita_id}/end', [ExamController::class, 'endCita']);
-
+    //
+    Route::post('/citas/{cita_id}/{doctor_id}/videollamada', [VideollamadaController::class, 'store']);
 });
 
 
@@ -184,9 +182,9 @@ Route::middleware('auth:laboratorio')->group(function () {
 //-------API ROUTES--------//
 
 // routes/web.php
-Route::post('/videollamada/create', [VideollamadaController::class, 'create']);
-Route::get('/videollamada/{patient_id}', [VideollamadaController::class, 'show']);
-// Route::view('/videoCall', 'app.videoCall');
+
+Route::get('/videollamada', [VideollamadaController::class, 'show']);
+//
 // Route::get('/videollamada/{uuid}', [VideollamadaController::class, 'show']);
 
 
@@ -197,7 +195,7 @@ Route::fallback(function () {
 
 //qr
 Route::get('/qrcode', function () {
-    return QrCode::size(200)->generate('https://google.com'); // Da error
+    return QrCode::size(200)->generate('https://google.com'); // Es porque hay que actualizar el composer 
 });
 
 Route::get('/pdf', function () {

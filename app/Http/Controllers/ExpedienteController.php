@@ -2,103 +2,76 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Expediente;
+use App\Models\Exams;
+use App\Models\citas;
+use App\Models\Doctor;
+use App\Models\Usuario;
+use Illuminate\Http\Request;
 
 class ExpedienteController extends Controller
 {
-    /**
-     * Muestra una lista de expedientes.
-     */
     public function index()
     {
-        $expedientes = Expediente::all();
-        return view('expedientes.index', compact('expedientes'));
+        $expedientes = Expediente::with(['examen', 'cita', 'doctor', 'patient'])->get();
+
+        $exams = Exams::all();
+        $citas = citas::all();
+        $doctors = Doctor::all();
+        $patients = Usuario::all();
+
+        return view('doctor.files_doc', compact('expedientes', 'exams', 'citas', 'doctors', 'patients'));
     }
 
-    /**
-     * Muestra el formulario para crear un nuevo expediente.
-     */
-    public function create()
-    {
-        return view('expedientes.create');
-    }
-
-    /**
-     * Almacena un nuevo expediente en la base de datos.
-     */
     public function store(Request $request)
     {
         $request->validate([
-            'Nombre' => 'required|string|max:255',
-            'nacimiento' => 'required|date',
-            'gender' => 'required|string|max:10',
-            'mail' => 'required|email|max:255',
-            'status_civil' => 'required|string|max:50',
-            'occupation' => 'required|string|max:100',
-            'Allergies' => 'nullable|string|max:255',
-            'examen_id' => 'required|integer|exists:exams,id',
-            'cita_id' => 'required|integer|exists:citas,id',
-            'doctor_id' => 'required|integer|exists:doctors,id',
-            'patient_id' => 'required|integer|exists:patients,id',
+            'examen_id' => 'required|exists:exams,id',
+            'cita_id' => 'required|exists:citas,id',
+            'doctor_id' => 'required|exists:doctors,id',
+            'patient_id' => 'required|exists:patients,id',
         ]);
 
-        Expediente::create($request->all());
+        $expediente = Expediente::create([
+            'examen_id' => $request->examen_id,
+            'cita_id' => $request->cita_id,
+            'doctor_id' => $request->doctor_id,
+            'patient_id' => $request->patient_id,
+        ]);
 
-        return redirect()->route('expedientes.index')->with('success', 'Expediente creado exitosamente.');
+        return response()->json(['success' => true, 'expediente' => $expediente]);
     }
 
-    /**
-     * Muestra un expediente específico.
-     */
-    public function show($id)
+
+
+    public function show(Expediente $expediente)
     {
-        $expediente = Expediente::findOrFail($id);
-        return view('expedientes.show', compact('expediente'));
+        return view('files_doc.show', compact('expediente'));
     }
 
-    /**
-     * Muestra el formulario para editar un expediente existente.
-     */
-    public function edit($id)
+    public function edit(Expediente $expediente)
     {
-        $expediente = Expediente::findOrFail($id);
-        return view('expedientes.edit', compact('expediente'));
+        return view('files_doc.edit', compact('expediente'));
     }
 
-    /**
-     * Actualiza un expediente existente en la base de datos.
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, Expediente $expediente)
     {
         $request->validate([
-            'Nombre' => 'required|string|max:255',
-            'nacimiento' => 'required|date',
-            'gender' => 'required|string|max:10',
-            'mail' => 'required|email|max:255',
-            'status_civil' => 'required|string|max:50',
-            'occupation' => 'required|string|max:100',
-            'Allergies' => 'nullable|string|max:255',
-            'examen_id' => 'required|integer|exists:exams,id',
-            'cita_id' => 'required|integer|exists:citas,id',
-            'doctor_id' => 'required|integer|exists:doctors,id',
-            'patient_id' => 'required|integer|exists:patients,id',
+            'examen_id' => 'required|exists:exams,id',
+            'cita_id' => 'required|exists:citas,id',
+            'doctor_id' => 'required|exists:doctors,id',
+            'patient_id' => 'required|exists:patients,id',
         ]);
 
-        $expediente = Expediente::findOrFail($id);
         $expediente->update($request->all());
 
-        return redirect()->route('expedientes.index')->with('success', 'Expediente actualizado exitosamente.');
+        return redirect()->route('files_doc.index')->with('success', 'Expediente actualizado exitosamente.');
     }
 
-    /**
-     * Elimina un expediente de la base de datos.
-     */
-    public function destroy($id)
+    public function destroy(Expediente $expediente)
     {
-        $expediente = Expediente::findOrFail($id);
         $expediente->delete();
 
-        return redirect()->route('expedientes.index')->with('success', 'Expediente eliminado exitosamente.');
+        return redirect()->route('files_doc.index')->with('success', 'Expediente eliminado exitosamente.');
     }
 }

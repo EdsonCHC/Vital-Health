@@ -16,13 +16,7 @@ class Expediente extends Model
     protected $table = 'expediente';
 
     protected $fillable = [
-        'Nombre',
-        'nacimiento',
-        'gender',
-        'mail',
-        'status_civil',
-        'occupation',
-        'Allergies',
+        
         'examen_id',
         'cita_id',
         'doctor_id',

@@ -1,4 +1,4 @@
-@vite('resources/css/menu.css')
+@vite('resources/css/menu.css', 'resources/js/noti.js')
 <header class="w-full h-20 flex z-20 bg-vh-green-medium-2">
     <div class="w-full h-full mx-auto flex justify-between">
         {{-- View Mobile --}}
@@ -25,10 +25,13 @@
             <li class="font-bold mb-4 relative group text-white tracking-wider">
                 <a href="/area">Especialidades Medicas</a>
                 <ul class="absolute hidden bg-white py-2 px-4 shadow-md w-full z-10 group-hover:block rounded-sm">
-                    <li><a href="/service/support" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Medicina</a></li>
+                    <li><a href="/service/support"
+                            class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Medicina</a></li>
                     <li><a href="/citas" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Citas</a></li>
-                    <li><a href="/service/contact" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Examenes</a></li>
-                    <li><a href="/service/contact" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Control Personal</a></li>
+                    <li><a href="/service/contact"
+                            class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Examenes</a></li>
+                    <li><a href="/service/contact" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Control
+                            Personal</a></li>
                 </ul>
             </li>
             <li class="font-bold mb-4 text-white tracking-wider"><a href="/report">Reporte</a></li>
@@ -36,9 +39,19 @@
         </ul>
         <div class="hidden w-1/2 h-auto md:flex items-center justify-end gap-4 pr-4 mt-2">
             <div class="flex w-24 justify-between">
-                <a href="#">
+                <button id="notification-button" class="noti">
                     <img src="{{ asset('storage/svg/noti.svg') }}" alt="config_icon"
-                        class="w-10 p-2 bg-vh-gray-light rounded-full"> </a>
+                        class="w-10 p-2 bg-vh-gray-light rounded-full">
+                </button>
+                <div id="notification-container"
+                    class="hidden absolute right-0 mt-14 mr-4 w-64 bg-white shadow-lg rounded-lg">
+                    <ul class="p-4">
+                        <li class="border-b py-2">Notificación 1</li>
+                        <li class="border-b py-2">Notificación 2</li>
+                        <li class="py-2">Notificación 3</li>
+                    </ul>
+                </div>
+
                 <div class="relative group">
                     <a href="">
                         <img src="{{ asset('storage/svg/config.svg') }}" alt="config_icon"
@@ -51,8 +64,8 @@
                                     class="w-full p-2 bg-vh-gray-light rounded-full">
                             </a>
                         </li>
-                        <li><a href="#" class="block py-1 w-8">
-                                <img src="{{ asset('storage/svg/chat-icon-second.svg') }}" alt="noti_icon"
+                        <li><a href="/videollamada" class="block py-1 w-8">
+                                <img src="{{ asset('storage/svg/video-icon.svg') }}" alt="noti_icon"
                                     class="w-full p-2 bg-vh-gray-light rounded-full">
                             </a>
                         </li>
@@ -61,7 +74,8 @@
                 </div>
             </div>
             <a href="/user">
-                <img src="{{ asset('storage/svg/user.svg') }}" alt="noti_icon" class="w-full p-2 bg-vh-gray-light rounded-full">
+                <img src="{{ asset('storage/svg/user.svg') }}" alt="noti_icon"
+                    class="w-full p-2 bg-vh-gray-light rounded-full">
             </a>
         </div>
 

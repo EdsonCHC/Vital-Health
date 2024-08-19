@@ -13,10 +13,10 @@ class Videollamada extends Model
         'room_name',
         'date',
         'hour',
-        'link',
-        'patient_id',
-        'doctor_id',
+        'enlace',
         'cita_id',
+        'doctor_id',
+        'patient_id'
     ];
 
     public function patient()
@@ -32,11 +32,6 @@ class Videollamada extends Model
     public function cita()
     {
         return $this->belongsTo(Citas::class);
-    }
-
-    public function link()
-    {
-        return $this->belongsTo(Videollamada::class);
     }
 }
 

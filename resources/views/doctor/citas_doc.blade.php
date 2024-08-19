@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citas</title>
     <!-- Incluir Tailwind CSS -->
-    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/js/doctor.js', 'resources/js/exams.js'])
+    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/js/doctor.js', 'resources/js/exams.js', 'resources/js/videollamada.js'])
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
 
@@ -71,9 +71,7 @@
                             <p class="font-semibold text-xl text-vh-green">Especialidad</p>
                             <p class="font-semibold text-xl text-vh-green">Fecha</p>
                             <p class="font-semibold text-xl text-vh-green">Examen</p>
-                            <div class="w-2/12">
-                                <p class="font-semibold text-xl text-vh-green">Herramientas</p>
-                            </div>
+                            <p class="font-semibold text-xl text-vh-green">Herramientas</p>
                         </div>
 
                         <!-- Datos de las citas -->
@@ -81,20 +79,20 @@
                             @foreach ($citas as $cita)
                                 <div id="cita-{{ $cita->id }}" data-cita-id="{{ $cita->id }}"
                                     class="w-auto h-14 flex justify-around items-center text-center my-5 mx-4 rounded-md ">
-                                    <input type="hidden" id="cita_id_{{ $cita->id }}" data-cita-id="{{ $cita->id }}">
+                                    <input type="hidden" id="cita_id_{{ $cita->id }}"
+                                        data-cita-id="{{ $cita->id }}">
                                     <input type="hidden" id="patient_id_{{ $cita->id }}"
                                         data-patient-id="{{ $cita->patient->id }}">
                                     <input type="hidden" id="doctor_id_{{ $cita->id }}"
                                         data-doctor-id="{{ $cita->doctor->id }}">
-
-                                    <p class="ml-4 font-semibold text-xl text-vh-green">{{ $cita->id }}</p>
-                                    <p class="ml-12 font-semibold text-xl text-vh-green">{{ $cita->patient->name }}
+                                    <p class="mx-20 font-semibold text-xl text-vh-green">{{ $cita->id }}</p>
+                                    <p class="mx-20 font-semibold text-xl text-vh-green">{{ $cita->patient->name }}
                                         {{ $cita->patient->lastName }}
                                     </p>
-                                    <p class="-ml-6 font-semibold text-xl text-vh-green">{{ $cita->category->nombre }}
+                                    <p class="mx-20 font-semibold text-xl text-vh-green">{{ $cita->category->nombre }}
                                     </p>
-                                    <p class="font-semibold text-xl text-vh-green">{{ $cita->date }}</p>
-                                    <button class="option-button" data-cita-id="{{ $cita->id }}">
+                                    <p class="mx-20 font-semibold text-xl text-vh-green">{{ $cita->date }}</p>
+                                    <button class="mx-20 option-button" data-cita-id="{{ $cita->id }}">
                                         <img src="{{ asset('storage/svg/option-icon.svg') }}" alt="noti_icon"
                                             class="w-10 h-10 p-2">
                                     </button>
@@ -107,16 +105,14 @@
                                             <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
                                                 class="w-10 h-10 p-2 rounded">
                                         </button>
-                                        @if ($cita->modo == 'Virtual')
-                                            <a href="{{ $cita->modo }}" class="ml-4" target="_blank">
-                                                <img src="{{ asset('storage/svg/eye.svg') }}" alt="Ver Cita"
-                                                    class="w-10 h-10 p-2 rounded">
-                                            </a>
-                                        @endif
+                                        <button type="button" class="createVideollamada"
+                                            data-cita-id="{{ $cita->id }}"
+                                            data-doctor-id="{{ $cita->doctor->id }}"><img
+                                                src="{{ asset('storage/svg/link-icon.svg') }}" alt="Ver Cita"
+                                                class="w-10 h-10 p-2 rounded"></button>
                                     </div>
                                 </div>
                             @endforeach
-
                         @else
                             <p class="text-center font-semibold text-xl text-vh-green">No hay citas disponibles para
                                 mostrar.</p>
