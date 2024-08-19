@@ -265,11 +265,16 @@ class ExamController extends Controller
 
             if ($request->hasFile('file')) {
                 $file = $request->file('file');
-                $path = $file->store('pdf_files', 'public');
+                $file = $request->file('file');
+                $destinationPath = public_path('pdf_files'); // Ruta en el directorio public
+                $fileName = time() . '_' . $file->getClientOriginalName(); // Genera un nombre único para el archivo
+                $file->move($destinationPath, $fileName); // Mueve el archivo al directorio
+
+                $pdf_url = url('pdf_files/' . $fileName);
 
                 // Buscar y actualizar el registro del examen
                 $examen = Exams::findOrFail($exam_id);
-                $examen->pdf_file = $path;
+                $examen->pdf_file = $pdf_url;
                 $examen->save();
 
                 return response()->json([
@@ -288,5 +293,25 @@ class ExamController extends Controller
                 'error' => $e->getMessage(),
             ], 500);
         }
+    }
+
+    public function getPdfUrl($exam_id)
+    {
+
+        try {
+
+            $examen = Exams::findOrFail($exam_id);
+
+            return response()->json([
+                'success' => true,
+                'message' => $examen->pdf_file,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+
     }
 }

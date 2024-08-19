@@ -179,7 +179,9 @@ Route::middleware('auth:laboratorio')->group(function () {
     //
     Route::patch('/exams/end/{id}', [ExamController::class, 'endExamen'])->name('exams.delete');
     //    
-    Route::post('/exams/pdf/{id}', [ExamController::class, 'updatePDF'])->name('exams.delete');
+    Route::post('/exams/pdf/{id}', [ExamController::class, 'updatePDF'])->name('exams.update.pdf');
+    //
+    Route::get('/exams/pdf/{id}', [ExamController::class, 'getPdfUrl'])->name('exams.get.pdf');
 });
 
 

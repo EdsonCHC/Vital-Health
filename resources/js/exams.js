@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import jQuery from "jquery";
+import QRCode from "qrcode";
 window.$ = jQuery;
 
 $(document).ready(function () {
@@ -9,87 +10,95 @@ $(document).ready(function () {
         showExamsInModal(citaId, patientId);
     });
 
-      
-        // Manejar el click en el botón "Aceptar"
-        $(document).on('click', '#aceptar', function () {
-            const citaId = $(this).closest('[data-cita-id]').data('cita-id');
+    // Manejar el click en el botón "Aceptar"
+    $(document).on("click", "#aceptar", function () {
+        const citaId = $(this).closest("[data-cita-id]").data("cita-id");
 
-            $.ajax({
-                url: `/citas/${citaId}/check-end`,
-                type: 'GET',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            })
-                .done(function (response) {
-                    if (response.success) {
+        $.ajax({
+            url: `/citas/${citaId}/check-end`,
+            type: "GET",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        }).done(function (response) {
+            if (response.success) {
+                Swal.fire({
+                    title: "Terminar Cita",
+                    text: "Todos los exámenes están completos. ¿Deseas terminar la cita y editar su descripción?",
+                    icon: "info",
+                    showCancelButton: true,
+                    confirmButtonText: "Sí, continuar",
+                    cancelButtonText: "Cancelar",
+                }).then(function (result) {
+                    if (result.isConfirmed) {
                         Swal.fire({
-                            title: 'Terminar Cita',
-                            text: 'Todos los exámenes están completos. ¿Deseas terminar la cita y editar su descripción?',
-                            icon: 'info',
+                            title: "Editar Descripción de la Cita",
+                            input: "textarea",
+                            inputLabel: "Descripción",
+                            inputPlaceholder: "Escribe la descripción aquí...",
+                            inputValidator: (value) => {
+                                if (!value.trim()) {
+                                    return "La descripción no puede estar vacía";
+                                }
+                            },
                             showCancelButton: true,
-                            confirmButtonText: 'Sí, continuar',
-                            cancelButtonText: 'Cancelar'
+                            confirmButtonText: "Guardar",
+                            cancelButtonText: "Cancelar",
                         }).then(function (result) {
                             if (result.isConfirmed) {
-                                Swal.fire({
-                                    title: 'Editar Descripción de la Cita',
-                                    input: 'textarea',
-                                    inputLabel: 'Descripción',
-                                    inputPlaceholder: 'Escribe la descripción aquí...',
-                                    inputValidator: (value) => {
-                                        if (!value.trim()) {
-                                            return 'La descripción no puede estar vacía';
-                                        }
+                                const descripcion = result.value.trim();
+
+                                $.ajax({
+                                    url: `/citas/${citaId}/end`,
+                                    type: "POST",
+                                    data: {
+                                        description: descripcion,
+                                        _token: $(
+                                            'meta[name="csrf-token"]'
+                                        ).attr("content"),
                                     },
-                                    showCancelButton: true,
-                                    confirmButtonText: 'Guardar',
-                                    cancelButtonText: 'Cancelar'
-                                }).then(function (result) {
-                                    if (result.isConfirmed) {
-                                        const descripcion = result.value.trim();
+                                    headers: {
+                                        "X-CSRF-TOKEN": $(
+                                            'meta[name="csrf-token"]'
+                                        ).attr("content"),
+                                    },
+                                }).done(function () {
+                                    Swal.fire({
+                                        title: "Descripción Actualizada",
+                                        text: "La descripción ha sido actualizada exitosamente.",
+                                        icon: "success",
+                                        showCancelButton: true,
+                                        cancelButtonText: "Finalizar Cita",
+                                        confirmButtonText: "Crear Receta",
+                                        confirmButtonColor: "#28a745",
+                                        reverseButtons: true,
+                                    }).then(function (result) {
+                                        if (result.isConfirmed) {
+                                            $.ajax({
+                                                url: `/recetas/fetch-prescription-form-data`,
+                                                type: "GET",
+                                                data: {
+                                                    cita_id: citaId,
+                                                    doctor_id:
+                                                        response.doctor_id,
+                                                    paciente_id:
+                                                        response.paciente_id,
+                                                },
+                                                headers: {
+                                                    "X-CSRF-TOKEN": $(
+                                                        'meta[name="csrf-token"]'
+                                                    ).attr("content"),
+                                                },
+                                            }).done(function (data) {
+                                                const {
+                                                    doctor_id,
+                                                    patient_id,
+                                                    medicinas,
+                                                } = data;
 
-                                        $.ajax({
-                                            url: `/citas/${citaId}/end`,
-                                            type: 'POST',
-                                            data: {
-                                                description: descripcion,
-                                                _token: $('meta[name="csrf-token"]').attr('content')
-                                            },
-                                            headers: {
-                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                            }
-                                        })
-                                            .done(function () {
                                                 Swal.fire({
-                                                    title: 'Descripción Actualizada',
-                                                    text: 'La descripción ha sido actualizada exitosamente.',
-                                                    icon: 'success',
-                                                    showCancelButton: true,
-                                                    cancelButtonText: 'Finalizar Cita',
-                                                    confirmButtonText: 'Crear Receta',
-                                                    confirmButtonColor: '#28a745',
-                                                    reverseButtons: true
-                                                }).then(function (result) {
-                                                    if (result.isConfirmed) {
-                                                        $.ajax({
-                                                            url: `/recetas/fetch-prescription-form-data`,
-                                                            type: 'GET',
-                                                            data: {
-                                                                cita_id: citaId,
-                                                                doctor_id: response.doctor_id,
-                                                                paciente_id: response.paciente_id
-                                                            },
-                                                            headers: {
-                                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                                            }
-                                                        })
-                                                            .done(function (data) {
-                                                                const { doctor_id, patient_id, medicinas } = data;
-
-                                                                Swal.fire({
-                                                                    title: 'Crear Receta',
-                                                                    html: `
+                                                    title: "Crear Receta",
+                                                    html: `
                                                         <div class="flex max-w-4xl mx-auto">
                                                             <div class="flex-1 mr-6">
                                                                 <form id="receta-form" class="space-y-4 p-4 bg-white border border-gray-300 rounded-md shadow-md">
@@ -98,7 +107,13 @@ $(document).ready(function () {
                                                                     <input type="hidden" name="patient_id" value="${patient_id}">
                                                                     <div class="form-group">
                                                                         <label for="fecha_entrega" class="block text-lg font-semibold text-gray-700">Fecha de Entrega</label>
-                                                                        <input type="date" name="fecha_entrega" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500" min="${new Date().toISOString().split('T')[0]}" required>
+                                                                        <input type="date" name="fecha_entrega" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500" min="${
+                                                                            new Date()
+                                                                                .toISOString()
+                                                                                .split(
+                                                                                    "T"
+                                                                                )[0]
+                                                                        }" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="hora_entrega" class="block text-lg font-semibold text-gray-700">Hora de Entrega</label>
@@ -122,12 +137,20 @@ $(document).ready(function () {
                                                                 <div class="p-4 bg-white border border-gray-300 rounded-md shadow-md">
                                                                     <h3 class="text-lg font-semibold text-gray-700">Listado de Medicinas</h3>
                                                                     <div id="medicinas-list" class="space-y-3 mt-2 border border-gray-300 rounded-md p-4 bg-gray-50 max-h-60 overflow-y-auto">
-                                                                        ${medicinas.map(med => `
+                                                                        ${medicinas
+                                                                            .map(
+                                                                                (
+                                                                                    med
+                                                                                ) => `
                                                                             <div class="flex items-center justify-between space-x-3 p-2 border border-gray-200 rounded-md bg-white medicina-item">
                                                                                 <span class="text-gray-700 medicina-nombre">${med.nombre}</span>
                                                                                 <button type="button" data-id="${med.id}" class="add-medicina-btn bg-green-500 text-white px-4 py-1 rounded-md hover:bg-green-600">Añadir</button>
                                                                             </div>
-                                                                        `).join('')}
+                                                                        `
+                                                                            )
+                                                                            .join(
+                                                                                ""
+                                                                            )}
                                                                     </div>
                                                                 </div>
                                                                 <div class="mt-4 p-4 bg-white border border-gray-300 rounded-md shadow-md">
@@ -139,101 +162,158 @@ $(document).ready(function () {
                                                             </div>
                                                         </div>
                                                     `,
-                                                                    width: '80%',
-                                                                    customClass: {
-                                                                        container: 'custom-swal-container',
-                                                                        popup: 'custom-swal-popup'
-                                                                    },
-                                                                    focusConfirm: false,
-                                                                    showCancelButton: true,
-                                                                    cancelButtonText: 'Cancelar',
-                                                                    confirmButtonText: 'Guardar Receta',
-                                                                    confirmButtonColor: '#28a745',
-                                                                    preConfirm: function () {
-                                                                        const form = document.querySelector('#receta-form');
-                                                                        if (form.checkValidity()) {
-                                                                            const formData = new FormData(form);
-                                                                            const data = Object.fromEntries(formData.entries());
-                                                                            data.medicinas = [];
+                                                    width: "80%",
+                                                    customClass: {
+                                                        container:
+                                                            "custom-swal-container",
+                                                        popup: "custom-swal-popup",
+                                                    },
+                                                    focusConfirm: false,
+                                                    showCancelButton: true,
+                                                    cancelButtonText:
+                                                        "Cancelar",
+                                                    confirmButtonText:
+                                                        "Guardar Receta",
+                                                    confirmButtonColor:
+                                                        "#28a745",
+                                                    preConfirm: function () {
+                                                        const form =
+                                                            document.querySelector(
+                                                                "#receta-form"
+                                                            );
+                                                        if (
+                                                            form.checkValidity()
+                                                        ) {
+                                                            const formData =
+                                                                new FormData(
+                                                                    form
+                                                                );
+                                                            const data =
+                                                                Object.fromEntries(
+                                                                    formData.entries()
+                                                                );
+                                                            data.medicinas = [];
 
-                                                                            $('#selected-medicinas-list li').each(function () {
-                                                                                const medicinaId = $(this).find('input[name$="[id]"]').val();
-                                                                                const cantidad = $(this).find('input[name$="[cantidad]"]').val();
-                                                                                if (medicinaId && cantidad) {
-                                                                                    data.medicinas.push({ id: medicinaId, cantidad });
-                                                                                }
-                                                                            });
-
-                                                                            console.log('Datos enviados:', JSON.stringify(data));
-
-                                                                            return $.ajax({
-                                                                                url: '/recetas',
-                                                                                type: 'POST',
-                                                                                data: JSON.stringify(data),
-                                                                                processData: false,
-                                                                                contentType: 'application/json',
-                                                                                headers: {
-                                                                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                                                                }
-                                                                            })
-                                                                                .done(function (response) {
-                                                                                    Swal.fire({
-                                                                                        title: 'Receta Creada',
-                                                                                        text: 'La receta se ha creado exitosamente.',
-                                                                                        icon: 'success'
-                                                                                    });
-                                                                                })
-                                                                                .fail(function (jqXHR) {
-                                                                                    console.error('Error en la petición:', jqXHR.responseText);
-                                                                                    Swal.fire({
-                                                                                        title: 'Error',
-                                                                                        text: 'Hubo un problema al crear la receta.',
-                                                                                        icon: 'error'
-                                                                                    });
-                                                                                });
-                                                                        } else {
-                                                                            form.reportValidity();
+                                                            $(
+                                                                "#selected-medicinas-list li"
+                                                            ).each(function () {
+                                                                const medicinaId =
+                                                                    $(this)
+                                                                        .find(
+                                                                            'input[name$="[id]"]'
+                                                                        )
+                                                                        .val();
+                                                                const cantidad =
+                                                                    $(this)
+                                                                        .find(
+                                                                            'input[name$="[cantidad]"]'
+                                                                        )
+                                                                        .val();
+                                                                if (
+                                                                    medicinaId &&
+                                                                    cantidad
+                                                                ) {
+                                                                    data.medicinas.push(
+                                                                        {
+                                                                            id: medicinaId,
+                                                                            cantidad,
                                                                         }
-                                                                    }
-                                                                });
+                                                                    );
+                                                                }
                                                             });
-                                                    }
+
+                                                            console.log(
+                                                                "Datos enviados:",
+                                                                JSON.stringify(
+                                                                    data
+                                                                )
+                                                            );
+
+                                                            return $.ajax({
+                                                                url: "/recetas",
+                                                                type: "POST",
+                                                                data: JSON.stringify(
+                                                                    data
+                                                                ),
+                                                                processData: false,
+                                                                contentType:
+                                                                    "application/json",
+                                                                headers: {
+                                                                    "X-CSRF-TOKEN":
+                                                                        $(
+                                                                            'meta[name="csrf-token"]'
+                                                                        ).attr(
+                                                                            "content"
+                                                                        ),
+                                                                },
+                                                            })
+                                                                .done(function (
+                                                                    response
+                                                                ) {
+                                                                    Swal.fire({
+                                                                        title: "Receta Creada",
+                                                                        text: "La receta se ha creado exitosamente.",
+                                                                        icon: "success",
+                                                                    });
+                                                                })
+                                                                .fail(function (
+                                                                    jqXHR
+                                                                ) {
+                                                                    console.error(
+                                                                        "Error en la petición:",
+                                                                        jqXHR.responseText
+                                                                    );
+                                                                    Swal.fire({
+                                                                        title: "Error",
+                                                                        text: "Hubo un problema al crear la receta.",
+                                                                        icon: "error",
+                                                                    });
+                                                                });
+                                                        } else {
+                                                            form.reportValidity();
+                                                        }
+                                                    },
                                                 });
                                             });
-                                    }
+                                        }
+                                    });
                                 });
                             }
                         });
-                    } else {
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'No se pudo terminar la cita.',
-                            icon: 'error'
-                        });
                     }
                 });
-        });
-
-        // Función para mostrar exámenes en el modal
-        function showExamsInModal(citaId, patientId) {
-            $.ajax({
-                url: `/citas/${citaId}/exams`,
-                type: 'GET',
-                data: { patient_id: patientId },
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            })
-                .done(function (data) {
-                    // Lógica para mostrar los exámenes en el modal
+            } else {
+                Swal.fire({
+                    title: "Error",
+                    text: "No se pudo terminar la cita.",
+                    icon: "error",
                 });
-        }
+            }
+        });
+    });
 
-        // Manejar el click en el botón "Añadir Medicina"
-        $(document).on('click', '.add-medicina-btn', function () {
-            const id = $(this).data('id');
-            const nombre = $(this).closest('.medicina-item').find('.medicina-nombre').text();
-            const item = `
+    // Función para mostrar exámenes en el modal
+    function showExamsInModal(citaId, patientId) {
+        $.ajax({
+            url: `/citas/${citaId}/exams`,
+            type: "GET",
+            data: { patient_id: patientId },
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        }).done(function (data) {
+            // Lógica para mostrar los exámenes en el modal
+        });
+    }
+
+    // Manejar el click en el botón "Añadir Medicina"
+    $(document).on("click", ".add-medicina-btn", function () {
+        const id = $(this).data("id");
+        const nombre = $(this)
+            .closest(".medicina-item")
+            .find(".medicina-nombre")
+            .text();
+        const item = `
             <li class="flex items-center justify-between p-2 border border-gray-200 rounded-md bg-white">
                 <span>${nombre}</span>
                 <input type="hidden" name="medicinas[][id]" value="${id}">
@@ -241,25 +321,27 @@ $(document).ready(function () {
                 <button type="button" class="remove-medicina-btn ml-2 bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600">Eliminar</button>
             </li>
         `;
-            $('#selected-medicinas-list').append(item);
-        });
+        $("#selected-medicinas-list").append(item);
+    });
 
-        // Manejar el click en el botón "Eliminar Medicina"
-        $(document).on('click', '.remove-medicina-btn', function () {
-            $(this).closest('li').remove();
-        });
+    // Manejar el click en el botón "Eliminar Medicina"
+    $(document).on("click", ".remove-medicina-btn", function () {
+        $(this).closest("li").remove();
+    });
 
-        // Manejar el click en el botón "Generar Código"
-        $(document).on('click', '#generate-code', function () {
-            const code = generateRandomCode();
-            $('#codigo-receta').text(`Código: ${code}`);
-            $('#receta-form').append(`<input type="hidden" name="codigo_receta" value="${code}">`);
-        });
+    // Manejar el click en el botón "Generar Código"
+    $(document).on("click", "#generate-code", function () {
+        const code = generateRandomCode();
+        $("#codigo-receta").text(`Código: ${code}`);
+        $("#receta-form").append(
+            `<input type="hidden" name="codigo_receta" value="${code}">`
+        );
+    });
 
-        // Función para generar un código aleatorio
-        function generateRandomCode() {
-            return 'RC-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-        }
+    // Función para generar un código aleatorio
+    function generateRandomCode() {
+        return "RC-" + Math.random().toString(36).substr(2, 9).toUpperCase();
+    }
 
     function showExamsInModal(citaId, userId) {
         const url = `/citas/${citaId}/exams/${userId}`;
@@ -273,10 +355,14 @@ $(document).ready(function () {
                     if (response.exams.length > 0) {
                         response.exams.forEach((exam) => {
                             examsHtml += `
-                 <div class="exam-item p-4 border-b border-gray-200" data-exam-id="${exam.id}" data-cita-id="${citaId}">
+                 <div class="exam-item p-4 border-b border-gray-200" data-exam-id="${
+                     exam.id
+                 }" data-cita-id="${citaId}">
                       <h4 class="text-lg font-semibold">${exam.exam_type}</h4>
                       <p>Fecha: ${exam.exam_date}</p>
-                      <p>Estado: ${exam.state === '1' ? 'En proceso' : 'Finalizado'}</p>
+                      <p>Estado: ${
+                          exam.state === "1" ? "En proceso" : "Finalizado"
+                      }</p>
                       <p>Notas: ${exam.notes || "N/A"}</p>
                       <div class="flex gap-2 mt-2">
                        <button class="bg-red-600 text-white rounded px-4 py-2 w-32 btn-delete">Eliminar</button>
@@ -319,7 +405,7 @@ $(document).ready(function () {
             });
     }
 
-    $(document).on('click', '#option-create', function () {
+    $(document).on("click", "#option-create", function () {
         const citaId = $(this).data("cita-id");
 
         Swal.fire({
@@ -332,7 +418,9 @@ $(document).ready(function () {
             <option value="urine">Orina</option>
             <option value="stool">Heces</option>
         </select>
-        <input type="date" id="create-field2" class="form-input" placeholder="Fecha" min="${new Date().toISOString().split('T')[0]}">
+        <input type="date" id="create-field2" class="form-input" placeholder="Fecha" min="${
+            new Date().toISOString().split("T")[0]
+        }">
         <textarea id="create-field3" class="form-textarea h-24" placeholder="Notas"></textarea>
     </form>
     `,
@@ -397,7 +485,7 @@ $(document).ready(function () {
                             Swal.fire(
                                 "Error al crear el examen",
                                 response.message ||
-                                "No se pudo crear el examen",
+                                    "No se pudo crear el examen",
                                 "error"
                             );
                         }
@@ -411,7 +499,7 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on('click', '.btn-delete', function () {
+    $(document).on("click", ".btn-delete", function () {
         const examId = $(this).closest(".exam-item").data("exam-id");
         const citaId = $(this).closest(".exam-item").data("cita-id");
 
@@ -446,7 +534,8 @@ $(document).ready(function () {
                         } else {
                             Swal.fire(
                                 "Error",
-                                response.message || "No se pudo eliminar el examen",
+                                response.message ||
+                                    "No se pudo eliminar el examen",
                                 "error"
                             );
                         }
@@ -460,66 +549,95 @@ $(document).ready(function () {
         });
     });
 
+    $(".results").click(function () {
+        const tr = $(this).closest("tr");
+        const id = tr.data("id");
 
+        $.ajax({
+            url: `/exams/pdf/${id}`,
+            type: "get",
+            success(response) {
+                const pdf_url = response.message;
 
-    $(document).on('click', '.add-results', function () {
-        Swal.fire({
-            title: "Resultado del examen",
-            html: `
-            <form id="create-form">
-                <select id="create-field1" class="form-select">
-                    <option value="" disabled selected>Tipo de Examen</option>
-                    <option value="blood">Sangre</option>
-                    <option value="urine">Orina</option>
-                    <option value="stool">Heces</option>
-                </select>
-                <input type="date" id="create-field2" class="form-input" placeholder="Fecha">
-                <textarea id="create-field3" class="form-textarea h-24" placeholder="Notas"></textarea>
-            </form>`
+                Swal.fire({
+                    title: "Resultado del examen",
+                    html: `
+                    <div class="flex flex-col items-center justify-center w-full h-full">
+                        <canvas class="flex items-center" id="qr_code"></canvas>
+                        <br>
+                        <a id="download_pdf" href="${pdf_url}" download="resultado_examen.pdf">Descargar PDF</a>
+                    </div>
+                `,
+                    showConfirmButton: true,
+                    confirmButtonText: "Ver",
+                    didOpen: () => {
+                        const qrCodeCanvas = document.getElementById("qr_code");
+
+                        // Generar el código QR en el canvas
+                        QRCode.toCanvas(
+                            qrCodeCanvas,
+                            pdf_url,
+                            { width: 200 },
+                            (err) => {
+                                if (err) console.error(err);
+                                console.log("Código QR generado!");
+                            }
+                        );
+                    },
+                    preConfirm: () => {
+                        // Abrir el PDF en una nueva pestaña
+                        window.open(pdf_url, "_blank");
+                    },
+                });
+            },
+            error(response) {
+                console.log(response);
+            },
         });
-    });
-    $(document).on('click', '.end-btn', function () {
-        Swal.fire({
-            icon: 'question',
-            title: '¿Desea finalizar este examen?',
-            showConfirmButton: true,
-            showCancelButton: true,
-            confirmButtonText: 'Sí, finalizar',
-            cancelButtonText: 'Cancelar',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const tr = $(this).closest("tr");
-                const id = tr.data('id');
-                $.ajax({
-                    url: `/exams/end/${id}`,
-                    type: 'PATCH',
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                            "content"
-                        ),
-                    },
-                    success(response) {
-                        if (response.success) {
-                            Swal.fire({
-                                icon: "success",
-                                title: "Examen Finalizado",
-                                timer: 1500,
-                            }).then(() => {
-                                window.location.reload();
-                            });
-                        } else {
-                            Swal.fire(
-                                "Error",
-                                response.message || "No se pudo finalizar el examen",
-                                "error"
-                            );
-                        }
-                    },
-                    error(response) {
-                        console.log(response);
-                    }
-                })
-            }
+        $(document).on("click", ".end-btn", function () {
+            Swal.fire({
+                icon: "question",
+                title: "¿Desea finalizar este examen?",
+                showConfirmButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Sí, finalizar",
+                cancelButtonText: "Cancelar",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const tr = $(this).closest("tr");
+                    const id = tr.data("id");
+                    $.ajax({
+                        url: `/exams/end/${id}`,
+                        type: "PATCH",
+                        headers: {
+                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                                "content"
+                            ),
+                        },
+                        success(response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Examen Finalizado",
+                                    timer: 1500,
+                                }).then(() => {
+                                    window.location.reload();
+                                });
+                            } else {
+                                Swal.fire(
+                                    "Error",
+                                    response.message ||
+                                        "No se pudo finalizar el examen",
+                                    "error"
+                                );
+                            }
+                        },
+                        error(response) {
+                            console.log(response);
+                        },
+                    });
+                }
+            });
         });
     });
 });
