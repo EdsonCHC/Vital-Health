@@ -1,5 +1,5 @@
 <!-- Resoluciones altas -->
-<doc <nav class="hidden lg:flex rounded-md w-60 h-screen flex-col justify-between overflow-y-auto">
+ <nav class="hidden lg:flex rounded-md w-60 h-screen flex-col justify-between overflow-y-auto">
   <div class="bg-gray-50 h-full">
     <div class="flex justify-center py-10 shadow-sm pr-4">
       <object data="{{asset('storage/svg/logo.svg')}}" class="w-64" type="image/svg+xml"></object>
@@ -66,29 +66,21 @@
 
   <!-- Resoluciones medias y pequeñas -->
   <div
-    class="md:flex lg:hidden fixed bottom-0 w-full rounded-tl-3xl rounded-tr-3xl  bg-white shadow flex justify-between px-6 py-4">
+    class="fixed bottom-0 w-full bg-white shadow lg:hidden flex justify-between px-6 py-4 rounded-tl-3xl rounded-tr-3xl">
     <a href="/service_doc" class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
-      <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/servicio.svg')}}" type="image/svg+xml" />
+      <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/servicio.svg')}}" alt="Servicio" />
     </a>
     <a href="/files_doc" class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
-      <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/paciente.svg')}}" type="image/svg+xml" />
+      <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/paciente.svg')}}" alt="Expedientes" />
     </a>
     <a href="/doctor"
-      class="relative inline-block bg-green-500 rounded-full py-2 px-2 hover:bg-gray-400 transition-colors duration-300">
-      <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/homee.svg')}}" type="image/svg+xml" />
+      class="relative bg-green-500 rounded-full py-2 px-2 hover:bg-gray-400 transition-colors duration-300">
+      <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/homee.svg')}}" alt="Inicio" />
     </a>
     <a href="/citas_doc" class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
-      <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/cita.svg')}}" type="image/svg+xml" />
+      <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/cita.svg')}}" alt="Citas" />
     </a>
     <a href="/program_doc" class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
-      <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/calendar.svg')}}" type="image/svg+xml" />
+      <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/calendar.svg')}}" alt="Programación" />
     </a>
-  </div>
-
-  <!-- Resoluciones altas -->
-
-
-
-  <div class="hidden lg:flex fixed bottom-16 lg:bottom-0 right-0 mb-4 mr-4">
-    <a href="#" class=""><img src="{{asset('storage/svg/chat.svg')}}" alt="chat" class="w-16 p-1 "></a>
   </div>

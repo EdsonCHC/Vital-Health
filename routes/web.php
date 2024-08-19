@@ -104,8 +104,13 @@ Route::middleware(['auth:doctor'])->group(function () {
     //
     Route::get('/citas/{cita_id}/check-end', [ExamController::class, 'checkAndEndCita']);
     Route::post('/citas/{cita_id}/end', [ExamController::class, 'endCita']);
-    //
-    Route::post('/citas/{cita_id}/{doctor_id}/videollamada', [VideollamadaController::class, 'store']);
+    Route::post('/recetas', [ExamController::class, 'store'])->name('recetas.create');
+    Route::get('/recetas/fetch-prescription-form-data', [ExamController::class, 'fetchPrescriptionFormData'])->name('recetas.fetchFormData');
+    Route::get('/historical-appointments/{doctorId}', [CitaController::class, 'historicalAppointments'])->name('historical.appointments');
+    Route::post('/citas', [CitaController::class, 'store_doc']);
+    Route::get('/pacientes', [CitaController::class, 'getPatients']);
+    Route::get('/citas/{id}', [CitaController::class, 'show_doc']);
+
 });
 
 
@@ -175,6 +180,10 @@ Route::middleware('auth:laboratorio')->group(function () {
     Route::delete('/exams/delete/{id}', [ExamController::class, 'delete'])->name('exams.delete');
     //
     Route::patch('/exams/end/{id}', [ExamController::class, 'endExamen'])->name('exams.delete');
+    //    
+    Route::post('/exams/pdf/{id}', [ExamController::class, 'updatePDF'])->name('exams.update.pdf');
+    //
+    Route::get('/exams/pdf/{id}', [ExamController::class, 'getPdfUrl'])->name('exams.get.pdf');
 });
 
 

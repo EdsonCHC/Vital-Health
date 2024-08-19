@@ -54,10 +54,12 @@
                                 <td class="py-3 px-6 border-b">{{$examen->exam_date}}</td>
                                 <td class="py-3 px-6 border-b">{{$examen->state === '1' ? "Pendiente" : "Finalizado"}}</td>
                                 <td class="py-3 px-6 border-b text-center">
-                                    <button
-                                        class="add-results inline-block px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600 font-medium transition-colors duration-300 result-btn"
+                                    @if ($examen->pdf_file !== null)
+                                        <button
+                                            class="results inline-block px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600 font-medium transition-colors duration-300 result-btn"
                                          >Resultados</button>
-                                    <span class="mx-2">|</span>
+                                        <span class="mx-2">|</span>
+                                    @endif
                                     @if ($examen->state !== '0')
                                         <button
                                             class="end-btn inline-block px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 font-medium transition-colors duration-300">Finalizar</button>

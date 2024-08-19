@@ -4,22 +4,22 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
-    
+return new class extends Migration
+{
     public function up(): void
     {
         Schema::create('medicinas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->unique();  
-            $table->text('descripcion')->nullable(); 
+            $table->string('nombre')->unique();
+            $table->text('descripcion')->nullable();
             $table->string('tipo');
-            $table->string('stock'); 
-            $table->string('estado')->default('Disponible'); 
-            $table->timestamps(); 
+            $table->integer('stock');
+            $table->string('estado')->default('Disponible');
+            $table->timestamps();
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('medicinas');
     }

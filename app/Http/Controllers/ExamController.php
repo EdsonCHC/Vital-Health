@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Exams;
 use App\Models\citas;
+use App\Models\Receta;
+use App\Models\Medicina;
+use Illuminate\Support\Facades\Log;
+
+
 
 
 class ExamController extends Controller
@@ -52,17 +57,63 @@ class ExamController extends Controller
         }
     }
 
+    public function fetchPrescriptionFormData(Request $request)
+    {
+        $cita = Citas::find($request->cita_id);
+
+        if (!$cita) {
+            return response()->json(['success' => false, 'message' => 'Cita no encontrada'], 404);
+        }
+
+        $doctor_id = $cita->doctor_id;
+        $patient_id = $cita->patient_id;
+
+        $medicinas = Medicina::all();
+
+        return response()->json([
+            'success' => true,
+            'doctor_id' => $doctor_id,
+            'patient_id' => $patient_id,
+            'medicinas' => $medicinas
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'cita_id' => 'required|exists:citas,id',
+            'doctor_id' => 'required|exists:doctors,id',
+            'patient_id' => 'required|exists:patients,id',
+            'fecha_entrega' => 'required|date',
+            'hora_entrega' => 'required|date_format:H:i',
+            'titulo' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'codigo_receta' => 'required|string|max:255',
+            'medicinas' => 'required|array',
+            'medicinas.*.id' => 'required|exists:medicinas,id',
+            'medicinas.*.cantidad' => 'required|integer|min:1'
+        ]);
+
+        $receta = Receta::create($validatedData);
+        return response()->json(['success' => true, 'receta' => $receta]);
+    }
+
+
+    private function generateCodigoReceta()
+    {
+        return strtoupper(uniqid('REC', true));
+    }
 
     public function endCita(Request $request, $cita_id)
     {
         try {
             $cita = Citas::findOrFail($cita_id);
             $cita->description = $request->input('description');
-            $cita->state = '0'; 
+            $cita->state = '0';
             $cita->save();
-    
+
             Exams::where('cita_id', $cita_id)->update(['state' => '0']);
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'Cita finalizada y descripción actualizada correctamente.',
@@ -80,7 +131,7 @@ class ExamController extends Controller
             ], 500);
         }
     }
-    
+
 
     public function getExams($cita_id, $user_id)
     {
@@ -201,6 +252,63 @@ class ExamController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Error Finalizar el examen',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+
+    }
+
+    public function updatePDF(Request $request, $exam_id)
+    {
+
+        try {
+
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $file = $request->file('file');
+                $destinationPath = public_path('pdf_files'); // Ruta en el directorio public
+                $fileName = time() . '_' . $file->getClientOriginalName(); // Genera un nombre único para el archivo
+                $file->move($destinationPath, $fileName); // Mueve el archivo al directorio
+
+                $pdf_url = url('pdf_files/' . $fileName);
+
+                // Buscar y actualizar el registro del examen
+                $examen = Exams::findOrFail($exam_id);
+                $examen->pdf_file = $pdf_url;
+                $examen->save();
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Archivo enviado correctamente',
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No se ha recibido ningún archivo.',
+                ], 400);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function getPdfUrl($exam_id)
+    {
+
+        try {
+
+            $examen = Exams::findOrFail($exam_id);
+
+            return response()->json([
+                'success' => true,
+                'message' => $examen->pdf_file,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
                 'error' => $e->getMessage(),
             ], 500);
         }
