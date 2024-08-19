@@ -76,7 +76,8 @@ Route::middleware('auth')->group(function () {
 // Rutas para el doctor
 Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/doctor', [DoctorController::class, 'index'])->name('doctor');
-    // 
+
+    //
     Route::get('/citas_doc', [CitaController::class, 'showCitas'])->name('doctor.citas_doc');
     // 
     Route::delete('/citas/{id}', [CitaController::class, 'destroy'])->name('citas.destroy');

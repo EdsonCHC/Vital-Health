@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\citas;
 use Illuminate\Http\Request;
 use App\Models\Doctor;
+use App\Models\Usuario;
+use App\Models\Receta;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -14,9 +17,20 @@ class DoctorController extends Controller
     public function index()
     {
         $doctor = Auth::guard('doctor')->user();
-        return view('doctor.doctor', compact('doctor'));
+        $totalPatients = Usuario::count(); 
+        $totalCitas = citas::where('doctor_id', $doctor->id)->count(); 
+        $totalRecetas = Receta::where('doctor_id', $doctor->id)->count();
+    
+        // Obtener las dos citas más recientes
+        $recentCitas = citas::where('doctor_id', $doctor->id)
+                            ->orderBy('date', 'desc') 
+                            ->limit(2) 
+                            ->get(); 
+    
+        return view('doctor.doctor', compact('doctor', 'totalPatients', 'totalCitas', 'totalRecetas', 'recentCitas'));
     }
-
+    
+    
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
