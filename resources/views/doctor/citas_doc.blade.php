@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citas</title>
     <!-- Incluir Tailwind CSS -->
-    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/js/doctor.js', 'resources/js/exams.js'])
+    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/js/doc_citas.js', 'resources/js/doctor.js'])
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
 
@@ -56,13 +56,20 @@
                                         <img src="{{ asset('storage/svg/filtro.svg') }}" alt="Filtro" class="h-5 w-5">
                                     </div>
                                 </label>
+                                <div class=" my-4 lg:flex lg:justify-end">
+                                <a id="show-citas" href="#"
+                                    class="w-full text-sm lg:w-40 h-12 text-white font-semibold bg-vh-green lg:text-lg tracking-wide shadow-xl lg:my-2 lg:mx-4 rounded-xl hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center">
+                                    <p class="flex justify-center mt-2">Historial</p>
+                                </a>
                             </div>
-                            <div class="w-1/2 my-4 lg:flex lg:justify-end">
+                            </div>
+                            <div class=" my-4 lg:flex lg:justify-end">
                                 <a href="/login" target="_self"
                                     class="w-full text-sm lg:w-40 h-12  text-white font-semibold bg-vh-green lg:text-lg tracking-wide shadow-xl lg:my-2 lg:mx-4 rounded-xl hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center ">
                                     <p class="flex justify-center mt-2">Nueva Cita</p>
                                 </a>
                             </div>
+                            
                         </div>
                         <!-- Encabezado de la tabla -->
                         <div class="w-auto h-14 flex justify-around items-center my-5 mx-4 bg-vh-alice-blue rounded-md">

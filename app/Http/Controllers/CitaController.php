@@ -13,18 +13,22 @@ class CitaController extends Controller
 {
     public function showCitas()
     {
-        // Obtén el doctor autenticado
         $doctor = auth()->user();
         
-        // Obtén las citas del doctor autenticado
         $citas = Citas::where('doctor_id', $doctor->id)->get();
     
-        // Devuelve la vista con los datos
         return view('doctor.citas_doc', compact('doctor', 'citas'));
     }
    
-    
+    public function historicalAppointments($doctorId)
+    {
+        $appointments = Citas::with(['patient', 'category'])
+                             ->where('doctor_id', $doctorId)
+                             ->where('state', 0)
+                             ->get();
 
+        return response()->json($appointments);
+    }
 
 
     public function update(Request $request, $id)

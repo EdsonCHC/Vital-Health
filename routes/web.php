@@ -109,6 +109,9 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::post('/citas/{cita_id}/end', [ExamController::class, 'endCita']);
     Route::post('/recetas', [ExamController::class, 'store'])->name('recetas.create');
     Route::get('/recetas/fetch-prescription-form-data', [ExamController::class, 'fetchPrescriptionFormData'])->name('recetas.fetchFormData');
+    Route::get('/historical-appointments/{doctorId}', [CitaController::class, 'historicalAppointments'])->name('historical.appointments');
+
+
 });
 
 
