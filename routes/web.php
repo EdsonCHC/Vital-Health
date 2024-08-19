@@ -113,6 +113,8 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::post('/citas', [CitaController::class, 'store_doc']);
     Route::get('/pacientes', [CitaController::class, 'getPatients']);
     Route::get('/citas/{id}', [CitaController::class, 'show_doc']);
+    Route::get('/doctor/{id}', [DoctorController::class, 'showDoctorWithAppointments'])->name('doctor.show');
+
 });
 
 

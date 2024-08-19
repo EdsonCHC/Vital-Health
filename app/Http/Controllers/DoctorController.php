@@ -21,7 +21,6 @@ class DoctorController extends Controller
         $totalCitas = citas::where('doctor_id', $doctor->id)->count(); 
         $totalRecetas = Receta::where('doctor_id', $doctor->id)->count();
     
-        // Obtener las dos citas más recientes
         $recentCitas = citas::where('doctor_id', $doctor->id)
                             ->orderBy('date', 'desc') 
                             ->limit(2) 
@@ -29,8 +28,9 @@ class DoctorController extends Controller
     
         return view('doctor.doctor', compact('doctor', 'totalPatients', 'totalCitas', 'totalRecetas', 'recentCitas'));
     }
-    
-    
+
+  
+
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
