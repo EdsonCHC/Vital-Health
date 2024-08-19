@@ -73,9 +73,14 @@
                     </ul>
                 </div>
             </div>
-            <a href="/user">
-                <img src="{{ asset('storage/svg/user.svg') }}" alt="noti_icon"
-                    class="w-full p-2 bg-vh-gray-light rounded-full">
+            <a href="/user" class=" w-10 h-auto">
+                @if (Auth::check())
+                    <img src="{{ Auth::user()->img }}" alt="noti_icon"
+                        class="w-full h-full p-[2px] bg-vh-gray-light rounded-full">
+                @else
+                    <img src="{{ asset('storage/svg/user.svg') }}" alt="noti_icon"
+                        class="w-full p-2 bg-vh-gray-light rounded-full">
+                @endif
             </a>
         </div>
 
