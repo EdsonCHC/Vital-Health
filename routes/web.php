@@ -37,7 +37,7 @@ Route::post('/login', [UsuarioController::class, 'show']);
 Route::view('/registro', 'app.registro');
 //
 Route::post('/registro', [UsuarioController::class, 'store']);
-//  
+//
 Route::get('/', [UsuarioController::class, 'showDoctors']);
 
 
@@ -79,7 +79,7 @@ Route::middleware(['auth:doctor'])->group(function () {
 
     //
     Route::get('/citas_doc', [CitaController::class, 'showCitas'])->name('doctor.citas_doc');
-    // 
+    //
     Route::delete('/citas/{id}', [CitaController::class, 'destroy'])->name('citas.destroy');
     //
     Route::view('/allocation', 'doctor.allocation');
@@ -103,6 +103,8 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::post('/citas/{cita_id}/{doctor_id}/exams', [ExamController::class, 'create']);
     Route::delete('/citas/{cita_id}/exams/{exam_id}', [ExamController::class, 'destroy']);
     //
+    Route::post('/citas/{cita_id}/{doctor_id}/videollamada', [VideollamadaController::class, 'store']);
+    //
     Route::get('/citas/{cita_id}/check-end', [ExamController::class, 'checkAndEndCita']);
     Route::post('/citas/{cita_id}/end', [ExamController::class, 'endCita']);
     Route::post('/recetas', [ExamController::class, 'store'])->name('recetas.create');
@@ -111,7 +113,6 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::post('/citas', [CitaController::class, 'store_doc']);
     Route::get('/pacientes', [CitaController::class, 'getPatients']);
     Route::get('/citas/{id}', [CitaController::class, 'show_doc']);
-
 });
 
 
@@ -159,7 +160,7 @@ Route::middleware('auth:admin')->group(function () {
 //Rutas del laboratorio
 Route::middleware('auth:laboratorio')->group(function () {
     Route::get('/index_lab', [LaboratorioController::class, 'index'])->name('index');
-    // 
+    //
     Route::get('/Exam', [ExamController::class, 'index'])->name('Exam');
     //
     Route::view('/Medicina', 'laboratorio.Medicina')->name('Medicina');
@@ -181,7 +182,7 @@ Route::middleware('auth:laboratorio')->group(function () {
     Route::delete('/exams/delete/{id}', [ExamController::class, 'delete'])->name('exams.delete');
     //
     Route::patch('/exams/end/{id}', [ExamController::class, 'endExamen'])->name('exams.delete');
-    //    
+    //
     Route::post('/exams/pdf/{id}', [ExamController::class, 'updatePDF'])->name('exams.update.pdf');
     //
     Route::get('/exams/pdf/{id}', [ExamController::class, 'getPdfUrl'])->name('exams.get.pdf');
@@ -205,7 +206,7 @@ Route::fallback(function () {
 
 //qr
 Route::get('/qrcode', function () {
-    return QrCode::size(200)->generate('https://google.com'); // Es porque hay que actualizar el composer 
+    return QrCode::size(200)->generate('https://google.com'); // Es porque hay que actualizar el composer
 });
 
 Route::get('/pdf', function () {

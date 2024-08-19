@@ -35,10 +35,18 @@ $(document).ready(function () {
                 const roomName = document.querySelector("#roomName").value;
                 const date = document.querySelector("#date").value;
                 const hour = document.querySelector("#hour").value;
-
+                const minLength = 8;
+                
                 if (!roomName || !date || !hour) {
                     Swal.showValidationMessage(
                         "Por favor, completa todos los campos"
+                    );
+                    return false;
+                }
+
+                if (roomName < minLength) {
+                    Swal.showValidationMessage(
+                        "El nombre de la sala debe ser mas largo"
                     );
                     return false;
                 }
