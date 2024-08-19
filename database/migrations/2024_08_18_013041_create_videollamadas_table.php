@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('enlace')->nullable();
 
             $table->foreignId('cita_id')->constrained('citas');
-            $table->foreignId('doctor_id')->constrained('deoctors');
+            $table->foreignId('doctor_id')->constrained('doctors');
             $table->foreignId('patient_id')->constrained('patients');
             $table->timestamps();
         });
