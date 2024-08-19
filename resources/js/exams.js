@@ -58,6 +58,44 @@ $(document).ready(function () {
         });
     });
 
+    $(".delete-btn").click(function () {
+        const tr = $(this).closest("tr");
+        const id = tr.data("id");
+
+        Swal.fire({
+            title: "Eliminar Examen",
+            text: "¿Estás seguro de que deseas eliminar este examen?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: `/exams/delete/${id}`,
+                    type: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ),
+                    },
+                    success(response) {
+                        Swal.fire({
+                            title: "Examen eliminado correctamente",
+                            timer: 1500,
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    },
+                    error(response) {
+                        console.log(response);
+                        Swal.fire("Error al eliminar el examen");
+                    },
+                });
+            }
+        });
+    });
+
     $(".end-btn").click(function () {
         Swal.fire({
             icon: "question",
