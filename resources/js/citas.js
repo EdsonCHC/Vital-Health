@@ -54,14 +54,12 @@ $(document).ready(function () {
     }
     $("#menu-button").click(async function () {
         try {
-            // Realiza una solicitud AJAX para obtener las citas completadas del usuario
             const response = await $.ajax({
                 url: '/citas/completadas',
                 type: 'GET',
                 dataType: 'json'
             });
 
-            // Procesa la respuesta y crea el contenido de la alerta
             let citasHtml = '<div class="p-4">';
             if (response.length === 0) {
                 citasHtml += '<p class="text-center text-gray-500">No hay citas finalizadas.</p>';

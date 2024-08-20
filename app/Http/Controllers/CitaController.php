@@ -114,10 +114,9 @@ class CitaController extends Controller
     {
         $pacienteId = Auth::id();
 
-        // Filtra las citas por estado (state = 1)
         $citas = Citas::with('category', 'doctor')
             ->where('patient_id', $pacienteId)
-            ->where('state', 1) // Filtra por estado
+            ->where('state', 1) 
             ->whereNotNull('doctor_id')
             ->get();
 
@@ -128,7 +127,6 @@ class CitaController extends Controller
     {
         $pacienteId = Auth::id();
 
-        // Obtener citas finalizadas (state=0) para el usuario autenticado
         $citas = Citas::where('patient_id', $pacienteId)
             ->where('state', 0)
             ->get();

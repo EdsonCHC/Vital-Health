@@ -8,6 +8,7 @@ use App\Models\citas;
 use App\Models\Receta;
 use App\Models\Medicina;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -56,6 +57,28 @@ class ExamController extends Controller
             ], 500);
         }
     }
+    public function examsPaciente(Request $request)
+    {
+        $pacienteId = Auth::id();
+
+        $examenes = Exams::where('patient_id', $pacienteId)
+            ->where('state', 1)
+            ->get(['exam_type', 'exam_date', 'notes']);
+
+        return view('app.exams', compact('examenes'));
+    }
+
+    public function examenesCompletados()
+    {
+        $pacienteId = Auth::id();
+
+        $examenes = Exams::where('patient_id', $pacienteId)
+            ->where('state', 0)
+            ->get();
+
+        return response()->json($examenes);
+    }
+
 
     public function fetchPrescriptionFormData(Request $request)
     {

@@ -76,10 +76,16 @@
                                 </label>
                                 <label class="block text-lg font-semibold">
                                     Género *
-                                    <input type="text" name="gender" value="{{ $user->gender }}"
+                                    <select name="gender"
                                         class="w-full h-10 font-normal border-2 border-solid border-vh-green rounded-lg p-2 outline-none text-input"
-                                        required readonly>
+                                        required readonly > 
+                                        <option value="Mujer" {{ $user->gender === 'Mujer' ? 'selected' : '' }}>Mujer
+                                        </option>
+                                        <option value="Hombre" {{ $user->gender === 'Hombre' ? 'selected' : '' }}>Hombre
+                                        </option>
+                                    </select>
                                 </label>
+
                                 <label class="block text-lg font-semibold">
                                     Fecha de nacimiento *
                                     <input type="date" name="birth" value="{{ $user->birth }}"

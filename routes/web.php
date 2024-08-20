@@ -55,6 +55,8 @@ Route::middleware('auth')->group(function () {
     Route::view('/report', 'app.report');
     //
     Route::view('/examen', 'app.exams');
+    Route::get('/examen', [ExamController::class, 'examsPaciente'])->name('exams.paciente');
+    Route::get('/examenes/completados', [ExamController::class, 'examenesCompletados']);
 
     //
     Route::view('/area', 'app.area');
