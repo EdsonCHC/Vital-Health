@@ -27,10 +27,14 @@
                     <p class="text-3xl text-justify mb-4 font-bold text-gray-400 mx-4 -mt-1">Transformamos tu bienestar
                         con atención médica de calidad, dedicada a mantenerte saludable y en óptimas condiciones</p>
                 </div>
-                <a href="/login" target="_self"
-                    class="w-4/5 lg:w-2/5 h-12 text-white font-bold bg-vh-green text-lg tracking-wide shadow-xl my-10 mx-4 rounded-full hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
-                    Regístrate ahora
-                </a>
+                @guest
+                    <a href="/login" target="_self"
+                        class="w-4/5 lg:w-2/5 h-12 text-white font-bold bg-vh-green text-lg tracking-wide shadow-xl my-10 mx-4 rounded-full hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
+                        Regístrate ahora
+                    </a>
+                @endguest
+
+
             </div>
         </div>
         <div class="w-1/2 hidden lg:flex">
@@ -98,11 +102,13 @@
         <div class="w-full h-auto">
             <div>
                 <h2 class="font-bold text-xl text-vh-green lg:font-bold  lg:text-4xl">Nuestros Doctores</h2>
-                <p class="text-sm font-bold text-gray-400 mx-96 mt-2">Los doctores son esenciales para la salud y el
-                    bienestar de la sociedad,</p>
-                <p class="text-sm font-bold text-gray-400 mx-96 mt-2"> ya que proporcionan atención médica crucial,
-                    diagnósticos precisos y
-                    tratamientos eficaces.</p>
+
+                <p class="text-sm font-bold text-gray-400 mx-96 mt-2 hidden lg:block">
+                    Los doctores son esenciales para la salud y el bienestar de la sociedad,
+                </p>
+                <p class="text-sm font-bold text-gray-400 mx-96 mt-2 hidden lg:block">
+                    ya que proporcionan atención médica crucial, diagnósticos precisos y tratamientos eficaces.
+                </p>
             </div>
             <div class="w-full flex grow-0 flex-wrap items-center justify-center my-8">
                 @php
@@ -137,12 +143,12 @@
                     </div>
                 @else
                     @foreach ($doctors as $doctor)
-                            <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                                <h2 class="text-lg font-bold mb-2 text-vh-green">{{ $doctor->name }}</h2>
-                                <p class="text-sm font-bold text-gray-400 mt-2">{{ $doctor->category->nombre }}</p>
-                                <p class="text-md text-justify text-vh-green block leading-7">{{ $doctor->description }}
-                                </p>
-                            </div>
+                        <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
+                            <h2 class="text-lg font-bold mb-2 text-vh-green">{{ $doctor->name }}</h2>
+                            <p class="text-sm font-bold text-gray-400 mt-2">{{ $doctor->category->nombre }}</p>
+                            <p class="text-md text-justify text-vh-green block leading-7">{{ $doctor->description }}
+                            </p>
+                        </div>
                     @endforeach
                 @endif
 
@@ -188,14 +194,12 @@
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{ asset('storage/svg/eye.svg') }}" type="image/svg+xml"
-                        class="w-10"></object>
+                    <object data="{{ asset('storage/svg/eye.svg') }}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Oculista</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{ asset('storage/svg/derma_hand.svg') }}" type="image/svg+xml"
-                        class="w-10"></object>
+                    <object data="{{ asset('storage/svg/derma_hand.svg') }}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Dermatología</p>
                 </div>
                 <div
@@ -205,14 +209,12 @@
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{ asset('storage/svg/heart.svg') }}" type="image/svg+xml"
-                        class="w-10"></object>
+                    <object data="{{ asset('storage/svg/heart.svg') }}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Atención primaria</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{ asset('storage/svg/brain.svg') }}" type="image/svg+xml"
-                        class="w-10"></object>
+                    <object data="{{ asset('storage/svg/brain.svg') }}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Psiquiátrico</p>
                 </div>
             </div>
@@ -238,10 +240,14 @@
                         looking for a new provider.</p>
                 </div>
             </div>
-            <a href="/login" target="_self"
-                class="w-2/5 lg:w-2/3 h-12 text-white bg-vh-green text-base lg:text-2xl shadow-xl m-5 rounded-full hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center content-center">
-                Comienza ya
-            </a>
+            @guest
+                <a href="/login" target="_self"
+                    class="w-2/5 lg:w-2/3 h-12 text-white bg-vh-green text-base lg:text-2xl shadow-xl m-5 rounded-full hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center content-center">
+                    Comienza ya
+                </a>
+            @endguest
+
+
         </div>
     </div>
 
@@ -286,10 +292,13 @@
                     Únase
                     a nosotros y brindaremos una asistencia sanitaria de calidad.</h2>
                 <div class="flex lg:justify-start justify-center">
-                    <a href="/login" target="_self"
-                        class="w-3/5  h-10 content-center text-white bg-vh-green text-sm lg:text-base xl:text-lg shadow-xl my-5 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center mx-4">
-                        Únete ya
-                    </a>
+                    @guest
+                        <a href="/login" target="_self"
+                            class="w-3/5  h-10 content-center text-white bg-vh-green text-sm lg:text-base xl:text-lg shadow-xl my-5 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center mx-4">
+                            Únete ya
+                        </a>
+                    @endguest
+
                 </div>
             </div>
         </div>

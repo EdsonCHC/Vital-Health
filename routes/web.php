@@ -40,14 +40,22 @@ Route::post('/registro', [UsuarioController::class, 'store']);
 //
 Route::get('/', [UsuarioController::class, 'showDoctors']);
 
+Route::view('/about', 'app.about');
 
 // Middlewares para el usuario
 Route::middleware('auth')->group(function () {
     Route::view('/medicina', 'app.medicine');
     //
+    //
+    Route::view('/citas', 'app.citas');
+    Route::get('/citas', [CitaController::class, 'citasPaciente'])->name('citas.paciente');
+    //
+    Route::get('/citas/completadas', [CitaController::class, 'citasFinalizadas'])->name('citas.completadas');
+
     Route::view('/report', 'app.report');
     //
     Route::view('/examen', 'app.exams');
+
     //
     Route::view('/area', 'app.area');
     //
@@ -57,7 +65,6 @@ Route::middleware('auth')->group(function () {
     //
     Route::get('create', [CitaController::class, 'create'])->name('citas.create');
     //
-    Route::view('/citas', 'app.citas');
     //
     // Route::view('/area', [CitaController::class, 'index'])->name('app.area');
     Route::get('/area', [UsuarioController::class, 'indexu'])->name('user');
