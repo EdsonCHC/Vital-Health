@@ -9,7 +9,7 @@ use App\Http\Controllers\CitaController;
 use App\Http\Controllers\CategoríaController;
 use App\Http\Controllers\VideollamadaController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\recetaController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\ExpedienteController;
 use Illuminate\Support\Facades\Route;
@@ -182,6 +182,11 @@ Route::middleware('auth:laboratorio')->group(function () {
     //
     Route::get('medicinas/{medicina}/edit', [MedicineController::class, 'edit'])->name('medicinas.edit');
     //
+    Route::get('/Recetas', [recetaController::class, 'index'])->name('recetas.index');
+    Route::get('/recetas/{id}', [RecetaController::class, 'fetchRecetaDetails']);
+    Route::post('/recetas/{id}/enviar', [RecetaController::class, 'enviarReceta']);
+    Route::delete('/recetas/{id}/cancelar', [RecetaController::class, 'cancelarReceta']);
+
     Route::put('medicinas/{medicina}', [MedicineController::class, 'update'])->name('medicinas.update');
     //
     Route::delete('/medicinas/{medicina}', [MedicineController::class, 'destroy'])->name('medicinas.destroy');

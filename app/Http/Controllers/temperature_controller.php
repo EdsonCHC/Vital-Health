@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TemperatureRate;
 
-class temperature_model extends Controller
+class temperature_controller extends Controller
 {
     public function storeTemperature(Request $request)
     {
