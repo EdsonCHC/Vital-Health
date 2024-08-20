@@ -32,7 +32,6 @@ $(document).ready(function () {
             });
     });
 
-    // Función para manejar el envío de la receta
     $('.enviar-btn').click(function () {
         const id = $(this).data('id');
 
@@ -58,7 +57,11 @@ $(document).ready(function () {
                             confirmButtonText: 'Aceptar'
                         }).then(() => {
                             $(`#enviar-btn-${id}`).hide();
+                            $(`#cancelar-btn-${id}`).hide();
                             $(`#mensaje-laboratorio-${id}`).text('Medicina en Camino').show();
+
+                            // Actualiza el estado a 'Enviado'
+                            axios.post(`/recetas/${id}/actualizar-estado`, { estado: 'Enviado' });
 
                             // Actualiza el temporizador para mostrar la entrega
                             updateTimer(id, receta.fecha_entrega, receta.hora_entrega);
@@ -71,7 +74,6 @@ $(document).ready(function () {
         });
     });
 
-    // Función para manejar la cancelación de la receta
     $('.cancelar-btn').click(function () {
         const id = $(this).data('id');
 
@@ -103,7 +105,6 @@ $(document).ready(function () {
         });
     });
 
-    // Función para actualizar el temporizador
     function updateTimer(id, fechaEntrega, horaEntrega) {
         const fechaEntregaDate = new Date(`${fechaEntrega}T${horaEntrega}`);
         const timerDiv = $(`#timer-${id}`);
@@ -114,9 +115,13 @@ $(document).ready(function () {
             if (diff <= 0) {
                 timerDiv.text('Medicina Entregada');
                 clearInterval(timer);
-                // Opcional: Puedes ocultar los botones si es necesario
                 $(`#enviar-btn-${id}`).hide();
                 $(`#cancelar-btn-${id}`).hide();
+                
+                // Actualiza el estado a 'Entregado'
+                axios.post(`/recetas/${id}/actualizar-estado`, { estado: 'Entregado' }).then(() => {
+                    $(`#mensaje-laboratorio-${id}`).text('Medicina Entregada').show();
+                });
             } else {
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -127,11 +132,10 @@ $(document).ready(function () {
         }, 1000);
     }
 
-    // Mostrar solo el botón si el estado es pendiente
     $('.medicine-card').each(function() {
         const estado = $(this).data('estado');
 
-        if (estado !== 'pendiente') {
+        if (estado === 'Enviado') {
             $(this).find('.enviar-btn').hide();
             $(this).find('.cancelar-btn').hide();
             $(this).find('.mensaje-laboratorio').text('Medicina en Camino').show();
@@ -141,6 +145,10 @@ $(document).ready(function () {
             const horaEntrega = $(this).data('hora-entrega');
             
             updateTimer(id, fechaEntrega, horaEntrega);
+        } else if (estado === 'Entregado') {
+            $(this).find('.enviar-btn').hide();
+            $(this).find('.cancelar-btn').hide();
+            $(this).find('.mensaje-laboratorio').text('Medicina Entregada').show();
         }
     });
 });

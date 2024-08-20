@@ -44,7 +44,7 @@ Route::view('/about', 'app.about');
 
 // Middlewares para el usuario
 Route::middleware('auth')->group(function () {
-    Route::view('/medicina', 'app.medicine');
+    Route::view('/medicina', 'app.medicina');
     //
     //
     Route::view('/citas', 'app.citas');
@@ -57,6 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::view('/examen', 'app.exams');
     Route::get('/examen', [ExamController::class, 'examsPaciente'])->name('exams.paciente');
     Route::get('/examenes/completados', [ExamController::class, 'examenesCompletados']);
+    Route::get('/medicina', [RecetaController::class, 'recetasPaciente'])->name('medicina.paciente');
 
     //
     Route::view('/area', 'app.area');
@@ -183,9 +184,10 @@ Route::middleware('auth:laboratorio')->group(function () {
     Route::get('medicinas/{medicina}/edit', [MedicineController::class, 'edit'])->name('medicinas.edit');
     //
     Route::get('/Recetas', [recetaController::class, 'index'])->name('recetas.index');
-    Route::get('/recetas/{id}', [RecetaController::class, 'fetchRecetaDetails']);
-    Route::post('/recetas/{id}/enviar', [RecetaController::class, 'enviarReceta']);
-    Route::delete('/recetas/{id}/cancelar', [RecetaController::class, 'cancelarReceta']);
+    Route::get('/recetas/{id}', [recetaController::class, 'fetchRecetaDetails']);
+    Route::post('/recetas/{id}/enviar', [recetaController::class, 'enviarReceta']);
+    Route::delete('/recetas/{id}/cancelar', [recetaController::class, 'cancelarReceta']);
+    Route::post('/recetas/{id}/actualizar-estado', [recetaController::class, 'actualizarEstado']);
 
     Route::put('medicinas/{medicina}', [MedicineController::class, 'update'])->name('medicinas.update');
     //
