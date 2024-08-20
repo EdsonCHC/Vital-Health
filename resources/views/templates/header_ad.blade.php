@@ -36,14 +36,6 @@
                     </div>
                     <div
                         class="flex flex-grow items-center ml-14 h-14 rounded-l-3xl transition duration-300 hover:bg-white">
-                        <a href="{{ route('categorias.ad_chats', ['id' => $categoria->id]) }}"
-                            class="flex items-center h-full w-full text-md font-bold text-white hover:text-black tracking-wider">
-                            <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/chat.svg') }}" alt="Chats" />
-                            <span class="">Chats</span>
-                        </a>
-                    </div>
-                    <div
-                        class="flex flex-grow items-center ml-14 h-14 rounded-l-3xl transition duration-300 hover:bg-white">
                         <a href="{{ route('categorias.staff', ['id' => $categoria->id]) }}"
                             class="flex items-center h-full w-full text-md font-bold text-white hover:text-black tracking-wider">
                             <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/staff-icon-black.svg') }}"
@@ -51,14 +43,7 @@
                             <span class="">Personal</span>
                         </a>
                     </div>
-                    <div
-                        class="flex flex-grow items-center ml-14 h-14 rounded-l-3xl transition duration-300 hover:bg-white">
-                        <a href="{{ route('categorias.calendar', ['id' => $categoria->id]) }}"
-                            class="flex items-center h-full w-full text-md font-bold text-white hover:text-black tracking-wider">
-                            <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/calendar.svg') }}" alt="Calendario" />
-                            <span class="">Calendario</span>
-                        </a>
-                    </div>
+                  
                 </div>
             </div>
 

@@ -55,46 +55,98 @@ $(document).ready(function () {
         e.preventDefault();
         const appointmentId = $(this).data('id');
     
+        if (!appointmentId) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'ID de cita no válido.',
+                customClass: {
+                    container: 'swal-container',
+                    popup: 'swal-popup',
+                    title: 'swal-title',
+                    htmlContainer: 'swal-html',
+                    confirmButton: 'swal-confirm-button',
+                }
+            });
+            return;
+        }
+    
         $.ajax({
-            url: `/appointments/${appointmentId}`,
-            type: 'GET',
+            url: '/appointments/details',
+            type: 'POST',
+            data: { id: appointmentId },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success: function (response) {
-                Swal.fire({
-                    title: 'Información de la Cita',
-                    html: `
-                        <strong>ID:</strong> ${response.id || 'No disponible'} <br>
-                        <strong>Fecha:</strong> ${response.date || 'No disponible'} <br>
-                        <strong>Hora:</strong> ${response.hour || 'No disponible'} <br>
-                        <strong>Modalidad:</strong> ${response.modo || 'No disponible'} <br>
-                        <strong>Descripción:</strong> ${response.description || 'No disponible'} <br>
-                        <strong>Estado:</strong> ${response.state || 'No disponible'} <br>
-                        <strong>Paciente ID:</strong> ${response.patient_id || 'No disponible'} <br>
-                        <strong>Categoría ID:</strong> ${response.category_id || 'No disponible'} <br>
-                        <strong>Doctor ID:</strong> ${response.doctor_id || 'No asignado'} <br>
-                    `,
-                    customClass: {
-                        popup: "border-solid border-3 border-vh-green w-11/12 max-w-4xl",
-                        title: "text-2xl font-bold text-gray-800 mb-4",
-                        htmlContainer: "py-4",
-                    },
-                    confirmButtonColor: "#166534",
-                    confirmButtonText: "Cerrar",
-                });
+                console.log(response); // Verifica la respuesta en la consola
+    
+                if (response && response.id) {
+                    let stateClass, stateText;
+    
+                    Swal.fire({
+                        title: 'Información de la Cita',
+                        html: `
+                            <div class="appointment-details">
+                                <strong>ID:</strong> ${response.id || 'No disponible'} <br>
+                                <strong>Fecha:</strong> ${response.date || 'No disponible'} <br>
+                                <strong>Hora:</strong> ${response.hour || 'No disponible'} <br>
+                                <strong>Modalidad:</strong> ${response.modo || 'No disponible'} <br>
+                                <strong>Descripción:</strong> ${response.description || 'No disponible'} <br>
+                                <strong>Paciente:</strong> ${response.patient_name || 'No asignado'} <br>
+                                <strong>Categoría:</strong> ${response.category_name || 'No disponible'} <br>
+                                <strong>Doctor:</strong> ${response.doctor_name || 'No asignado'} <br>
+                                <br>
+                            </div>
+                        `,
+                        customClass: {
+                            container: 'swal-container',
+                            popup: 'swal-popup',
+                            title: 'swal-title',
+                            htmlContainer: 'swal-html',
+                            confirmButton: 'swal-confirm-button',
+                        },
+                        confirmButtonColor: "#28a745",
+                        confirmButtonText: "Cerrar",
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'No se obtuvo una respuesta válida.',
+                        customClass: {
+                            container: 'swal-container',
+                            popup: 'swal-popup',
+                            title: 'swal-title',
+                            htmlContainer: 'swal-html',
+                            confirmButton: 'swal-confirm-button',
+                        }
+                    });
+                }
             },
             error: function (xhr) {
-                console.error('Error:', xhr); // Verifica el error aquí
-                Swal.fire(
-                    'Error!',
-                    'No se pudo obtener la información de la cita.',
-                    'error'
-                );
+                console.error('Error:', xhr.responseText);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: `No se pudo obtener la información de la cita. Estado: ${xhr.status}, ${xhr.statusText}`,
+                    customClass: {
+                        container: 'swal-container',
+                        popup: 'swal-popup',
+                        title: 'swal-title',
+                        htmlContainer: 'swal-html',
+                        confirmButton: 'swal-confirm-button',
+                    }
+                });
             }
         });
     });
     
     
-    
-    
+
+
+
+
 
     $(document).on('click', '#new-appointment-btn', async function (e) {
         e.preventDefault();

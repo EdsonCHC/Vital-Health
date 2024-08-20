@@ -59,6 +59,11 @@ class CitaController extends Controller
         try {
             $cita = Citas::findOrFail($id);
             return response()->json($cita);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            // Manejar el caso donde la cita no se encuentra
+            return response()->json([
+                'message' => 'Cita no encontrada',
+            ], 404);
         } catch (\Exception $e) {
             Log::error('Error fetching appointment: ' . $e->getMessage());
             return response()->json([
@@ -67,19 +72,53 @@ class CitaController extends Controller
             ], 500);
         }
     }
-
+    public function getAppointmentDetails(Request $request)
+    {
+        $appointmentId = $request->input('id');
+    
+        try {
+            $appointment = Citas::findOrFail($appointmentId);
+    
+            // Obtener nombres de las relaciones
+            $patientName = $appointment->patient ? $appointment->patient->name : 'No asignado';
+            $categoryName = $appointment->category ? $appointment->category->nombre : 'No disponible';
+            $doctorName = $appointment->doctor ? $appointment->doctor->name : 'No asignado';
+    
+            return response()->json([
+                'id' => $appointment->id,
+                'date' => $appointment->date,
+                'hour' => $appointment->hour,
+                'modo' => $appointment->modo,
+                'description' => $appointment->description,
+                'state' => $appointment->state,  
+                'patient_name' => $patientName,
+                'category_name' => $categoryName,
+                'doctor_name' => $doctorName,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Cita no encontrada.',
+            ], 404);
+        }
+    }
 
     public function showAppointments($id)
     {
+        if (!is_numeric($id)) {
+            return redirect()->back()->with('error', 'ID de categoría inválido.');
+        }
+    
         $categoria = Categoría::find($id);
         if (!$categoria) {
             return redirect()->back()->with('error', 'La categoría no existe.');
         }
+    
         $citasAsignadas = Citas::where('category_id', $id)->whereNotNull('doctor_id')->get();
         $citasNoAsignadas = Citas::where('category_id', $id)->whereNull('doctor_id')->get();
-
+    
         return view('admin.appointment', compact('categoria', 'citasAsignadas', 'citasNoAsignadas'));
     }
+    
 
     public function getDoctorsByCategory($id)
     {
