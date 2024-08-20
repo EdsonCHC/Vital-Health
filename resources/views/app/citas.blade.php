@@ -37,11 +37,11 @@
                 @else
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         @foreach ($citas as $cita)
-                            <div class="bg-blue-50 p-4 flex flex-col items-center rounded-lg shadow-md">
+                            <div class="bg-green-50 p-4 flex flex-col items-center rounded-lg shadow-md">
                                 <div class="flex justify-end w-full mb-2">
                                     <div class="relative">
                                         <button
-                                            class="h-8 w-8 flex items-center justify-center bg-gray-300 rounded-full focus:outline-none dropdown-toggle">
+                                            class="h-8 w-8 flex items-center justify-center bg-gray-100 rounded-full focus:outline-none dropdown-toggle">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -49,21 +49,18 @@
                                             </svg>
                                         </button>
                                         <div class="hidden ml-2 mt-2 w-36 bg-white rounded-md shadow-lg dropdown-menu absolute">
-                                            <div class="py-1">
 
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-sm text-black hover:bg-gray-100 delete-btn"
-                                                    data-id="{{ $cita->id }}">
-                                                    <img src="{{ asset('storage/svg/trash.svg') }}"
-                                                        class="w-4 h-4 inline-block mr-2" alt="">
-                                                    Eliminar
-                                                </a>
-                                            </div>
+                                            <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 delete-btn"
+                                                data-id="{{ $cita->id }}">
+                                                <img src="{{ asset('storage/svg/trash.svg') }}"
+                                                    class="w-4 h-4 inline-block mr-2" alt="">
+                                                Cancelar
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="w-20 h-20 bg-purple-300 rounded-full mb-4"></div>
+                                <div class="w-20 h-20 bg-green-300 rounded-full mb-4"></div>
 
                                 <div class="text-center border border-gray-300 rounded-lg p-4 bg-white">
                                     <h2 class="text-xl font-semibold">Categoría:

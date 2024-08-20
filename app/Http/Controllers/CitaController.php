@@ -10,6 +10,7 @@ use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\JsonResponse;
 
 class CitaController extends Controller
 {
@@ -32,6 +33,17 @@ class CitaController extends Controller
         return response()->json($appointments);
     }
 
+    public function eliminar($id)
+    {
+        try {
+            $cita = citas::findOrFail($id);
+            $cita->delete();
+
+            return response()->json(['message' => 'Cita eliminada correctamente.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al eliminar la cita.'], 500);
+        }
+    }
 
     public function update(Request $request, $id)
     {
@@ -75,22 +87,22 @@ class CitaController extends Controller
     public function getAppointmentDetails(Request $request)
     {
         $appointmentId = $request->input('id');
-    
+
         try {
             $appointment = Citas::findOrFail($appointmentId);
-    
+
             // Obtener nombres de las relaciones
             $patientName = $appointment->patient ? $appointment->patient->name : 'No asignado';
             $categoryName = $appointment->category ? $appointment->category->nombre : 'No disponible';
             $doctorName = $appointment->doctor ? $appointment->doctor->name : 'No asignado';
-    
+
             return response()->json([
                 'id' => $appointment->id,
                 'date' => $appointment->date,
                 'hour' => $appointment->hour,
                 'modo' => $appointment->modo,
                 'description' => $appointment->description,
-                'state' => $appointment->state,  
+                'state' => $appointment->state,
                 'patient_name' => $patientName,
                 'category_name' => $categoryName,
                 'doctor_name' => $doctorName,
@@ -107,18 +119,18 @@ class CitaController extends Controller
         if (!is_numeric($id)) {
             return redirect()->back()->with('error', 'ID de categoría inválido.');
         }
-    
+
         $categoria = Categoría::find($id);
         if (!$categoria) {
             return redirect()->back()->with('error', 'La categoría no existe.');
         }
-    
+
         $citasAsignadas = Citas::where('category_id', $id)->whereNotNull('doctor_id')->get();
         $citasNoAsignadas = Citas::where('category_id', $id)->whereNull('doctor_id')->get();
-    
+
         return view('admin.appointment', compact('categoria', 'citasAsignadas', 'citasNoAsignadas'));
     }
-    
+
 
     public function getDoctorsByCategory($id)
     {
@@ -155,7 +167,7 @@ class CitaController extends Controller
 
         $citas = Citas::with('category', 'doctor')
             ->where('patient_id', $pacienteId)
-            ->where('state', 1) 
+            ->where('state', 1)
             ->whereNotNull('doctor_id')
             ->get();
 

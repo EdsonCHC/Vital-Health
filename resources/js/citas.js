@@ -8,7 +8,70 @@ $(document).ready(function () {
         mostrarAlerta();
     });
 
-    // Función para mostrar la alerta
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+    });
+
+    $(document).on("click", ".delete-btn", async function (e) {
+        e.preventDefault();
+
+        const citaId = $(this).data("id");
+
+        // Confirmación de eliminación
+        const result = await Swal.fire({
+            title: "Confirmar Cancelar",
+            text: "¿Estás seguro de que deseas cancelar esta cita?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Eliminar",
+            cancelButtonText: "Cancelar",
+            customClass: {
+                confirmButton:
+                    "bg-red-600 text-white font-bold py-2 px-4 rounded",
+                cancelButton:
+                    "bg-gray-300 text-black font-bold py-2 px-4 rounded",
+            },
+        });
+
+        if (result.isConfirmed) {
+            try {
+                await $.ajax({
+                    url: `/citas/${citaId}/eliminar`,
+                    type: "DELETE",
+                    dataType: "json",
+                    success: function (response) {
+                        Swal.fire({
+                            title: "Éxito",
+                            text: "La cita ha sido eliminada.",
+                            icon: "success",
+                            confirmButtonText: "Cerrar",
+                        });
+                        // Opcional: Actualiza la vista o elimina el elemento de la lista
+                    },
+                    error: function (xhr, status, error) {
+                        Swal.fire({
+                            title: "Error",
+                            text: "No se pudo eliminar la cita. Inténtalo de nuevo.",
+                            icon: "error",
+                            confirmButtonText: "Cerrar",
+                        });
+                    },
+                });
+            } catch (error) {
+                Swal.fire({
+                    title: "Error",
+                    text: "No se pudo conectar con el servidor.",
+                    icon: "error",
+                    confirmButtonText: "Cerrar",
+                });
+            }
+        }
+    });
+
+  
+
     async function mostrarAlerta() {
         const result = await Swal.fire({
             title: "Registro de Citas",
@@ -47,25 +110,27 @@ $(document).ready(function () {
             `,
             confirmButtonText: "Aceptar",
             customClass: {
-                container:"custom-swal-container",
-                confirmButton:"hover:bg-vh-green text-white font-bold py-2 px-4 rounded"          
+                container: "custom-swal-container",
+                confirmButton:
+                    "hover:bg-vh-green text-white font-bold py-2 px-4 rounded",
             },
         });
     }
     $("#menu-button").click(async function () {
         try {
             const response = await $.ajax({
-                url: '/citas/completadas',
-                type: 'GET',
-                dataType: 'json'
+                url: "/citas/completadas",
+                type: "GET",
+                dataType: "json",
             });
 
             let citasHtml = '<div class="p-4">';
             if (response.length === 0) {
-                citasHtml += '<p class="text-center text-gray-500">No hay citas finalizadas.</p>';
+                citasHtml +=
+                    '<p class="text-center text-gray-500">No hay citas finalizadas.</p>';
             } else {
                 citasHtml += '<ul class="space-y-2">';
-                response.forEach(cita => {
+                response.forEach((cita) => {
                     citasHtml += `
                     <li class="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
                         <div class="flex justify-between mb-2">
@@ -83,48 +148,50 @@ $(document).ready(function () {
                     </li>
                     `;
                 });
-                citasHtml += '</ul>';
+                citasHtml += "</ul>";
             }
-            citasHtml += '</div>';
+            citasHtml += "</div>";
 
             // Muestra la alerta con las citas
             await Swal.fire({
-                title: 'Citas Finalizadas',
+                title: "Citas Finalizadas",
                 html: citasHtml,
-                confirmButtonText: 'Cerrar',
+                confirmButtonText: "Cerrar",
                 customClass: {
-                    container: 'custom-swal-container',
-                    title: 'text-lg font-bold',
-                    htmlContainer: 'text-sm'
-                }
+                    container: "custom-swal-container",
+                    title: "text-lg font-bold",
+                    htmlContainer: "text-sm",
+                },
             });
         } catch (error) {
             Swal.fire({
-                title: 'Error',
-                text: 'No se pudieron cargar las citas.',
-                icon: 'error',
-                confirmButtonText: 'Cerrar'
+                title: "Error",
+                text: "No se pudieron cargar las citas.",
+                icon: "error",
+                confirmButtonText: "Cerrar",
             });
         }
     });
-    
+
     // Event listener para cambiar el estilo de los botones de requisitos al hacer clic
     $(document).on("click", ".btn-requisito", function () {
         $(this).toggleClass("btn-requisito-selected");
     });
 
     document.addEventListener("click", function (event) {
-        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
         dropdownToggles.forEach(function (toggle) {
             const dropdownMenu = toggle.nextElementSibling;
-            if (toggle.contains(event.target) && dropdownMenu.classList.contains('hidden')) {
-                dropdownMenu.classList.remove('hidden');
+            if (
+                toggle.contains(event.target) &&
+                dropdownMenu.classList.contains("hidden")
+            ) {
+                dropdownMenu.classList.remove("hidden");
             } else {
-                dropdownMenu.classList.add('hidden');
+                dropdownMenu.classList.add("hidden");
             }
         });
     });
-
 
     document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("menu-items").classList.add("hidden");
@@ -140,13 +207,11 @@ $(document).ready(function () {
     });
 
     document.addEventListener("click", function (event) {
-        var isClickInsideMenu = menuButton.contains(event.target) || menuItems.contains(event.target);
+        var isClickInsideMenu =
+            menuButton.contains(event.target) ||
+            menuItems.contains(event.target);
         if (!isClickInsideMenu) {
             menuItems.classList.add("hidden");
         }
     });
-
-
-
 });
-
