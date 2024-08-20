@@ -52,7 +52,62 @@ $(document).ready(function () {
             },
         });
     }
+    $("#menu-button").click(async function () {
+        try {
+            const response = await $.ajax({
+                url: '/citas/completadas',
+                type: 'GET',
+                dataType: 'json'
+            });
 
+            let citasHtml = '<div class="p-4">';
+            if (response.length === 0) {
+                citasHtml += '<p class="text-center text-gray-500">No hay citas finalizadas.</p>';
+            } else {
+                citasHtml += '<ul class="space-y-2">';
+                response.forEach(cita => {
+                    citasHtml += `
+                    <li class="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-gray-700">Fecha:</span>
+                            <span class="text-gray-600">${cita.date}</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-gray-700">Hora:</span>
+                            <span class="text-gray-600">${cita.hour}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-semibold text-gray-700">Descripción:</span>
+                            <span class="text-gray-600">${cita.description}</span>
+                        </div>
+                    </li>
+                    `;
+                });
+                citasHtml += '</ul>';
+            }
+            citasHtml += '</div>';
+
+            // Muestra la alerta con las citas
+            await Swal.fire({
+                title: 'Citas Finalizadas',
+                html: citasHtml,
+                confirmButtonText: 'Cerrar',
+                customClass: {
+                    container: 'custom-swal-container',
+                    title: 'text-lg font-bold',
+                    htmlContainer: 'text-sm'
+                }
+            });
+        } catch (error) {
+            Swal.fire({
+                title: 'Error',
+                text: 'No se pudieron cargar las citas.',
+                icon: 'error',
+                confirmButtonText: 'Cerrar'
+            });
+        }
+    });
+    
     // Event listener para cambiar el estilo de los botones de requisitos al hacer clic
     $(document).on("click", ".btn-requisito", function () {
         $(this).toggleClass("btn-requisito-selected");

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exámenes</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
-    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js'])
+    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js','resources/js/examu.js',  'resources/js/scroll.js'])
 </head>
 
 <body class="w-full h-screen">
@@ -15,84 +15,50 @@
         @include('templates.header')
     </div>
     <main class="w-full h-auto p-4  mt-6 lg:max-w-screen-2xl lg:mx-auto lg:rounded-md">
-        <section class="mx-4 ">
-            <h2 class="font-bold text-center lg:text-start text-2xl text-vh-green-medium">Exámenes Personales</h2>
-            <p class="text-sm text-center lg:text-start">Los exámenes son necesarios para las citas</p>
-        </section>
-        <section class="grid lg:grid-cols-2 gap-5 lg:px-16 lg:py-12">
-            <div class="w-full flex gap-8  rounded-lg my-3 lg:bg-gray-200">
-                <div class="w-1/4 h-28 bg-blue-800 rounded-s-lg"></div>
-                <div class="w-9/12 h-28 p-2">
-                    <h4>Exámenes de</h4>
-                    <ul class="mt-4">
-                        <li class="flex">
-                            <object data="{{ asset('storage/svg/calendar.svg') }}" type="image/svg+xml"
-                                class="w-[25px]"></object>
-                            <p>Disponible</p>
-                        </li>
-                        <li class="flex">
-                            <object data="{{ asset('storage/svg/clock.svg') }}" type="image/svg+xml"
-                                class="w-[25px]"></object>
-                            <p>9.00 <span>-</span> 10.00 AM</p>
-                        </li>
-                    </ul>
-                </div>
+        <section class="flex flex-col lg:flex-row justify-between items-center mx-4">
+            <div class="flex-1 lg:mr-4">
+                <h2 class="font-bold text-center lg:text-start text-2xl text-vh-green-medium">Exámenes Personales</h2>
+                <p class="text-sm text-center lg:text-start">Los exámenes son necesarios para las citas</p>
             </div>
-            <div class="w-full flex gap-8 bg-gray-100 rounded-lg my-3 lg:bg-gray-200">
-                <div class="w-1/4 h-28 bg-blue-800 rounded-s-lg"></div>
-                <div class="w-9/12 h-28 p-2">
-                    <h4>Exámenes de</h4>
-                    <ul class="mt-4">
-                        <li class="flex">
-                            <object data="{{ asset('storage/svg/calendar.svg') }}" type="image/svg+xml"
-                                class="w-[25px]"></object>
-                            <p>Disponible</p>
-                        </li>
-                        <li class="flex">
-                            <object data="{{ asset('storage/svg/clock.svg') }}" type="image/svg+xml"
-                                class="w-[25px]"></object>
-                            <p>9.00 <span>-</span> 10.00 AM</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="w-full flex gap-8 bg-gray-100 rounded-lg my-3 lg:bg-gray-200">
-                <div class="w-1/4 h-28 bg-blue-800 rounded-s-lg"></div>
-                <div class="w-9/12 h-28 p-2">
-                    <h4>Exámenes de</h4>
-                    <ul class="mt-4">
-                        <li class="flex">
-                            <object data="{{ asset('storage/svg/calendar.svg') }}" type="image/svg+xml"
-                                class="w-[25px]"></object>
-                            <p>Disponible</p>
-                        </li>
-                        <li class="flex">
-                            <object data="{{ asset('storage/svg/clock.svg') }}" type="image/svg+xml"
-                                class="w-[25px]"></object>
-                            <p>9.00 <span>-</span> 10.00 AM</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="w-full flex gap-8 bg-gray-100 rounded-lg my-3 lg:bg-gray-200">
-                <div class="w-1/4 h-28 bg-blue-800 rounded-s-lg"></div>
-                <div class="w-9/12 h-28 p-2">
-                    <h4>Exámenes de</h4>
-                    <ul class="mt-4">
-                        <li class="flex">
-                            <object data="{{ asset('storage/svg/calendar.svg') }}" type="image/svg+xml"
-                                class="w-[25px]"></object>
-                            <p>Disponible</p>
-                        </li>
-                        <li class="flex">
-                            <object data="{{ asset('storage/svg/clock.svg') }}" type="image/svg+xml"
-                                class="w-[25px]"></object>
-                            <p>9.00 <span>-</span> 10.00 AM</p>
-                        </li>
-                    </ul>
-                </div>
+            <div>
+                <button type="button "
+                    class="mt-4 lg:mt-0 inline-flex justify-center gap-x-1.5 rounded-md bg-vh-green px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-vh-green-medium"
+                    id="menu-buttone" aria-expanded="false" aria-haspopup="true">
+                    <h2>Exámenes Finalizados</h2>
+                </button>
             </div>
         </section>
+    </main>
+
+
+    <section class="lg:px-16 lg:py-12 bg-gray-50">
+
+        @if(isset($examenes) && $examenes->isEmpty())
+            <div class="text-center py-8">
+                <p class="text-lg font-semibold text-gray-200">No tienes exámenes programados.</p>
+            </div>
+        @else
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                @foreach ($examenes as $examen)
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="p-6 flex flex-col">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-2">Tipo de Examen</h2>
+                            <p class="text-lg text-gray-700 mb-4">{{ $examen->exam_type ?? 'No disponible' }}</p>
+
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Fecha</h3>
+                            <p class="text-lg text-gray-700 mb-4">
+                                {{ !empty($examen->exam_date) ? (new DateTime($examen->exam_date))->format('j \d\e F \d\e Y') : 'No disponible' }}
+                            </p>
+
+                            <h4 class="text-lg font-semibold text-gray-800 mb-2">Notas</h4>
+                            <p class="text-base text-gray-600">{{ $examen->notes ?? 'No disponible' }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+    </section>
+
     </main>
     <div class="w-full h-auto">
         @include('templates.footer_two')

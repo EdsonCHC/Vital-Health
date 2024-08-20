@@ -9,7 +9,7 @@ use App\Http\Controllers\CitaController;
 use App\Http\Controllers\CategoríaController;
 use App\Http\Controllers\VideollamadaController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\recetaController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\ExpedienteController;
 use Illuminate\Support\Facades\Route;
@@ -40,15 +40,26 @@ Route::post('/registro', [UsuarioController::class, 'store']);
 //
 Route::get('/', [UsuarioController::class, 'showDoctors']);
 
+Route::view('/about', 'app.about');
 
 // Middlewares para el usuario
 Route::middleware('auth')->group(function () {
-    Route::view('/medicina', 'app.medicine');
+    Route::view('/medicina', 'app.medicina');
     //
+    //
+    Route::view('/citas', 'app.citas');
+    Route::get('/citas', [CitaController::class, 'citasPaciente'])->name('citas.paciente');
+    //
+    Route::get('/citas/completadas', [CitaController::class, 'citasFinalizadas'])->name('citas.completadas');
+
     Route::get('/file', [ExpedienteController::class, 'showFileUser'])->name('app.file');
     Route::post('/file', [ExpedienteController::class, 'store']);
     //
     Route::view('/examen', 'app.exams');
+    Route::get('/examen', [ExamController::class, 'examsPaciente'])->name('exams.paciente');
+    Route::get('/examenes/completados', [ExamController::class, 'examenesCompletados']);
+    Route::get('/medicina', [RecetaController::class, 'recetasPaciente'])->name('medicina.paciente');
+
     //
     Route::view('/area', 'app.area');
     //
@@ -58,7 +69,6 @@ Route::middleware('auth')->group(function () {
     //
     Route::get('create', [CitaController::class, 'create'])->name('citas.create');
     //
-    Route::view('/citas', 'app.citas');
     //
     // Route::view('/area', [CitaController::class, 'index'])->name('app.area');
     Route::get('/area', [UsuarioController::class, 'indexu'])->name('user');
@@ -175,6 +185,12 @@ Route::middleware('auth:laboratorio')->group(function () {
     //
     Route::get('medicinas/{medicina}/edit', [MedicineController::class, 'edit'])->name('medicinas.edit');
     //
+    Route::get('/Recetas', [recetaController::class, 'index'])->name('recetas.index');
+    Route::get('/recetas/{id}', [recetaController::class, 'fetchRecetaDetails']);
+    Route::post('/recetas/{id}/enviar', [recetaController::class, 'enviarReceta']);
+    Route::delete('/recetas/{id}/cancelar', [recetaController::class, 'cancelarReceta']);
+    Route::post('/recetas/{id}/actualizar-estado', [recetaController::class, 'actualizarEstado']);
+
     Route::put('medicinas/{medicina}', [MedicineController::class, 'update'])->name('medicinas.update');
     //
     Route::delete('/medicinas/{medicina}', [MedicineController::class, 'destroy'])->name('medicinas.destroy');

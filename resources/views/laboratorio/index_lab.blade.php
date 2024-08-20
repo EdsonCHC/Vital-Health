@@ -45,7 +45,6 @@
                         Ver
                     </a>
                 </div>
-
                 <!-- Recetas Card -->
                 <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <div class="flex justify-center mb-4">
@@ -56,10 +55,10 @@
                     </div>
                     <h3 class="text-xl font-semibold mb-2 text-center">Recetas</h3>
                     <p class="mb-4 text-sm text-gray-600 text-center">Administrar las recetas para pacientes</p>
-                    <button
-                        class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-300 w-full">
+                    <a href="{{ route('recetas.index') }}"
+                        class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-300 w-full text-center block">
                         Ver
-                    </button>
+                    </a>
                 </div>
 
                 <!-- Medicina Card -->

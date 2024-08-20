@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Exams;
 use App\Models\citas;
 use App\Models\Receta;
+use App\Models\RecetaMedicina;
 use App\Models\Medicina;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -56,6 +59,28 @@ class ExamController extends Controller
             ], 500);
         }
     }
+    public function examsPaciente(Request $request)
+    {
+        $pacienteId = Auth::id();
+
+        $examenes = Exams::where('patient_id', $pacienteId)
+            ->where('state', 1)
+            ->get(['exam_type', 'exam_date', 'notes']);
+
+        return view('app.exams', compact('examenes'));
+    }
+
+    public function examenesCompletados()
+    {
+        $pacienteId = Auth::id();
+
+        $examenes = Exams::where('patient_id', $pacienteId)
+            ->where('state', 0)
+            ->get();
+
+        return response()->json($examenes);
+    }
+
 
     public function fetchPrescriptionFormData(Request $request)
     {
@@ -80,6 +105,7 @@ class ExamController extends Controller
 
     public function store(Request $request)
     {
+        // Validar los datos del request
         $validatedData = $request->validate([
             'cita_id' => 'required|exists:citas,id',
             'doctor_id' => 'required|exists:doctors,id',
@@ -93,10 +119,59 @@ class ExamController extends Controller
             'medicinas.*.id' => 'required|exists:medicinas,id',
             'medicinas.*.cantidad' => 'required|integer|min:1'
         ]);
-
-        $receta = Receta::create($validatedData);
-        return response()->json(['success' => true, 'receta' => $receta]);
+    
+        DB::beginTransaction();
+    
+        try {
+            // Crear la receta
+            $receta = Receta::create([
+                'cita_id' => $validatedData['cita_id'],
+                'doctor_id' => $validatedData['doctor_id'],
+                'patient_id' => $validatedData['patient_id'],
+                'fecha_entrega' => $validatedData['fecha_entrega'],
+                'hora_entrega' => $validatedData['hora_entrega'],
+                'titulo' => $validatedData['titulo'],
+                'descripcion' => $validatedData['descripcion'],
+                'codigo_receta' => $validatedData['codigo_receta'],
+                'estado' => 'pendiente'
+            ]);
+    
+            foreach ($validatedData['medicinas'] as $medicina) {
+                $medicinaModel = Medicina::find($medicina['id']);
+                if ($medicinaModel->stock < $medicina['cantidad']) {
+                    DB::rollBack();
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'No hay suficiente stock para la medicina: ' . $medicinaModel->nombre
+                    ], 400);
+                }
+    
+                $medicinaModel->stock -= $medicina['cantidad'];
+                $medicinaModel->save();
+    
+                RecetaMedicina::create([
+                    'receta_id' => $receta->id,
+                    'medicina_id' => $medicina['id'],
+                    'cantidad' => $medicina['cantidad']
+                ]);
+            }
+    
+            DB::commit();
+    
+            return response()->json(['success' => true, 'receta' => $receta]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            \Log::error('Error al guardar la receta: ' . $e->getMessage());
+    
+            return response()->json([
+                'success' => false,
+                'message' => 'Hubo un problema al crear la receta.'
+            ], 500);
+        }
     }
+    
+
+    
 
 
     private function generateCodigoReceta()

@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import jQuery, { error } from "jquery";
+import jQuery from "jquery";
 window.$ = jQuery;
 
 const menuLinks = document.querySelectorAll(".menu-link");
@@ -73,6 +73,39 @@ $(document).ready(function () {
     $("#save").click((e) => {
         e.preventDefault();
 
+        const name = $("input[name='name']").val();
+        const lastName = $("input[name='lastName']").val();
+        const address = $("input[name='address']").val();
+
+        // Front-End Validation
+        if (/\s/.test(name) || /\s/.test(lastName)) {
+            Swal.fire({
+                title: "Error",
+                icon: "error",
+                text: "El nombre y el apellido no pueden contener espacios.",
+            });
+            return;
+        }
+
+        if (/[^a-zA-Z\s]/.test(name) || /[^a-zA-Z\s]/.test(lastName)) {
+            Swal.fire({
+                title: "Error",
+                icon: "error",
+                text: "El nombre y el apellido no pueden contener números, comillas, o comas.",
+            });
+            return;
+        }
+
+        // Validate address for forbidden patterns
+        if (/script|sql/gi.test(address)) {
+            Swal.fire({
+                title: "Error",
+                icon: "error",
+                text: "La dirección no puede contener palabras reservadas como 'script' o 'sql'.",
+            });
+            return;
+        }
+
         Swal.fire({
             title: "¿Desea Editar y guardar su información?",
             icon: "question",
@@ -80,10 +113,13 @@ $(document).ready(function () {
             showConfirmButton: true,
         }).then((result) => {
             if (result.isConfirmed) {
+                const formData = $("#user_form").serializeArray();
+                const sanitizedData = sanitizeFormData(formData);
+
                 $.ajax({
                     url: "/user/update",
                     type: "PUT",
-                    data: $("#user_form").serialize(),
+                    data: sanitizedData,
                     success(response) {
                         if (response.success) {
                             Swal.fire({
@@ -101,7 +137,7 @@ $(document).ready(function () {
                         Swal.fire({
                             title: "Error al actualizar la información",
                             icon: "error",
-                            text: response.responseJSON.message,
+                            text: "No se permiten caracteres extraños.",
                         });
                     },
                 });
@@ -113,6 +149,23 @@ $(document).ready(function () {
         });
     });
 });
+
+// Function to sanitize form data
+function sanitizeFormData(formData) {
+    return formData.map(field => {
+        if (field.name === 'name' || field.name === 'lastName') {
+            field.value = field.value
+                .replace(/[0-9'"',]/g, '')  // Remove numbers, quotes, and commas
+                .replace(/\s+/g, '')        // Remove all spaces
+                .replace(/script|sql/gi, ''); // Remove specific words
+        } else if (field.name === 'address') {
+            field.value = field.value
+                .replace(/[0-9'"',]/g, '')  // Remove numbers, quotes, and commas
+                .replace(/script|sql/gi, ''); // Remove specific words
+        }
+        return field;
+    });
+}
 
 // Mostrar por defecto la primera opción (Perfil)
 document.addEventListener("DOMContentLoaded", () => {

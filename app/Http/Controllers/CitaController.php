@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\citas;
 use App\Models\Categoría;
 use App\Models\Usuario;
+use App\Models\Exams;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -109,6 +110,30 @@ class CitaController extends Controller
             ], 500);
         }
     }
+    public function citasPaciente(Request $request)
+    {
+        $pacienteId = Auth::id();
+
+        $citas = Citas::with('category', 'doctor')
+            ->where('patient_id', $pacienteId)
+            ->where('state', 1) 
+            ->whereNotNull('doctor_id')
+            ->get();
+
+        return view('app.citas', compact('citas'));
+    }
+
+    public function citasFinalizadas()
+    {
+        $pacienteId = Auth::id();
+
+        $citas = Citas::where('patient_id', $pacienteId)
+            ->where('state', 0)
+            ->get();
+
+        return response()->json($citas);
+    }
+
 
     public function store_doc(Request $request)
     {
@@ -121,28 +146,28 @@ class CitaController extends Controller
             'category_id' => 'required|exists:categorias,id',
             'patient_id' => 'required|exists:patients,id',
         ]);
-    
+
         try {
             $doctor = Doctor::find($validatedData['doctor_id']);
             if (!$doctor) {
                 return response()->json(['success' => false, 'message' => 'Doctor no encontrado.'], 404);
             }
-    
+
             if ($doctor->category_id != $validatedData['category_id']) {
                 return response()->json(['success' => false, 'message' => 'Categoría no coincide con el doctor.'], 400);
             }
-    
+
             $appointment = Citas::create([
                 'date' => $validatedData['date'],
                 'hour' => $validatedData['hour'],
-                'modo' => $validatedData['modalidad'], 
+                'modo' => $validatedData['modalidad'],
                 'description' => $validatedData['description'] ?? '',
                 'doctor_id' => $validatedData['doctor_id'],
                 'category_id' => $validatedData['category_id'],
                 'patient_id' => $validatedData['patient_id'],
-                'state' => 1, 
+                'state' => 1,
             ]);
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'Cita creada exitosamente',
@@ -157,7 +182,7 @@ class CitaController extends Controller
             ], 500);
         }
     }
-    
+
 
     public function getPatients()
     {
@@ -168,8 +193,8 @@ class CitaController extends Controller
     public function show_doc($id)
     {
         try {
-            $doctor = Doctor::findOrFail($id); 
-            return response()->json($doctor); 
+            $doctor = Doctor::findOrFail($id);
+            return response()->json($doctor);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Doctor not found'], 404);
         }
