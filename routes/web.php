@@ -45,7 +45,8 @@ Route::get('/', [UsuarioController::class, 'showDoctors']);
 Route::middleware('auth')->group(function () {
     Route::view('/medicina', 'app.medicine');
     //
-    Route::view('/report', 'app.report');
+    Route::get('/file', [ExpedienteController::class, 'showFileUser'])->name('app.file');
+    Route::post('/file', [ExpedienteController::class, 'store']);
     //
     Route::view('/examen', 'app.exams');
     //
@@ -76,7 +77,6 @@ Route::middleware('auth')->group(function () {
 // Rutas para el doctor
 Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/doctor', [DoctorController::class, 'index'])->name('doctor');
-
     //
     Route::get('/citas_doc', [CitaController::class, 'showCitas'])->name('doctor.citas_doc');
     //
@@ -88,22 +88,26 @@ Route::middleware(['auth:doctor'])->group(function () {
     //
     Route::view('/medicine_doc', 'doctor.medicine_doc');
     //
-    // Route::view('/files_doc', 'doctor.files_doc');
-    Route::resource('/files_doc', ExpedienteController::class);
-    //
+    // Expediente
+    // Ruta para mostrar un expediente específico
+    Route::get('/files_doc', [ExpedienteController::class, 'showFileDoc'])->name('files_doc.show');
+    Route::put('/files_doc/{id}', [ExpedienteController::class, 'update'])->name('doctor.update_file');
+    Route::delete('/files_doc/{id}', [ExpedienteController::class, 'destroy'])->name('doctor.destroy_file');
     //
     Route::view('/service_doc', 'doctor.service_doc');
     //
-    Route::view('/program_doc', 'doctor.program_doc');
+    Route::get('/program_doc', [VideollamadaController::class, 'showVideollamadaDoc'])->name('doctor.program_doc');
     //
     Route::post('/doctor/logout', [DoctorController::class, 'destroy'])->name('doctor.logout');
     //
     //
     Route::get('/citas/{cita_id}/exams/{user_id}', [ExamController::class, 'getExams']);
     Route::post('/citas/{cita_id}/{doctor_id}/exams', [ExamController::class, 'create']);
-    Route::delete('/citas/{cita_id}/exams/{exam_id}', [ExamController::class, 'destroy']);
+    Route::delete('/citas/{cita_id}/exams/{id}', [ExamController::class, 'destroy']);
     //
+    // Videollamada
     Route::post('/citas/{cita_id}/{doctor_id}/videollamada', [VideollamadaController::class, 'store']);
+    Route::delete('/program_doc/{videollamada_id}', [VideollamadaController::class, 'destroy'])->name('videollamada.destroy');
     //
     Route::get('/citas/{cita_id}/check-end', [ExamController::class, 'checkAndEndCita']);
     Route::post('/citas/{cita_id}/end', [ExamController::class, 'endCita']);
@@ -114,9 +118,7 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/pacientes', [CitaController::class, 'getPatients']);
     Route::get('/citas/{id}', [CitaController::class, 'show_doc']);
     Route::get('/doctor/{id}', [DoctorController::class, 'showDoctorWithAppointments'])->name('doctor.show');
-
 });
-
 
 // Rutas del administrador
 Route::middleware('auth:admin')->group(function () {
@@ -195,11 +197,8 @@ Route::middleware('auth:laboratorio')->group(function () {
 //-------API ROUTES--------//
 
 // routes/web.php
-
 Route::get('/videollamada', [VideollamadaController::class, 'show']);
-//
-// Route::get('/videollamada/{uuid}', [VideollamadaController::class, 'show']);
-
+// Route::get('/videollamada', [VideollamadaController::class, 'show']);
 
 // Fallback route (404)
 Route::fallback(function () {

@@ -31,7 +31,7 @@ class Videollamada extends Model
 
     public function cita()
     {
-        return $this->belongsTo(Citas::class);
+        return $this->belongsTo(Citas::class, 'cita_id');
     }
 }
 

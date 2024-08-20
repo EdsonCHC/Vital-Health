@@ -3,10 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agenda</title>
     <!-- Incluir Tailwind CSS -->
-    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/doctor.js'])
+    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/doctor.js', 'resources/js/videollamada.js'])
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
@@ -61,57 +62,42 @@
                         </button>
                         <button target="_self" id="create_staff"
                             class="w-44 h-10 my-4 mx-2 font-semibold text-base text-white bg-vh-green hover:bg-vh-gray transition duration-300 hover:text-black inline-block text-center rounded-sm tracking-wider">
-                            Nueva Llamada
+                            Llamada
                         </button>
                     </div>
-                    <div class="w-76 h-36 m-4 bg-vh-gray-light rounded-lg flex">
-                        <div class="m-4">
-                            <div class="w-20 h-20 mb-2 flex-col content-center items-center bg-vh-green rounded-md">
-                                <span class="flex justify-center font-semibold text-white text-lg">27</span>
-                                <span class="flex justify-center font-semibold text-white text-lg">Feb</span>
+                    @foreach ($videollamadas as $videollamada)
+                        <div class="w-76 h-36 m-4 bg-vh-gray-light rounded-lg flex">
+                            <div class="m-4">
+                                <div class="w-20 h-20 mb-2 flex-col content-center items-center bg-vh-green rounded-md">
+                                    <span class="flex justify-center font-semibold text-white text-lg">
+                                        {{ \Carbon\Carbon::parse($videollamada->date)->format('d M') }}
+                                    </span>
+                                </div>
+                                <div class="w-20 h-6 content-center items-center bg-vh-green-light rounded-md">
+                                    {{-- <a class="flex justify-center hover:bg-white font-semibold transition duration-300"
+                                        href="{{ route('videollamada', ['roomName' => $videollamada->room_name]) }}">
+                                        Unirse
+                                    </a> --}}
+
+                                </div>
                             </div>
-                            <div class="w-20 h-6 content-center items-center bg-vh-green-light rounded-md">
-                                <a class="flex justify-center hover:bg-white font-semibold transition duration-300"
-                                    href="#">
-                                    Unirse
-                                </a>
+                            <!-- Detalles del paciente y descripción -->
+                            <div class="flex flex-col my-auto">
+                                <h3 class="font-bold text-xl">Reunión</h3>
+                                <p class="text-lg">{{ $videollamada->room_name }}</p>
+                                <p class="text-emerald-500 text-lg">Paciente: {{ $videollamada->patient->name }}</p>
                             </div>
-                        </div>
-                        <div class="flex flex-col my-auto">
-                            <h3 class="font-bold text-xl">Reunión</h3>
-                            <p class="text-emerald-500 text-lg">Paciente: Juan José</p>
-                            <span class="font-bold text- opacity-70">Descripción: ..........</span>
-                        </div>
-                        <div class="ml-auto ">
-                            <button class="m-4 bg-white rounded-md shadow-lg">
-                                <img src="{{ asset('storage/svg/trash.svg') }}" alt="chat" class="w-12 p-1">
-                                <button />
-                        </div>
-                    </div>
-                    <div class="w-76 h-36 m-4 bg-vh-gray-light rounded-lg flex">
-                        <div class="m-4">
-                            <div class="w-20 h-20 mb-2 flex-col content-center items-center bg-vh-green rounded-md">
-                                <span class="flex justify-center font-semibold text-white text-lg">27</span>
-                                <span class="flex justify-center font-semibold text-white text-lg">Feb</span>
-                            </div>
-                            <div class="w-20 h-6 content-center items-center bg-vh-green-light rounded-md">
-                                <a class="flex justify-center hover:bg-white font-semibold transition duration-300"
-                                    href="#">
-                                    Unirse
-                                </a>
+                            <!-- Botón para eliminar -->
+                            <div class="ml-auto">
+                                <button type="button" class="deleteVideollamada"
+                                    data-videollamada-id="{{ $videollamada->id }}"
+                                    data-cita-id="{{ $videollamada->cita->id }}"
+                                    data-doctor-id="{{ $videollamada->doctor->id }}">
+                                    <img src="{{ asset('storage/svg/link-icon.svg') }}" alt="Ver Cita"
+                                        class="w-10 h-10 p-2 rounded"></button>
                             </div>
                         </div>
-                        <div class="flex flex-col my-auto">
-                            <h3 class="font-bold text-xl">Reunión</h3>
-                            <p class="text-emerald-500 text-lg">Paciente: Juan José</p>
-                            <span class="font-bold text- opacity-70">Descripción: ..........</span>
-                        </div>
-                        <div class="ml-auto ">
-                            <button class="m-4 bg-white rounded-md shadow-lg">
-                                <img src="{{ asset('storage/svg/trash.svg') }}" alt="chat" class="w-12 p-1">
-                                <button />
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -164,8 +150,7 @@
                         </div>
                         <div class="w-76 h-36 m-4 bg-vh-gray-light rounded-lg flex">
                             <div class="m-4">
-                                <div
-                                    class="w-16 h-16 mb-2 flex-col content-center items-center bg-vh-green rounded-md">
+                                <div class="w-16 h-16 mb-2 flex-col content-center items-center bg-vh-green rounded-md">
                                     <span class="flex justify-center font-semibold text-white text-lg">27</span>
                                     <span class="flex justify-center font-semibold text-white text-lg">Feb</span>
                                 </div>

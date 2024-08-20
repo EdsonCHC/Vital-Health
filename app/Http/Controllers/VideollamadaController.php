@@ -32,7 +32,7 @@ class VideollamadaController extends Controller
             $patient_id = $cita->patient_id;
 
             $videollamada = new Videollamada();
-            $videollamada->room_name = $validateData['roomName']; // Asignar el valor de roomName al campo room_name
+            $videollamada->room_name = $validateData['roomName'];
             $videollamada->date = $validateData['date'];
             $videollamada->hour = $validateData['hour'];
             $videollamada->cita_id = $cita->id;
@@ -51,16 +51,45 @@ class VideollamadaController extends Controller
         }
     }
 
-
-
-
-
     public function show(Request $request)
     {
         $roomName = $request->query('roomName');
         return view('app.videollamada', compact('roomName'));
+
+        // // Obtener el parámetro de consulta 'roomName'
+        // $roomName = $request->query('roomName');
+
+        // // Asegúrate de manejar el caso en el que roomName sea null o no válido
+        // if ($roomName) {
+        //     // Buscar la videollamada en la base de datos por el room_name
+        //     $videollamada = Videollamada::where('room_name', $roomName)->first();
+
+        //     // Verificar si se encontró la videollamada
+        //     if ($videollamada) {
+        //         // Pasar el nombre de la sala a la vista
+        //         return view('app.videollamada', compact('roomName'));
+        //     }
+        // }
+
+        // Redirigir a una ruta de error o página predeterminada si no se encuentra la videollamada
+        // return redirect()->route('some.default.route')->with('error', 'Videollamada no encontrada');
     }
 
+
+    public function showVideollamadaDoc(Request $request)
+    {
+        $doctor = auth()->user();
+
+        $cita = Citas::where('doctor_id', $doctor->id)->first();
+
+        if (!$cita) {
+            return redirect()->route('error')->with('message', 'No se encontró una videollamada para este doctor.');
+        }
+
+        $videollamadas = Videollamada::where('cita_id', $cita->id)->get();
+
+        return view('doctor.program_doc', compact('videollamadas'));
+    }
 
     public function update(Request $request, $id)
     {
@@ -79,10 +108,13 @@ class VideollamadaController extends Controller
         return response()->json($videollamada);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $videollamada_id)
     {
-        $videollamada = Videollamada::findOrFail($id);
-        $videollamada->delete();
-        return response()->json(null, 204);
+        try {
+            $videollamada = Videollamada::findOrFail($videollamada_id);
+
+            $videollamada->delete();
+        } catch (\Exception $e) {
+        }
     }
 }

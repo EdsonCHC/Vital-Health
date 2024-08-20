@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('expediente', function (Blueprint $table) {
             $table->bigIncrements('id');
-            
-            // Foreing keys
-            $table->foreignId('examen_id')->constrained('exams');
-            $table->foreignId('cita_id')->constrained('citas');
-            $table->foreignId('doctor_id')->constrained('doctors');
-            $table->foreignId('patient_id')->constrained('patients');
+
+            // Claves foráneas que pueden ser nulas
+            $table->foreignId('examen_id')->nullable()->constrained('exams')->onDelete('set null');
+            $table->foreignId('cita_id')->nullable()->constrained('citas')->onDelete('set null');
+            $table->foreignId('doctor_id')->nullable()->constrained('doctors')->onDelete('set null');
+            $table->foreignId('patient_id')->nullable()->constrained('patients')->onDelete('set null');
+
             $table->timestamps();
         });
     }

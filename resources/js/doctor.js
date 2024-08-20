@@ -21,7 +21,7 @@ $(document).ready(function () {
                 Swal.fire({
                     title: "Será enviado al inicio en breve",
                     icon: "success",
-                    timer: 3000,
+                    timer: 2000,
                     showConfirmButton: false,
                     timerProgressBar: true,
                 }).then(() => {

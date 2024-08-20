@@ -25,7 +25,7 @@ class CitasTableSeeder extends Seeder
                 'link' => 'https://meet.example.com/123456',
                 'published_at' => Carbon::now(),
                 'category_id' => 2,
-                // No incluimos doctor_id para dejarlo vacío
+                'doctor_id' => 2,
                 'patient_id' => 1,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -39,7 +39,7 @@ class CitasTableSeeder extends Seeder
                 'link' => 'https://meet.example.com/123456',
                 'published_at' => Carbon::now(),
                 'category_id' => 1,
-                // No incluimos doctor_id para dejarlo vacío
+                'doctor_id' => 1,
                 'patient_id' => 2,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -53,7 +53,7 @@ class CitasTableSeeder extends Seeder
                 'link' => 'https://meet.example.com/123456',
                 'published_at' => Carbon::now(),
                 'category_id' => 3,
-                // No incluimos doctor_id para dejarlo vacío
+                'doctor_id' => 3,
                 'patient_id' => 3,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

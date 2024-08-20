@@ -17,7 +17,7 @@ class Expediente extends Model
 
     protected $fillable = [
         
-        'examen_id',
+        'exam_id',
         'cita_id',
         'doctor_id',
         'patient_id',
@@ -40,6 +40,6 @@ class Expediente extends Model
 
     public function patient()
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(Usuario::class, 'patient_id');
     }
 }

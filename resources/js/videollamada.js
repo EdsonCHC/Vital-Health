@@ -36,7 +36,7 @@ $(document).ready(function () {
                 const date = document.querySelector("#date").value;
                 const hour = document.querySelector("#hour").value;
                 const minLength = 8;
-                
+
                 if (!roomName || !date || !hour) {
                     Swal.showValidationMessage(
                         "Por favor, completa todos los campos"
@@ -109,4 +109,48 @@ $(document).ready(function () {
             }
         });
     });
+
+    $(".deleteVideollamada").click(function () {
+        const _token = $('meta[name="csrf-token"]').attr("content");
+        const videollamadaId = $(this).data("videollamada-id");
+
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "Esta acción eliminará la videollamada. ¿Deseas continuar?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, eliminar!",
+            cancelButtonText: "Cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: `/program_doc/${videollamadaId}`,
+                    type: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": _token,
+                    },
+                    success: function (response) {
+                        Swal.fire(
+                            "Eliminado!",
+                            response.success,
+                            "success"
+                        ).then(() => {
+                            location.reload(); // Recargar la página para reflejar los cambios
+                        });
+                    },
+                    error: function (xhr, response) {
+                        console.log(xhr, response);
+                        Swal.fire(
+                            "Error!",
+                            "Hubo un problema al eliminar la reunión.",
+                            "error"
+                        );
+                    },
+                });
+            }
+        });
+    });
+
 });

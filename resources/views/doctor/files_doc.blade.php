@@ -3,10 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expediente</title>
     <!-- Incluir Tailwind CSS -->
-    @vite(['resources/css/app.css', 'resources/css/sweet.css',  'resources/js/doctor.js', 'resources/js/expediente.js'])
+    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/doctor.js', 'resources/js/expediente.js'])
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
 
@@ -58,7 +59,9 @@
                                 <div
                                     class="w-auto h-16 flex justify-around items-center my-5 mx-4 bg-green-200 rounded-md">
                                     <p class="font-bold text-lg">{{ $expediente->id }}</p>
-                                    <p class="font-bold text-lg">{{ $expediente->patient->Nombre }}</p>
+                                    <p class="font-bold text-lg">
+                                        {{ $expediente->patient_id ? $expediente->patient->name : 'Paciente no disponible' }}
+                                    </p>
                                     <button target="_self" class="assign_appointment">
                                         <a href="#">
                                             <img src="{{ asset('storage/svg/eye-icon.svg') }}" alt="noti_icon"
@@ -66,21 +69,20 @@
                                         </a>
                                     </button>
                                     <div class="w-2/12 flex items-center space-x-10">
-                                        <button target="_self" class="assign_appointment ml-4">
-                                            <a href="#">
-                                                <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
-                                                    class="w-10 h-10 p-2 rounded">
-                                            </a>
+                                        <button target="_self" class="update-file ml-4"
+                                            data-expediente-id="{{ $expediente->id }}">
+                                            <img src="{{ asset('storage/svg/upload.svg') }}" alt="noti_icon"
+                                                class="w-10 h-10 p-2 rounded">
                                         </button>
-                                        <button>
-                                            <a href="#">
-                                                <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
-                                                    class="w-10 h-10 p-2 rounded">
-                                            </a>
+                                        <button target="_self" class="delete-file ml-4" data-id="{{ $expediente->id }}">
+                                            <img src="{{ asset('storage/svg/trash.svg') }}" alt="config_icon"
+                                                class="w-10 h-10 p-2 rounded">
                                         </button>
+
                                     </div>
                                 </div>
                             @endforeach
+
                         @endif
                     </div>
                 </div>

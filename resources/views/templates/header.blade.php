@@ -30,7 +30,7 @@
                         <li><a href="/service/contact" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Control Personal</a></li>
                     </ul>
                 </li>
-                <li class="font-bold mb-4 text-white tracking-wider"><a href="/report">Reporte</a></li>
+                <li class="font-bold mb-4 text-white tracking-wider"><a href="/file">Expediente</a></li>
                 <li class="font-bold mb-4 text-white tracking-wider"><a href="/about">Acerca de</a></li>
             </ul>
             <div class="hidden w-1/2 h-auto md:flex items-center justify-end gap-4 pr-4 mt-2">
