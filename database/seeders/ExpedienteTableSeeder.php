@@ -18,42 +18,21 @@ class ExpedienteTableSeeder extends Seeder
         // No funicona pero no me da cabeza ahorita
         $expediente = [
             [
-                'nacimiento' => '1985-05-15',
-                'gender' => 'Male',
-                'mail' => 'juan.perez@example.com',
-                'status_civil' => 'Single',
-                'occupation' => 'Engineer',
-                'Allergies' => 'None',
-                'examen_id' => 1,
-                'cita_id' => 1,
+                
                 'doctor_id' => 1,
                 'patient_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'nacimiento' => '1990-08-22',
-                'gender' => 'Female',
-                'mail' => 'maria.lopez@example.com',
-                'status_civil' => 'Married',
-                'occupation' => 'Teacher',
-                'Allergies' => 'Peanuts',
-                'examen_id' => 2,
-                'cita_id' => 2,
+                
                 'doctor_id' => 2,
                 'patient_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'nacimiento' => '1990-08-22',
-                'gender' => 'Female',
-                'mail' => 'maria.lopez@example.com',
-                'status_civil' => 'Married',
-                'occupation' => 'Teacher',
-                'Allergies' => 'Peanuts',
-                'examen_id' => 2,
-                'cita_id' => 2,
+                
                 'doctor_id' => 2,
                 'patient_id' => 2,
                 'created_at' => now(),
@@ -62,7 +41,7 @@ class ExpedienteTableSeeder extends Seeder
         ];
         // Insertar los registros en la base de datos
         DB::transaction(function () use ($expediente) {
-            DB::table('expediente')->insert($expediente);
+            DB::table('expedientes')->insert($expediente);
         });
     }
 }

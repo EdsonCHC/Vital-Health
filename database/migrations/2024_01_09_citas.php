@@ -12,18 +12,20 @@ return new class extends Migration {
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('state')->default('1'); 
+            $table->string('state')->default('1');
             $table->date('date');
             $table->time('hour');
-            $table->string('description', 1000)->nullable(); 
+            $table->string('description', 1000)->nullable();
             $table->string('modo');
             $table->timestamp('published_at')->nullable()->index();
             $table->timestamps();
 
-            $table->string('link')->nullable()->constrained('videollamadas')->cascadeOnDelete();
             $table->foreignId('category_id')->constrained('categorias')->cascadeOnDelete();
             $table->foreignId('doctor_id')->nullable()->constrained('doctors')->nullOnDelete();
             $table->foreignId('patient_id')->constrained('patients')->cascadeOnDelete();
+            $table->foreignId('expediente_id')->nullable()->constrained('expedientes')->nullOnDelete();
+            // $table->foreign('expediente_id')->references('id')->on('expedientes');
+            // $table->foreign('expediente_id')->references('id')->on('expedientes')->onDelete('cascade');
         });
     }
 

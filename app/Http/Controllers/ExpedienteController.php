@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Expediente;
+use App\Models\Expedientes;
 use App\Models\Exams;
 use App\Models\citas;
 use App\Models\Doctor;
@@ -13,7 +13,7 @@ class ExpedienteController extends Controller
 {
     public function index()
     {
-        $expedientes = Expediente::with(['exam', 'cita', 'doctor', 'patient'])->get();
+        $expedientes = Expedientes::with(['exam', 'cita', 'doctor', 'patient'])->get();
 
         $exams = Exams::all();
         $citas = citas::all();
@@ -30,7 +30,7 @@ class ExpedienteController extends Controller
             $userId = auth()->id();
 
             // Crear el expediente y guardar el ID del usuario autenticado
-            $expediente = Expediente::create([
+            $expediente = Expedientes::create([
                 'patient_id' => $userId, // Asegúrate de que el campo user_id está en tu tabla 'expediente'
             ]);
 
@@ -44,7 +44,7 @@ class ExpedienteController extends Controller
         }
     }
 
-    public function show(Expediente $expediente)
+    public function show(Expedientes $expediente)
     {
         return view('files_doc.show', compact('expediente'));
     }
@@ -55,7 +55,7 @@ class ExpedienteController extends Controller
         $userId = auth()->id();
 
         // Obtener los expedientes asociados con el paciente (o usuario) autenticado
-        $expedientes = Expediente::where('patient_id', $userId)
+        $expedientes = Expedientes::where('patient_id', $userId)
             ->with('patient')
             ->get();
 
@@ -65,12 +65,12 @@ class ExpedienteController extends Controller
     public function showFileDoc()
     {
         // Obtener todos los expedientes sin relaciones
-        $expedientes = Expediente::all();
+        $expedientes = Expedientes::all();
 
         return view('doctor.files_doc', compact('expedientes'));
     }
 
-    public function edit(Expediente $expediente)
+    public function edit(Expedientes $expediente)
     {
         return view('files_doc.edit', compact('expediente'));
     }
@@ -86,7 +86,7 @@ class ExpedienteController extends Controller
             ]);
 
             // Encontrar el expediente por ID
-            $expediente = Expediente::findOrFail($id);
+            $expediente = Expedientes::findOrFail($id);
 
             // Actualizar los campos
             $expediente->update([
@@ -112,7 +112,7 @@ class ExpedienteController extends Controller
     {
         try {
             // Encontrar el expediente por ID
-            $expediente = Expediente::findOrFail($id);
+            $expediente = Expedientes::findOrFail($id);
 
             // Eliminar el expediente
             $expediente->delete();

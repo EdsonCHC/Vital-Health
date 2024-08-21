@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             CategoriesTableSeeder::class,
             DoctorsTableSeeder::class,
             PatientsTableSeeder::class,
+            ExpedienteTableSeeder::class,
             CitasTableSeeder::class,
             ExamsTableSeeder::class,
             LaboratorioTableSeeder::class,

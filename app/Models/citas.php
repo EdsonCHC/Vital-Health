@@ -15,10 +15,10 @@ class citas extends Model
         'hour',
         'description',
         'modo',
-        'link',
         'patient_id',
         'category_id',
         'doctor_id',
+        'expediente_id',
     ];
 
     public function patient()
@@ -36,8 +36,8 @@ class citas extends Model
         return $this->belongsTo('App\Models\Doctor', 'doctor_id');
     }
 
-    public function link()
+    public function expediente()
     {
-        return $this->belongsTo(Videollamada::class);
+        return $this->belongsTo(Expedientes::class);
     }
 }

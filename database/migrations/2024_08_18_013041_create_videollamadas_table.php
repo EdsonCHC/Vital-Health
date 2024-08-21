@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('room_name');
             $table->date('date');
             $table->time('hour');
-            $table->string('enlace')->nullable();
 
             $table->foreignId('cita_id')->constrained('citas');
             $table->foreignId('doctor_id')->constrained('doctors');
