@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 
 use App\Models\Receta;
@@ -50,17 +51,22 @@ class recetaController extends BaseController
 
         return response()->json(['receta' => $receta]);
     }
-    public function actualizarEstado(Request $request, $id)
-{
-    $receta = Receta::find($id);
-    if ($receta) {
-        $receta->estado = $request->input('estado');
-        $receta->save();
 
-        return response()->json(['receta' => $receta]);
+    public function getRecetas(){
+        $recetas = Receta::all();
+        return view('doctor.medicine_doc', compact('recetas'));
     }
-    return response()->json(['error' => 'Receta no encontrada'], 404);
-}
+    public function actualizarEstado(Request $request, $id)
+    {
+        $receta = Receta::find($id);
+        if ($receta) {
+            $receta->estado = $request->input('estado');
+            $receta->save();
+
+            return response()->json(['receta' => $receta]);
+        }
+        return response()->json(['error' => 'Receta no encontrada'], 404);
+    }
 
     public function recetasPaciente()
     {

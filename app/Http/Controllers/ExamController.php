@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoría;
 use Illuminate\Http\Request;
 use App\Models\Exams;
 use App\Models\citas;
@@ -11,8 +12,6 @@ use App\Models\Medicina;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
-
 
 
 class ExamController extends Controller
@@ -27,6 +26,7 @@ class ExamController extends Controller
 
         return view('laboratorio.Exam', compact('exams'));
     }
+
     public function checkAndEndCita($cita_id)
     {
         try {
@@ -81,7 +81,6 @@ class ExamController extends Controller
         return response()->json($examenes);
     }
 
-
     public function fetchPrescriptionFormData(Request $request)
     {
         $cita = Citas::find($request->cita_id);
@@ -119,9 +118,9 @@ class ExamController extends Controller
             'medicinas.*.id' => 'required|exists:medicinas,id',
             'medicinas.*.cantidad' => 'required|integer|min:1'
         ]);
-    
+
         DB::beginTransaction();
-    
+
         try {
             // Crear la receta
             $receta = Receta::create([
@@ -135,7 +134,7 @@ class ExamController extends Controller
                 'codigo_receta' => $validatedData['codigo_receta'],
                 'estado' => 'pendiente'
             ]);
-    
+
             foreach ($validatedData['medicinas'] as $medicina) {
                 $medicinaModel = Medicina::find($medicina['id']);
                 if ($medicinaModel->stock < $medicina['cantidad']) {
@@ -145,34 +144,30 @@ class ExamController extends Controller
                         'message' => 'No hay suficiente stock para la medicina: ' . $medicinaModel->nombre
                     ], 400);
                 }
-    
+
                 $medicinaModel->stock -= $medicina['cantidad'];
                 $medicinaModel->save();
-    
+
                 RecetaMedicina::create([
                     'receta_id' => $receta->id,
                     'medicina_id' => $medicina['id'],
                     'cantidad' => $medicina['cantidad']
                 ]);
             }
-    
+
             DB::commit();
-    
+
             return response()->json(['success' => true, 'receta' => $receta]);
         } catch (\Exception $e) {
             DB::rollBack();
-            \Log::error('Error al guardar la receta: ' . $e->getMessage());
-    
+            Log::error('Error al guardar la receta: ' . $e->getMessage());
+
             return response()->json([
                 'success' => false,
                 'message' => 'Hubo un problema al crear la receta.'
             ], 500);
         }
     }
-    
-
-    
-
 
     private function generateCodigoReceta()
     {
@@ -206,7 +201,6 @@ class ExamController extends Controller
             ], 500);
         }
     }
-
 
     public function getExams($cita_id, $user_id)
     {
@@ -242,6 +236,27 @@ class ExamController extends Controller
         }
     }
 
+    public function viewServiceDoc()
+    {
+        try {
+            $doctor = auth()->user();
+
+            $citas = Citas::where('doctor_id', $doctor->id)->get();
+
+            return view('doctor.service_doc', compact('doctor', 'citas'));
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Información no encontrada no encontrada',
+            ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al obtener los datos',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
 
     public function create(Request $request, $cita_id, $doctor_id)
     {
@@ -273,7 +288,6 @@ class ExamController extends Controller
             return response()->json(['success' => false, 'message' => 'Error al crear el examen: ' . $e->getMessage()]);
         }
     }
-
     public function destroy($cita_id, $exam_id)
     {
         try {
@@ -292,7 +306,6 @@ class ExamController extends Controller
             ], 500);
         }
     }
-
     public function delete($exam_id)
     {
         try {
@@ -311,7 +324,6 @@ class ExamController extends Controller
             ], 500);
         }
     }
-
     public function endExamen($exam_id)
     {
         try {
@@ -330,7 +342,6 @@ class ExamController extends Controller
                 'error' => $e->getMessage(),
             ], 500);
         }
-
     }
 
     public function updatePDF(Request $request, $exam_id)
@@ -387,6 +398,5 @@ class ExamController extends Controller
                 'error' => $e->getMessage(),
             ], 500);
         }
-
     }
 }

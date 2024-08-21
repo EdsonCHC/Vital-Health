@@ -18,13 +18,12 @@
     <div class="hidden lg:flex lg:pt-28 mb-5 w-full">
         <div class="flex justify-center items-center ml-40">
             <div class="w-auto flex flex-col ml-40">
-                <span class="font-bold text-4xl mb-2">Area de Cardiologia</span>
+                <span class="font-bold text-4xl mb-2">Area de {{ $doctor->category->nombre }}:</span>
                 <span class="font-bold text-4xl mb-4">Justo a tu Alcanze!!</span>
                 <span class="font-bold text-2xl">Administración de Area designada</span>
                 <div class="my-6 w-3/5">
                     <p class="text-xl text-justify mb-4 font-bold text-gray-400">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry.
+                    {{ $doctor->category->descripcion }}
                     </p>
                 </div>
             </div>

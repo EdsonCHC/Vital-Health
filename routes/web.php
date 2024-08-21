@@ -97,6 +97,8 @@ Route::middleware(['auth:doctor'])->group(function () {
     //
     // Examenes
     Route::view('/exams_doc', 'doctor.exams_doc');
+    // Route::view('/service_doc', 'doctor.service_doc');
+    Route::get('/service_doc' , [ExamController::class, 'viewServiceDoc'])->name('doctor.service_doc');
     Route::get('/citas/{cita_id}/exams/{user_id}', [ExamController::class, 'getExams']);
     Route::get('/citas/{cita_id}/check-end', [ExamController::class, 'checkAndEndCita']);
     Route::get('/recetas/fetch-prescription-form-data', [ExamController::class, 'fetchPrescriptionFormData'])->name('recetas.fetchFormData');
@@ -107,8 +109,7 @@ Route::middleware(['auth:doctor'])->group(function () {
     //
     // Info pages
     Route::view('/allocation', 'doctor.allocation');
-    Route::view('/medicine_doc', 'doctor.medicine_doc');
-    Route::view('/service_doc', 'doctor.service_doc');
+    Route::get('/medicine_doc', [recetaController::class, 'getRecetas'])->name('doctor.medicine_doc');
     //    
     // Videollamada 
     Route::get('/program_doc', [VideollamadaController::class, 'showVideollamadaDoc'])->name('doctor.program_doc');

@@ -24,7 +24,7 @@
 
                 <!-- Filtros y botones -->
                 <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center mb-4">
-                
+
                     <div class="flex flex-col lg:flex-row lg:space-x-4">
                         <a id="view-history" href="#"
                             class="w-full lg:w-36 h-12 text-white font-semibold bg-vh-green lg:text-lg tracking-wide shadow-xl rounded-xl hover:bg-white transition duration-300 hover:text-vh-green text-center mb-2 lg:mb-0">
@@ -51,6 +51,10 @@
                         </div>
 
                         <!-- Fila de pedidos -->
+                        @if ($recetas->isEmpty())
+                        <p class="text-center font-semibold text-sm lg:text-lg text-vh-green my-4">No hay pedidos
+                            disponibles para mostrar.</p>
+                        @else
                         <div class="flex flex-col lg:flex-row border-b border-gray-200 text-sm lg:text-base">
                             <!-- Datos de la tabla en formato de columnas para pantallas grandes -->
                             <div class="flex flex-col lg:flex-row w-full">
@@ -67,6 +71,8 @@
                                     </button>
                                 </div>
                             </div>
+                            @endif
+
 
                             <!-- En dispositivos móviles, mostrar los datos en formato de tarjeta -->
                             <div class="lg:hidden flex flex-col border-t border-gray-200">
@@ -83,9 +89,7 @@
 
                         <!-- Repite el bloque de ejemplo según sea necesario para otros pedidos -->
 
-                        <!-- Mensaje si no hay pedidos -->
-                        <p class="text-center font-semibold text-sm lg:text-lg text-vh-green my-4">No hay pedidos
-                            disponibles para mostrar.</p>
+                        <!-- Mensaje si no hay pedidos --
                     </div>
                 </div>
             </div>

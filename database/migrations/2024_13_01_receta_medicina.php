@@ -12,7 +12,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('receta_id')->constrained('recetas')->onDelete('cascade');
             $table->foreignId('medicina_id')->constrained('medicinas')->onDelete('cascade');
-            $table->integer('cantidad');
             $table->timestamps();
         });
     }

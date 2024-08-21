@@ -40,7 +40,7 @@
               class="flex items-center py-2 rounded transition duration-200 hover:bg-green-200 text-black w-full cursor-pointer">
               <a href="/medicine_doc" class="w-full flex items-center">
                 <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/medicine.svg')}}" type="image/svg+xml" />
-                <p>Medicine</p>
+                <p>Medicina</p>
               </a>
             </div>
             <div
