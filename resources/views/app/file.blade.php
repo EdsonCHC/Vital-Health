@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exediente</title>
+    <title>Expediente</title>
     @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/expediente.js'])
 </head>
 
@@ -49,7 +49,7 @@
                             <p class="font-semibold text-xl text-vh-green">N°</p>
                             <p class="font-semibold text-xl text-vh-green">Paciente</p>
                             <p class="font-semibold text-xl text-vh-green">Expediente</p>
-                                
+
                         </div>
                         @if ($expedientes->isEmpty())
                             <div class="w-auto h-16 flex justify-around items-center my-5 mx-4 bg-green-200 rounded-md">
@@ -61,13 +61,13 @@
                                     class="w-auto h-16 flex justify-around items-center my-5 mx-4 bg-green-200 rounded-md">
                                     <p class="font-bold text-lg">{{ $expediente->id }}</p>
                                     <p class="font-bold text-lg">{{ $expediente->patient->name }}</p>
-                                    <button target="_self" class="assign_appointment">
-                                        <a href="#">
-                                            <img src="{{ asset('storage/svg/eye-icon.svg') }}" alt="noti_icon"
-                                                class="w-10 h-10 p-2">
-                                        </a>
+                                    <button target="_self" class="showFileUser" data-file-id="{{ $expediente->id }}" data-patient-name="{{ $expediente->patient->name }}"
+                                        data-patient-lastname="{{ $expediente->patient->lastName }}"
+                                        data-patient-mail="{{ $expediente->patient->mail }}"
+                                        data-patient-gender="{{ $expediente->patient->gender }}">
+                                        <img src="{{ asset('storage/svg/eye-scan.svg') }}" alt="noti_icon"
+                                            class="w-14 h-14 p-2">
                                     </button>
-                                    
                                 </div>
                             @endforeach
                         @endif

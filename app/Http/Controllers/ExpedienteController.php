@@ -46,21 +46,20 @@ class ExpedienteController extends Controller
 
     public function show(Expedientes $expediente)
     {
-        return view('files_doc.show', compact('expediente'));
+        return view('files_doc.show', compact('expedientes'));
     }
 
     public function showFileUser()
     {
-        // Obtener el ID del usuario autenticado
         $userId = auth()->id();
 
-        // Obtener los expedientes asociados con el paciente (o usuario) autenticado
         $expedientes = Expedientes::where('patient_id', $userId)
-            ->with('patient')
+            ->with('patient') 
             ->get();
 
         return view('app.file', compact('expedientes'));
     }
+
 
     public function showFileDoc()
     {

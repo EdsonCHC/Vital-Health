@@ -3,6 +3,8 @@ import jQuery from "jquery";
 window.$ = jQuery;
 
 $(document).ready(function () {
+    // Usuario
+    // Maneja la creación del expediente
     $(".create-exp-user").click(function () {
         Swal.fire({
             title: "Crear un expediente",
@@ -60,13 +62,72 @@ $(document).ready(function () {
         });
     });
 
-    $(document).ready(function () {
-        $(".update-file").click(function () {
-            const expedienteId = $(this).data("expediente-id"); // Obtén el ID del expediente desde el atributo data
+    $(".showFileUser").click(function () {
+        const fileId = $(this).data("file-id");
+        const patientName = $(this).data("patient-name");
+        const patientLastName = $(this).data("patient-lastname");
+        const patientMail = $(this).data("patient-mail");
+        const patientGender = $(this).data("patient-gender");
 
-            Swal.fire({
-                title: "Actualizar Expediente",
-                html: `
+        Swal.fire({
+            title: "Expediente",
+            html: `
+            <div class="w-auto h-auto flex-col justify-around items-center text-left my-5 mx-4 p-2 bg-green-200 rounded-md">
+                <p class="font-bold text-lg">N°: ${fileId}</p>
+                <p class="font-bold text-lg">Nombre: ${patientName}</p>
+                <p class="font-bold text-lg">Apellido: ${patientLastName}</p>
+                <p class="font-bold text-lg">Correo Electronico: ${patientMail}</p>
+                <p class="font-bold text-lg">Genero: ${patientGender}</p>
+            </div>
+        `,
+            showCancelButton: true,
+            confirmButtonText: "Generar PDF",
+            cancelButtonText: "Cancelar",
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const _token = $('meta[name="csrf-token"]').attr("content");
+
+                $.ajax({
+                    url: `/file/${fileId}`, // URL para generar el PDF
+                    type: "GET",
+                    headers: {
+                        "X-CSRF-TOKEN": _token,
+                    },
+                    success(response) {
+                        if (response.success) {
+                            Swal.fire("Expediente guardado", "", "success");
+                            location.reload();
+                        } else {
+                            Swal.fire(
+                                "Error al guardar el expediente",
+                                response.message ||
+                                    "No se pudo guardar el expediente",
+                                "error"
+                            );
+                        }
+                    },
+                    error() {
+                        Swal.fire(
+                            "Error al crear el expediente",
+                            "No se pudo generar el expediente",
+                            "error"
+                        );
+                    },
+                });
+            }
+        });
+    });
+
+    // Doctor
+    // Maneja la actualizacion del expediente
+    $(".update-file").click(function () {
+        const expedienteId = $(this).data("expediente-id"); // Obtén el ID del expediente desde el atributo data
+
+        Swal.fire({
+            title: "Actualizar Expediente",
+            html: `
                 <form id="update-form-1" class="space-y-4 p-4 bg-white">
                     <h3 class="text-lg font-semibold">Datos del Paciente</h3>
                     <div class="form-group">
@@ -101,54 +162,53 @@ $(document).ready(function () {
                     </div>
                 </form>
             `,
-                showCancelButton: true,
-                cancelButtonText: "Cancelar",
-                didOpen: () => {
-                    $.ajax({
-                        url: `/files_doc/${expedienteId}`, // Asegúrate de que la URL sea correcta
-                        type: "GET",
-                        headers: {
-                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                                "content"
-                            ),
-                        },
-                        success(response) {
-                            if (response.success) {
-                                $("#patient_name").val(
-                                    response.expediente.patient.name
-                                );
-                                $("#patient_email").val(
-                                    response.expediente.patient.mail
-                                );
-                                // Asigna más datos según sea necesario
-                            } else {
-                                Swal.fire(
-                                    "Error al cargar los datos",
-                                    response.message ||
-                                        "No se pudieron cargar los datos del expediente",
-                                    "error"
-                                );
-                            }
-                        },
-                        error(xhr) {
-                            console.log("Código de estado:", xhr.status);
-                            console.log(
-                                "Respuesta del servidor:",
-                                xhr.responseText
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            didOpen: () => {
+                $.ajax({
+                    url: `/files_doc/${expedienteId}`, // Asegúrate de que la URL sea correcta
+                    type: "GET",
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ),
+                    },
+                    success(response) {
+                        if (response.success) {
+                            $("#patient_name").val(
+                                response.expediente.patient.name
                             );
+                            $("#patient_email").val(
+                                response.expediente.patient.mail
+                            );
+                            // Asigna más datos según sea necesario
+                        } else {
                             Swal.fire(
                                 "Error al cargar los datos",
-                                "No se pudieron cargar los datos del expediente",
+                                response.message ||
+                                    "No se pudieron cargar los datos del expediente",
                                 "error"
                             );
-                        },
-                    });
-                },
-            });
+                        }
+                    },
+                    error(xhr) {
+                        console.log("Código de estado:", xhr.status);
+                        console.log(
+                            "Respuesta del servidor:",
+                            xhr.responseText
+                        );
+                        Swal.fire(
+                            "Error al cargar los datos",
+                            "No se pudieron cargar los datos del expediente",
+                            "error"
+                        );
+                    },
+                });
+            },
         });
     });
 
-    // Manejar la eliminación del expediente
+    // Maneja la eliminación del expediente
     $(".delete-file").click(function () {
         const fileId = $(this).data("id");
 

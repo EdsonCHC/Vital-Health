@@ -12,7 +12,7 @@ class Expedientes extends Model
 {
     use HasFactory;
 
-    protected $table = 'expediente';
+    protected $table = 'expedientes';
 
     protected $fillable = [
 
