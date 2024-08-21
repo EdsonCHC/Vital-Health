@@ -10,78 +10,88 @@
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
 
+
 <body class="w-full h-screen bg-gray-200">
-    <!-- Encabezado -->
-    <div class="flex w-full">
-        <div class="h-full">
+    <div class="flex w-full h-full">
+        <div class="fixed top-0 h-full z-10">
             @include('templates.header_doc')
         </div>
-        <div class="w-full h-auto">
-            <div class="w-auto h-auto my-4 mx-4 lg:mx-16 lg:flex lg:mt-10 ">
-                <div class="md:w-full w-full flex-grow">
-                    <h2 class="font-bold text-2xl text-vh-green">Entrega de Medicamento</h2>
-                    <p class="font-semibold lg:text-base">Medicamento Asignado</p>
-                </div>
-                <div class="md:w-full w-full flex lg:justify-end lg:items-end  my-2">
-                    <a href="/login" target="_self"
-                        class="w-2/5 text-sm  lg:w-40 h-12 text-white font-semibold bg-vh-green lg:text-lg tracking-wide shadow-xl lg:my-2 lg:mx-4 rounded-xl hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
-                        Nuevo Examen
-                    </a>
-                </div>
 
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-4 mx-4 lg:mx-16 text-center ">
-                <article
-                    class="bg-white  lg:p-6 p-3 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
-                    <a target="_self" href="" class="absolute opacity-0 top-0 right-0 left-0 bottom-0"></a>
-                    <div class="relative mb-4 rounded-2xl">
-                        <object data="{{asset('storage/svg/medicine.svg')}}" type="image/svg+xml"
-                            class="max-h-80 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105"></object>
-                        <a class="flex justify-center items-center bg-green-700 bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100"
-                            href="" target="_self" rel="noopener noreferrer">
-                            Ver Medicamento
-                            <svg class="ml-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
-                            </svg>
+
+        <div class="ml-4 lg:ml-60 w-full h-full overflow-y-auto flex-grow">
+            <div class="w-full max-w-6xl mx-auto h-auto my-4 lg:my-10 px-4 lg:px-16">
+                <h2 class="font-bold text-xl lg:text-3xl text-vh-green mb-4">Pedidos de Receta</h2>
+
+                <!-- Filtros y botones -->
+                <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center mb-4">
+                
+                    <div class="flex flex-col lg:flex-row lg:space-x-4">
+                        <a id="view-history" href="#"
+                            class="w-full lg:w-36 h-12 text-white font-semibold bg-vh-green lg:text-lg tracking-wide shadow-xl rounded-xl hover:bg-white transition duration-300 hover:text-vh-green text-center mb-2 lg:mb-0">
+                            <p class="flex justify-center mt-2">Historial</p>
+                        </a>
+                        <a href="#" id="create-order"
+                            class="w-full lg:w-36 h-12 text-white font-semibold bg-vh-green lg:text-lg tracking-wide shadow-xl rounded-xl hover:bg-white transition duration-300 hover:text-vh-green text-center">
+                            <p class="flex justify-center mt-2">Nuevo Pedido</p>
                         </a>
                     </div>
-                    <div class="flex justify-between items-center w-full pb-4 mb-auto">
-                        <div class="flex items-center">
-                            <div class="pr-3">
-                                <object class="h-10 w-10 rounded-full object-cover"
-                                    data="{{asset('storage/svg/medicine_example.svg')}}" type="image/svg+xml"></object>
+                </div>
 
-                            </div>
-                            <div class="flex flex-1">
-                                <div class="">
-                                    <p class="text-sm :text-xl  font-semibold ">Alejandro Jose</p>
-                                    <p class="text-sm text-gray-500">Publicad :19/03/2024</p>
+                <!-- Tabla de pedidos -->
+                <div class="overflow-x-auto">
+                    <div class="bg-vh-alice-blue rounded-md mb-4">
+                        <!-- Encabezado de tabla -->
+                        <div class="hidden lg:flex bg-gray-200 p-2 font-semibold text-sm lg:text-base text-vh-green">
+                            <div class="w-1/6 text-center py-2">Código</div>
+                            <div class="w-1/6 text-center py-2">Paciente</div>
+                            <div class="w-1/6 text-center py-2">Medicamento</div>
+                            <div class="w-1/6 text-center py-2">Fecha</div>
+                            <div class="w-1/6 text-center py-2">Estado</div>
+                            <div class="w-1/6 text-center py-2">Acciones</div>
+                        </div>
+
+                        <!-- Fila de pedidos -->
+                        <div class="flex flex-col lg:flex-row border-b border-gray-200 text-sm lg:text-base">
+                            <!-- Datos de la tabla en formato de columnas para pantallas grandes -->
+                            <div class="flex flex-col lg:flex-row w-full">
+                                <div class="lg:w-1/6 text-center py-2 text-vh-green hidden lg:block">12345</div>
+                                <div class="lg:w-1/6 text-center py-2 text-vh-green hidden lg:block">Juan Pérez</div>
+                                <div class="lg:w-1/6 text-center py-2 text-vh-green hidden lg:block">Paracetamol</div>
+                                <div class="lg:w-1/6 text-center py-2 text-vh-green hidden lg:block">2024-08-20</div>
+                                <div class="lg:w-1/6 text-center py-2 text-vh-green hidden lg:block">Pendiente</div>
+                                <!-- Botones de acciones en formato de columnas para pantallas grandes -->
+                                <div class="lg:w-1/6 text-center py-2 flex justify-center space-x-2 lg:space-x-4">
+                                    <button class="delete-order p-1 lg:p-2">
+                                        <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="Eliminar"
+                                            class="w-6 h-6 lg:w-8 lg:h-8 rounded">
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="flex justify-end">
-                            <div class="text-sm flex items-center text-gray-500 ">
-                                2 dias
-                                <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
+
+                            <!-- En dispositivos móviles, mostrar los datos en formato de tarjeta -->
+                            <div class="lg:hidden flex flex-col border-t border-gray-200">
+                                <div class="py-2 px-4 text-vh-green font-semibold">Código: 12345</div>
+                                <div class="py-2 px-4 text-vh-green font-semibold">Paciente: Juan Pérez</div>
+                                <div class="py-2 px-4 text-vh-green font-semibold">Medicamento: Paracetamol</div>
+                                <div class="py-2 px-4 text-vh-green font-semibold">Fecha: 2024-08-20</div>
+                                <div class="py-2 px-4 text-vh-green font-semibold">Estado: Pendiente</div>
+                                <!-- Botones de acciones en formato de tarjeta para pantallas móviles -->
+
                             </div>
                         </div>
+                        <!-- Fin del ejemplo -->
+
+                        <!-- Repite el bloque de ejemplo según sea necesario para otros pedidos -->
+
+                        <!-- Mensaje si no hay pedidos -->
+                        <p class="text-center font-semibold text-sm lg:text-lg text-vh-green my-4">No hay pedidos
+                            disponibles para mostrar.</p>
                     </div>
-                    <h3 class="font-medium text-xl leading-8">
-                        <a href="" class="block relative group-hover:text-vh-green transition-colors duration-200 ">
-                            Pedido de Medicina para:@juan
-                        </a>
-                    </h3>
-
-                </article>
-
+                </div>
             </div>
+        </div>
 
+    </div>
 </body>
 
 </html>

@@ -20,78 +20,123 @@
     <!-- Contenido -->
     <div class="pt-16 lg:ml-64 lg:pt-0">
         <!-- Bienvenida -->
-    <div class="flex flex-col items-center lg:flex-row lg:justify-center px-4 py-6">
-        <div class="w-full lg:w-11/12 lg:h-64 rounded-lg shadow-xl relative overflow-hidden bg-green-800 mb-6 lg:mb-0">
-            <div class="flex flex-col lg:flex-row items-center lg:items-start lg:justify-start p-4 lg:p-6 h-full">
-                <div class="text-center lg:text-left flex flex-col justify-between h-full">
-                    <div>
-                        <p id="current-date" class="font-bold text-md text-gray-400 mb-2"></p>
-                        <h3 class="font-bold text-2xl text-white">{{ $doctor->name }}</h3>
-                        <p class="font-bold text-xl text-gray-400">{{ $doctor->category->nombre }}</p>
+        <div class="flex flex-col items-center lg:flex-row lg:justify-center px-4 py-6">
+            <div
+                class="w-full lg:w-11/12 lg:h-64 rounded-lg shadow-xl relative overflow-hidden bg-green-800 mb-6 lg:mb-0">
+                <div class="flex flex-col lg:flex-row items-center lg:items-start lg:justify-start p-4 lg:p-6 h-full">
+                    <div class="text-center lg:text-left flex flex-col justify-between h-full">
+                        <div>
+                            <p id="current-date" class="font-bold text-base text-gray-400 mb-2"></p>
+                            <h3 class="font-bold text-2xl text-white">{{ $doctor->name }}</h3>
+                            <p class="font-bold text-xl text-gray-400">{{ $doctor->category->nombre }}</p>
+                        </div>
+                        <p id="current-time" class="font-bold text-3xl text-white mt-4 lg:mt-6"></p>
                     </div>
-                    <p id="current-time" class="font-bold text-3xl text-white mt-4 lg:mt-6"></p>
                 </div>
+                <img class="absolute bottom-0 right-4 h-3/4 lg:h-full" src="{{ asset('storage/svg/doc_ind.svg') }}" />
             </div>
-            <img class="absolute bottom-0 right-5 h-3/4 lg:h-full" src="{{ asset('storage/svg/doc_ind.svg') }}" />
         </div>
-    </div>
-
 
         <!-- Estadísticas y Notificaciones -->
-        <div class="flex flex-col items-center lg:flex-row lg:justify-center px-4 lg:px-0">
-            <div class="w-full lg:w-11/12 lg:flex lg:justify-between">
-                <!-- Estadísticas -->
-                <div class="flex flex-col lg:flex-row lg:justify-between lg:w-4/6 gap-4">
-                    <!-- Caja de Usuarios -->
-                    <div
-                        class="w-full lg:w-72 h-56 bg-white opacity-80 rounded-lg shadow-xl flex flex-col items-center justify-center p-4">
-                        <img class="w-16 lg:w-24" src="{{ asset('storage/svg/usuarios.svg') }}" alt="Usuarios" />
-                        <div class="text-center mt-2">
-                            <h3 class="font-bold text-lg lg:text-2xl">{{ $totalPatients }}</h3>
-                            <p class="font-bold text-xs lg:text-sm text-gray-600">Usuarios Creados</p>
+        <div class="px-4 lg:px-6 lg:w-11/12 mx-auto">
+            <div class="flex flex-col lg:flex-row gap-4">
+                <!-- Estadísticas y Recetas -->
+                <div class="w-full lg:w-2/3">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+                        <!-- Caja de Usuarios -->
+                        <div
+                            class="bg-white opacity-80 rounded-lg shadow-xl flex flex-col items-center justify-center p-4 h-40">
+                            <img class="w-16 lg:w-16 mb-2" src="{{ asset('storage/svg/usuarios.svg') }}"
+                                alt="Usuarios" />
+                            <div class="text-center">
+                                <h3 class="font-bold text-xl lg:text-2xl">{{ $totalPatients }}</h3>
+                                <p class="font-bold text-sm lg:text-base text-gray-600">Usuarios Creados</p>
+                            </div>
+                        </div>
+                        <!-- Caja de Citas -->
+                        <div
+                            class="bg-white opacity-80 rounded-lg shadow-xl flex flex-col items-center justify-center p-4 h-40">
+                            <img class="w-16 lg:w-16 mb-2" src="{{ asset('storage/svg/expedientes.svg') }}"
+                                alt="Citas" />
+                            <div class="text-center">
+                                <h3 class="font-bold text-xl lg:text-2xl">{{ $totalCitas }}</h3>
+                                <p class="font-bold text-sm lg:text-base text-gray-600">Citas</p>
+                            </div>
+                        </div>
+                        <!-- Caja de Recetas -->
+                        <div
+                            class="bg-white opacity-80 rounded-lg shadow-xl flex flex-col items-center justify-center p-4 h-40">
+                            <img class="w-16 lg:w-16 mb-2" src="{{ asset('storage/svg/inter.svg') }}" alt="Recetas" />
+                            <div class="text-center">
+                                <h3 class="font-bold text-xl lg:text-2xl">{{ $totalRecetas }}</h3>
+                                <p class="font-bold text-sm lg:text-base text-gray-600">Recetas creadas</p>
+                            </div>
                         </div>
                     </div>
-                    <!-- Caja de Citas -->
-                    <div
-                        class="w-full lg:w-72 h-56 bg-white opacity-80 rounded-lg shadow-xl flex flex-col items-center justify-center p-4">
-                        <img class="w-16 lg:w-24" src="{{ asset('storage/svg/expedientes.svg') }}" alt="Citas" />
-                        <div class="text-center mt-2">
-                            <h3 class="font-bold text-lg lg:text-2xl">{{ $totalCitas }}</h3>
-                            <p class="font-bold text-xs lg:text-sm text-gray-600">Citas</p>
-                        </div>
-                    </div>
-                    <!-- Caja de Recetas -->
-                    <div
-                        class="w-full lg:w-72 h-56 bg-white opacity-80 rounded-lg shadow-xl flex flex-col items-center justify-center p-4">
-                        <img class="w-16 lg:w-24" src="{{ asset('storage/svg/inter.svg') }}" alt="Recetas" />
-                        <div class="text-center mt-2">
-                            <h3 class="font-bold text-lg lg:text-2xl">{{ $totalRecetas }}</h3>
-                            <p class="font-bold text-xs lg:text-sm text-gray-600">Recetas creadas</p>
-                        </div>
+
+                    <!-- Recetas -->
+                    <div class="bg-white rounded-lg shadow-lg px-4 mb-6">
+                        <h2 class="font-bold text-xl  px-4 border-b border-gray-200">Recetas</h2>
+                        @foreach($recentRecetas as $receta)
+                                                <?php
+                            $date = \Carbon\Carbon::parse($receta->fecha_entrega);
+                                                    ?>
+                                                <div class="p-4 border-b border-gray-200 last:border-b-0">
+                                                    <div class="flex flex-col lg:flex-row items-start lg:items-center">
+                                                        <div
+                                                            class="bg-yellow-800 text-white rounded-lg w-full lg:w-24 h-24 lg:h-24 flex items-center justify-center mb-4 lg:mb-0 lg:mr-4">
+                                                            <div class="text-center">
+                                                                <span class="block text-2xl font-bold">{{ $date->format('d') }}</span>
+                                                                <span class="block text-xs">{{ $date->format('M') }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Receta</h3>
+                                                            <p class="text-gray-600 mb-2">Paciente: {{ $receta->patient->name }}</p>
+                                                            <p class="text-gray-600 mb-2">Descripción: {{ $receta->description }}</p>
+                                                            <a href="/recetas_doc"
+                                                                class="inline-block bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition duration-300">
+                                                                Ver más
+                                                            </a>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                        @endforeach
                     </div>
                 </div>
 
+                <!-- Notificaciones -->
+                <div class="w-full lg:w-1/3">
+                    <div class="bg-white rounded-lg shadow-lg p-4">
+                        <h2 class="font-bold text-xl  px-4 border-b border-gray-200">Notificaciones</h2>
+                        @foreach($recentCitas as $cita)
+                                                <?php
+                            $date = \Carbon\Carbon::parse($cita->date);
+                                                    ?>
+                                                <div class="p-4 border-b border-gray-200 last:border-b-0">
+                                                    <div class="flex flex-col lg:flex-row items-start lg:items-center">
+                                                        <div
+                                                            class="bg-green-800 text-white rounded-lg w-full lg:w-24 h-24 lg:h-24 flex items-center justify-center mb-4 lg:mb-0 lg:mr-4">
+                                                            <div class="text-center">
+                                                                <span class="block text-2xl font-bold">{{ $date->format('d') }}</span>
+                                                                <span class="block text-xs">{{ $date->format('M') }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Notificación de Cita</h3>
+                                                            <p class="text-gray-600 mb-2">Paciente: {{ $cita->patient->name }}</p>
+                                                            <p class="text-gray-600 mb-2">Hora: {{ $cita->hour }}</p>
+                                                            <a href="/citas_doc" class="w-full flex items-center">
+                                                                <p>Citas</p>
+                                                            </a>
 
-                <div class="w-full lg:w-1/3 h-auto bg-white rounded-lg shadow-xl lg:ml-4 mt-4 lg:mt-0">
-
-                    <h2 class="font-bold text-xl mb-6 p-4">Notificaciones</h2>
-                    <div class="w-auto h-auto m-4 bg-gray-100 rounded-lg flex shadow-lg flex-col lg:flex-row">
-                        <div class="flex-none lg:mr-4 mb-4 lg:mb-0">
-                            <div class="flex-col bg-green-800 rounded-md w-16 h-16 mb-2 content-center">
-                                <span class="flex justify-center font-bold text-white">27</span>
-                                <span class="flex justify-center font-bold text-white">Feb</span>
-                            </div>
-                            <div class="bg-green-200 rounded-md w-16 h-6">
-                                <a class="flex font-bold justify-center hover:bg-white transition duration-300" href="#">Nuevo</a>
-                            </div>
-                        </div>
-                        <div class="flex flex-col mt-4 lg:mt-0">
-                            <h3 class="font-bold text-base">Notificaciones de cita</h3>
-                            <p class="text-vh-green-light mb-2">Paciente: Juan José</p>
-                            <span class="font-bold text-sm opacity-70">Hola buenas el motivo de este mensaje es...</span>
-                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                        @endforeach
                     </div>
-                    
                 </div>
             </div>
         </div>
