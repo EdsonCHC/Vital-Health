@@ -64,7 +64,7 @@
                                     </p>
                                     <button target="_self" class="assign_appointment">
                                         <a href="#">
-                                            <img src="{{ asset('storage/svg/eye-icon.svg') }}" alt="noti_icon"
+                                            <img src="{{ asset('storage/svg/eye-scan.svg') }}" alt="noti_icon"
                                                 class="w-10 h-10 p-2">
                                         </a>
                                     </button>

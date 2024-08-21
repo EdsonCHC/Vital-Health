@@ -19,14 +19,14 @@ class LaboratorioTableSeeder extends Seeder
             [
                 'nombre' => 'Laboratorio Central',
                 'mail' => 'contacto@laboratoriocentral.com',
-                'password' => Hash::make('pass123'), 
+                'password' => Hash::make('pass123'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'nombre' => 'Laboratorio Clínico',
                 'mail' => 'info@laboratorioclinico.com',
-                'password' => Hash::make('pass123'), 
+                'password' => Hash::make('pass123'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -37,5 +37,5 @@ class LaboratorioTableSeeder extends Seeder
             DB::table('laboratorios')->insert($laboratorista);
         });
     }
-    
+
 }

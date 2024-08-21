@@ -62,6 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/examen', [ExamController::class, 'examsPaciente'])->name('exams.paciente');
     Route::get('/examenes/completados', [ExamController::class, 'examenesCompletados']);
     Route::get('/medicina', [RecetaController::class, 'recetasPaciente'])->name('medicina.paciente');
+    Route::delete('/citas/{id}/eliminar', [CitaController::class, 'eliminar']);
     //
     // Info pages
     Route::view('/area', 'app.area');

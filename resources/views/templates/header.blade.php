@@ -9,7 +9,7 @@
                 <label for="menu--toggle" id="burger" class="cursor-pointer"></label>
                 <ul id="menu" class="absolute top-16 left-0 bg-vh-green-medium-2 w-full shadow-lg">
                     <li class="menu_list"><a href="/" class="menu_link">Home</a></li>
-                    <li class="menu_list"><a href="" class="menu_link">Produtos</a></li>
+                    <li class="menu_list"><a href="" class="menu_link">Productos</a></li>
                     <li class="menu_list"><a href="/service" class="menu_link">Servicios</a></li>
                     <li class="menu_list"><a href="" class="menu_link">Contacto</a></li>
                 </ul>
@@ -28,7 +28,7 @@
                                 class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Medicina</a></li>
                         <li><a href="/citas" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Citas</a></li>
                         <li><a href="/examen"
-                                class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Examenes</a></li>
+                                class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Exámenes</a></li>
                         <li><a href="/service/contact" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Control
                                 Personal</a></li>
                     </ul>
@@ -76,7 +76,7 @@
                 </div>
                 <a href="/user" class="w-10 h-auto">
                     @if (Auth::check())
-                        <img src="{{ Auth::user()->img }}" alt="user_icon"
+                        <img src="storage/{{ Auth::user()->img }}" alt="user_icon"
                             class="w-full h-full p-[2px] bg-vh-gray-light rounded-full">
                     @else
                         <img src="{{ asset('storage/svg/user.svg') }}" alt="user_icon"

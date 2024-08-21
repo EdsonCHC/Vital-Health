@@ -44,7 +44,7 @@
                         <h1 class="font-bold text-2xl lg:text-3xl">Perfil</h1>
                         <div
                             class="w-40 h-40 lg:w-56 lg:h-56 rounded-full border border-solid border-vh-green overflow-hidden">
-                            <img src="{{ $user->img }}" alt="Perfil" class="w-full h-full object-cover">
+                            <img src="storage/{{ $user->img }}" alt="Perfil" class="w-full h-full object-cover">
                         </div>
                         <div class="flex flex-col items-center">
                             <h1 class="text-xl lg:text-3xl">{{ $user->name }}</h1>
