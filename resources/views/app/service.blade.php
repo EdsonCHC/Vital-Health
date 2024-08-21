@@ -237,13 +237,6 @@
                                 <img id="menu-icon" class="h-8 w-8 mx-2"
                                     src="{{ asset('storage/svg/option-icon.svg') }}" alt="Inicio" />
                             </button>
-                            <div id="menuOptions"
-                                class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
-                                <a href="#" id="edit_staff"
-                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
-                                <a href="#" id="history_staff"
-                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
-                            </div>
                         </div>
                         <div class="flex justify-center items-center flex-col">
                             <div class="bg-green-400 rounded-full w-24 h-24 mb-4"></div>
@@ -276,13 +269,6 @@
                                 <img id="menu-icon" class="h-8 w-8 mx-2"
                                     src="{{ asset('storage/svg/option-icon.svg') }}" alt="Inicio" />
                             </button>
-                            <div id="menuOptions"
-                                class="w-32 ml-10 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
-                                <a href="#" id="edit_staff"
-                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
-                                <a href="#" id="history_staff"
-                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
-                            </div>
                         </div>
                         <div class="flex justify-center items-center flex-col">
                             <div class="bg-green-400 rounded-full w-20 h-20"></div>

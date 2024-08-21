@@ -11,83 +11,68 @@
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
 
-<body class="w-full h-screen bg-gray-200">
-    <!-- Encabezado -->
-    <div class="flex w-full">
-        <div class="fixed top-0 h-full z-10">
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="lg:fixed lg:top-0 lg:left-0 lg:w-60 lg:h-screen lg:bg-white lg:shadow-lg lg:z-10">
             @include('templates.header_doc')
-        </div>
-        <div class="ml-60 w-full h-auto">
-            <div class="w-auto h-auto my-4 mx-4 lg:mx-16 lg:mt-10 ">
-                <div class=" md:w-full w-full ">
-                    <h2 class=" font-bold  text-2xl text-vh-green">Expedientes de Usuarios </h2>
-                    <div class="w-full">
-                        <form method="get" action="#" class="relative">
-                            <div class="relative mt-5">
-                                <input type="text" name="s" id="s"
-                                    class="block w-full h-12 pl-16 py-2 border border-gray-200 rounded-md leading-5 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none focus:bg-white focus:text-gray-900 sm:text-sm transition duration-150 ease-in-out"
-                                    placeholder="Buscar ">
-                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
-                                    <object data="{{ asset('storage/svg/lupa.svg') }}" type="image/svg+xml"></object>
-                                </span>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class=" md:w-full w-full ">
-                    <div class="flex-col p-4 h-auto  bg-white  rounded-xl shadow- mt-4 ">
-                        <div class=" md:w-full w-full lg:items-end lg:justify-end">
-                            {{-- <button target="_self" data-patien-id="{{ $expedientes->$patients->Nombre}}"
-                                class="create-exp w-2/5 lg:text-base text-base p-2 lg:w-40 h-12 text-white font-semibold bg-vh-green tracking-wide shadow-xl lg:my-2 lg:mx-4 rounded-lg hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
-                                Nuevo Expediente
-                            </button> --}}
-                        </div>
-                        <div class="w-auto h-14 flex justify-around items-center my-5 mx-4 bg-vh-alice-blue rounded-md">
-                            <p class="font-semibold text-xl text-vh-green">Codigo</p>
-                            <p class="font-semibold text-xl text-vh-green">Paciente</p>
-                            <p class="font-semibold text-xl text-vh-green">Expediente</p>
-                            <div class="w-2/12">
-                                <p class="font-semibold text-xl text-vh-green">Herramientas</p>
-                            </div>
-                        </div>
-                        @if ($expedientes->isEmpty())
-                            <div class="w-auto h-16 flex justify-around items-center my-5 mx-4 bg-green-200 rounded-md">
-                                <p class="font-bold text-lg">No hay expedientes registrados.</p>
-                            </div>
-                        @else
-                            @foreach ($expedientes as $expediente)
-                                <div
-                                    class="w-auto h-16 flex justify-around items-center my-5 mx-4 bg-green-200 rounded-md">
-                                    <p class="font-bold text-lg">{{ $expediente->id }}</p>
-                                    <p class="font-bold text-lg">
-                                        {{ $expediente->patient_id ? $expediente->patient->name : 'Paciente no disponible' }}
-                                    </p>
-                                    <button target="_self" class="assign_appointment">
-                                        <a href="#">
-                                            <img src="{{ asset('storage/svg/eye-icon.svg') }}" alt="noti_icon"
-                                                class="w-10 h-10 p-2">
-                                        </a>
-                                    </button>
-                                    <div class="w-2/12 flex items-center space-x-10">
-                                        <button target="_self" class="update-file ml-4"
-                                            data-expediente-id="{{ $expediente->id }}">
-                                            <img src="{{ asset('storage/svg/upload.svg') }}" alt="noti_icon"
-                                                class="w-10 h-10 p-2 rounded">
-                                        </button>
-                                        <button target="_self" class="delete-file ml-4" data-id="{{ $expediente->id }}">
-                                            <img src="{{ asset('storage/svg/trash.svg') }}" alt="config_icon"
-                                                class="w-10 h-10 p-2 rounded">
-                                        </button>
+        </aside>
 
-                                    </div>
-                                </div>
-                            @endforeach
+        <!-- Main content -->
+        <main class="lg:ml-60 p-6 w-full min-h-screen bg-gray-100">
 
-                        @endif
+            <header class="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-6">
+                <h2 class="text-3xl font-bold text-vh-green">Expedientes de Usuarios</h2>
+                <a href=""
+                    class="bg-vh-green text-white font-semibold mt-4 lg:mt-0 py-2 px-4 rounded-lg shadow-lg hover:bg-green-600 transition duration-300">
+                    Nuevo Expediente
+                </a>
+            </header>
+
+            <!-- Expediente Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                @if ($expedientes->isEmpty())
+                    <div class="col-span-1 bg-green-100 rounded-md p-4">
+                        <p class="font-bold text-lg text-green-800">No hay expedientes registrados.</p>
                     </div>
-                </div>
+                @else
+                    @foreach ($expedientes as $expediente)
+                        <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col space-y-4">
+                            <!-- Header Section -->
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-2xl text-gray-900">Código: {{ $expediente->id }}</p>
+                                <a href="#" class="text-gray-600 hover:text-gray-800">
+                                    <img src="{{ asset('storage/svg/eye-scan.svg') }}" alt="ver_icon" class="w-8 h-8">
+                                </a>
+                            </div>
+
+                            <!-- Patient Information -->
+                            <div>
+                                <p class="font-semibold text-lg text-gray-700">
+                                    Paciente: {{ $expediente->patient_id ? $expediente->patient->name : 'Paciente no disponible' }}
+                                </p>
+                            </div>
+
+                            <!-- Actions Section -->
+                            <div class="flex space-x-4">
+                                <button class="update-file p-2 rounded bg-green-500 text-white hover:bg-green-600 transition"
+                                    data-expediente-id="{{ $expediente->id }}">
+                                    <img src="{{ asset('storage/svg/upload.svg') }}" alt="update_icon" class="w-6 h-6">
+                                    <span class="sr-only">Actualizar expediente</span>
+                                </button>
+                                <button class="delete-file p-2 rounded bg-red-500 text-white hover:bg-red-600 transition"
+                                    data-id="{{ $expediente->id }}">
+                                    <img src="{{ asset('storage/svg/trash.svg') }}" alt="delete_icon" class="w-6 h-6">
+                                    <span class="sr-only">Eliminar expediente</span>
+                                </button>
+                            </div>
+                        </div>
+                    @endforeach
+
+                @endif
             </div>
-        </div>
+        </main>
+    </div>
 </body>
 
 </html>

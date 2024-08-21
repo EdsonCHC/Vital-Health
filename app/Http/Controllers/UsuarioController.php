@@ -123,11 +123,7 @@ class UsuarioController extends Controller
         }
 
         if ($request->hasFile('img')) {
-            $img = $request->file('img');
-            $destinationPath = public_path('users_profile');
-            $fileName = time() . '_' . $img->getClientOriginalName();
-            $img->move($destinationPath, $fileName);
-            $imagePath = url('users_profile/' . $fileName);
+            $imagePath = $request->file('img')->store('profile_images', 'public');
         } else {
             $imagePath = null;
         }
