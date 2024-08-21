@@ -7,6 +7,11 @@ use App\Models\Admin;
 use App\Models\Doctor;
 use App\Models\Laboratorio;
 use App\Models\Categoría;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Receta;
+use App\Models\Exams;
+use App\Models\citas;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -24,9 +29,69 @@ class UsuarioController extends Controller
         return view('app.area', compact('categorias'));
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $user = Auth::user(); // Obtiene al usuario autenticado
+        $user = Auth::user();
+        $userId = $user->id;
+
+        $citas = Citas::with('category')
+        ->where('patient_id', $userId)
+            ->where('state', 1)
+            ->get();
+
+        $exams = Exams::where('patient_id', $userId)
+            ->where('state', 1)
+            ->get();
+
+        $recetas = Receta::with('medicinas')
+        ->where('patient_id', $userId)
+            ->get();
+
+        return view('app.user_info', compact('user', 'citas', 'exams', 'recetas'));
+    }
+
+    public function generatePdf()
+    {
+        try {
+            $user = Auth::user();
+            $userId = $user->id;
+
+            $citas = Citas::with('category')
+            ->where('patient_id', $userId)
+                ->where('state', 1)
+                ->get();
+
+            $exams = Exams::where('patient_id', $userId)
+                ->where('state', 1)
+                ->get();
+
+            $recetas = Receta::with('medicinas')
+            ->where('patient_id', $userId)
+                ->get();
+
+            $pdf = Pdf::loadView('pdf.expediente', compact('user', 'citas', 'exams', 'recetas'));
+            return $pdf->download('expediente.pdf');
+        } catch (\Throwable $th) {
+            // Registrar el error
+            Log::error('Error al generar el PDF: ' . $th->getMessage());
+            // Devolver una respuesta con el mensaje de error
+            return response()->json([
+                'success' => false,
+                'message' => 'No se pudo generar el PDF. Por favor, inténtelo de nuevo más tarde.'
+            ], 500);
+        }
+    }
+
+    public function citasPaciente(Request $request)
+    {
+        $pacienteId = Auth::id();
+
+        $citas = Citas::with('category', 'doctor')
+            ->where('patient_id', $pacienteId)
+            ->where('state', 1)
+            ->whereNotNull('doctor_id')
+            ->get();
+
         return view('app.user_info', compact('user'));
     }
 
@@ -101,10 +166,6 @@ class UsuarioController extends Controller
         }
     }
 
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Request $request)
     {
         $credentials = [
@@ -153,19 +214,11 @@ class UsuarioController extends Controller
         }
     }
 
-
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Usuario $usuario)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Usuario $user)
     {
         try {

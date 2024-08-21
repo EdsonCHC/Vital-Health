@@ -53,10 +53,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/appointments', [CitaController::class, 'store']);
     Route::delete('/citas/{id}/eliminar', [CitaController::class, 'eliminar']);
     //
-    // Expedientes
-    Route::get('/file', [ExpedienteController::class, 'showFileUser'])->name('app.file');
-    Route::post('/file', [ExpedienteController::class, 'store']);
-    //
     // Examenes
     Route::view('/examen', 'app.exams');
     Route::get('/examen', [ExamController::class, 'examsPaciente'])->name('exams.paciente');
@@ -73,7 +69,9 @@ Route::middleware('auth')->group(function () {
     // Route::view('/area', [CitaController::class, 'index'])->name('app.area');
     //
     // User
+    Route::get('/generate-pdf', [UsuarioController::class, 'generatePdf'])->name('generate.pdf');
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
+
     Route::post('/user', [UsuarioController::class, 'destroy']);
     Route::put('/user/update', [UsuarioController::class, 'update'])->name('user.update');
 });
@@ -98,7 +96,7 @@ Route::middleware(['auth:doctor'])->group(function () {
     // Examenes
     Route::view('/exams_doc', 'doctor.exams_doc');
     // Route::view('/service_doc', 'doctor.service_doc');
-    Route::get('/service_doc' , [ExamController::class, 'viewServiceDoc'])->name('doctor.service_doc');
+    Route::get('/service_doc', [ExamController::class, 'viewServiceDoc'])->name('doctor.service_doc');
     Route::get('/citas/{cita_id}/exams/{user_id}', [ExamController::class, 'getExams']);
     Route::get('/citas/{cita_id}/check-end', [ExamController::class, 'checkAndEndCita']);
     Route::get('/recetas/fetch-prescription-form-data', [ExamController::class, 'fetchPrescriptionFormData'])->name('recetas.fetchFormData');
@@ -110,8 +108,8 @@ Route::middleware(['auth:doctor'])->group(function () {
     // Info pages
     Route::view('/allocation', 'doctor.allocation');
     Route::get('/medicine_doc', [recetaController::class, 'getRecetas'])->name('doctor.medicine_doc');
-    //    
-    // Videollamada 
+    //
+    // Videollamada
     Route::get('/program_doc', [VideollamadaController::class, 'showVideollamadaDoc'])->name('doctor.program_doc');
     Route::post('/citas/{cita_id}/{doctor_id}/videollamada', [VideollamadaController::class, 'store']);
     Route::delete('/program_doc/{videollamada_id}', [VideollamadaController::class, 'destroy'])->name('videollamada.destroy');
@@ -180,7 +178,7 @@ Route::middleware('auth:laboratorio')->group(function () {
     Route::post('/recetas/{id}/actualizar-estado', [recetaController::class, 'actualizarEstado']);
     Route::delete('/recetas/{id}/cancelar', [recetaController::class, 'cancelarReceta']);
     //
-    // Laboratorio      
+    // Laboratorio
     Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');
 });
 

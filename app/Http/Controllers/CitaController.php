@@ -131,7 +131,6 @@ class CitaController extends Controller
         return view('admin.appointment', compact('categoria', 'citasAsignadas', 'citasNoAsignadas'));
     }
 
-
     public function getDoctorsByCategory($id)
     {
         $categoria = Categoría::find($id);
@@ -161,6 +160,7 @@ class CitaController extends Controller
             ], 500);
         }
     }
+
     public function citasPaciente(Request $request)
     {
         $pacienteId = Auth::id();
@@ -184,7 +184,6 @@ class CitaController extends Controller
 
         return response()->json($citas);
     }
-
 
     public function store_doc(Request $request)
     {
@@ -233,7 +232,6 @@ class CitaController extends Controller
             ], 500);
         }
     }
-
 
     public function getPatients()
     {

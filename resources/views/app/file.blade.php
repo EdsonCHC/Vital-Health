@@ -39,11 +39,6 @@
                 <div class=" md:w-full w-full ">
                     <div class="flex-col p-4 h-auto  bg-white  rounded-xl shadow- mt-4 ">
                         <div class=" md:w-full w-full lg:items-end lg:justify-end">
-                            <button target="_self"
-                                class="create-exp-user w-2/5 lg:text-base text-base p-2 lg:w-40 h-16p text-white font-semibold bg-vh-green tracking-wide shadow-xl lg:my-2 lg:mx-4 rounded-lg hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
-                                Nuevo Expediente
-                            </button>
-
                         </div>
                         <div class="w-auto h-14 flex justify-around items-center my-5 mx-4 bg-vh-alice-blue rounded-md">
                             <p class="font-semibold text-xl text-vh-green">N°</p>
@@ -61,7 +56,8 @@
                                     class="w-auto h-16 flex justify-around items-center my-5 mx-4 bg-green-200 rounded-md">
                                     <p class="font-bold text-lg">{{ $expediente->id }}</p>
                                     <p class="font-bold text-lg">{{ $expediente->patient->name }}</p>
-                                    <button target="_self" class="showFileUser" data-file-id="{{ $expediente->id }}" data-patient-name="{{ $expediente->patient->name }}"
+                                    <button target="_self" class="showFileUser" data-file-id="{{ $expediente->id }}"
+                                        data-patient-name="{{ $expediente->patient->name }}"
                                         data-patient-lastname="{{ $expediente->patient->lastName }}"
                                         data-patient-mail="{{ $expediente->patient->mail }}"
                                         data-patient-gender="{{ $expediente->patient->gender }}">

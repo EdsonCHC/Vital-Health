@@ -4,17 +4,74 @@ window.$ = jQuery;
 
 $(document).ready(function () {
     // Usuario
-    // Maneja la creación del expediente
+    // Maneja el guardado del expediente
+
+    $(".saveFileUser").click(function () {
+        const url = "{{ route('generate.pdf') }}";
+
+        Swal.fire({
+            title: "Generar PDF",
+            showCancelButton: true,
+            confirmButtonText: "Generar",
+            cancelButtonText: "Cancelar",
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const url = "{{ route('generate.pdf') }}";
+                const _token = $('meta[name="csrf-token"]').attr("content");
+
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    headers: {
+                        "X-CSRF-TOKEN": _token,
+                    },
+                    xhrFields: {
+                        responseType: "blob",
+                    },
+                    success(response, status, xhr) {
+                        const filename = xhr
+                            .getResponseHeader("Content-Disposition")
+                            .split("filename=")[1];
+                        const blob = new Blob([response], {
+                            type: "application/pdf",
+                        });
+                        const link = document.createElement("a");
+                        link.href = URL.createObjectURL(blob);
+                        link.download = filename;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        Swal.fire("Expediente guardado", "", "success");
+                    },
+                    error(response) {
+                        console.log(response);
+                        
+                        Swal.fire(
+                            "Error al crear el expediente",
+                            "No se pudo generar el expediente",
+                            "error"
+                        );
+                    },
+                });
+            }
+        });
+    });
+
+    // Doctor
+    // Maneja la creacion del expediente
     $(".create-exp-user").click(function () {
         Swal.fire({
-            title: "Crear un expediente",
+            title: "Crear Mi Expediente",
             html: `
                 <form id="create-form" class="space-y-4 p-4 bg-white">
-                    <button type="button" id="create-expediente" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    <button type="button" id="create-expediente" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-sm">
                         Crear Expediente
                     </button>
                 </form>
             `,
+            showConfirmButton: false,
             showCancelButton: true,
             cancelButtonText: "Cancelar",
             didOpen: () => {
@@ -62,65 +119,6 @@ $(document).ready(function () {
         });
     });
 
-    $(".showFileUser").click(function () {
-        const fileId = $(this).data("file-id");
-        const patientName = $(this).data("patient-name");
-        const patientLastName = $(this).data("patient-lastname");
-        const patientMail = $(this).data("patient-mail");
-        const patientGender = $(this).data("patient-gender");
-
-        Swal.fire({
-            title: "Expediente",
-            html: `
-            <div class="w-auto h-auto flex-col justify-around items-center text-left my-5 mx-4 p-2 bg-green-200 rounded-md">
-                <p class="font-bold text-lg">N°: ${fileId}</p>
-                <p class="font-bold text-lg">Nombre: ${patientName}</p>
-                <p class="font-bold text-lg">Apellido: ${patientLastName}</p>
-                <p class="font-bold text-lg">Correo Electronico: ${patientMail}</p>
-                <p class="font-bold text-lg">Genero: ${patientGender}</p>
-            </div>
-        `,
-            showCancelButton: true,
-            confirmButtonText: "Generar PDF",
-            cancelButtonText: "Cancelar",
-            confirmButtonColor: "#d33",
-            cancelButtonColor: "#3085d6",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const _token = $('meta[name="csrf-token"]').attr("content");
-
-                $.ajax({
-                    url: `/file/${fileId}`, // URL para generar el PDF
-                    type: "GET",
-                    headers: {
-                        "X-CSRF-TOKEN": _token,
-                    },
-                    success(response) {
-                        if (response.success) {
-                            Swal.fire("Expediente guardado", "", "success");
-                            location.reload();
-                        } else {
-                            Swal.fire(
-                                "Error al guardar el expediente",
-                                response.message ||
-                                    "No se pudo guardar el expediente",
-                                "error"
-                            );
-                        }
-                    },
-                    error() {
-                        Swal.fire(
-                            "Error al crear el expediente",
-                            "No se pudo generar el expediente",
-                            "error"
-                        );
-                    },
-                });
-            }
-        });
-    });
-
-    // Doctor
     // Maneja la actualizacion del expediente
     $(".update-file").click(function () {
         const expedienteId = $(this).data("expediente-id"); // Obtén el ID del expediente desde el atributo data

@@ -23,20 +23,17 @@ class ExpedienteController extends Controller
         return view('doctor.files_doc', compact('expedientes', 'exams', 'citas', 'doctors', 'patients'));
     }
 
-    public function store(Request $request)
+    public function storeFileUser(Request $request)
     {
         try {
-            // Obtener el ID del usuario autenticado
             $userId = auth()->id();
 
-            // Crear el expediente y guardar el ID del usuario autenticado
             $expediente = Expedientes::create([
-                'patient_id' => $userId, // Asegúrate de que el campo user_id está en tu tabla 'expediente'
+                'patient_id' => $userId,
             ]);
 
             return response()->json(['success' => true, 'expediente' => $expediente]);
         } catch (\Exception $e) {
-            // Manejar la excepción y retornar error
             return response()->json([
                 'success' => false,
                 'message' => 'No se pudo crear el expediente. ' . $e->getMessage()
@@ -54,12 +51,11 @@ class ExpedienteController extends Controller
         $userId = auth()->id();
 
         $expedientes = Expedientes::where('patient_id', $userId)
-            ->with('patient') 
+            ->with('patient')
             ->get();
 
         return view('app.file', compact('expedientes'));
     }
-
 
     public function showFileDoc()
     {
