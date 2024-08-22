@@ -60,7 +60,10 @@ $(document).ready(function () {
                         icon: "success",
                         title: "Cita Agendada",
                         text: "Tu cita ha sido programada con éxito.",
+                    }).then(() => {
+                        window.location.reload(); 
                     });
+                    
                 } catch (error) {
                     console.error("Error al enviar la cita:", error);
                     Swal.fire({
@@ -135,7 +138,7 @@ $(document).ready(function () {
                 });
             },
             preConfirm: () => {
-                const selectedDate = document.getElementById("fecha").value;
+                const selectedDate = document.querySelector(".selected-date")?.dataset.date;
                 const selectedTime = document.getElementById("time").value;
                 const selectedModalidad = document.querySelector('input[name="modalidad"]:checked')?.value;
                 const selectedPatient = document.getElementById("patient").value;
@@ -167,10 +170,6 @@ $(document).ready(function () {
         });
 
         if (isConfirmed) {
-            const selectedDate = result.date;
-            const selectedTime = result.hour;
-            const selectedModalidad = result.modalidad;
-
             Swal.fire({
                 position: "bottom-end",
                 icon: "info",
@@ -178,15 +177,15 @@ $(document).ready(function () {
                       <div class="flex text-center justify-around">
                         <div>
                             <p class="text-gray-700 text-lg font-bold mb-6">Fecha</p>
-                            <p class="text-gray-500 text-base font-bold mb-6">${selectedDate}</p>
+                            <p class="text-gray-500 text-base font-bold mb-6">${result.date}</p>
                         </div>
                         <div>
                             <p class="text-gray-700 text-lg font-bold mb-6">Hora</p>
-                            <p class="text-gray-500 text-base font-bold mb-6">${selectedTime}</p>
+                            <p class="text-gray-500 text-base font-bold mb-6">${result.hour}</p>
                         </div>
                         <div>
                             <p class="text-gray-700 text-lg font-bold mb-6">Modalidad</p>
-                            <p class="text-gray-500 text-base font-bold mb-6">${selectedModalidad}</p>
+                            <p class="text-gray-500 text-base font-bold mb-6">${result.modalidad}</p>
                         </div>
                       </div>`,
                 showConfirmButton: false,
@@ -195,9 +194,9 @@ $(document).ready(function () {
             });
 
             return {
-                date: selectedDate,
-                hour: selectedTime,
-                modalidad: selectedModalidad,
+                date: result.date,
+                hour: result.hour,
+                modalidad: result.modalidad,
                 patient_id: result.patient_id,
             };
         } else {
@@ -207,32 +206,67 @@ $(document).ready(function () {
 
     function renderCalendar(date, container) {
         container.innerHTML = "";
-
+    
         const calendarHeader = createCalendarHeader(date);
         container.appendChild(calendarHeader);
-
+    
         const calendarGrid = document.createElement("div");
         calendarGrid.className = "grid grid-cols-7 gap-2";
         container.appendChild(calendarGrid);
-
+    
         const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
         const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
         const startDay = firstDayOfMonth.getDay();
         const totalDays = lastDayOfMonth.getDate();
-
-        fillCalendarGrid(calendarGrid, startDay, totalDays, date);
-
+        const today = new Date();
+    
+        fillCalendarGrid(calendarGrid, startDay, totalDays, date, today);
+    
         calendarHeader.querySelector("#prevMonth").addEventListener("click", () => {
             date.setMonth(date.getMonth() - 1);
             renderCalendar(date, container);
         });
-
+    
         calendarHeader.querySelector("#nextMonth").addEventListener("click", () => {
             date.setMonth(date.getMonth() + 1);
             renderCalendar(date, container);
         });
     }
-
+    
+    function fillCalendarGrid(grid, startDay, totalDays, date, today) {
+        grid.innerHTML = '';
+    
+        for (let i = 0; i < startDay; i++) {
+            const emptyCell = document.createElement("div");
+            grid.appendChild(emptyCell);
+        }
+    
+        for (let day = 1; day <= totalDays; day++) {
+            const dayCell = document.createElement("div");
+            const cellDate = new Date(date.getFullYear(), date.getMonth(), day);
+            const isFutureDate = cellDate > today;
+            dayCell.innerText = day;
+            dayCell.className = "p-2 cursor-pointer text-center hover:bg-gray-200 rounded-lg";
+            if (isFutureDate) {
+                dayCell.dataset.date = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
+                dayCell.addEventListener("click", () => {
+                    document.querySelectorAll(".selected-date").forEach(cell => {
+                        cell.classList.remove("bg-green-500", "text-white");
+                        cell.classList.add("cursor-pointer");
+                    });
+    
+                    dayCell.classList.remove("cursor-pointer");
+                    dayCell.classList.add("selected-date", "bg-green-500", "text-white");
+                    document.getElementById("fecha").value = dayCell.dataset.date;
+                });
+            } else {
+                dayCell.classList.add("text-gray-400");
+                dayCell.classList.add("cursor-not-allowed");
+            }
+            grid.appendChild(dayCell);
+        }
+    }
+    
     function createCalendarHeader(date) {
         const header = document.createElement("div");
         header.className = "flex justify-between items-center mb-4";
@@ -255,27 +289,6 @@ $(document).ready(function () {
         header.appendChild(nextButton);
 
         return header;
-    }
-
-    function fillCalendarGrid(grid, startDay, totalDays, date) {
-        grid.innerHTML = '';
-
-        for (let i = 0; i < startDay; i++) {
-            const emptyCell = document.createElement("div");
-            grid.appendChild(emptyCell);
-        }
-
-        for (let day = 1; day <= totalDays; day++) {
-            const dayCell = document.createElement("div");
-            dayCell.innerText = day;
-            dayCell.className = "p-2 cursor-pointer text-center hover:bg-gray-200 rounded-lg";
-            dayCell.addEventListener("click", () => {
-                document.querySelectorAll(".selected").forEach(cell => cell.classList.remove("bg-green-500", "text-white"));
-                dayCell.classList.add("bg-green-500", "text-white");
-                document.getElementById("fecha").value = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
-            });
-            grid.appendChild(dayCell);
-        }
     }
 
     function generateTimeOptions() {
