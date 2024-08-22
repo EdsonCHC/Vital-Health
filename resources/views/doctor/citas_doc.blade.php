@@ -11,101 +11,79 @@
 </head>
 
 <body class="w-full h-screen bg-gray-200">
-    <div class="flex w-full h-full">
-        <div class="fixed top-0 h-full z-10">
+    <div class="flex flex-col lg:flex-row w-full h-full">
+        <div class="fixed top-0 h-full z-10 lg:w-60 bg-white shadow-md">
             @include('templates.header_doc')
         </div>
 
-
-        <div class="lg:ml-60 w-full h-full overflow-y-auto flex-grow">
-            <div class="w-auto h-auto my-4 mx-4 lg:mx-16 lg:mt-10">
-                <div class="w-full">
+        <div class="lg:ml-60 flex-grow p-4 overflow-y-auto">
+            <div class="max-w-full mx-auto">
+                <div class="mb-4">
                     @if ($doctor)
-                        <h2 class="font-bold text-2xl text-vh-green">Citas del Doctor: {{ $doctor->name }}</h2>
+                        <h2 class="text-2xl font-bold text-vh-green">Citas del Doctor: {{ $doctor->name }}</h2>
                     @else
-                        <h2 class="font-bold text-2xl text-vh-green">No hay doctor activo asignado.</h2>
+                        <h2 class="text-2xl font-bold text-vh-green">No hay doctor activo asignado.</h2>
                     @endif
-
                 </div>
-                <div class="w-full mt-4">
-                    <div class="flex-col p-4 h-auto bg-white rounded-xl shadow">
-                        <div class="w-full flex items-center lg:justify-between">
-                            <div class="w-1/2 m-2 flex items-center">
-                                <div class=" my-4 lg:flex lg:justify-end">
-                                    <a id="show-citas" href="#"
-                                        class="w-full text-sm lg:w-40 h-12 text-white font-semibold bg-vh-green lg:text-lg tracking-wide shadow-xl lg:my-2 lg:mx-4 rounded-xl hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center">
-                                        <p class="flex justify-center mt-2">Historial</p>
-                                    </a>
+                <div class="mb-4 flex flex-col lg:flex-row gap-4">
+                    <a id="show-citas" href="#"
+                        class="w-full lg:w-40 h-12 text-sm lg:text-lg font-semibold bg-vh-green text-white rounded-xl shadow-xl hover:bg-white hover:text-vh-green transition duration-300 flex items-center justify-center">
+                        Historial
+                    </a>
+                    <a href="#" id="genere_input" data-doctor-id="{{ $doctor->id }}"
+                        class="w-full lg:w-40 h-12 text-sm lg:text-lg font-semibold bg-vh-green text-white rounded-xl shadow-xl hover:bg-white hover:text-vh-green transition duration-300 flex items-center justify-center">
+                        Nueva Cita
+                    </a>
+                </div>
+
+                <div class="bg-vh-alice-blue p-4 rounded-md mb-4 flex flex-col lg:flex-row gap-2 lg:gap-4 text-center">
+                    <div class="flex-1 font-semibold lg:text-xl text-vh-green">Código</div>
+                    <div class="flex-1 font-semibold lg:text-xl text-vh-green">Paciente</div>
+                    <div class="flex-1 font-semibold lg:text-xl text-vh-green">Especialidad</div>
+                    <div class="flex-1 font-semibold lg:text-xl text-vh-green">Fecha</div>
+                    <div class="flex-1 font-semibold lg:text-xl text-vh-green">Herramientas</div>
+                </div>
+
+                @if ($citas->isNotEmpty())
+                    @foreach ($citas as $cita)
+                        @if ($cita->state == 1)
+                            <div id="cita-{{ $cita->id }}" data-cita-id="{{ $cita->id }}"
+                                class="bg-white rounded-xl shadow p-4 mb-4 flex flex-col lg:flex-row items-center gap-4">
+                                <input type="hidden" id="cita_id_{{ $cita->id }}" data-cita-id="{{ $cita->id }}">
+                                <input type="hidden" id="patient_id_{{ $cita->id }}" data-patient-id="{{ $cita->patient->id }}">
+                                <input type="hidden" id="doctor_id_{{ $cita->id }}" data-doctor-id="{{ $cita->doctor->id }}">
+
+                                <div class="flex-1 text-xl text-vh-green">{{ $cita->id }}</div>
+                                <div class="flex-1 text-xl text-vh-green">{{ $cita->patient->name }} {{ $cita->patient->lastName }}
+                                </div>
+                                <div class="flex-1 text-xl text-vh-green">{{ $cita->category->nombre }}</div>
+                                <div class="flex-1 text-xl text-vh-green">{{ $cita->date }}</div>
+                                <div class="flex-1 text-xl text-vh-green">
+                                    <!-- Column for "Examen" kept empty as per your request -->
+                                </div>
+                                <div class="flex-1 flex justify-around space-x-4">
+                                    <button class="option-button" data-cita-id="{{ $cita->id }}">
+                                        <img src="{{ asset('storage/svg/option-icon.svg') }}" alt="options" class="w-8 h-8">
+                                    </button>
+                                    <button class="ml-4" id="aceptar">
+                                        <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="accept" class="w-8 h-8 rounded">
+                                    </button>
+                                    <button class="delete-cita" data-cita-id="{{ $cita->id }}">
+                                        <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="delete" class="w-8 h-8 rounded">
+                                    </button>
+                                    @if ($cita->modo == 'Virtual')
+                                        <button type="button" class="createVideollamada" data-cita-id="{{ $cita->id }}"
+                                            data-doctor-id="{{ $cita->doctor->id }}">
+                                            <img src="{{ asset('storage/svg/link-icon.svg') }}" alt="videocall" class="w-8 h-8 rounded">
+                                        </button>
+                                    @endif
                                 </div>
                             </div>
-                            <div class="my-4 lg:flex lg:justify-end">
-                                <a href="#" id="genere_input" data-doctor-id="{{ $doctor->id }}"
-                                    class="w-full text-sm lg:w-40 h-12 text-white font-semibold bg-vh-green lg:text-lg tracking-wide shadow-xl lg:my-2 lg:mx-4 rounded-xl hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center">
-                                    <p class="flex justify-center mt-2">Nueva Cita</p>
-                                </a>
-                            </div>
-
-                        </div>
-                        <div class="w-auto h-14 flex justify-around items-center my-5 mx-4 bg-vh-alice-blue rounded-md">
-                            <p class="font-semibold lg:text-xl text-vh-green">Código</p>
-                            <p class="font-semibold lg:text-xl text-vh-green">Paciente</p>
-                            <p class="font-semibold lg:text-xl text-vh-green">Especialidad</p>
-                            <p class="font-semibold lg:text-xl text-vh-green">Fecha</p>
-                            <p class="font-semibold lg:text-xl text-vh-green">Examen</p>
-                            <p class="font-semibold lg:text-xl text-vh-green">Herramientas</p>
-                        </div>
-
-                        @if ($citas->isNotEmpty())
-                            @foreach ($citas as $cita)
-                                @if ($cita->state == 1)
-                                    <div id="cita-{{ $cita->id }}" data-cita-id="{{ $cita->id }}"
-                                        class="w-auto h-14 flex justify-around items-center text-center my-5 mx-4 rounded-md ">
-                                        <input type="hidden" id="cita_id_{{ $cita->id }}"
-                                            data-cita-id="{{ $cita->id }}">
-                                        <input type="hidden" id="patient_id_{{ $cita->id }}"
-                                            data-patient-id="{{ $cita->patient->id }}">
-                                        <input type="hidden" id="doctor_id_{{ $cita->id }}"
-                                            data-doctor-id="{{ $cita->doctor->id }}">
-
-                                        <p class="ml-4 font-semibold text-xl text-vh-green">{{ $cita->id }}</p>
-                                        <p class="ml-12 font-semibold text-xl text-vh-green">{{ $cita->patient->name }}
-                                            {{ $cita->patient->lastName }}
-                                        </p>
-                                        <p class="-ml-6 font-semibold text-xl text-vh-green">
-                                            {{ $cita->category->nombre }}</p>
-                                        <p class="font-semibold text-xl text-vh-green">{{ $cita->date }}</p>
-                                        <button class="option-button" data-cita-id="{{ $cita->id }}">
-                                            <img src="{{ asset('storage/svg/option-icon.svg') }}" alt="noti_icon"
-                                                class="w-10 h-10 p-2">
-                                        </button>
-                                        <div class="w-2/12 flex items-center space-x-10">
-                                            <button target="_self" class="ml-4" id="aceptar">
-                                                <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="noti_icon"
-                                                    class="w-10 h-10 p-2 rounded">
-                                            </button>
-                                            <button target="_self" class="delete-cita"
-                                                data-cita-id="{{ $cita->id }}">
-                                                <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="config_icon"
-                                                    class="w-10 h-10 p-2 rounded">
-                                            </button>
-                                            @if ($cita->modo == 'Virtual')
-                                                <button type="button" class="createVideollamada"
-                                                    data-cita-id="{{ $cita->id }}"
-                                                    data-doctor-id="{{ $cita->doctor->id }}"><img
-                                                        src="{{ asset('storage/svg/link-icon.svg') }}" alt="Ver Cita"
-                                                        class="w-10 h-10 p-2 rounded"></button>
-                                            @endif
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        @else
-                            <p class="text-center font-semibold text-xl text-vh-green">No hay citas disponibles para
-                                mostrar.</p>
                         @endif
-
-                    </div>
-                </div>
+                    @endforeach
+                @else
+                    <p class="text-center font-semibold text-xl text-vh-green">No hay citas disponibles para mostrar.</p>
+                @endif
             </div>
         </div>
     </div>
