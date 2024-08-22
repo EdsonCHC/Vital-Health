@@ -55,7 +55,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/citas/{id}/eliminar', [CitaController::class, 'eliminar']);
     //
     // Examenes
-    Route::view('/examen', 'app.exams');
     Route::get('/examen', [ExamController::class, 'examsPaciente'])->name('exams.paciente');
     Route::get('/examenes/completados', [ExamController::class, 'examenesCompletados']);
     Route::get('/medicina', [RecetaController::class, 'recetasPaciente'])->name('medicina.paciente');
