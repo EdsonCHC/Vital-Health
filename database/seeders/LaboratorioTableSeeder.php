@@ -18,7 +18,7 @@ class LaboratorioTableSeeder extends Seeder
         $laboratorista = [
             [
                 'nombre' => 'Laboratorio Central',
-                'mail' => 'contacto@laboratoriocentral.com',
+                'mail' => 'lab@gmail.com',
                 'password' => Hash::make('pass123'),
                 'created_at' => now(),
                 'updated_at' => now(),

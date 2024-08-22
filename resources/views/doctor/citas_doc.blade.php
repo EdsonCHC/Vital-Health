@@ -25,7 +25,7 @@
                     @else
                         <h2 class="font-bold text-2xl text-vh-green">No hay doctor activo asignado.</h2>
                     @endif
-                   
+
                 </div>
                 <div class="w-full mt-4">
                     <div class="flex-col p-4 h-auto bg-white rounded-xl shadow">
@@ -44,7 +44,6 @@
                                     <p class="flex justify-center mt-2">Nueva Cita</p>
                                 </a>
                             </div>
-
 
                         </div>
                         <div class="w-auto h-14 flex justify-around items-center my-5 mx-4 bg-vh-alice-blue rounded-md">

@@ -7,7 +7,9 @@ use App\Models\Exams;
 use App\Models\citas;
 use App\Models\Doctor;
 use App\Models\Usuario;
+use App\Models\Receta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExpedienteController extends Controller
 {
@@ -41,29 +43,33 @@ class ExpedienteController extends Controller
         }
     }
 
-    public function show(Expedientes $expediente)
-    {
-        return view('files_doc.show', compact('expedientes'));
-    }
-
-    public function showFileUser()
-    {
-        $userId = auth()->id();
-
-        $expedientes = Expedientes::where('patient_id', $userId)
-            ->with('patient')
-            ->get();
-
-        return view('app.file', compact('expedientes'));
-    }
-
     public function showFileDoc()
     {
-        // Obtener todos los expedientes sin relaciones
-        $expedientes = Expedientes::all();
+        $doctor = auth()->user();
+        $doctorId = $doctor->id;
 
-        return view('doctor.files_doc', compact('expedientes'));
+        $citas = Citas::where('doctor_id', $doctorId)->get();
+
+        $exams = collect();
+        $recetas = collect();
+
+        foreach ($citas as $cita) {
+            $patientId = $cita->patient_id;
+
+            $examsForCita = Exams::where('cita_id', $cita->id)
+                ->where('patient_id', $patientId)
+                ->get();
+
+            $exams = $exams->merge($examsForCita);
+
+            $recetasForCita = Receta::where('cita_id', $cita->id)->get();
+            $recetas = $recetas->merge($recetasForCita);
+        }
+
+        $expedientes = Expedientes::all();
+        return view('doctor.files_doc', compact('expedientes', 'doctor', 'citas', 'exams', 'recetas'));
     }
+
 
     public function edit(Expedientes $expediente)
     {

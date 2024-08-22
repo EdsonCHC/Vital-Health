@@ -49,18 +49,21 @@
                             <!-- Patient Information -->
                             <div>
                                 <p class="font-semibold text-lg text-gray-700">
-                                    Paciente: {{ $expediente->patient_id ? $expediente->patient->name : 'Paciente no disponible' }}
+                                    Paciente:
+                                    {{ $expediente->patient_id ? $expediente->patient->name : 'Paciente no disponible' }}
                                 </p>
                             </div>
 
                             <!-- Actions Section -->
                             <div class="flex space-x-4">
-                                <button class="update-file p-2 rounded bg-green-500 text-white hover:bg-green-600 transition"
+                                <button
+                                    class="update-file p-2 rounded bg-green-500 text-white hover:bg-green-600 transition"
                                     data-expediente-id="{{ $expediente->id }}">
                                     <img src="{{ asset('storage/svg/upload.svg') }}" alt="update_icon" class="w-6 h-6">
                                     <span class="sr-only">Actualizar expediente</span>
                                 </button>
-                                <button class="delete-file p-2 rounded bg-red-500 text-white hover:bg-red-600 transition"
+                                <button
+                                    class="delete-file p-2 rounded bg-red-500 text-white hover:bg-red-600 transition"
                                     data-id="{{ $expediente->id }}">
                                     <img src="{{ asset('storage/svg/trash.svg') }}" alt="delete_icon" class="w-6 h-6">
                                     <span class="sr-only">Eliminar expediente</span>
@@ -68,8 +71,8 @@
                             </div>
                         </div>
                     @endforeach
-
                 @endif
+
             </div>
         </main>
     </div>
