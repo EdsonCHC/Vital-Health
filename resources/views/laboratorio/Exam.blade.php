@@ -46,7 +46,7 @@
                              $i = 1;
                     @endphp
                         @foreach ($exams as $examen)
-                            <tr class="hover:bg-green-50 transition duration-300" data-id="{{$examen->id}}" datad-doctor-id="{{$examen->doctor->id}}">
+                            <tr class="hover:bg-green-50 transition duration-300" data-id="{{$examen->id}}" datad-doctor-id="{{$examen->doctor->id}}" data-exam-type="{{$examen->exam_type}}">
                                 <td class="py-3 px-6 border-b text-gray-800">{{ $i++ }}</td>
                                 <td class="py-3 px-6 border-b">{{$examen->patient->name}}</td>
                                 <td class="py-3 px-6 border-b">{{$examen->doctor->name}}</td>

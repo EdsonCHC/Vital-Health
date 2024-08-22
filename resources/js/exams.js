@@ -4,7 +4,8 @@ import QRCode from "qrcode";
 window.$ = jQuery;
 
 $(document).ready(function () {
-    const orinaForm = `
+    const formTemplates = {
+        orina: `
         <form id="orinaForm" class="bg-white rounded-lg shadow-md max-w-4xl mx-auto">
     <table class="w-full text-left">
         <thead>
@@ -132,9 +133,10 @@ $(document).ready(function () {
             </tr>
         </tbody>
     </table>
-</form>
-
-    `;
+        </form>`,
+        sangre: '<form id="sangreForm"> ... </form>', // Tu formulario para sangre
+        // Agrega más formularios según sea necesario
+    };
 
     $(".option-button").click(function () {
         const citaId = $(this).data("cita-id");
@@ -240,9 +242,12 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 const tr = $(this).closest("tr");
                 const id = tr.data("id");
-                console.log(id)
+                const examType = tr.data("exam-type");
+
+                const formToShow = formTemplates[examType];
+                
                 Swal.fire({
-                    html: orinaForm, //formulario que proporcionastes
+                    html: formToShow, 
                     showCancelButton: true,
                     confirmButtonText: "Generar PDF",
                     cancelButtonText: "Cancelar",
