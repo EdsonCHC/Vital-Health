@@ -3,7 +3,8 @@ import jQuery from "jquery";
 window.$ = jQuery;
 
 $(document).ready(function () {
-   
+
+    // Manejar el clic en el botón "Aceptar"
     $(document).on("click", "#aceptar", function () {
         const citaId = $(this).closest("[data-cita-id]").data("cita-id");
 
@@ -33,27 +34,26 @@ $(document).ready(function () {
                                 if (!value.trim()) {
                                     return "La descripción no puede estar vacía";
                                 }
+                                if (/<\/?[a-z][\s\S]*>/i.test(value)) {
+                                    return "La descripción no puede contener HTML";
+                                }
                             },
                             showCancelButton: true,
                             confirmButtonText: "Guardar",
                             cancelButtonText: "Cancelar",
                         }).then(function (result) {
                             if (result.isConfirmed) {
-                                const descripcion = result.value.trim();
+                                const descripcion = escapeHtml(result.value.trim());
 
                                 $.ajax({
                                     url: `/citas/${citaId}/end`,
                                     type: "POST",
                                     data: {
                                         description: descripcion,
-                                        _token: $(
-                                            'meta[name="csrf-token"]'
-                                        ).attr("content"),
+                                        _token: $('meta[name="csrf-token"]').attr("content"),
                                     },
                                     headers: {
-                                        "X-CSRF-TOKEN": $(
-                                            'meta[name="csrf-token"]'
-                                        ).attr("content"),
+                                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                                     },
                                 }).done(function () {
                                     Swal.fire({
@@ -72,22 +72,14 @@ $(document).ready(function () {
                                                 type: "GET",
                                                 data: {
                                                     cita_id: citaId,
-                                                    doctor_id:
-                                                        response.doctor_id,
-                                                    paciente_id:
-                                                        response.paciente_id,
+                                                    doctor_id: response.doctor_id,
+                                                    paciente_id: response.paciente_id,
                                                 },
                                                 headers: {
-                                                    "X-CSRF-TOKEN": $(
-                                                        'meta[name="csrf-token"]'
-                                                    ).attr("content"),
+                                                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                                                 },
                                             }).done(function (data) {
-                                                const {
-                                                    doctor_id,
-                                                    patient_id,
-                                                    medicinas,
-                                                } = data;
+                                                const { doctor_id, patient_id, medicinas } = data;
 
                                                 Swal.fire({
                                                     title: "Crear Receta",
@@ -100,13 +92,7 @@ $(document).ready(function () {
                                                                     <input type="hidden" name="patient_id" value="${patient_id}">
                                                                     <div class="form-group">
                                                                         <label for="fecha_entrega" class="block text-lg font-semibold text-gray-700">Fecha de Entrega</label>
-                                                                        <input type="date" name="fecha_entrega" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500" min="${
-                                                                            new Date()
-                                                                                .toISOString()
-                                                                                .split(
-                                                                                    "T"
-                                                                                )[0]
-                                                                        }" required>
+                                                                        <input type="date" name="fecha_entrega" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500" min="${new Date().toISOString().split("T")[0]}" required>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="hora_entrega" class="block text-lg font-semibold text-gray-700">Hora de Entrega</label>
@@ -130,20 +116,12 @@ $(document).ready(function () {
                                                                 <div class="p-4 bg-white border border-gray-300 rounded-md shadow-md">
                                                                     <h3 class="text-lg font-semibold text-gray-700">Listado de Medicinas</h3>
                                                                     <div id="medicinas-list" class="space-y-3 mt-2 border border-gray-300 rounded-md p-4 bg-gray-50 max-h-60 overflow-y-auto">
-                                                                        ${medicinas
-                                                                            .map(
-                                                                                (
-                                                                                    med
-                                                                                ) => `
+                                                                        ${medicinas.map(med => `
                                                                             <div class="flex items-center justify-between space-x-3 p-2 border border-gray-200 rounded-md bg-white medicina-item">
-                                                                                <span class="text-gray-700 medicina-nombre">${med.nombre}</span>
+                                                                                <span class="text-gray-700 medicina-nombre">${escapeHtml(med.nombre)}</span>
                                                                                 <button type="button" data-id="${med.id}" class="add-medicina-btn bg-green-500 text-white px-4 py-1 rounded-md hover:bg-green-600">Añadir</button>
                                                                             </div>
-                                                                        `
-                                                                            )
-                                                                            .join(
-                                                                                ""
-                                                                            )}
+                                                                        `).join("")}
                                                                     </div>
                                                                 </div>
                                                                 <div class="mt-4 p-4 bg-white border border-gray-300 rounded-md shadow-md">
@@ -157,63 +135,39 @@ $(document).ready(function () {
                                                     `,
                                                     width: "80%",
                                                     customClass: {
-                                                        container:
-                                                            "custom-swal-container",
+                                                        container: "custom-swal-container",
                                                         popup: "custom-swal-popup",
                                                     },
                                                     focusConfirm: false,
                                                     showCancelButton: true,
-                                                    cancelButtonText:
-                                                        "Cancelar",
-                                                    confirmButtonText:
-                                                        "Guardar Receta",
-                                                    confirmButtonColor:
-                                                        "#28a745",
+                                                    cancelButtonText: "Cancelar",
+                                                    confirmButtonText: "Guardar Receta",
+                                                    confirmButtonColor: "#28a745",
                                                     preConfirm: function () {
-                                                        const form =
-                                                            document.querySelector(
-                                                                "#receta-form"
-                                                            );
-                                                        if (
-                                                            form.checkValidity()
-                                                        ) {
-                                                            const formData =
-                                                                new FormData(
-                                                                    form
-                                                                );
-                                                            const data =
-                                                                Object.fromEntries(
-                                                                    formData.entries()
-                                                                );
+                                                        const form = document.querySelector("#receta-form");
+                                                        if (form.checkValidity()) {
+                                                            const formData = new FormData(form);
+                                                            const data = Object.fromEntries(formData.entries());
                                                             data.medicinas = [];
+                                                            data.titulo = escapeHtml(data.titulo);
+                                                            data.descripcion = escapeHtml(data.descripcion);
 
-                                                            $(
-                                                                "#selected-medicinas-list li"
-                                                            ).each(function () {
-                                                                const medicinaId =
-                                                                    $(this)
-                                                                        .find(
-                                                                            'input[name$="[id]"]'
-                                                                        )
-                                                                        .val();
-                                                                const cantidad =
-                                                                    $(this)
-                                                                        .find(
-                                                                            'input[name$="[cantidad]"]'
-                                                                        )
-                                                                        .val();
-                                                                if (
-                                                                    medicinaId &&
-                                                                    cantidad
-                                                                ) {
-                                                                    data.medicinas.push(
-                                                                        {
-                                                                            id: medicinaId,
-                                                                            cantidad,
-                                                                        }
-                                                                    );
+                                                            $("#selected-medicinas-list li").each(function () {
+                                                                const medicinaId = $(this).find('input[name$="[id]"]').val();
+                                                                const cantidad = $(this).find('input[name$="[cantidad]"]').val();
+                                                                if (medicinaId && cantidad) {
+                                                                    data.medicinas.push({ id: medicinaId, cantidad });
                                                                 }
                                                             });
+
+
+                                                            console.log(
+                                                                "Datos enviados:",
+                                                                JSON.stringify(
+                                                                    data
+                                                                )
+                                                            );
+
 
                                                             console.log(
                                                                 "Datos enviados:",
@@ -225,49 +179,38 @@ $(document).ready(function () {
                                                             return $.ajax({
                                                                 url: "/recetas",
                                                                 type: "POST",
-                                                                data: JSON.stringify(
-                                                                    data
-                                                                ),
+                                                                data: JSON.stringify(data),
                                                                 processData: false,
-                                                                contentType:
-                                                                    "application/json",
+                                                                contentType: "application/json",
                                                                 headers: {
-                                                                    "X-CSRF-TOKEN":
-                                                                        $(
-                                                                            'meta[name="csrf-token"]'
-                                                                        ).attr(
-                                                                            "content"
-                                                                        ),
+                                                                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                                                                 },
-                                                            })
-                                                                .done(function (
-                                                                    response
-                                                                ) {
-                                                                    Swal.fire({
-                                                                        title: "Receta Creada",
-                                                                        text: "La receta se ha creado exitosamente.",
-                                                                        icon: "success",
-                                                                    });
-                                                                })
-                                                                .fail(function (
-                                                                    jqXHR
-                                                                ) {
-                                                                    console.error(
-                                                                        "Error en la petición:",
-                                                                        jqXHR.responseText
-                                                                    );
-                                                                    Swal.fire({
-                                                                        title: "Error",
-                                                                        text: "Hubo un problema al crear la receta.",
-                                                                        icon: "error",
-                                                                    });
+                                                            }).done(function () {
+                                                                Swal.fire({
+                                                                    title: "Receta Creada",
+                                                                    text: "La receta se ha creado exitosamente.",
+                                                                    icon: "success",
+                                                                }).then(() => {
+                                                                    // Recargar la página para actualizar el estado de la cita
+                                                                    location.reload();
                                                                 });
+                                                            }).fail(function (jqXHR) {
+                                                                console.error("Error en la petición:", jqXHR.responseText);
+                                                                Swal.fire({
+                                                                    title: "Error",
+                                                                    text: "Hubo un problema al crear la receta.",
+                                                                    icon: "error",
+                                                                });
+                                                            });
                                                         } else {
                                                             form.reportValidity();
                                                         }
                                                     },
                                                 });
                                             });
+                                        } else {
+                                            // Recargar la página si el usuario cancela la creación de la receta
+                                            location.reload();
                                         }
                                     });
                                 });
@@ -282,78 +225,101 @@ $(document).ready(function () {
                     icon: "error",
                 });
             }
+        }).fail(function (jqXHR) {
+            console.error("Error en la petición:", jqXHR.responseText);
+            Swal.fire({
+                title: "Error",
+                text: "Hubo un problema al verificar el estado de la cita.",
+                icon: "error",
+            });
         });
     });
 
-    // Función para mostrar exámenes en el modal
-   
 
-    // Manejar el click en el botón "Añadir Medicina"
-    $(document).on("click", ".add-medicina-btn", function () {
-        const id = $(this).data("id");
-        const nombre = $(this)
-            .closest(".medicina-item")
-            .find(".medicina-nombre")
-            .text();
-        const item = `
+
+// Función para mostrar exámenes en el modal
+
+
+// Función para mostrar exámenes en el modal
+
+
+// Manejar el clic en el botón "Añadir Medicina"
+$(document).on("click", ".add-medicina-btn", function () {
+    const id = $(this).data("id");
+    const nombre = $(this)
+        .closest(".medicina-item")
+        .find(".medicina-nombre")
+        .text();
+    const item = `
             <li class="flex items-center justify-between p-2 border border-gray-200 rounded-md bg-white">
-                <span>${nombre}</span>
+                <span>${escapeHtml(nombre)}</span>
                 <input type="hidden" name="medicinas[][id]" value="${id}">
                 <input type="number" name="medicinas[][cantidad]" placeholder="Cantidad" class="ml-2 px-2 py-1 border border-gray-300 rounded-md">
                 <button type="button" class="remove-medicina-btn ml-2 bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600">Eliminar</button>
             </li>
         `;
-        $("#selected-medicinas-list").append(item);
-    });
+    $("#selected-medicinas-list").append(item);
+});
 
-    // Manejar el click en el botón "Eliminar Medicina"
-    $(document).on("click", ".remove-medicina-btn", function () {
-        $(this).closest("li").remove();
-    });
+// Manejar el clic en el botón "Eliminar Medicina"
+$(document).on("click", ".remove-medicina-btn", function () {
+    $(this).closest("li").remove();
+});
 
-    // Manejar el click en el botón "Generar Código"
-    $(document).on("click", "#generate-code", function () {
-        const code = generateRandomCode();
-        $("#codigo-receta").text(`Código: ${code}`);
-        $("#receta-form").append(
-            `<input type="hidden" name="codigo_receta" value="${code}">`
-        );
-    });
-    function generateRandomCode() {
-        return "RC-" + Math.random().toString(36).substr(2, 9).toUpperCase();
-    }
+// Manejar el clic en el botón "Generar Código"
+$(document).on("click", "#generate-code", function () {
+    const code = generateRandomCode();
+    $("#codigo-receta").text(`Código: ${code}`);
+    $("#receta-form").append(
+        `<input type="hidden" name="codigo_receta" value="${code}">`
+    );
+});
 
+function generateRandomCode() {
+    return "RC-" + Math.random().toString(36).substr(2, 9).toUpperCase();
+}
 
-    $('#show-citas').click(function () {
-        let doctorId = 1;
+function escapeHtml(text) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, function (m) { return map[m]; });
+}
 
-        $.ajax({
-            url: `/historical-appointments/${doctorId}`,
-            method: 'GET',
-            success: function (response) {
-                if (response.length === 0) {
-                    Swal.fire('Sin Historial', 'No se encuentran citasr.', 'info');
-                    return;
-                }
+// Mostrar citas históricas
+$('#show-citas').click(function () {
+    let doctorId = 1;
 
-                let citasHtml = response.map(cita => `
+    $.ajax({
+        url: `/historical-appointments/${doctorId}`,
+        method: 'GET',
+        success: function (response) {
+            if (response.length === 0) {
+                Swal.fire('Sin Historial', 'No se encuentran citas.', 'info');
+                return;
+            }
+
+            let citasHtml = response.map(cita => `
                     <div style="margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                        <p><strong>Paciente:</strong> ${cita.patient.name} ${cita.patient.lastName}</p>
-                        <p><strong>Fecha:</strong> ${cita.date}</p>
-                        <p><strong>Hora:</strong> ${cita.hour}</p>
+                        <p><strong>Paciente:</strong> ${escapeHtml(cita.patient.name)} ${escapeHtml(cita.patient.lastName)}</p>
+                        <p><strong>Fecha:</strong> ${escapeHtml(cita.date)}</p>
+                        <p><strong>Hora:</strong> ${escapeHtml(cita.hour)}</p>
                     </div>
                 `).join('');
 
-                Swal.fire({
-                    title: 'Citas Terminadas',
-                    html: citasHtml,
-                    confirmButtonText: 'Cerrar',
-                    
-                });
-            },
-            error: function () {
-                Swal.fire('Error', 'Hubo un error al obtener las citas.', 'error');
-            }
-        });
+            Swal.fire({
+                title: 'Citas Terminadas',
+                html: citasHtml,
+                confirmButtonText: 'Cerrar',
+            });
+        },
+        error: function () {
+            Swal.fire('Error', 'Hubo un error al obtener las citas.', 'error');
+        }
     });
+});
 });

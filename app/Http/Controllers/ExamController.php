@@ -101,6 +101,7 @@ class ExamController extends Controller
             'medicinas' => $medicinas
         ]);
     }
+  
 
     public function store(Request $request)
     {
@@ -118,10 +119,35 @@ class ExamController extends Controller
             'medicinas.*.id' => 'required|exists:medicinas,id',
             'medicinas.*.cantidad' => 'required|integer|min:1'
         ]);
-
+    
         DB::beginTransaction();
-
+    
         try {
+            // Filtrar medicinas disponibles y con suficiente stock
+            $medicinasValidas = collect($validatedData['medicinas'])->map(function ($medicina) {
+                $medicinaModel = Medicina::where('id', $medicina['id'])
+                    ->where('estado', 'Disponible')
+                    ->first();
+    
+                if ($medicinaModel && $medicinaModel->stock >= $medicina['cantidad']) {
+                    return [
+                        'id' => $medicinaModel->id,
+                        'cantidad' => $medicina['cantidad']
+                    ];
+                }
+    
+                return null;
+            })->filter()->values();
+    
+            // Verificar si hay medicinas válidas
+            if ($medicinasValidas->isEmpty()) {
+                DB::rollBack();
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No hay medicinas disponibles o con suficiente stock.'
+                ], 400);
+            }
+    
             // Crear la receta
             $receta = Receta::create([
                 'cita_id' => $validatedData['cita_id'],
@@ -134,8 +160,8 @@ class ExamController extends Controller
                 'codigo_receta' => $validatedData['codigo_receta'],
                 'estado' => 'pendiente'
             ]);
-
-            foreach ($validatedData['medicinas'] as $medicina) {
+    
+            foreach ($medicinasValidas as $medicina) {
                 $medicinaModel = Medicina::find($medicina['id']);
                 if ($medicinaModel->stock < $medicina['cantidad']) {
                     DB::rollBack();
@@ -144,30 +170,33 @@ class ExamController extends Controller
                         'message' => 'No hay suficiente stock para la medicina: ' . $medicinaModel->nombre
                     ], 400);
                 }
-
+    
                 $medicinaModel->stock -= $medicina['cantidad'];
                 $medicinaModel->save();
-
+    
                 RecetaMedicina::create([
                     'receta_id' => $receta->id,
                     'medicina_id' => $medicina['id'],
                     'cantidad' => $medicina['cantidad']
                 ]);
             }
-
+    
             DB::commit();
-
+    
             return response()->json(['success' => true, 'receta' => $receta]);
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Error al guardar la receta: ' . $e->getMessage());
-
+    
             return response()->json([
                 'success' => false,
-                'message' => 'Hubo un problema al crear la receta.'
+                'message' => 'Hubo un problema al crear la receta.',
+                'error' => $e->getMessage()
             ], 500);
         }
     }
+    
+
 
     private function generateCodigoReceta()
     {
@@ -339,43 +368,6 @@ class ExamController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Error Finalizar el examen',
-                'error' => $e->getMessage(),
-            ], 500);
-        }
-    }
-
-    public function updatePDF(Request $request, $exam_id)
-    {
-
-        try {
-
-            if ($request->hasFile('file')) {
-                $file = $request->file('file');
-                $file = $request->file('file');
-                $destinationPath = public_path('pdf_files'); // Ruta en el directorio public
-                $fileName = time() . '_' . $file->getClientOriginalName(); // Genera un nombre único para el archivo
-                $file->move($destinationPath, $fileName); // Mueve el archivo al directorio
-
-                $pdf_url = url('pdf_files/' . $fileName);
-
-                // Buscar y actualizar el registro del examen
-                $examen = Exams::findOrFail($exam_id);
-                $examen->pdf_file = $pdf_url;
-                $examen->save();
-
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Archivo enviado correctamente',
-                ]);
-            } else {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'No se ha recibido ningún archivo.',
-                ], 400);
-            }
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
                 'error' => $e->getMessage(),
             ], 500);
         }

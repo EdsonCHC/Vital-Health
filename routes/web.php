@@ -12,6 +12,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\recetaController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\ExpedienteController;
+use App\Http\Controllers\pdfController;
 use Illuminate\Support\Facades\Route;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -89,6 +90,8 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::post('/citas', [CitaController::class, 'store_doc']);
     Route::delete('/citas/{id}', [CitaController::class, 'destroy'])->name('citas.destroy');
     //
+    Route::get('/recetas/get-prescription-form-details', [RecetaController::class, 'getPrescriptionFormDetails']);
+
     // Expedientes
     Route::get('/files_doc', [ExpedienteController::class, 'showFileDoc'])->name('files_doc.show');
     Route::post('/files_doc', [ExpedienteController::class, 'storeDocToUser'])->name('doctor.storeDocToUser');
@@ -199,11 +202,4 @@ Route::fallback(function () {
     return response()->view('errors.404page', [], 404);
 });
 
-//qr
-Route::get('/qrcode', function () {
-    return QrCode::size(200)->generate('https://google.com'); // Es porque hay que actualizar el composer
-});
-
-Route::get('/pdf', function () {
-    return view('pdf.pdf_examen');
-});
+Route::post('/generate-pdf', [pdfController::class, 'generatePDF']);
