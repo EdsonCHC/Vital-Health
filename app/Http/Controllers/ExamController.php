@@ -373,43 +373,6 @@ class ExamController extends Controller
         }
     }
 
-    public function updatePDF(Request $request, $exam_id)
-    {
-
-        try {
-
-            if ($request->hasFile('file')) {
-                $file = $request->file('file');
-                $file = $request->file('file');
-                $destinationPath = public_path('pdf_files'); // Ruta en el directorio public
-                $fileName = time() . '_' . $file->getClientOriginalName(); // Genera un nombre único para el archivo
-                $file->move($destinationPath, $fileName); // Mueve el archivo al directorio
-
-                $pdf_url = url('pdf_files/' . $fileName);
-
-                // Buscar y actualizar el registro del examen
-                $examen = Exams::findOrFail($exam_id);
-                $examen->pdf_file = $pdf_url;
-                $examen->save();
-
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Archivo enviado correctamente',
-                ]);
-            } else {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'No se ha recibido ningún archivo.',
-                ], 400);
-            }
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'error' => $e->getMessage(),
-            ], 500);
-        }
-    }
-
     public function getPdfUrl($exam_id)
     {
 

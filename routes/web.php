@@ -12,6 +12,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\recetaController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\ExpedienteController;
+use App\Http\Controllers\pdfController;
 use Illuminate\Support\Facades\Route;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -197,11 +198,4 @@ Route::fallback(function () {
     return response()->view('errors.404page', [], 404);
 });
 
-//qr
-Route::get('/qrcode', function () {
-    return QrCode::size(200)->generate('https://google.com'); // Es porque hay que actualizar el composer
-});
-
-Route::get('/pdf', function () {
-    return view('pdf.pdf_examen');
-});
+Route::post('/generate-pdf', [pdfController::class, 'generatePDF']);
