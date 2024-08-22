@@ -89,6 +89,8 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::post('/citas', [CitaController::class, 'store_doc']);
     Route::delete('/citas/{id}', [CitaController::class, 'destroy'])->name('citas.destroy');
     //
+    Route::get('/recetas/get-prescription-form-details', [RecetaController::class, 'getPrescriptionFormDetails']);
+
     // Expedientes
     Route::get('/files_doc', [ExpedienteController::class, 'showFileDoc'])->name('files_doc.show');
     Route::put('/files_doc/{id}', [ExpedienteController::class, 'update'])->name('doctor.update_file');
