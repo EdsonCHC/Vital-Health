@@ -5,7 +5,7 @@ window.$ = jQuery;
 
 $(document).ready(function () {
     const formTemplates = {
-        orina: `
+        urine: `
         <form id="orinaForm" class="bg-white rounded-lg shadow-md max-w-4xl mx-auto">
     <table class="w-full text-left">
         <thead>
@@ -134,8 +134,163 @@ $(document).ready(function () {
         </tbody>
     </table>
         </form>`,
-        sangre: '<form id="sangreForm"> ... </form>', // Tu formulario para sangre
-        // Agrega más formularios según sea necesario
+        blood: `<form class="bg-white p-6 rounded-lg shadow-md">
+        <table class="table-auto w-full text-sm">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="px-4 py-2 text-left">Examen</th>
+                    <th class="px-4 py-2 text-left">Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b">
+                    <td class="px-4 py-2">Eritrocitos (x10<sup>6</sup>/mm<sup>3</sup>)</td>
+                    <td class="px-4 py-2">
+                        <select id="eritrocitos" name="eritrocitos" class="w-full p-1 border rounded">
+                            <option selected disabled></option>
+                            <option value="4">4</option>
+                            <option value="4.5">4.5</option>
+                            <option value="5">5</option>
+                            <option value="5.2">5.2</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="border-b">
+                    <td class="px-4 py-2">Hemoglobina (g/dl)</td>
+                    <td class="px-4 py-2">
+                        <select id="hemoglobina" name="hemoglobina" class="w-full p-1 border rounded">
+                            <option selected disabled></option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="border-b">
+                    <td class="px-4 py-2">Hcto (%)</td>
+                    <td class="px-4 py-2">
+                        <select id="hcto" name="hcto" class="w-full p-1 border rounded">
+                            <option selected disabled></option>
+                            <option value="36">36</option>
+                            <option value="40">40</option>
+                            <option value="46">46</option>
+                            <option value="52">52</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="border-b">
+                    <td class="px-4 py-2">VCM (fl)</td>
+                    <td class="px-4 py-2">
+                        <select id="vcm" name="vcm" class="w-full p-1 border rounded">
+                            <option selected disabled></option>
+                            <option value="80">80</option>
+                            <option value="85">85</option>
+                            <option value="90">90</option>
+                            <option value="95">95</option>
+                            <option value="100">100</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="border-b">
+                    <td class="px-4 py-2">HCM (pg)</td>
+                    <td class="px-4 py-2">
+                        <select id="hcm" name="hcm" class="w-full p-1 border rounded">
+                            <option selected disabled></option>
+                            <option value="26">26</option>
+                            <option value="30">30</option>
+                            <option value="34">34</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="border-b">
+                    <td class="px-4 py-2">Leucocitos (x10<sup>3</sup>/mm<sup>3</sup>)</td>
+                    <td class="px-4 py-2">
+                        <select id="leucositos" name="leucositos" class="w-full p-1 border rounded">
+                            <option selected disabled></option>
+                            <option value="4.3">4.3</option>
+                            <option value="5">5</option>
+                            <option value="7">7</option>
+                            <option value="10.8">10.8</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="border-b">
+                    <td class="px-4 py-2">Basófilos (%)</td>
+                    <td class="px-4 py-2">
+                        <select id="basofilos" name="basofilos" class="w-full p-1 border rounded">
+                            <option selected disabled></option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="border-b">
+                    <td class="px-4 py-2">Eosinófilos (%)</td>
+                    <td class="px-4 py-2">
+                        <option selected disabled></option>
+                        <select id="eusinofilos" name="eusinofilos" class="w-full p-1 border rounded">
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="border-b">
+                    <td class="px-4 py-2">Neutrófilos (%)</td>
+                    <td class="px-4 py-2">
+                        <select id="neutrofilos" name="neutrofilos" class="w-full p-1 border rounded">
+                            <option selected disabled></option>
+                            <option value="45">45</option>
+                            <option value="50">50</option>
+                            <option value="55">55</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="border-b">
+                    <td class="px-4 py-2">Segmentados (%)</td>
+                    <td class="px-4 py-2">
+                        <select id="segmentados" name="segmentados" class="w-full p-1 border rounded">
+                            <option selected disabled></option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="border-b">
+                    <td class="px-4 py-2">Linfocitos (%)</td>
+                    <td class="px-4 py-2">
+                        <select id="linfocitos" name="linfocitos" class="w-full p-1 border rounded">
+                            <option selected disabled></option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="35">35</option>
+                            <option value="40">40</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="border-b">
+                    <td class="px-4 py-2">VHS (mm/hrs)</td>
+                    <td class="px-4 py-2">
+                        <select id="vhs" name="vhs" class="w-full p-1 border rounded">
+                            <option selected disabled></option>
+                            <option value="1">1</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="29">29</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>`,
     };
 
     $(".option-button").click(function () {
@@ -245,9 +400,9 @@ $(document).ready(function () {
                 const examType = tr.data("exam-type");
 
                 const formToShow = formTemplates[examType];
-                
+
                 Swal.fire({
-                    html: formToShow, 
+                    html: formToShow,
                     showCancelButton: true,
                     confirmButtonText: "Generar PDF",
                     cancelButtonText: "Cancelar",
@@ -262,7 +417,7 @@ $(document).ready(function () {
                         result.value.forEach((field) => {
                             formData.append(field.name, field.value);
                         });
-                        formData.append('exam_id', id);
+                        formData.append("exam_id", id);
 
                         $.ajax({
                             url: `/generate-pdf`,
@@ -276,7 +431,7 @@ $(document).ready(function () {
                             contentType: false,
                             data: formData,
                             success(response) {
-                                console.log(response)
+                                console.log(response);
                                 $.ajax({
                                     url: `/exams/end/${id}`,
                                     type: "PATCH",
