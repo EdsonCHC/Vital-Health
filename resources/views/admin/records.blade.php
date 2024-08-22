@@ -22,7 +22,35 @@
                 Expedientes
             </h2>
         </div>
-        <div class="flex-col w-132 h-auto m-4 bg-white opacity-80 rounded-xl shadow-xl mt-4 ">
+        {{-- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            @foreach ($expedientes as $expediente)
+                <div class="bg-white p-4 rounded-lg shadow-lg space-y-4">
+                    <!-- Paciente Información -->
+                    <div>
+                        <label class="block font-bold text-gray-700">Nombre</label>
+                        <input type="text" class="w-full p-2 border rounded bg-gray-100"
+                            value="{{ $expediente->$user->name }} {{ $user->lastName }}" readonly>
+                    </div>
+                    <!-- Botones de acción -->
+                    <div class="flex justify-between space-x-2">
+                        <button
+                            class="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300">
+                            PDF
+                        </button>
+                        <button
+                            class="w-full bg-green-500 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-green-600 transition duration-300">
+                            Actualizar
+                        </button>
+                        <button
+                            class="w-full bg-red-500 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-red-600 transition duration-300">
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            @endforeach
+        </div> --}}
+
+        {{-- <div class="flex-col w-132 h-auto m-4 bg-white opacity-80 rounded-xl shadow-xl mt-4 ">
             <ul class="w-2/12 h-10 flex m-4 border border-solid border-vh-green rounded-3xl ml-auto">
                 <li class="font-semibold ml-2 p-2 relative group">
                     <a href="/appointment" class="flex text-vh-green">Presencial <img id="menu-icon" class="w-4 mx-6"
@@ -160,7 +188,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <!-- Estilos Mobile -->

@@ -5,7 +5,6 @@ window.$ = jQuery;
 $(document).ready(function () {
     // Usuario
     // Maneja el guardado del expediente
-
     $(".saveFileUser").click(function () {
         const url = "{{ route('generate.pdf') }}";
 
@@ -47,7 +46,7 @@ $(document).ready(function () {
                     },
                     error(response) {
                         console.log(response);
-                        
+
                         Swal.fire(
                             "Error al crear el expediente",
                             "No se pudo generar el expediente",
@@ -60,58 +59,263 @@ $(document).ready(function () {
     });
 
     // Doctor
-    // Maneja la creacion del expediente
-    $(".create-exp-user").click(function () {
+    // Maneja la creacion del expediente y del usuario
+    $(".createFile").click(function () {
         Swal.fire({
-            title: "Crear Mi Expediente",
+            title: "Crear Expediente",
             html: `
-                <form id="create-form" class="space-y-4 p-4 bg-white">
-                    <button type="button" id="create-expediente" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-sm">
-                        Crear Expediente
-                    </button>
-                </form>
-            `,
+            <div class="flex space-x-4">
+                <button id="register" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-sm">
+                    Crear Nuevo Usuario
+                </button>
+                <button id="create-existing-user" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:w-auto sm:text-sm">
+                    Crear Expediente de Usuario Existente
+                </button>
+            </div>
+        `,
             showConfirmButton: false,
             showCancelButton: true,
             cancelButtonText: "Cancelar",
             didOpen: () => {
                 document
-                    .getElementById("create-expediente")
+                    .getElementById("register")
                     .addEventListener("click", () => {
-                        const _token = $('meta[name="csrf-token"]').attr(
-                            "content"
-                        );
+                        Swal.fire({
+                            title: "Crear Usuario",
+                            html: `
+                        <form id="register-form" class="space-y-4 p-4 bg-white">
+                            <input type="text" id="name" placeholder="Nombre" class="form-input w-full" required>
+                            <input type="text" id="lastName" placeholder="Apellido" class="form-input w-full" required>
+                            <input type="email" id="mail" placeholder="Email" class="form-input w-full" required>
+                            <input type="text" id="address" placeholder="Dirección" class="form-input w-full" required>
+                            <label for="gender" class="block text-sm font-medium text-gray-700">Género:</label>
+                            <select id="gender" class="form-select w-full" required>
+                                <option value="">Seleccionar género</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="femenino">Femenino</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                            <section id="blood-section" class="space-y-2">
+                                <label for="blood" class="block text-sm font-medium text-gray-700">Tipo de sangre:</label>
+                                <select id="blood" class="form-select w-full" required>
+                                    <option value="">Seleccionar tipo de sangre</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </section>
+                            <label for="birth" class="block text-sm font-medium text-gray-700">Fecha de nacimiento:</label>
+                            <input type="date" id="birth" class="form-input w-full" required>
+                            <input type="password" id="password" placeholder="Contraseña" class="form-input w-full" required>
+                        </form>
+                    `,
+                            showCancelButton: true,
+                            cancelButtonText: "Cancelar",
+                            confirmButtonText: "Registrar",
+                            preConfirm: () => {
+                                // Obtener datos del formulario
+                                const name =
+                                    document.getElementById("name")?.value;
+                                const lastName =
+                                    document.getElementById("lastName")?.value;
+                                const mail =
+                                    document.getElementById("mail")?.value;
+                                const address =
+                                    document.getElementById("address")?.value;
+                                const birth =
+                                    document.getElementById("birth")?.value;
+                                const blood =
+                                    document.getElementById("blood")?.value;
+                                const gender =
+                                    document.getElementById("gender")?.value;
+                                const password =
+                                    document.getElementById("password")?.value;
 
-                        $.ajax({
-                            url: `/file`,
-                            type: "POST",
-                            headers: {
-                                "X-CSRF-TOKEN": _token,
-                            },
-                            success(response) {
-                                if (response.success) {
-                                    Swal.fire(
-                                        "Expediente creado correctamente",
-                                        "",
-                                        "success"
+                                console.log("Nombre:", name);
+                                console.log("Apellido:", lastName);
+                                console.log("Email:", mail);
+                                console.log("Dirección:", address);
+                                console.log("Fecha de nacimiento:", birth);
+                                console.log("Tipo de sangre:", blood);
+                                console.log("Género:", gender);
+                                console.log("Contraseña:", password);
+
+                                // Validar si algún campo requerido está vacío
+                                if (
+                                    !name ||
+                                    !lastName ||
+                                    !mail ||
+                                    !address ||
+                                    !birth ||
+                                    !blood ||
+                                    !gender ||
+                                    !password
+                                ) {
+                                    Swal.showValidationMessage(
+                                        "Por favor, completa todos los campos requeridos."
                                     );
-                                    // Actualiza el HTML si es necesario
-                                } else {
-                                    Swal.fire(
-                                        "Error al crear el expediente",
-                                        response.message ||
-                                            "No se pudo crear el expediente",
-                                        "error"
-                                    );
+                                    return false;
                                 }
+
+                                // Crear FormData
+                                const formData = new FormData();
+                                formData.append("name", name);
+                                formData.append("lastName", lastName);
+                                formData.append("mail", mail);
+                                formData.append("address", address);
+                                formData.append("birth", birth);
+                                formData.append("blood", blood);
+                                formData.append("gender", gender);
+                                formData.append("password", password);
+
+                                // Obtener token CSRF desde la metaetiqueta
+                                const csrfToken = document
+                                    .querySelector('meta[name="csrf-token"]')
+                                    .getAttribute("content");
+
+                                return fetch("/files_doc", {
+                                    method: "POST",
+                                    headers: {
+                                        "X-CSRF-TOKEN": csrfToken, // Agregar el token CSRF a los encabezados
+                                    },
+                                    body: formData,
+                                })
+                                    .then((response) => response.json())
+                                    .then((data) => {
+                                        if (data.success) {
+                                            return Swal.fire({
+                                                icon: "success",
+                                                title: "Éxito",
+                                                text: data.message,
+                                            });
+                                        } else {
+                                            // Mostrar errores de validación en una alerta
+                                            const errors = data.errors;
+                                            let errorMessage =
+                                                "Por favor, corrige los siguientes errores:\n";
+                                            for (const [
+                                                key,
+                                                messages,
+                                            ] of Object.entries(errors)) {
+                                                errorMessage += `${messages.join(
+                                                    ", "
+                                                )}\n`;
+                                            }
+                                            Swal.showValidationMessage(
+                                                errorMessage
+                                            );
+                                            return false;
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        Swal.showValidationMessage(
+                                            "Ocurrió un error al enviar los datos."
+                                        );
+                                        return false;
+                                    });
                             },
-                            error(xhr) {
-                                console.log(xhr); // Para depuración
-                                Swal.fire(
-                                    "Error al crear el expediente",
-                                    "No se pudo crear el expediente",
-                                    "error"
-                                );
+                        });
+                    });
+
+                document
+                    .getElementById("create-existing-user")
+                    .addEventListener("click", () => {
+                        Swal.fire({
+                            title: "Seleccionar Usuario Existente",
+                            html: `
+                        <form id="select-user-form" class="space-y-4 p-4 bg-white">
+                            <select id="user-select" class="form-select w-full" required>
+                                <!-- Opciones serán llenadas por una llamada AJAX -->
+                            </select>
+                            <button type="button" id="create-expediente" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-sm">
+                                Crear Expediente
+                            </button>
+                        </form>
+                    `,
+                            showCancelButton: true,
+                            cancelButtonText: "Cancelar",
+                            confirmButtonText: "Crear Expediente",
+                            didOpen: async () => {
+                                // Llenar el selector con usuarios existentes
+                                $.ajax({
+                                    url: "/usuarios", // Ajusta esta URL a tu endpoint de usuarios
+                                    type: "GET",
+                                    success: (response) => {
+                                        if (response.success) {
+                                            let options = "";
+                                            response.users.forEach((user) => {
+                                                options += `<option value="${user.id}">${user.name}</option>`;
+                                            });
+                                            $("#user-select").html(options);
+                                        } else {
+                                            Swal.fire(
+                                                "Error",
+                                                "No se pudieron cargar los usuarios.",
+                                                "error"
+                                            );
+                                        }
+                                    },
+                                    error: () => {
+                                        Swal.fire(
+                                            "Error",
+                                            "No se pudieron cargar los usuarios.",
+                                            "error"
+                                        );
+                                    },
+                                });
+
+                                $("#create-expediente").click(() => {
+                                    const selectedUserId =
+                                        $("#user-select").val();
+                                    if (selectedUserId) {
+                                        $.ajax({
+                                            url: "/file",
+                                            type: "POST",
+                                            headers: {
+                                                "X-CSRF-TOKEN": $(
+                                                    'meta[name="csrf-token"]'
+                                                ).attr("content"),
+                                            },
+                                            data: {
+                                                user_id: selectedUserId,
+                                            },
+                                            success: (response) => {
+                                                if (response.success) {
+                                                    Swal.fire(
+                                                        "Expediente creado correctamente",
+                                                        "",
+                                                        "success"
+                                                    );
+                                                } else {
+                                                    Swal.fire(
+                                                        "Error al crear el expediente",
+                                                        response.message ||
+                                                            "No se pudo crear el expediente",
+                                                        "error"
+                                                    );
+                                                }
+                                            },
+                                            error: () => {
+                                                Swal.fire(
+                                                    "Error al crear el expediente",
+                                                    "No se pudo crear el expediente",
+                                                    "error"
+                                                );
+                                            },
+                                        });
+                                    } else {
+                                        Swal.fire(
+                                            "Error",
+                                            "Selecciona un usuario para crear el expediente.",
+                                            "error"
+                                        );
+                                    }
+                                });
                             },
                         });
                     });
@@ -207,7 +411,7 @@ $(document).ready(function () {
     });
 
     // Maneja la eliminación del expediente
-    $(".delete-file").click(function () {
+    $(".deleteFile").click(function () {
         const fileId = $(this).data("id");
 
         Swal.fire({

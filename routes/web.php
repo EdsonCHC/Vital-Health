@@ -91,6 +91,7 @@ Route::middleware(['auth:doctor'])->group(function () {
     //
     // Expedientes
     Route::get('/files_doc', [ExpedienteController::class, 'showFileDoc'])->name('files_doc.show');
+    Route::post('/files_doc', [ExpedienteController::class, 'storeDocToUser'])->name('doctor.storeDocToUser');
     Route::put('/files_doc/{id}', [ExpedienteController::class, 'update'])->name('doctor.update_file');
     Route::delete('/files_doc/{id}', [ExpedienteController::class, 'destroy'])->name('doctor.destroy_file');
     //
@@ -126,7 +127,6 @@ Route::middleware('auth:admin')->group(function () {
     // Categorias
     Route::get('/home', [CategoríaController::class, 'index'])->name('home');
     Route::get('/statistics/{id}', [CategoríaController::class, 'show'])->name('statistics.show');
-    Route::get('/records/{id}', [CategoríaController::class, 'showRecords'])->name('categorias.records');
     Route::get('/ad_chats/{id}', [CategoríaController::class, 'showAd_chats'])->name('categorias.ad_chats');
     Route::get('/staff/{id}', [CategoríaController::class, 'showStaff'])->name('categorias.staff');
     Route::get('/calendar/{id}', [CategoríaController::class, 'showCalendar'])->name('categorias.calendar');
@@ -147,6 +147,10 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/appointments/details', [CitaController::class, 'getAppointmentDetails']);
     Route::put('/citas/{id}', [CitaController::class, 'update']);
     Route::delete('/appointments/{id}', [CitaController::class, 'destroy'])->name('appointments.destroy');
+    //
+    // Expedientes
+    // Route::get('/files_admin', [ExpedienteController::class, 'showFileAdmin'])->name('files_admin.show');
+    Route::get('/records/{id}', [CategoríaController::class, 'showRecords'])->name('categorias.records');
     //
     // Admin
     Route::post('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
