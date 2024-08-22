@@ -24,7 +24,7 @@
                 <h2 class="text-3xl font-bold text-vh-green">Expedientes de Pacientes</h2>
                 <button
                     class="createFile bg-vh-green text-white font-semibold mt-4 lg:mt-0 py-2 px-4 rounded-lg shadow-lg hover:bg-green-600 transition duration-300">
-                    Nuevo Expediente
+                    Nuevo Usuario
                 </button>
             </header>
             <!-- Expediente Cards -->
@@ -32,7 +32,7 @@
                 @foreach ($expedientes as $file)
                     <div class="bg-white p-4 rounded-lg shadow-lg space-y-4">
                         <div>
-                            <label class="block font-bold text-gray-700">Nombre</label>
+                            <label class="block font-bold text-gray-700">Paciente</label>
                             <input type="text" class="w-full p-2 border rounded bg-gray-100"
                                 value="{{ $file->patient->name }} {{ $file->patient->lastName }}" readonly>
                         </div>
@@ -41,10 +41,6 @@
                             <button
                                 class="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300">
                                 PDF
-                            </button>
-                            <button data-id="{{ $file->id }}"
-                                class="w-full bg-green-500 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-green-600 transition duration-300">
-                                Actualizar
                             </button>
                             <button data-id="{{ $file->id }}"
                                 class="deleteFile w-full bg-red-500 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-red-600 transition duration-300">

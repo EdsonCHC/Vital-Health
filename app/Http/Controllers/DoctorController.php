@@ -18,34 +18,31 @@ class DoctorController extends Controller
     {
         // Retrieve the currently authenticated doctor
         $doctor = Auth::guard('doctor')->user();
-    
+
         // Count total patients
-        $totalPatients = Usuario::count(); 
-    
+        $totalPatients = Usuario::count();
+
         // Count total appointments for the logged-in doctor
-        $totalCitas = citas::where('doctor_id', $doctor->id)->count(); 
-    
+        $totalCitas = citas::where('doctor_id', $doctor->id)->count();
+
         // Count total recipes for the logged-in doctor
         $totalRecetas = Receta::where('doctor_id', $doctor->id)->count();
-    
+
         // Fetch recent appointments for the logged-in doctor
         $recentCitas = citas::where('doctor_id', $doctor->id)
-                            ->orderBy('date', 'desc') 
-                            ->limit(2) 
-                            ->get(); 
-    
+                            ->orderBy('date', 'desc')
+                            ->limit(2)
+                            ->get();
+
         // Fetch recent recipes for the logged-in doctor
         $recentRecetas = Receta::where('doctor_id', $doctor->id)
                                 ->orderBy('fecha_entrega', 'desc')  // Updated to use fecha_entrega
                                 ->limit(2)
                                 ->get();
-    
+
         // Return view with the required data
         return view('doctor.doctor', compact('doctor', 'totalPatients', 'totalCitas', 'totalRecetas', 'recentCitas', 'recentRecetas'));
     }
-    
-
-  
 
     public function create(Request $request)
     {

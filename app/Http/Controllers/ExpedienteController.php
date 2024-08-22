@@ -8,11 +8,13 @@ use App\Models\citas;
 use App\Models\Doctor;
 use App\Models\Usuario;
 use App\Models\Receta;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+
 
 class ExpedienteController extends Controller
 {
@@ -74,8 +76,11 @@ class ExpedienteController extends Controller
             $imagePath = null;
         }
 
-        // Crear usuario
+        // Crear usuario y expediente
         try {
+            DB::beginTransaction(); // Iniciar una transacción
+
+            // Crear el paciente (usuario)
             $user = Usuario::create([
                 'name' => $request->name,
                 'lastName' => $request->lastName,
@@ -89,16 +94,35 @@ class ExpedienteController extends Controller
             ]);
 
             if (!$user) {
+                DB::rollBack(); // Revertir transacción en caso de fallo
                 return response()->json([
                     'message' => 'Error al crear el usuario',
                 ], 500);
             }
 
+            $doctorId = auth()->id();
+
+            // Crear expediente relacionado al usuario (paciente)
+            $expediente = Expedientes::create([
+                'patient_id' => $user->id, // Relaciona el expediente con el paciente
+                'doctor_id' => $doctorId, // Asigna el ID del doctor autenticado
+            ]);
+
+            if (!$expediente) {
+                DB::rollBack(); // Revertir transacción en caso de fallo
+                return response()->json([
+                    'message' => 'Error al crear el expediente',
+                ], 500);
+            }
+
+            DB::commit(); // Confirmar la transacción si todo sale bien
+
             return response()->json([
                 'success' => true,
-                'message' => 'Usuario registrado exitosamente'
+                'message' => 'Usuario y expediente creados exitosamente'
             ], 201);
         } catch (\Exception $e) {
+            DB::rollBack(); // Revertir transacción en caso de excepción
             return response()->json([
                 'message' => 'Error interno del servidor',
                 'error' => $e->getMessage(),
