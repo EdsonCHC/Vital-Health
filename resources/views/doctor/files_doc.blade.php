@@ -34,7 +34,7 @@
                         <div>
                             <label class="block font-bold text-gray-700">Nombre</label>
                             <input type="text" class="w-full p-2 border rounded bg-gray-100"
-                                value="{{ $file->patient->name}} {{ $file->patient->lastName}}" readonly>
+                                value="{{ $file->patient->name }} {{ $file->patient->lastName }}" readonly>
                         </div>
                         <!-- Botones de acción -->
                         <div class="flex justify-between space-x-2">
@@ -42,11 +42,11 @@
                                 class="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300">
                                 PDF
                             </button>
-                            <button
+                            <button data-id="{{ $file->id }}"
                                 class="w-full bg-green-500 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-green-600 transition duration-300">
                                 Actualizar
                             </button>
-                            <button data-id="{{ $file->id}}"
+                            <button data-id="{{ $file->id }}"
                                 class="deleteFile w-full bg-red-500 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-red-600 transition duration-300">
                                 Eliminar
                             </button>
