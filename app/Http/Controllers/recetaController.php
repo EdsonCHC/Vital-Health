@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Log;
+use App\Models\RecetaMedicina;
 
+use App\Models\Usuario;
 use Illuminate\Http\Request;
-
+use App\Models\Medicina;
+use Illuminate\Support\Facades\DB;
 use App\Models\Receta;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
@@ -51,11 +55,57 @@ class recetaController extends BaseController
 
         return response()->json(['receta' => $receta]);
     }
+    public function destroy($id)
+    {
+        DB::beginTransaction();
 
-    public function getRecetas(){
-        $recetas = Receta::all();
+        try {
+            $receta = Receta::findOrFail($id);
+
+            // Actualizar el stock de medicamentos
+            foreach ($receta->medicinas as $medicina) {
+                Medicina::where('id', $medicina->id)
+                        ->increment('stock', $receta->medicinas->find($medicina->id)->pivot->cantidad);
+            }
+
+            // Eliminar la receta
+            $receta->delete();
+
+            DB::commit();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
+    }
+    public function create()
+    {
+        $medicinas = Medicina::all();
+        return view('recetas.create', compact('medicinas'));
+    }
+
+   
+
+    public function searchPatients(Request $request)
+    {
+        $query = $request->input('query');
+        $patients = Usuario::where('name', 'LIKE', "%{$query}%")
+                            ->orWhere('mail', 'LIKE', "%{$query}%")
+                            ->get();
+        return response()->json($patients);
+    }
+    
+    
+    public function getRecetas()
+    {
+        $doctorId = auth()->user()->id; 
+    
+        $recetas = Receta::where('doctor_id', $doctorId)->get();
+        
         return view('doctor.medicine_doc', compact('recetas'));
     }
+
+
     public function actualizarEstado(Request $request, $id)
     {
         $receta = Receta::find($id);

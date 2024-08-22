@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medicina</title>
-    <!-- Incluir Tailwind CSS -->
-    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/doctor.js'])
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/doctor.js', 'resources/js/recetas.js'])
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
-
 
 <body class="w-full h-screen bg-gray-200">
     <div class="flex w-full h-full">
@@ -17,84 +16,49 @@
             @include('templates.header_doc')
         </div>
 
+        <div class="ml-4 w-full lg:ml-40 h-full overflow-y-auto flex-grow">
+            <div class="w-full max-w-6xl mx-auto h-auto my-4 lg:my-5 px-4 lg:px-16">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="font-bold text-xl lg:text-3xl text-vh-green">Pedidos de Receta</h2>
+                    <button id="open-modal" class="mt-4 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">
+    Crear Receta
+</button>
 
-        <div class="ml-4 lg:ml-60 w-full h-full overflow-y-auto flex-grow">
-            <div class="w-full max-w-6xl mx-auto h-auto my-4 lg:my-10 px-4 lg:px-16">
-                <h2 class="font-bold text-xl lg:text-3xl text-vh-green mb-4">Pedidos de Receta</h2>
-
-                <!-- Filtros y botones -->
-                <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center mb-4">
-
-                    <div class="flex flex-col lg:flex-row lg:space-x-4">
-                        <a id="view-history" href="#"
-                            class="w-full lg:w-36 h-12 text-white font-semibold bg-vh-green lg:text-lg tracking-wide shadow-xl rounded-xl hover:bg-white transition duration-300 hover:text-vh-green text-center mb-2 lg:mb-0">
-                            <p class="flex justify-center mt-2">Historial</p>
-                        </a>
-                        <a href="#" id="create-order"
-                            class="w-full lg:w-36 h-12 text-white font-semibold bg-vh-green lg:text-lg tracking-wide shadow-xl rounded-xl hover:bg-white transition duration-300 hover:text-vh-green text-center">
-                            <p class="flex justify-center mt-2">Nuevo Pedido</p>
-                        </a>
-                    </div>
                 </div>
-
-                <!-- Tabla de pedidos -->
-                <div class="overflow-x-auto">
-                    <div class="bg-vh-alice-blue rounded-md mb-4">
-                        <!-- Encabezado de tabla -->
-                        <div class="hidden lg:flex bg-gray-200 p-2 font-semibold text-sm lg:text-base text-vh-green">
-                            <div class="w-1/6 text-center py-2">Código</div>
-                            <div class="w-1/6 text-center py-2">Paciente</div>
-                            <div class="w-1/6 text-center py-2">Medicamento</div>
-                            <div class="w-1/6 text-center py-2">Fecha</div>
-                            <div class="w-1/6 text-center py-2">Estado</div>
-                            <div class="w-1/6 text-center py-2">Acciones</div>
-                        </div>
-
-                        <!-- Fila de pedidos -->
-                        @if ($recetas->isEmpty())
+                <!-- Tarjetas de pedidos -->
+                <div class="grid grid-cols-1 gap-6 mb-20 md:grid-cols-2 lg:grid-cols-3">
+                    @if ($recetas->isEmpty())
                         <p class="text-center font-semibold text-sm lg:text-lg text-vh-green my-4">No hay pedidos
                             disponibles para mostrar.</p>
-                        @else
-                        <div class="flex flex-col lg:flex-row border-b border-gray-200 text-sm lg:text-base">
-                            <!-- Datos de la tabla en formato de columnas para pantallas grandes -->
-                            <div class="flex flex-col lg:flex-row w-full">
-                                <div class="lg:w-1/6 text-center py-2 text-vh-green hidden lg:block">12345</div>
-                                <div class="lg:w-1/6 text-center py-2 text-vh-green hidden lg:block">Juan Pérez</div>
-                                <div class="lg:w-1/6 text-center py-2 text-vh-green hidden lg:block">Paracetamol</div>
-                                <div class="lg:w-1/6 text-center py-2 text-vh-green hidden lg:block">2024-08-20</div>
-                                <div class="lg:w-1/6 text-center py-2 text-vh-green hidden lg:block">Pendiente</div>
-                                <!-- Botones de acciones en formato de columnas para pantallas grandes -->
-                                <div class="lg:w-1/6 text-center py-2 flex justify-center space-x-2 lg:space-x-4">
-                                    <button class="delete-order p-1 lg:p-2">
-                                        <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="Eliminar"
-                                            class="w-6 h-6 lg:w-8 lg:h-8 rounded">
+                    @else
+                        @foreach ($recetas as $receta)
+                            <div
+                                class="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                                <div class="p-4">
+                                    <h3 class="text-lg font-semibold text-vh-green mb-2">{{ $receta->titulo }}</h3>
+                                    <p class="text-sm text-gray-600"><strong>Código:</strong> {{ $receta->codigo_receta }}</p>
+                                    <p class="text-sm text-gray-600"><strong>Paciente:</strong> {{ $receta->patient->name }}</p>
+                                    <p class="text-sm text-gray-600"><strong>Fecha:</strong>
+                                        {{ $receta->fecha_entrega->format('Y-m-d') }}</p>
+                                    <p class="text-sm text-gray-600"><strong>Hora:</strong>
+                                        {{ $receta->hora_entrega->format('H:i') }}</p>
+                                    <p class="text-sm text-gray-600"><strong>Descripción:</strong> {{ $receta->descripcion }}
+                                    </p>
+
+                                </div>
+                                <div class="p-4 border-t border-gray-200 flex justify-end">
+                                    <button
+                                        class="delete-order bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300"
+                                        data-id="{{ $receta->id }}">
+                                        Eliminar
                                     </button>
                                 </div>
                             </div>
-                            @endif
-
-
-                            <!-- En dispositivos móviles, mostrar los datos en formato de tarjeta -->
-                            <div class="lg:hidden flex flex-col border-t border-gray-200">
-                                <div class="py-2 px-4 text-vh-green font-semibold">Código: 12345</div>
-                                <div class="py-2 px-4 text-vh-green font-semibold">Paciente: Juan Pérez</div>
-                                <div class="py-2 px-4 text-vh-green font-semibold">Medicamento: Paracetamol</div>
-                                <div class="py-2 px-4 text-vh-green font-semibold">Fecha: 2024-08-20</div>
-                                <div class="py-2 px-4 text-vh-green font-semibold">Estado: Pendiente</div>
-                                <!-- Botones de acciones en formato de tarjeta para pantallas móviles -->
-
-                            </div>
-                        </div>
-                        <!-- Fin del ejemplo -->
-
-                        <!-- Repite el bloque de ejemplo según sea necesario para otros pedidos -->
-
-                        <!-- Mensaje si no hay pedidos --
-                    </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
-
     </div>
 </body>
 

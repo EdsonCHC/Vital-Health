@@ -90,6 +90,7 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::delete('/citas/{id}', [CitaController::class, 'destroy'])->name('citas.destroy');
     //
     Route::get('/recetas/get-prescription-form-details', [RecetaController::class, 'getPrescriptionFormDetails']);
+    Route::delete('/recetas/{id}', [RecetaController::class, 'destroy']);
 
     // Expedientes
     Route::get('/files_doc', [ExpedienteController::class, 'showFileDoc'])->name('files_doc.show');

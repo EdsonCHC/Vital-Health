@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('recetas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cita_id')->constrained()->onDelete('cascade');
+            $table->foreignId('cita_id')->nullable()->constrained()->onDelete('cascade');            
             $table->string('codigo_receta')->unique();
             $table->date('fecha_entrega');
             $table->time('hora_entrega'); 
