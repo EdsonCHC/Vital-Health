@@ -130,7 +130,6 @@ class ExpedienteController extends Controller
         }
     }
 
-
     public function showFileDoc()
     {
         $doctor = auth()->user();
@@ -159,13 +158,6 @@ class ExpedienteController extends Controller
         $expedientes = Expedientes::all();
 
         return view('doctor.files_doc', compact('users', 'expedientes', 'doctor', 'citas', 'exams', 'recetas'));
-    }
-
-    public function showFileAdmin()
-    {
-        $expedientes = Expedientes::all();
-
-        return view('admin.files_admin', compact('expedientes'));
     }
 
     public function edit(Expedientes $expediente)

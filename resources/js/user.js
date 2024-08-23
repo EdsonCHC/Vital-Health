@@ -24,6 +24,8 @@ $(document).ready(function () {
     $("#log_out").click((e) => {
         e.preventDefault();
 
+        const _token = $('meta[name="csrf-token"]').attr("content");
+
         Swal.fire({
             title: "¿Desea cerrar la sesión?",
             showCancelButton: true,
@@ -32,7 +34,7 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                    title: "Sera enviado al inicio en breve",
+                    title: "Será enviado al inicio en breve",
                     icon: "success",
                     timer: 3000,
                     showConfirmButton: false,
@@ -50,7 +52,7 @@ $(document).ready(function () {
                             }
                         },
                         error(response) {
-                            console.log("ups, algo ha salido mal :v");
+                            console.log("Ups, algo ha salido mal :v");
                         },
                     });
                 });
@@ -148,20 +150,66 @@ $(document).ready(function () {
             }
         });
     });
+
+    // Abrir el selector de archivos al hacer clic en el botón de cargar imagen
+    $("#upload_button").click(function () {
+        $("#profile_image_input").click();
+    });
+
+    // Manejar el cambio de archivo
+    $("#upload_image").click((e) => {
+        e.preventDefault();
+
+        let formData = new FormData($("#image_form")[0]);
+
+        $.ajax({
+            url: "/user/update-image",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success(response) {
+                if (response.success) {
+                    Swal.fire({
+                        title: "Imagen actualizada correctamente",
+                        icon: "success",
+                        timer: 2000,
+                        showConfirmButton: false,
+                        timerProgressBar: true,
+                    }).then(() => {
+                        // Actualizar la imagen en la vista
+                        $("img[alt='Perfil']").attr(
+                            "src",
+                            "/storage/users-avatar/" + response.image
+                        );
+                    });
+                }
+            },
+            error(response) {
+                Swal.fire({
+                    title: "Error al actualizar la imagen",
+                    icon: "error",
+                    text:
+                        response.responseJSON.message ||
+                        "Hubo un error inesperado.",
+                });
+            },
+        });
+    });
 });
 
 // Function to sanitize form data
 function sanitizeFormData(formData) {
-    return formData.map(field => {
-        if (field.name === 'name' || field.name === 'lastName') {
+    return formData.map((field) => {
+        if (field.name === "name" || field.name === "lastName") {
             field.value = field.value
-                .replace(/[0-9'"',]/g, '')  // Remove numbers, quotes, and commas
-                .replace(/\s+/g, '')        // Remove all spaces
-                .replace(/script|sql/gi, ''); // Remove specific words
-        } else if (field.name === 'address') {
+                .replace(/[0-9'"',]/g, "") // Remove numbers, quotes, and commas
+                .replace(/\s+/g, "") // Remove all spaces
+                .replace(/script|sql/gi, ""); // Remove specific words
+        } else if (field.name === "address") {
             field.value = field.value
-                .replace(/[0-9'"',]/g, '')  // Remove numbers, quotes, and commas
-                .replace(/script|sql/gi, ''); // Remove specific words
+                .replace(/[0-9'"',]/g, "") // Remove numbers, quotes, and commas
+                .replace(/script|sql/gi, ""); // Remove specific words
         }
         return field;
     });

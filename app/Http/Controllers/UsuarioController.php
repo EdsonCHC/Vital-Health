@@ -11,8 +11,10 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Receta;
 use App\Models\Exams;
 use App\Models\citas;
+use App\Models\Expedientes;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -35,7 +37,7 @@ class UsuarioController extends Controller
         $userId = $user->id;
 
         $citas = Citas::with('category')
-        ->where('patient_id', $userId)
+            ->where('patient_id', $userId)
             ->where('state', 1)
             ->get();
 
@@ -44,10 +46,13 @@ class UsuarioController extends Controller
             ->get();
 
         $recetas = Receta::with('medicinas')
-        ->where('patient_id', $userId)
+            ->where('patient_id', $userId)
             ->get();
 
-        return view('app.user_info', compact('user', 'citas', 'exams', 'recetas'));
+        $expedientes = Expedientes::where('patient_id', $userId)
+            ->get();
+
+        return view('app.user_info', compact('user', 'citas', 'exams', 'recetas', 'expedientes'));
     }
 
     public function generatePdf()
@@ -57,7 +62,7 @@ class UsuarioController extends Controller
             $userId = $user->id;
 
             $citas = Citas::with('category')
-            ->where('patient_id', $userId)
+                ->where('patient_id', $userId)
                 ->where('state', 1)
                 ->get();
 
@@ -66,7 +71,7 @@ class UsuarioController extends Controller
                 ->get();
 
             $recetas = Receta::with('medicinas')
-            ->where('patient_id', $userId)
+                ->where('patient_id', $userId)
                 ->get();
 
             $pdf = Pdf::loadView('pdf.expediente', compact('user', 'citas', 'exams', 'recetas'));
@@ -210,11 +215,6 @@ class UsuarioController extends Controller
         }
     }
 
-    public function edit(Usuario $usuario)
-    {
-        //
-    }
-
     public function update(Request $request, Usuario $user)
     {
         try {
@@ -250,10 +250,45 @@ class UsuarioController extends Controller
         }
     }
 
+    public function updateImage(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $user = Auth::user();
+
+        if ($request->hasFile('image')) {
+            // Eliminar la imagen antigua si existe
+            if ($user->img && Storage::disk('public')->exists('users-avatar/' . $user->img)) {
+                Storage::disk('public')->delete('users-avatar/' . $user->img);
+            }
+
+            // Subir la nueva imagen
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('users-avatar', $imageName, 'public');
+
+            // Actualizar la ruta de la imagen en el perfil del usuario
+            $user->img = $imageName;
+            $user->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Imagen actualizada correctamente',
+                'image' => $imageName
+            ], 200);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'No se ha proporcionado ninguna imagen'
+        ], 400);
+    }
+
     public function destroy(Request $request)
     {
         if (Auth::check()) {
-            // Cerrar sesión
             Auth::logout();
         }
 
@@ -266,4 +301,5 @@ class UsuarioController extends Controller
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
+
 }

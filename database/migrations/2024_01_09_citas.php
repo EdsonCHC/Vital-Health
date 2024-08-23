@@ -24,8 +24,6 @@ return new class extends Migration {
             $table->foreignId('doctor_id')->nullable()->constrained('doctors')->nullOnDelete();
             $table->foreignId('patient_id')->constrained('patients')->cascadeOnDelete();
             $table->foreignId('expediente_id')->nullable()->constrained('expedientes')->nullOnDelete();
-            // $table->foreign('expediente_id')->references('id')->on('expedientes');
-            // $table->foreign('expediente_id')->references('id')->on('expedientes')->onDelete('cascade');
         });
     }
 

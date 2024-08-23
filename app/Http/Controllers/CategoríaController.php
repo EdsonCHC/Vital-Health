@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categoría;
+use App\Models\Expedientes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 
@@ -70,7 +71,10 @@ class CategoríaController extends Controller
         if (!$categoria) {
             return redirect()->back()->with('error', 'La categoría no existe.');
         }
-        return view('admin.records', compact('categoria'));
+
+        $expedientes = Expedientes::all();
+
+        return view('admin.records', compact('categoria', 'expedientes'));
     }
 
     public function showAd_chats($id)
@@ -153,6 +157,28 @@ class CategoríaController extends Controller
             return response()->json([
                 'message' => 'Hubo un error al actualizar la categoría',
                 'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function deleteFile($id)
+    {
+        try {
+            // Encontrar el expediente por ID
+            $expediente = Expedientes::findOrFail($id);
+
+            // Eliminar el expediente
+            $expediente->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Expediente eliminado correctamente'
+            ]);
+        } catch (\Exception $e) {
+            // Manejar la excepción y retornar error
+            return response()->json([
+                'success' => false,
+                'message' => 'No se pudo eliminar el expediente. ' . $e->getMessage()
             ], 500);
         }
     }

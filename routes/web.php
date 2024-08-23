@@ -94,6 +94,7 @@ Route::middleware('auth')->group(function () {
     //
     Route::put('/user/update', [UsuarioController::class, 'update'])->name('user.update');
     //
+    route::post('/user/update-image', [UsuarioController::class, 'updateImage'])->name('user.updateImage');
 });
 
 // Middlewares para el doctor
@@ -181,18 +182,21 @@ Route::middleware('auth:admin')->group(function () {
     //
     Route::get('/staff/{id}', [CategoríaController::class, 'showStaff'])->name('categorias.staff');
     //
+    Route::get('/records/{id}', [CategoríaController::class, 'showRecords'])->name('categorias.records');
+    //
     Route::get('/calendar/{id}', [CategoríaController::class, 'showCalendar'])->name('categorias.calendar');
     //
     Route::put('/categorias/{id}/activate', [CategoríaController::class, 'activate'])->name('categorias.activate');
     //
     Route::put('/categorias/{id}/suspend', [CategoríaController::class, 'suspend'])->name('categorias.suspend');
     //
+    Route::delete('/records/{id}', [CategoríaController::class, 'deleteFile'])->name('record.delete');
+    //
     Route::resource('categorias', CategoríaController::class);
     //
     //
     // Staff
     Route::get('/staff/doctor/{id}', [DoctorController::class, 'getDoctor'])->name('doctor.info');
-    //
     //
     Route::post('/staff/{id}', [DoctorController::class, 'create'])->name('staff.create');
     //
@@ -216,8 +220,6 @@ Route::middleware('auth:admin')->group(function () {
     //
     //
     // Expedientes
-    // Route::get('/files_admin', [ExpedienteController::class, 'showFileAdmin'])->name('files_admin.show');
-    Route::get('/records/{id}', [CategoríaController::class, 'showRecords'])->name('categorias.records');
     //
     // Admin
     Route::post('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');

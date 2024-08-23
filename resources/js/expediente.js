@@ -341,4 +341,54 @@ $(document).ready(function () {
             }
         });
     });
+
+    // Doctor
+    // Maneja la creacion del expediente y del usuario
+    $(".deleteFileAd").click(function () {
+        const fileId = $(this).data("id");
+
+        Swal.fire({
+            title: "Eliminar Expediente",
+            text: "¿Estás seguro de que deseas eliminar este expediente?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const _token = $('meta[name="csrf-token"]').attr("content");
+
+                $.ajax({
+                    url: `/records/${fileId}`,
+                    type: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": _token,
+                    },
+                    success(response) {
+                        if (response.success) {
+                            Swal.fire("Expediente eliminado", "", "success");
+                            // Actualiza el HTML si es necesario
+                        } else {
+                            Swal.fire(
+                                "Error al eliminar el expediente",
+                                response.message ||
+                                    "No se pudo eliminar el expediente",
+                                "error"
+                            );
+                        }
+                    },
+                    error(xhr) {
+                        console.log(xhr); // Para depuración
+                        Swal.fire(
+                            "Error al eliminar el expediente",
+                            "No se pudo eliminar el expediente",
+                            "error"
+                        );
+                    },
+                });
+            }
+        });
+    });
 });
