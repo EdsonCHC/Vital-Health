@@ -151,53 +151,62 @@ $(document).ready(function () {
         });
     });
 
-    $(".save-img").click(({
-
-    }));
-
-    $("#upload_button").click(function () {
-        $("#profile_image_input").click();
-    });
-
-    $("#upload_image").click((e) => {
-        e.preventDefault();
-
-        let formData = new FormData($("#image_form")[0]);
-
-        $.ajax({
-            url: "/user/update-image",
-            type: "POST",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success(response) {
-                if (response.success) {
+    $(".save-img").click(function () {
+        Swal.fire({
+            title: "Actualizar Avatar",
+            html: `
+                <form id="image_form" enctype="multipart/form-data" class="w-full">
+                    <input type="file" name="image" id="image" accept="image/*" required>
+                    <button type="button" id="upload_image"
+                    class="p-2 border-2 border-green-700 rounded-md text-lg text-green-700 hover:bg-green-700 hover:text-white">Subir Imagen</button>
+                </form>
+            `,
+            showConfirmButton: false,
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+        });
+    
+        $(document).on("click", "#upload_image", function (e) {
+            e.preventDefault();
+    
+            let formData = new FormData($("#image_form")[0]);
+    
+            $.ajax({
+                url: "/user/update-image",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success(response) {
+                    if (response.success) {
+                        Swal.fire({
+                            title: "Imagen actualizada correctamente",
+                            icon: "success",
+                            timer: 2000,
+                            showConfirmButton: false,
+                            timerProgressBar: true,
+                        }).then(() => {
+                            // Actualizar la imagen en la vista
+                            $("img[alt='Perfil']").attr(
+                                "src",
+                                "/storage/users-avatar/" + response.image
+                            );
+                        });
+                    }
+                },
+                error(response) {
                     Swal.fire({
-                        title: "Imagen actualizada correctamente",
-                        icon: "success",
-                        timer: 2000,
-                        showConfirmButton: false,
-                        timerProgressBar: true,
-                    }).then(() => {
-                        // Actualizar la imagen en la vista
-                        $("img[alt='Perfil']").attr(
-                            "src",
-                            "/storage/users-avatar/" + response.image
-                        );
+                        title: "Error al actualizar la imagen",
+                        icon: "error",
+                        text:
+                            response.responseJSON.message ||
+                            "Hubo un error inesperado.",
                     });
-                }
-            },
-            error(response) {
-                Swal.fire({
-                    title: "Error al actualizar la imagen",
-                    icon: "error",
-                    text:
-                        response.responseJSON.message ||
-                        "Hubo un error inesperado.",
-                });
-            },
+                },
+            });
         });
     });
+    
 });
 
 // Function to sanitize form data

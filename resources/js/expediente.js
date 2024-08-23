@@ -62,12 +62,12 @@ $(document).ready(function () {
         Swal.fire({
             title: "Crear Expediente",
             html: `
-        <div class="flex justify-center items-center content-center space-x-4">
-            <button id="register" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-sm">
-                Crear Nuevo Usuario
-            </button>
-        </div>
-    `,
+                <div class="flex justify-center items-center content-center space-x-4">
+                    <button id="register" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-sm">
+                        Crear Nuevo Usuario
+                    </button>
+                </div>
+            `,
             showConfirmButton: false,
             showCancelButton: true,
             cancelButtonText: "Cancelar",
