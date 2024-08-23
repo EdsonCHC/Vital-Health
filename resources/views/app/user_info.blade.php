@@ -48,7 +48,7 @@
                             <h1 class="text-2xl font-bold mb-4">Perfil</h1>
                             <div
                                 class="w-32 h-32 lg:w-40 lg:h-40 rounded-full border border-green-700 overflow-hidden mb-4">
-                                <img id="profile_image" src="{{ asset('storage/user-avatar/' . $user->img) }}"
+                                <img id="profile_image" src="{{ asset('storage/'.$user->img) }}"
                                     alt="Perfil" class="w-full h-full object-cover">
                             </div>
                             <h2 class="text-xl font-semibold mb-2">{{ $user->name }} {{ $user->lastName }}</h2>
