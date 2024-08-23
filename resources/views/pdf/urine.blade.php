@@ -20,17 +20,17 @@
         <tbody>
             <tr>
                 <td class="border border-gray-300 px-2 py-1">COLOR</td>
-                <td class="border border-gray-300 px-2 py-1">{{ $color ?? 'N/A' }}</td>
+                <td class="border border-gray-300 px-2 py-1">{{ $color }}</td>
                 <td class="border border-gray-300 px-2 py-1">amarillo paja o ámbar</td>
             </tr>
             <tr>
                 <td class="border border-gray-300 px-2 py-1">ASPECTO</td>
-                <td class="border border-gray-300 px-2 py-1">{{ $aspecto ?? 'N/A' }}</td>
+                <td class="border border-gray-300 px-2 py-1">{{ $aspecto }}</td>
                 <td class="border border-gray-300 px-2 py-1">transparente o ligeramente turbio</td>
             </tr>
             <tr>
                 <td class="border border-gray-300 px-2 py-1">DENSIDAD</td>
-                <td class="border border-gray-300 px-2 py-1">{{ $densidad ?? 'N/A' }}</td>
+                <td class="border border-gray-300 px-2 py-1">{{ $densidad }}</td>
                 <td class="border border-gray-300 px-2 py-1">1.003-1.030 gr/ml</td>
             </tr>
             <tr>
@@ -40,32 +40,32 @@
             </tr>
             <tr>
                 <td class="border border-gray-300 px-2 py-1">PROTEÍNAS</td>
-                <td class="border border-gray-300 px-2 py-1">{{ $proteinas ?? 'N/A' }}</td>
+                <td class="border border-gray-300 px-2 py-1">{{ $proteinas }}</td>
                 <td class="border border-gray-300 px-2 py-1">negativo</td>
             </tr>
             <tr>
                 <td class="border border-gray-300 px-2 py-1">UROBILINÓGENO</td>
-                <td class="border border-gray-300 px-2 py-1">{{ $urobilinogeno ?? 'N/A' }}</td>
+                <td class="border border-gray-300 px-2 py-1">{{ $urobilinogeno }}</td>
                 <td class="border border-gray-300 px-2 py-1">normal (0.2 mg/dl)</td>
             </tr>
             <tr>
                 <td class="border border-gray-300 px-2 py-1">NITRATOS</td>
-                <td class="border border-gray-300 px-2 py-1">{{ $nitratos ?? 'N/A' }}</td>
+                <td class="border border-gray-300 px-2 py-1">{{ $nitratos }}</td>
                 <td class="border border-gray-300 px-2 py-1">negativo</td>
             </tr>
             <tr>
                 <td class="border border-gray-300 px-2 py-1">HEMOGLOBINA</td>
-                <td class="border border-gray-300 px-2 py-1">{{ $hemoglobina ?? 'N/A' }}</td>
+                <td class="border border-gray-300 px-2 py-1">{{ $hemoglobina }}</td>
                 <td class="border border-gray-300 px-2 py-1">negativo</td>
             </tr>
             <tr>
                 <td class="border border-gray-300 px-2 py-1">GLUCOSA</td>
-                <td class="border border-gray-300 px-2 py-1">{{ $glucosa ?? 'N/A' }}</td>
+                <td class="border border-gray-300 px-2 py-1">{{ $glucosa }}</td>
                 <td class="border border-gray-300 px-2 py-1">negativo</td>
             </tr>
             <tr>
                 <td class="border border-gray-300 px-2 py-1">CUERPOS CETÓNICOS</td>
-                <td class="border border-gray-300 px-2 py-1">{{ $cuerpos_cetonicos ?? 'N/A' }}</td>
+                <td class="border border-gray-300 px-2 py-1">{{ $cuerpos_cetonicos }}</td>
                 <td class="border border-gray-300 px-2 py-1">negativo</td>
             </tr>
         </tbody>
