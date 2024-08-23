@@ -342,7 +342,7 @@ $(document).ready(function () {
         });
     });
 
-    // Doctor
+    // Admin
     // Maneja la creacion del expediente y del usuario
     $(".deleteFileAd").click(function () {
         const fileId = $(this).data("id");

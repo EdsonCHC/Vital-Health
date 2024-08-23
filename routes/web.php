@@ -121,7 +121,8 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::delete('/recetas/{id}', [RecetaController::class, 'destroy']);
     //
     Route::get('/citas_doc/search', [CitaController::class, 'search'])->name('appointments.search');
-
+    //
+    //
     // Expedientes
     Route::get('/files_doc', [ExpedienteController::class, 'showFileDoc'])->name('files_doc.show');
     //

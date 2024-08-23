@@ -54,17 +54,21 @@
                             <h2 class="text-xl font-semibold mb-2">{{ $user->name }} {{ $user->lastName }}</h2>
                             <p class="mb-4">Paciente</p>
 
-                            <!-- Formulario para actualizar la imagen de perfil -->
-                            <form id="image_form" enctype="multipart/form-data" class="w-full">
+                            <button
+                                class="save-img w-2/4 h-10 p-2 text-white font-bold bg-vh-green rounded-lg mt-4 flex items-center justify-center gap-4">
+                                <img src="{{ asset('storage/svg/upload.svg') }}" alt="Subir foto" class="w-8 h-8">
+                                <p>Avatar</p>
+                            </button>
+                            {{-- <form id="image_form" enctype="multipart/form-data" class="w-full">
                                 @csrf
                                 <input type="file" name="image" id="image" accept="image/*" required>
                                 <button type="button" id="upload_image"
                                     class="p-2 border-2 border-green-700 rounded-md text-lg text-green-700 hover:bg-green-700 hover:text-white">Subir
                                     Imagen</button>
-                            </form>
+                            </form> --}}
                             <button
-                                class="saveFileUser w-full h-10 p-2 text-white bg-gray-500 rounded-lg flex items-center justify-center gap-2">
-                                <img src="{{ asset('storage/svg/eye-scan.svg') }}" alt="Expediente" class="w-6 h-6">
+                                class="saveFileUser w-2/4 h-10 p-2 mt-4 text-white bg-gray-500 rounded-lg flex items-center justify-center gap-2">
+                                <img src="{{ asset('storage/svg/eye-scan.svg') }}" alt="Expediente" class="w-8 h-8">
                                 <p>Expediente</p>
                             </button>
                         </section>
@@ -125,9 +129,9 @@
                                     <button type="button" id="save"
                                         class="hidden p-2 border-2 border-green-700 rounded-md text-lg text-green-700 hover:bg-green-700 hover:text-white">Guardar</button>
                                 </div>
-                                <div class="mt-6">
+                                <div class="w-full mt-6 flex justify-end">
                                     <button type="submit" id="log_out"
-                                        class="w-full h-12 bg-red-700 text-white font-semibold rounded-lg hover:bg-red-800">Cerrar
+                                        class="w-1/6 h-10 bg-red-700 text-white font-semibold rounded-lg hover:bg-red-800">Cerrar
                                         Sesión</button>
                                 </div>
                             </form>

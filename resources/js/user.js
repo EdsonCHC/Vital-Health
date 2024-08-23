@@ -151,12 +151,14 @@ $(document).ready(function () {
         });
     });
 
-    // Abrir el selector de archivos al hacer clic en el botón de cargar imagen
+    $(".save-img").click(({
+
+    }));
+
     $("#upload_button").click(function () {
         $("#profile_image_input").click();
     });
 
-    // Manejar el cambio de archivo
     $("#upload_image").click((e) => {
         e.preventDefault();
 
