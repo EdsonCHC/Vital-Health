@@ -74,10 +74,10 @@
                         </ul>
                     </div>
                 </div>
-                <a href="/user" class="w-10 h-auto">
+                <a href="/user" class="w-[50px] h-[50px]">
                     @if (Auth::check())
-                        <img src="storage/{{ Auth::user()->img }}" alt="user_icon"
-                            class="w-full h-full p-[2px] bg-vh-gray-light rounded-full">
+                        <img src="storage/profile_images/{{ Auth::user()->img }}" alt="user_icon"
+                            class="w-full h-full bg-vh-gray-light rounded-full border-solid border-[2px]">
                     @else
                         <img src="{{ asset('storage/svg/user.svg') }}" alt="user_icon"
                             class="w-full p-2 bg-vh-gray-light rounded-full">

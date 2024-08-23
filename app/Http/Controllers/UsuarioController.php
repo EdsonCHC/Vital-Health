@@ -260,14 +260,14 @@ class UsuarioController extends Controller
 
         if ($request->hasFile('image')) {
             // Eliminar la imagen antigua si existe
-            if ($user->img && Storage::disk('public')->exists('users-avatar/' . $user->img)) {
-                Storage::disk('public')->delete('users-avatar/' . $user->img);
+            if ($user->img && Storage::disk('public')->exists('profile_images/' . $user->img)) {
+                Storage::disk('public')->delete('profile_images/' . $user->img);
             }
 
             // Subir la nueva imagen
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('users-avatar', $imageName, 'public');
+            $image->storeAs('profile_images', $imageName, 'public');
 
             // Actualizar la ruta de la imagen en el perfil del usuario
             $user->img = $imageName;
