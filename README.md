@@ -59,8 +59,14 @@ Continuamos con el, el servidor de laravel
   - **Geovanni Jacinto** - User Experience Designer
     [Geox](https://github.com/Geox)
 
-## Contribuidores
+## Contribuidores 
 
 [CONTRIBUIDORES](https://github.com/EdsonCHC/Vital-Health/contributors)
 
 ## Licencia
+
+Este proyecto está bajo la licencia GNU GENERAL PUBLIC LICENSE [License.md](https://github.com/EdsonCHC/Vital-Health/blob/main/LICENSE)
+
+## Agradecimientos
+
+  - Agradecemos a **Alvarenga Ventura** alias "Amañenga" por su constante desempeño y participación dentro del proyecto
