@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 
 class CitaController extends Controller
 {
@@ -235,9 +236,30 @@ class CitaController extends Controller
 
     public function getPatients()
     {
-        $patients = Usuario::all();
+        // campos necesarios en la consulta
+        $patients = Usuario::select('id', 'name', 'lastName', 'birth')->get();
         return response()->json(['patients' => $patients]);
     }
+
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $doctorId = $request->input('doctor_id');
+    
+        // filtro para hacer el buscador y que solo muestre los state 1
+        $citas = citas::where('doctor_id', $doctorId)
+            ->whereHas('patient', function($query) use ($search) {
+                $query->where(DB::raw('CONCAT(name, " ", lastName)'), 'like', "%{$search}%");
+            })
+            ->where('state', 1)
+            ->get();
+    
+        // devuelve resultados
+        return view('doctor.citas_doc', ['citas' => $citas, 'doctor' => Doctor::find($doctorId)]);
+    }
+    
+    
 
     public function show_doc($id)
     {
