@@ -37,7 +37,7 @@ $(document).ready(function () {
             if (result) {
                 const dataToSend = {
                     date: result.date,
-                    hour: result.hour,
+                    hour: result.hour, // La hora ya debe estar en formato H:i
                     modalidad: result.modalidad,
                     description: result.description || "",
                     doctor_id: doctorId,
@@ -61,7 +61,7 @@ $(document).ready(function () {
                         title: "Cita Agendada",
                         text: "Tu cita ha sido programada con éxito.",
                     }).then(() => {
-                        window.location.reload(); 
+                        window.location.reload();
                     });
                     
                 } catch (error) {
@@ -103,10 +103,10 @@ $(document).ready(function () {
                     </div>
                 </div>
                 <div class="mb-4">
-                    <label for="patient" class="block text-gray-700 text-xl font-bold mb-2">Seleccione un paciente</label>
-                    <select id="patient" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                        <option value="">Selecciona un paciente</option>
-                    </select>
+                    <label for="patient-search" class="block text-gray-700 text-xl font-bold mb-2">Buscar paciente</label>
+                    <input type="text" id="patient-search" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline" placeholder="Escribe el nombre del paciente">
+                    <div id="patient-results" class="mt-2 max-h-48 overflow-auto border border-gray-300 rounded"></div>
+                    <input type="hidden" id="patient-id" name="patient_id">
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-xl font-bold mb-2">Modalidad</label>
@@ -129,19 +129,37 @@ $(document).ready(function () {
                 renderCalendar(new Date(), document.getElementById("calendarContainer"));
 
                 const patients = await fetchPatients();
-                const patientSelect = document.getElementById("patient");
-                patients.forEach(patient => {
-                    const option = document.createElement("option");
-                    option.value = patient.id;
-                    option.textContent = patient.name;
-                    patientSelect.appendChild(option);
+                const patientSearchInput = document.getElementById("patient-search");
+                const patientResults = document.getElementById("patient-results");
+
+                // Handle patient search input
+                patientSearchInput.addEventListener("input", () => {
+                    const query = patientSearchInput.value.toLowerCase();
+                    const filteredPatients = patients.filter(patient => 
+                        patient.name.toLowerCase().includes(query)
+                    );
+
+                    patientResults.innerHTML = filteredPatients.map(patient =>
+                        `<div class="cursor-pointer p-2 hover:bg-gray-200" data-id="${patient.id}" data-name="${patient.name}" data-lastname="${patient.lastName}" data-birth="${patient.birth}">
+                            ${patient.name} ${patient.lastName} (Nacimiento: ${patient.birth})
+                        </div>`
+                    ).join('');
+
+                    // Handle patient selection
+                    patientResults.querySelectorAll("div").forEach(item => {
+                        item.addEventListener("click", () => {
+                            patientSearchInput.value = `${item.getAttribute("data-name")} ${item.getAttribute("data-lastname")}`;
+                            document.getElementById("patient-id").value = item.getAttribute("data-id");
+                            patientResults.innerHTML = '';
+                        });
+                    });
                 });
             },
             preConfirm: () => {
                 const selectedDate = document.querySelector(".selected-date")?.dataset.date;
                 const selectedTime = document.getElementById("time").value;
                 const selectedModalidad = document.querySelector('input[name="modalidad"]:checked')?.value;
-                const selectedPatient = document.getElementById("patient").value;
+                const selectedPatient = document.getElementById("patient-id").value;
 
                 if (!selectedDate) {
                     Swal.showValidationMessage("Por favor, seleccione una fecha.");
@@ -160,9 +178,12 @@ $(document).ready(function () {
                     return false;
                 }
 
+                // Formatea la hora al formato H:i
+                const formattedTime = selectedTime.split(":").map(part => part.padStart(2, '0')).join(':');
+
                 return {
                     date: selectedDate,
-                    hour: selectedTime,
+                    hour: formattedTime,
                     modalidad: selectedModalidad,
                     patient_id: selectedPatient,
                 };
@@ -294,8 +315,8 @@ $(document).ready(function () {
     function generateTimeOptions() {
         let options = "";
         for (let i = 8; i < 18; i++) {
-            options += `<option value="${i}:00">${i}:00</option>`;
-            options += `<option value="${i}:30">${i}:30</option>`;
+            options += `<option value="${i.toString().padStart(2, '0')}:00">${i.toString().padStart(2, '0')}:00</option>`;
+            options += `<option value="${i.toString().padStart(2, '0')}:30">${i.toString().padStart(2, '0')}:30</option>`;
         }
         return options;
     }
