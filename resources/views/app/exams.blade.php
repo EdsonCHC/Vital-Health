@@ -10,16 +10,20 @@
     @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/examu.js', 'resources/js/scroll.js'])
 </head>
 
-<body class="w-full h-full">
+<body class="flex flex-col min-h-screen bg-gray-100">
     @include('templates.loader')
-    <div class="w-full h-auto">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md">
         @include('templates.header')
-    </div>
-    <main class="w-full h-auto p-4 mt-6 lg:max-w-screen-2xl lg:mx-auto lg:rounded-md">
-        <section class="flex flex-col lg:flex-row justify-between items-center mx-4">
-            <div class="flex-1 lg:mr-4">
-                <h2 class="font-bold text-center lg:text-start text-2xl text-vh-green-medium">Exámenes Personales</h2>
-                <p class="text-sm text-center lg:text-start">Los exámenes son necesarios para las citas</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-4 mt-6 lg:max-w-screen-2xl lg:mx-auto lg:rounded-md">
+        <section class="flex flex-col lg:flex-row justify-between items-center mx-4 mb-6">
+            <div class="flex-1 lg:mr-4 text-center lg:text-left">
+                <h2 class="font-bold text-2xl text-vh-green-medium">Exámenes Personales</h2>
+                <p class="text-sm mt-2">Los exámenes son necesarios para las citas</p>
             </div>
             <div>
                 <button type="button" id="menu-buttone"
@@ -34,7 +38,7 @@
         <section id="pendientes" class="lg:px-16 lg:py-12 bg-gray-50">
             @if(isset($examenes) && $examenes->where('state', '1')->isEmpty())
                 <div class="text-center py-8">
-                    <p class="text-lg font-semibold text-gray-200">No tienes exámenes programados.</p>
+                    <p class="text-lg font-semibold text-gray-700">No tienes exámenes programados.</p>
                 </div>
             @else
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -62,7 +66,7 @@
         <section id="finalizados" class="lg:px-16 lg:py-12 bg-gray-50 hidden">
             @if(isset($examenes) && $examenes->where('state', '0')->isEmpty())
                 <div class="text-center py-8">
-                    <p class="text-lg font-semibold text-gray-200">No tienes exámenes finalizados.</p>
+                    <p class="text-lg font-semibold text-gray-700">No tienes exámenes finalizados.</p>
                 </div>
             @else
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -79,7 +83,7 @@
                                 <p class="text-base text-gray-600">{{ $examen->notes ?? 'No disponible' }}</p>
                                 <h4 class="text-lg font-semibold text-gray-800 mb-2">Estado</h4>
                                 <p class="text-base text-gray-600">{{ $examen->state == "1" ? 'Pendiente' : 'Finalizado' }}</p>
-                                <button class="bg-slate-500 text-white-not-white p-1 results">Resultados</button>
+                                <button class="bg-slate-500 text-white p-1 results">Resultados</button>
                             </div>
                         </div>
                     @endforeach
@@ -87,10 +91,14 @@
             @endif
         </section>
     </main>
-    <div class="w-full h-auto absolute bottom-0">
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4">
         @include('templates.footer_two')
-    </div>
-    <div class="w-full h-auto">
+    </footer>
+
+    <!-- Chat IA -->
+    <div class="fixed bottom-0 right-0 p-4">
         @include('templates.chat_ia')
     </div>
 </body>
