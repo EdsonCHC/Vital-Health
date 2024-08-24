@@ -64,8 +64,7 @@ class ExamController extends Controller
         $pacienteId = Auth::id();
 
         $examenes = Exams::where('patient_id', $pacienteId)
-            ->where('state', 1)
-            ->get(['exam_type', 'exam_date', 'notes']);
+            ->get(['exam_type', 'exam_date', 'notes', 'state', 'id']);
 
         return view('app.exams', compact('examenes'));
     }

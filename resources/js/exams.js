@@ -380,6 +380,9 @@ $(document).ready(function () {
         $.ajax({
             url: `/exams/pdf/${id}`,
             type: "get",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
             success(response) {
                 const pdf_url = response.message;
 
@@ -471,7 +474,7 @@ $(document).ready(function () {
                 const tr = $(this).closest("tr");
                 const id = tr.data("id");
                 const examType = tr.data("exam-type");
-                console.log(examType)
+                console.log(examType);
                 const formToShow = formTemplates[examType];
 
                 Swal.fire({
