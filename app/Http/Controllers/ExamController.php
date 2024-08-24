@@ -375,9 +375,7 @@ class ExamController extends Controller
 
     public function getPdfUrl($exam_id)
     {
-
         try {
-
             $examen = Exams::findOrFail($exam_id);
 
             return response()->json([

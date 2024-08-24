@@ -86,9 +86,9 @@ Route::middleware('auth')->group(function () {
     // Route::view('/area', [CitaController::class, 'index'])->name('app.area');
     //
     // User
-    Route::get('/generate-pdf', [UsuarioController::class, 'generatePdf'])->name('generate.pdf');
-    //
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
+    //
+    Route::get('/generate-pdf', [UsuarioController::class, 'generatePdf']);
     //
     Route::post('/user', [UsuarioController::class, 'destroy']);
     //
@@ -290,3 +290,4 @@ Route::fallback(function () {
 });
 
 Route::post('/generate-pdf', [pdfController::class, 'generatePDF']);
+//

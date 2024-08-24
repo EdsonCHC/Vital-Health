@@ -42,22 +42,23 @@
                     @if ($exams->isEmpty())
                         <h1>No hay exámenes pendientes</h1>
                     @else
-                    @php
-                             $i = 1;
-                    @endphp
+                        @php
+                            $i = 1;
+                        @endphp
                         @foreach ($exams as $examen)
-                            <tr class="hover:bg-green-50 transition duration-300" data-id="{{$examen->id}}" datad-doctor-id="{{$examen->doctor->id}}" data-exam-type="{{$examen->exam_type}}">
+                            <tr class="hover:bg-green-50 transition duration-300" data-id="{{ $examen->id }}"
+                                datad-doctor-id="{{ $examen->doctor->id }}" data-exam-type="{{ $examen->exam_type }}">
                                 <td class="py-3 px-6 border-b text-gray-800">{{ $i++ }}</td>
-                                <td class="py-3 px-6 border-b">{{$examen->patient->name}}</td>
-                                <td class="py-3 px-6 border-b">{{$examen->doctor->name}}</td>
-                                <td class="py-3 px-6 border-b">{{$examen->exam_type}}</td>
-                                <td class="py-3 px-6 border-b">{{$examen->exam_date}}</td>
-                                <td class="py-3 px-6 border-b">{{$examen->state === '1' ? "Pendiente" : "Finalizado"}}</td>
+                                <td class="py-3 px-6 border-b">{{ $examen->patient->name }}</td>
+                                <td class="py-3 px-6 border-b">{{ $examen->doctor->name }}</td>
+                                <td class="py-3 px-6 border-b">{{ $examen->exam_type }}</td>
+                                <td class="py-3 px-6 border-b">{{ $examen->exam_date }}</td>
+                                <td class="py-3 px-6 border-b">
+                                    {{ $examen->state === '1' ? 'Pendiente' : 'Finalizado' }}</td>
                                 <td class="py-3 px-6 border-b text-center">
                                     @if ($examen->pdf_file !== null)
                                         <button
-                                            class="results inline-block px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600 font-medium transition-colors duration-300 result-btn"
-                                         >Resultados</button>
+                                            class="results inline-block px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600 font-medium transition-colors duration-300 result-btn">Resultados</button>
                                         <span class="mx-2">|</span>
                                     @endif
                                     @if ($examen->state !== '0')

@@ -206,7 +206,7 @@ $(document).ready(function () {
             });
         });
     });
-    
+
 });
 
 // Function to sanitize form data

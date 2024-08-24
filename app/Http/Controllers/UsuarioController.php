@@ -7,13 +7,13 @@ use App\Models\Admin;
 use App\Models\Doctor;
 use App\Models\Laboratorio;
 use App\Models\Categoría;
-use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Receta;
 use App\Models\Exams;
 use App\Models\citas;
 use App\Models\Expedientes;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -38,11 +38,11 @@ class UsuarioController extends Controller
 
         $citas = Citas::with('category')
             ->where('patient_id', $userId)
-            ->where('state', 1)
+            ->where('state', 0)
             ->get();
 
         $exams = Exams::where('patient_id', $userId)
-            ->where('state', 1)
+            ->where('state', 0)
             ->get();
 
         $recetas = Receta::with('medicinas')
@@ -55,37 +55,39 @@ class UsuarioController extends Controller
         return view('app.user_info', compact('user', 'citas', 'exams', 'recetas', 'expedientes'));
     }
 
+
     public function generatePdf()
     {
-        try {
-            $user = Auth::user();
-            $userId = $user->id;
+        // Obtén el usuario autenticado
+        $user = Auth::user();
+        $userId = $user->id;
 
-            $citas = Citas::with('category')
-                ->where('patient_id', $userId)
-                ->where('state', 1)
-                ->get();
+        // Recupera los datos necesarios
+        $citas = Citas::with('category')
+            ->where('patient_id', $userId)
+            ->where('state', 1)
+            ->get();
 
-            $exams = Exams::where('patient_id', $userId)
-                ->where('state', 1)
-                ->get();
+        $exams = Exams::where('patient_id', $userId)
+            ->where('state', 1)
+            ->get();
 
-            $recetas = Receta::with('medicinas')
-                ->where('patient_id', $userId)
-                ->get();
+        $recetas = Receta::with('medicinas')
+            ->where('patient_id', $userId)
+            ->get();
 
-            $pdf = Pdf::loadView('pdf.expediente', compact('user', 'citas', 'exams', 'recetas'));
-            return $pdf->download('expediente.pdf');
-        } catch (\Throwable $th) {
-            // Registrar el error
-            Log::error('Error al generar el PDF: ' . $th->getMessage());
-            // Devolver una respuesta con el mensaje de error
-            return response()->json([
-                'success' => false,
-                'message' => 'No se pudo generar el PDF. Por favor, inténtelo de nuevo más tarde.'
-            ], 500);
-        }
+        // Pasa los datos a la vista
+        $pdf = PDF::loadView('pdf.file', [
+            'citas' => $citas,
+            'exams' => $exams,
+            'recetas' => $recetas,
+            'user' => $user
+        ]); 
+
+        // Devuelve el PDF como una descarga
+        return $pdf->download('Expediente.pdf');
     }
+
 
     public function citasPaciente(Request $request)
     {
@@ -301,5 +303,4 @@ class UsuarioController extends Controller
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
-
 }

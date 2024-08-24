@@ -7,32 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuración de Usuario</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
-    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js', 'resources/js/user.js', 'resources/js/expediente.js'])
+    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/css/user.css', 'resources/js/preloader.js', 'resources/js/scroll.js', 'resources/js/user.js', 'resources/js/expediente.js'])
 </head>
 
-<body class="bg-gray-100 h-screen overflow-hidden">
+<body class="bg-white h-auto ">
     @include('templates.loader')
-    <div class="flex flex-col min-h-screen">
+    <div class="flex flex-col m">
         @include('templates.header')
 
         <div class="flex-1 flex">
             <!-- Menu -->
-            <aside class="w-1/4 bg-white shadow-md lg:block hidden">
-                <div class="p-6">
+            <aside class="w-1/4 bg-white lg:block hidden">
+                <div class="w-2/4 p-6">
                     <h1 class="text-2xl font-bold mb-6">Configuración</h1>
                     <nav>
                         <ul class="space-y-4">
                             <li>
                                 <button data-target="opcion1"
-                                    class="menu-link text-lg font-semibold text-green-700 w-full text-left py-2 px-4 rounded-md hover:bg-green-200 focus:outline-none">Perfil</button>
+                                    class="menu-link relative text-lg font-semibold text-green-900 w-full text-left py-2 px-4 rounded-md focus:outline-none">Perfil</button>
                             </li>
                             <li>
                                 <button data-target="opcion2"
-                                    class="menu-link text-lg font-semibold text-green-700 w-full text-left py-2 px-4 rounded-md hover:bg-green-200 focus:outline-none">Expediente</button>
+                                    class="menu-link relative text-lg font-semibold text-green-900 w-full text-left py-2 px-4 rounded-md focus:outline-none">Expediente</button>
                             </li>
                             <li>
                                 <button data-target="opcion3"
-                                    class="menu-link text-lg font-semibold text-green-700 w-full text-left py-2 px-4 rounded-md hover:bg-green-200 focus:outline-none">Privacidad</button>
+                                    class="menu-link relative text-lg font-semibold text-green-900 w-full text-left py-2 px-4 rounded-md focus:outline-none">Privacidad</button>
                             </li>
                         </ul>
                     </nav>
@@ -43,104 +43,114 @@
             <main class="flex-1 p-6 bg-white">
                 <!-- Opción 1 -->
                 <div id="opcion1" class="content hidden">
-                    <div class="flex flex-col lg:flex-row">
-                        <section class="lg:w-1/3 flex flex-col items-center p-4 lg:border-r-2 lg:border-gray-200">
-                            <h1 class="text-2xl font-bold mb-4">Perfil</h1>
-                            <div
-                                class="w-32 h-32 lg:w-40 lg:h-40 rounded-full border border-green-700 overflow-hidden mb-4">
-                                <img id="profile_image" src="{{ asset('storage/profile_images/' . $user->img) }}"
-                                    alt="Perfil" class="w-full h-full object-cover">
+                    <div class="flex flex-wrap justify-center">
+                        <div class="flex flex-col md:w-1/2 p-2 space-y-4">
+                            <div class="w-full bg-white shadow-lg rounded-lg overflow-hidden">
+                                <div
+                                    class="h-32 bg-cover bg-center bg-vh-green bg-gradient-to-t from-green-800 to-green-600">
+                                </div>
+                                <div class="flex justify-center -mt-12">
+                                    <img id="profile_image" src="{{ asset('storage/profile_images/' . $user->img) }}"
+                                        alt="Perfil"
+                                        class="rounded-full border-4 border-gray-200 w-36 h-36 object-cover">
+                                </div>
+                                <div class="text-center mt-2">
+                                    <h2 class="text-xl font-semibold">{{ $user->name }} {{ $user->lastName }}</h2>
+                                    <p class="text-lg text-gray-600">Paciente de <span
+                                            class="text-green-700 tracking-wide">Vital-Health</span></p>
+                                </div>
+                                <div class="flex justify-center mt-4 mb-4">
+                                    <button
+                                        class="save-img bg-vh-green text-white px-4 py-2 rounded-md text-lg mr-2 flex items-center mx-4">
+                                        <img src="{{ asset('storage/svg/upload.svg') }}" alt="subirFoto"
+                                            class="w-8 h-8 mx-2">Avatar</button>
+                                    <button
+                                        class="saveFileUser bg-gray-300 text-gray-700 px-4 py-2 rounded-md text-lg flex items-center mx-2">
+                                        <img src="{{ asset('storage/svg/eye-scan.svg') }}" alt="Expediente"
+                                            class="w-8 h-8 mx-2">Expediente</button>
+                                </div>
                             </div>
-                            <h2 class="text-xl font-semibold mb-2">{{ $user->name }} {{ $user->lastName }}</h2>
-                            <p class="mb-4">Paciente</p>
+                            <div class="w-full h-2/4 bg-white shadow-lg rounded-lg overflow-hidden">
+                                <div class="text-center mt-2">
+                                    <h2 class="text-lg font-semibold">Mis Estadisticas</h2>
+                                </div>
+                            </div>
+                        </div>
 
-                            <button
-                                class="save-img w-2/4 h-10 p-2 text-white font-bold bg-vh-green rounded-lg mt-4 flex items-center justify-center gap-4">
-                                <img src="{{ asset('storage/svg/upload.svg') }}" alt="Subir foto" class="w-8 h-8">
-                                <p>Avatar</p>
-                            </button>
-                            {{-- <form id="image_form" enctype="multipart/form-data" class="w-full">
-                                @csrf
-                                <input type="file" name="image" id="image" accept="image/*" required>
-                                <button type="button" id="upload_image"
-                                    class="p-2 border-2 border-green-700 rounded-md text-lg text-green-700 hover:bg-green-700 hover:text-white">Subir
-                                    Imagen</button>
-                            </form> --}}
-                            <button
-                                class="saveFileUser w-2/4 h-10 p-2 mt-4 text-white bg-gray-500 rounded-lg flex items-center justify-center gap-2">
-                                <img src="{{ asset('storage/svg/eye-scan.svg') }}" alt="Expediente" class="w-8 h-8">
-                                <p>Expediente</p>
-                            </button>
-                        </section>
-                        <section class="lg:w-2/3 p-4">
-                            <h1 class="text-2xl font-bold mb-4">Información Personal</h1>
-                            <form id="user_form">
-                                @csrf
-                                <div class="space-y-4">
-                                    <label class="block">
-                                        <span class="text-lg font-semibold">Nombre *</span>
-                                        <input type="text" name="name" value="{{ $user->name }}"
-                                            class="w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input"
-                                            required readonly>
-                                    </label>
-                                    <label class="block">
-                                        <span class="text-lg font-semibold">Apellido *</span>
-                                        <input type="text" name="lastName" value="{{ $user->lastName }}"
-                                            class="w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input"
-                                            required readonly>
-                                    </label>
-                                    <label class="block">
-                                        <span class="text-lg font-semibold">Género *</span>
-                                        <select name="gender"
-                                            class="w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input"
-                                            required readonly>
-                                            <option value="Mujer" {{ $user->gender === 'Mujer' ? 'selected' : '' }}>
-                                                Mujer
-                                            </option>
-                                            <option value="Hombre" {{ $user->gender === 'Hombre' ? 'selected' : '' }}>
-                                                Hombre
-                                            </option>
-                                        </select>
-                                    </label>
-                                    <label class="block">
-                                        <span class="text-lg font-semibold">Fecha de nacimiento *</span>
-                                        <input type="date" name="birth" value="{{ $user->birth }}"
-                                            class="w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input"
-                                            required readonly>
-                                    </label>
-                                    <label class="block">
-                                        <span class="text-lg font-semibold">Correo *</span>
-                                        <input type="email" name="mail" value="{{ $user->mail }}"
-                                            class="w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input"
-                                            required readonly>
-                                    </label>
-                                    <label class="block">
-                                        <span class="text-lg font-semibold">Dirección *</span>
-                                        <input type="text" name="address" value="{{ $user->address }}"
-                                            class="w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input"
-                                            required readonly>
-                                    </label>
-                                </div>
-                                <div class="flex justify-between items-center mt-6">
-                                    <button type="button" id="cancel_button"
-                                        class="hidden p-2 border-2 border-green-700 rounded-md text-lg text-green-700 hover:bg-green-700 hover:text-white">Cancelar</button>
-                                    <button type="button" id="edit"
-                                        class="p-2 border-2 border-green-700 rounded-md text-lg text-green-700 hover:bg-green-700 hover:text-white">Editar</button>
-                                    <button type="button" id="save"
-                                        class="hidden p-2 border-2 border-green-700 rounded-md text-lg text-green-700 hover:bg-green-700 hover:text-white">Guardar</button>
-                                </div>
-                                <div class="w-full mt-6 flex justify-end">
-                                    <button type="submit" id="log_out"
-                                        class="w-1/6 h-10 bg-red-700 text-white font-semibold rounded-lg hover:bg-red-800">Cerrar
-                                        Sesión</button>
-                                </div>
-                            </form>
-                        </section>
+                        <!-- User Information Form Section -->
+                        <div class="w-full md:w-1/2 p-2">
+                            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                                <section class="p-4">
+                                    <h1 class="text-2xl font-bold mb-4">Información Personal</h1>
+                                    <form id="user_form">
+                                        @csrf
+                                        <div class="space-y-4">
+                                            <label class="block">
+                                                <span class="text-lg font-semibold">Nombre *</span>
+                                                <input type="text" name="name" value="{{ $user->name }}"
+                                                    class="w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input"
+                                                    required readonly>
+                                            </label>
+                                            <label class="block">
+                                                <span class="text-lg font-semibold">Apellido *</span>
+                                                <input type="text" name="lastName" value="{{ $user->lastName }}"
+                                                    class="w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input"
+                                                    required readonly>
+                                            </label>
+                                            <label class="block">
+                                                <span class="text-lg font-semibold">Género *</span>
+                                                <select name="gender"
+                                                    class="w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input"
+                                                    required readonly>
+                                                    <option value="Mujer"
+                                                        {{ $user->gender === 'Mujer' ? 'selected' : '' }}>Mujer
+                                                    </option>
+                                                    <option value="Hombre"
+                                                        {{ $user->gender === 'Hombre' ? 'selected' : '' }}>Hombre
+                                                    </option>
+                                                </select>
+                                            </label>
+                                            <label class="block">
+                                                <span class="text-lg font-semibold">Fecha de nacimiento *</span>
+                                                <input type="date" name="birth" value="{{ $user->birth }}"
+                                                    class="w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input"
+                                                    required readonly>
+                                            </label>
+                                            <label class="block">
+                                                <span class="text-lg font-semibold">Correo *</span>
+                                                <input type="email" name="mail" value="{{ $user->mail }}"
+                                                    class="w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input"
+                                                    required readonly>
+                                            </label>
+                                            <label class="block">
+                                                <span class="text-lg font-semibold">Dirección *</span>
+                                                <input type="text" name="address" value="{{ $user->address }}"
+                                                    class="w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input"
+                                                    required readonly>
+                                            </label>
+                                        </div>
+                                        <div class="flex justify-between items-center mt-6">
+                                            <button type="button" id="cancel_button"
+                                                class="hidden p-2 border-2 border-green-700 rounded-md text-lg text-green-700 hover:bg-green-700 hover:text-white">Cancelar</button>
+                                            <button type="button" id="edit"
+                                                class="p-2 border-2 border-green-700 rounded-md text-lg text-green-700 hover:bg-green-700 hover:text-white">Editar</button>
+                                            <button type="button" id="save"
+                                                class="hidden p-2 border-2 border-green-700 rounded-md text-lg text-green-700 hover:bg-green-700 hover:text-white">Guardar</button>
+                                        </div>
+                                        <div class="w-full mt-6 flex justify-end">
+                                            <button type="submit" id="log_out"
+                                                class="w-2/6 h-10 bg-red-700 text-white font-semibold rounded-lg hover:bg-red-800">Cerrar
+                                                Sesión</button>
+                                        </div>
+                                    </form>
+                                </section>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Opción 2 -->
-                <div id="opcion2" class="content hidden max-h-[calc(100vh-4rem)] overflow-y-auto">
+                <div id="opcion2" class="content hidden">
                     <div class="container mx-auto p-4">
                         <h1 class="text-3xl font-bold mb-6">Expediente Medico</h1>
                         <!-- Section I: Patient Information -->
@@ -252,11 +262,13 @@
                                                                 type="image/svg+xml"></object>
                                                         </div>
                                                         <div>
-                                                            <p class="text-sm font-semibold">{{ $receta->titulo }}</p>
+                                                            <p class="text-sm font-semibold">{{ $receta->titulo }}
+                                                            </p>
                                                             <p class="text-sm text-gray-500">Fecha de Entrega:
                                                                 {{ $receta->fecha_entrega }}</p>
                                                             <p class="text-sm text-gray-500">Estado:
-                                                                {{ $receta->estado }}</p> <!-- Estado agregado aquí -->
+                                                                {{ $receta->estado }}</p>
+                                                            <!-- Estado agregado aquí -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -265,7 +277,8 @@
                                                 </h3>
                                                 <ul class="list-disc pl-5">
                                                     @foreach ($receta->medicinas as $medicina)
-                                                        <li>{{ $medicina->nombre }} ({{ $medicina->pivot->cantidad }})
+                                                        <li>{{ $medicina->nombre }}
+                                                            ({{ $medicina->pivot->cantidad }})
                                                         </li>
                                                     @endforeach
                                                 </ul>
@@ -326,7 +339,8 @@
                 <div id="opcion3" class="content hidden">
                     <div class="p-6 bg-white rounded-lg shadow-md">
                         <h1 class="text-2xl font-bold mb-4">Privacidad</h1>
-                        <p class="mb-4">Aquí puedes gestionar la privacidad y las configuraciones de seguridad de tu
+                        <p class="mb-4">Aquí puedes gestionar la privacidad y las configuraciones de seguridad de
+                            tu
                             cuenta.</p>
                         <form id="privacy_form">
                             @csrf

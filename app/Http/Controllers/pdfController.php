@@ -1,14 +1,41 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Exams;
 use Illuminate\Support\Facades\Storage;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class pdfController extends Controller
 {
     public function generatePDF(Request $request)
+    {
+        $tipo = $request->input('exam-type');
+        $id = $request->input('exam_id');
+
+        try {
+            $pdf = $this->createPDF($tipo, $request);
+
+            $pdfContent = $pdf->output();
+            $fileName = 'reporte_' . time() . '.pdf';
+            $filePath = 'pdf_files/' . $fileName;
+
+            // Guarda el PDF en el directorio storage
+            Storage::disk('public')->put($filePath, $pdfContent);
+
+            $fileUrl = url('storage/' . $filePath);
+
+            // Actualiza el examen con la ruta del PDF
+            $this->updateExamPDF($id, $fileUrl);
+
+            return response()->json(['success' => 'PDF generado y guardado correctamente.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function generateFilePDF(Request $request)
     {
         $tipo = $request->input('exam-type');
         $id = $request->input('exam_id');
@@ -40,6 +67,8 @@ class pdfController extends Controller
 
         return PDF::loadView('pdf.' . $tipo, $viewData);
     }
+
+
 
     private function getExamData($tipo, Request $request)
     {

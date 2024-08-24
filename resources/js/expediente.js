@@ -1,58 +1,40 @@
 import Swal from "sweetalert2";
 import jQuery from "jquery";
+import QRCode from "qrcode";
 window.$ = jQuery;
 
 $(document).ready(function () {
     // Usuario
     // Maneja el guardado del expediente
     $(".saveFileUser").click(function () {
+        const pdf_url = "/generate-pdf"; // URL de tu PDF configurada para descarga
+
         Swal.fire({
-            title: "Generar PDF",
+            title: "Resultado del expediente",
+            html: `
+        <div class="flex flex-col items-center justify-center w-full h-full">
+            <canvas id="qr_code"></canvas>
+            <br>
+            <a id="download_pdf" href="${pdf_url}" download="expediente.pdf">Descargar PDF</a>
+        </div>
+        `,
+            showConfirmButton: false,
             showCancelButton: true,
-            confirmButtonText: "Generar",
             cancelButtonText: "Cancelar",
-            confirmButtonColor: "#d33",
-            cancelButtonColor: "#3085d6",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const url = "{{ route('generate.pdf') }}";
-                const _token = $('meta[name="csrf-token"]').attr("content");
+            didOpen: () => {
+                const qrCodeCanvas = document.getElementById("qr_code");
 
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    headers: {
-                        "X-CSRF-TOKEN": _token,
-                    },
-                    xhrFields: {
-                        responseType: "blob",
-                    },
-                    success(response, status, xhr) {
-                        const filename = xhr
-                            .getResponseHeader("Content-Disposition")
-                            .split("filename=")[1];
-                        const blob = new Blob([response], {
-                            type: "application/pdf",
-                        });
-                        const link = document.createElement("a");
-                        link.href = URL.createObjectURL(blob);
-                        link.download = filename;
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                        Swal.fire("Expediente guardado", "", "success");
-                    },
-                    error(response) {
-                        console.log(response);
-
-                        Swal.fire(
-                            "Error al crear el expediente",
-                            "No se pudo generar el expediente",
-                            "error"
-                        );
-                    },
-                });
-            }
+                // Generar el código QR en el canvas
+                QRCode.toCanvas(
+                    qrCodeCanvas,
+                    pdf_url,
+                    { width: 200 },
+                    (err) => {
+                        if (err) console.error(err);
+                        console.log("Código QR generado!");
+                    }
+                );
+            },
         });
     });
 
