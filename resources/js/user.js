@@ -151,26 +151,39 @@ $(document).ready(function () {
         });
     });
 
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+    });
+
     $(".save-img").click(function () {
         Swal.fire({
             title: "Actualizar Avatar",
             html: `
-                <form id="image_form" enctype="multipart/form-data" class="w-full">
-                    <input type="file" name="image" id="image" accept="image/*" required>
+                <form id="image_form" enctype="multipart/form-data" class="w-full max-w-md mx-auto bg-white p-6 rounded-lg">
+                <div class="mb-4">
+                    <label for="image" class="block text-gray-700 text-sm font-semibold mb-2"></label>
+                    <input type="file" name="image" id="image" accept="image/*" required class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                </div>
+                <div class="flex justify-center">
                     <button type="button" id="upload_image"
-                    class="p-2 border-2 border-green-700 rounded-md text-lg text-green-700 hover:bg-green-700 hover:text-white">Subir Imagen</button>
-                </form>
+                        class="px-4 py-2 bg-green-700 text-white rounded-md font-semibold text-lg transition duration-300 hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        Subir Imagen
+                    </button>
+                </div>
+            </form>
             `,
             showConfirmButton: false,
             showCancelButton: true,
             cancelButtonText: "Cancelar",
         });
-    
+
         $(document).on("click", "#upload_image", function (e) {
             e.preventDefault();
-    
+
             let formData = new FormData($("#image_form")[0]);
-    
+
             $.ajax({
                 url: "/user/update-image",
                 type: "POST",
@@ -206,7 +219,6 @@ $(document).ready(function () {
             });
         });
     });
-
 });
 
 // Function to sanitize form data

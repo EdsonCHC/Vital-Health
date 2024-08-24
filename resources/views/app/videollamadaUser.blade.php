@@ -22,7 +22,7 @@
             <div class="text-lg font-semibold text-gray-800">
                 Sala: <span class="font-bold text-vh-green">{{ $roomName }}</span>
             </div>
-            <a href="/doctor"
+            <a href="/"
                 class="p-2 rounded-full flex items-center justify-center bg-blue-500 hover:bg-blue-600 transition-colors duration-300 ease-in-out">
                 <img src="{{ asset('storage/svg/arrow.svg') }}" alt="Ir al doctor"
                     class="w-8 h-8 p-1 bg-white rounded-full shadow-md">
