@@ -96,6 +96,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/user/update', [UsuarioController::class, 'update'])->name('user.update');
     //
     route::post('/user/update-image', [UsuarioController::class, 'updateImage'])->name('user.updateImage');
+
+    //Examen
+    Route::get('/exams/patient/pdf/{id}', [ExamController::class, 'getPdfUrl'])->name('exams.get.pdf');
 });
 
 // Middlewares para el doctor
