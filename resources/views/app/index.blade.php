@@ -155,15 +155,28 @@
         <div class="w-full text-center mb-8">
             <div class="mb-2">
                 <h2 class="font-bold  text-xl text-vh-green lg:font-bold  lg:text-4xl">Servicios</h2>
-                <p class="text-sm font-bold text-gray-400 mx-96 mt-2">En nuestra clínica, ofrecemos una amplia gama de servicios médicos diseñados para atender todas tus necesidades de salud. Desde consultas generales hasta especialidades médicas avanzadas, nuestro equipo de profesionales está comprometido con brindarte la mejor atención posible. Contamos con tecnología de punta y un enfoque centrado en el paciente para asegurar diagnósticos precisos y tratamientos eficaces.</p>
-                <a class="text-md my-1 font-bold text-vh-green-medium block leading-7">Contamos con personal medico muy agradable y profesional</a>
+                <p class="text-sm font-bold text-gray-400 mx-96 mt-2">En nuestra clínica, ofrecemos una amplia gama de
+                    servicios médicos diseñados para atender todas tus necesidades de salud. Desde consultas generales
+                    hasta especialidades médicas avanzadas, nuestro equipo de profesionales está comprometido con
+                    brindarte la mejor atención posible. Contamos con tecnología de punta y un enfoque centrado en el
+                    paciente para asegurar diagnósticos precisos y tratamientos eficaces.</p>
+                <a class="text-md my-1 font-bold text-vh-green-medium block leading-7">Contamos con personal medico muy
+                    agradable y profesional</a>
             </div>
             <div class="w-full h-auto flex flex-wrap items-center justify-center">
-                <div class="w-full max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">Nuestro centro médico cuenta con especialistas en diversas áreas de la medicina para ofrecerte una atención integral y especializada.
+                <div class="w-full max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">Nuestro centro médico
+                    cuenta con especialistas en diversas áreas de la medicina para ofrecerte una atención integral y
+                    especializada.
                 </div>
-                <div class="w-full max-w-72 mx-4 bg-blue-100 py-4  my-4 rounded-2xl shadow-lg px-8">Ofrecemos consultas médicas tanto presenciales como virtuales para tu comodidad. Nuestras consultas están diseñadas para evaluar tu estado de salud, diagnosticar enfermedades y planificar tratamientos personalizados. Puedes programar una cita con nuestros médicos generales o especialistas a través de nuestra plataforma en línea, asegurando una atención rápida y eficiente sin largas esperas.
+                <div class="w-full max-w-72 mx-4 bg-blue-100 py-4  my-4 rounded-2xl shadow-lg px-8">Ofrecemos consultas
+                    médicas tanto presenciales como virtuales para tu comodidad. Nuestras consultas están diseñadas para
+                    evaluar tu estado de salud, diagnosticar enfermedades y planificar tratamientos personalizados.
+                    Puedes programar una cita con nuestros médicos generales o especialistas a través de nuestra
+                    plataforma en línea, asegurando una atención rápida y eficiente sin largas esperas.
                 </div>
-                <div class="w-full max-w-72 mx-4 bg-blue-100 py-4  my-4 rounded-2xl shadow-lg px-8">Realizamos una variedad de exámenes médicos para evaluar tu salud y detectar posibles enfermedades de manera temprana.
+                <div class="w-full max-w-72 mx-4 bg-blue-100 py-4  my-4 rounded-2xl shadow-lg px-8">Realizamos una
+                    variedad de exámenes médicos para evaluar tu salud y detectar posibles enfermedades de manera
+                    temprana.
                 </div>
             </div>
         </div>
@@ -189,7 +202,8 @@
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{ asset('storage/svg/derma_hand.svg') }}" type="image/svg+xml" class="w-10"></object>
+                    <object data="{{ asset('storage/svg/derma_hand.svg') }}" type="image/svg+xml"
+                        class="w-10"></object>
                     <p class="font-bold">Dermatología</p>
                 </div>
                 <div
@@ -199,12 +213,14 @@
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{ asset('storage/svg/heart.svg') }}" type="image/svg+xml" class="w-10"></object>
+                    <object data="{{ asset('storage/svg/heart.svg') }}" type="image/svg+xml"
+                        class="w-10"></object>
                     <p class="font-bold">Atención primaria</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{ asset('storage/svg/brain.svg') }}" type="image/svg+xml" class="w-10"></object>
+                    <object data="{{ asset('storage/svg/brain.svg') }}" type="image/svg+xml"
+                        class="w-10"></object>
                     <p class="font-bold">Psiquiátrico</p>
                 </div>
             </div>
@@ -222,9 +238,12 @@
                 nuestros servicios?</h2>
             <div class="flex justify-center lg:text-center items-center mx-8">
                 <div class="flex flex-col text-left">
-                    <p class="text-base lg:text-xl font-bold text-gray-400 mx-6 mt-4">- Nuestro equipo de profesionales de la salud se dedica a proporcionar una atención personalizada y de alta calidad. </p>
-                    <p class="text-base lg:text-xl font-bold text-gray-400 mx-6 mt-4">- Contamos con tecnología de última generación para ofrecerte los mejores servicios médicos.</p>
-                    <p class="text-base lg:text-xl font-bold text-gray-400 mx-6 mt-4">- Ofrecemos una amplia gama de servicios médicos que cubren todas tus necesidades de salud.</p>
+                    <p class="text-base lg:text-xl font-bold text-gray-400 mx-6 mt-4">- Nuestro equipo de profesionales
+                        de la salud se dedica a proporcionar una atención personalizada y de alta calidad.</p>
+                    <p class="text-base lg:text-xl font-bold text-gray-400 mx-6 mt-4">- Contamos con tecnología de
+                        última generación para ofrecerte los mejores servicios médicos.</p>
+                    <p class="text-base lg:text-xl font-bold text-gray-400 mx-6 mt-4">- Ofrecemos una amplia gama de
+                        servicios médicos que cubren todas tus necesidades de salud.</p>
                 </div>
             </div>
             @guest
@@ -247,19 +266,30 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                     <div class="bg-blue-100 border border-blue-400 rounded-lg p-8 animate-fade-in-up">
                         <h3 class="text-2xl font-semibold text-blue-800 mb-4">Atención Personalizada</h3>
-                        <p class="text-gray-700"> En nuestra clínica, cada paciente es único. Nos tomamos el tiempo para escuchar y entender tus necesidades específicas, asegurando que recibas el tratamiento más adecuado y efectivo. Tu salud y bienestar son nuestra prioridad.</p>
+                        <p class="text-gray-700"> En nuestra clínica, cada paciente es único. Nos tomamos el tiempo
+                            para escuchar y entender tus necesidades específicas, asegurando que recibas el tratamiento
+                            más adecuado y efectivo. Tu salud y bienestar son nuestra prioridad.</p>
                     </div>
                     <div class="bg-green-100 border border-green-400 rounded-lg p-8 animate-fade-in-up">
                         <h3 class="text-2xl font-semibold text-green-800 mb-4">Tecnología Avanzada</h3>
-                        <p class="text-gray-700">Contamos con equipos de última generación para ofrecer diagnósticos precisos y tratamientos innovadores. Nuestra tecnología de vanguardia nos permite brindarte una atención médica moderna y eficiente, reduciendo tiempos de espera y mejorando los resultados.</p>
+                        <p class="text-gray-700">Contamos con equipos de última generación para ofrecer diagnósticos
+                            precisos y tratamientos innovadores. Nuestra tecnología de vanguardia nos permite brindarte
+                            una atención médica moderna y eficiente, reduciendo tiempos de espera y mejorando los
+                            resultados.</p>
                     </div>
                     <div class="bg-green-100 border border-green-400 rounded-lg p-8 animate-fade-in-up">
                         <h3 class="text-2xl font-semibold text-green-800 mb-4">Amplia Gama de Servicios</h3>
-                        <p class="text-gray-700">Ofrecemos una variedad de servicios médicos que cubren todas tus necesidades de salud. Desde consultas generales y especialidades médicas hasta exámenes y tratamientos específicos, nuestro centro está preparado para atenderte en todas las etapas de tu vida.</p>
+                        <p class="text-gray-700">Ofrecemos una variedad de servicios médicos que cubren todas tus
+                            necesidades de salud. Desde consultas generales y especialidades médicas hasta exámenes y
+                            tratamientos específicos, nuestro centro está preparado para atenderte en todas las etapas
+                            de tu vida.</p>
                     </div>
                     <div class="bg-blue-100 border border-blue-400 rounded-lg p-8 animate-fade-in-up">
                         <h3 class="text-2xl font-semibold text-blue-800 mb-4">Profesionales Expertos</h3>
-                        <p class="text-gray-700">Nuestro equipo está compuesto por médicos y especialistas altamente calificados y con amplia experiencia en sus respectivas áreas. Nos enorgullece contar con profesionales dedicados que se mantienen actualizados con los últimos avances médicos para ofrecerte la mejor atención posible.</p>
+                        <p class="text-gray-700">Nuestro equipo está compuesto por médicos y especialistas altamente
+                            calificados y con amplia experiencia en sus respectivas áreas. Nos enorgullece contar con
+                            profesionales dedicados que se mantienen actualizados con los últimos avances médicos para
+                            ofrecerte la mejor atención posible.</p>
                     </div>
                 </div>
             </div>

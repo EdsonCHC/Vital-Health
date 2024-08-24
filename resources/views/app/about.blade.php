@@ -19,18 +19,23 @@
         </div>
         <div class="flex flex-col w-full lg:w-1/2 mx-auto items-center md:justify-center lg:text-left text-center">
             <h2 class="font-bold text-xl py-4 lg:mt-10 lg:text-4xl text-vh-green pb-1 lg:pb-6">
-                Por qué Elegirnos
+                Por
+                qué elegir
+                nuestros servicios?
             </h2>
             <ul class="text-start items-center text-sm pb-1 pl-1 lg:pl-24">
-                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 ">At your Quick
-                    service</li>
-                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">Professional Staff
+                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">Servicio Inmediato
                 </li>
-                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">Modern Facilities
+                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">Personal
+                    Profesional
                 </li>
-                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">Comprehensive Care
+                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">Equipos De Calidad
                 </li>
-                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">Affordable Prices
+                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">Atención
+                    Profesional
+                </li>
+                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">Desde Cualquier
+                    Lugar
                 </li>
             </ul>
             <div
@@ -62,13 +67,10 @@
         <div class="lg:w-1/2 flex flex-col lg:pl-28 lg:order-first">
             <h2 class="text-star font-bold text-vh-green mb-5 text-4xl mt-8 mx-8">Mision</h2>
             <div class="flex justify-center text-start">
-                <p class="text-base mx-8 leading-loose">Weekend UX, is a UI/UX Design Academy in Delhi involved in User
-                    Experience and User Interface Training and Consulting. It was started
-                    in 2023 and passionate towards User Interface Design/ User Experience
-                    Design, Human Computer Interaction Design. Humanoid is gushing
-                    towards competence to acquire knowledge and have a wide understanding
-                    towards the sphere through the foremost courses in the area of UI/UX
-                    Design, by strengthening up your skills, for your golden future
+                <p class="text-base mx-8 leading-loose">Desarrollar Vital Health, una plataforma web adaptable y segura,
+                    que aborde las necesidades y desafíos del servicio de salud en línea. Nuestro objetivo es mejorar el
+                    acceso eficiente a la atención médica mediante el uso de herramientas de desarrollo web actualizadas
+                    y adaptables, proporcionando un servicio eficiente y de alta calidad a nuestros usuarios.
                 </p>
             </div>
         </div>
@@ -93,13 +95,12 @@
             <h2 class="text-end  lg:text-start  md:text-start font-bold text-vh-green mb-5 text-4xl mt-8 mx-8">Vision
             </h2>
             <div class="flex justify-center text-start">
-                <p class="text-base mx-8 leading-loose">Weekend UX, is a UI/UX Design Academy in Delhi involved in User
-                    Experience and User Interface Training and Consulting. It was started
-                    in 2023 and passionate towards User Interface Design/ User Experience
-                    Design, Human Computer Interaction Design. Humanoid is gushing
-                    towards competence to acquire knowledge and have a wide understanding
-                    towards the sphere through the foremost courses in the area of UI/UX
-                    Design, by strengthening up your skills, for your golden future
+                <p class="text-base mx-8 leading-loose">Ser líderes en el campo de la salud digital, ofreciendo una
+                    plataforma innovadora y escalable que permita a los usuarios acceder a una variedad de servicios de
+                    salud en línea. Aspiramos a transformar la manera en que las personas interactúan con los servicios
+                    de salud, facilitando consultas médicas virtuales, acceso a historiales médicos electrónicos y
+                    seguimiento personalizado de la salud, todo a través de una experiencia de usuario optimizada y
+                    accesible.
                 </p>
             </div>
         </div>
