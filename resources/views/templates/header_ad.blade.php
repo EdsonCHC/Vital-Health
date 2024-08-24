@@ -79,10 +79,6 @@
                 class="hover:bg-green-500 rounded-full py-2 px-2 transition-colors duration-300">
                 <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/staff-icon-black.svg') }}" type="image/svg+xml" />
             </a>
-            <a href="{{ route('categorias.ad_chats', ['id' => $categoria->id]) }}"
-                class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
-                <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/chat.svg') }}" type="image/svg+xml" />
-            </a>
             <a href="{{ route('categorias.calendar', ['id' => $categoria->id]) }}"
                 class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
                 <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/calendar.svg') }}" type="image/svg+xml" />

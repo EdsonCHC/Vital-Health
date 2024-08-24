@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Staff</title>
     @vite(['resources/css/app.css', 'resources/js/ad_staff.js'])
-    <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">    
+    <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
 
 <body class="w-full h-full bg-vh-alice-blue">
@@ -16,124 +16,53 @@
         @include('templates.header_ad')
     </div>
 
-    <!-- Estilos Desktop -->
-    <div class="hidden lg:flex flex-col justify-between items-center ml-72 mt-12">
-        <div class="mb-2">
-            <h2 class="text-xl font-bold mb-4">Personal de la Categoria: {{ $categoria->nombre }}</h2>
-        </div>
-        <div class="flex ml-auto mr-10">
-            <button target="_self" id="create_staff"
-                class="w-44 h-10 my-4 font-semibold text-base text-white bg-vh-green hover:bg-vh-gray transition duration-300 hover:text-black inline-block text-center rounded-sm tracking-wider">
+    <main class="flex flex-col items-center mt-12 lg:ml-72 lg:mt-12">
+        <div class="w-full flex justify-between items-center px-4 lg:px-0">
+            <h2 class="text-xl font-bold mb-4 lg:mb-0">Personal de la Categoria: {{ $categoria->nombre }}</h2>
+            <button id="create_staff"
+                class="w-44 h-10 font-semibold text-base text-white bg-vh-green hover:bg-vh-gray transition duration-300 hover:text-black rounded-lg lg:ml-auto">
                 Nuevo Doctor
             </button>
         </div>
-        <div class="w-full mx-0 my-10 flex flex-wrap">
-            @if ($categoria->doctors->isEmpty())
-                <div class="w-56 h-92 m-5 p-4 bg-green-200 py-5 justify-center items-center rounded-xl">
-                    <div class="relative">
-                        <button id="menu_opti" class="flex ml-auto">
-                            <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/option-icon.svg') }}"
-                                alt="Inicio" />
+
+        <div class="w-full flex flex-wrap gap-4 px-4 lg:px-0 mt-10">
+            @forelse ($categoria->doctors as $doctor)
+                <div class="w-full sm:w-80 lg:w-96 bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                    <div class="relative mb-4">
+                        <button id="menu_opti" class="absolute top-2 right-2 p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors duration-200">
+                            <img id="menu-icon" class="h-8 w-8" src="{{ asset('storage/svg/option-icon.svg') }}" alt="Opciones" />
                         </button>
                         <div id="menuOptions"
-                            class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
-                            <a href="#" id="edit_staff"
-                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
-                            <a href="#" id="history_staff"
-                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
-                        </div>
-                    </div>
-                    <div class="flex justify-center items-center flex-col">
-                        <div class="bg-green-400 rounded-full w-24 h-24 mb-4"></div>
-                        <h3 class="font-bold text-xl p-2">HOLA MUNDO</h3>
-                        <p class="text-gray-400 mb-4">Disponible</p>
-                        <div class="">
-                            <button id="delete_doc">
-                                <img id="menu-icon" class="h-8 w-8 mx-2 "
-                                    src="{{ asset('storage/svg/trash-icon.svg') }}" alt="Inicio" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            @else
-                @foreach ($categoria->doctors as $doctor)
-                    <div class="w-56 h-92 m-5 p-4 bg-green-200 py-5 justify-center items-center rounded-xl">
-                        <div class="relative">
-                            <button id="menu_opti" class="flex ml-auto">
-                                <img id="menu-icon" class="h-8 w-8 mx-2"
-                                    src="{{ asset('storage/svg/option-icon.svg') }}" alt="Inicio" />
-                            </button>
-                            <div id="menuOptions"
                                 class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
                                 <a href="#" class="edit_staff" data-id="{{$doctor->id}}"
                                     class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
-                                <a href="#" id="history_staff"
-                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
                             </div>
-                        </div>
-                        <div class="flex justify-center items-center flex-col">
-                            <div class="bg-green-400 rounded-full w-24 h-24 mb-4"></div>
-                            <h3 class="font-bold text-xl p-2">{{ $doctor->name }}</h3>
-                            <p class="text-gray-400 mb-4">Disponible</p>
-                            <div class="">
-                                <button class="delete_doc" data-id="{{$doctor->id}}">
-                                    <img id="menu-icon" class="h-8 w-8 mx-2 "
-                                        src="{{ asset('storage/svg/trash-icon.svg') }}" alt="Borrar_icon" />
-                                </button>
-                            </div>
-                        </div>
                     </div>
-                @endforeach
-            @endif
+                    <div class="flex flex-col items-center mb-4">
+                        <h3 class="font-bold text-2xl mb-2 text-center">{{ $doctor->name }}</h3>
+                        <p class="text-gray-500 mb-1">Número: <span class="font-medium">{{ $doctor->number }}</span></p>
+                        <p class="text-gray-500 mb-1">Edad: <span class="font-medium">{{ $doctor->age }}</span></p>
+                        <p class="text-gray-500 mb-4">Género: <span class="font-medium">{{ $doctor->gender }}</span></p>
+                    </div>
+                    <div class="flex justify-center">
+                        <button class="delete_doc flex items-center p-2 bg-red-500 hover:bg-red-600 text-white rounded-full transition-colors duration-300" data-id="{{ $doctor->id }}">
+                            <img id="menu-icon" class="h-6 w-6" src="{{ asset('storage/svg/trash-icon.svg') }}" alt="Eliminar" />
+                            <span class="ml-2 text-sm">Eliminar</span>
+                        </button>
+                    </div>
+                </div>
+            @empty
+                <div class="w-full bg-white p-6 lg:mr-6 rounded-xl shadow-lg flex flex-col items-center">
+                    <img src="{{ asset('storage/svg/doctor.svg') }}" alt="No hay doctores" class="h-24  w-24 mb-4"/>
+                    <h3 class="text-2xl font-semibold mb-2">No se han registrado doctores</h3>
+                    <p class="text-gray-600 text-center">Actualmente no hay doctores en esta categoría. Por favor, agregue nuevos doctores.</p>
+                </div>
+            @endforelse
         </div>
-    </div>
+    </main>
 
-    <!-- Estilos Mobile -->
-    <div class="w-full lg:hidden flex-col justify-center items-center my-4">
-        <div class="w-full mt-10 flex items-center justify-center">
-            <h2 class="mr-10 font-bold text-2xl">
-                Personal
-            </h2>
-            <button target="_self" id="create_staff"
-                class="w-44 h-10 font-semibold text-white bg-vh-green hover:bg-vh-gray transition duration-300 hover:text-black rounded-lg tracking-wider">
-                Nuevo Doctor
-            </button>
-        </div>
-        <div class="w-full my-10 flex flex-wrap">
-            <div class="w-40 h-56 mx-4 bg-green-200 py-2 justify-center items-center rounded-xl">
-                <div class="relative">
-                    <button id="menu_opti" class="menu_opti flex ml-auto">
-                        <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/option-icon.svg') }}"
-                            alt="Inicio" />
-                    </button>
-                    <div id="menuOptions"
-                        class="w-32 ml-10 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
-                        <a href="#" id="edit_staff"
-                            class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
-                        <a href="#" id="history_staff"
-                            class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Historial</a>
-                    </div>
-                </div>
-                <div class="flex justify-center items-center flex-col">
-                    <div class="bg-green-400 rounded-full w-20 h-20"></div>
-                    <h3 class="font-bold text-xl my-2 p-2">Pediatria</h3>
-                    <div class="flex items-center">
-                        <button>
-                            <img id="menu-icon" class="h-8 w-10 mx-2 " src="{{ asset('storage/svg/check.svg') }}"
-                                alt="Inicio" />
-                        </button>
-                        <button id="delete_doc">
-                            <img id="menu-icon" class="h-6 w-8 mx-2 " src="{{ asset('storage/svg/trash-icon.svg') }}"
-                                alt="Inicio" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- Demas Cartas -->
-        </div>
-    </div>
     <script>
-        document.querySelectorAll('#menu_opti, .menu_opti').forEach(function(element) {
+        document.querySelectorAll('#menu_opti').forEach(function(element) {
             element.addEventListener('click', function(event) {
                 event.preventDefault();
                 var menuOptions = this.nextElementSibling;
@@ -144,3 +73,6 @@
 </body>
 
 </html>
+
+
+

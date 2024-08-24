@@ -6,51 +6,61 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Expediente</title>
+    <title>Expedientes</title>
     @vite(['resources/css/app.css', 'resources/js/expediente.js'])
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 
-<body class="w-full h-full bg-vh-alice-blue">
-    <div class="w-auto h-auto fixed top-0 z-10">
+<body class="bg-vh-alice-blue">
+    <!-- Fixed Header -->
+    <div class="fixed top-0 left-0 right-0 z-10 w-full">
         @include('templates.header_ad')
     </div>
 
-    <!-- Estilos Desktop -->
-    <div class="hidden lg:flex flex-col justify-between items-center ml-40 mt-12">
-        <div class="mb-2">
-            <h2 class="font-bold text-2xl">
+    <!-- Main Content -->
+    <main class="pt-4 px-4 md:px-8 lg:px-16 py-8 mt-4">
+        <header class="mb-6">
+            <h2 class="text-3xl font-bold lg:ml-60 text-gray-800">
                 Expedientes
             </h2>
-        </div>
-        <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        </header>
+        
+        <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 lg:pl-60">
             @foreach ($expedientes as $file)
-                <div class="bg-white p-4 rounded-lg shadow-lg space-y-4">
-                    <!-- Paciente Información -->
-                    <div>
-                        <label class="block font-bold text-gray-700">ID</label>
-                        <input type="text" class="w-full p-2 border rounded bg-gray-100"
-                            value="{{ $file->patient->id }}" readonly>
-
-                        <label class="block font-bold text-gray-700">Nombre</label>
-                        <input type="text" class="w-full p-2 border rounded bg-gray-100"
-                            value="{{ $file->patient->name }} {{ $file->patient->lastName }}" readonly>
-                        
-                        <label class="block font-bold text-gray-700">Correo Electronico</label>
-                        <input type="text" class="w-full p-2 border rounded bg-gray-100"
-                            value="{{ $file->patient->mail }}" readonly>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105">
+                    <div class="p-4">
+                        <div class="font-semibold text-lg text-gray-800 mb-4">
+                            Paciente Información
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-medium mb-1">ID</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded bg-gray-100" value="{{ $file->patient->id }}" readonly>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-medium mb-1">Nombre</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded bg-gray-100" value="{{ $file->patient->name }} {{ $file->patient->lastName }}" readonly>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-medium mb-1">Correo Electrónico</label>
+                            <input type="text" class="w-full p-2 border border-gray-300 rounded bg-gray-100" value="{{ $file->patient->mail }}" readonly>
+                        </div>
                     </div>
-                    <!-- Botones de acción -->
-                    <div class="flex justify-between space-x-2">
-                        <button data-id="{{ $file->id }}"
-                            class="deleteFileAd w-full bg-red-500 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-red-600 transition duration-300">
+                    <div class="p-4 flex justify-end">
+                        <button data-id="{{ $file->id }}" class="bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
                             Eliminar
                         </button>
                     </div>
                 </div>
             @endforeach
-        </div>
-    </div>
+        </section>
+    </main>
 </body>
 
 </html>

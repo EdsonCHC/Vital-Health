@@ -23,62 +23,63 @@
             </h2>
         </div>
 
-        <div class="flex flex-col bg-white opacity-80 rounded-xl shadow-xl p-4 lg:w-132 lg:ml-40 lg:mt-4">
+        <div class="flex flex-col bg-white rounded-xl shadow-xl p-4 lg:w-132 lg:ml-40 lg:mt-4">
             <h3 class="font-semibold text-xl mb-4">Citas con Doctor Asignado</h3>
             <input type="text" id="searchAssigned" placeholder="Buscar paciente..."
-                class="py-2 px-4 border rounded-md shadow-sm">
+                class="py-2 px-4 border rounded-md shadow-sm mb-4 w-full lg:w-1/3">
 
-            <div class="overflow-y-auto max-h-64">
-                <div class="grid grid-cols-6 gap-2 bg-vh-alice-blue rounded-md p-2 mt-4 lg:my-5">
-                    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">#</p>
-                    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Paciente</p>
-                    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Doctor</p>
-                    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Hora</p>
-                    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Fecha</p>
-                    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center"></p>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="grid grid-cols-6 gap-4 bg-vh-alice-blue text-vh-green font-bold py-2 px-4">
+                    <div class="text-center">#</div>
+                    <div class="text-center">Paciente</div>
+                    <div class="text-center">Doctor</div>
+                    <div class="text-center">Hora</div>
+                    <div class="text-center">Fecha</div>
+                    <div class="text-center"></div>
                 </div>
                 @foreach($citasAsignadas as $cita)
-                    <div class="grid grid-cols-6 gap-2 bg-vh-green-light rounded-md p-2 my-2">
-                        <p class="font-bold text-sm lg:text-lg text-center">{{ $cita->id }}</p>
-                        <p class="font-bold text-sm lg:text-lg text-center">{{ $cita->patient->name ?? 'No asignado' }}</p>
-                        <p class="font-bold text-sm lg:text-lg text-center">{{ $cita->doctor->name ?? 'No asignado' }}</p>
-                        <p class="font-bold text-sm lg:text-lg text-center">{{ $cita->hour }}</p>
-                        <p class="font-bold text-sm lg:text-lg text-center">{{ $cita->date }}</p>
-                        <div class="flex items-center justify-center space-x-2">
-                            <button class="info-button" data-id="{{ $cita->id }}">
-                                Información
+                    <div class="grid grid-cols-6 gap-4 bg-vh-green-light py-2 px-4 text-center border-t border-gray-200">
+                        <div class="font-bold">{{ $cita->id }}</div>
+                        <div class="font-bold">{{ $cita->patient->name ?? 'No asignado' }}</div>
+                        <div class="font-bold">{{ $cita->doctor->name ?? 'No asignado' }}</div>
+                        <div class="font-bold">{{ $cita->hour }}</div>
+                        <div class="font-bold">{{ $cita->date }}</div>
+                        <div>
+                        <button class="info-button" data-id="{{ $cita->id }}">
+                        Información
                             </button>
                         </div>
                     </div>
                 @endforeach
             </div>
+
             <h3 class="font-semibold text-xl mt-8 mb-4">Citas sin Doctor Asignado</h3>
-            <div class="overflow-y-auto max-h-64">
-                <div class="grid grid-cols-5 gap-2 bg-vh-alice-blue rounded-md p-2 mt-4 lg:my-5">
-                    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">#</p>
-                    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Paciente</p>
-                    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Hora</p>
-                    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center">Fecha</p>
-                    <p class="font-semibold text-sm lg:text-xl text-vh-green text-center"></p>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="grid grid-cols-5 gap-4 bg-vh-alice-blue text-vh-green font-bold py-2 px-4">
+                    <div class="text-center">#</div>
+                    <div class="text-center">Paciente</div>
+                    <div class="text-center">Hora</div>
+                    <div class="text-center">Fecha</div>
+                    <div class="text-center"></div>
                 </div>
                 @foreach($citasNoAsignadas as $cita)
-                    <div class="grid grid-cols-5 gap-2 bg-vh-green-light rounded-md p-2 my-2">
-                        <p class="font-bold text-sm lg:text-lg text-center">{{ $cita->id }}</p>
-                        <p class="font-bold text-sm lg:text-lg text-center">{{ $cita->patient->name ?? 'No asignado' }}</p>
-                        <p class="font-bold text-sm lg:text-lg text-center">{{ $cita->hour }}</p>
-                        <p class="font-bold text-sm lg:text-lg text-center">{{ $cita->date }}</p>
-                        <div class="flex space-x-2">
+                    <div class="grid grid-cols-5 gap-4 bg-vh-green-light py-2 px-4 text-center border-t border-gray-200">
+                        <div class="font-bold">{{ $cita->id }}</div>
+                        <div class="font-bold">{{ $cita->patient->name ?? 'No asignado' }}</div>
+                        <div class="font-bold">{{ $cita->hour }}</div>
+                        <div class="font-bold">{{ $cita->date }}</div>
+                        <div class="flex justify-center space-x-2">
                             <a href="#" id="new-appointment-btn" data-id="{{ $cita->id }}"
-                                class="bg-vh-green text-white font-bold py-2 px-4 rounded-lg shadow-lg hover:bg-vh-green-dark">
+                                class="bg-green-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-green-600 flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M20 6L9 17l-5-5" />
-                                </svg>                           
-                             </a>
+                                </svg>
+                            </a>
 
                             <input type="hidden" id="category-id" value="{{ $categoria->id }}">
                             <a href="#" id="delete-appointment" data-id="{{ $cita->id }}"
-                                class="text-white bg-red-600 py-1 px-2 rounded-md shadow-lg flex items-center justify-center">
+                                class="bg-red-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-700 flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M18 6L6 18M6 6l12 12" />
@@ -87,7 +88,6 @@
                         </div>
                     </div>
                 @endforeach
-
             </div>
         </div>
     </div>
