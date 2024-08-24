@@ -24,11 +24,6 @@ class Doctor extends Authenticatable
         'category_id',
     ];
 
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = Hash::make($value);
-    }
-
     public function category()
     {
         return $this->belongsTo(Categoría::class, 'category_id');
