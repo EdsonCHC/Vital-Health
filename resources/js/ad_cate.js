@@ -105,9 +105,7 @@ $(document).ready(function () {
                     url: `/categorias/${categoryId}`,
                     type: "DELETE",
                     headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                            "content"
-                        ),
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                     },
                     success: function (response) {
                         Swal.fire(
@@ -128,7 +126,7 @@ $(document).ready(function () {
                 });
             }
         });
-    };
+    };    
 
     // Editar categoría
     window.editCategory = function (id) {

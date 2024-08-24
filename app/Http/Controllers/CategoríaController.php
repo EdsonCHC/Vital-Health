@@ -187,12 +187,17 @@ class CategoríaController extends Controller
     {
         $categoria = Categoría::findOrFail($id);
         if ($categoria->img) {
-            unlink(public_path($categoria->img));
+            // Verifica que el archivo realmente existe antes de intentar eliminarlo
+            $path = public_path($categoria->img);
+            if (file_exists($path)) {
+                unlink($path);
+            }
         }
         $categoria->delete();
-
+    
         return response()->json(['success' => 'Categoría eliminada correctamente.']);
     }
+    
 
     public function suspend(Request $request, $id)
     {

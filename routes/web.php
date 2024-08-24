@@ -203,6 +203,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('categorias', CategoríaController::class);
     //
     //
+    Route::delete('/categorias/{id}', [CategoríaController::class, 'destroy'])->name('categorias.destroy');
     // Staff
     Route::get('/staff/doctor/{id}', [DoctorController::class, 'getDoctor'])->name('doctor.info');
     //
