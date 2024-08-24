@@ -3,6 +3,29 @@ import jQuery from "jquery";
 window.$ = jQuery;
 
 $(document).ready(function () {
+    // Unirse a la videollanada
+    // Seleccionar todos los botones con la clase joinRoomButton
+    // Seleccionar todos los botones con la clase joinRoomButton
+    document.querySelectorAll(".joinRoomButton").forEach((button) => {
+        button.addEventListener("click", function () {
+            // Obtener el ID de la videollamada desde data-roomName
+            const roomName = this.getAttribute("data-roomName");
+
+            // Redirigir a la URL con el roomName usando GET
+            window.location.href = `/videollamadaDoc?roomName=${roomName}`;
+        });
+    });
+
+    document.querySelectorAll(".joinRoomButton").forEach((button) => {
+        button.addEventListener("click", function () {
+            // Obtener el ID de la videollamada desde data-roomName
+            const roomName = this.getAttribute("data-roomName");
+
+            // Redirigir a la URL con el roomName usando GET
+            window.location.href = `/videollamadaDoc?roomName=${roomName}`;
+        });
+    });
+
     $(".createVideollamada").click(function () {
         const citaId = $(this).data("cita-id");
         const patientId = $(`#patient_id_${citaId}`).data("patient-id");
@@ -11,23 +34,23 @@ $(document).ready(function () {
         Swal.fire({
             title: "Crear una nueva reunión",
             html: `
-            <form id="create-form" class="space-y-4 p-4 bg-white">
-    <div>
-        <label for="roomName" class="block text-xl font-medium text-gray-700">Nombre de la Sala:</label>
-        <input type="text" id="roomName" name="roomName" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-    </div>
-    <div>
-        <label for="date" class="block text-xl font-medium text-gray-700">Fecha:</label>
-        <input type="date" id="date" name="date" min="${
-            new Date().toISOString().split("T")[0]
-        }" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-    </div>
-    <div>
-        <label for="hour" class="block text-xl font-medium text-gray-700">Hora:</label>
-        <input type="time" id="hour" name="hour" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-    </div>
-</form>
-            `,
+        <form id="create-form" class="space-y-4 p-4 bg-white">
+            <div>
+                <label for="roomName" class="block text-xl font-medium text-gray-700">Nombre de la Sala</label>
+                <input type="text" id="roomName" name="roomName" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div>
+                <label for="date" class="block text-xl font-medium text-gray-700">Fecha</label>
+                <input type="date" id="date" name="date" min="${
+                    new Date().toISOString().split("T")[0]
+                }" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div>
+                <label for="hour" class="block text-xl font-medium text-gray-700">Hora</label>
+                <input type="time" id="hour" name="hour" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+        </form>
+        `,
             confirmButtonText: "Crear",
             showCancelButton: true,
             cancelButtonText: "Cancelar",
@@ -35,7 +58,6 @@ $(document).ready(function () {
                 const roomName = document.querySelector("#roomName").value;
                 const date = document.querySelector("#date").value;
                 const hour = document.querySelector("#hour").value;
-                const minLength = 8;
 
                 if (!roomName || !date || !hour) {
                     Swal.showValidationMessage(
@@ -44,9 +66,9 @@ $(document).ready(function () {
                     return false;
                 }
 
-                if (roomName < minLength) {
+                if (roomName.length < 8) {
                     Swal.showValidationMessage(
-                        "El nombre de la sala debe ser mas largo"
+                        "El nombre de la sala debe ser más largo"
                     );
                     return false;
                 }
@@ -70,7 +92,6 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 const _token = $('meta[name="csrf-token"]').attr("content");
-                const doctorId = $(`#doctor_id_${citaId}`).data("doctor-id");
 
                 $.ajax({
                     url: `/citas/${citaId}/${doctorId}/videollamada`,
@@ -81,13 +102,12 @@ $(document).ready(function () {
                     data: result.value,
                     success(response) {
                         if (response.success) {
-                            console.log(response.success);
                             Swal.fire(
                                 "Videollamada creada correctamente",
                                 "",
                                 "success"
                             );
-                            window.location.href = `/videollamada?roomName=${response.room_name}`;
+                            window.location.href = `/videollamadaDoc?roomName=${response.room_name}`;
                         } else {
                             Swal.fire(
                                 "Error al crear la videollamada",
@@ -152,5 +172,4 @@ $(document).ready(function () {
             }
         });
     });
-
 });

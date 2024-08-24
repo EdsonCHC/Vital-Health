@@ -33,8 +33,6 @@ Route::post('/login', [UsuarioController::class, 'show']);
 //
 Route::view('/login', 'app.login')->name('login');
 //
-Route::post('/login', [UsuarioController::class, 'show']);
-//
 Route::view('/registro', 'app.registro');
 //
 Route::post('/registro', [UsuarioController::class, 'store']);
@@ -84,6 +82,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/service/{id}', [ServiceController::class, 'show'])->name('service');
     //
     // Route::view('/area', [CitaController::class, 'index'])->name('app.area');
+    //
     //
     // User
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
@@ -158,8 +157,10 @@ Route::middleware(['auth:doctor'])->group(function () {
     //
     Route::get('/medicine_doc', [recetaController::class, 'getRecetas'])->name('doctor.medicine_doc');
     //
+    //
     // Videollamada
-    Route::get('/program_doc', [VideollamadaController::class, 'showVideollamadaDoc'])->name('doctor.program_doc');
+    //
+    Route::get('/program_doc', [VideollamadaController::class, 'showDoc'])->name('doctor.program_doc');
     //
     Route::post('/citas/{cita_id}/{doctor_id}/videollamada', [VideollamadaController::class, 'store']);
     //
@@ -281,8 +282,14 @@ Route::middleware('auth:laboratorio')->group(function () {
 //-------API ROUTES--------//
 
 // routes/web.php
-// Video call
-Route::get('/videollamada', [VideollamadaController::class, 'show']);
+
+// Ruta para mostrar la sala de videollamada para usuarios
+
+// Ruta para mostrar la sala de videollamada para doctores
+Route::get('/videollamadaUser', [VideollamadaController::class, 'showRoomUser'])->name('app.videollamadaUser');
+//
+Route::get('/videollamadaDoc', [VideollamadaController::class, 'showRoomDoc'])->name('app.videollamadaDoc');
+
 
 // Fallback route (404)
 Route::fallback(function () {

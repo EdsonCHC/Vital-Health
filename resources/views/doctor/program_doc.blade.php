@@ -73,11 +73,12 @@
                                         {{ \Carbon\Carbon::parse($videollamada->date)->format('d M') }}
                                     </span>
                                 </div>
-                                <div class="w-20 h-6 content-center items-center bg-vh-green-light rounded-md">
-                                    {{-- <a class="flex justify-center hover:bg-white font-semibold transition duration-300"
-                                        href="{{ route('videollamada', ['roomName' => $videollamada->room_name]) }}">
+                                <div
+                                    class="w-20 h-6 flex justify-center content-center items-center bg-vh-green-light rounded-md">
+                                    <button data-roomName="{{ $videollamada->room_name }}"
+                                        class="joinRoomButton flex justify-center font-semibold transition duration-300">
                                         Unirse
-                                    </a> --}}
+                                    </button>
 
                                 </div>
                             </div>
@@ -93,7 +94,7 @@
                                     data-videollamada-id="{{ $videollamada->id }}"
                                     data-cita-id="{{ $videollamada->cita->id }}"
                                     data-doctor-id="{{ $videollamada->doctor->id }}">
-                                    <img src="{{ asset('storage/svg/link-icon.svg') }}" alt="Ver Cita"
+                                    <img src="{{ asset('storage/svg/trash.svg') }}" alt="Ver Cita"
                                         class="w-10 h-10 p-2 rounded"></button>
                             </div>
                         </div>

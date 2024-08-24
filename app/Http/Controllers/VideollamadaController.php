@@ -51,32 +51,37 @@ class VideollamadaController extends Controller
         }
     }
 
-    public function show(Request $request)
+    public function showRoomUser(Request $request)
     {
         $roomName = $request->query('roomName');
-        return view('app.videollamada', compact('roomName'));
 
-        // // Obtener el parámetro de consulta 'roomName'
-        // $roomName = $request->query('roomName');
+        
 
-        // // Asegúrate de manejar el caso en el que roomName sea null o no válido
-        // if ($roomName) {
-        //     // Buscar la videollamada en la base de datos por el room_name
-        //     $videollamada = Videollamada::where('room_name', $roomName)->first();
+        $videollamada = Videollamada::where('room_name', $roomName)->first();
 
-        //     // Verificar si se encontró la videollamada
-        //     if ($videollamada) {
-        //         // Pasar el nombre de la sala a la vista
-        //         return view('app.videollamada', compact('roomName'));
-        //     }
-        // }
+        
 
-        // Redirigir a una ruta de error o página predeterminada si no se encuentra la videollamada
-        // return redirect()->route('some.default.route')->with('error', 'Videollamada no encontrada');
+        return view('app.videollamadaUser', compact('roomName'));
     }
 
+    public function showRoomDoc(Request $request)
+    {
+        $roomName = $request->query('roomName');
 
-    public function showVideollamadaDoc(Request $request)
+        if (!$roomName) {
+            return redirect()->route('some.default.route')->with('error', 'Nombre de la sala no proporcionado');
+        }
+
+        $videollamada = Videollamada::where('room_name', $roomName)->first();
+
+        if (!$videollamada) {
+            return redirect()->route('some.default.route')->with('error', 'Videollamada no encontrada');
+        }
+
+        return view('app.videollamadaDoc', compact('roomName'));
+    }
+
+    public function showDoc(Request $request)
     {
         $doctor = auth()->user();
 

@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exámenes</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
-    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js','resources/js/examu.js',  'resources/js/scroll.js'])
+    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/examu.js', 'resources/js/scroll.js'])
 </head>
 
-<body class="w-full h-screen">
+<body class="w-full h-full">
     @include('templates.loader')
     <div class="w-full h-auto">
         @include('templates.header')
     </div>
-    <main class="w-full h-auto p-4  mt-6 lg:max-w-screen-2xl lg:mx-auto lg:rounded-md">
+    <main class="w-full h-[394px] p-4  mt-6 lg:max-w-screen-2xl lg:mx-auto lg:rounded-md">
         <section class="flex flex-col lg:flex-row justify-between items-center mx-4">
             <div class="flex-1 lg:mr-4">
                 <h2 class="font-bold text-center lg:text-start text-2xl text-vh-green-medium">Exámenes Personales</h2>
@@ -33,7 +33,7 @@
 
     <section class="lg:px-16 lg:py-12 bg-gray-50">
 
-        @if(isset($examenes) && $examenes->isEmpty())
+        @if (isset($examenes) && $examenes->isEmpty())
             <div class="text-center py-8">
                 <p class="text-lg font-semibold text-gray-200">No tienes exámenes programados.</p>
             </div>
