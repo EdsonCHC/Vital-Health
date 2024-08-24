@@ -30,8 +30,7 @@
                     class="w-8 h-8 p-1 bg-white rounded-full shadow-md">
             </a>
         </header>
-
-
+        
         <!-- Video Container -->
         <div id="meet" class="flex-grow bg-black"></div>
 

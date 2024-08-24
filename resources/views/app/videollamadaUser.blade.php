@@ -6,30 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Videollamada User</title>
+    <title>Videollamada Paciente</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
     @vite(['resources/css/app.css', 'resources/css/loader.css'])
     <script defer src="https://meet.jit.si/external_api.js"></script>
 </head>
 
 <body class="bg-gray-100">
-    <section class="text-black flex flex-col h-screen">
-        <header class="flex items-center justify-between p-4">
-            <div class="text-lg font-semibold">Videollamada</div>
-            <div class="text-lg font-semibold">Sala: {{ $roomName }}</div>
-            <a href="/" class="p-2 rounded-full flex justify-center items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                        d="M17 16l-4-4m0 0l4-4m-4 4h10m-6-4v1a3 3 0 013 3h4a3 3 0 01-3 3v1" />
-                </svg>
+    <section class="flex flex-col h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-md p-4 flex items-center justify-between">
+            <div class="text-xl font-semibold text-gray-800">
+                Videollamada
+            </div>
+            <div class="text-lg font-semibold text-gray-800">
+                Sala: <span class="font-bold text-vh-green">{{ $roomName }}</span>
+            </div>
+            <a href="/doctor"
+                class="p-2 rounded-full flex items-center justify-center bg-blue-500 hover:bg-blue-600 transition-colors duration-300 ease-in-out">
+                <img src="{{ asset('storage/svg/arrow.svg') }}" alt="Ir al doctor"
+                    class="w-8 h-8 p-1 bg-white rounded-full shadow-md">
             </a>
         </header>
+        <div id="meet" class="flex-grow bg-black"></div>
 
-        <div id="meet" class="flex-grow"></div>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 const roomName = "{{ $roomName }}";
+                if (!roomName) {
+                    console.error("El nombre de la sala es inválido o no se proporcionó.");
+                    return;
+                }
                 const domain = "meet.jit.si";
                 const options = {
                     roomName: roomName,
@@ -37,7 +44,11 @@
                     height: "100%",
                     parentNode: document.querySelector("#meet"),
                 };
-                const api = new JitsiMeetExternalAPI(domain, options);
+                try {
+                    const api = new JitsiMeetExternalAPI(domain, options);
+                } catch (error) {
+                    console.error("No se pudo cargar la API de Jitsi:", error);
+                }
             });
         </script>
     </section>
