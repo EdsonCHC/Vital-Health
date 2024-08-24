@@ -29,8 +29,7 @@
                         <li><a href="/citas" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Citas</a></li>
                         <li><a href="/examen"
                                 class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Exámenes</a></li>
-                        <li><a href="/service/contact" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Control
-                                Personal</a></li>
+                        <li><a href="/reunion" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Reuniones</a></li>
                     </ul>
                 </li>
                 

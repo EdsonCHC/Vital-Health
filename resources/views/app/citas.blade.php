@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citas</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/videollamada.js'])
+    @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/css/loader.css', 'resources/js/preloader.js'])
 </head>
 
 <body class="w-full h-full">
@@ -32,7 +32,7 @@
 
         <section class="w-full h-auto my-4 font-bold mt-12">
             <div class="flex gap-8 flex-wrap justify-center lg:justify-start">
-                @if (isset($citas) && $citas->isEmpty())
+                @if(isset($citas) && $citas->isEmpty())
                     <p>No tienes citas programadas.</p>
                 @else
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -42,17 +42,15 @@
                                     <div class="relative">
                                         <button
                                             class="h-8 w-8 flex items-center justify-center bg-gray-100 rounded-full focus:outline-none dropdown-toggle">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600"
-                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M19 9l-7 7-7-7"></path>
                                             </svg>
                                         </button>
-                                        <div
-                                            class="hidden ml-2 mt-2 w-36 bg-white rounded-md shadow-lg dropdown-menu absolute">
+                                        <div class="hidden ml-2 mt-2 w-36 bg-white rounded-md shadow-lg dropdown-menu absolute">
 
-                                            <a href="#"
-                                                class="block px-4 py-2 text-sm text-black hover:bg-gray-100 delete-btn"
+                                            <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 delete-btn"
                                                 data-id="{{ $cita->id }}">
                                                 <img src="{{ asset('storage/svg/trash.svg') }}"
                                                     class="w-4 h-4 inline-block mr-2" alt="">
@@ -79,10 +77,6 @@
                                         Fecha:
                                         {{ !empty($cita->date) ? (new DateTime($cita->date))->format('j \d\e F \d\e Y') : 'No disponible' }}
                                     </h4>
-                                    <a href="/videollamadaUser" class="bg-gray-400 rounded-md text-white font-bold p-1 px-2 mt-2">
-                                        Videollamada
-                                    </a>
-                                    
                                 </div>
                             </div>
                         @endforeach

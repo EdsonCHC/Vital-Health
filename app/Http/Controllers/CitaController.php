@@ -7,7 +7,6 @@ use App\Models\Categoría;
 use App\Models\Usuario;
 use App\Models\Exams;
 use App\Models\Doctor;
-use App\Models\Videollamada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -163,22 +162,6 @@ class CitaController extends Controller
         }
     }
 
-    // public function showVideoUser(Request $request)
-    // {
-    //     $pacienteId = Auth::id();
-
-    //     $cita = Citas::where('patient_id', $pacienteId)->first();
-
-    //     if (!$cita) {
-    //         return redirect()->route('error')->with('message', 'No se encontró una videollamada para este usuario.');
-    //     }
-
-    //     $videollamadas = Videollamada::where('cita_id', $cita->id)->get();
-
-    //     return view('user.citas', compact('videollamadas'));  
-    // }
-
-
     public function citasPaciente(Request $request)
     {
         $pacienteId = Auth::id();
@@ -188,7 +171,6 @@ class CitaController extends Controller
             ->where('state', 1)
             ->whereNotNull('doctor_id')
             ->get();
-
 
         return view('app.citas', compact('citas'));
     }

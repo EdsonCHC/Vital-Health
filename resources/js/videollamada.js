@@ -5,7 +5,6 @@ window.$ = jQuery;
 $(document).ready(function () {
     // Unirse a la videollanada
     // Seleccionar todos los botones con la clase joinRoomButton
-    // Seleccionar todos los botones con la clase joinRoomButton
     document.querySelectorAll(".joinRoomButton").forEach((button) => {
         button.addEventListener("click", function () {
             // Obtener el ID de la videollamada desde data-roomName
@@ -16,13 +15,10 @@ $(document).ready(function () {
         });
     });
 
-    document.querySelectorAll(".joinRoomButton").forEach((button) => {
+    document.querySelectorAll(".joinRoomButtonUser").forEach((button) => {
         button.addEventListener("click", function () {
-            // Obtener el ID de la videollamada desde data-roomName
             const roomName = this.getAttribute("data-roomName");
-
-            // Redirigir a la URL con el roomName usando GET
-            window.location.href = `/videollamadaDoc?roomName=${roomName}`;
+            window.location.href = `/videollamadaUser?roomName=${roomName}`;
         });
     });
 

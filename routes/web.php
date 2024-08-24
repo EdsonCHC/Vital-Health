@@ -13,6 +13,7 @@ use App\Http\Controllers\recetaController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\pdfController;
+use App\Models\Videollamada;
 use Illuminate\Support\Facades\Route;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -45,7 +46,6 @@ Route::view('/about', 'app.about');
 Route::middleware('auth')->group(function () {
     //
     // Citas
-    Route::view('/citas', 'app.citas');
     //
     Route::get('/citas', [CitaController::class, 'citasPaciente'])->name('citas.paciente');
     //
@@ -78,6 +78,8 @@ Route::middleware('auth')->group(function () {
     Route::view('/medicina', 'app.medicina');
     //
     Route::get('/area', [UsuarioController::class, 'indexu'])->name('user');
+    //
+    route::get('/reunion', [VideollamadaController::class, 'showUser'])->name('app.reunion');
     //
     Route::get('/service/{id}', [ServiceController::class, 'show'])->name('service');
     //
@@ -284,10 +286,8 @@ Route::middleware('auth:laboratorio')->group(function () {
 // routes/web.php
 
 // Ruta para mostrar la sala de videollamada para usuarios
-
+route::get('/videollamadaUser', [VideollamadaController::class, 'showRoomUser'])->name('app.videollamadaUser');
 // Ruta para mostrar la sala de videollamada para doctores
-Route::get('/videollamadaUser', [VideollamadaController::class, 'showRoomUser'])->name('app.videollamadaUser');
-//
 Route::get('/videollamadaDoc', [VideollamadaController::class, 'showRoomDoc'])->name('app.videollamadaDoc');
 
 

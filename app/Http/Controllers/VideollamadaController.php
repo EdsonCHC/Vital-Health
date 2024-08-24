@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Videollamada;
-use Illuminate\Support\Str;
 use App\Models\citas;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
 
 class VideollamadaController extends Controller
 {
@@ -55,12 +57,15 @@ class VideollamadaController extends Controller
     {
         $roomName = $request->query('roomName');
 
-        
+        if (!$roomName) {
+            return redirect()->route('some.default.route')->with('error', 'Nombre de la sala no proporcionado');
+        }
 
         $videollamada = Videollamada::where('room_name', $roomName)->first();
 
-        
-
+        if (!$videollamada) {
+            return redirect()->route('some.default.route')->with('error', 'Videollamada no encontrada');
+        }
         return view('app.videollamadaUser', compact('roomName'));
     }
 
@@ -80,6 +85,22 @@ class VideollamadaController extends Controller
 
         return view('app.videollamadaDoc', compact('roomName'));
     }
+
+    public function showUser(Request $request)
+    {
+        $user = Auth::user();
+
+        $cita = Citas::where('patient_id', $user->id)->first();
+
+        if (!$cita) {
+            return redirect()->route('error')->with('message', 'No se encontró una videollamada para usted.');
+        }
+
+        $videollamadas = Videollamada::where('cita_id', $cita->id)->get();
+
+        return view('app.reunion', compact('videollamadas'));
+    }
+
 
     public function showDoc(Request $request)
     {
