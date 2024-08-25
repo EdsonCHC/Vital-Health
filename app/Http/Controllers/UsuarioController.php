@@ -33,7 +33,7 @@ class UsuarioController extends Controller
      */
     public function indexu()
     {
-        $categorias = Categoría::all();
+        $categorias = Categoría::where('activa', 1)->get();
         return view('app.area', compact('categorias'));
     }
 

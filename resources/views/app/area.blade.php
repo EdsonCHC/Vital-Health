@@ -73,49 +73,37 @@
             <div class="w-1/2 flex items-center ">
                 <h2 class="font-bold text-2xl lg:text-4xl mb-6">Servicios</h2>
             </div>
-            <div class="ml-4 w-1/2 flex justify-end">
-                <label for="filtro1"
-                    class="border-4 border-green-900 rounded-full flex  items-center p-2 md:relative cursor-pointer">
-                    <select id="filtro1" name="filtro1"
-                        class="absolute  border-none cursor-pointer bg-transparent appearance-none z-10 right-0 focus:outline-none opacity-0">
-                        <option value="todos" selected>Todos</option>
-                        <option value="c1">Ascedente</option>
-                        <option value="c2">Descendente</option>
-                        <option value="c3">Silenciados</option>
-                    </select>
-                    <div class="flex justify-center items-center w-full">
-                        <div class=" flex items-center">
-                            <span id="filtroSeleccionado1" class="flex pr-2 text-gray-700">Todos</span>
-                            <object data="{{ asset('storage/svg/filtro.svg') }}" type="image/svg+xml"></object>
-                        </div>
-                    </div>
-                </label>
-            </div>
         </div>
 
         <div class="flex flex-wrap m-4 lg:m-16">
-            @foreach ($categorias as $categoria)
-                <div class="w-80 lg:w-124 p-4 mx-auto">
-                    <div class="bg-green-50 py-5 justify-center items-center rounded-3xl">
-                        <div class="flex justify-center items-center flex-col">
-                            <div class="h-28 w-24 lg:h-36 lg:w-36 bg-green-200 rounded-full">
-                                @if ($categoria->img)
-                                    <img src="{{ asset($categoria->img) }}" alt="{{ $categoria->nombre }}"
-                                        class="mx-auto max-h-40 mb-4">
-                                @endif
-                            </div>
-                            <h3 class="font-bold text-xl p-2">{{ $categoria->nombre }}</h3>
-                            <p class="text-gray-400">Disponible</p>
-                            <a href="{{ route('service', ['id' => $categoria->id]) }}"
-                                class="bg-vh-green rounded-full h-16 w-16 lg:h-16 lg:w-16 m-6 lg:m-6 justify-center items-center content-center">
-                                <img id="menu-icon" class="h-14 w-14 ml-1" src="{{ asset('storage/svg/info.svg') }}"
-                                    alt="Inicio" />
-                            </a>
-                        </div>
+    @foreach ($categorias as $categoria)
+        <div class="w-full sm:w-1/2 lg:w-1/4 p-4">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform hover:scale-105 h-full flex flex-col">
+                <div class="flex items-center justify-center h-48 w-full bg-gray-200">
+                    @if ($categoria->img)
+                        <img src="{{ asset($categoria->img) }}" alt="{{ $categoria->nombre }}" class="object-cover h-full w-full">
+                    @else
+                        <span class="text-gray-500">No Image</span>
+                    @endif
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div class="text-center mb-4">
+                        <h3 class="text-xl font-semibold mb-2">{{ $categoria->nombre }}</h3>
+                        <p class="text-gray-600">Disponible</p>
+                    </div>
+                    <div class="text-center mt-auto">
+                        <a href="{{ route('service', ['id' => $categoria->id]) }}"
+                            class="bg-green-600 text-white rounded-full h-12 w-12 flex items-center justify-center mx-auto">
+                            <img class="h-6 w-6" src="{{ asset('storage/svg/info.svg') }}" alt="Info" />
+                        </a>
                     </div>
                 </div>
-            @endforeach
+            </div>
         </div>
+    @endforeach
+</div>
+
+
     </div>
 
     <div class="w-full h-auto">

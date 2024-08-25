@@ -7,12 +7,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/css/loader.css', 'resources/js/preloader.js'])
 </head>
-<body class="font-sans bg-gray-100">
+<body class="font-sans bg-gray-100 flex flex-col min-h-screen">
     @include('templates.loader')
-    <div class="w-full h-auto">
+
+    <header class="w-full h-auto">
         @include('templates.header')
-    </div>
-    <main class="w-full h-auto lg:px-10 p-4 lg:rounded-md lg:mt-10 mt-16 mx-auto bg-white shadow-lg">
+    </header>
+
+    <main class="flex-1 w-full lg:px-10 p-4 lg:rounded-md lg:mt-10 mt-16 mx-auto bg-white shadow-lg">
         <section class="flex justify-between items-center mb-8">
             <h2 class="font-bold text-center text-2xl text-green-700">Menú de Citas</h2>
             <div class="lg:relative inline-block text-left">
@@ -33,22 +35,20 @@
                         @foreach ($citas as $cita)
                             <div class="card bg-white border border-green-200 rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105">
                                 <div class="card-header p-4 bg-green-100 flex justify-end">
-                                <button
-                                            class="h-8 w-8 flex items-center justify-center bg-gray-100 rounded-full focus:outline-none dropdown-toggle">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 9l-7 7-7-7"></path>
-                                            </svg>
-                                        </button>
+                                    <button
+                                        class="h-8 w-8 flex items-center justify-center bg-gray-100 rounded-full focus:outline-none dropdown-toggle">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
                                     <div class="dropdown-menu hidden absolute right-0 mt-2 w-36 bg-white border border-gray-200 rounded-md shadow-lg">
                                         <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 delete-btn" data-id="{{ $cita->id }}">
                                             <img src="{{ asset('storage/svg/trash.svg') }}" class="w-4 h-4 inline-block mr-2" alt=""> Cancelar
                                         </a>
                                     </div>
                                 </div>
-
-
                                 <div class="card-content p-4 text-center">
                                     <h2 class="text-xl font-semibold text-green-800">Categoría: {{ $cita->category->nombre ?? 'No disponible' }}</h2>
                                     <h3 class="text-lg text-gray-700">Doctor: {{ $cita->doctor->name ?? 'No disponible' }}</h3>
@@ -87,11 +87,9 @@
         </section>
     </main>
 
-    <div class="w-full h-auto">
+    <footer class="w-full h-auto mt-8">
         @include('templates.chat_ia')
-    </div>
-    <div class="w-full h-auto">
         @include('templates.footer_two')
-    </div>
+    </footer>
 </body>
 </html>

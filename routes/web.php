@@ -50,14 +50,13 @@ Route::middleware('auth')->group(function () {
     //
     Route::get('/examen', [ExamController::class, 'examsPaciente'])->name('exams.paciente');
     Route::get('/examenes/completados', [ExamController::class, 'examenesCompletados']);
-    Route::get('/medicina', [RecetaController::class, 'recetasPaciente'])->name('medicina.paciente');
+    Route::get('/medicina', [recetaController::class, 'recetasPaciente'])->name('medicina.paciente');
     Route::delete('/citas/{id}/eliminar', [CitaController::class, 'eliminar']);
     //
     //Info pages
     // 
     Route::view('/area', 'app.area');
     Route::view('/service', 'app.service');
-    Route::view('/medicina', 'app.medicina');
     Route::get('/area', [UsuarioController::class, 'indexu'])->name('user');
     route::get('/reunion', [VideollamadaController::class, 'showUser'])->name('app.reunion');
     Route::get('/service/{id}', [ServiceController::class, 'show'])->name('service');
