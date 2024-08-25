@@ -61,6 +61,8 @@ Route::middleware('auth')->group(function () {
     route::get('/reunion', [VideollamadaController::class, 'showUser'])->name('app.reunion');
     Route::get('/service/{id}', [ServiceController::class, 'show'])->name('service');
     //
+    Route::get('/area', [CategoríaController::class, 'filtrarYCategorias'])->name('categorias.filtrar');
+
     //User
     // 
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');

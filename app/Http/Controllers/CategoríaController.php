@@ -17,7 +17,41 @@ class CategoríaController extends Controller
         $categorias = Categoría::all();
         return view('admin.home', compact('categorias'));
     }
+    public function filtrarYCategorias(Request $request)
+{
+    // Obtener los valores de búsqueda y filtro
+    $search = $request->input('s');
+    $filter = $request->input('filtro', 'todos');
+    
+    // Consultar las categorías
+    $categorias = Categoría::query();
 
+    // Aplicar filtro para solo obtener categorías activas
+    $categorias->where('activa', 1);
+    
+    // Aplicar búsqueda por nombre
+    if ($search) {
+        $categorias->where('nombre', 'like', '%' . $search . '%');
+    }
+    
+    // Aplicar filtro de orden
+    if ($filter == 'ascendente') {
+        $categorias->orderBy('nombre', 'asc');
+    } elseif ($filter == 'descendente') {
+        $categorias->orderBy('nombre', 'desc');
+    } else {
+        // Por defecto o si el filtro es 'todos', ordenar ascendentemente
+        $categorias->orderBy('nombre', 'asc');
+    }
+    
+    // Obtener los resultados
+    $categorias = $categorias->get();
+    
+    return view('app.area', compact('categorias'));
+}
+
+    
+    
     public function store(Request $request)
     {
         $validated = $request->validate([
