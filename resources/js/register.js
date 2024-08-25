@@ -14,17 +14,11 @@ $(document).ready(function () {
     $("#see_password_label").click((e) => {
         const pass = $("#password");
         const pass_img = $("#see_password_img");
-        //
-        const pass_type =
-            pass.attr("type") === "password" ? "text" : "password";
+
+        const pass_type = pass.attr("type") === "password" ? "text" : "password";
         pass.attr("type", pass_type);
 
-        if (is_opaque) {
-            pass_img.css("opacity", "1");
-        } else {
-            pass_img.css("opacity", "0.5");
-        }
-
+        pass_img.css("opacity", is_opaque ? "1" : "0.5");
         is_opaque = !is_opaque;
     });
 
@@ -38,12 +32,15 @@ $(document).ready(function () {
             const name = escapeHtml($("#name").val());
             const lastName = escapeHtml($("#lastName").val());
             const mail = escapeHtml($("#mail").val());
+            const address = escapeHtml($("#address").val());
             const password = $("#password").val();
 
+            // Validation
             if (
                 containsScript(name) ||
                 containsScript(lastName) ||
-                containsScript(mail)
+                containsScript(mail) ||
+                containsScript(address)
             ) {
                 Swal.fire({
                     icon: "error",
@@ -53,7 +50,7 @@ $(document).ready(function () {
                 return;
             }
 
-            if (!name || !lastName || !mail || !password) {
+            if (!name || !lastName || !mail || !address || !password) {
                 Swal.fire({
                     icon: "error",
                     title: "Error...",
@@ -66,7 +63,7 @@ $(document).ready(function () {
                 Swal.fire({
                     icon: "error",
                     title: "Error...",
-                    text: "El nombre y el apellido solo pueden contener letras.",
+                    text: "El nombre y el apellido solo pueden contener letras y un espacio.",
                 });
                 return;
             }
@@ -76,6 +73,15 @@ $(document).ready(function () {
                     icon: "error",
                     title: "Error...",
                     text: "Ingresa un correo electrónico válido",
+                });
+                return;
+            }
+
+            if (!validateAddress(address)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error...",
+                    text: "La dirección solo puede contener números, letras, # y -.",
                 });
                 return;
             }
@@ -166,12 +172,12 @@ $(document).ready(function () {
                             Swal.fire({
                                 icon: "success",
                                 title: "Registro exitoso!",
-                                text: "Te has registrado correctamente",
+                                text: "Te has registrado correctamente. Ahora puedes iniciar sesión",
                                 showConfirmButton: false,
                                 timer: 2500,
                             });
                             setTimeout(() => {
-                                window.location.href = "/verify-confirm";
+                                window.location.href = "/login";
                             }, 2500);
                         } else {
                             if (response.errors) {
@@ -199,7 +205,10 @@ $(document).ready(function () {
                         Swal.fire({
                             icon: "error",
                             title: "Error...",
-                            text: "Correo Invalido, ya se encuentra en uso",
+                            text: "Correo invalido, ya se encuentra en uso",
+                        }).then(() => {
+                            // Reset the form fields and focus the email input
+                            $("#mail").focus();
                         });
                     },
                 });
@@ -227,7 +236,6 @@ $(document).ready(function () {
 
         if (result.isConfirmed) {
             genre = escapeHtml(result.value);
-            console.log(genre);
             return true;
         } else if (result.dismiss === Swal.DismissReason.cancel && step > 1) {
             step--;
@@ -257,7 +265,6 @@ $(document).ready(function () {
 
         if (result.isConfirmed) {
             date = escapeHtml(result.value);
-            console.log(date);
             return true;
         } else if (result.dismiss === Swal.DismissReason.cancel && step > 2) {
             step--;
@@ -289,7 +296,6 @@ $(document).ready(function () {
 
         if (result.isConfirmed) {
             blood_type = escapeHtml(result.value);
-            console.log(blood_type);
             return true;
         } else if (result.dismiss === Swal.DismissReason.cancel && step > 3) {
             step--;
@@ -301,7 +307,7 @@ $(document).ready(function () {
     async function image_input() {
         const { value: file } = await Swal.fire({
             title: "Selecciona una imagen",
-            text: "(opcional)",
+            text: "La imagen es obligatoria.",
             input: "file",
             inputAttributes: {
                 accept: "image/*",
@@ -317,95 +323,83 @@ $(document).ready(function () {
                         reader.onload = (e) => {
                             Swal.fire({
                                 title: "Vista previa de la imagen",
-                                html: `<div style="display: flex; justify-content: center; align-items: center; height: 200px;">
-                                            <img src="${e.target.result}" alt="Vista previa" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+                                html: `<div style="display: flex; justify-content: center;">
+                                        <img src="${e.target.result}" alt="Vista previa" style="max-width: 100%; max-height: 300px;"/>
                                         </div>`,
                                 showCancelButton: true,
-                                cancelButtonText: "Retroceder",
                                 confirmButtonText: "Aceptar",
-                                preConfirm: () => {
+                                cancelButtonText: "Cancelar",
+                            }).then((result) => {
+                                if (result.isConfirmed) {
                                     imgFile = file;
-                                    resolve(true);
-                                },
+                                    resolve(file);
+                                } else {
+                                    resolve(null);
+                                }
                             });
                         };
                         reader.readAsDataURL(file);
                     });
+                } else {
+                    return null;
                 }
             },
         });
-
-        if (file) {
-            return true;
-        } else if (file === undefined && step > 4) {
-            step--;
-            return false;
+    
+        // Check if the file was selected and is valid
+        if (file === null) {
+            Swal.fire({
+                icon: "error",
+                title: "Error...",
+                text: "Debes seleccionar una imagen para continuar.",
+            });
         }
-        return true;
+        
+        return file !== null;
+    }
+    
+
+    function containsScript(value) {
+        const scriptRegex = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
+        return scriptRegex.test(value);
     }
 
     function escapeHtml(unsafe) {
-        return String(unsafe).replace(/[&<>"'`=\/]/g, function (s) {
-            return entityMap[s];
-        });
-    }
-
-    const entityMap = {
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;",
-        "/": "&#x2F;",
-        "`": "&#x60;",
-        "=": "&#x3D;",
-    };
-
-    function containsScript(input) {
-        const scriptPattern =
-            /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
-        return scriptPattern.test(input);
+        return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
     }
 
     function validateName(name) {
-        const namePattern = /^[a-zA-Z]+$/;
-        return namePattern.test(name);
-    }
-
-    function validatePassword() {
-        let passwordOne = $("#password").val();
-        let passwordTwo = $("#password_confirm").val();
-
-        if (passwordOne !== passwordTwo) {
-            return {
-                valid: false,
-                message: "Las contraseñas ingresadas no coinciden.",
-            };
-        }
-
-        if (passwordOne.length < 8) {
-            return {
-                valid: false,
-                message: "La contraseña debe tener al menos 8 caracteres.",
-            };
-        }
-
-        return { valid: true };
+        return /^[a-zA-Z\s]+$/.test(name);
     }
 
     function validateEmail(email) {
-        const re = /\S+@\S+\.\S+/;
-        return re.test(email);
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
-    function validateImage(file) {
-        const validImageTypes = [
-            "image/jpeg",
-            "image/png",
-            "image/jpg",
-            "image/gif",
-            "image/svg+xml",
-        ];
-        return validImageTypes.includes(file.type);
+    function validateAddress(address) {
+        return /^[a-zA-Z0-9#\- ]+$/.test(address);
+    }
+
+    function validatePassword() {
+        const password = $("#password").val();
+        if (password.length < 6) {
+            return { valid: false, message: "La contraseña debe tener al menos 6 caracteres." };
+        }
+        if (!/[A-Z]/.test(password)) {
+            return { valid: false, message: "La contraseña debe contener al menos una letra mayúscula." };
+        }
+        if (!/[a-z]/.test(password)) {
+            return { valid: false, message: "La contraseña debe contener al menos una letra minúscula." };
+        }
+        if (!/[0-9]/.test(password)) {
+            return { valid: false, message: "La contraseña debe contener al menos un número." };
+        }
+        return { valid: true, message: "" };
     }
 });
+
