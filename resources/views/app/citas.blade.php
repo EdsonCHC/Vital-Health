@@ -6,90 +6,90 @@
     <title>Citas</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/css/loader.css', 'resources/js/preloader.js'])
+    <style>
+        .transition-max-height {
+            transition: max-height 0.3s ease-out;
+        }
+        .rotate-90 {
+            transform: rotate(90deg);
+        }
+        footer {
+            margin-top: 2rem; /* Ajusta el valor según sea necesario */
+        }
+    </style>
 </head>
-<body class="font-sans bg-gray-100 flex flex-col min-h-screen">
+<body class="font-sans bg-gray-200 flex flex-col min-h-screen">
     @include('templates.loader')
 
-    <header class="w-full h-auto">
+    <header class="w-full bg-white shadow-md">
         @include('templates.header')
     </header>
 
-    <main class="flex-1 w-full lg:px-10 p-4 lg:rounded-md lg:mt-10 mt-16 mx-auto bg-white shadow-lg">
+    <main class="flex-1 w-full lg:px-8 p-4 lg:rounded-md lg:mt-8 mt-12  lg:mb-60 mx-auto bg-white shadow-lg mb-16">
         <section class="flex justify-between items-center mb-8">
-            <h2 class="font-bold text-center text-2xl text-green-700">Menú de Citas</h2>
+            <h2 class="font-bold text-center text-2xl text-gray-800">Menú de Citas</h2>
             <div class="lg:relative inline-block text-left">
                 <button type="button"
-                    class="inline-flex items-center justify-center gap-x-1.5 rounded-md bg-green-700 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-green-600"
+                    class="inline-flex items-center justify-center gap-x-1.5 rounded-md bg-green-600 px-4 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-green-500"
                     id="menu-button" aria-expanded="false" aria-haspopup="true">
                     <h2>Citas Finalizadas</h2>
                 </button>
             </div>
         </section>
 
-        <section class="w-full h-auto my-4 font-bold mt-12">
+        <section class="w-full h-auto my-4">
             <div class="flex gap-8 flex-wrap justify-center lg:justify-start">
                 @if(isset($citas) && $citas->isEmpty())
                     <p class="text-gray-700">No tienes citas programadas.</p>
                 @else
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div class="w-full space-y-4">
                         @foreach ($citas as $cita)
-                            <div class="card bg-white border border-green-200 rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105">
-                                <div class="card-header p-4 bg-green-100 flex justify-end">
-                                    <button
-                                        class="h-8 w-8 flex items-center justify-center bg-gray-100 rounded-full focus:outline-none dropdown-toggle">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 9l-7 7-7-7"></path>
-                                        </svg>
-                                    </button>
-                                    <div class="dropdown-menu hidden absolute right-0 mt-2 w-36 bg-white border border-gray-200 rounded-md shadow-lg">
-                                        <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 delete-btn" data-id="{{ $cita->id }}">
-                                            <img src="{{ asset('storage/svg/trash.svg') }}" class="w-4 h-4 inline-block mr-2" alt=""> Cancelar
+                            <article class="bg-white border border-gray-300 rounded-lg shadow-md overflow-hidden">
+                                <div class="p-4 bg-gray-100 flex justify-between items-center cursor-pointer transition-colors hover:bg-gray-200"
+                                     onclick="toggleContent('{{ $cita->id }}')">
+                                    <h2 class="text-xl font-semibold text-gray-800">Categoría: {{ $cita->category->nombre ?? 'No disponible' }}</h2>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 transition-transform" id="icon-{{ $cita->id }}" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                                <div id="content-{{ $cita->id }}" class="card-content max-h-0 overflow-hidden transition-max-height">
+                                    <div class="p-4 text-start">
+                                        <h3 class="text-lg text-gray-800 mb-2">Doctor: {{ $cita->doctor->name ?? 'No disponible' }}</h3>
+                                        <button class="bg-yellow-300 text-yellow-700 rounded-md font-bold py-1 px-3 mt-2">En Proceso</button>
+                                        <h4 class="mt-2 text-gray-600">Hora: {{ !empty($cita->hour) ? (new DateTime($cita->hour))->format('h:i A') : 'No disponible' }}</h4>
+                                        <h4 class="text-gray-600">Fecha: {{ !empty($cita->date) ? (new DateTime($cita->date))->format('j \d\e F \d\e Y') : 'No disponible' }}</h4>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-100 mt-4 rounded-md delete-btn" data-id="{{ $cita->id }}">
+                                            <img src="{{ asset('storage/svg/trash.svg') }}" class="w-4 h-4 inline-block mr-2" alt="Eliminar"> Eliminar
                                         </a>
                                     </div>
                                 </div>
-                                <div class="card-content p-4 text-center">
-                                    <h2 class="text-xl font-semibold text-green-800">Categoría: {{ $cita->category->nombre ?? 'No disponible' }}</h2>
-                                    <h3 class="text-lg text-gray-700">Doctor: {{ $cita->doctor->name ?? 'No disponible' }}</h3>
-                                    <button class="bg-green-300 text-green-700 rounded-md font-bold py-1 px-2 mt-2">En Proceso</button>
-                                    <h4 class="mt-2 text-gray-600">Hora: {{ !empty($cita->hour) ? (new DateTime($cita->hour))->format('h:i A') : 'No disponible' }}</h4>
-                                    <h4 class="text-gray-600">Fecha: {{ !empty($cita->date) ? (new DateTime($cita->date))->format('j \d\e F \d\e Y') : 'No disponible' }}</h4>
-                                </div>
-                            </div>
+                            </article>
                         @endforeach
                     </div>
                 @endif
-
-                <div class="flex justify-end w-full lg:my-16 py-4 px-4">
-                    <div class="flex items-center space-x-2">
-                        <button id="customMenuButton" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M4 12a2 2 0 110-4 2 2 0 010 4zm6 0a2 2 0 110-4 2 2 0 010 4zm6 0a2 2 0 110-4 2 2 0 010 4z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                        <button class="h-8 w-8 flex items-center justify-center bg-gray-300 rounded-full focus:outline-none ml-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                            </svg>
-                        </button>
-                        <div class="ml-2 flex items-center justify-center w-8 h-8 bg-white rounded-md shadow-md">
-                            <span class="text-sm">1</span>
-                        </div>
-                        <button class="h-8 w-8 flex items-center justify-center bg-gray-300 rounded-full focus:outline-none ml-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
             </div>
         </section>
     </main>
 
-    <footer class="w-full h-auto mt-8">
+    <footer class="w-full bg-white  shadow-md">
         @include('templates.chat_ia')
         @include('templates.footer_two')
     </footer>
+
+    <script>
+        function toggleContent(id) {
+            const content = document.getElementById('content-' + id);
+            const icon = document.getElementById('icon-' + id);
+            if (content.classList.contains('max-h-0')) {
+                content.classList.remove('max-h-0');
+                content.classList.add('max-h-screen');
+                icon.classList.add('rotate-90');
+            } else {
+                content.classList.remove('max-h-screen');
+                content.classList.add('max-h-0');
+                icon.classList.remove('rotate-90');
+            }
+        }
+    </script>
 </body>
 </html>
