@@ -44,7 +44,7 @@
                             </div>
                             <div class="flex justify-between space-x-2">
                                 <button
-                                    class="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300">
+                                    class="saveFileDoc w-full bg-blue-500 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300">
                                     PDF
                                 </button>
                                 <button data-id="{{ $file->id }}" data-patient-id="{{ $file->patient->id }}"

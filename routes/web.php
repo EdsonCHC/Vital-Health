@@ -99,6 +99,7 @@ Route::middleware(['auth:doctor'])->group(function () {
     //Expedientes
     // 
     Route::get('/files_doc', [ExpedienteController::class, 'showFileDoc'])->name('files_doc.show');
+    Route::get('/generate-pdf-doc', [ExpedienteController::class, 'generatePdf']);
     Route::post('/files_doc', [ExpedienteController::class, 'storeDocToUser'])->name('doctor.storeDocToUser');
     Route::put('/files_doc/{id}', [ExpedienteController::class, 'update'])->name('doctor.update_file');
     Route::delete('/files_doc/{id}', [ExpedienteController::class, 'destroy'])->name('doctor.destroy_file');

@@ -16,7 +16,7 @@ use Carbon\Carbon;
 
 
 class PatientsTableSeeder
- extends Seeder
+extends Seeder
 {
     /**
      * Seed the application's database.
@@ -34,6 +34,8 @@ class PatientsTableSeeder
                 'gender' => 'male',
                 'birth' => '1989-12-22',
                 'blood' => 'O+',
+                'email_verification_token' => 'test_google_verification_token_123',
+                'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('pass123'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -46,6 +48,8 @@ class PatientsTableSeeder
                 'gender' => 'female',
                 'birth' => '1990-05-15',
                 'blood' => 'A-',
+                'email_verification_token' => 'test_google_verification_token_456',
+                'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('pass456'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -58,6 +62,8 @@ class PatientsTableSeeder
                 'gender' => 'male',
                 'birth' => '2000-05-15',
                 'blood' => 'B-',
+                'email_verification_token' => 'test_google_verification_token_789',
+                'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('pass789'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

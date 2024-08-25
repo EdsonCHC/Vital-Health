@@ -40,6 +40,36 @@ $(document).ready(function () {
 
     // Doctor
     // Maneja la creacion del expediente y del usuario
+    $(".saveFileDoc").click(function () {
+        const pdf_url = "/generate-pdf-Doc";
+        Swal.fire({
+            title: "Resultado del expediente",
+            html: `
+        <div class="flex flex-col items-center justify-center w-full h-full">
+            <canvas id="qr_code"></canvas>
+            <br>
+            <a id="download_pdf" href="${pdf_url}" download="expediente.pdf">Descargar PDF</a>
+        </div>
+        `,
+            showConfirmButton: false,
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            didOpen: () => {
+                const qrCodeCanvas = document.getElementById("qr_code");
+
+                QRCode.toCanvas(
+                    qrCodeCanvas,
+                    pdf_url,
+                    { width: 200 },
+                    (err) => {
+                        if (err) console.error(err);
+                        console.log("Código QR generado!");
+                    }
+                );
+            },
+        });
+    });
+
     $(".createFile").click(function () {
         Swal.fire({
             title: "Crear Expediente",

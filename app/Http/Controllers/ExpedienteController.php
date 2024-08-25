@@ -9,6 +9,7 @@ use App\Models\Doctor;
 use App\Models\Usuario;
 use App\Models\Receta;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -158,6 +159,38 @@ class ExpedienteController extends Controller
         $expedientes = Expedientes::all();
 
         return view('doctor.files_doc', compact('users', 'expedientes', 'doctor', 'citas', 'exams', 'recetas'));
+    }
+
+    public function generatePdf()
+    {
+        $doctor = auth()->user();
+        $user = Usuario::all();
+        $userId = $user->id;
+
+        // Recupera los datos necesarios
+        $citas = Citas::with('category')
+            ->where('patient_id', $userId)
+            ->where('state', 1)
+            ->get();
+
+        $exams = Exams::where('patient_id', $userId)
+            ->where('state', 1)
+            ->get();
+
+        $recetas = Receta::with('medicinas')
+            ->where('patient_id', $userId)
+            ->get();
+
+        // Pasa los datos a la vista
+        $pdf = PDF::loadView('pdf.file', [
+            'citas' => $citas,
+            'exams' => $exams,
+            'recetas' => $recetas,
+            'user' => $user
+        ]);
+
+        // Devuelve el PDF como una descarga
+        return $pdf->download('Expediente.pdf');
     }
 
     public function edit(Expedientes $expediente)
