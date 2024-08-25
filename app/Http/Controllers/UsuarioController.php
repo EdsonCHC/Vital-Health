@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\VerifyEmail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
+
 
 
 class UsuarioController extends Controller
@@ -146,6 +151,7 @@ class UsuarioController extends Controller
                 'blood' => $request->blood,
                 'password' => Hash::make($request->password),
                 'img' => $imagePath,
+                'email_verification_token' => Str::random(60),
             ]);
 
             if (!$user) {
@@ -168,7 +174,27 @@ class UsuarioController extends Controller
 
             DB::commit(); // Confirmar la transacción si todo sale bien
 
-            Auth::login($user);
+            // Crear expediente relacionado al usuario (paciente)
+            $expediente = Expedientes::create([
+                'patient_id' => $user->id, // Relaciona el expediente con el paciente
+            ]);
+
+            if (!$expediente) {
+                DB::rollBack(); // Revertir transacción en caso de fallo
+                return response()->json([
+                    'message' => 'Error al crear el expediente',
+                ], 500);
+            }
+
+            DB::commit(); // Confirmar la transacción si todo sale bien
+
+            $verificationUrl = URL::temporarySignedRoute(
+                'verification.verify',
+                now()->addMinutes(60),
+                ['id' => $user->id, 'token' => $user->email_verification_token]
+            );
+
+            Mail::to($user->mail)->send(new VerifyEmail($user, $verificationUrl));
 
             return response()->json([
                 'success' => true,
@@ -184,16 +210,19 @@ class UsuarioController extends Controller
 
     public function show(Request $request)
     {
-        $credentials = [
-            'mail' => $request->mail,
-            'password' => $request->password,
-        ];
+        $credentials = $request->only('mail', 'password');
 
         try {
             // Intentar autenticar como usuario normal
             $user = Usuario::where('mail', $credentials['mail'])->first();
 
             if ($user && Hash::check($credentials['password'], $user->password)) {
+                if (is_null($user->email_verified_at)) {
+                    // Cierra la sesión y redirige con un mensaje de error
+                    Auth::logout();
+                    return response()->json(['success' => false, 'message' => 'Debes verificar tu correo electrónico para acceder.'], 400);
+                }
+
                 Auth::login($user);
                 $request->session()->regenerate();
                 return response()->json(['success' => true, 'redirect_url' => '/user'], 200);
@@ -308,5 +337,17 @@ class UsuarioController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
+    }
+
+    public function showRegistrationConfirmation()
+    {
+        $user = auth()->user();
+        return view('emails.verify-confirm', compact('user'));
+    }
+
+    public function showVerificationSuccess()
+    {
+        $user = auth()->user();
+        return view('emails.verify-confirmed', compact('user'));
     }
 }

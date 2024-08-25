@@ -9,13 +9,27 @@ class Usuario extends Authenticatable
 {
     use HasFactory;
 
-    protected $table = 'patients'; // tabla a modificar
+    protected $table = 'patients';
 
     protected $fillable = [
-        'name', 'lastName', 'mail', 'address','gender', 'birth', 'blood', 'password', 'img'
+        'name',
+        'lastName',
+        'mail',
+        'address',
+        'gender',
+        'birth',
+        'blood',
+        'password',
+        'img',
+        'email_verification_token'
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
 }

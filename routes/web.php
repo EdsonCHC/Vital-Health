@@ -13,9 +13,8 @@ use App\Http\Controllers\recetaController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\pdfController;
-use App\Models\Videollamada;
 use Illuminate\Support\Facades\Route;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use App\Http\Controllers\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,17 +28,11 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 */
 
 // Rutas del usuario
-//
 Route::post('/login', [UsuarioController::class, 'show']);
-//
 Route::view('/login', 'app.login')->name('login');
-//
 Route::view('/registro', 'app.registro');
-//
 Route::post('/registro', [UsuarioController::class, 'store']);
-//
 Route::get('/', [UsuarioController::class, 'showDoctors']);
-
 Route::view('/about', 'app.about');
 
 // Middlewares para el usuario
@@ -48,133 +41,93 @@ Route::middleware('auth')->group(function () {
     // Citas
     //
     Route::get('/citas', [CitaController::class, 'citasPaciente'])->name('citas.paciente');
-    //
     Route::get('create', [CitaController::class, 'create'])->name('citas.create');
-    //
     Route::get('/citas/completadas', [CitaController::class, 'citasFinalizadas'])->name('citas.completadas');
-    //
     Route::post('/appointments', [CitaController::class, 'store']);
-    //
     Route::delete('/citas/{id}/eliminar', [CitaController::class, 'eliminar']);
     //
+    // Exámenes
     //
-    // Examenes
     Route::get('/examen', [ExamController::class, 'examsPaciente'])->name('exams.paciente');
-    //
     Route::get('/examenes/completados', [ExamController::class, 'examenesCompletados']);
-    //
     Route::get('/medicina', [RecetaController::class, 'recetasPaciente'])->name('medicina.paciente');
-    //
     Route::delete('/citas/{id}/eliminar', [CitaController::class, 'eliminar']);
     //
-    //
-    // Info pages
+    //Info pages
+    // 
     Route::view('/area', 'app.area');
-    //
-    Route::view('/chats', 'app.chats');
-    //
     Route::view('/service', 'app.service');
-    //
     Route::view('/medicina', 'app.medicina');
-    //
     Route::get('/area', [UsuarioController::class, 'indexu'])->name('user');
-    //
     route::get('/reunion', [VideollamadaController::class, 'showUser'])->name('app.reunion');
-    //
     Route::get('/service/{id}', [ServiceController::class, 'show'])->name('service');
     //
-    // Route::view('/area', [CitaController::class, 'index'])->name('app.area');
-    //
-    //
-    // User
+    //User
+    // 
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
-    //
     Route::get('/generate-pdf', [UsuarioController::class, 'generatePdf']);
-    //
     Route::post('/user', [UsuarioController::class, 'destroy']);
-    //
     Route::put('/user/update', [UsuarioController::class, 'update'])->name('user.update');
-    //
     route::post('/user/update-image', [UsuarioController::class, 'updateImage'])->name('user.updateImage');
-
+    //
     //Examen
+    //
     Route::get('/exams/patient/pdf/{id}', [ExamController::class, 'getPdfUrl'])->name('exams.get.pdf');
 });
 
 // Middlewares para el doctor
 Route::middleware(['auth:doctor'])->group(function () {
     //
-    // Citas
+    //Citas
+    // 
     Route::get('/citas_doc', [CitaController::class, 'showCitas'])->name('doctor.citas_doc');
     //
     Route::get('/historical-appointments/{doctorId}', [CitaController::class, 'historicalAppointments'])->name('historical.appointments');
-    //
     Route::get('/pacientes', [CitaController::class, 'getPatients']);
-    //
     Route::get('/citas/{id}', [CitaController::class, 'show_doc']);
-    //
     Route::get('/doctor/{id}', [DoctorController::class, 'showDoctorWithAppointments'])->name('doctor.show');
-    //
     Route::post('/citas', [CitaController::class, 'store_doc']);
-    //
     Route::delete('/citas/{id}', [CitaController::class, 'destroy'])->name('citas.destroy');
     //
+    //Recetas
     //
     Route::get('/recetas/get-prescription-form-details', [RecetaController::class, 'getPrescriptionFormDetails']);
-    //
     Route::delete('/recetas/{id}', [RecetaController::class, 'destroy']);
-    //
     Route::get('/citas_doc/search', [CitaController::class, 'search'])->name('appointments.search');
     //
-    //
-    // Expedientes
+    //Expedientes
+    // 
     Route::get('/files_doc', [ExpedienteController::class, 'showFileDoc'])->name('files_doc.show');
-    //
     Route::post('/files_doc', [ExpedienteController::class, 'storeDocToUser'])->name('doctor.storeDocToUser');
-    //
     Route::put('/files_doc/{id}', [ExpedienteController::class, 'update'])->name('doctor.update_file');
-    //
     Route::delete('/files_doc/{id}', [ExpedienteController::class, 'destroy'])->name('doctor.destroy_file');
     //
-    //
-    // Examenes
+    //Exámenes
+    // 
     Route::view('/exams_doc', 'doctor.exams_doc');
-    // Route::view('/service_doc', 'doctor.service_doc');
     Route::get('/service_doc', [ExamController::class, 'viewServiceDoc'])->name('doctor.service_doc');
-    //
     Route::get('/citas/{cita_id}/exams/{user_id}', [ExamController::class, 'getExams']);
-    //
     Route::get('/citas/{cita_id}/check-end', [ExamController::class, 'checkAndEndCita']);
-    //
     Route::get('/recetas/fetch-prescription-form-data', [ExamController::class, 'fetchPrescriptionFormData'])->name('recetas.fetchFormData');
-    //
     Route::post('/recetas', [ExamController::class, 'store'])->name('recetas.create');
-    //
     Route::post('/citas/{cita_id}/{doctor_id}/exams', [ExamController::class, 'create']);
-    //
     Route::post('/citas/{cita_id}/end', [ExamController::class, 'endCita']);
-    //
     Route::delete('/citas/{cita_id}/exams/{id}', [ExamController::class, 'destroy']);
     //
-    //
-    // Mediciona
+    //Info pages
+    // 
     Route::view('/allocation', 'doctor.allocation');
-    //
     Route::get('/medicine_doc', [recetaController::class, 'getRecetas'])->name('doctor.medicine_doc');
-    //
     //
     // Videollamada
     //
     Route::get('/program_doc', [VideollamadaController::class, 'showDoc'])->name('doctor.program_doc');
-    //
     Route::post('/citas/{cita_id}/{doctor_id}/videollamada', [VideollamadaController::class, 'store']);
-    //
     Route::delete('/program_doc/{videollamada_id}', [VideollamadaController::class, 'destroy'])->name('videollamada.destroy');
     //
-    //
-    // Doctor
+    //Doctor
+    // 
     Route::get('/doctor', [DoctorController::class, 'index'])->name('doctor');
-    //
     Route::post('/doctor/logout', [DoctorController::class, 'destroy'])->name('doctor.logout');
 });
 
@@ -182,55 +135,37 @@ Route::middleware(['auth:doctor'])->group(function () {
 Route::middleware('auth:admin')->group(function () {
     //
     // Categorias
+    //
     Route::get('/home', [CategoríaController::class, 'index'])->name('home');
-    //
     Route::get('/statistics/{id}', [CategoríaController::class, 'show'])->name('statistics.show');
-    //
     Route::get('/ad_chats/{id}', [CategoríaController::class, 'showAd_chats'])->name('categorias.ad_chats');
-    //
     Route::get('/staff/{id}', [CategoríaController::class, 'showStaff'])->name('categorias.staff');
-    //
     Route::get('/records/{id}', [CategoríaController::class, 'showRecords'])->name('categorias.records');
-    //
     Route::get('/calendar/{id}', [CategoríaController::class, 'showCalendar'])->name('categorias.calendar');
-    //
     Route::put('/categorias/{id}/activate', [CategoríaController::class, 'activate'])->name('categorias.activate');
-    //
     Route::put('/categorias/{id}/suspend', [CategoríaController::class, 'suspend'])->name('categorias.suspend');
-    //
     Route::delete('/records/{id}', [CategoríaController::class, 'deleteUser'])->name('record.delete');
-    //
     Route::resource('categorias', CategoríaController::class);
-    //
-    //
     Route::delete('/categorias/{id}', [CategoríaController::class, 'destroy'])->name('categorias.destroy');
+    //
     // Staff
+    //
     Route::get('/staff/doctor/{id}', [DoctorController::class, 'getDoctor'])->name('doctor.info');
-    //
     Route::post('/staff/{id}', [DoctorController::class, 'create'])->name('staff.create');
-    //
     Route::put('/staff/{id}', [DoctorController::class, 'updateDoctor'])->name('staff.update');
-    //
     Route::delete('/staff/{id}', [DoctorController::class, 'deleteDoctor'])->name('staff.delete');
     //
-    //
-    // Citas
+    //Citas
+    // 
     Route::get('/appointments/{id}', [CitaController::class, 'show'])->name('appointments.show');
-    //
     Route::get('/categorias/{id}/doctores', [CitaController::class, 'getDoctorsByCategory']);
-    //
     Route::get('/appointments/{id}', [CitaController::class, 'showAppointments'])->name('categorias.appointments');
-    //
     Route::post('/appointments/details', [CitaController::class, 'getAppointmentDetails']);
-    //
     Route::put('/citas/{id}', [CitaController::class, 'update']);
-    //
     Route::delete('/appointments/{id}', [CitaController::class, 'destroy'])->name('appointments.destroy');
     //
-    //
-    // Expedientes
-    //
-    // Admin
+    //Admin
+    // 
     Route::post('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 });
 
@@ -238,56 +173,41 @@ Route::middleware('auth:admin')->group(function () {
 Route::middleware('auth:laboratorio')->group(function () {
     //
     // Medicina
+    //
     Route::view('/Medicina', 'laboratorio.Medicina')->name('Medicina');
     //
     Route::get('/medicinas', [MedicineController::class, 'index'])->name('medicinas.index');
-    //
     Route::get('medicinas/{medicina}/edit', [MedicineController::class, 'edit'])->name('medicinas.edit');
-    //
     Route::post('medicinas', [MedicineController::class, 'store'])->name('medicinas.store');
-    //
     Route::put('medicinas/{medicina}', [MedicineController::class, 'update'])->name('medicinas.update');
-    //
     Route::delete('/medicinas/{medicina}', [MedicineController::class, 'destroy'])->name('medicinas.destroy');
-    //
     Route::patch('/medicinas/{medicina}/toggleStatus', [MedicineController::class, 'toggleStatus'])->name('medicinas.toggleStatus');
     //
-    //
-    // Examenes
+    //Exámenes
+    // 
     Route::get('/Exam', [ExamController::class, 'index'])->name('Exam');
-    //
     Route::get('/exams/pdf/{id}', [ExamController::class, 'getPdfUrl'])->name('exams.get.pdf');
-    //
     Route::post('/exams/pdf/{id}', [ExamController::class, 'updatePDF'])->name('exams.update.pdf');
-    //
     Route::delete('/exams/delete/{id}', [ExamController::class, 'delete'])->name('exams.delete');
-    //
     Route::patch('/exams/end/{id}', [ExamController::class, 'endExamen'])->name('exams.delete');
     //
-    //
-    // Recetas
+    //Recetas
+    // 
     Route::get('/index_lab', [LaboratorioController::class, 'index'])->name('index');
-    //
     Route::get('/Recetas', [recetaController::class, 'index'])->name('recetas.index');
-    //
     Route::get('/recetas/{id}', [recetaController::class, 'fetchRecetaDetails']);
-    //
     Route::post('/recetas/{id}/enviar', [recetaController::class, 'enviarReceta']);
-    //
     Route::post('/recetas/{id}/actualizar-estado', [recetaController::class, 'actualizarEstado']);
-    //
     Route::delete('/recetas/{id}/cancelar', [recetaController::class, 'cancelarReceta']);
     //
-    //
-    // Laboratorio
+    //Laboratorio
+    // 
     Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');
 });
 
 
 
 //-------API ROUTES--------//
-
-// routes/web.php
 
 // Ruta para mostrar la sala de videollamada para usuarios
 route::get('/videollamadaUser', [VideollamadaController::class, 'showRoomUser'])->name('app.videollamadaUser');
@@ -300,5 +220,13 @@ Route::fallback(function () {
     return response()->view('errors.404page', [], 404);
 });
 
+//Generar PDF
 Route::post('/generate-pdf', [pdfController::class, 'generatePDF']);
-//
+
+//-- EMAIL VERIFICATION--//
+Route::get('/verify-email/{id}/{token}', [VerificationController::class, 'verify'])->name('verification.verify');
+
+Route::get('/verify-confirm',  [UsuarioController::class, 'showRegistrationConfirmation'] )->name('verify.confirm');
+
+Route::get('/verify-confirmed', [UsuarioController::class, 'showVerificationSuccess'])->name('verify.confirmed');
+

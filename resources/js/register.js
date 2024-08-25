@@ -166,12 +166,12 @@ $(document).ready(function () {
                             Swal.fire({
                                 icon: "success",
                                 title: "Registro exitoso!",
-                                text: "Te has registrado correctamente. Ahora puedes iniciar sesión",
+                                text: "Te has registrado correctamente",
                                 showConfirmButton: false,
                                 timer: 2500,
                             });
                             setTimeout(() => {
-                                window.location.href = "/login";
+                                window.location.href = "/verify-confirm";
                             }, 2500);
                         } else {
                             if (response.errors) {
