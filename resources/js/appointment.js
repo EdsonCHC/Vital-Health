@@ -191,25 +191,40 @@ $(document).ready(function () {
     }
 
     function fillCalendarGrid(calendarGrid, startDay, totalDays, date) {
+        const today = new Date(); // Current date
+    
         for (let i = 0; i < startDay; i++) {
-            calendarGrid.appendChild(createCalendarDay(""));
+            calendarGrid.appendChild(createCalendarDay("", true));
         }
-
+    
         for (let day = 1; day <= totalDays; day++) {
             const dayElement = createCalendarDay(day);
-            dayElement.addEventListener("click", () =>
-                handleDayClick(day, date, dayElement)
-            );
+            const currentDate = new Date(date.getFullYear(), date.getMonth(), day);
+    
+            // Disable past dates
+            if (currentDate < today) {
+                dayElement.classList.add("bg-gray-300", "cursor-not-allowed", "opacity-50");
+                dayElement.removeEventListener("click", () => handleDayClick(day, date, dayElement));
+            } else {
+                dayElement.addEventListener("click", () => handleDayClick(day, date, dayElement));
+            }
+    
             calendarGrid.appendChild(dayElement);
         }
     }
-
-    function createCalendarDay(content) {
+    
+    function createCalendarDay(content, isDisabled = false) {
         const dayElement = document.createElement("div");
         dayElement.className = "text-center p-2 cursor-pointer calendar-day";
         dayElement.textContent = content;
+    
+        if (isDisabled) {
+            dayElement.classList.add("bg-gray-300", "cursor-not-allowed", "opacity-50");
+        }
+    
         return dayElement;
     }
+    
 
     function handleDayClick(day, date, dayElement) {
         document
