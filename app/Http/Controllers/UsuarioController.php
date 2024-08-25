@@ -134,7 +134,9 @@ class UsuarioController extends Controller
         }
 
         if ($request->hasFile('img')) {
-            $imagePath = $request->file('img')->store('profile_images', 'public');
+            $image = $request->file('img');
+            $imagePath = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('profile_images', $imagePath, 'public');
         } else {
             $imagePath = null;
         }
