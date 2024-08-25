@@ -188,90 +188,114 @@ $(document).ready(function () {
         });
     });
 
-    // Maneja la actualizacion del expediente
-    $(".update-file").click(function () {
-        const expedienteId = $(this).data("expediente-id"); // Obtén el ID del expediente desde el atributo data
+    // Maneja la actualización del expediente
+    $(".unassignedFile").click(function () {
+        const fileId = $(this).data("id");
+        const patientId = $(this).data("patient-id"); // Obtener patient_id del botón
 
         Swal.fire({
-            title: "Actualizar Expediente",
-            html: `
-                <form id="update-form-1" class="space-y-4 p-4 bg-white">
-                    <h3 class="text-lg font-semibold">Datos del Paciente</h3>
-                    <div class="form-group">
-                        <label for="patient_name">Nombre:</label>
-                        <input type="text" id="patient_name" name="patient_name" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="patient_email">Correo:</label>
-                        <input type="email" id="patient_email" name="patient_email" class="form-control">
-                    </div>
-                </form>
-                <form id="update-form-2" class="space-y-4 p-4 bg-white hidden">
-                    <h3 class="text-lg font-semibold">Exámenes</h3>
-                    <div class="form-group">
-                        <label for="exam_type">Tipo de Examen:</label>
-                        <input type="text" id="exam_type" name="exam_type" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="exam_date">Fecha del Examen:</label>
-                        <input type="date" id="exam_date" name="exam_date" class="form-control">
-                    </div>
-                </form>
-                <form id="update-form-3" class="space-y-4 p-4 bg-white hidden">
-                    <h3 class="text-lg font-semibold">Citas</h3>
-                    <div class="form-group">
-                        <label for="cita_description">Descripción:</label>
-                        <input type="text" id="cita_description" name="cita_description" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="cita_date">Fecha de la Cita:</label>
-                        <input type="date" id="cita_date" name="cita_date" class="form-control">
-                    </div>
-                </form>
-            `,
+            title: "Deshabilitar Expediente",
+            text: "¿Estás seguro de que deseas deshabilitar el expediente del paciente?",
+            icon: "warning",
             showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Sí, deshabilitar",
             cancelButtonText: "Cancelar",
-            didOpen: () => {
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const _token = $('meta[name="csrf-token"]').attr("content");
+
                 $.ajax({
-                    url: `/files_doc/${expedienteId}`, // Asegúrate de que la URL sea correcta
-                    type: "GET",
+                    url: `/files_doc/${fileId}`,
+                    type: "PUT",
                     headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                            "content"
-                        ),
+                        "X-CSRF-TOKEN": _token,
+                    },
+                    data: {
+                        patient_id: patientId, // Enviar el patient_id al controlador
+                        state: "1", // Cambiar el estado a "0" como cadena
                     },
                     success(response) {
                         if (response.success) {
-                            $("#patient_name").val(
-                                response.expediente.patient.name
+                            Swal.fire(
+                                "Expediente deshabilitado",
+                                "",
+                                "success"
                             );
-                            $("#patient_email").val(
-                                response.expediente.patient.mail
-                            );
-                            // Asigna más datos según sea necesario
+                            // Actualiza el HTML si es necesario
                         } else {
                             Swal.fire(
-                                "Error al cargar los datos",
+                                "Error al deshabilitar el expediente",
                                 response.message ||
-                                    "No se pudieron cargar los datos del expediente",
+                                    "No se pudo deshabilitar el expediente",
                                 "error"
                             );
                         }
                     },
-                    error(xhr) {
-                        console.log("Código de estado:", xhr.status);
-                        console.log(
-                            "Respuesta del servidor:",
-                            xhr.responseText
-                        );
+                    error(response) {
+                        console.log(response); // Para depuración
                         Swal.fire(
-                            "Error al cargar los datos",
-                            "No se pudieron cargar los datos del expediente",
+                            "Error al deshabilitar el expediente",
+                            "No se pudo deshabilitar el expediente",
                             "error"
                         );
                     },
                 });
-            },
+            }
+        });
+    });
+
+    $(".assignFile").click(function () {
+        const fileId = $(this).data("id");
+        const patientId = $(this).data("patient-id"); // Obtener patient_id del botón
+
+        Swal.fire({
+            title: "Habilitar Expediente",
+            text: "¿Estás seguro de que deseas habilitar el expediente del paciente?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#00c04b",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Sí, habilitar",
+            cancelButtonText: "Cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const _token = $('meta[name="csrf-token"]').attr("content");
+
+                $.ajax({
+                    url: `/files_doc/${fileId}`,
+                    type: "PUT",
+                    headers: {
+                        "X-CSRF-TOKEN": _token,
+                    },
+                    data: {
+                        patient_id: patientId, // Enviar el patient_id al controlador
+                        state: "0", // Cambiar el estado a "1" como cadena
+                    },
+                    success(response) {
+                        if (response.success) {
+                            Swal.fire("Expediente habilitado", "", "success");
+                            // Actualiza el HTML si es necesario
+                        } else {
+                            Swal.fire(
+                                "Error al habilitar el expediente",
+                                response.message ||
+                                    "No se pudo habilitar el expediente",
+                                "error"
+                            );
+                        }
+                    },
+                    error(response) {
+                        console.log(response); // Para depuración
+                        Swal.fire(
+                            "Error al habilitar el expediente",
+                            "No se pudo habilitar el expediente",
+                            "error"
+                        );
+                    },
+                });
+            }
         });
     });
 
@@ -294,56 +318,6 @@ $(document).ready(function () {
 
                 $.ajax({
                     url: `/files_doc/${fileId}`,
-                    type: "DELETE",
-                    headers: {
-                        "X-CSRF-TOKEN": _token,
-                    },
-                    success(response) {
-                        if (response.success) {
-                            Swal.fire("Expediente eliminado", "", "success");
-                            // Actualiza el HTML si es necesario
-                        } else {
-                            Swal.fire(
-                                "Error al eliminar el expediente",
-                                response.message ||
-                                    "No se pudo eliminar el expediente",
-                                "error"
-                            );
-                        }
-                    },
-                    error(xhr) {
-                        console.log(xhr); // Para depuración
-                        Swal.fire(
-                            "Error al eliminar el expediente",
-                            "No se pudo eliminar el expediente",
-                            "error"
-                        );
-                    },
-                });
-            }
-        });
-    });
-
-    // Admin
-    // Maneja la creacion del expediente y del usuario
-    $(".deleteFileAd").click(function () {
-        const fileId = $(this).data("id");
-
-        Swal.fire({
-            title: "Eliminar Expediente",
-            text: "¿Estás seguro de que deseas eliminar este expediente?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#d33",
-            cancelButtonColor: "#3085d6",
-            confirmButtonText: "Sí, eliminar",
-            cancelButtonText: "Cancelar",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const _token = $('meta[name="csrf-token"]').attr("content");
-
-                $.ajax({
-                    url: `/records/${fileId}`,
                     type: "DELETE",
                     headers: {
                         "X-CSRF-TOKEN": _token,

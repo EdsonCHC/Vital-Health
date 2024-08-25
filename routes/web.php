@@ -157,7 +157,7 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::delete('/citas/{cita_id}/exams/{id}', [ExamController::class, 'destroy']);
     //
     //
-    // Info pages
+    // Mediciona
     Route::view('/allocation', 'doctor.allocation');
     //
     Route::get('/medicine_doc', [recetaController::class, 'getRecetas'])->name('doctor.medicine_doc');
@@ -198,7 +198,7 @@ Route::middleware('auth:admin')->group(function () {
     //
     Route::put('/categorias/{id}/suspend', [CategoríaController::class, 'suspend'])->name('categorias.suspend');
     //
-    Route::delete('/records/{id}', [CategoríaController::class, 'deleteFile'])->name('record.delete');
+    Route::delete('/records/{id}', [CategoríaController::class, 'deleteUser'])->name('record.delete');
     //
     Route::resource('categorias', CategoríaController::class);
     //

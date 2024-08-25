@@ -13,11 +13,12 @@ use App\Models\citas;
 use App\Models\Expedientes;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 
 class UsuarioController extends Controller
@@ -49,12 +50,11 @@ class UsuarioController extends Controller
             ->where('patient_id', $userId)
             ->get();
 
-        $expedientes = Expedientes::where('patient_id', $userId)
-            ->get();
+        $expedientes = Expedientes::where('patient_id', $userId)->get();
+
 
         return view('app.user_info', compact('user', 'citas', 'exams', 'recetas', 'expedientes'));
     }
-
 
     public function generatePdf()
     {
@@ -82,12 +82,11 @@ class UsuarioController extends Controller
             'exams' => $exams,
             'recetas' => $recetas,
             'user' => $user
-        ]); 
+        ]);
 
         // Devuelve el PDF como una descarga
         return $pdf->download('Expediente.pdf');
     }
-
 
     public function citasPaciente(Request $request)
     {
@@ -155,6 +154,20 @@ class UsuarioController extends Controller
                 ], 500);
             }
 
+            // Crear expediente relacionado al usuario (paciente)
+            $expediente = Expedientes::create([
+                'patient_id' => $user->id, // Relaciona el expediente con el paciente
+            ]);
+
+            if (!$expediente) {
+                DB::rollBack(); // Revertir transacción en caso de fallo
+                return response()->json([
+                    'message' => 'Error al crear el expediente',
+                ], 500);
+            }
+
+            DB::commit(); // Confirmar la transacción si todo sale bien
+
             Auth::login($user);
 
             return response()->json([
@@ -217,27 +230,18 @@ class UsuarioController extends Controller
         }
     }
 
-    public function update(Request $request, Usuario $user)
+    public function update(Request $request)
     {
         try {
             $request->validate([
-                'name' => 'required|string|max:255',
-                'lastName' => 'required|string|max:255',
-                'gender' => 'required|string|max:50',
-                'birth' => 'required|date',
                 'mail' => 'required|email|max:255',
                 'address' => 'required|string|max:255',
             ]);
 
             $user = Auth::user();
             $user->update($request->only([
-                'name',
-                'lastName',
-                'gender',
-                'birth',
                 'mail',
-                'address',
-                'blood'
+                'address'
             ]));
 
             return response()->json([
@@ -251,6 +255,8 @@ class UsuarioController extends Controller
             ], 400);
         }
     }
+
+
 
     public function updateImage(Request $request)
     {

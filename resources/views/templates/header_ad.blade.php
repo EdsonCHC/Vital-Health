@@ -29,9 +29,9 @@
                         class="flex flex-grow items-center ml-14 h-14 rounded-l-3xl transition duration-300 hover:bg-white">
                         <a href="{{ route('categorias.records', ['id' => $categoria->id]) }}"
                             class="flex items-center h-full w-full text-md font-bold text-white hover:text-black tracking-wider">
-                            <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/doc-icon-black.svg') }}"
+                            <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/user.svg') }}"
                                 alt="Expedientes" />
-                            <span class="">Expedientes</span>
+                            <span class="">Pacientes</span>
                         </a>
                     </div>
                     <div

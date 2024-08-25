@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Categoría;
 use App\Models\Expedientes;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 
@@ -72,9 +73,9 @@ class CategoríaController extends Controller
             return redirect()->back()->with('error', 'La categoría no existe.');
         }
 
-        $expedientes = Expedientes::all();
+        $users = Usuario::all();
 
-        return view('admin.records', compact('categoria', 'expedientes'));
+        return view('admin.records', compact('categoria', 'users'));
     }
 
     public function showAd_chats($id)
@@ -161,24 +162,24 @@ class CategoríaController extends Controller
         }
     }
 
-    public function deleteFile($id)
+    public function deleteUser($id)
     {
         try {
-            // Encontrar el expediente por ID
-            $expediente = Expedientes::findOrFail($id);
+            // Encontrar el paciente por ID
+            $users = Usuario::findOrFail($id);
 
-            // Eliminar el expediente
-            $expediente->delete();
+            // Eliminar el paciente
+            $users->delete();
 
             return response()->json([
                 'success' => true,
-                'message' => 'Expediente eliminado correctamente'
+                'message' => 'Paciente eliminado correctamente'
             ]);
         } catch (\Exception $e) {
             // Manejar la excepción y retornar error
             return response()->json([
                 'success' => false,
-                'message' => 'No se pudo eliminar el expediente. ' . $e->getMessage()
+                'message' => 'No se pudo eliminar el paciente. ' . $e->getMessage()
             ], 500);
         }
     }

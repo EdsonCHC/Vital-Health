@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('expedientes', function (Blueprint $table) {
             $table->id();
             $table->string('pdf_path')->nullable();
+            $table->string('state')->default('0');
 
-            $table->foreignId('doctor_id')->nullable()->constrained('doctors')->onDelete('set null');
             $table->foreignId('patient_id')->nullable()->constrained('patients')->onDelete('set null');
             $table->timestamps();
         });

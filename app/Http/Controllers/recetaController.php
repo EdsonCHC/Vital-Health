@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Log;
 use App\Models\RecetaMedicina;
 
@@ -65,7 +66,7 @@ class recetaController extends BaseController
             // Actualizar el stock de medicamentos
             foreach ($receta->medicinas as $medicina) {
                 Medicina::where('id', $medicina->id)
-                        ->increment('stock', $receta->medicinas->find($medicina->id)->pivot->cantidad);
+                    ->increment('stock', $receta->medicinas->find($medicina->id)->pivot->cantidad);
             }
 
             // Eliminar la receta
@@ -84,25 +85,27 @@ class recetaController extends BaseController
         return view('recetas.create', compact('medicinas'));
     }
 
-   
+
 
     public function searchPatients(Request $request)
     {
         $query = $request->input('query');
         $patients = Usuario::where('name', 'LIKE', "%{$query}%")
-                            ->orWhere('mail', 'LIKE', "%{$query}%")
-                            ->get();
+            ->orWhere('mail', 'LIKE', "%{$query}%")
+            ->get();
         return response()->json($patients);
     }
-    
-    
+
+
     public function getRecetas()
     {
-        $doctorId = auth()->user()->id; 
-    
+        $doctorId = auth()->user()->id;
+
+        $medicinas = Medicina::all();
+
         $recetas = Receta::where('doctor_id', $doctorId)->get();
-        
-        return view('doctor.medicine_doc', compact('recetas'));
+
+        return view('doctor.medicine_doc', compact('recetas','medicinas'));
     }
 
 

@@ -75,35 +75,15 @@ $(document).ready(function () {
     $("#save").click((e) => {
         e.preventDefault();
 
-        const name = $("input[name='name']").val();
-        const lastName = $("input[name='lastName']").val();
+        const mail = $("input[name='mail']").val();
         const address = $("input[name='address']").val();
 
-        // Front-End Validation
-        if (/\s/.test(name) || /\s/.test(lastName)) {
+        // Validación básica
+        if (!mail || !address) {
             Swal.fire({
                 title: "Error",
                 icon: "error",
-                text: "El nombre y el apellido no pueden contener espacios.",
-            });
-            return;
-        }
-
-        if (/[^a-zA-Z\s]/.test(name) || /[^a-zA-Z\s]/.test(lastName)) {
-            Swal.fire({
-                title: "Error",
-                icon: "error",
-                text: "El nombre y el apellido no pueden contener números, comillas, o comas.",
-            });
-            return;
-        }
-
-        // Validate address for forbidden patterns
-        if (/script|sql/gi.test(address)) {
-            Swal.fire({
-                title: "Error",
-                icon: "error",
-                text: "La dirección no puede contener palabras reservadas como 'script' o 'sql'.",
+                text: "El correo y la dirección son requeridos.",
             });
             return;
         }
@@ -116,12 +96,14 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 const formData = $("#user_form").serializeArray();
-                const sanitizedData = sanitizeFormData(formData);
+
+                // Verifica los datos de formData
+                console.log("Datos enviados:", formData);
 
                 $.ajax({
                     url: "/user/update",
                     type: "PUT",
-                    data: sanitizedData,
+                    data: formData,
                     success(response) {
                         if (response.success) {
                             Swal.fire({
@@ -139,13 +121,16 @@ $(document).ready(function () {
                         Swal.fire({
                             title: "Error al actualizar la información",
                             icon: "error",
-                            text: "No se permiten caracteres extraños.",
+                            text: "No se pudieron guardar los cambios.",
                         });
                     },
                 });
             } else {
-                $(".text-input").attr("readonly", true);
-                $("#save, #cancel_button").addClass("hidden");
+                $("input[name='mail']").attr("readonly", true);
+                $("input[name='address']").attr("readonly", true);
+
+                $("#save").addClass("hidden");
+                $("#cancel_button").addClass("hidden");
                 $("#edit").removeClass("hidden");
             }
         });

@@ -20,6 +20,6 @@ class Medicina extends Model
     public function recetas()
     {
         return $this->belongsToMany(Receta::class, 'receta_medicina')
-                    ->withPivot('cantidad');
+            ->withPivot('cantidad');
     }
 }

@@ -18,22 +18,19 @@ class ExpedienteTableSeeder extends Seeder
         // No funicona pero no me da cabeza ahorita
         $expediente = [
             [
-                
-                'doctor_id' => 1,
+                'state' => '0',
                 'patient_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                
-                'doctor_id' => 2,
+                'state' => '0',
                 'patient_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                
-                'doctor_id' => 2,
+                'state' => '1',
                 'patient_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),

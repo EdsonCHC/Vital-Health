@@ -16,14 +16,10 @@ class Expedientes extends Model
 
     protected $fillable = [
 
-        'doctor_id',
+        'pdf_path',
+        'state',
         'patient_id',
     ];
-
-    public function doctor()
-    {
-        return $this->belongsTo(Doctor::class);
-    }
 
     public function patient()
     {

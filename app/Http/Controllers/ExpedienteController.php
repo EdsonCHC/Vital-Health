@@ -168,20 +168,16 @@ class ExpedienteController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            // Validar los datos de la solicitud
             $request->validate([
-                // Agrega las reglas de validación aquí según tus necesidades
                 'patient_id' => 'required|exists:patients,id',
-                // Otros campos que puedes necesitar
+                'state' => 'required|in:0,1' // Asegúrate de que el estado sea 0 o 1
             ]);
 
-            // Encontrar el expediente por ID
             $expediente = Expedientes::findOrFail($id);
 
-            // Actualizar los campos
             $expediente->update([
-                'patient_id' => $request->input('patient_id'),
-                // Actualiza otros campos si es necesario
+                'state' => $request->input('state'),
+                // No actualices patient_id aquí
             ]);
 
             return response()->json([
@@ -190,7 +186,6 @@ class ExpedienteController extends Controller
                 'expediente' => $expediente
             ]);
         } catch (\Exception $e) {
-            // Manejar la excepción y retornar error
             return response()->json([
                 'success' => false,
                 'message' => 'No se pudo actualizar el expediente. ' . $e->getMessage()
