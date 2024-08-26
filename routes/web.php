@@ -228,7 +228,7 @@ Route::fallback(function () {
 Route::post('/generate-pdf', [pdfController::class, 'generatePDF']);
 
 //-- EMAIL VERIFICATION--//
-Route::get('/verify-email/{id}/{token}', [VerificationController::class, 'verify'])->name('verification.verify');
+Route::get('/verify-email/{id}/{token}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware('signed');
 
 Route::get('/verify-confirm',  [UsuarioController::class, 'showRegistrationConfirmation'] )->name('verify.confirm');
 
