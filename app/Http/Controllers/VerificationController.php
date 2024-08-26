@@ -11,11 +11,11 @@ use App\Models\Usuario;
 
 class VerificationController extends Controller
 {
-    public function verify($id, $token)
+    public function verify(Request $request, $id, $token)
     {
         $user = Usuario::findOrFail($id);
 
-        if (URL::hasValidSignature(request())) {
+        if (URL::hasValidSignature($request)) {
             if ($user->email_verification_token === $token) {
                 // Verifica el correo
                 $user->email_verified_at = now();
