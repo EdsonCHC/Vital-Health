@@ -28,12 +28,13 @@ class CitaController extends Controller
     {
         $appointments = Citas::with(['patient', 'category'])
             ->where('doctor_id', $doctorId)
-            ->where('state', 0)
+            ->where('state', 0) 
             ->get();
-
+    
         return response()->json($appointments);
     }
-
+    
+    
     public function eliminar($id)
     {
         try {

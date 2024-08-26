@@ -23,7 +23,6 @@ extends Seeder
      */
     public function run(): void
     {
-
         // Crear pacientes de ejemplo
         $patients = [
             [
@@ -34,7 +33,7 @@ extends Seeder
                 'gender' => 'male',
                 'birth' => '1989-12-22',
                 'blood' => 'O+',
-                'email_verification_token' => 'test_google_verification_token_123',
+                'email_verification_token' => null,
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('pass123'),
                 'created_at' => Carbon::now(),
@@ -48,7 +47,7 @@ extends Seeder
                 'gender' => 'female',
                 'birth' => '1990-05-15',
                 'blood' => 'A-',
-                'email_verification_token' => 'test_google_verification_token_456',
+                'email_verification_token' => null,
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('pass456'),
                 'created_at' => Carbon::now(),
@@ -62,7 +61,7 @@ extends Seeder
                 'gender' => 'male',
                 'birth' => '2000-05-15',
                 'blood' => 'B-',
-                'email_verification_token' => 'test_google_verification_token_789',
+                'email_verification_token' => null,
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('pass789'),
                 'created_at' => Carbon::now(),

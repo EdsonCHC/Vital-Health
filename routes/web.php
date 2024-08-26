@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/service/{id}', [ServiceController::class, 'show'])->name('service');
     //
     Route::get('/area', [CategoríaController::class, 'filtrarYCategorias'])->name('categorias.filtrar');
-
+    //
     //User
     // 
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
@@ -228,7 +228,7 @@ Route::fallback(function () {
 Route::post('/generate-pdf', [pdfController::class, 'generatePDF']);
 
 //-- EMAIL VERIFICATION--//
-Route::get('/verify-email/{id}/{token}', [VerificationController::class, 'verify'])->name('verification.verify');
+Route::get('/verify-email/{id}/{token}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware('signed');
 
 Route::get('/verify-confirm',  [UsuarioController::class, 'showRegistrationConfirmation'] )->name('verify.confirm');
 

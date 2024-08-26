@@ -21,6 +21,8 @@ class Doctor extends Authenticatable
         'mail',
         'password',
         'role',
+        'homeworks',
+        'notes',
         'category_id',
     ];
 

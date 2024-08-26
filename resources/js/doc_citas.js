@@ -237,20 +237,20 @@ $(document).ready(function () {
 
 
 
-// Función para mostrar exámenes en el modal
+    // Función para mostrar exámenes en el modal
 
 
-// Función para mostrar exámenes en el modal
+    // Función para mostrar exámenes en el modal
 
 
-// Manejar el clic en el botón "Añadir Medicina"
-$(document).on("click", ".add-medicina-btn", function () {
-    const id = $(this).data("id");
-    const nombre = $(this)
-        .closest(".medicina-item")
-        .find(".medicina-nombre")
-        .text();
-    const item = `
+    // Manejar el clic en el botón "Añadir Medicina"
+    $(document).on("click", ".add-medicina-btn", function () {
+        const id = $(this).data("id");
+        const nombre = $(this)
+            .closest(".medicina-item")
+            .find(".medicina-nombre")
+            .text();
+        const item = `
             <li class="flex items-center justify-between p-2 border border-gray-200 rounded-md bg-white">
                 <span>${escapeHtml(nombre)}</span>
                 <input type="hidden" name="medicinas[][id]" value="${id}">
@@ -258,68 +258,86 @@ $(document).on("click", ".add-medicina-btn", function () {
                 <button type="button" class="remove-medicina-btn ml-2 bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-600">Eliminar</button>
             </li>
         `;
-    $("#selected-medicinas-list").append(item);
-});
-
-// Manejar el clic en el botón "Eliminar Medicina"
-$(document).on("click", ".remove-medicina-btn", function () {
-    $(this).closest("li").remove();
-});
-
-// Manejar el clic en el botón "Generar Código"
-$(document).on("click", "#generate-code", function () {
-    const code = generateRandomCode();
-    $("#codigo-receta").text(`Código: ${code}`);
-    $("#receta-form").append(
-        `<input type="hidden" name="codigo_receta" value="${code}">`
-    );
-});
-
-function generateRandomCode() {
-    return "RC-" + Math.random().toString(36).substr(2, 9).toUpperCase();
-}
-
-function escapeHtml(text) {
-    const map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;'
-    };
-    return text.replace(/[&<>"']/g, function (m) { return map[m]; });
-}
-
-// Mostrar citas históricas
-$('#show-citas').click(function () {
-    let doctorId = 1;
-
-    $.ajax({
-        url: `/historical-appointments/${doctorId}`,
-        method: 'GET',
-        success: function (response) {
-            if (response.length === 0) {
-                Swal.fire('Sin Historial', 'No se encuentran citas.', 'info');
-                return;
-            }
-
-            let citasHtml = response.map(cita => `
-                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                        <p><strong>Paciente:</strong> ${escapeHtml(cita.patient.name)} ${escapeHtml(cita.patient.lastName)}</p>
-                        <p><strong>Fecha:</strong> ${escapeHtml(cita.date)}</p>
-                        <p><strong>Hora:</strong> ${escapeHtml(cita.hour)}</p>
-                    </div>
-                `).join('');
-
-            Swal.fire({
-                title: 'Citas Terminadas',
-                html: citasHtml,
-                confirmButtonText: 'Cerrar',
-            });
-        },
-        error: function () {
-            Swal.fire('Error', 'Hubo un error al obtener las citas.', 'error');
-        }
+        $("#selected-medicinas-list").append(item);
     });
+
+    // Manejar el clic en el botón "Eliminar Medicina"
+    $(document).on("click", ".remove-medicina-btn", function () {
+        $(this).closest("li").remove();
+    });
+
+    // Manejar el clic en el botón "Generar Código"
+    $(document).on("click", "#generate-code", function () {
+        const code = generateRandomCode();
+        $("#codigo-receta").text(`Código: ${code}`);
+        $("#receta-form").append(
+            `<input type="hidden" name="codigo_receta" value="${code}">`
+        );
+    });
+
+    function generateRandomCode() {
+        return "RC-" + Math.random().toString(36).substr(2, 9).toUpperCase();
+    }
+
+    function escapeHtml(text) {
+        const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return text.replace(/[&<>"']/g, function (m) { return map[m]; });
+    }
+
+    $(document).ready(function() {
+        $('#show-citas').click(function (event) {
+            event.preventDefault(); 
+    
+            var doctorId = $(this).data('doctor-id'); 
+    
+            $.ajax({
+                url: `/historical-appointments/${doctorId}`,
+                method: 'GET',
+                success: function (response) {
+                    if (response.length === 0) {
+                        Swal.fire('Sin Historial', 'No se encuentran citas.', 'info');
+                        return;
+                    }
+    
+                    function escapeHtml(text) {
+                        var map = {
+                            '&': '&amp;',
+                            '<': '&lt;',
+                            '>': '&gt;',
+                            '"': '&quot;',
+                            "'": '&#039;'
+                        };
+                        return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+                    }
+    
+                    let citasHtml = response.map(cita => `
+                        <div style="margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                            <p><strong>Paciente:</strong> ${escapeHtml(cita.patient.name)} ${escapeHtml(cita.patient.lastName)}</p>
+                            <p><strong>Fecha:</strong> ${escapeHtml(cita.date)}</p>
+                            <p><strong>Hora:</strong> ${escapeHtml(cita.hour)}</p>
+                        </div>
+                    `).join('');
+    
+                    Swal.fire({
+                        title: 'Citas Terminadas',
+                        html: citasHtml,
+                        confirmButtonText: 'Cerrar',
+                    });
+                },
+                error: function () {
+                    Swal.fire('Error', 'Hubo un error al obtener las citas.', 'error');
+                }
+            });
+        });
+    });
+    
+
 });
-});
+
+

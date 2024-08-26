@@ -7,15 +7,15 @@ $(document).ready(function () {
     // Usuario
     // Maneja el guardado del expediente
     $(".saveFileUser").click(function () {
-        const pdf_url = "/generate-pdf"; // URL de tu PDF configurada para descarga
+        const pdf_url = "/generate-pdf";
 
         Swal.fire({
-            title: "Resultado del expediente",
+            title: "Resultado de mi Expediente",
             html: `
         <div class="flex flex-col items-center justify-center w-full h-full">
             <canvas id="qr_code"></canvas>
             <br>
-            <a id="download_pdf" href="${pdf_url}" download="expediente.pdf">Descargar PDF</a>
+            <a id="download_pdf" href="${pdf_url}" download="Expediente.pdf" class="text-blue-500 underline mt-4">Descargar PDF</a>
         </div>
         `,
             showConfirmButton: false,
@@ -24,7 +24,6 @@ $(document).ready(function () {
             didOpen: () => {
                 const qrCodeCanvas = document.getElementById("qr_code");
 
-                // Generar el código QR en el canvas
                 QRCode.toCanvas(
                     qrCodeCanvas,
                     pdf_url,
@@ -41,14 +40,17 @@ $(document).ready(function () {
     // Doctor
     // Maneja la creacion del expediente y del usuario
     $(".saveFileDoc").click(function () {
-        const pdf_url = "/generate-pdf-Doc";
+        const patientId = $(this).data("patient-id");
+        const pdf_url = `/generate-pdf-doc?patient_id=${patientId}`;
+        console.log(patientId);
+
         Swal.fire({
-            title: "Resultado del expediente",
+            title: "Expediente del Paciente",
             html: `
         <div class="flex flex-col items-center justify-center w-full h-full">
             <canvas id="qr_code"></canvas>
             <br>
-            <a id="download_pdf" href="${pdf_url}" download="expediente.pdf">Descargar PDF</a>
+            <a id="download_pdf" href="${pdf_url}" download="expediente_${patientId}.pdf" class="text-blue-500 underline mt-4">Descargar PDF</a>
         </div>
         `,
             showConfirmButton: false,
@@ -57,6 +59,7 @@ $(document).ready(function () {
             didOpen: () => {
                 const qrCodeCanvas = document.getElementById("qr_code");
 
+                // Generar el código QR en el canvas
                 QRCode.toCanvas(
                     qrCodeCanvas,
                     pdf_url,
@@ -88,39 +91,60 @@ $(document).ready(function () {
                     .getElementById("register")
                     .addEventListener("click", () => {
                         Swal.fire({
-                            title: "Crear Usuario",
+                            title: "Crear un Usuario",
                             html: `
-                    <form id="register-form" class="space-y-4 p-4 bg-white">
-                        <input type="text" id="name" placeholder="Nombre" class="form-input w-full" required>
-                        <input type="text" id="lastName" placeholder="Apellido" class="form-input w-full" required>
-                        <input type="email" id="mail" placeholder="Email" class="form-input w-full" required>
-                        <input type="text" id="address" placeholder="Dirección" class="form-input w-full" required>
-                        <label for="gender" class="block text-sm font-medium text-gray-700">Género:</label>
-                        <select id="gender" class="form-select w-full" required>
-                            <option value="">Seleccionar género</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="femenino">Femenino</option>
-                            <option value="otro">Otro</option>
-                        </select>
-                        <section id="blood-section" class="space-y-2">
-                            <label for="blood" class="block text-sm font-medium text-gray-700">Tipo de sangre:</label>
-                            <select id="blood" class="form-select w-full" required>
-                                <option value="">Seleccionar tipo de sangre</option>
-                                <option value="A+">A+</option>
-                                <option value="A-">A-</option>
-                                <option value="B+">B+</option>
-                                <option value="B-">B-</option>
-                                <option value="AB+">AB+</option>
-                                <option value="AB-">AB-</option>
-                                <option value="O+">O+</option>
-                                <option value="O-">O-</option>
-                            </select>
-                        </section>
-                        <label for="birth" class="block text-sm font-medium text-gray-700">Fecha de nacimiento:</label>
-                        <input type="date" id="birth" class="form-input w-full" required>
-                        <input type="password" id="password" placeholder="Contraseña" class="form-input w-full" required>
-                    </form>
-                `,
+                            <form id="register-form" class="space-y-4 p-4 bg-white text-left">
+                                <label class="block">
+                                    <span class="text-lg font-semibold">Nombre</span>
+                                    <input type="text" id="name" name="name"
+                                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                                </label>
+                                <label class="block">
+                                    <span class="text-lg font-semibold">Apellido</span>
+                                    <input type="text" id="lastName" name="lastName"
+                                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                                </label>
+                                <label class="block">
+                                    <span class="text-lg font-semibold">Correo Electronico</span>
+                                    <input type="email" id="mail"
+                                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                                </label>
+                                <label class="block">
+                                    <span class="text-lg font-semibold">Dirección</span>
+                                    <input type="text" id="address"
+                                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                                </label>
+                                <label for="gender" class="block text-lg font-semibold mt-4">Género
+                                    <select id="gender" class="form-select w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" required>
+                                        <option value="masculino">Masculino</option>
+                                        <option value="femenino">Femenino</option>
+                                        <option value="otro">Otro</option>
+                                    </select>
+                                </label>
+                                <label for="blood" class="block text-lg font-semibold">Tipo de sangre
+                                    <select id="blood" class="form-select w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" required>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                    </select>
+                                </label>
+                                <label class="block">
+                                    <span class="text-lg font-semibold">Fecha de Nacimiento</span>
+                                    <input type="date" id="birth"
+                                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                                </label>
+                                <label class="block">
+                                    <span class="text-lg font-semibold">Contraseña</span>
+                                    <input type="password" id="password"
+                                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                                </label>
+                            </form>
+                            `,
                             showCancelButton: true,
                             cancelButtonText: "Cancelar",
                             confirmButtonText: "Registrar",

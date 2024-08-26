@@ -1,47 +1,57 @@
-document.getElementById("show_llamadas").addEventListener("click", function () {
-    // Simulación de datos de llamadas (reemplaza con tus datos reales)
-    const llamadas = [
-        { date: "2023-05-27", roomName: "Sala1", patientName: "Juan José" },
-        // Agrega más llamadas aquí...
-    ];
+document.addEventListener("DOMContentLoaded", function () {
+    const currentMonthElement = document.getElementById("currentMonth");
+    const calendarElement = document.getElementById("calendar");
+    const prevMonthButton = document.getElementById("prevMonth");
+    const nextMonthButton = document.getElementById("nextMonth");
 
-    // Obtén el contenedor donde se mostrarán las llamadas
-    const llamadasContainer = document.getElementById("llamadas-container");
+    let currentDate = new Date();
 
-    // Limpia el contenedor antes de agregar las llamadas
-    llamadasContainer.innerHTML = "";
+    function renderCalendar() {
+        const month = currentDate.getMonth();
+        const year = currentDate.getFullYear();
 
-    // Itera sobre las llamadas y crea elementos para mostrarlas
-    llamadas.forEach((llamada) => {
-        const llamadaElement = document.createElement("div");
-        llamadaElement.className =
-            "w-76 h-36 m-4 bg-vh-gray-light rounded-lg flex";
-        llamadaElement.innerHTML = `
-                <!-- Detalles de la llamada -->
-                <div class="m-4">
-                    <span class="flex justify-center font-semibold text-white text-lg">
-    {{ \Carbon\Carbon::parse($videollamada->date)->format('d M') }}
-</span>
+        currentMonthElement.textContent = currentDate.toLocaleDateString(
+            "es-ES",
+            {
+                month: "long",
+                year: "numeric",
+            }
+        );
 
-                    <div class="w-20 h-6 content-center items-center bg-vh-green-light rounded-md">
-                        <a class="flex justify-center hover:bg-white font-semibold transition duration-300"
-                            href="/videollamada?roomName=${llamada.roomName}">
-                            Unirse
-                        </a>
-                    </div>
-                </div>
-                <!-- Detalles del paciente -->
-                <div class="flex flex-col my-auto">
-                    <h3 class="font-bold text-xl">Reunión</h3>
-                    <p class="text-emerald-500 text-lg">Paciente: ${llamada.patientName}</p>
-                </div>
-                <!-- Botón para eliminar -->
-                <div class="ml-auto">
-                    <button class="m-4 bg-white rounded-md shadow-lg">
-                        <img src="/storage/svg/trash.svg" alt="chat" class="w-12 p-1">
-                    </button>
-                </div>
-            `;
-        llamadasContainer.appendChild(llamadaElement);
+        calendarElement.innerHTML = "";
+
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
+        const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
+
+        for (let i = 0; i < firstDayOfMonth; i++) {
+            calendarElement.innerHTML += `<div class="py-2"></div>`;
+        }
+
+        for (let day = 1; day <= lastDateOfMonth; day++) {
+            calendarElement.innerHTML += `
+                        <div class="py-2 cursor-pointer rounded-lg hover:bg-vh-green hover:text-white transition duration-300">${day}</div>`;
+        }
+
+        const days = calendarElement.querySelectorAll("div");
+        days.forEach((day) => {
+            day.addEventListener("click", () => {
+                days.forEach((d) =>
+                    d.classList.remove("bg-vh-green", "text-white")
+                );
+                day.classList.add("bg-vh-green", "text-white");
+            });
+        });
+    }
+
+    prevMonthButton.addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar();
     });
+
+    nextMonthButton.addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+    });
+
+    renderCalendar();
 });
