@@ -117,26 +117,20 @@
                 @if ($doctors->isEmpty())
                     <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
                         <h2 class="text-lg font-bold mb-2 text-vh-green">Alonso</h2>
-                        <p class="text-sm font-bold text-gray-400 mt-2">Cardio</p>
-                        <p class="text-md text-justify text-vh-green block leading-7">Lorem ipsum dolor sit amet
-                            consectetur adipisicing elit. Et esse a culpa aut autem porro quos labore sed temporibus
-                            vitae quod dicta nobis, repudiandae, dolor alias dignissimos cumque. Excepturi, inventore?
+                        <p class="text-sm font-bold text-gray-400 mt-2">Cardiologo</p>
+                        <p class="text-md text-justify text-vh-green block leading-7">El Dr. Alonso Martínez es un destacado cardiólogo con más de 15 años de experiencia en el diagnóstico y tratamiento de enfermedades cardíacas. Su enfoque integral y personalizado le permite ofrecer atención de alta calidad a cada paciente, utilizando tecnología avanzada y las últimas investigaciones en cardiología.
                         </p>
                     </div>
                     <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                        <h2 class="text-lg font-bold mb-2 text-vh-green">Frederico</h2>
+                        <h2 class="text-lg font-bold mb-2 text-vh-green">Laura</h2>
                         <p class="text-sm font-bold text-gray-400 mt-2">Dermatología</p>
-                        <p class="text-md text-justify text-vh-green block leading-7">Lorem ipsum dolor sit amet
-                            consectetur adipisicing elit. Et esse a culpa aut autem porro quos labore sed temporibus
-                            vitae quod dicta nobis, repudiandae, dolor alias dignissimos cumque. Excepturi, inventore?
+                        <p class="text-md text-justify text-vh-green block leading-7">La Dra. Laura Gómez es una reconocida dermatóloga con una trayectoria de más de 12 años en el cuidado de la piel. Especializada en el diagnóstico y tratamiento de diversas afecciones dermatológicas, desde el acné hasta el cáncer de piel, la Dra. Gómez combina su experiencia clínica con un enfoque detallado y personalizado para cada paciente.
                         </p>
                     </div>
                     <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                        <h2 class="text-lg font-bold mb-2 text-vh-green">Soto</h2>
+                        <h2 class="text-lg font-bold mb-2 text-vh-green">Javier</h2>
                         <p class="text-sm font-bold text-gray-400 mt-2">Cirugia</p>
-                        <p class="text-md text-justify text-vh-green block leading-7">Lorem ipsum dolor sit amet
-                            consectetur adipisicing elit. Et esse a culpa aut autem porro quos labore sed temporibus
-                            vitae quod dicta nobis, repudiandae, dolor alias dignissimos cumque. Excepturi, inventore?
+                        <p class="text-md text-justify text-vh-green block leading-7">El Dr. Javier Torres es un cirujano experimentado con más de 20 años de práctica en diversas especialidades quirúrgicas. Su destreza técnica y enfoque meticuloso le han permitido abordar una amplia gama de procedimientos, desde operaciones mínimamente invasivas hasta intervenciones complejas.
                         </p>
                     </div>
                 @else
