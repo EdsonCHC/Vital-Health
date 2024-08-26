@@ -234,3 +234,7 @@ Route::get('/verify-confirm',  [UsuarioController::class, 'showRegistrationConfi
 
 Route::get('/verify-confirmed', [UsuarioController::class, 'showVerificationSuccess'])->name('verify.confirmed');
 
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
+
