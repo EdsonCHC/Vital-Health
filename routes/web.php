@@ -4,6 +4,7 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\LaboratorioController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\CategoríaController;
@@ -136,10 +137,12 @@ Route::middleware(['auth:doctor'])->group(function () {
 // Middlewares del administrador
 Route::middleware('auth:admin')->group(function () {
     //
+    Route::get('/statistics/{id}', [ChartController::class, 'index'])->name('statistics.index');
+    Route::get('/statistics/{id}/personnel', [ChartController::class, 'getDoctorsByCategory'])->name('statistics.personnelByCategory'); 
+    Route::get('/statistics/{id}/appointments', [ChartController::class, 'getAppointmentsByCategory'])->name('statistics.appointmentsByCategory');
     // Categorias
     //
     Route::get('/home', [CategoríaController::class, 'index'])->name('home');
-    Route::get('/statistics/{id}', [CategoríaController::class, 'show'])->name('statistics.show');
     Route::get('/ad_chats/{id}', [CategoríaController::class, 'showAd_chats'])->name('categorias.ad_chats');
     Route::get('/staff/{id}', [CategoríaController::class, 'showStaff'])->name('categorias.staff');
     Route::get('/records/{id}', [CategoríaController::class, 'showRecords'])->name('categorias.records');
