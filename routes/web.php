@@ -143,7 +143,6 @@ Route::middleware('auth:admin')->group(function () {
     // Categorias
     //
     Route::get('/home', [CategoríaController::class, 'index'])->name('home');
-    Route::get('/ad_chats/{id}', [CategoríaController::class, 'showAd_chats'])->name('categorias.ad_chats');
     Route::get('/staff/{id}', [CategoríaController::class, 'showStaff'])->name('categorias.staff');
     Route::get('/records/{id}', [CategoríaController::class, 'showRecords'])->name('categorias.records');
     Route::get('/calendar/{id}', [CategoríaController::class, 'showCalendar'])->name('categorias.calendar');
