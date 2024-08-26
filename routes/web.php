@@ -138,7 +138,7 @@ Route::middleware(['auth:doctor'])->group(function () {
 Route::middleware('auth:admin')->group(function () {
     //
     Route::get('/statistics/{id}', [ChartController::class, 'index'])->name('statistics.index');
-    Route::get('/statistics/{id}/personnel', [ChartController::class, 'getDoctorsByCategory'])->name('statistics.personnelByCategory'); 
+    Route::get('/statistics/{id}/personnel', [ChartController::class, 'getDoctorsByCategory'])->name('statistics.personnelByCategory');
     Route::get('/statistics/{id}/appointments', [ChartController::class, 'getAppointmentsByCategory'])->name('statistics.appointmentsByCategory');
     // Categorias
     //
@@ -228,9 +228,9 @@ Route::fallback(function () {
 Route::post('/generate-pdf', [pdfController::class, 'generatePDF']);
 
 //-- EMAIL VERIFICATION--//
-Route::get('/verify-email/{id}/{token}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware('signed');
+Route::get('/verify-email/{id}/{token}', [VerificationController::class, 'verify'])->name('verification.verify');
 
-Route::get('/verify-confirm',  [UsuarioController::class, 'showRegistrationConfirmation'] )->name('verify.confirm');
+Route::get('/verify-confirm', [UsuarioController::class, 'showRegistrationConfirmation'])->name('verify.confirm');
 
 Route::get('/verify-confirmed', [UsuarioController::class, 'showVerificationSuccess'])->name('verify.confirmed');
 
