@@ -98,27 +98,29 @@ $(document).ready(function () {
             }
         });
     });
-     function updateDateTime() {
-         const now = new Date();
-         const options = {
-             year: "numeric",
-             month: "long",
-             day: "numeric",
-             weekday: "long",
-         };
-         const dateString = now.toLocaleDateString("es-ES", options);
-         const timeString = now.toLocaleTimeString("es-ES", {
-             hour: "2-digit",
-             minute: "2-digit",
-             second: "2-digit",
-         });
+    function updateDateTime() {
+        const now = new Date();
+        const options = {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            weekday: "long",
+        };
+        const dateString = now.toLocaleDateString("es-ES", options);
+        const timeString = now.toLocaleTimeString("es-ES", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+        });
 
-         document.getElementById("current-date").textContent = dateString;
-         document.getElementById("current-time").textContent = timeString;
-     }
+        document.getElementById("current-date").textContent = dateString;
+        document.getElementById("current-time").textContent = timeString;
+    }
 
-     window.onload = function () {
-         updateDateTime(); 
-         setInterval(updateDateTime, 1000); 
-     };
+    window.onload = function () {
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    };
+
+    
 });

@@ -207,7 +207,6 @@ $(document).ready(function () {
                             title: "Error...",
                             text: "Correo invalido, ya se encuentra en uso",
                         }).then(() => {
-                            // Reset the form fields and focus the email input
                             $("#mail").focus();
                         });
                     },

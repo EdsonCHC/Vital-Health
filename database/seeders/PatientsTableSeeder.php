@@ -23,7 +23,6 @@ extends Seeder
      */
     public function run(): void
     {
-
         // Crear pacientes de ejemplo
         $patients = [
             [
