@@ -62,7 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/service/{id}', [ServiceController::class, 'show'])->name('service');
     //
     Route::get('/area', [CategoríaController::class, 'filtrarYCategorias'])->name('categorias.filtrar');
-
+    //
     //User
     // 
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');

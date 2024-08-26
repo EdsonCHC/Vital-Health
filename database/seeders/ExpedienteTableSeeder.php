@@ -31,7 +31,7 @@ class ExpedienteTableSeeder extends Seeder
             ],
             [
                 'state' => '1',
-                'patient_id' => 2,
+                'patient_id' => 3,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

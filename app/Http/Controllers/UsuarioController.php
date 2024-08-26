@@ -176,20 +176,6 @@ class UsuarioController extends Controller
 
             DB::commit(); // Confirmar la transacción si todo sale bien
 
-            // Crear expediente relacionado al usuario (paciente)
-            $expediente = Expedientes::create([
-                'patient_id' => $user->id, // Relaciona el expediente con el paciente
-            ]);
-
-            if (!$expediente) {
-                DB::rollBack(); // Revertir transacción en caso de fallo
-                return response()->json([
-                    'message' => 'Error al crear el expediente',
-                ], 500);
-            }
-
-            DB::commit(); // Confirmar la transacción si todo sale bien
-
             $verificationUrl = URL::temporarySignedRoute(
                 'verification.verify',
                 now()->addMinutes(60),

@@ -16,68 +16,42 @@
         @include('templates.header')
     </div>
 
-    <main class="w-full max-w-6xl mx-auto px-4 py-6 lg:px-10 lg:py-8">
+    <main class="w-full max-w-6xl mx-auto mb-24 px-4 py-6 lg:px-10 lg:py-8">
         <section class="mb-6">
-            <h2 class="text-2xl font-bold text-vh-green text-center">Mis Reuniones</h2>
+            <h2 class="text-2xl font-bold text-center">Mis Reuniones</h2>
         </section>
 
         <section class="w-full mb-12">
             <div class="flex flex-wrap gap-8 justify-center lg:justify-start">
                 @foreach ($videollamadas as $videollamada)
                     <div
-                        class="w-full lg:w-80 bg-vh-gray-light rounded-lg shadow-md flex flex-col lg:flex-row mb-6 lg:mb-0">
-                        <div class="p-4 flex flex-col items-center lg:w-1/3">
+                        class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <div class="flex flex-col items-center pb-10">
                             <div
-                                class="w-20 h-20 bg-vh-green text-white rounded-full flex items-center justify-center mb-2">
+                                class="w-28 h-28 mt-10 bg-gray-500 text- rounded-full flex flex-col items-center justify-center mb-2">
                                 <span class="text-lg font-semibold">
                                     {{ \Carbon\Carbon::parse($videollamada->date)->format('d M') }}
                                 </span>
+                                <span class="text-lg font-semibold">
+                                    {{ \Carbon\Carbon::parse($videollamada->hour)->format('h:i A') }} </span>
                             </div>
-                            <div class="w-20 h-6 bg-vh-green-light rounded-md flex items-center justify-center">
+                            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+                                {{ $videollamada->patient->name }}</h5>
+                            <span class="text-lg text-gray-500 dark:text-gray-400">Sala:
+                                {{ $videollamada->room_name }}</span>
+                            <span class="text-lg text-gray-500 dark:text-gray-400">Doctor:
+                                {{ $videollamada->doctor->name }}</span>
+                            <div class="flex mt-4 md:mt-6">
                                 <button data-roomName="{{ $videollamada->room_name }}"
-                                    class="joinRoomButtonUser font-semibold transition duration-300">
+                                    class="joinRoomButtonUser inline-flex items-center px-4 py-2 text-lg font-medium text-center text-black bg-blue-800 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-white dark:hover:bg-gray-600 duration-100 dark:focus:ring-blue-800">
                                     Unirse
                                 </button>
                             </div>
-                        </div>
-                        <div class="flex flex-col justify-center p-4 lg:w-2/3">
-                            <h3 class="text-xl font-bold">Reunión</h3>
-                            <p class="text-lg">{{ $videollamada->room_name }}</p>
-                            <p class="text-emerald-500 text-lg">Paciente: {{ $videollamada->patient->name }}</p>
                         </div>
                     </div>
                 @endforeach
             </div>
         </section>
-
-        <div class="flex justify-center items-center space-x-2">
-            <button id="customMenuButton"
-                class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M4 12a2 2 0 110-4 2 2 0 010 4zm6 0a2 2 0 110-4 2 2 0 010 4zm6 0a2 2 0 110-4 2 2 0 010 4z"
-                        clip-rule="evenodd" />
-                </svg>
-            </button>
-
-            <button class="h-8 w-8 flex items-center justify-center bg-gray-300 rounded-full focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
-
-            <div class="flex items-center justify-center w-8 h-8 bg-white rounded-md shadow-md">
-                <span class="text-sm">1</span>
-            </div>
-
-            <button class="h-8 w-8 flex items-center justify-center bg-gray-300 rounded-full focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
-        </div>
     </main>
 
     <div class="w-full bg-white shadow-md">

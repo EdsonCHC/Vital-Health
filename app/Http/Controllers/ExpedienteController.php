@@ -193,6 +193,8 @@ class ExpedienteController extends Controller
         return $pdf->download('Expediente.pdf');
     }
 
+
+    
     public function edit(Expedientes $expediente)
     {
         return view('files_doc.edit', compact('expediente'));
