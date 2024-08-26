@@ -22,7 +22,8 @@
                 <div class="flex flex-col lg:flex-row justify-between items-center mb-4">
                     <div>
                         @if ($doctor)
-                            <h2 class="text-2xl lg:text-3xl font-bold text-vh-green">Citas del Doctor: {{ $doctor->name }}</h2>
+                            <h2 class="text-2xl lg:text-3xl font-bold text-vh-green">Citas del Doctor: {{ $doctor->name }}
+                            </h2>
                         @else
                             <h2 class="text-2xl lg:text-3xl font-bold text-vh-green">No hay doctor activo asignado.</h2>
                         @endif
@@ -42,7 +43,7 @@
                     </div>
                 </div>
                 <div class="mb-4 flex flex-col lg:flex-row gap-4">
-                    <a id="show-citas" href="#"
+                    <a id="show-citas" href="#" data-doctor-id="{{ $doctor->id }}"
                         class="w-full lg:w-40 h-12 text-sm lg:text-lg font-semibold bg-vh-green text-white rounded-xl shadow-xl hover:bg-white hover:text-vh-green transition duration-300 flex items-center justify-center">
                         Historial
                     </a>
@@ -71,24 +72,29 @@
 
                                 <div class="flex justify-between items-center mt-4">
                                     <div class="flex space-x-3">
-                                        <button class="p-3 bg-blue-50 border border-blue-300 rounded-xl shadow-lg hover:bg-blue-200 transition duration-300 ease-in-out flex items-center justify-center"
+                                        <button
+                                            class="p-3 bg-blue-50 border border-blue-300 rounded-xl shadow-lg hover:bg-blue-200 transition duration-300 ease-in-out flex items-center justify-center"
                                             id="add-vitals" aria-label="Add Vitals">
                                             <img src="{{ asset('storage/svg/favicon.png') }}" alt="add" class="w-6 h-6">
                                         </button>
-                                        <button class="p-3 bg-green-50 border border-green-300 rounded-xl shadow-lg hover:bg-green-200 transition duration-300 ease-in-out flex items-center justify-center option-button"
+                                        <button
+                                            class="p-3 bg-green-50 border border-green-300 rounded-xl shadow-lg hover:bg-green-200 transition duration-300 ease-in-out flex items-center justify-center option-button"
                                             data-cita-id="{{ $cita->id }}" aria-label="Options">
                                             <img src="{{ asset('storage/svg/option-icon.svg') }}" alt="options" class="w-6 h-6">
                                         </button>
-                                        <button class="p-3 bg-yellow-50 border border-yellow-300 rounded-xl shadow-lg hover:bg-yellow-200 transition duration-300 ease-in-out flex items-center justify-center"
+                                        <button
+                                            class="p-3 bg-yellow-50 border border-yellow-300 rounded-xl shadow-lg hover:bg-yellow-200 transition duration-300 ease-in-out flex items-center justify-center"
                                             id="aceptar" aria-label="Accept">
                                             <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="accept" class="w-6 h-6">
                                         </button>
-                                        <button class="p-3 bg-red-50 border border-red-300 rounded-xl shadow-lg hover:bg-red-200 transition duration-300 ease-in-out flex items-center justify-center delete-cita"
+                                        <button
+                                            class="p-3 bg-red-50 border border-red-300 rounded-xl shadow-lg hover:bg-red-200 transition duration-300 ease-in-out flex items-center justify-center delete-cita"
                                             data-cita-id="{{ $cita->id }}" aria-label="Delete">
                                             <img src="{{ asset('storage/svg/trash-icon.svg') }}" alt="delete" class="w-6 h-6">
                                         </button>
                                         @if ($cita->modo == 'Virtual')
-                                            <button class="p-3 bg-purple-50 border border-purple-300 rounded-xl shadow-lg hover:bg-purple-200 transition duration-300 ease-in-out flex items-center justify-center createVideollamada"
+                                            <button
+                                                class="p-3 bg-purple-50 border border-purple-300 rounded-xl shadow-lg hover:bg-purple-200 transition duration-300 ease-in-out flex items-center justify-center createVideollamada"
                                                 data-cita-id="{{ $cita->id }}" data-doctor-id="{{ $cita->doctor->id }}"
                                                 aria-label="Video Call">
                                                 <img src="{{ asset('storage/svg/link-icon.svg') }}" alt="videocall" class="w-6 h-6">
@@ -101,7 +107,8 @@
                     @endforeach
 
                     @if ($citas->isEmpty())
-                        <p class="text-center font-semibold text-xl text-vh-green">No hay citas disponibles para mostrar.</p>
+                        <p class="text-center font-semibold text-xl text-vh-green">No hay citas disponibles para mostrar.
+                        </p>
                     @endif
                 </div>
             </div>
