@@ -46,6 +46,7 @@ export default defineConfig({
                 'resources/js/program_doc.js',
                 'resources/js/qrcode.js',
                 'resources/js/receta.js',
+                'resources/js/recetas.js',
                 'resources/js/register.js',
                 'resources/js/scroll.js',
                 'resources/js/searchcitas.js',
