@@ -15,7 +15,8 @@ $(document).ready(function () {
         const pass = $("#password");
         const pass_img = $("#see_password_img");
 
-        const pass_type = pass.attr("type") === "password" ? "text" : "password";
+        const pass_type =
+            pass.attr("type") === "password" ? "text" : "password";
         pass.attr("type", pass_type);
 
         pass_img.css("opacity", is_opaque ? "1" : "0.5");
@@ -205,7 +206,7 @@ $(document).ready(function () {
                         Swal.fire({
                             icon: "error",
                             title: "Error...",
-                            text: "Correo invalido, ya se encuentra en uso",
+                            text: response,
                         }).then(() => {
                             $("#mail").focus();
                         });
@@ -344,7 +345,7 @@ $(document).ready(function () {
                 }
             },
         });
-    
+
         // Check if the file was selected and is valid
         if (file === null) {
             Swal.fire({
@@ -353,13 +354,13 @@ $(document).ready(function () {
                 text: "Debes seleccionar una imagen para continuar.",
             });
         }
-        
+
         return file !== null;
     }
-    
 
     function containsScript(value) {
-        const scriptRegex = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
+        const scriptRegex =
+            /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
         return scriptRegex.test(value);
     }
 
@@ -387,18 +388,31 @@ $(document).ready(function () {
     function validatePassword() {
         const password = $("#password").val();
         if (password.length < 6) {
-            return { valid: false, message: "La contraseña debe tener al menos 6 caracteres." };
+            return {
+                valid: false,
+                message: "La contraseña debe tener al menos 6 caracteres.",
+            };
         }
         if (!/[A-Z]/.test(password)) {
-            return { valid: false, message: "La contraseña debe contener al menos una letra mayúscula." };
+            return {
+                valid: false,
+                message:
+                    "La contraseña debe contener al menos una letra mayúscula.",
+            };
         }
         if (!/[a-z]/.test(password)) {
-            return { valid: false, message: "La contraseña debe contener al menos una letra minúscula." };
+            return {
+                valid: false,
+                message:
+                    "La contraseña debe contener al menos una letra minúscula.",
+            };
         }
         if (!/[0-9]/.test(password)) {
-            return { valid: false, message: "La contraseña debe contener al menos un número." };
+            return {
+                valid: false,
+                message: "La contraseña debe contener al menos un número.",
+            };
         }
         return { valid: true, message: "" };
     }
 });
-
