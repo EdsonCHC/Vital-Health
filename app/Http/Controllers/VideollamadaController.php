@@ -58,14 +58,15 @@ class VideollamadaController extends Controller
         $roomName = $request->query('roomName');
 
         if (!$roomName) {
-            return redirect()->route('some.default.route')->with('error', 'Nombre de la sala no proporcionado');
+            return redirect()->route('errors.404page')->with('error', 'Nombre de la sala no proporcionado');
         }
 
         $videollamada = Videollamada::where('room_name', $roomName)->first();
 
         if (!$videollamada) {
-            return redirect()->route('some.default.route')->with('error', 'Videollamada no encontrada');
+            return redirect()->route('errors.404page')->with('error', 'Videollamada no encontrada');
         }
+
         return view('app.videollamadaUser', compact('roomName'));
     }
 
@@ -74,13 +75,13 @@ class VideollamadaController extends Controller
         $roomName = $request->query('roomName');
 
         if (!$roomName) {
-            return redirect()->route('some.default.route')->with('error', 'Nombre de la sala no proporcionado');
+            return redirect()->route('errors.404page')->with('error', 'Nombre de la sala no proporcionado');
         }
 
         $videollamada = Videollamada::where('room_name', $roomName)->first();
 
         if (!$videollamada) {
-            return redirect()->route('some.default.route')->with('error', 'Videollamada no encontrada');
+            return redirect()->route('errors.404page')->with('error', 'Videollamada no encontrada');
         }
 
         return view('app.videollamadaDoc', compact('roomName'));

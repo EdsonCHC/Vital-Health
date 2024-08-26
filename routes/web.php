@@ -38,7 +38,6 @@ Route::view('/about', 'app.about');
 
 // Middlewares para el usuario
 Route::middleware('auth')->group(function () {
-    //
     // Citas
     //
     Route::get('/citas', [CitaController::class, 'citasPaciente'])->name('citas.paciente');
@@ -55,7 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/citas/{id}/eliminar', [CitaController::class, 'eliminar']);
     //
     //Info pages
-    // 
+    //
     Route::view('/area', 'app.area');
     Route::view('/service', 'app.service');
     Route::get('/area', [UsuarioController::class, 'indexu'])->name('user');
@@ -65,7 +64,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/area', [CategoríaController::class, 'filtrarYCategorias'])->name('categorias.filtrar');
     //
     //User
-    // 
+    //
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
     Route::get('/generate-pdf', [UsuarioController::class, 'generatePdf']);
     Route::post('/user', [UsuarioController::class, 'destroy']);
@@ -81,7 +80,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth:doctor'])->group(function () {
     //
     //Citas
-    // 
+    //
     Route::get('/citas_doc', [CitaController::class, 'showCitas'])->name('doctor.citas_doc');
     //
     Route::get('/historical-appointments/{doctorId}', [CitaController::class, 'historicalAppointments'])->name('historical.appointments');
@@ -98,7 +97,7 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/citas_doc/search', [CitaController::class, 'search'])->name('appointments.search');
     //
     //Expedientes
-    // 
+    //
     Route::get('/files_doc', [ExpedienteController::class, 'showFileDoc'])->name('files_doc.show');
     Route::get('/generate-pdf-doc', [ExpedienteController::class, 'generatePdf']);
     Route::post('/files_doc', [ExpedienteController::class, 'storeDocToUser'])->name('doctor.storeDocToUser');
@@ -106,7 +105,7 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::delete('/files_doc/{id}', [ExpedienteController::class, 'destroy'])->name('doctor.destroy_file');
     //
     //Exámenes
-    // 
+    //
     Route::view('/exams_doc', 'doctor.exams_doc');
     Route::get('/service_doc', [ExamController::class, 'viewServiceDoc'])->name('doctor.service_doc');
     Route::get('/citas/{cita_id}/exams/{user_id}', [ExamController::class, 'getExams']);
@@ -118,7 +117,7 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::delete('/citas/{cita_id}/exams/{id}', [ExamController::class, 'destroy']);
     //
     //Info pages
-    // 
+    //
     Route::view('/allocation', 'doctor.allocation');
     Route::get('/medicine_doc', [recetaController::class, 'getRecetas'])->name('doctor.medicine_doc');
     //
@@ -129,7 +128,7 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::delete('/program_doc/{videollamada_id}', [VideollamadaController::class, 'destroy'])->name('videollamada.destroy');
     //
     //Doctor
-    // 
+    //
     Route::get('/doctor', [DoctorController::class, 'index'])->name('doctor');
     Route::post('/doctor/logout', [DoctorController::class, 'destroy'])->name('doctor.logout');
 });
@@ -138,7 +137,7 @@ Route::middleware(['auth:doctor'])->group(function () {
 Route::middleware('auth:admin')->group(function () {
     //
     Route::get('/statistics/{id}', [ChartController::class, 'index'])->name('statistics.index');
-    Route::get('/statistics/{id}/personnel', [ChartController::class, 'getDoctorsByCategory'])->name('statistics.personnelByCategory'); 
+    Route::get('/statistics/{id}/personnel', [ChartController::class, 'getDoctorsByCategory'])->name('statistics.personnelByCategory');
     Route::get('/statistics/{id}/appointments', [ChartController::class, 'getAppointmentsByCategory'])->name('statistics.appointmentsByCategory');
     // Categorias
     //
@@ -160,7 +159,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('/staff/{id}', [DoctorController::class, 'deleteDoctor'])->name('staff.delete');
     //
     //Citas
-    // 
+    //
     Route::get('/appointments/{id}', [CitaController::class, 'show'])->name('appointments.show');
     Route::get('/categorias/{id}/doctores', [CitaController::class, 'getDoctorsByCategory']);
     Route::get('/appointments/{id}', [CitaController::class, 'showAppointments'])->name('categorias.appointments');
@@ -169,7 +168,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('/appointments/{id}', [CitaController::class, 'destroy'])->name('appointments.destroy');
     //
     //Admin
-    // 
+    //
     Route::post('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 });
 
@@ -188,7 +187,7 @@ Route::middleware('auth:laboratorio')->group(function () {
     Route::patch('/medicinas/{medicina}/toggleStatus', [MedicineController::class, 'toggleStatus'])->name('medicinas.toggleStatus');
     //
     //Exámenes
-    // 
+    //
     Route::get('/Exam', [ExamController::class, 'index'])->name('Exam');
     Route::get('/exams/pdf/{id}', [ExamController::class, 'getPdfUrl'])->name('exams.get.pdf');
     Route::post('/exams/pdf/{id}', [ExamController::class, 'updatePDF'])->name('exams.update.pdf');
@@ -196,7 +195,7 @@ Route::middleware('auth:laboratorio')->group(function () {
     Route::patch('/exams/end/{id}', [ExamController::class, 'endExamen'])->name('exams.delete');
     //
     //Recetas
-    // 
+    //
     Route::get('/index_lab', [LaboratorioController::class, 'index'])->name('index');
     Route::get('/Recetas', [recetaController::class, 'index'])->name('recetas.index');
     Route::get('/recetas/{id}', [recetaController::class, 'fetchRecetaDetails']);
@@ -205,7 +204,7 @@ Route::middleware('auth:laboratorio')->group(function () {
     Route::delete('/recetas/{id}/cancelar', [recetaController::class, 'cancelarReceta']);
     //
     //Laboratorio
-    // 
+    //
     Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');
 });
 
@@ -230,7 +229,6 @@ Route::post('/generate-pdf', [pdfController::class, 'generatePDF']);
 //-- EMAIL VERIFICATION--//
 Route::get('/verify-email/{id}/{token}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware('signed');
 
-Route::get('/verify-confirm',  [UsuarioController::class, 'showRegistrationConfirmation'] )->name('verify.confirm');
+Route::get('/verify-confirm',  [UsuarioController::class, 'showRegistrationConfirmation'])->name('verify.confirm');
 
 Route::get('/verify-confirmed', [UsuarioController::class, 'showVerificationSuccess'])->name('verify.confirmed');
-

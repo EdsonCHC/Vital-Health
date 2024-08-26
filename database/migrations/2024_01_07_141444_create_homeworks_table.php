@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('homeworks', function (Blueprint $table) {
             $table->id();
+            $table->text('homeworks')->nullable();
+
             $table->timestamps();
         });
     }

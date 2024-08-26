@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('lastName');
             $table->longText('description');
-            $table->string('number'); 
+            $table->string('number');
             $table->integer('age');
             $table->string('gender');
             $table->string('mail');
@@ -27,6 +27,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
 
+            $table->foreignId('notes_id')->constrained('notes')->cascadeOnDelete();
+            $table->foreignId('homeworks_id')->constrained('homeworks')->cascadeOnDelete();
             $table->foreign('category_id')->references('id')->on('categorias')->onDelete('cascade');
         });
     }
