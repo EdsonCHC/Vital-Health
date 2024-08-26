@@ -10,7 +10,7 @@
                 <div class="flex flex-col space-y-4">
                     <div
                         class="flex flex-grow items-center ml-14 h-14 rounded-l-3xl transition duration-300 hover:bg-white focus-within:bg-white">
-                        <a href="{{ route('statistics.show', ['id' => $categoria->id]) }}"
+                        <a href="{{ route('statistics.index', ['id' => $categoria->id]) }}"
                             class="flex items-center h-full w-full text-md font-bold text-white hover:text-black focus:text-black tracking-wider">
                             <img id="menu-icon" class="h-8 w-8 mx-2" src="{{ asset('storage/svg/homee.svg') }}"
                                 alt="Inicio" />
@@ -71,7 +71,7 @@
                 class="hover:bg-green-500 rounded-full py-2 px-2 transition-colors duration-300">
                 <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/doc-icon-black.svg') }}" type="image/svg+xml" />
             </a>
-            <a href="{{ route('statistics.show', ['id' => $categoria->id]) }}"
+            <a href="{{ route('statistics.index', ['id' => $categoria->id]) }}"
                 class="hover:bg-green-500 rounded-full py-2 transition-colors duration-300">
                 <img class="h-8 w-8 mx-2" src="{{ asset('storage/svg/homee.svg') }}" type="image/svg+xml" />
             </a>

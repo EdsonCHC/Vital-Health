@@ -51,7 +51,7 @@
                                 <li class="py-2">Notificación 3</li>
                             </ul>
                         </div>
-                        -->
+                     
 
                     <div class="relative group">
                         <a href="">
@@ -72,6 +72,7 @@
                             </li>
                         </ul>
                     </div>
+                       -->
                 </div>
                 <a href="/user" class="w-[50px] h-[50px]">
                     @if (Auth::check())
