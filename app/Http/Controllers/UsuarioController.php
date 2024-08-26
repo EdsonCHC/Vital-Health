@@ -118,7 +118,7 @@ class UsuarioController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'lastName' => 'required|max:255',
-            'mail' => 'required|email|unique:patients',
+            'mail' => 'required|email|unique:patients,mail',
             'address' => 'required|max:255',
             'gender' => 'required',
             'birth' => 'required|date',
