@@ -83,6 +83,8 @@
                                     <span class="flex justify-center font-semibold text-white text-lg">
                                         {{ \Carbon\Carbon::parse($videollamada->date)->format('d M') }}
                                     </span>
+                                    <span class="flex justify-center font-semibold text-white text-sm">
+                                        {{ \Carbon\Carbon::parse($videollamada->hour)->format('h:i A') }} </span>
                                 </div>
                                 <div
                                     class="w-20 h-6 flex justify-center content-center items-center bg-vh-green-light rounded-md">
@@ -90,7 +92,6 @@
                                         class="joinRoomButton flex justify-center font-semibold transition duration-300">
                                         Unirse
                                     </button>
-
                                 </div>
                             </div>
                             <!-- Detalles del paciente y descripción -->
@@ -106,7 +107,7 @@
                                     data-cita-id="{{ $videollamada->cita->id }}"
                                     data-doctor-id="{{ $videollamada->doctor->id }}">
                                     <img src="{{ asset('storage/svg/trash.svg') }}" alt="Ver Cita"
-                                        class="w-10 h-10 p-2 rounded"></button>
+                                        class="w-12 h-12 p-2 rounded"></button>
                             </div>
                         </div>
                     @endforeach
