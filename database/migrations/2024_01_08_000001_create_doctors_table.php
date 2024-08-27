@@ -16,12 +16,10 @@ return new class extends Migration {
             $table->string('name');
             $table->string('lastName');
             $table->longText('description');
-            $table->string('number'); 
+            $table->string('number');
             $table->integer('age');
             $table->string('gender');
             $table->string('mail');
-            $table->string('homeworks')->nullable();
-            $table->string('notes')->nullable();
             $table->string('password');
             $table->string('role')->default('doctor');
             $table->unsignedBigInteger('category_id');

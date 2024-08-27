@@ -15,29 +15,30 @@
     <div class="flex flex-col m">
         @include('templates.header')
 
-        <div class="flex-1 flex">
+        <div class="lg:flex-1 flex lg:flex-row flex-col">
             <!-- Menu -->
-            <aside class="w-1/4 bg-white lg:block hidden">
-                <div class="w-2/4 p-6">
-                    <h1 class="text-2xl font-bold mb-6">Configuración</h1>
-                    <nav>
-                        <ul class="space-y-4">
-                            <li>
-                                <button data-target="opcion1"
-                                    class="menu-link relative text-lg font-semibold text-green-900 w-full text-left py-2 px-4 rounded-md focus:outline-none">Perfil</button>
-                            </li>
-                            <li>
-                                <button data-target="opcion2"
-                                    class="menu-link relative text-lg font-semibold text-green-900 w-full text-left py-2 px-4 rounded-md focus:outline-none">Expediente</button>
-                            </li>
-                            <li>
-                                <button data-target="opcion3"
-                                    class="menu-link relative text-lg font-semibold text-green-900 w-full text-left py-2 px-4 rounded-md focus:outline-none">Privacidad</button>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </aside>
+            <aside class="w-full lg:w-1/4 bg-white">
+    <div class="p-6">
+        <h1 class="text-2xl font-bold mb-6">Configuración</h1>
+        <nav>
+            <ul class="flex flex-wrap lg:flex-col space-y-0 lg:space-y-4 space-x-2 lg:space-x-0">
+                <li>
+                    <button data-target="opcion1"
+                        class="menu-link relative text-sm lg:text-lg font-semibold text-green-900 py-2 lg:px-4 px-2 rounded-md focus:outline-none">Perfil</button>
+                </li>
+                <li>
+                    <button data-target="opcion2"
+                        class="menu-link relative text-sm lg:text-lg font-semibold text-green-900 py-2 lg:px-4 px-2 rounded-md focus:outline-none">Expediente</button>
+                </li>
+                <li>
+                    <button data-target="opcion3"
+                        class="menu-link relative text-sm lg:text-lg font-semibold text-green-900 py-2  lg:px-4 px-2 rounded-md focus:outline-none">Privacidad</button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>
+
 
             <!-- Contenido -->
             <main class="flex-1 p-6 bg-white">
@@ -45,7 +46,7 @@
                 <div id="opcion1" class="content hidden">
                     <div class="flex flex-wrap justify-center">
                         <div class="flex flex-col md:w-1/2 p-2 space-y-4">
-                            <div class="w-full bg-white shadow-lg rounded-lg overflow-hidden">
+                            <div class="w-full pb-32 lg:pb-8 bg-white shadow-lg rounded-lg overflow-hidden">
                                 <div
                                     class="h-32 bg-cover bg-center bg-vh-green bg-gradient-to-t from-green-800 to-green-600">
                                 </div>
@@ -368,9 +369,10 @@
                                 </label>
                             </div>
                             <div class="flex justify-between mt-6">
+                                 <!--
                                 <button type="submit"
                                     class="p-2 border-2 border-green-500 rounded-md text-lg text-green-500 hover:bg-green-500 hover:text-white">Recuperar
-                                    Contraseña</button>
+                                    Contraseña</button>-->
                                 <button type="submit"
                                     class="p-2 border-2 border-green-500 rounded-md text-lg text-green-500 hover:bg-green-500 hover:text-white">Guardar
                                     Cambios</button>

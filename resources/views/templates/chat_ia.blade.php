@@ -23,7 +23,7 @@
         <div id="chatbox" class="p-4 h-80 overflow-y-auto">
             <!-- Chat messages will be displayed here -->
         </div>
-        <div id="menu-container" class="hidden p-4 border-t flex flex-col">
+        <div id="menu-container" class="hidden p-4 border-t flex-col">
             <!-- Opciones del menú se agregarán aquí -->
         </div>
         <div class="p-4 border-t flex">

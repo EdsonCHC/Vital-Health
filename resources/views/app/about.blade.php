@@ -38,10 +38,7 @@
                     Lugar
                 </li>
             </ul>
-            <div
-                class="w-3/5 h-8 font-bold my-4 text-white bg-vh-green text-sm shadow-xl rounded-md lg:w-1/5 hover:bg-white hover:text-vh-green inline-block text-center pt-1 lg:mt-3 mx-auto lg:mx-0">
-                <a href="/registro" class="block w-full h-full">Regístrate</a>
-            </div>
+            
         </div>
     </div>
 
