@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
-    @vite(['resources/css/loader.css', 'resources/js/preloader.js', 'resources/css/app.css', 'resources/js/animation.js', 'resources/css/animation.css', 'resources/js/scroll.js', 'resources/css/footer.css','resources/js/chatsv1.js'])
+    @vite(['resources/css/loader.css', 'resources/js/preloader.js', 'resources/css/app.css', 'resources/js/animation.js', 'resources/css/animation.css', 'resources/js/scroll.js', 'resources/css/footer.css', 'resources/js/chatsv1.js'])
 </head>
 
 <body class="w-full h-full overflow-x-hidden">
@@ -26,10 +26,10 @@
                         con atención médica de calidad, dedicada a mantenerte saludable y en óptimas condiciones</p>
                 </div>
                 @guest
-                <a href="/login" target="_self"
-                    class="w-4/5 lg:w-2/5 h-12 text-white font-bold bg-vh-green text-lg tracking-wide shadow-xl my-10 mx-4 rounded-full hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
-                    Regístrate ahora
-                </a>
+                    <a href="/login" target="_self"
+                        class="w-4/5 lg:w-2/5 h-12 text-white font-bold bg-vh-green text-lg tracking-wide shadow-xl my-10 mx-4 rounded-full hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
+                        Regístrate ahora
+                    </a>
                 @endguest
 
 
@@ -83,7 +83,7 @@
                     <span class="font-bold text-lg"> En tu Futuro</span>
                 </div>
 
-                <a href="/login" target="_self"
+                <a href="/register" target="_self"
                     class="w-4/5 h-8 text-white bg-vh-green text-sm shadow-xl mb-10 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green inline-block text-center pt-1 mx-4">
                     Regístrate ahora
                     <!-- TODO: cambiar a solo una componente por dispositivo  -->
@@ -110,38 +110,50 @@
             </div>
             <div class="w-full flex grow-0 flex-wrap items-center justify-center my-8">
                 @php
-                $maxDoctors = 3;
-                $count = 0;
+                    $maxDoctors = 3;
+                    $count = 0;
                 @endphp
 
                 @if ($doctors->isEmpty())
-                <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                    <h2 class="text-lg font-bold mb-2 text-vh-green">Alonso</h2>
-                    <p class="text-sm font-bold text-gray-400 mt-2">Cardiologo</p>
-                    <p class="text-md text-justify text-vh-green block leading-7">El Dr. Alonso Martínez es un destacado cardiólogo con más de 15 años de experiencia en el diagnóstico y tratamiento de enfermedades cardíacas. Su enfoque integral y personalizado le permite ofrecer atención de alta calidad a cada paciente, utilizando tecnología avanzada y las últimas investigaciones en cardiología.
-                    </p>
-                </div>
-                <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                    <h2 class="text-lg font-bold mb-2 text-vh-green">Laura</h2>
-                    <p class="text-sm font-bold text-gray-400 mt-2">Dermatología</p>
-                    <p class="text-md text-justify text-vh-green block leading-7">La Dra. Laura Gómez es una reconocida dermatóloga con una trayectoria de más de 12 años en el cuidado de la piel. Especializada en el diagnóstico y tratamiento de diversas afecciones dermatológicas, desde el acné hasta el cáncer de piel, la Dra. Gómez combina su experiencia clínica con un enfoque detallado y personalizado para cada paciente.
-                    </p>
-                </div>
-                <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                    <h2 class="text-lg font-bold mb-2 text-vh-green">Javier</h2>
-                    <p class="text-sm font-bold text-gray-400 mt-2">Cirugia</p>
-                    <p class="text-md text-justify text-vh-green block leading-7">El Dr. Javier Torres es un cirujano experimentado con más de 20 años de práctica en diversas especialidades quirúrgicas. Su destreza técnica y enfoque meticuloso le han permitido abordar una amplia gama de procedimientos, desde operaciones mínimamente invasivas hasta intervenciones complejas.
-                    </p>
-                </div>
+                    <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
+                        <h2 class="text-lg font-bold mb-2 text-vh-green">Alonso</h2>
+                        <p class="text-sm font-bold text-gray-400 mt-2">Cardiologo</p>
+                        <p class="text-md text-justify text-vh-green block leading-7">El Dr. Alonso Martínez es un
+                            destacado cardiólogo con más de 15 años de experiencia en el diagnóstico y tratamiento de
+                            enfermedades cardíacas. Su enfoque integral y personalizado le permite ofrecer atención de
+                            alta calidad a cada paciente, utilizando tecnología avanzada y las últimas investigaciones
+                            en cardiología.
+                        </p>
+                    </div>
+                    <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
+                        <h2 class="text-lg font-bold mb-2 text-vh-green">Laura</h2>
+                        <p class="text-sm font-bold text-gray-400 mt-2">Dermatología</p>
+                        <p class="text-md text-justify text-vh-green block leading-7">La Dra. Laura Gómez es una
+                            reconocida dermatóloga con una trayectoria de más de 12 años en el cuidado de la piel.
+                            Especializada en el diagnóstico y tratamiento de diversas afecciones dermatológicas, desde
+                            el acné hasta el cáncer de piel, la Dra. Gómez combina su experiencia clínica con un enfoque
+                            detallado y personalizado para cada paciente.
+                        </p>
+                    </div>
+                    <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
+                        <h2 class="text-lg font-bold mb-2 text-vh-green">Javier</h2>
+                        <p class="text-sm font-bold text-gray-400 mt-2">Cirugia</p>
+                        <p class="text-md text-justify text-vh-green block leading-7">El Dr. Javier Torres es un
+                            cirujano experimentado con más de 20 años de práctica en diversas especialidades
+                            quirúrgicas. Su destreza técnica y enfoque meticuloso le han permitido abordar una amplia
+                            gama de procedimientos, desde operaciones mínimamente invasivas hasta intervenciones
+                            complejas.
+                        </p>
+                    </div>
                 @else
-                @foreach ($doctors as $doctor)
-                <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                    <h2 class="text-lg font-bold mb-2 text-vh-green">{{ $doctor->name }}</h2>
-                    <p class="text-sm font-bold text-gray-400 mt-2">{{ $doctor->category->nombre }}</p>
-                    <p class="text-md text-justify text-vh-green block leading-7">{{ $doctor->description }}
-                    </p>
-                </div>
-                @endforeach
+                    @foreach ($doctors as $doctor)
+                        <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
+                            <h2 class="text-lg font-bold mb-2 text-vh-green">{{ $doctor->name }}</h2>
+                            <p class="text-sm font-bold text-gray-400 mt-2">{{ $doctor->category->nombre }}</p>
+                            <p class="text-md text-justify text-vh-green block leading-7">{{ $doctor->description }}
+                            </p>
+                        </div>
+                    @endforeach
                 @endif
 
             </div>
@@ -149,7 +161,8 @@
         <div class="w-full text-center mb-8">
             <div class="mb-2">
                 <h2 class="font-bold  text-xl text-vh-green lg:font-bold  lg:text-4xl">Servicios</h2>
-                <p class="text-sm font-bold text-gray-400 px-4 text-justify  lg:mx-96 mt-2">En nuestra clínica, ofrecemos una amplia gama de
+                <p class="text-sm font-bold text-gray-400 px-4 text-justify  lg:mx-96 mt-2">En nuestra clínica,
+                    ofrecemos una amplia gama de
                     servicios médicos diseñados para atender todas tus necesidades de salud. Desde consultas generales
                     hasta especialidades médicas avanzadas, nuestro equipo de profesionales está comprometido con
                     brindarte la mejor atención posible. Contamos con tecnología de punta y un enfoque centrado en el
@@ -236,22 +249,34 @@
                         <h2 class="text-xl lg:text-2xl font-semibold text-gray-700 mb-4">Nuestros Servicios</h2>
                         <ul class="space-y-4">
                             <li class="text-base lg:text-xl font-medium text-gray-600 flex items-center">
-                                <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zM12 4a8 8 0 0 0-8 8c0 4.42 3.58 8 8 8s8-3.58 8-8a8 8 0 0 0-8-8z"></path>
+                                <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zM12 4a8 8 0 0 0-8 8c0 4.42 3.58 8 8 8s8-3.58 8-8a8 8 0 0 0-8-8z">
+                                    </path>
                                 </svg>
-                                Nuestro equipo de profesionales de la salud se dedica a proporcionar una atención personalizada y de alta calidad.
+                                Nuestro equipo de profesionales de la salud se dedica a proporcionar una atención
+                                personalizada y de alta calidad.
                             </li>
                             <li class="text-base lg:text-xl font-medium text-gray-600 flex items-center">
-                                <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zM12 4a8 8 0 0 0-8 8c0 4.42 3.58 8 8 8s8-3.58 8-8a8 8 0 0 0-8-8z"></path>
+                                <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zM12 4a8 8 0 0 0-8 8c0 4.42 3.58 8 8 8s8-3.58 8-8a8 8 0 0 0-8-8z">
+                                    </path>
                                 </svg>
-                                Contamos con tecnología de última generación para ofrecerte los mejores servicios médicos.
+                                Contamos con tecnología de última generación para ofrecerte los mejores servicios
+                                médicos.
                             </li>
                             <li class="text-base lg:text-xl font-medium text-gray-600 flex items-center">
-                                <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zM12 4a8 8 0 0 0-8 8c0 4.42 3.58 8 8 8s8-3.58 8-8a8 8 0 0 0-8-8z"></path>
+                                <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zM12 4a8 8 0 0 0-8 8c0 4.42 3.58 8 8 8s8-3.58 8-8a8 8 0 0 0-8-8z">
+                                    </path>
                                 </svg>
-                                Ofrecemos una amplia gama de servicios médicos que cubren todas tus necesidades de salud.
+                                Ofrecemos una amplia gama de servicios médicos que cubren todas tus necesidades de
+                                salud.
                             </li>
                         </ul>
                     </section>
@@ -259,10 +284,10 @@
                 </div>
             </div>
             @guest
-            <a href="/login" target="_self"
-                class="w-2/5 lg:w-2/3 h-12 text-white bg-vh-green text-base lg:text-2xl shadow-xl m-5 rounded-full hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center content-center">
-                Comienza ya
-            </a>
+                <a href="/login" target="_self"
+                    class="w-2/5 lg:w-2/3 h-12 text-white bg-vh-green text-base lg:text-2xl shadow-xl m-5 rounded-full hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center content-center">
+                    Comienza ya
+                </a>
             @endguest
 
 
@@ -318,10 +343,10 @@
                     a nosotros y brindaremos una asistencia sanitaria de calidad.</h2>
                 <div class="flex lg:justify-start justify-center">
                     @guest
-                    <a href="/login" target="_self"
-                        class="w-3/5  h-10 content-center text-white bg-vh-green text-sm lg:text-base xl:text-lg shadow-xl my-5 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center mx-4">
-                        Únete ya
-                    </a>
+                        <a href="/login" target="_self"
+                            class="w-3/5  h-10 content-center text-white bg-vh-green text-sm lg:text-base xl:text-lg shadow-xl my-5 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center mx-4">
+                            Únete ya
+                        </a>
                     @endguest
 
                 </div>

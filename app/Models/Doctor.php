@@ -21,22 +21,9 @@ class Doctor extends Authenticatable
         'mail',
         'password',
         'role',
-        'homeworks',
-        'notes',
-        'notes_id',
         'homeworks_id',
         'category_id',
     ];
-
-    public function notes()
-    {
-        return $this->belongsTo(Notes::class, 'notes_id');
-    }
-
-    public function homeworks()
-    {
-        return $this->belongsTo(Homeworks::class, 'homeworks_id');
-    }
 
     public function category()
     {

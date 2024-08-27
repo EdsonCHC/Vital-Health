@@ -20,15 +20,11 @@ return new class extends Migration {
             $table->integer('age');
             $table->string('gender');
             $table->string('mail');
-            $table->string('homeworks')->nullable();
-            $table->string('notes')->nullable();
             $table->string('password');
             $table->string('role')->default('doctor');
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
 
-            $table->foreignId('notes_id')->constrained('notes')->cascadeOnDelete();
-            $table->foreignId('homeworks_id')->constrained('homeworks')->cascadeOnDelete();
             $table->foreign('category_id')->references('id')->on('categorias')->onDelete('cascade');
         });
     }

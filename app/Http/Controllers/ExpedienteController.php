@@ -136,27 +136,22 @@ class ExpedienteController extends Controller
         $doctor = auth()->user();
         $doctorId = $doctor->id;
 
-        // Obtener todos los usuarios
         $users = Usuario::all();
 
-        // Obtener citas relacionadas con el doctor autenticado
         $citas = Citas::with('category')
             ->where('doctor_id', $doctorId)
             ->where('state', 1)
             ->get();
 
-        // Obtener todos los exámenes relacionados con los usuarios (pacientes)
         $exams = Exams::whereIn('patient_id', $users->pluck('id'))
             ->where('state', 1)
             ->get();
 
-        // Obtener todas las recetas relacionadas con los usuarios (pacientes)
         $recetas = Receta::with('medicinas')
             ->whereIn('patient_id', $users->pluck('id'))
             ->get();
 
-        // Obtener todos los expedientes
-        $expedientes = Expedientes::all();
+        $expedientes = Expedientes::with('patient')->get();
 
         return view('doctor.files_doc', compact('users', 'expedientes', 'doctor', 'citas', 'exams', 'recetas'));
     }

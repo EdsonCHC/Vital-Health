@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notes', function (Blueprint $table) {
+        Schema::create('program_doc', function (Blueprint $table) {
             $table->id();
+            $table->text('homeworks')->nullable();
             $table->text('notes')->nullable();
 
+            $table->foreignId('doctor_id')->nullable()->constrained('doctors')->nullOnDelete();
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notes');
+        Schema::dropIfExists('program_doc');
     }
 };

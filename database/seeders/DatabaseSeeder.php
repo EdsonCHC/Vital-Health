@@ -23,9 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CategoriesTableSeeder::class,
             MedicinaTableSeeder::class,
-            NotesTableSeeder::class,
-            HomeworksTableSeeder::class,
             DoctorsTableSeeder::class,
+            ProgramDocTableSeeder::class,
             PatientsTableSeeder::class,
             ExpedienteTableSeeder::class,
             CitasTableSeeder::class,
