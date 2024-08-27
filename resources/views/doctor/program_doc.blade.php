@@ -40,7 +40,49 @@
                         Tarea</button>
                 </div>
 
-
+                <!-- Panel de Videollamadas -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 class="text-2xl font-bold mb-4 text-vh-green">Videollamadas</h2>
+                    <div>
+                        @foreach ($videollamadas as $videollamada)
+                            <div class="w-76 h-36 m-4 bg-white shadow-lg rounded-lg flex">
+                                <div class="m-4">
+                                    <div
+                                        class="w-20 h-20 mb-2 flex-col content-center items-center bg-vh-green rounded-md">
+                                        <span class="flex justify-center font-semibold text-white text-lg">
+                                            {{ \Carbon\Carbon::parse($videollamada->date)->format('d M') }}
+                                        </span>
+                                        <span class="flex justify-center font-semibold text-white text-sm">
+                                            {{ \Carbon\Carbon::parse($videollamada->hour)->format('h:i A') }} </span>
+                                    </div>
+                                    <div
+                                        class="w-20 h-6 flex justify-center content-center items-center bg-vh-green-light rounded-md">
+                                        <button data-roomName="{{ $videollamada->room_name }}"
+                                            class="joinRoomButton flex justify-center font-semibold transition duration-300">
+                                            Unirse
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- Detalles del paciente y descripción -->
+                                <div class="flex flex-col my-auto">
+                                    <h3 class="font-bold text-xl">Reunión</h3>
+                                    <p class="text-lg">{{ $videollamada->room_name }}</p>
+                                    <p class="text-emerald-500 text-lg">Paciente: {{ $videollamada->patient->name }}
+                                    </p>
+                                </div>
+                                <!-- Botón para eliminar -->
+                                <div class="ml-auto">
+                                    <button type="button" class="deleteVideollamada"
+                                        data-videollamada-id="{{ $videollamada->id }}"
+                                        data-cita-id="{{ $videollamada->cita->id }}"
+                                        data-doctor-id="{{ $videollamada->doctor->id }}">
+                                        <img src="{{ asset('storage/svg/trash.svg') }}" alt="Ver Cita"
+                                            class="w-12 h-12 p-2 rounded"></button>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
 
                 <!-- Panel de Calendario -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
@@ -53,58 +95,6 @@
                     <div id="calendar" class="grid grid-cols-7 gap-2 text-center">
                         <!-- Los días del calendario se generarán dinámicamente con JS -->
                     </div>
-                </div>
-
-                <!-- Panel de Notas Personales -->
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <h2 class="text-2xl font-bold mb-4 text-vh-green">Notas Personales</h2>
-                    <div class="space-y-4">
-                        <textarea class="w-full h-32 p-2 border rounded-lg resize-none" placeholder="Escribe tus notas aquí..."></textarea>
-                        <textarea class="w-full h-32 p-2 border rounded-lg resize-none" placeholder="Escribe tus notas aquí..."></textarea>
-                        <textarea class="w-full h-32 p-2 border rounded-lg resize-none" placeholder="Escribe tus notas aquí..."></textarea>
-                    </div>
-                    <button
-                        class="w-full mt-4 py-2 bg-vh-green text-white rounded-lg hover:bg-vh-gray transition duration-300">Agregar
-                        Nota</button>
-                </div>
-
-                {{-- Panel de Llamadas --}}
-                <div>
-                    @foreach ($videollamadas as $videollamada)
-                        <div class="w-76 h-36 m-4 bg-white shadow-lg rounded-lg flex">
-                            <div class="m-4">
-                                <div class="w-20 h-20 mb-2 flex-col content-center items-center bg-vh-green rounded-md">
-                                    <span class="flex justify-center font-semibold text-white text-lg">
-                                        {{ \Carbon\Carbon::parse($videollamada->date)->format('d M') }}
-                                    </span>
-                                    <span class="flex justify-center font-semibold text-white text-sm">
-                                        {{ \Carbon\Carbon::parse($videollamada->hour)->format('h:i A') }} </span>
-                                </div>
-                                <div
-                                    class="w-20 h-6 flex justify-center content-center items-center bg-vh-green-light rounded-md">
-                                    <button data-roomName="{{ $videollamada->room_name }}"
-                                        class="joinRoomButton flex justify-center font-semibold transition duration-300">
-                                        Unirse
-                                    </button>
-                                </div>
-                            </div>
-                            <!-- Detalles del paciente y descripción -->
-                            <div class="flex flex-col my-auto">
-                                <h3 class="font-bold text-xl">Reunión</h3>
-                                <p class="text-lg">{{ $videollamada->room_name }}</p>
-                                <p class="text-emerald-500 text-lg">Paciente: {{ $videollamada->patient->name }}</p>
-                            </div>
-                            <!-- Botón para eliminar -->
-                            <div class="ml-auto">
-                                <button type="button" class="deleteVideollamada"
-                                    data-videollamada-id="{{ $videollamada->id }}"
-                                    data-cita-id="{{ $videollamada->cita->id }}"
-                                    data-doctor-id="{{ $videollamada->doctor->id }}">
-                                    <img src="{{ asset('storage/svg/trash.svg') }}" alt="Ver Cita"
-                                        class="w-12 h-12 p-2 rounded"></button>
-                            </div>
-                        </div>
-                    @endforeach
                 </div>
             </div>
         </main>

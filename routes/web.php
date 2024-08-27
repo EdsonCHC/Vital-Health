@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/examen', [ExamController::class, 'examsPaciente'])->name('exams.paciente');
     Route::get('/examenes/completados', [ExamController::class, 'examenesCompletados']);
     Route::get('/medicina', [recetaController::class, 'recetasPaciente'])->name('medicina.paciente');
+    Route::get('/exams/patient/pdf/{id}', [ExamController::class, 'getPdfUrl'])->name('exams.get.pdf');
     Route::delete('/citas/{id}/eliminar', [CitaController::class, 'eliminar']);
     //
     //Info pages
@@ -89,11 +90,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/generate-pdf', [UsuarioController::class, 'generatePdf']);
     Route::post('/user', [UsuarioController::class, 'destroy']);
     Route::put('/user/update', [UsuarioController::class, 'update'])->name('user.update');
+    route::put('/user/update-password', [UsuarioController::class, 'updatePassword'])->name('user.updatePassword');
     route::post('/user/update-image', [UsuarioController::class, 'updateImage'])->name('user.updateImage');
     //
     //Examen
     //
-    Route::get('/exams/patient/pdf/{id}', [ExamController::class, 'getPdfUrl'])->name('exams.get.pdf');
 });
 
 // Middlewares para el doctor

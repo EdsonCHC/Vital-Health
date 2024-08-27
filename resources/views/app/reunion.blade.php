@@ -41,7 +41,7 @@
                             <span class="text-lg text-gray-500 dark:text-gray-400">Sala:
                                 {{ $videollamada->room_name }}</span>
                             <span class="text-lg text-gray-500 dark:text-gray-400">Doctor:
-                                {{ $videollamada->doctor->name }}</span>
+                                {{ $videollamada->doctor->name }} {{ $videollamada->doctor->lastName }}</span>
                             <div class="flex mt-4 md:mt-6">
                                 <button data-roomName="{{ $videollamada->room_name }}"
                                     class="joinRoomButtonUser inline-flex items-center px-4 py-2 text-lg font-medium text-center text-black bg-blue-800 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-white dark:hover:bg-gray-600 duration-100 dark:focus:ring-blue-800">

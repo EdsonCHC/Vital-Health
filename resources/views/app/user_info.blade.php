@@ -18,27 +18,26 @@
         <div class="lg:flex-1 flex lg:flex-row flex-col">
             <!-- Menu -->
             <aside class="w-full lg:w-1/4 bg-white">
-    <div class="p-6">
-        <h1 class="text-2xl font-bold mb-6">Configuración</h1>
-        <nav>
-            <ul class="flex flex-wrap lg:flex-col space-y-0 lg:space-y-4 space-x-2 lg:space-x-0">
-                <li>
-                    <button data-target="opcion1"
-                        class="menu-link relative text-sm lg:text-lg font-semibold text-green-900 py-2 lg:px-4 px-2 rounded-md focus:outline-none">Perfil</button>
-                </li>
-                <li>
-                    <button data-target="opcion2"
-                        class="menu-link relative text-sm lg:text-lg font-semibold text-green-900 py-2 lg:px-4 px-2 rounded-md focus:outline-none">Expediente</button>
-                </li>
-                <li>
-                    <button data-target="opcion3"
-                        class="menu-link relative text-sm lg:text-lg font-semibold text-green-900 py-2  lg:px-4 px-2 rounded-md focus:outline-none">Privacidad</button>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</aside>
-
+                <div class="p-6">
+                    <h1 class="text-2xl font-bold mb-6">Configuración</h1>
+                    <nav>
+                        <ul class="flex flex-wrap lg:flex-col space-y-0 lg:space-y-4 space-x-2 lg:space-x-0">
+                            <li>
+                                <button data-target="opcion1"
+                                    class="menu-link relative text-lg lg:text-lg font-semibold text-green-900 py-2 lg:px-4 px-2 rounded-md focus:outline-none">Perfil</button>
+                            </li>
+                            <li>
+                                <button data-target="opcion2"
+                                    class="menu-link relative text-lg lg:text-lg font-semibold text-green-900 py-2 lg:px-4 px-2 rounded-md focus:outline-none">Expediente</button>
+                            </li>
+                            <li>
+                                <button data-target="opcion3"
+                                    class="menu-link relative text-lg lg:text-lg font-semibold text-green-900 py-2  lg:px-4 px-2 rounded-md focus:outline-none">Privacidad</button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
 
             <!-- Contenido -->
             <main class="flex-1 p-6 bg-white">
@@ -139,7 +138,7 @@
                                         </div>
                                         <div class="w-full mt-6 flex justify-end">
                                             <button type="submit" id="log_out"
-                                                class="w-2/6 h-10 bg-red-700 text-white font-semibold rounded-lg hover:bg-red-800">Cerrar
+                                                class="w-2/6 h-12 lg:h-10 bg-red-700 text-white font-semibold rounded-lg hover:bg-red-800">Cerrar
                                                 Sesión</button>
                                         </div>
                                     </form>
@@ -369,7 +368,7 @@
                                 </label>
                             </div>
                             <div class="flex justify-between mt-6">
-                                 <!--
+                                <!--
                                 <button type="submit"
                                     class="p-2 border-2 border-green-500 rounded-md text-lg text-green-500 hover:bg-green-500 hover:text-white">Recuperar
                                     Contraseña</button>-->

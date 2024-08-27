@@ -273,6 +273,40 @@ class UsuarioController extends Controller
         }
     }
 
+    public function updatePassword(Request $request)
+    {
+        try {
+            // Validar la solicitud
+            $request->validate([
+                'current_password' => 'required',
+                'new_password' => 'required|min:8|confirmed',
+            ]);
+
+            $user = Auth::user();
+
+            // Verificar si la contraseña actual es correcta
+            if (!Hash::check($request->current_password, $user->password)) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'La contraseña actual no es correcta.'
+                ], 400);
+            }
+
+            // Actualizar la contraseña
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Contraseña actualizada correctamente'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
 
 
     public function updateImage(Request $request)
