@@ -94,6 +94,10 @@ Route::middleware('auth')->group(function () {
     //Examen
     //
     Route::get('/exams/patient/pdf/{id}', [ExamController::class, 'getPdfUrl'])->name('exams.get.pdf');
+    //
+    // Imagen
+    //
+    Route::get('/patient/{id}/image', [UsuarioController::class, 'showImage'])->name('patient.image');
 });
 
 // Middlewares para el doctor

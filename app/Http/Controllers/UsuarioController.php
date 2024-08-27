@@ -140,12 +140,10 @@ class UsuarioController extends Controller
             ], 422);
         }
 
+        $imageData = null;
         if ($request->hasFile('img')) {
             $image = $request->file('img');
-            $imagePath = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('profile_images', $imagePath, 'public');
-        } else {
-            $imagePath = null;
+            $imageData = base64_encode(file_get_contents($request->file('img')->getRealPath()));
         }
 
         // Crear usuario
@@ -159,7 +157,7 @@ class UsuarioController extends Controller
                 'birth' => $request->birth,
                 'blood' => $request->blood,
                 'password' => Hash::make($request->password),
-                'img' => $imagePath,
+                'img' => $imageData,
                 'email_verification_token' => Str::random(60),
             ]);
 
@@ -316,6 +314,24 @@ class UsuarioController extends Controller
             'success' => false,
             'message' => 'No se ha proporcionado ninguna imagen'
         ], 400);
+    }
+
+    public function showImage($id)
+    {
+        $patient = Patient::find($id);
+
+        if (!$patient) {
+            abort(404, 'Paciente no encontrado');
+        }
+
+        $imageData = $patient->img;
+
+        if ($imageData) {
+            return response($imageData, 200)
+                ->header('Content-Type', 'image/jpeg'); // Cambia el tipo de contenido según el formato de la imagen
+        } else {
+            abort(404, 'Imagen no encontrada');
+        }
     }
 
     public function destroy(Request $request)
