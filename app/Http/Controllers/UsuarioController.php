@@ -143,7 +143,7 @@ class UsuarioController extends Controller
         $imageData = null;
         if ($request->hasFile('img')) {
             $image = $request->file('img');
-            $imageData = base64_encode(file_get_contents($request->file('img')->getRealPath()));
+            $imageData = file_get_contents($image->getRealPath());
         }
 
         // Crear usuario
