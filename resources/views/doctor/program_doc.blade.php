@@ -26,27 +26,21 @@
                 <div class="bg-white p-6 rounded-lg shadow-lg">
                     <h2 class="text-2xl font-bold mb-4 text-vh-green">Tareas Pendientes</h2>
                     <ul class="space-y-2">
-                        <li class="flex items-center justify-between p-2 bg-gray-100 rounded-lg">
-                            <span>Revisar reportes</span>
-                            <input type="checkbox" class="form-checkbox text-vh-green">
-                        </li>
-                        <li class="flex items-center justify-between p-2 bg-gray-100 rounded-lg">
-                            <span>Enviar correos pendientes</span>
-                            <input type="checkbox" class="form-checkbox text-vh-green">
-                        </li>
-                        <li class="flex items-center justify-between p-2 bg-gray-100 rounded-lg">
-                            <span>Reunión con el equipo</span>
-                            <input type="checkbox" class="form-checkbox text-vh-green">
-                        </li>
-                        <li class="flex items-center justify-between p-2 bg-gray-100 rounded-lg">
-                            <span>Actualizar perfil</span>
-                            <input type="checkbox" class="form-checkbox text-vh-green">
-                        </li>
+                        @foreach ($program_docs as $program_doc)
+                            <li class="flex items-start p-2 bg-gray-100 rounded-lg">
+                                <span class="flex-1">{{ $program_doc->homeworks }}</span>
+                                <input type="checkbox" data-id="{{ $program_doc->id }}"
+                                    data-doctor-id="{{ $program_doc->doctor_id }}"
+                                    class="deleteHomework form-checkbox text-vh-green m-2">
+                            </li>
+                        @endforeach
                     </ul>
-                    <button
-                        class="w-full mt-4 py-2 bg-vh-green text-white rounded-lg hover:bg-vh-gray transition duration-300">Agregar
+                    <button data-doctor-id="{{ $program_doc->doctor->id }}"
+                        class="createHomework w-full mt-4 py-2 bg-vh-green text-white rounded-lg hover:bg-vh-gray transition duration-300">Agregar
                         Tarea</button>
                 </div>
+
+
 
                 <!-- Panel de Calendario -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">

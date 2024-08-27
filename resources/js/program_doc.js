@@ -1,3 +1,115 @@
+import Swal from "sweetalert2";
+import jQuery from "jquery";
+import QRCode from "qrcode";
+window.$ = jQuery;
+
+$(document).ready(function () {
+    $(".createHomework").click(function () {
+        const doctorId = $(this).data("doctor-id"); // Obtener el doctor_id del botón
+
+        Swal.fire({
+            title: "Crear Tarea",
+            html: `
+            <form id="register-form" class="space-y-4 p-4 bg-white text-left">
+                <label class="block">
+                    <span class="text-lg font-semibold">Nombre de la Tarea</span>
+                    <input type="text" id="homework" name="homeworks"
+                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                </label>
+            </form>
+        `,
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Crear",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const _token = $('meta[name="csrf-token"]').attr("content");
+                const homework = $("#homework").val(); // Obtener el valor del campo
+
+                $.ajax({
+                    url: `/program_doc/${doctorId}`, // Se incluye el doctor_id en la URL
+                    type: "POST",
+                    headers: {
+                        "X-CSRF-TOKEN": _token,
+                    },
+                    data: { homeworks: homework },
+                    success(response) {
+                        if (response.success) {
+                            Swal.fire("Tarea creada", "", "success");
+                        } else {
+                            Swal.fire(
+                                "Error al crear la tarea",
+                                response.message || "No se pudo crear la tarea",
+                                "error"
+                            );
+                        }
+                    },
+                    error(response) {
+                        console.log(response); // Para depuración
+                        Swal.fire(
+                            "Error al crear la tarea",
+                            "No se pudo crear la tarea",
+                            "error"
+                        );
+                    },
+                });
+            }
+        });
+    });
+
+    $(".deleteHomework").click(function () {
+        const homeworkId = $(this).data("id");
+        const doctorId = $(this).data("doctor-id");
+
+        Swal.fire({
+            title: "Eliminar tarea",
+            text: "¿Estás seguro de que deseas eliminar esta tarea?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const _token = $('meta[name="csrf-token"]').attr("content");
+
+                $.ajax({
+                    url: `/program_doc/${doctorId}/${homeworkId}`,
+                    type: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": _token,
+                    },
+                    success(response) {
+                        if (response.success) {
+                            Swal.fire("Tarea eliminada", "", "success");
+                            // Eliminar la tarea del DOM si es necesario
+                            $(`input[data-id="${homeworkId}"]`)
+                                .closest("li")
+                                .remove();
+                        } else {
+                            Swal.fire(
+                                "Error al eliminar la tarea",
+                                response.message ||
+                                    "No se pudo eliminar la tarea",
+                                "error"
+                            );
+                        }
+                    },
+                    error(xhr) {
+                        console.log(xhr); // Para depuración
+                        Swal.fire(
+                            "Error al eliminar la tarea",
+                            "No se pudo eliminar la tarea",
+                            "error"
+                        );
+                    },
+                });
+            }
+        });
+    });
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     const currentMonthElement = document.getElementById("currentMonth");
     const calendarElement = document.getElementById("calendar");
