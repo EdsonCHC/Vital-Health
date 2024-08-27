@@ -143,7 +143,8 @@ class UsuarioController extends Controller
         $imageData = null;
         if ($request->hasFile('img')) {
             $image = $request->file('img');
-            $imageData = file_get_contents($image->getRealPath());
+            $imageData = file_get_contents($image->getRealPath()); // Leer datos binarios de la imagen
+            // Almacena la imagen en formato binario
         }
 
         // Crear usuario
@@ -318,7 +319,7 @@ class UsuarioController extends Controller
 
     public function showImage($id)
     {
-        $patient = Patient::find($id);
+        $patient = Usuario::find($id);
 
         if (!$patient) {
             abort(404, 'Paciente no encontrado');
