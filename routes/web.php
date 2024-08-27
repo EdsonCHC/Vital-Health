@@ -14,8 +14,13 @@ use App\Http\Controllers\recetaController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\pdfController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VerificationController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+
+Auth::routes();
 
 /*
 |--------------------------------------------------------------------------
@@ -212,11 +217,9 @@ Route::middleware('auth:laboratorio')->group(function () {
 
 //-------API ROUTES--------//
 
-// Ruta para mostrar la sala de videollamada para usuarios
 route::get('/videollamadaUser', [VideollamadaController::class, 'showRoomUser'])->name('app.videollamadaUser');
-// Ruta para mostrar la sala de videollamada para doctores
-Route::get('/videollamadaDoc', [VideollamadaController::class, 'showRoomDoc'])->name('app.videollamadaDoc');
 
+Route::get('/videollamadaDoc', [VideollamadaController::class, 'showRoomDoc'])->name('app.videollamadaDoc');
 
 // Fallback route (404)
 Route::fallback(function () {
@@ -232,3 +235,9 @@ Route::get('/verify-email/{id}/{token}', [VerificationController::class, 'verify
 Route::get('/verify-confirm',  [UsuarioController::class, 'showRegistrationConfirmation'])->name('verify.confirm');
 
 Route::get('/verify-confirmed', [UsuarioController::class, 'showVerificationSuccess'])->name('verify.confirmed');
+
+//-- PASSWORD  RECOVERY --//
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
