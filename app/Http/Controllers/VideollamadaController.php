@@ -102,22 +102,6 @@ class VideollamadaController extends Controller
         return view('app.reunion', compact('videollamadas'));
     }
 
-
-    public function showDoc(Request $request)
-    {
-        $doctor = auth()->user();
-
-        $cita = Citas::where('doctor_id', $doctor->id)->first();
-
-        if (!$cita) {
-            return redirect()->route('errors.404page')->with('message', 'No se encontró una videollamada para este doctor.');
-        }
-
-        $videollamadas = Videollamada::where('cita_id', $cita->id)->get();
-
-        return view('doctor.program_doc', compact('videollamadas'));
-    }
-
     public function update(Request $request, $id)
     {
         $request->validate([

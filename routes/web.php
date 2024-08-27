@@ -15,12 +15,14 @@ use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\pdfController;
 use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\ProgramController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 
-Auth::routes();
+// Auth::routes();
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,19 @@ Auth::routes();
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//-- PASSWORD  RECOVERY --//
+// Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+// Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+// Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+// Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+// route::get('send-test-email', function () {
+//     Mail::raw('Este es un correo de prueba', function ($message) {
+//         $message->to('alejandro.josealvarenga@gmail.com')->subject('Correo de Prueba');
+//     });
+//     return 'Correo de prueba enviado.';
+// });
 
 // Rutas del usuario
 Route::post('/login', [UsuarioController::class, 'show']);
@@ -126,10 +141,12 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::view('/allocation', 'doctor.allocation');
     Route::get('/medicine_doc', [recetaController::class, 'getRecetas'])->name('doctor.medicine_doc');
     //
-    // Videollamada
+    // Program Doc
     //
-    Route::get('/program_doc', [VideollamadaController::class, 'showDoc'])->name('doctor.program_doc');
+    Route::get('/program_doc', [ProgramController::class, 'showDoc'])->name('doctor.program_doc');
+    route::post('/program_doc/{doctor_id}', [ProgramController::class, 'storeHomework'])->name('doctor.storeHomework');
     Route::post('/citas/{cita_id}/{doctor_id}/videollamada', [VideollamadaController::class, 'store']);
+    route::delete('/program_doc/{doctor_id}/{homework_id}', [ProgramController::class, 'destroy'])->name('doctor.deleteHomework');
     Route::delete('/program_doc/{videollamada_id}', [VideollamadaController::class, 'destroy'])->name('videollamada.destroy');
     //
     //Doctor
