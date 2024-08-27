@@ -124,8 +124,15 @@ class UsuarioController extends Controller
             'birth' => 'required|date',
             'blood' => 'required',
             'password' => 'required|min:8',
-            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
+
+        if ($request->hasFile('img') && $request->file('img')->getSize() === 0) {
+            return response()->json([
+                'message' => 'El archivo de imagen no puede estar vacío.',
+            ], 422);
+        }
+
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Datos inválidos',
