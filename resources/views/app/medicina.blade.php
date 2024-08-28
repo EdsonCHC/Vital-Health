@@ -9,11 +9,14 @@
     @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js'])
 </head>
 
-<body class="flex flex-col min-h-screen">
+<body class="flex flex-col overflow-x-hidden">
     @include('templates.loader')
 
-    <div class="flex-grow">
+    <div class="w-full h-auto">
         @include('templates.header')
+    </div>
+
+    <div class="flex-grow">
         <div class="w-full h-auto flex flex-col md:items-start items-center p-4 gap-2 lg:px-16">
             <h2 class="font-bold text-xl text-vh-green lg:font-bold lg:text-4xl">Medicamento Asignado</h2>
         </div>
@@ -22,11 +25,11 @@
                 <div class="w-full bg-white lg:p-5 p-2 bg-opacity-40">
                     <div class="w-12/12 mx-auto rounded-2xl bg-white lg:p-5 p-2">
                         <div class="">
-                            @if($recetas->isEmpty())
+                            @if ($recetas->isEmpty())
                                 <p class="text-center text-gray-500">No tienes recetas disponibles.</p>
                             @else
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-                                    @foreach($recetas as $receta)
+                                    @foreach ($recetas as $receta)
                                         <article
                                             class="bg-white p-6 mb-6 shadow-lg transition duration-300 hover:shadow-2xl rounded-lg border">
                                             <div class="flex justify-between items-start pb-4 mb-4 border-b">
@@ -51,7 +54,7 @@
                                                 Medicinas:
                                             </h3>
                                             <ul class="list-disc pl-5">
-                                                @foreach($receta->medicinas as $medicina)
+                                                @foreach ($receta->medicinas as $medicina)
                                                     <li>{{ $medicina->nombre }} ({{ $medicina->pivot->cantidad }})</li>
                                                 @endforeach
                                             </ul>

@@ -7,24 +7,27 @@ $(document).ready(function () {
     // Usuario
     // Maneja el guardado del expediente
     $(".saveFileUser").click(function () {
+        const pdfUrl = `/fileUser`; // URL para descargar el PDF
         const userId = $(this).data("id");
-        const pdfUrl = `/fileUser`; // URL para descargar el PDF y generar el QR
+        const qrUrl = `/http://127.0.0.1:8000/expedientes/Expediente_${userId}.pdf`;
+        // Tengo que corregir esto con la url el host
 
         Swal.fire({
             title: "Resultado de mi Expediente",
             html: `
         <div class="flex flex-col items-center justify-center w-full h-full">
-            <img id="qr_code" alt="Código QR">
+            <canvas id="qr_code"></canvas>
             <br>
-            <a id="download_pdf" href="${pdfUrl}?user_id=${userId}" download="Expediente_${userId}.pdf" class="text-blue-500 underline mt-4">Descargar PDF</a>
+            <a id="download_pdf" href="${pdfUrl}" download="Expediente.pdf" class="text-blue-500 underline mt-4">Descargar PDF</a>
         </div>
         `,
             showConfirmButton: false,
             showCancelButton: true,
             cancelButtonText: "Cancelar",
             didOpen: () => {
-                QRCode.toDataURL(
-                    `${pdfUrl}?user_id=${userId}`, // Usa la URL del PDF para el QR
+                QRCode.toCanvas(
+                    document.getElementById("qr_code"),
+                    qrUrl, // Usa la URL para el PDF para el QR
                     {
                         width: 250,
                         color: {
@@ -33,7 +36,7 @@ $(document).ready(function () {
                         },
                         margin: 1,
                     },
-                    (err, url) => {
+                    (err) => {
                         if (err) {
                             console.error(err);
                             Swal.fire({
@@ -42,7 +45,6 @@ $(document).ready(function () {
                                 text: "Hubo un error al generar el código QR. Por favor, intenta de nuevo.",
                             });
                         } else {
-                            document.getElementById("qr_code").src = url;
                             console.log("Código QR generado!");
                         }
                     }
@@ -50,6 +52,50 @@ $(document).ready(function () {
             },
         });
     });
+    // $(".saveFileUser").click(function () {
+    //     const userId = $(this).data("id");
+    //     const pdfUrl = `/fileUser`; // URL para descargar el PDF y generar el QR
+
+    //     Swal.fire({
+    //         title: "Resultado de mi Expediente",
+    //         html: `
+    //     <div class="flex flex-col items-center justify-center w-full h-full">
+    //         <img id="qr_code" alt="Código QR">
+    //         <br>
+    //         <a id="download_pdf" href="${pdfUrl}?user_id=${userId}" download="Expediente_${userId}.pdf" class="text-blue-500 underline mt-4">Descargar PDF</a>
+    //     </div>
+    //     `,
+    //         showConfirmButton: false,
+    //         showCancelButton: true,
+    //         cancelButtonText: "Cancelar",
+    //         didOpen: () => {
+    //             QRCode.toDataURL(
+    //                 `${pdfUrl}?user_id=${userId}`, // Usa la URL del PDF para el QR
+    //                 {
+    //                     width: 250,
+    //                     color: {
+    //                         dark: "#000000",
+    //                         light: "#FFFFFF",
+    //                     },
+    //                     margin: 1,
+    //                 },
+    //                 (err, url) => {
+    //                     if (err) {
+    //                         console.error(err);
+    //                         Swal.fire({
+    //                             icon: "error",
+    //                             title: "Oops...",
+    //                             text: "Hubo un error al generar el código QR. Por favor, intenta de nuevo.",
+    //                         });
+    //                     } else {
+    //                         document.getElementById("qr_code").src = url;
+    //                         console.log("Código QR generado!");
+    //                     }
+    //                 }
+    //             );
+    //         },
+    //     });
+    // });
 
 
     // Doctor

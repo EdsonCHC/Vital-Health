@@ -10,18 +10,21 @@
     @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/css/user.css', 'resources/js/preloader.js', 'resources/js/scroll.js', 'resources/js/user.js', 'resources/js/expediente.js'])
 </head>
 
-<body class="bg-white h-auto ">
+<body class="bg-white h-auto overflow-x-hidden">
     @include('templates.loader')
-    <div class="flex flex-col m">
-        @include('templates.header')
 
+    <div class="w-full h-auto">
+        @include('templates.header')
+    </div>
+
+    <div class="flex flex-col ">
         <div class="lg:flex-1 flex lg:flex-row flex-col">
             <!-- Menu -->
             <aside class="w-full lg:w-1/4 bg-white">
                 <div class="p-6">
                     <h1 class="text-2xl font-bold mb-6">Configuración</h1>
                     <nav>
-                        <ul class="flex flex-wrap lg:flex-col space-y-0 lg:space-y-4 space-x-2 lg:space-x-0">
+                        <ul class="flex flex-wrap z-10 lg:flex-col space-y-0 lg:space-y-4 space-x-2 lg:space-x-0">
                             <li>
                                 <button data-target="opcion1"
                                     class="menu-link relative text-lg lg:text-lg font-semibold text-green-900 py-2 lg:px-4 px-2 rounded-md focus:outline-none">Perfil</button>

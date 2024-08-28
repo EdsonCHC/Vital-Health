@@ -13,7 +13,7 @@
 <body class="w-full h-full bg-gray-100">
     @include('templates.loader')
 
-    <div class="w-full bg-white shadow-md">
+    <div class="w-full h-auto">
         @include('templates.header')
     </div>
 
