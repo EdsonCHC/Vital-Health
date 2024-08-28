@@ -70,93 +70,26 @@ class UsuarioController extends Controller
 
         $citas = Citas::with('category')
             ->where('patient_id', $userId)
-            ->where('state', 0)
+            ->where('state', 1)
             ->get();
 
         $exams = Exams::where('patient_id', $userId)
-            ->where('state', 0)
+            ->where('state', 1)
             ->get();
 
         $recetas = Receta::with('medicinas')
             ->where('patient_id', $userId)
             ->get();
 
-        $pdf = PDF::loadView('app.fileUser', [
+        $pdf = PDF::loadView('pdf.file', [
             'citas' => $citas,
             'exams' => $exams,
             'recetas' => $recetas,
             'user' => $user
         ]);
 
-        $fileName = 'Expediente_' . $userId . '.pdf';
-        $filePath = 'expedientes/' . $fileName;
-        $publicPath = asset($filePath); // Genera la URL pública del archivo
-
-        // Guarda el PDF en el directorio public/expedientes
-        $pdf->save(public_path($filePath));
-
-        // Guarda la URL del PDF en la base de datos
-        Expedientes::updateOrCreate(
-            ['patient_id' => $userId],
-            ['pdf_path' => $publicPath, 'state' => '0']
-        );
-
-        // Devuelve el archivo PDF directamente
-        return response()->file(public_path($filePath));
+        return $pdf->download('Expediente.pdf');
     }
-
-    // public function generatePdf()
-    // {
-    //     $user = Auth::user();
-    //     $userId = $user->id;
-
-    //     $citas = Citas::with('category')
-    //     ->where('patient_id', $userId)
-    //         ->where('state', 0)
-    //         ->get();
-
-    //     $exams = Exams::where('patient_id', $userId)
-    //         ->where('state', 0)
-    //         ->get();
-
-    //     $recetas = Receta::with('medicinas')
-    //     ->where('patient_id', $userId)
-    //         ->get();
-
-    //     // Genera el contenido del QR con los datos del PDF y del usuario
-    //     $qrContent = "Usuario: " . $user->name . "\n" .
-    //     "Email: " . $user->email . "\n" .
-    //     "Citas: " . $citas->toJson() . "\n" .
-    //     "Exámenes: " . $exams->toJson() . "\n" .
-    //     "Recetas: " . $recetas->toJson();
-
-    //     // Genera el código QR
-    //     $qrCode = QrCode::size(200)->generate($qrContent);
-
-    //     $pdf = PDF::loadView('app.fileUser', [
-    //         'citas' => $citas,
-    //         'exams' => $exams,
-    //         'recetas' => $recetas,
-    //         'user' => $user,
-    //         'qrCode' => $qrCode // Pasa el código QR a la vista
-    //     ]);
-
-    //     $fileName = 'Expediente_' . $userId . '.pdf';
-    //     $filePath = 'expedientes/' . $fileName;
-    //     $publicPath = asset($filePath); // Genera la URL pública del archivo
-
-    //     // Guarda el PDF en el directorio public/expedientes
-    //     $pdf->save(public_path($filePath));
-
-    //     // Guarda la URL del PDF en la base de datos
-    //     Expedientes::updateOrCreate(
-    //         ['patient_id' => $userId],
-    //         ['pdf_path' => $publicPath, 'state' => '0']
-    //     );
-
-    //     // Devuelve el archivo PDF directamente
-    //     return response()->file(public_path($filePath));
-    // }
 
     public function citasPaciente(Request $request)
     {

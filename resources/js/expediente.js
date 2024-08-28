@@ -7,10 +7,7 @@ $(document).ready(function () {
     // Usuario
     // Maneja el guardado del expediente
     $(".saveFileUser").click(function () {
-        const pdfUrl = `/fileUser`; // URL para descargar el PDF
-        const userId = $(this).data("id");
-        const qrUrl = `/http://127.0.0.1:8000/expedientes/Expediente_${userId}.pdf`;
-        // Tengo que corregir esto con la url el host
+        const pdf_url = `/expediente/pdf`;
 
         Swal.fire({
             title: "Resultado de mi Expediente",
@@ -18,40 +15,29 @@ $(document).ready(function () {
         <div class="flex flex-col items-center justify-center w-full h-full">
             <canvas id="qr_code"></canvas>
             <br>
-            <a id="download_pdf" href="${pdfUrl}" download="Expediente.pdf" class="text-blue-500 underline mt-4">Descargar PDF</a>
+            <a id="download_pdf" href="${pdf_url}" download="Expediente.pdf" class="text-blue-500 underline mt-4">Descargar PDF</a>
         </div>
         `,
             showConfirmButton: false,
             showCancelButton: true,
             cancelButtonText: "Cancelar",
             didOpen: () => {
+                const qrCodeCanvas = document.getElementById("qr_code");
+
+                // Generar el QR dentro del canvas con la URL del PDF
                 QRCode.toCanvas(
-                    document.getElementById("qr_code"),
-                    qrUrl, // Usa la URL para el PDF para el QR
-                    {
-                        width: 250,
-                        color: {
-                            dark: "#000000",
-                            light: "#FFFFFF",
-                        },
-                        margin: 1,
-                    },
+                    qrCodeCanvas,
+                    pdf_url,
+                    { width: 200 },
                     (err) => {
-                        if (err) {
-                            console.error(err);
-                            Swal.fire({
-                                icon: "error",
-                                title: "Oops...",
-                                text: "Hubo un error al generar el código QR. Por favor, intenta de nuevo.",
-                            });
-                        } else {
-                            console.log("Código QR generado!");
-                        }
+                        if (err) console.error(err);
+                        console.log("Código QR generado!");
                     }
                 );
             },
         });
     });
+
     // $(".saveFileUser").click(function () {
     //     const userId = $(this).data("id");
     //     const pdfUrl = `/fileUser`; // URL para descargar el PDF y generar el QR
@@ -96,7 +82,6 @@ $(document).ready(function () {
     //         },
     //     });
     // });
-
 
     // Doctor
     // Maneja la creacion del expediente y del usuario
