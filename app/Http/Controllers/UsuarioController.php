@@ -69,7 +69,7 @@ class UsuarioController extends Controller
         $userId = $user->id;
 
         $citas = Citas::with('category')
-        ->where('patient_id', $userId)
+            ->where('patient_id', $userId)
             ->where('state', 0)
             ->get();
 
@@ -78,7 +78,7 @@ class UsuarioController extends Controller
             ->get();
 
         $recetas = Receta::with('medicinas')
-        ->where('patient_id', $userId)
+            ->where('patient_id', $userId)
             ->get();
 
         $pdf = PDF::loadView('app.fileUser', [
@@ -384,17 +384,18 @@ class UsuarioController extends Controller
     public function updateImage(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
         $user = Auth::user();
 
-        if ($request->hasFile('image')) {
-            $imageData = null;
-            if ($request->hasFile('img')) {
-                $image = $request->file('img');
-                $imageData = file_get_contents($image->getRealPath());
-            }
+
+        $imageData = null;
+        if ($request->hasFile('img')) {
+
+            $image = $request->file('img');
+            $imageData = file_get_contents($image->getRealPath());
+
 
             // Actualizar la ruta de la imagen en el perfil del usuario
             $user->img = $imageData;
