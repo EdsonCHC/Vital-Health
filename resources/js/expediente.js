@@ -21,20 +21,6 @@ $(document).ready(function () {
             showConfirmButton: false,
             showCancelButton: true,
             cancelButtonText: "Cancelar",
-            didOpen: () => {
-                const qrCodeCanvas = document.getElementById("qr_code");
-
-                // Generar el QR dentro del canvas con la URL del PDF
-                QRCode.toCanvas(
-                    qrCodeCanvas,
-                    pdf_url,
-                    { width: 200 },
-                    (err) => {
-                        if (err) console.error(err);
-                        console.log("Código QR generado!");
-                    }
-                );
-            },
         });
     });
 
