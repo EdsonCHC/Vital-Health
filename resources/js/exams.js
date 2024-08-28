@@ -373,62 +373,62 @@ $(document).ready(function () {
         showExamsInModal(citaId, patientId);
     });
 
-    $(".results").click(function () {
-        const tr = $(this).closest("tr");
-        const id = tr.data("id");
+    // $(".results").click(function () {
+    //     const tr = $(this).closest("tr");
+    //     const id = tr.data("id");
 
-        $.ajax({
-            url: `/view-pdf/${id}`, // Asegúrate de que esta URL sea correcta
-            type: "GET",
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            xhrFields: {
-                responseType: "blob", // Solicita la respuesta como un Blob
-            },
-            success(response) {
-                // Crear una URL para el Blob del PDF
-                const pdfUrl = URL.createObjectURL(response);
+    //     $.ajax({
+    //         url: `/view-pdf/${id}`, // Asegúrate de que esta URL sea correcta
+    //         type: "GET",
+    //         headers: {
+    //             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+    //         },
+    //         xhrFields: {
+    //             responseType: "blob", // Solicita la respuesta como un Blob
+    //         },
+    //         success(response) {
+    //             // Crear una URL para el Blob del PDF
+    //             const pdfUrl = URL.createObjectURL(response);
 
-                Swal.fire({
-                    title: "Resultado del examen",
-                    html: `
-                <div class="flex flex-col items-center justify-center w-full h-full">
-                    <canvas class="flex items-center" id="qr_code"></canvas>
-                    <br>
-                    <a id="download_pdf" href="${pdfUrl}" download="resultado_examen.pdf">Descargar PDF</a>
-                </div>
-            `,
-                    showConfirmButton: true,
-                    confirmButtonText: "Ver",
-                    didOpen: () => {
-                        const qrCodeCanvas = document.getElementById("qr_code");
+    //             Swal.fire({
+    //                 title: "Resultado del examen",
+    //                 html: `
+    //             <div class="flex flex-col items-center justify-center w-full h-full">
+    //                 <canvas class="flex items-center" id="qr_code"></canvas>
+    //                 <br>
+    //                 <a id="download_pdf" href="${pdfUrl}" download="resultado_examen.pdf">Descargar PDF</a>
+    //             </div>
+    //         `,
+    //                 showConfirmButton: true,
+    //                 confirmButtonText: "Ver",
+    //                 didOpen: () => {
+    //                     const qrCodeCanvas = document.getElementById("qr_code");
 
-                        // Generar el código QR en el canvas
-                        QRCode.toCanvas(
-                            qrCodeCanvas,
-                            pdfUrl,
-                            { width: 200 },
-                            (err) => {
-                                if (err) console.error(err);
-                                console.log("Código QR generado!");
-                            }
-                        );
-                    },
-                    preConfirm: () => {
-                        // Abrir el PDF en una nueva pestaña
-                        window.open(pdfUrl, "_blank");
-                    },
-                });
+    //                     // Generar el código QR en el canvas
+    //                     QRCode.toCanvas(
+    //                         qrCodeCanvas,
+    //                         pdfUrl,
+    //                         { width: 200 },
+    //                         (err) => {
+    //                             if (err) console.error(err);
+    //                             console.log("Código QR generado!");
+    //                         }
+    //                     );
+    //                 },
+    //                 preConfirm: () => {
+    //                     // Abrir el PDF en una nueva pestaña
+    //                     window.open(pdfUrl, "_blank");
+    //                 },
+    //             });
 
-                // Revocar el objeto URL después de que se haya utilizado
-                URL.revokeObjectURL(pdfUrl);
-            },
-            error(response) {
-                console.log(response);
-            },
-        });
-    });
+    //             // Revocar el objeto URL después de que se haya utilizado
+    //             URL.revokeObjectURL(pdfUrl);
+    //         },
+    //         error(response) {
+    //             console.log(response);
+    //         },
+    //     });
+    // });
 
     $(".delete-btn").click(function () {
         const tr = $(this).closest("tr");
@@ -517,28 +517,28 @@ $(document).ready(function () {
                             data: formData,
                             success(response) {
                                 console.log(response);
-                                $.ajax({
-                                    url: `/exams/end/${id}`,
-                                    type: "PATCH",
-                                    headers: {
-                                        "X-CSRF-TOKEN": $(
-                                            'meta[name="csrf-token"]'
-                                        ).attr("content"),
-                                    },
-                                    success(response) {
-                                        console.log(response);
-                                        Swal.fire({
-                                            icon: "success",
-                                            title: "Examen Finalizado",
-                                            timer: 1500,
-                                        }).then(() => {
-                                            window.location.reload();
-                                        });
-                                    },
-                                    error(response) {
-                                        console.log(response);
-                                    },
-                                });
+                                // $.ajax({
+                                //     url: `/exams/end/${id}`,
+                                //     type: "PATCH",
+                                //     headers: {
+                                //         "X-CSRF-TOKEN": $(
+                                //             'meta[name="csrf-token"]'
+                                //         ).attr("content"),
+                                //     },
+                                //     success(response) {
+                                //         console.log(response);
+                                //         Swal.fire({
+                                //             icon: "success",
+                                //             title: "Examen Finalizado",
+                                //             timer: 1500,
+                                //         }).then(() => {
+                                //             window.location.reload();
+                                //         });
+                                //     },
+                                //     error(response) {
+                                //         console.log(response);
+                                //     },
+                                // });
                             },
                             error(response) {
                                 console.log(response);

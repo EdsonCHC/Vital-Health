@@ -19,7 +19,7 @@ class ProgramDocTableSeeder extends Seeder
             [
                 'homeworks' => Str::random(50),
                 'notes' => Str::random(50),
-                'doctor_id'=> 1,
+                'doctor_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -38,7 +38,7 @@ class ProgramDocTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ];
-        
+
         // Insertar los registros en la base de datos
         DB::transaction(function () use ($programDoc) {
             DB::table('program_doc')->insert($programDoc);
