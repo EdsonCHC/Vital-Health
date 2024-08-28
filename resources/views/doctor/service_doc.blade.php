@@ -78,7 +78,9 @@
             </div>
             <div class="my-5">
                 <p class="text-xs text-justify mb-4 font-bold text-gray-400 mx-4 -mt-1">
-                    El área de cardiología se especializa en el diagnóstico, tratamiento y prevención de enfermedades del corazón y del sistema cardiovascular. Los cardiólogos en esta área manejan una amplia gama de condiciones, desde hipertensión y arritmias hasta enfermedades coronarias y cardiacas estructurales.
+                    El área de cardiología se especializa en el diagnóstico, tratamiento y prevención de enfermedades
+                    del corazón y del sistema cardiovascular. Los cardiólogos en esta área manejan una amplia gama de
+                    condiciones, desde hipertensión y arritmias hasta enfermedades coronarias y cardiacas estructurales.
                 </p>
             </div>
         </div>
@@ -95,7 +97,10 @@
                 <div class="w-full min-w-40 max-w-72 mx-4 border border-solid border-vh-green py-4 my-4">
                     <h2 class="text-lg font-bold mb-2">Citas</h2>
                     <p class="text-sm font-bold text-gray-400 mt-2 px-6 text-justify">
-                        Las citas médicas son encuentros programados entre pacientes y profesionales de la salud para evaluar, diagnosticar y tratar diversas condiciones médicas. Durante una cita, el médico realiza una evaluación integral del estado de salud del paciente, que puede incluir exámenes físicos, pruebas diagnósticas y la revisión de antecedentes médicos.
+                        Las citas médicas son encuentros programados entre pacientes y profesionales de la salud para
+                        evaluar, diagnosticar y tratar diversas condiciones médicas. Durante una cita, el médico realiza
+                        una evaluación integral del estado de salud del paciente, que puede incluir exámenes físicos,
+                        pruebas diagnósticas y la revisión de antecedentes médicos.
                     </p>
                     <hr class="mx-6 my-2" />
                     <div class="flex flex-col px-8">
@@ -120,15 +125,14 @@
                             <span class="ml-2">Opción 4</span>
                         </label>
                     </div>
-                    <button target="_self"
-                        class="w-4/5 py-4 my-4 border border-solid border-vh-green font-bold text-base lg:w-2/5 hover:bg-vh-green transition duration-300 hover:text-white inline-block text-center">
-                        Agendar
-                    </button>
+
                 </div>
                 <div class="w-full min-w-40 max-w-72 mx-4 border border-solid border-vh-green py-4 my-4">
                     <h2 class="text-lg font-bold mb-2">Expedientes</h2>
                     <p class="text-sm font-bold text-gray-400 mt-2 px-6 text-justify">
-                        Un expediente médico es un registro detallado y confidencial que documenta la historia clínica y el estado de salud de un paciente. Incluye información esencial como diagnósticos, tratamientos recibidos, resultados de pruebas, notas de consultas y antecedentes médicos. 
+                        Un expediente médico es un registro detallado y confidencial que documenta la historia clínica y
+                        el estado de salud de un paciente. Incluye información esencial como diagnósticos, tratamientos
+                        recibidos, resultados de pruebas, notas de consultas y antecedentes médicos.
                     </p>
                     <hr class="mx-6 my-2" />
                     <div class="flex flex-col px-8">
@@ -159,7 +163,10 @@
                 <div class="w-full min-w-40 max-w-72 mx-4 border border-solid border-vh-green py-4 my-4">
                     <h2 class="text-lg font-bold mb-2">Programación</h2>
                     <p class="text-sm font-bold text-gray-400 mt-2 px-6 text-justify">
-                        La programación médica es un proceso organizado para coordinar y planificar las citas y procedimientos médicos de un paciente. Este sistema asegura que los pacientes reciban atención oportuna y eficiente, gestionando horarios de consultas, exámenes, tratamientos y seguimientos necesarios. 
+                        La programación médica es un proceso organizado para coordinar y planificar las citas y
+                        procedimientos médicos de un paciente. Este sistema asegura que los pacientes reciban atención
+                        oportuna y eficiente, gestionando horarios de consultas, exámenes, tratamientos y seguimientos
+                        necesarios.
                     </p>
                     <hr class="mx-6 my-2" />
                     <div class="flex flex-col px-8">
