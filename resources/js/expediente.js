@@ -7,7 +7,7 @@ $(document).ready(function () {
     // Usuario
     // Maneja el guardado del expediente
     $(".saveFileUser").click(function () {
-        const pdf_url = "/generate-pdf";
+        const pdf_url = `/expediente/pdf`;
 
         Swal.fire({
             title: "Resultado de mi Expediente",
@@ -24,6 +24,7 @@ $(document).ready(function () {
             didOpen: () => {
                 const qrCodeCanvas = document.getElementById("qr_code");
 
+                // Generar el QR dentro del canvas con la URL del PDF
                 QRCode.toCanvas(
                     qrCodeCanvas,
                     pdf_url,
@@ -36,6 +37,7 @@ $(document).ready(function () {
             },
         });
     });
+
 
     // Doctor
     // Maneja la creacion del expediente y del usuario

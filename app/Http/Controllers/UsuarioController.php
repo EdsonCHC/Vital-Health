@@ -63,11 +63,9 @@ class UsuarioController extends Controller
 
     public function generatePdf()
     {
-        // Obtén el usuario autenticado
         $user = Auth::user();
         $userId = $user->id;
 
-        // Recupera los datos necesarios
         $citas = Citas::with('category')
             ->where('patient_id', $userId)
             ->where('state', 1)
@@ -81,7 +79,6 @@ class UsuarioController extends Controller
             ->where('patient_id', $userId)
             ->get();
 
-        // Pasa los datos a la vista
         $pdf = PDF::loadView('pdf.file', [
             'citas' => $citas,
             'exams' => $exams,
@@ -89,9 +86,9 @@ class UsuarioController extends Controller
             'user' => $user
         ]);
 
-        // Devuelve el PDF como una descarga
         return $pdf->download('Expediente.pdf');
     }
+
 
     public function citasPaciente(Request $request)
     {

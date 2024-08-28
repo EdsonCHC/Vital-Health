@@ -59,21 +59,21 @@
                                     <p class="text-lg text-gray-600">Paciente de <span
                                             class="text-green-700 tracking-wide">Vital-Health</span></p>
                                 </div>
-                                <div class="flex justify-center mt-4 mb-8">
+                                <div class="flex justify-center item-center mt-4 mb-8">
                                     <button
-                                        class="save-img bg-vh-green text-white px-4 py-2 rounded-md text-lg flex items-center mx-4">
+                                        class="save-img bg-vh-green text-white h-12  px-4 py-2 rounded-md text-lg flex items-center mx-4">
                                         <img src="{{ asset('storage/svg/upload.svg') }}" alt="subirFoto"
                                             class="w-8 h-8 mx-2">Avatar
                                     </button>
                                     @foreach ($expedientes as $file)
                                         @if ($file->state == 0)
                                             <button
-                                                class="saveFileUser bg-gray-300 text-gray-700 px-4 py-2 rounded-md text-lg flex items-center mx-2">
+                                                class="saveFileUser bg-gray-300 text-gray-700 h-12 lg:h-12 px-4 py-2 rounded-md text-lg flex items-center mx-2">
                                                 <img src="{{ asset('storage/svg/printer-icon.svg') }}" alt="Expediente"
                                                     class="w-6 h-6 mx-2">Expediente</button>
                                         @elseif ($file->state == 1)
                                             <button
-                                                class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md text-lg flex items-center mx-2">
+                                                class="bg-gray-300 text-gray-700 h-16 lg:h-14 px-4 py-2 rounded-md text-lg flex items-center mx-2">
                                                 <img src="{{ asset('storage/svg/question.svg') }}" alt="Expediente"
                                                     class="w-6 h-6 mx-2">Exigir Expediente</button>
                                         @endif
@@ -138,7 +138,7 @@
                                         </div>
                                         <div class="w-full mt-6 flex justify-end">
                                             <button type="submit" id="log_out"
-                                                class="w-2/6 h-12 lg:h-10 bg-red-700 text-white font-semibold rounded-lg hover:bg-red-800">Cerrar
+                                                class="w-3/6 h-12 lg:w-2/6 lg:h-10 bg-red-700 text-white font-semibold rounded-lg hover:bg-red-800">Cerrar
                                                 Sesión</button>
                                         </div>
                                     </form>
