@@ -2,7 +2,12 @@
     @vite(['resources/css/menu.css', 'resources/js/noti.js'])
     <header class="w-full h-20 flex z-20 bg-vh-green-medium-2">
         <div class="w-full h-full mx-auto flex justify-between items-center px-4">
-            <!-- Botón de menú hamburguesa para dispositivos móviles -->
+            <!-- Logo a la izquierda -->
+            <a href="/" class="flex items-center">
+                <img src="{{ asset('storage/svg/logo-icon-white.svg') }}" alt="logo" class="h-16 md:h-24">
+            </a>
+
+            <!-- Menú hamburguesa para dispositivos móviles -->
             <div class="flex items-center md:hidden">
                 <button id="mobile-menu-button">
                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -12,11 +17,6 @@
                     </svg>
                 </button>
             </div>
-
-            <!-- Logo -->
-            <a href="/" class="flex items-center">
-                <img src="{{ asset('storage/svg/logo-icon-white.svg') }}" alt="logo" class="h-16 md:h-24">
-            </a>
 
             <!-- Menú para pantallas grandes -->
             <ul class="hidden md:flex justify-center gap-10 items-center">
@@ -28,11 +28,11 @@
                         </li>
                         <li><a href="/citas" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Citas</a></li>
                         <li><a href="/examen" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Exámenes</a></li>
-                        <li><a href="/reunion" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Reuniones</a>
-                        </li>
-                    </ul>
                 </li>
-                <li class="font-bold text-white tracking-wider"><a href="/about">Acerca de VH</a></li>
+            </ul>
+            </li>
+            <li><a href="/reunion" class="font-bold text-white tracking-wider">Reuniones</a>
+            <li class="font-bold text-white tracking-wider"><a href="/about">Acerca de VH</a></li>
             </ul>
 
             <!-- Controles de usuario y notificaciones -->
@@ -50,12 +50,34 @@
         </div>
 
         <!-- Menú para móviles -->
-        <div id="mobile-menu" class="hidden flex-col items-center md:hidden bg-vh-green-medium-2">
-            <ul class="flex flex-col gap-2 p-4">
-                <li class="font-bold text-white"><a href="/">Inicio</a></li>
-                <li class="font-bold text-white"><a href="/area">Especialidades Medicas</a></li>
-                <li class="font-bold text-white"><a href="/about">Acerca de VH</a></li>
-            </ul>
+        <div id="mobile-menu" class="hidden fixed top-20 z-20 right-0 w-full h-full bg-stone-100 bg-opacity-95 md:hidden">
+            <div class="flex flex-col h-full space-y-6 py-4 mx-4">
+                <ul class="space-y-4 text-lg font-semibold">
+                    <li><a href="/"
+                            class="w-6/12 sm:4/12 block px-2 py-2 text-white bg-vh-green rounded">Inicio</a>
+                    </li>
+                    <li><a href="/area"
+                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Especialidades
+                            Médicas</a></li>
+                    <li><a href="/medicina"
+                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Medicina</a>
+                    </li>
+                    <li><a href="/citas"
+                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Citas</a></li>
+                    <li><a href="/examen"
+                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Exámenes</a>
+                    </li>
+                    <li><a href="/reunion"
+                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Reuniones</a>
+                    </li>
+                    <li><a href="/about"
+                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Acerca de
+                            VH</a></li>
+                    <li><a href="/user"
+                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Perfil</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </header>
 @else
@@ -74,7 +96,7 @@
 @endguest
 
 <script>
-    document.getElementById('mobile-menu-button').addEventListener('click', function () {
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenu.classList.toggle('hidden');
     });

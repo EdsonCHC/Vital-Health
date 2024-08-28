@@ -11,6 +11,7 @@
 
 <body class="w-full h-full overflow-x-hidden">
     @include('templates.loader')
+    
     <div class="w-full h-auto">
         @include('templates.header')
     </div>

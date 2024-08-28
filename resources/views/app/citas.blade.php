@@ -21,9 +21,9 @@
 <body class="font-sans bg-gray-200 flex flex-col min-h-screen">
     @include('templates.loader')
 
-    <header class="w-full bg-white shadow-md">
+    <div class="w-full h-auto">
         @include('templates.header')
-    </header>
+    </div>
 
     <main class="flex-1 w-full lg:px-8 p-4 lg:rounded-md lg:mt-8 mt-12  lg:mb-60 mx-auto bg-white shadow-lg mb-16">
         <section class="flex justify-between items-center mb-8">

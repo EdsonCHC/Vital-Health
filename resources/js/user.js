@@ -136,6 +136,53 @@ $(document).ready(function () {
         });
     });
 
+    $("#privacy_form").submit(function (e) {
+        e.preventDefault();
+
+        const currentPassword = $("input[name='current_password']").val();
+        const newPassword = $("input[name='new_password']").val();
+        const newPasswordConfirmation = $(
+            "input[name='new_password_confirmation']"
+        ).val();
+
+        if (newPassword !== newPasswordConfirmation) {
+            Swal.fire({
+                title: "Error",
+                icon: "error",
+                text: "Las nuevas contraseñas no coinciden.",
+            });
+            return;
+        }
+
+        const formData = $(this).serializeArray();
+
+        $.ajax({
+            url: "/user/update-password",
+            type: "PUT",
+            data: formData,
+            success(response) {
+                if (response.success) {
+                    Swal.fire({
+                        title: "Contraseña actualizada correctamente",
+                        icon: "success",
+                        timer: 2000,
+                        showConfirmButton: false,
+                        timerProgressBar: true,
+                    }).then(() => {
+                        location.reload();
+                    });
+                }
+            },
+            error(response) {
+                Swal.fire({
+                    title: "Error al actualizar la contraseña",
+                    icon: "error",
+                    text: response.responseJSON.message,
+                });
+            },
+        });
+    });
+
     $.ajaxSetup({
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),

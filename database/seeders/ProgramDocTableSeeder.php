@@ -17,22 +17,22 @@ class ProgramDocTableSeeder extends Seeder
     {
         $programDoc = [
             [
-                'homeworks' => Str::random(50),
-                'notes' => Str::random(50),
+                'homeworks' => 'Revisar examenes',
+                'notes' => 'avisar',
                 'doctor_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'homeworks' => Str::random(50),
-                'notes' => Str::random(50),
+                'homeworks' => 'Revisar examenes',
+                'notes' => 'avisar',
                 'doctor_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'homeworks' => Str::random(50),
-                'notes' => Str::random(50),
+                'homeworks' => 'Revisar examenes',
+                'notes' => 'avisar',
                 'doctor_id' => 3,
                 'created_at' => now(),
                 'updated_at' => now(),

@@ -10,11 +10,13 @@
     @vite(['resources/css/app.css', 'resources/css/checkbox.css', 'resources/js/appointment.js', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js'])
 </head>
 
-<body class="w-full h-full">
+<body class="w-full h-full overflow-x-hidden">
     @include('templates.loader')
+
     <div class="w-full h-auto">
         @include('templates.header')
     </div>
+
     <!-- Hidden Input for Category ID -->
     <input type="hidden" id="category_id" value="{{ $categoria->id }}">
     <!--Estilos Desktop-->
@@ -93,7 +95,7 @@
             </div>
             <div class="my-5">
                 <p class="text-xs text-justify mb-4 font-bold text-gray-400 mx-4 -mt-1">
-                    El área de cardiología se especializa en el diagnóstico, tratamiento y prevención de enfermedades del corazón y del sistema cardiovascular. 
+                    El área de cardiología se especializa en el diagnóstico, tratamiento y prevención de enfermedades del corazón y del sistema cardiovascular.
                 </p>
             </div>
             <button target="_self"
@@ -114,7 +116,7 @@
                 <div class="w-full min-w-40 max-w-72 mx-4 border border-solid border-vh-green py-4 my-4">
                     <h2 class="text-lg font-bold mb-2">Citas</h2>
                     <p class="text-sm font-bold text-gray-400 mt-2 px-6 text-justify">
-                        Las citas médicas son encuentros programados entre pacientes y profesionales de la salud para evaluar, diagnosticar y tratar diversas condiciones médicas. Durante una cita, el médico realiza una evaluación integral del estado de salud del paciente, que puede incluir exámenes físicos, pruebas diagnósticas y la revisión de antecedentes médicos. 
+                        Las citas médicas son encuentros programados entre pacientes y profesionales de la salud para evaluar, diagnosticar y tratar diversas condiciones médicas. Durante una cita, el médico realiza una evaluación integral del estado de salud del paciente, que puede incluir exámenes físicos, pruebas diagnósticas y la revisión de antecedentes médicos.
                     </p>
                     <hr class="mx-6 my-2" />
                     <div class="flex flex-col px-8">

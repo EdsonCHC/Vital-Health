@@ -23,6 +23,8 @@ use App\Mail\VerifyEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Facades\View;
 
 
 
@@ -63,35 +65,98 @@ class UsuarioController extends Controller
 
     public function generatePdf()
     {
-        // Obtén el usuario autenticado
         $user = Auth::user();
         $userId = $user->id;
 
-        // Recupera los datos necesarios
         $citas = Citas::with('category')
-            ->where('patient_id', $userId)
-            ->where('state', 1)
+        ->where('patient_id', $userId)
+            ->where('state', 0)
             ->get();
 
         $exams = Exams::where('patient_id', $userId)
-            ->where('state', 1)
+            ->where('state', 0)
             ->get();
 
         $recetas = Receta::with('medicinas')
-            ->where('patient_id', $userId)
+        ->where('patient_id', $userId)
             ->get();
 
-        // Pasa los datos a la vista
-        $pdf = PDF::loadView('pdf.file', [
+        $pdf = PDF::loadView('app.fileUser', [
             'citas' => $citas,
             'exams' => $exams,
             'recetas' => $recetas,
             'user' => $user
         ]);
 
-        // Devuelve el PDF como una descarga
-        return $pdf->download('Expediente.pdf');
+        $fileName = 'Expediente_' . $userId . '.pdf';
+        $filePath = 'expedientes/' . $fileName;
+        $publicPath = asset($filePath); // Genera la URL pública del archivo
+
+        // Guarda el PDF en el directorio public/expedientes
+        $pdf->save(public_path($filePath));
+
+        // Guarda la URL del PDF en la base de datos
+        Expedientes::updateOrCreate(
+            ['patient_id' => $userId],
+            ['pdf_path' => $publicPath, 'state' => '0']
+        );
+
+        // Devuelve el archivo PDF directamente
+        return response()->file(public_path($filePath));
     }
+
+    // public function generatePdf()
+    // {
+    //     $user = Auth::user();
+    //     $userId = $user->id;
+
+    //     $citas = Citas::with('category')
+    //     ->where('patient_id', $userId)
+    //         ->where('state', 0)
+    //         ->get();
+
+    //     $exams = Exams::where('patient_id', $userId)
+    //         ->where('state', 0)
+    //         ->get();
+
+    //     $recetas = Receta::with('medicinas')
+    //     ->where('patient_id', $userId)
+    //         ->get();
+
+    //     // Genera el contenido del QR con los datos del PDF y del usuario
+    //     $qrContent = "Usuario: " . $user->name . "\n" .
+    //     "Email: " . $user->email . "\n" .
+    //     "Citas: " . $citas->toJson() . "\n" .
+    //     "Exámenes: " . $exams->toJson() . "\n" .
+    //     "Recetas: " . $recetas->toJson();
+
+    //     // Genera el código QR
+    //     $qrCode = QrCode::size(200)->generate($qrContent);
+
+    //     $pdf = PDF::loadView('app.fileUser', [
+    //         'citas' => $citas,
+    //         'exams' => $exams,
+    //         'recetas' => $recetas,
+    //         'user' => $user,
+    //         'qrCode' => $qrCode // Pasa el código QR a la vista
+    //     ]);
+
+    //     $fileName = 'Expediente_' . $userId . '.pdf';
+    //     $filePath = 'expedientes/' . $fileName;
+    //     $publicPath = asset($filePath); // Genera la URL pública del archivo
+
+    //     // Guarda el PDF en el directorio public/expedientes
+    //     $pdf->save(public_path($filePath));
+
+    //     // Guarda la URL del PDF en la base de datos
+    //     Expedientes::updateOrCreate(
+    //         ['patient_id' => $userId],
+    //         ['pdf_path' => $publicPath, 'state' => '0']
+    //     );
+
+    //     // Devuelve el archivo PDF directamente
+    //     return response()->file(public_path($filePath));
+    // }
 
     public function citasPaciente(Request $request)
     {
@@ -280,6 +345,40 @@ class UsuarioController extends Controller
         }
     }
 
+    public function updatePassword(Request $request)
+    {
+        try {
+            // Validar la solicitud
+            $request->validate([
+                'current_password' => 'required',
+                'new_password' => 'required|min:8|confirmed',
+            ]);
+
+            $user = Auth::user();
+
+            // Verificar si la contraseña actual es correcta
+            if (!Hash::check($request->current_password, $user->password)) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'La contraseña actual no es correcta.'
+                ], 400);
+            }
+
+            // Actualizar la contraseña
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Contraseña actualizada correctamente'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
 
 
     public function updateImage(Request $request)

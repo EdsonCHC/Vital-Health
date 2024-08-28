@@ -20,9 +20,9 @@
 
     @include('templates.loader')
 
-    <header class="bg-gray-800 text-white">
+    <div class="w-full h-auto">
         @include('templates.header')
-    </header>
+    </div>
 
     <main class="flex-1">
         <!-- Título y descripción para pantallas grandes -->
@@ -67,7 +67,8 @@
                             class="flex items-center border-2 border-green-900 rounded-full cursor-pointer p-2 bg-white">
                             <select id="filtro" name="filtro"
                                 class="absolute inset-0 w-full h-full border-none cursor-pointer bg-transparent appearance-none opacity-0 focus:outline-none">
-                                <option value="todos" {{ request('filtro') == 'todos' ? 'selected' : '' }}>Todos</option>
+                                <option value="todos" {{ request('filtro') == 'todos' ? 'selected' : '' }}>Todos
+                                </option>
                                 <option value="ascendente" {{ request('filtro') == 'ascendente' ? 'selected' : '' }}>
                                     Ascendente</option>
                                 <option value="descendente" {{ request('filtro') == 'descendente' ? 'selected' : '' }}>

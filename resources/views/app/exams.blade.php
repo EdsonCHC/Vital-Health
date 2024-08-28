@@ -14,9 +14,9 @@
     @include('templates.loader')
 
     <!-- Header -->
-    <header class="bg-white shadow-md">
+    <div class="w-full h-auto">
         @include('templates.header')
-    </header>
+    </div>
 
     <!-- Main Content -->
     <main class="flex-1 p-4 mt-6 lg:max-w-screen-2xl lg:mx-auto lg:rounded-md">
