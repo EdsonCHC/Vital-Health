@@ -249,7 +249,7 @@ Route::get('/videollamadaDoc', [VideollamadaController::class, 'showRoomDoc'])->
 
 // Fallback route (404)
 Route::fallback(function () {
-    return response()->view('errors.404page', [], 404);
+    return response()->view('errors.404page', [], 404)->name('errors.404page');
 });
 
 //PDF

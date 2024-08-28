@@ -32,7 +32,7 @@ class SendPdfMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.send_pdf')
+        return $this->view('pdf.send_pdf')
             ->subject('Aquí está tu PDF')
             ->attachData($this->pdfContent, $this->pdfFilename, [
                 'mime' => 'application/pdf',
