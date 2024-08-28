@@ -67,7 +67,7 @@
                                     </button>
                                     @foreach ($expedientes as $file)
                                         @if ($file->state == 0)
-                                            <button
+                                            <button data-id="{{ $user->id }}"
                                                 class="saveFileUser bg-gray-300 text-gray-700 h-12 lg:h-12 px-4 py-2 rounded-md text-lg flex items-center mx-2">
                                                 <img src="{{ asset('storage/svg/printer-icon.svg') }}" alt="Expediente"
                                                     class="w-6 h-6 mx-2">Expediente</button>
