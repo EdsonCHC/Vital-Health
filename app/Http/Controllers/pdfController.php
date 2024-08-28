@@ -15,19 +15,12 @@ class pdfController extends Controller
         $id = $request->input('exam_id');
 
         try {
+            // Genera el PDF
             $pdf = $this->createPDF($tipo, $request);
+            $pdfContent = $pdf->output(); // Obtiene el contenido del PDF en formato binario
 
-            $pdfContent = $pdf->output();
-            $fileName = 'reporte_' . time() . '.pdf';
-            $filePath = 'pdf_files/' . $fileName;
-
-            // Guarda el PDF en el directorio storage
-            Storage::disk('public')->put($filePath, $pdfContent);
-
-            $fileUrl = url('storage/' . $filePath);
-
-            // Actualiza el examen con la ruta del PDF
-            $this->updateExamPDF($id, $fileUrl);
+            // Actualiza el examen con el contenido del PDF en formato binario
+            $this->updateExamPDF($id, $pdfContent);
 
             return response()->json(['success' => 'PDF generado y guardado correctamente.']);
         } catch (\Exception $e) {
@@ -98,10 +91,16 @@ class pdfController extends Controller
         return $data;
     }
 
-    private function updateExamPDF($id, $fileUrl)
+    private function updateExamPDF($id, $pdfContent)
     {
-        $examen = Exams::findOrFail($id);
-        $examen->pdf_file = $fileUrl;
-        $examen->save();
+        // Asumiendo que tienes un modelo Exam
+        $exam = Exams::find($id);
+        if ($exam) {
+            // Actualiza el campo pdf_file con el contenido binario
+            $exam->pdf_file = $pdfContent;
+            $exam->save();
+        } else {
+            throw new \Exception('Examen no encontrado.');
+        }
     }
 }
