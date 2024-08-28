@@ -93,9 +93,9 @@ class VideollamadaController extends Controller
 
         $cita = Citas::where('patient_id', $user->id)->first();
 
-        if (!$cita) {
-            return redirect()->route('errors.404page')->with('message', 'No se encontró una videollamada para usted.');
-        }
+        // if (!$cita) {
+        //     return redirect()->route('errors.404page')->with('message', 'No se encontró una videollamada para usted.');
+        // }
 
         $videollamadas = Videollamada::where('cita_id', $cita->id)->get();
 
