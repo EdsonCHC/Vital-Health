@@ -23,6 +23,8 @@ use App\Mail\VerifyEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Facades\View;
 
 
 
@@ -79,11 +81,22 @@ class UsuarioController extends Controller
         ->where('patient_id', $userId)
             ->get();
 
+        // Genera el contenido del QR con los datos del PDF y del usuario
+        $qrContent = "Usuario: " . $user->name . "\n" .
+        "Email: " . $user->email . "\n" .
+        "Citas: " . $citas->toJson() . "\n" .
+        "Exámenes: " . $exams->toJson() . "\n" .
+        "Recetas: " . $recetas->toJson();
+
+        // Genera el código QR
+        $qrCode = QrCode::size(200)->generate($qrContent);
+
         $pdf = PDF::loadView('app.fileUser', [
             'citas' => $citas,
             'exams' => $exams,
             'recetas' => $recetas,
-            'user' => $user
+            'user' => $user,
+            'qrCode' => $qrCode // Pasa el código QR a la vista
         ]);
 
         $fileName = 'Expediente_' . $userId . '.pdf';
@@ -102,8 +115,6 @@ class UsuarioController extends Controller
         // Devuelve el archivo PDF directamente
         return response()->file(public_path($filePath));
     }
-
-
 
     public function citasPaciente(Request $request)
     {
