@@ -197,11 +197,12 @@ Route::middleware('auth:admin')->group(function () {
     //Admin
     //
     Route::post('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
-    //
-    //Imagen
-    //
-    Route::get('/category/{id}/image', [CategoríaController::class, 'showImage'])->name('category.image');
+
 });
+//
+//Imagen
+//
+Route::get('/category/{id}/image', [CategoríaController::class, 'showImage'])->name('category.image');
 
 // Middlewares del laboratorio
 Route::middleware('auth:laboratorio')->group(function () {
