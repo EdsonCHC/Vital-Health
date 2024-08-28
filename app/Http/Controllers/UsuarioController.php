@@ -140,13 +140,13 @@ class UsuarioController extends Controller
             ], 422);
         }
 
+        $imageData = null;
         if ($request->hasFile('img')) {
             $image = $request->file('img');
-            $imagePath = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('profile_images', $imagePath, 'public');
-        } else {
-            $imagePath = null;
+            $imageData = file_get_contents($image->getRealPath()); // Leer datos binarios de la imagen
+            // Almacena la imagen en formato binario
         }
+
 
         // Crear usuario
         try {
@@ -159,7 +159,7 @@ class UsuarioController extends Controller
                 'birth' => $request->birth,
                 'blood' => $request->blood,
                 'password' => Hash::make($request->password),
-                'img' => $imagePath,
+                'img' => $imageData,
                 'email_verification_token' => Str::random(60),
             ]);
 
@@ -285,32 +285,28 @@ class UsuarioController extends Controller
     public function updateImage(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $user = Auth::user();
+
         if ($request->hasFile('image')) {
-            // Eliminar la imagen antigua si existe
-            if ($user->img && Storage::disk('public')->exists('profile_images/' . $user->img)) {
-                Storage::disk('public')->delete('profile_images/' . $user->img);
+            $imageData = null;
+            if ($request->hasFile('img')) {
+                $image = $request->file('img');
+                $imageData = file_get_contents($image->getRealPath()); // Leer datos binarios de la imagen
+                // Almacena la imagen en formato binario
             }
 
-            // Subir la nueva imagen
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('profile_images', $imageName, 'public');
-
             // Actualizar la ruta de la imagen en el perfil del usuario
-            $user->img = $imageName;
+            $user->img = $imageData;
             $user->save();
 
             return response()->json([
                 'success' => true,
                 'message' => 'Imagen actualizada correctamente',
-                'image' => $imageName
             ], 200);
         }
-
 
         return response()->json([
             'success' => false,
