@@ -39,11 +39,7 @@
             <div class="hidden md:flex items-center gap-4 pr-4">
                 <a href="/user" class="w-[50px] h-[50px]">
                     @if (Auth::check())
-<<<<<<< HEAD
-                        <img src="storage/profile_images/{{ route('patient.image', ['id' => $user->id])}}" alt="user_icon"
-=======
-                        <img src="{{ route('patient.image', ['id' => $user->id])}}"
->>>>>>> addf02ed15aa1e91f6057b4b88e22f1b6e7e5e4d
+                        <img src="{{ route('patient.image', ['id' => Auth::user()->id])}}"
                             class="w-full h-full bg-vh-gray-light rounded-full border-solid border-[2px]">
                     @else
                         <img src="{{ asset('storage/svg/user.svg') }}" alt="user_icon"

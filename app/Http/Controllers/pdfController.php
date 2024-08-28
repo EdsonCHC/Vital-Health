@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use App\Models\Exams;
+use App\Mail\SendPdfMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -12,17 +15,24 @@ class pdfController extends Controller
     public function generatePDF(Request $request)
     {
         $tipo = $request->input('exam-type');
-        $id = $request->input('exam_id');
-
+        $examenId = $request->input('exam_id');
         try {
+            // Obtener el examen para encontrar el patient_id
+            $examen = Exams::findOrFail($examenId);
+            $patientId = $examen->patient_id;
+
+            // Obtener el usuario asociado al patient_id
+            $user = Usuario::findOrFail($patientId);
+            $userMail = $user->mail;
+
             // Genera el PDF
             $pdf = $this->createPDF($tipo, $request);
             $pdfContent = $pdf->output(); // Obtiene el contenido del PDF en formato binario
 
-            // Actualiza el examen con el contenido del PDF en formato binario
-            $this->updateExamPDF($id, $pdfContent);
+            // Envía el PDF por correo electrónico
+            Mail::to($userMail)->send(new SendPdfMail($user->name, $pdfContent, 'resultado_examen.pdf'));
 
-            return response()->json(['success' => 'PDF generado y guardado correctamente.']);
+            return response()->json(['success' => 'PDF generado y enviado por correo electrónico correctamente.']);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
         }

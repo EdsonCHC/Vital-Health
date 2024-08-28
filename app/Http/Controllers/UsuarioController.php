@@ -294,8 +294,7 @@ class UsuarioController extends Controller
             $imageData = null;
             if ($request->hasFile('img')) {
                 $image = $request->file('img');
-                $imageData = file_get_contents($image->getRealPath()); // Leer datos binarios de la imagen
-                // Almacena la imagen en formato binario
+                $imageData = file_get_contents($image->getRealPath());
             }
 
             // Actualizar la ruta de la imagen en el perfil del usuario
