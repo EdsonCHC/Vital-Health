@@ -384,7 +384,7 @@ class UsuarioController extends Controller
     public function updateImage(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
         $user = Auth::user();
