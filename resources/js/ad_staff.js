@@ -143,6 +143,11 @@ $(document).ready(function () {
                 const gender = form.gender.value;
                 const age = form.age.value;
                 const description = form.description.value.trim();
+
+                // Validaciones
+                const nameRegex = /^[a-zA-Z\s]+$/;
+                const phoneRegex = /^\d{8}$/;
+                const descriptionRegex = /^[^\s'"“”]+.*$/;
                 if (
                     !name ||
                     !lastName ||
@@ -151,11 +156,44 @@ $(document).ready(function () {
                     !age ||
                     !description
                 ) {
+                    Swal.showValidationMessage("Complete todos los campos.");
+                    return false;
+                }
+                if (!nameRegex.test(name)) {
                     Swal.showValidationMessage(
-                        "Por favor, complete todos los campos"
+                        "Nombre inválido. Solo se permiten letras y espacios."
                     );
                     return false;
                 }
+                if (!nameRegex.test(lastName)) {
+                    Swal.showValidationMessage(
+                        "Apellidos inválidos. Solo se permiten letras y espacios."
+                    );
+                    return false;
+                }
+                if (!phoneRegex.test(phone)) {
+                    Swal.showValidationMessage(
+                        "Número telefónico inválido. Debe tener 8 dígitos."
+                    );
+                    return false;
+                }
+                if (!gender) {
+                    Swal.showValidationMessage("Seleccione un género.");
+                    return false;
+                }
+                if (!age || age < 25 || age > 80) {
+                    Swal.showValidationMessage(
+                        "Edad inválida. Debe estar entre 25 y 80 años."
+                    );
+                    return false;
+                }
+                if (!descriptionRegex.test(description)) {
+                    Swal.showValidationMessage(
+                        "Descripción inválida. No se permiten comillas y caracteres especiales."
+                    );
+                    return false;
+                }
+
                 return {
                     name,
                     lastName,
@@ -183,12 +221,26 @@ $(document).ready(function () {
                 const form = Swal.getPopup().querySelector("#secondForm");
                 const email = form.email.value.trim();
                 const password = form.password.value.trim();
+
+                // Validaciones
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const passwordRegex =
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$.!%*?&]{8,}$/;
                 if (!email || !password) {
+                    Swal.showValidationMessage("Complete todos los campos.");
+                    return false;
+                }
+                if (!emailRegex.test(email)) {
+                    Swal.showValidationMessage("Correo electrónico inválido.");
+                    return false;
+                }
+                if (!passwordRegex.test(password)) {
                     Swal.showValidationMessage(
-                        "Por favor, complete todos los campos"
+                        "Contraseña inválida. Debe tener al menos 8 caracteres, incluir una letra mayúscula, una minúscula y un dígito."
                     );
                     return false;
                 }
+
                 return { email, password };
             },
         });
@@ -208,7 +260,7 @@ $(document).ready(function () {
             },
             success(response) {
                 let doctorInfo = response;
-                actualizarSecuencia(doctorInfo)
+                actualizarSecuencia(doctorInfo);
             },
             error(response) {
                 console.error(
@@ -242,6 +294,10 @@ $(document).ready(function () {
                 const gender = form.gender.value;
                 const age = form.age.value;
                 const description = form.description.value.trim();
+                // Validaciones
+                const nameRegex = /^[a-zA-Z\s]+$/;
+                const phoneRegex = /^\d{8}$/;
+                const descriptionRegex = /^[^\s'"“”]+.*$/;
                 if (
                     !name ||
                     !lastName ||
@@ -250,11 +306,44 @@ $(document).ready(function () {
                     !age ||
                     !description
                 ) {
+                    Swal.showValidationMessage("Complete todos los campos.");
+                    return false;
+                }
+                if (!nameRegex.test(name)) {
                     Swal.showValidationMessage(
-                        "Por favor, complete todos los campos"
+                        "Nombre inválido. Solo se permiten letras y espacios."
                     );
                     return false;
                 }
+                if (!nameRegex.test(lastName)) {
+                    Swal.showValidationMessage(
+                        "Apellidos inválidos. Solo se permiten letras y espacios."
+                    );
+                    return false;
+                }
+                if (!phoneRegex.test(phone)) {
+                    Swal.showValidationMessage(
+                        "Número telefónico inválido. Debe tener 8 dígitos."
+                    );
+                    return false;
+                }
+                if (!gender) {
+                    Swal.showValidationMessage("Seleccione un género.");
+                    return false;
+                }
+                if (!age || age < 25 || age > 80) {
+                    Swal.showValidationMessage(
+                        "Edad inválida. Debe estar entre 25 y 80 años."
+                    );
+                    return false;
+                }
+                if (!descriptionRegex.test(description)) {
+                    Swal.showValidationMessage(
+                        "Descripción inválida. No se permiten comillas y caracteres especiales."
+                    );
+                    return false;
+                }
+
                 return {
                     name,
                     lastName,
@@ -282,9 +371,21 @@ $(document).ready(function () {
                 const form = Swal.getPopup().querySelector("#secondForm");
                 const email = form.email.value.trim();
                 const password = form.password.value.trim();
-                if (!email) {
+                // Validaciones
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const passwordRegex =
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$.!%*?&]{8,}$/;
+                if (!email || !password) {
+                    Swal.showValidationMessage("Complete todos los campos.");
+                    return false;
+                }
+                if (!emailRegex.test(email)) {
+                    Swal.showValidationMessage("Correo electrónico inválido.");
+                    return false;
+                }
+                if (!passwordRegex.test(password)) {
                     Swal.showValidationMessage(
-                        "Por favor, complete todos los campos"
+                        "Contraseña inválida. Debe tener al menos 8 caracteres, incluir una letra mayúscula, una minúscula y un dígito."
                     );
                     return false;
                 }
@@ -321,6 +422,53 @@ $(document).ready(function () {
                     data: concatArrays,
                     success: (response) => {
                         console.log("Datos enviados", response);
+                        window.location.reload();
+                    },
+                    error: (response) => {
+                        console.log("error al enviar los Datos", response);
+                    },
+                });
+            }
+        }
+    }
+
+    async function crearSecuencia() {
+        const { formValues: firstFormValues, isConfirmed: firstFormConfirmed } =
+            await showFirstForm();
+        if (firstFormConfirmed) {
+            const {
+                formValues: secondFormValues,
+                isConfirmed: secondFormConfirmed,
+            } = await showSecondForm();
+            if (secondFormConfirmed) {
+                const concatArrays = {
+                    ...firstFormValues,
+                    ...secondFormValues,
+                    category_id: id,
+                };
+                console.log(concatArrays);
+                $.ajax({
+                    url: "/staff/{id}",
+                    type: "POST",
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ), // Incluye el token CSRF
+                    },
+                    data: concatArrays,
+                    success: (response) => {
+                        Swal.fire({
+                            toast: true,
+                            position: "bottom-end",
+                            icon: "success",
+                            title: "Dotor creado",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                        });
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 3000);
                     },
                     error: (response) => {
                         console.log("error al enviar los Datos", response);
@@ -356,6 +504,18 @@ $(document).ready(function () {
                     data: concatArrays,
                     success: (response) => {
                         console.log("Datos enviados", response);
+                        Swal.fire({
+                            toast: true,
+                            position: "bottom-end",
+                            icon: "success",
+                            title: "Doctor actualizado",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                        });
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 3000);
                     },
                     error: (response) => {
                         console.log("error al enviar los Datos", response);
@@ -492,6 +652,18 @@ $(document).ready(function () {
                             },
                             success(response) {
                                 console.log(response);
+                                Swal.fire({
+                                    toast: true,
+                                    position: "bottom-end",
+                                    icon: "success",
+                                    title: "Doctor Eliminado",
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                });
+                                setTimeout(() => {
+                                    window.location.reload();
+                                }, 3000);
                             },
                             error(response) {
                                 console.log(response);

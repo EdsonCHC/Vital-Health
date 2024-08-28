@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -16,11 +15,12 @@ return new class extends Migration
             $table->string('state')->default('1');
             $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade');
             $table->foreignId('cita_id')->constrained('citas')->onDelete('cascade');
-            $table->foreignId('doctor_id')->constrained('doctors');
+            $table->unsignedBigInteger('doctor_id')->nullable();
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('set null');
             $table->string('exam_type');
             $table->date('exam_date');
             $table->text('notes')->nullable();
-            $table->string('pdf_file')->nullable(); 
+            $table->longText('pdf_file')->charset('binary')->nullable();
             $table->timestamps();
         });
     }

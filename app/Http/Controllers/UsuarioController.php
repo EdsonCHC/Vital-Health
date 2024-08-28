@@ -140,11 +140,12 @@ class UsuarioController extends Controller
             ], 422);
         }
 
-        $imageData = null;
         if ($request->hasFile('img')) {
             $image = $request->file('img');
-            $imageData = file_get_contents($image->getRealPath()); // Leer datos binarios de la imagen
-            // Almacena la imagen en formato binario
+            $imagePath = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('profile_images', $imagePath, 'public');
+        } else {
+            $imagePath = null;
         }
 
         // Crear usuario
@@ -158,7 +159,7 @@ class UsuarioController extends Controller
                 'birth' => $request->birth,
                 'blood' => $request->blood,
                 'password' => Hash::make($request->password),
-                'img' => $imageData,
+                'img' => $imagePath,
                 'email_verification_token' => Str::random(60),
             ]);
 
@@ -284,11 +285,10 @@ class UsuarioController extends Controller
     public function updateImage(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
         $user = Auth::user();
-
         if ($request->hasFile('image')) {
             // Eliminar la imagen antigua si existe
             if ($user->img && Storage::disk('public')->exists('profile_images/' . $user->img)) {
@@ -311,6 +311,7 @@ class UsuarioController extends Controller
             ], 200);
         }
 
+
         return response()->json([
             'success' => false,
             'message' => 'No se ha proporcionado ninguna imagen'
@@ -329,7 +330,7 @@ class UsuarioController extends Controller
 
         if ($imageData) {
             return response($imageData, 200)
-                ->header('Content-Type', 'image/jpeg'); // Cambia el tipo de contenido según el formato de la imagen
+                ->header('Content-Type', 'image/jpeg');
         } else {
             abort(404, 'Imagen no encontrada');
         }

@@ -75,7 +75,6 @@ Route::middleware('auth')->group(function () {
     //
     //Info pages
     //
-    Route::view('/area', 'app.area');
     Route::view('/service', 'app.service');
     Route::get('/area', [UsuarioController::class, 'indexu'])->name('user');
     route::get('/reunion', [VideollamadaController::class, 'showUser'])->name('app.reunion');
@@ -196,6 +195,10 @@ Route::middleware('auth:admin')->group(function () {
     //Admin
     //
     Route::post('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+    //
+    //Imagen
+    //
+    Route::get('/category/{id}/image', [CategoríaController::class, 'showImage'])->name('category.image');
 });
 
 // Middlewares del laboratorio
@@ -247,22 +250,21 @@ Route::fallback(function () {
     return response()->view('errors.404page', [], 404);
 });
 
-//Generar PDF
+//PDF
 Route::post('/generate-pdf', [pdfController::class, 'generatePDF']);
+Route::get('/view-pdf/{id}', [pdfController::class, 'viewPDF']);
 
 //-- EMAIL VERIFICATION--//
 Route::get('/verify-email/{id}/{token}', [VerificationController::class, 'verify'])->name('verification.verify');
-
 Route::get('/verify-confirm', [UsuarioController::class, 'showRegistrationConfirmation'])->name('verify.confirm');
-
 Route::get('/verify-confirmed', [UsuarioController::class, 'showVerificationSuccess'])->name('verify.confirmed');
-
-Route::get('/linkstorage', function () {
-    Artisan::call('storage:link');
-});
 
 //-- PASSWORD  RECOVERY --//
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+Route::get('/storageLink', function () {
+    Artisan::call('storage:link');
+});

@@ -378,23 +378,27 @@ $(document).ready(function () {
         const id = tr.data("id");
 
         $.ajax({
-            url: `/exams/pdf/${id}`,
+            url: `/view-pdf/${id}`, // Asegúrate de que esta URL sea correcta
             type: "get",
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
+            xhrFields: {
+                responseType: "blob", // Asegúrate de que el PDF se reciba como un Blob
+            },
             success(response) {
-                const pdf_url = response.message;
+                // Crear una URL para el Blob del PDF
+                const pdfUrl = URL.createObjectURL(response);
 
                 Swal.fire({
                     title: "Resultado del examen",
                     html: `
-                    <div class="flex flex-col items-center justify-center w-full h-full">
-                        <canvas class="flex items-center" id="qr_code"></canvas>
-                        <br>
-                        <a id="download_pdf" href="${pdf_url}" download="resultado_examen.pdf">Descargar PDF</a>
-                    </div>
-                `,
+                        <div class="flex flex-col items-center justify-center w-full h-full">
+                            <canvas class="flex items-center" id="qr_code"></canvas>
+                            <br>
+                            <a id="download_pdf" href="${pdfUrl}" download="resultado_examen.pdf">Descargar PDF</a>
+                        </div>
+                    `,
                     showConfirmButton: true,
                     confirmButtonText: "Ver",
                     didOpen: () => {
@@ -403,7 +407,7 @@ $(document).ready(function () {
                         // Generar el código QR en el canvas
                         QRCode.toCanvas(
                             qrCodeCanvas,
-                            pdf_url,
+                            pdfUrl,
                             { width: 200 },
                             (err) => {
                                 if (err) console.error(err);
@@ -413,9 +417,12 @@ $(document).ready(function () {
                     },
                     preConfirm: () => {
                         // Abrir el PDF en una nueva pestaña
-                        window.open(pdf_url, "_blank");
+                        window.open(pdfUrl, "_blank");
                     },
                 });
+
+                // Revocar el objeto URL después de que se haya utilizado
+                URL.revokeObjectURL(pdfUrl);
             },
             error(response) {
                 console.log(response);

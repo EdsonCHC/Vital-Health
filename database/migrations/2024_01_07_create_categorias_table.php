@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('nombre')->unique();
             $table->text('descripcion')->nullable();
             $table->text('caracteristicas')->nullable();
-            $table->string('img', 2048)->nullable();
+            $table->longText('img')->charset('binary');
             $table->boolean('activa')->default(true);
             $table->timestamps();
         });

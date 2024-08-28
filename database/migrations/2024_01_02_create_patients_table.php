@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->date('birth');
             $table->string('blood', 3);
             $table->string('password');
-            $table->longText('img')->charset('binary');
+            $table->string('img');
             $table->string('role', 50)->default('user');
             $table->string('email_verification_token')->nullable();
             $table->timestamp('email_verified_at')->nullable();

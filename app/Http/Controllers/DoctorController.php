@@ -30,15 +30,15 @@ class DoctorController extends Controller
 
         // Fetch recent appointments for the logged-in doctor
         $recentCitas = citas::where('doctor_id', $doctor->id)
-                            ->orderBy('date', 'desc')
-                            ->limit(2)
-                            ->get();
+            ->orderBy('date', 'desc')
+            ->limit(2)
+            ->get();
 
         // Fetch recent recipes for the logged-in doctor
         $recentRecetas = Receta::where('doctor_id', $doctor->id)
-                                ->orderBy('fecha_entrega', 'desc')  // Updated to use fecha_entrega
-                                ->limit(2)
-                                ->get();
+            ->orderBy('fecha_entrega', 'desc')  // Updated to use fecha_entrega
+            ->limit(2)
+            ->get();
 
         // Return view with the required data
         return view('doctor.doctor', compact('doctor', 'totalPatients', 'totalCitas', 'totalRecetas', 'recentCitas', 'recentRecetas'));
@@ -121,21 +121,28 @@ class DoctorController extends Controller
 
     public function updateDoctor(Request $request, $id)
     {
-        $validateInfo = $request->validate([
-            'name' => 'required|max:255',
-            'lastName' => 'required|max:255',
-            'phone' => 'required|max:25',
-            'age' => 'required|numeric|min:18',
-            'gender' => 'required',
-            'email' => 'required|email',
-            'password' => '',
-            'description' => 'required|max:1000',
-        ]);
+
+        $doctor = Doctor::findOrFail($id);
 
         try {
-            $doctor = Doctor::findOrFail($id);
+
+            $validateInfo = $request->validate([
+                'name' => 'required|max:255',
+                'lastName' => 'required|max:255',
+                'phone' => 'required|max:25',
+                'age' => 'required|numeric|min:18',
+                'gender' => 'required',
+                'email' => 'required|email',
+                'password' => '',
+                'description' => 'required|max:1000',
+            ]);
 
             $doctor->update($validateInfo);
+
+            return response()->json([
+                'message' => 'Success',
+                'error' => 'Doctor actualizado correctamente',
+            ], 200);
 
         } catch (\Exception $e) {
             return response()->json([
