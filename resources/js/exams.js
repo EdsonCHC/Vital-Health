@@ -517,28 +517,29 @@ $(document).ready(function () {
                             data: formData,
                             success(response) {
                                 console.log(response);
-                                // $.ajax({
-                                //     url: `/exams/end/${id}`,
-                                //     type: "PATCH",
-                                //     headers: {
-                                //         "X-CSRF-TOKEN": $(
-                                //             'meta[name="csrf-token"]'
-                                //         ).attr("content"),
-                                //     },
-                                //     success(response) {
-                                //         console.log(response);
-                                //         Swal.fire({
-                                //             icon: "success",
-                                //             title: "Examen Finalizado",
-                                //             timer: 1500,
-                                //         }).then(() => {
-                                //             window.location.reload();
-                                //         });
-                                //     },
-                                //     error(response) {
-                                //         console.log(response);
-                                //     },
-                                // });
+                                $.ajax({
+                                    url: `/exams/end/${id}`,
+                                    type: "PATCH",
+                                    headers: {
+                                        "X-CSRF-TOKEN": $(
+                                            'meta[name="csrf-token"]'
+                                        ).attr("content"),
+                                    },
+                                    success(response) {
+                                        console.log(response);
+                                        Swal.fire({
+                                            toast: true,
+                                            icon: "success",
+                                            title: "Examen Finalizado",
+                                            timer: 1500,
+                                        }).then(() => {
+                                            window.location.reload();
+                                        });
+                                    },
+                                    error(response) {
+                                        console.log(response);
+                                    },
+                                });
                             },
                             error(response) {
                                 console.log(response);

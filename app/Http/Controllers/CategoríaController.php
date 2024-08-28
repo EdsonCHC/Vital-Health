@@ -253,18 +253,15 @@ class CategoríaController extends Controller
 
     public function showImage($id)
     {
-        $categoría = Categoría::find($id);
+        $patient = Usuario::find($id);
 
-        if (!$categoría) {
-            abort(404, 'Categoría no encontrada');
+        if (!$patient) {
+            abort(404, 'Paciente no encontrado');
         }
 
-        $imageData = $categoría->img;
+        $imageData = $patient->img;
 
         if ($imageData) {
-
-            $imageData = base64_decode($imageData);
-
             return response($imageData, 200)
                 ->header('Content-Type', 'image/jpeg');
         } else {
