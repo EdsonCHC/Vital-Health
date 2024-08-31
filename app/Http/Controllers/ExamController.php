@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoría;
-use Illuminate\Http\Request;
 use App\Models\Exams;
 use App\Models\citas;
 use App\Models\Receta;
-use App\Models\RecetaMedicina;
 use App\Models\Medicina;
+use App\Models\Categoría;
+use App\Models\RecetaMedicina;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 
 class ExamController extends Controller
@@ -100,7 +100,7 @@ class ExamController extends Controller
             'medicinas' => $medicinas
         ]);
     }
-  
+
 
     public function store(Request $request)
     {
@@ -118,26 +118,26 @@ class ExamController extends Controller
             'medicinas.*.id' => 'required|exists:medicinas,id',
             'medicinas.*.cantidad' => 'required|integer|min:1'
         ]);
-    
+
         DB::beginTransaction();
-    
+
         try {
             // Filtrar medicinas disponibles y con suficiente stock
             $medicinasValidas = collect($validatedData['medicinas'])->map(function ($medicina) {
                 $medicinaModel = Medicina::where('id', $medicina['id'])
                     ->where('estado', 'Disponible')
                     ->first();
-    
+
                 if ($medicinaModel && $medicinaModel->stock >= $medicina['cantidad']) {
                     return [
                         'id' => $medicinaModel->id,
                         'cantidad' => $medicina['cantidad']
                     ];
                 }
-    
+
                 return null;
             })->filter()->values();
-    
+
             // Verificar si hay medicinas válidas
             if ($medicinasValidas->isEmpty()) {
                 DB::rollBack();
@@ -146,7 +146,7 @@ class ExamController extends Controller
                     'message' => 'No hay medicinas disponibles o con suficiente stock.'
                 ], 400);
             }
-    
+
             // Crear la receta
             $receta = Receta::create([
                 'cita_id' => $validatedData['cita_id'],
@@ -159,7 +159,7 @@ class ExamController extends Controller
                 'codigo_receta' => $validatedData['codigo_receta'],
                 'estado' => 'pendiente'
             ]);
-    
+
             foreach ($medicinasValidas as $medicina) {
                 $medicinaModel = Medicina::find($medicina['id']);
                 if ($medicinaModel->stock < $medicina['cantidad']) {
@@ -169,24 +169,24 @@ class ExamController extends Controller
                         'message' => 'No hay suficiente stock para la medicina: ' . $medicinaModel->nombre
                     ], 400);
                 }
-    
+
                 $medicinaModel->stock -= $medicina['cantidad'];
                 $medicinaModel->save();
-    
+
                 RecetaMedicina::create([
                     'receta_id' => $receta->id,
                     'medicina_id' => $medicina['id'],
                     'cantidad' => $medicina['cantidad']
                 ]);
             }
-    
+
             DB::commit();
-    
+
             return response()->json(['success' => true, 'receta' => $receta]);
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Error al guardar la receta: ' . $e->getMessage());
-    
+
             return response()->json([
                 'success' => false,
                 'message' => 'Hubo un problema al crear la receta.',
@@ -194,7 +194,7 @@ class ExamController extends Controller
             ], 500);
         }
     }
-    
+
 
 
     private function generateCodigoReceta()

@@ -90,5 +90,4 @@ class MedicineController extends Controller
             return response()->json(['error' => 'Hubo un error al cambiar el estado de la medicina'], 500);
         }
     }
-
 }

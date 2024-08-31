@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
 use App\Models\RecetaMedicina;
-
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use App\Models\Medicina;
@@ -105,7 +104,7 @@ class recetaController extends BaseController
 
         $recetas = Receta::where('doctor_id', $doctorId)->get();
 
-        return view('doctor.medicine_doc', compact('recetas','medicinas'));
+        return view('doctor.medicine_doc', compact('recetas', 'medicinas'));
     }
 
 

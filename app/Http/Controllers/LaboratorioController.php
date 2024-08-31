@@ -13,7 +13,6 @@ class LaboratorioController extends Controller
     {
         $medicines = Medicina::all();
         return view('laboratorio.index_lab', compact('medicines'));
-
     }
 
 

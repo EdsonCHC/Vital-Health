@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\citas;
-use Illuminate\Http\Request;
 use App\Models\Doctor;
-use App\Models\Usuario;
 use App\Models\Receta;
+use App\Models\Usuario;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
@@ -30,15 +30,15 @@ class DoctorController extends Controller
 
         // Fetch recent appointments for the logged-in doctor
         $recentCitas = citas::where('doctor_id', $doctor->id)
-                            ->orderBy('date', 'desc')
-                            ->limit(2)
-                            ->get();
+            ->orderBy('date', 'desc')
+            ->limit(2)
+            ->get();
 
         // Fetch recent recipes for the logged-in doctor
         $recentRecetas = Receta::where('doctor_id', $doctor->id)
-                                ->orderBy('fecha_entrega', 'desc')  // Updated to use fecha_entrega
-                                ->limit(2)
-                                ->get();
+            ->orderBy('fecha_entrega', 'desc')  // Updated to use fecha_entrega
+            ->limit(2)
+            ->get();
 
         // Return view with the required data
         return view('doctor.doctor', compact('doctor', 'totalPatients', 'totalCitas', 'totalRecetas', 'recentCitas', 'recentRecetas'));
@@ -110,7 +110,6 @@ class DoctorController extends Controller
                 return response()->json(['success' => 'El doctor ha sido eliminado']);
             }
             return response()->json(['message' => 'El doctor no pudo eliminarse'], 404);
-
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error interno del servidor',
@@ -136,14 +135,12 @@ class DoctorController extends Controller
             $doctor = Doctor::findOrFail($id);
 
             $doctor->update($validateInfo);
-
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error interno del servidor',
                 'error' => $e->getMessage(),
             ], 500);
         }
-
     }
 
     public function destroy(Request $request)

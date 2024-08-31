@@ -29,7 +29,5 @@ class VerificationController extends Controller
         } else {
             return response()->json(['message' => 'El enlace ha expirado o es inválido.'], 400);
         }
-
     }
-
 }

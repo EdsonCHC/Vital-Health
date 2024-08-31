@@ -19,7 +19,6 @@ class ProgramController extends Controller
     public function showDoc(Request $request)
     {
         $doctor = auth()->user();
-        
 
         // Obtener todas las citas del doctor
         $cita = Citas::where('doctor_id', $doctor->id)->first();
@@ -38,7 +37,7 @@ class ProgramController extends Controller
     }
 
 
-    public function storeHomework(Request $request, $doctor_id) 
+    public function storeHomework(Request $request, $doctor_id)
     {
         $validator = Validator::make($request->all(), [
             'homeworks' => 'required|max:55',
@@ -94,5 +93,4 @@ class ProgramController extends Controller
             return response()->json(['success' => false, 'message' => 'Error al eliminar la tarea.'], 500);
         }
     }
-
 }
