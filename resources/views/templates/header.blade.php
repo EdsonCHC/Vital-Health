@@ -84,7 +84,7 @@
     @vite('resources/css/menu.css')
     <header class="w-full h-20 flex items-center justify-between px-6 bg-vh-green-medium-2 shadow-md">
         <a href="/" class="flex items-center">
-            <img src="{{ asset('storage/svg/logo-icon-white.svg') }}" alt="logo" class="h-16">
+            <img src="{{ asset('storage/svg/logo-icon-white.svg') }}" alt="logo" class="h-24">
         </a>
         <div class="ml-auto">
             <a href="/login"
