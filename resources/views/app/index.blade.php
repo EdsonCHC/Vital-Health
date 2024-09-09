@@ -11,7 +11,7 @@
 
 <body class="w-full h-full overflow-x-hidden">
     @include('templates.loader')
-    
+
     <div class="w-full h-auto">
         @include('templates.header')
     </div>
@@ -21,9 +21,9 @@
         <div class="w-1/2 hidden lg:flex justify-center items-center">
             <div class="w-4/5">
                 <div class="ml-4 mt-4 mb-2">
-                    <span class="font-bold text-5xl">Brindamos Ayuda</span>
-                    <span class="font-bold text-5xl"> En tu Futuro</span>
-                    <p class="text-3xl text-justify mb-4 font-bold text-gray-400 mx-4 -mt-1">Transformamos tu bienestar
+                    <span class="font-bold text-5xl mr-4">Brindamos Ayuda</span>
+                    <span class="font-bold text-5xl"> En Tu Futuro</span>
+                    <p class="text-3xl text-justify mx-4 my-4 font-bold text-gray-400">Transformamos tu bienestar
                         con atención médica de calidad, dedicada a mantenerte saludable y en óptimas condiciones</p>
                 </div>
                 @guest
@@ -81,13 +81,12 @@
             <div class="w-1/2">
                 <div class="ml-4 mt-4 mb-2">
                     <span class="font-bold text-lg">Brindamos Ayuda</span>
-                    <span class="font-bold text-lg"> En tu Futuro</span>
+                    <span class="font-bold text-lg"> En Tu Futuro</span>
                 </div>
 
                 <a href="/register" target="_self"
                     class="w-4/5 h-8 text-white bg-vh-green text-sm shadow-xl mb-10 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green inline-block text-center pt-1 mx-4">
                     Regístrate ahora
-                    <!-- TODO: cambiar a solo una componente por dispositivo  -->
                 </a>
             </div>
             <div class="w-1/2">
@@ -118,7 +117,7 @@
                 @if ($doctors->isEmpty())
                     <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
                         <h2 class="text-lg font-bold mb-2 text-vh-green">Alonso</h2>
-                        <p class="text-sm font-bold text-gray-400 mt-2">Cardiologo</p>
+                        <p class="text-sm font-bold text-gray-400 mt-2">Cardiólogo</p>
                         <p class="text-md text-justify text-vh-green block leading-7">El Dr. Alonso Martínez es un
                             destacado cardiólogo con más de 15 años de experiencia en el diagnóstico y tratamiento de
                             enfermedades cardíacas. Su enfoque integral y personalizado le permite ofrecer atención de
@@ -138,7 +137,7 @@
                     </div>
                     <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
                         <h2 class="text-lg font-bold mb-2 text-vh-green">Javier</h2>
-                        <p class="text-sm font-bold text-gray-400 mt-2">Cirugia</p>
+                        <p class="text-sm font-bold text-gray-400 mt-2">Cirugía</p>
                         <p class="text-md text-justify text-vh-green block leading-7">El Dr. Javier Torres es un
                             cirujano experimentado con más de 20 años de práctica en diversas especialidades
                             quirúrgicas. Su destreza técnica y enfoque meticuloso le han permitido abordar una amplia
@@ -168,8 +167,8 @@
                     hasta especialidades médicas avanzadas, nuestro equipo de profesionales está comprometido con
                     brindarte la mejor atención posible. Contamos con tecnología de punta y un enfoque centrado en el
                     paciente para asegurar diagnósticos precisos y tratamientos eficaces.</p>
-                <a class="text-md my-1 font-bold text-vh-green-medium block leading-7">Contamos con personal medico muy
-                    agradable y profesional</a>
+                <a class="text-md my-1 font-bold text-vh-green-medium block leading-7">Contamos con personal médico muy
+                    amable y profesional</a>
             </div>
             <div class="w-full h-auto flex flex-wrap items-center justify-center">
                 <div class="w-full max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">Nuestro centro médico
@@ -223,13 +222,13 @@
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
                     <object data="{{ asset('storage/svg/heart.svg') }}" type="image/svg+xml"
                         class="w-10"></object>
-                    <p class="font-bold">Atención primaria</p>
+                    <p class="font-bold">Atención Primaria</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
                     <object data="{{ asset('storage/svg/brain.svg') }}" type="image/svg+xml"
                         class="w-10"></object>
-                    <p class="font-bold">Psiquiátrico</p>
+                    <p class="font-bold">Psiquiatría</p>
                 </div>
             </div>
         </div>
@@ -241,9 +240,7 @@
         </div>
         <div class="flex justify-center lg:my-20 text-left items-center flex-col">
             <h2 class="font-bold p-2 text-xl text-vh-green lg:font-bold lg:text-left lg:text-4xl lg:ml-12 animation2">
-                Por
-                qué elegir
-                nuestros servicios?</h2>
+                Por qué elegir nuestros servicios?</h2>
             <div class="flex justify-center lg:text-center items-center mx-8">
                 <div class="flex flex-col text-left">
                     <section class="px-6 py-4 bg-gray-100 rounded-lg shadow-md">
@@ -362,7 +359,7 @@
     </div>
 
     <div class="w-full h-auto">
-        @include('templates.footer_two')
+        @include('templates.footer')
     </div>
     <div class="w-full h-auto">
         @include('templates.chat_ia')

@@ -276,7 +276,7 @@
         </div>
     </div>
     <div class="w-full h-auto">
-        @include('templates.footer_two')
+        @include('templates.footer')
     </div>
 </body>
 

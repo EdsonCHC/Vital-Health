@@ -73,7 +73,7 @@
 
     <footer class="w-full bg-white  shadow-md">
         @include('templates.chat_ia')
-        @include('templates.footer_two')
+        @include('templates.footer')
     </footer>
 
     <script>

@@ -22,17 +22,16 @@
             <ul class="hidden md:flex justify-center gap-10 items-center">
                 <li class="font-bold text-white tracking-wider"><a href="/">Inicio</a></li>
                 <li class="font-bold relative group text-white tracking-wider">
-                    <a href="/area">Especialidades Medicas</a>
+                    <a href="/area">Especialidades Médicas</a>
                     <ul class="absolute hidden bg-white py-2 px-4 shadow-md w-full z-10 group-hover:block rounded-sm">
                         <li><a href="/medicina" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Medicina</a>
                         </li>
                         <li><a href="/citas" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Citas</a></li>
                         <li><a href="/examen" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Exámenes</a></li>
+                    </ul>
                 </li>
-            </ul>
-            </li>
-            <li><a href="/reunion" class="font-bold text-white tracking-wider">Reuniones</a>
-            <li class="font-bold text-white tracking-wider"><a href="/about">Acerca de VH</a></li>
+                <li><a href="/reunion" class="font-bold text-white tracking-wider">Reuniones</a></li>
+                <li class="font-bold text-white tracking-wider"><a href="/about">Acerca de VH</a></li>
             </ul>
 
             <!-- Controles de usuario y notificaciones -->
@@ -53,34 +52,24 @@
         <div id="mobile-menu" class="hidden fixed top-20 z-20 right-0 w-full h-full bg-stone-100 bg-opacity-95 md:hidden">
             <div class="flex flex-col h-full space-y-6 py-4 mx-4">
                 <ul class="space-y-4 text-lg font-semibold">
-                    <li><a href="/"
-                            class="w-6/12 sm:4/12 block px-2 py-2 text-white bg-vh-green rounded">Inicio</a>
+                    <li><a href="/" class="w-6/12 sm:4/12 block px-2 py-2 text-white bg-vh-green rounded">Inicio</a>
                     </li>
-                    <li><a href="/area"
-                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Especialidades
+                    <li><a href="/area" class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Especialidades
                             Médicas</a></li>
-                    <li><a href="/medicina"
-                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Medicina</a>
+                    <li><a href="/medicina" class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Medicina</a></li>
+                    <li><a href="/citas" class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Citas</a></li>
+                    <li><a href="/examen" class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Exámenes</a></li>
+                    <li><a href="/reunion" class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Reuniones</a></li>
+                    <li><a href="/about" class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Acerca de VH</a>
                     </li>
-                    <li><a href="/citas"
-                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Citas</a></li>
-                    <li><a href="/examen"
-                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Exámenes</a>
-                    </li>
-                    <li><a href="/reunion"
-                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Reuniones</a>
-                    </li>
-                    <li><a href="/about"
-                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Acerca de
-                            VH</a></li>
-                    <li><a href="/user"
-                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Perfil</a>
-                    </li>
+                    <li><a href="/user" class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Perfil</a></li>
                 </ul>
             </div>
         </div>
     </header>
-@else
+@endauth
+
+@guest
     @vite('resources/css/menu.css')
     <header class="w-full h-20 flex items-center justify-between px-6 bg-vh-green-medium-2 shadow-md">
         <a href="/" class="flex items-center">
@@ -88,8 +77,8 @@
         </a>
         <div class="ml-auto">
             <a href="/login"
-                class="inline-block px-6 py-2 text-white font-semibold bg-green-900 hover:bg-green-700 rounded-lg shadow-md transition duration-200 ease-in-out">
-                Login
+                class="inline-block px-6 py-2 tracking-wide text-white font-semibold bg-green-900 hover:bg-gray-300 hover:text-black rounded-lg shadow-md transition duration-300 ease-in-out">
+                Iniciar Sesión
             </a>
         </div>
     </header>

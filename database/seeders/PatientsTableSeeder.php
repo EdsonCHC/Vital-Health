@@ -28,7 +28,7 @@ extends Seeder
             [
                 'name' => 'John',
                 'lastName' => 'Doe',
-                'mail' => 'john.doe@example.com',
+                'mail' => 'john@example.com',
                 'address' => 'Apopa',
                 'gender' => 'male',
                 'birth' => '1989-12-22',
@@ -42,7 +42,7 @@ extends Seeder
             [
                 'name' => 'Jane',
                 'lastName' => 'Smith',
-                'mail' => 'jane.smith@example.com',
+                'mail' => 'jane@example.com',
                 'address' => 'Apopa',
                 'gender' => 'female',
                 'birth' => '1990-05-15',
@@ -56,7 +56,7 @@ extends Seeder
             [
                 'name' => 'Francisco',
                 'lastName' => 'Soto',
-                'mail' => 'fran.soto@example.com',
+                'mail' => 'fran@example.com',
                 'address' => 'Apopa',
                 'gender' => 'male',
                 'birth' => '2000-05-15',

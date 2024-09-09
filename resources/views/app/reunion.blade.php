@@ -60,7 +60,7 @@
     </div>
 
     <div class="w-full bg-white shadow-md">
-        @include('templates.footer_two')
+        @include('templates.footer')
     </div>
 </body>
 

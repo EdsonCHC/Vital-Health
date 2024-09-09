@@ -126,7 +126,7 @@
     </main>
 
     <footer class="bg-gray-800 text-white py-4">
-        @include('templates.footer_two')
+        @include('templates.footer')
     </footer>
 
     <aside class="bg-gray-100">
