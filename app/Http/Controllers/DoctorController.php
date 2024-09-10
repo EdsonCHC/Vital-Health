@@ -32,7 +32,7 @@ class DoctorController extends Controller
         $recentCitas = citas::where('doctor_id', $doctor->id)
             ->orderBy('date', 'desc')
             ->limit(2)
-            ->get();
+            ->get()
             ->orderBy('date', 'desc')
             ->limit(2)
             ->get();

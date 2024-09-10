@@ -158,34 +158,41 @@ class ExpedienteController extends Controller
 
     public function generatePdf()
     {
-        $doctor = auth()->user();
-        $user = Usuario::all();
-        $userId = $user->id;
+        try {
+            $doctor = auth()->user();
+            $user = Usuario::all();
+            $userId = $user->id;
 
-        // Recupera los datos necesarios
-        $citas = Citas::with('category')
-            ->where('patient_id', $userId)
-            ->where('state', 1)
-            ->get();
+            // Recupera los datos necesarios
+            $citas = Citas::with('category')
+                ->where('patient_id', $userId)
+                ->where('state', 1)
+                ->get();
 
-        $exams = Exams::where('patient_id', $userId)
-            ->where('state', 1)
-            ->get();
+            $exams = Exams::where('patient_id', $userId)
+                ->where('state', 1)
+                ->get();
 
-        $recetas = Receta::with('medicinas')
-            ->where('patient_id', $userId)
-            ->get();
+            $recetas = Receta::with('medicinas')
+                ->where('patient_id', $userId)
+                ->get();
 
-        // Pasa los datos a la vista
-        $pdf = PDF::loadView('pdf.file', [
-            'citas' => $citas,
-            'exams' => $exams,
-            'recetas' => $recetas,
-            'user' => $user
-        ]);
+            // Pasa los datos a la vista
+            $pdf = PDF::loadView('pdf.file', [
+                'citas' => $citas,
+                'exams' => $exams,
+                'recetas' => $recetas,
+                'user' => $user
+            ]);
 
-        // Devuelve el PDF como una descarga
-        return $pdf->download('Expediente.pdf');
+            // Devuelve el PDF como una descarga
+            return $pdf->download('Expediente.pdf');
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'No se pudo actualizar el expediente. ' . $e->getMessage()
+            ], 500);
+        }
     }
 
 
