@@ -18,7 +18,7 @@
 
     <div class="flex-grow">
         <div class="w-full h-auto flex flex-col md:items-start items-center p-4 gap-2 lg:px-16">
-            <h2 class="font-bold text-xl text-vh-green lg:font-bold lg:text-4xl">Medicamento Asignado</h2>
+            <h2 class="font-bold text-xl text-vh-green lg:font-bold lg:text-3xl">Medicamento Asignado</h2>
         </div>
         <div class="w-full h-auto flex">
             <div class="bg-cover w-full flex justify-center items-center">
@@ -69,7 +69,9 @@
         </div>
     </div>
 
-    @include('templates.footer')
+    <div class="w-full h-auto mt-20">
+        @include('templates.footer')
+    </div>
     @include('templates.chat_ia')
 </body>
 

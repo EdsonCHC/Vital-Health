@@ -70,10 +70,11 @@
                                     </button>
                                     @foreach ($expedientes as $file)
                                         @if ($file->state == 0)
-                                            <button data-id="{{ $user->id }}"
+                                            <a href="/fileUser?user_id={{ $user->id }}" download="Expediente.pdf"
                                                 class="saveFileUser bg-gray-300 text-gray-700 h-12 lg:h-12 px-4 py-2 rounded-md text-lg flex items-center mx-2">
                                                 <img src="{{ asset('storage/svg/printer-icon.svg') }}" alt="Expediente"
-                                                    class="w-6 h-6 mx-2">Expediente</button>
+                                                    class="w-6 h-6 mx-2">Expediente
+                                            </a>
                                         @elseif ($file->state == 1)
                                             <button
                                                 class="bg-gray-300 text-gray-700 h-16 lg:h-14 px-4 py-2 rounded-md text-lg flex items-center mx-2">
@@ -345,7 +346,7 @@
                 </div>
 
                 <!-- Opción 3 -->
-                <div id="opcion3" class="content hidden">
+                <div id="opcion3" class="content hidden mb-14">
                     <div class="p-6 bg-white rounded-lg shadow-md">
                         <h1 class="text-2xl font-bold mb-4">Privacidad</h1>
                         <p class="mb-4">Aquí puedes gestionar la privacidad y las configuraciones de seguridad de
@@ -376,7 +377,7 @@
                                     class="p-2 border-2 border-green-500 rounded-md text-lg text-green-500 hover:bg-green-500 hover:text-white">Recuperar
                                     Contraseña</button>-->
                                 <button type="submit"
-                                    class="p-2 border-2 border-green-500 rounded-md text-lg text-green-500 hover:bg-green-500 hover:text-white">Guardar
+                                    class="p-2 border-2 border-green-700 rounded-md text-lg text-green-700 hover:bg-green-700 hover:text-white">Guardar
                                     Cambios</button>
                             </div>
                         </form>

@@ -18,7 +18,7 @@
                             <a href="/citas" class="hover:underline">Citas</a>
                         </li>
                         <li class="mb-2 sm:mb-4">
-                            <a href="/examen" class="hover:underline">Examenes</a>
+                            <a href="/examen" class="hover:underline">Exámenes</a>
                         </li>
                         <li class="mb-2 sm:mb-4">
                             <a href="/area" class="hover:underline">Especialidades</a>
@@ -41,10 +41,10 @@
                     <h2 class="mb-4 text-xs sm:text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
                     <ul class="text-gray-500 dark:text-gray-400 font-medium">
                         <li class="mb-2 sm:mb-4">
-                            <a href="#" class="hover:underline">Privacy Policy</a>
+                            <a href="#" class="hover:underline">Política de privacidad</a>
                         </li>
                         <li class="mb-2 sm:mb-4">
-                            <a href="#" class="hover:underline">Terms & Conditions</a>
+                            <a href="#" class="hover:underline">Términos y condiciones</a>
                         </li>
                     </ul>
                 </div>

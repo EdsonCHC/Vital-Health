@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             ExpedienteTableSeeder::class,
             CitasTableSeeder::class,
             ExamsTableSeeder::class,
+            RecetasTableSeeder::class,
             LaboratorioTableSeeder::class,
             AdminTableSeeder::class,
         ]);

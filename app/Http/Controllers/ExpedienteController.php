@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Expedientes;
 use App\Models\Exams;
 use App\Models\citas;
 use App\Models\Doctor;
-use App\Models\Usuario;
 use App\Models\Receta;
+use App\Models\Usuario;
+use App\Models\Expedientes;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -187,8 +185,6 @@ class ExpedienteController extends Controller
         // Devuelve el PDF como una descarga
         return $pdf->download('Expediente.pdf');
     }
-
-
 
     public function edit(Expedientes $expediente)
     {

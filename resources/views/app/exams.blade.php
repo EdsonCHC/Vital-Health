@@ -22,12 +22,12 @@
     <main class="flex-1 p-4 mt-6 lg:max-w-screen-2xl lg:mx-auto lg:rounded-md">
         <section class="flex flex-col lg:flex-row justify-between items-center mx-4 mb-6">
             <div class="flex-1 lg:mr-4 text-center lg:text-left">
-                <h2 class="font-bold text-2xl text-vh-green-medium">Exámenes Personales</h2>
+                <h2 class="text-4xl font-bold mb-4 text-vh-green">Especialidades Médicas</h2>
                 <p class="text-sm mt-2">Los exámenes son necesarios para las citas</p>
             </div>
             <div>
                 <button type="button" id="menu-buttone"
-                    class="mt-4 lg:mt-0 inline-flex justify-center gap-x-1.5 rounded-md bg-vh-green px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-vh-green-medium"
+                    class="mt-4 lg:mt-0 inline-flex justify-center gap-x-1.5 rounded-md bg-vh-green px-3 py-2 font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-vh-green-medium"
                     aria-expanded="false" aria-haspopup="true">
                     <h2>Exámenes Finalizados</h2>
                 </button>

@@ -39,7 +39,7 @@ class CategoriesTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'nombre' => 'Cirugia',
+                'nombre' => 'Cirugía',
                 'descripcion' => 'Especialidad médica que se ocupa de la manipulación mecánica de las estructuras anatómicas.',
                 'caracteristicas' => 'Consulta, Diagnóstico, Tratamiento',
                 'img' => '1723352095.jpg',

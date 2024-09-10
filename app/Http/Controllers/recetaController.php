@@ -124,11 +124,9 @@ class recetaController extends BaseController
     {
         $pacienteId = Auth::id();
 
-
         $recetas = Receta::with('medicinas')
             ->where('patient_id', $pacienteId)
             ->get();
-
 
         return view('app.medicina', compact('recetas'));
     }

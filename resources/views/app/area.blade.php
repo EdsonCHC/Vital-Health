@@ -29,7 +29,7 @@
         <section class="bg-cover bg-center py-16 border-b border-gray-200 lg:px-24 px-6"
             style="background-image: url('{{ asset('storage/images/background.jpg') }}');">
             <div class="container mx-auto text-center">
-                <h2 class="text-4xl font-extrabold mb-4 text-vh-green">Especialidades Médicas</h2>
+                <h2 class="text-4xl font-bold mb-4 text-vh-green">Especialidades Médicas</h2>
                 <p class="text-lg text-gray-800 max-w-3xl mx-auto">Descubre nuestras especialidades médicas que abarcan
                     una amplia gama de servicios, desde diagnósticos avanzados hasta tratamientos especializados.
                     Estamos comprometidos con tu salud y bienestar en un entorno profesional y acogedor.</p>
@@ -125,9 +125,9 @@
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-4">
+    <div class="w-full h-auto">
         @include('templates.footer')
-    </footer>
+    </div>p
 
     <aside class="bg-gray-100">
         @include('templates.chat_ia')
