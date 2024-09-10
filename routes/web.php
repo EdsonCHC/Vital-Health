@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\LoginController;
 
 // Auth::routes();
 
@@ -49,12 +50,12 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 // });
 
 // Rutas del usuario
-Route::post('/login', [UsuarioController::class, 'show']);
-Route::view('/login', 'app.login')->name('login');
-Route::view('/registro', 'app.registro');
-Route::post('/registro', [UsuarioController::class, 'store']);
-Route::get('/', [UsuarioController::class, 'showDoctors']);
 Route::view('/about', 'app.about');
+Route::view('/registro', 'app.registro');
+Route::view('/login', 'app.login')->name('login');
+Route::get('/', [UsuarioController::class, 'showDoctors']);
+Route::post('/login', [LoginController::class, 'show']);
+Route::post('/registro', [UsuarioController::class, 'store']);
 
 // Middlewares para el usuario
 Route::middleware('auth')->group(function () {

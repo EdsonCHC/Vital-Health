@@ -385,6 +385,9 @@
             </main>
         </div>
     </div>
+    <div class="w-full h-auto">
+        @include('templates.footer')
+    </div>
 </body>
 
 </html>

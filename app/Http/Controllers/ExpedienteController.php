@@ -189,7 +189,7 @@ class ExpedienteController extends Controller
     }
 
 
-    
+
     public function edit(Expedientes $expediente)
     {
         return view('files_doc.edit', compact('expediente'));

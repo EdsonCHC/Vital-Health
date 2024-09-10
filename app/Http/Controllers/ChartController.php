@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoría;
 use App\Models\citas;
 use App\Models\Doctor;
 use App\Models\Usuario;
+use App\Models\Categoría;
 use Illuminate\Http\Request;
 
 class ChartController extends Controller

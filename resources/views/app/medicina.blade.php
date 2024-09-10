@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    @include('templates.footer_two')
+    @include('templates.footer')
     @include('templates.chat_ia')
 </body>
 
