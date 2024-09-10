@@ -62,39 +62,25 @@ class UsuarioController extends Controller
 
         $citas = Citas::with('category')
             ->where('patient_id', $userId)
-            ->where('state', 0)
+            ->where('state', 1)
             ->get();
 
         $exams = Exams::where('patient_id', $userId)
-            ->where('state', 0)
+            ->where('state', 1)
             ->get();
 
         $recetas = Receta::with('medicinas')
             ->where('patient_id', $userId)
             ->get();
 
-        $pdf = PDF::loadView('app.fileUser', [
+        $pdf = PDF::loadView('pdf.file', [
             'citas' => $citas,
             'exams' => $exams,
             'recetas' => $recetas,
             'user' => $user
         ]);
 
-        $fileName = 'Expediente_' . $userId . '.pdf';
-        $filePath = 'expedientes/' . $fileName;
-        $publicPath = asset($filePath); // Genera la URL pública del archivo
-
-        // Guarda el PDF en el directorio public/expedientes
-        $pdf->save(public_path($filePath));
-
-        // Guarda la URL del PDF en la base de datos
-        Expedientes::updateOrCreate(
-            ['patient_id' => $userId],
-            ['pdf_path' => $publicPath, 'state' => '0']
-        );
-
-        // Devuelve el archivo PDF directamente
-        return response()->file(public_path($filePath));
+        return $pdf->download('Expediente.pdf');
     }
 
     public function citasPaciente(Request $request)
@@ -122,14 +108,21 @@ class UsuarioController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'lastName' => 'required|max:255',
-            'mail' => 'required|email|unique:patients',
+            'mail' => 'required|email|unique:patients,mail',
             'address' => 'required|max:255',
             'gender' => 'required',
             'birth' => 'required|date',
             'blood' => 'required',
             'password' => 'required|min:8',
-            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
+
+        if ($request->hasFile('img') && $request->file('img')->getSize() === 0) {
+            return response()->json([
+                'message' => 'El archivo de imagen no puede estar vacío.',
+            ], 422);
+        }
+
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Datos inválidos',
@@ -137,13 +130,13 @@ class UsuarioController extends Controller
             ], 422);
         }
 
+        $imageData = null;
         if ($request->hasFile('img')) {
             $image = $request->file('img');
-            $imagePath = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('profile_images', $imagePath, 'public');
-        } else {
-            $imagePath = null;
+            $imageData = file_get_contents($image->getRealPath()); // Leer datos binarios de la imagen
+            // Almacena la imagen en formato binario
         }
+
 
         // Crear usuario
         try {
@@ -156,7 +149,7 @@ class UsuarioController extends Controller
                 'birth' => $request->birth,
                 'blood' => $request->blood,
                 'password' => Hash::make($request->password),
-                'img' => $imagePath,
+                'img' => $imageData,
                 'email_verification_token' => Str::random(60),
             ]);
 
@@ -265,30 +258,26 @@ class UsuarioController extends Controller
     public function updateImage(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
         $user = Auth::user();
 
-        if ($request->hasFile('image')) {
-            // Eliminar la imagen antigua si existe
-            if ($user->img && Storage::disk('public')->exists('profile_images/' . $user->img)) {
-                Storage::disk('public')->delete('profile_images/' . $user->img);
-            }
 
-            // Subir la nueva imagen
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('profile_images', $imageName, 'public');
+        $imageData = null;
+        if ($request->hasFile('img')) {
+
+            $image = $request->file('img');
+            $imageData = file_get_contents($image->getRealPath());
+
 
             // Actualizar la ruta de la imagen en el perfil del usuario
-            $user->img = $imageName;
+            $user->img = $imageData;
             $user->save();
 
             return response()->json([
                 'success' => true,
                 'message' => 'Imagen actualizada correctamente',
-                'image' => $imageName
             ], 200);
         }
 
@@ -296,6 +285,24 @@ class UsuarioController extends Controller
             'success' => false,
             'message' => 'No se ha proporcionado ninguna imagen'
         ], 400);
+    }
+
+    public function showImage($id)
+    {
+        $patient = Usuario::find($id);
+
+        if (!$patient) {
+            abort(404, 'Paciente no encontrado');
+        }
+
+        $imageData = $patient->img;
+
+        if ($imageData) {
+            return response($imageData, 200)
+                ->header('Content-Type', 'image/jpeg');
+        } else {
+            abort(404, 'Imagen no encontrada');
+        }
     }
 
     public function destroy(Request $request)

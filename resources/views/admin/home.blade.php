@@ -28,10 +28,8 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             @foreach ($categorias as $categoria)
                 <div class="h-64 sm:h-80 bg-white p-4 sm:p-6 rounded-lg shadow-lg">
-                    @if ($categoria->img)
-                        <img src="{{ asset($categoria->img) }}" alt="{{ $categoria->nombre }}"
-                            class="mx-auto max-h-24 sm:max-h-40 mb-4">
-                    @endif
+                    <img src="{{ route('category.image', ['id' => $categoria->id])}}" alt="imagen de categoria"
+                        class="mx-auto max-h-24 sm:max-h-40 mb-4">
                     <h2 class="text-lg sm:text-xl font-bold mb-4">{{ $categoria->nombre }}</h2>
                     <p class="mb-4 text-sm sm:text-base">{{ $categoria->descripción }}</p>
                     <button

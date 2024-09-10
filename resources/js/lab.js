@@ -3,7 +3,7 @@ import jQuery from "jquery";
 window.$ = jQuery;
 
 $(document).ready(function () {
-    const _token = $('meta[name="csrf-token"]').attr('content');
+    const _token = $('meta[name="csrf-token"]').attr("content");
 
     $("#log_out_laboratorio").click((e) => {
         e.preventDefault();

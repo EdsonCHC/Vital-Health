@@ -196,7 +196,7 @@ $(document).ready(function () {
                 <form id="image_form" enctype="multipart/form-data" class="w-full max-w-md mx-auto bg-white p-6 rounded-lg">
                 <div class="mb-4">
                     <label for="image" class="block text-gray-700 text-sm font-semibold mb-2"></label>
-                    <input type="file" name="image" id="image" accept="image/*" required class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                    <input type="file" name="img" id="img" accept="image/*" required class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-gray-500">
                 </div>
                 <div class="flex justify-center">
                     <button type="button" id="upload_image"

@@ -17,10 +17,10 @@
     </div>
 
     <main class="flex flex-col items-center mt-12 lg:ml-72 lg:mt-12">
-        <div class="w-full flex justify-between items-center px-4 lg:px-0">
-            <h2 class="text-xl font-bold mb-4 lg:mb-0">Personal de la Categoria: {{ $categoria->nombre }}</h2>
+        <div class="w-full flex justify-between items-center px-4">
+            <h2 class="text-xl font-bold mb-4 lg:mb-0">Personal de la Categoría: {{ $categoria->nombre }}</h2>
             <button id="create_staff"
-                class="w-44 h-10 font-semibold text-base text-white bg-vh-green hover:bg-vh-gray transition duration-300 hover:text-black rounded-lg lg:ml-auto">
+                class="w-44 h-10 font-semibold text-base text-white bg-vh-green hover:bg-vh-gray transition duration-300 hover:text-black rounded-lg">
                 Nuevo Doctor
             </button>
         </div>
@@ -33,9 +33,8 @@
                             <img id="menu-icon" class="h-8 w-8" src="{{ asset('storage/svg/option-icon.svg') }}" alt="Opciones" />
                         </button>
                         <div id="menuOptions"
-                                class="w-32 ml-40 py-2 hidden absolute bg-white border border-gray-300 shadow-lg rounded-md">
-                                <a href="#" class="edit_staff" data-id="{{$doctor->id}}"
-                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Editar</a>
+                                class="w-32 ml-40 hidden absolute bg-white border border-gray-300 shadow-lg rounded-lg hover:bg-slate-300">
+                                <a href="#" class="edit_staff block p-1 text-gray-800 hover:bg-gray-200" data-id="{{$doctor->id}}">Editar</a>
                             </div>
                     </div>
                     <div class="flex flex-col items-center mb-4">

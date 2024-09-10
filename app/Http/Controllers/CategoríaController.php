@@ -18,63 +18,64 @@ class CategoríaController extends Controller
         return view('admin.home', compact('categorias'));
     }
     public function filtrarYCategorias(Request $request)
-{
-    // Obtener los valores de búsqueda y filtro
-    $search = $request->input('s');
-    $filter = $request->input('filtro', 'todos');
-    
-    // Consultar las categorías
-    $categorias = Categoría::query();
+    {
+        // Obtener los valores de búsqueda y filtro
+        $search = $request->input('s');
+        $filter = $request->input('filtro', 'todos');
 
-    // Aplicar filtro para solo obtener categorías activas
-    $categorias->where('activa', 1);
-    
-    // Aplicar búsqueda por nombre
-    if ($search) {
-        $categorias->where('nombre', 'like', '%' . $search . '%');
-    }
-    
-    // Aplicar filtro de orden
-    if ($filter == 'ascendente') {
-        $categorias->orderBy('nombre', 'asc');
-    } elseif ($filter == 'descendente') {
-        $categorias->orderBy('nombre', 'desc');
-    } else {
-        // Por defecto o si el filtro es 'todos', ordenar ascendentemente
-        $categorias->orderBy('nombre', 'asc');
-    }
-    
-    // Obtener los resultados
-    $categorias = $categorias->get();
-    
-    return view('app.area', compact('categorias'));
-}
+        // Consultar las categorías
+        $categorias = Categoría::query();
 
-    
-    
+        // Aplicar filtro para solo obtener categorías activas
+        $categorias->where('activa', 1);
+
+        // Aplicar búsqueda por nombre
+        if ($search) {
+            $categorias->where('nombre', 'like', '%' . $search . '%');
+        }
+
+        // Aplicar filtro de orden
+        if ($filter == 'ascendente') {
+            $categorias->orderBy('nombre', 'asc');
+        } elseif ($filter == 'descendente') {
+            $categorias->orderBy('nombre', 'desc');
+        } else {
+            // Por defecto o si el filtro es 'todos', ordenar ascendentemente
+            $categorias->orderBy('nombre', 'asc');
+        }
+
+        // Obtener los resultados
+        $categorias = $categorias->get();
+
+        return view('app.area', compact('categorias'));
+    }
+
+
+
     public function store(Request $request)
     {
         $validated = $request->validate([
             'nombre' => 'required|string|max:255|unique:categorias,nombre',
             'descripcion' => 'nullable|string',
             'caracteristicas' => 'nullable|string',
-            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
 
         try {
-            // Crear una nueva categoría
-            $categoria = new Categoría();
-            $categoria->nombre = $request->input('nombre');
-            $categoria->descripcion = $request->input('descripcion');
-            $categoria->caracteristicas = $request->input('caracteristicas');
 
+
+            $imageData = null;
             if ($request->hasFile('img')) {
                 $image = $request->file('img');
-                $imagePath = $image->move(public_path('img'), $image->getClientOriginalName());
-                $categoria->img = 'img/' . $image->getClientOriginalName();
+                $imageData = base64_encode(file_get_contents($image->getRealPath()));
             }
 
-            $categoria->save();
+            $categoria = Categoría::create([
+                'nombre' => $request->nombre,
+                'descripcion' => $request->descripcion,
+                'caracteristicas' => $request->caracteristicas,
+                'img' => $imageData
+            ]);
 
             return response()->json([
                 'message' => 'Categoría agregada exitosamente',
@@ -166,23 +167,17 @@ class CategoríaController extends Controller
 
         try {
             // Manejo de la imagen
+            $imageData = null;
             if ($request->hasFile('img')) {
-                // Borra la imagen antigua si existe
-                if ($categoria->img && file_exists(public_path('img/' . $categoria->img))) {
-                    unlink(public_path($categoria->img));
-                }
-
-                // Guarda la nueva imagen
                 $image = $request->file('img');
-                $imageName = time() . '.' . $image->extension();
-                $imagePath = $image->move(public_path('img'), $imageName);
-                $categoria->img = 'img/' . $imageName;
+                $imageData = base64_encode(file_get_contents($image->getRealPath()));
             }
 
             $categoria->update([
                 'nombre' => $request->input('nombre'),
                 'descripcion' => $request->input('descripcion'),
                 'caracteristicas' => $request->input('caracteristicas'),
+                'img' => $imageData
             ]);
 
             return response()->json(['message' => 'Categoría actualizada exitosamente', 'data' => $categoria]);
@@ -229,10 +224,10 @@ class CategoríaController extends Controller
             }
         }
         $categoria->delete();
-    
+
         return response()->json(['success' => 'Categoría eliminada correctamente.']);
     }
-    
+
 
     public function suspend(Request $request, $id)
     {
@@ -254,5 +249,26 @@ class CategoríaController extends Controller
         $categoria->save();
 
         return response()->json(['message' => 'Categoría activada exitosamente']);
+    }
+
+    public function showImage($id)
+    {
+        $categoría = Categoría::find($id);
+
+        if (!$categoría) {
+            abort(404, 'Categoría no encontrada');
+        }
+
+        $imageData = $categoría->img;
+
+        if ($imageData) {
+
+            $imageData = base64_decode($imageData);
+
+            return response($imageData, 200)
+                ->header('Content-Type', 'image/jpeg');
+        } else {
+            abort(404, 'Imagen no encontrada');
+        }
     }
 }

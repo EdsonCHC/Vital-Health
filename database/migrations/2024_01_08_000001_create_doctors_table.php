@@ -24,7 +24,6 @@ return new class extends Migration {
             $table->string('role')->default('doctor');
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
-
             $table->foreign('category_id')->references('id')->on('categorias')->onDelete('cascade');
         });
     }

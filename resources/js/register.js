@@ -15,7 +15,8 @@ $(document).ready(function () {
         const pass = $("#password");
         const pass_img = $("#see_password_img");
 
-        const pass_type = pass.attr("type") === "password" ? "text" : "password";
+        const pass_type =
+            pass.attr("type") === "password" ? "text" : "password";
         pass.attr("type", pass_type);
 
         pass_img.css("opacity", is_opaque ? "1" : "0.5");
@@ -201,11 +202,11 @@ $(document).ready(function () {
                         }
                     },
                     error: (response) => {
-                        console.error("Error en el registro", response);
+                        console.error(response.responseJSON);
                         Swal.fire({
                             icon: "error",
                             title: "Error...",
-                            text: "Correo invalido, ya se encuentra en uso",
+                            text: response,
                         }).then(() => {
                             $("#mail").focus();
                         });
@@ -316,50 +317,78 @@ $(document).ready(function () {
             confirmButtonText: "Aceptar",
             cancelButtonText: "Retroceder",
             preConfirm: (file) => {
-                if (file) {
+                return new Promise((resolve, reject) => {
+                    if (!file) {
+                        Swal.showValidationMessage(
+                            "Por favor selecciona una imagen."
+                        );
+                        reject();
+                        return;
+                    }
+
+                    // Validar tipo de archivo
+                    const validImageTypes = [
+                        "image/jpeg",
+                        "image/png",
+                        "image/svg+xml",
+                    ];
+                    if (!validImageTypes.includes(file.type)) {
+                        Swal.showValidationMessage(
+                            "El archivo seleccionado no es un tipo de imagen válido."
+                        );
+                        reject();
+                        return;
+                    }
+
+                    // Validar tamaño de archivo (máximo 2MB)
+                    const maxSizeInMB = 5;
+                    if (file.size / 1024 / 1024 > maxSizeInMB) {
+                        Swal.showValidationMessage(
+                            `El tamaño de la imagen debe ser menor a ${maxSizeInMB}MB.`
+                        );
+                        reject();
+                        return;
+                    }
+
+                    // Si todo es válido, mostrar vista previa
                     const reader = new FileReader();
-                    return new Promise((resolve) => {
-                        reader.onload = (e) => {
-                            Swal.fire({
-                                title: "Vista previa de la imagen",
-                                html: `<div style="display: flex; justify-content: center;">
-                                        <img src="${e.target.result}" alt="Vista previa" style="max-width: 100%; max-height: 300px;"/>
-                                        </div>`,
-                                showCancelButton: true,
-                                confirmButtonText: "Aceptar",
-                                cancelButtonText: "Cancelar",
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    imgFile = file;
-                                    resolve(file);
-                                } else {
-                                    resolve(null);
-                                }
-                            });
-                        };
-                        reader.readAsDataURL(file);
-                    });
-                } else {
-                    return null;
-                }
+                    reader.onload = (e) => {
+                        Swal.fire({
+                            title: "Vista previa de la imagen",
+                            html: `<div style="display: flex; justify-content: center;">
+                                    <img src="${e.target.result}" alt="Vista previa" style="max-width: 100%; max-height: 300px;"/>
+                                    </div>`,
+                            showCancelButton: true,
+                            confirmButtonText: "Aceptar",
+                            cancelButtonText: "Cancelar",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                imgFile = file;
+                                resolve(file);
+                            } else {
+                                resolve(null);
+                            }
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                });
             },
         });
-    
-        // Check if the file was selected and is valid
+
         if (file === null) {
             Swal.fire({
                 icon: "error",
                 title: "Error...",
-                text: "Debes seleccionar una imagen para continuar.",
+                text: "Debes seleccionar una imagen válida para continuar.",
             });
         }
-        
+
         return file !== null;
     }
-    
 
     function containsScript(value) {
-        const scriptRegex = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
+        const scriptRegex =
+            /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
         return scriptRegex.test(value);
     }
 
@@ -387,18 +416,31 @@ $(document).ready(function () {
     function validatePassword() {
         const password = $("#password").val();
         if (password.length < 6) {
-            return { valid: false, message: "La contraseña debe tener al menos 6 caracteres." };
+            return {
+                valid: false,
+                message: "La contraseña debe tener al menos 6 caracteres.",
+            };
         }
         if (!/[A-Z]/.test(password)) {
-            return { valid: false, message: "La contraseña debe contener al menos una letra mayúscula." };
+            return {
+                valid: false,
+                message:
+                    "La contraseña debe contener al menos una letra mayúscula.",
+            };
         }
         if (!/[a-z]/.test(password)) {
-            return { valid: false, message: "La contraseña debe contener al menos una letra minúscula." };
+            return {
+                valid: false,
+                message:
+                    "La contraseña debe contener al menos una letra minúscula.",
+            };
         }
         if (!/[0-9]/.test(password)) {
-            return { valid: false, message: "La contraseña debe contener al menos un número." };
+            return {
+                valid: false,
+                message: "La contraseña debe contener al menos un número.",
+            };
         }
         return { valid: true, message: "" };
     }
 });
-

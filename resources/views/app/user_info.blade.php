@@ -53,7 +53,7 @@
                                     class="h-32 bg-cover bg-center bg-vh-green bg-gradient-to-t from-green-800 to-green-600">
                                 </div>
                                 <div class="flex justify-center -mt-12">
-                                    <img id="profile_image" src="{{ asset('storage/profile_images/' . $user->img) }}"
+                                    <img id="profile_image" src="{{ route('patient.image', ['id' => $user->id])}}"
                                         alt="Perfil"
                                         class="rounded-full border-4 border-gray-200 w-36 h-36 object-cover">
                                 </div>

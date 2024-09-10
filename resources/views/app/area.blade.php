@@ -100,12 +100,8 @@
                         <div
                             class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
                             <div class="h-48 bg-gray-200 flex items-center justify-center">
-                                @if ($categoria->img)
-                                    <img src="{{ asset($categoria->img) }}" alt="{{ $categoria->nombre }}"
-                                        class="object-cover h-full w-full">
-                                @else
-                                    <span class="text-gray-500">No Image</span>
-                                @endif
+                                <img src="{{ route('category.image', ['id' => $categoria->id])}}"
+                                    alt="{{ $categoria->nombre }}" class="object-cover h-full w-full">
                             </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">{{ $categoria->nombre }}</h3>
@@ -113,8 +109,7 @@
                                 <div class="mt-4 flex justify-center">
                                     <a href="{{ route('service', ['id' => $categoria->id]) }}"
                                         class="bg-green-600 text-white rounded-full h-10 w-10 flex items-center justify-center transition-transform transform hover:scale-110">
-                                        <img class="h-6 w-6" src="{{ asset('storage/svg/info.svg') }}"
-                                            alt="Info" />
+                                        <img class="h-6 w-6" src="{{ asset('storage/svg/info.svg') }}" alt="Info" />
                                     </a>
                                 </div>
                             </div>

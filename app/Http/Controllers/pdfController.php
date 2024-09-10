@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use App\Models\Exams;
+use App\Mail\SendPdfMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -12,50 +15,24 @@ class pdfController extends Controller
     public function generatePDF(Request $request)
     {
         $tipo = $request->input('exam-type');
-        $id = $request->input('exam_id');
-
+        $examenId = $request->input('exam_id');
         try {
+            // Obtener el examen para encontrar el patient_id
+            $examen = Exams::findOrFail($examenId);
+            $patientId = $examen->patient_id;
+
+            // Obtener el usuario asociado al patient_id
+            $user = Usuario::findOrFail($patientId);
+            $userMail = $user->mail;
+
+            // Genera el PDF
             $pdf = $this->createPDF($tipo, $request);
+            $pdfContent = $pdf->output(); // Obtiene el contenido del PDF en formato binario
 
-            $pdfContent = $pdf->output();
-            $fileName = 'reporte_' . time() . '.pdf';
-            $filePath = 'pdf_files/' . $fileName;
+            // Envía el PDF por correo electrónico
+            Mail::to($userMail)->send(new SendPdfMail($user->name, $pdfContent, 'resultado_examen.pdf'));
 
-            // Guarda el PDF en el directorio storage
-            Storage::disk('public')->put($filePath, $pdfContent);
-
-            $fileUrl = url('storage/' . $filePath);
-
-            // Actualiza el examen con la ruta del PDF
-            $this->updateExamPDF($id, $fileUrl);
-
-            return response()->json(['success' => 'PDF generado y guardado correctamente.']);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
-        }
-    }
-
-    public function generateFilePDF(Request $request)
-    {
-        $tipo = $request->input('exam-type');
-        $id = $request->input('exam_id');
-
-        try {
-            $pdf = $this->createPDF($tipo, $request);
-
-            $pdfContent = $pdf->output();
-            $fileName = 'reporte_' . time() . '.pdf';
-            $filePath = 'pdf_files/' . $fileName;
-
-            // Guarda el PDF en el directorio storage
-            Storage::disk('public')->put($filePath, $pdfContent);
-
-            $fileUrl = url('storage/' . $filePath);
-
-            // Actualiza el examen con la ruta del PDF
-            $this->updateExamPDF($id, $fileUrl);
-
-            return response()->json(['success' => 'PDF generado y guardado correctamente.']);
+            return response()->json(['success' => 'PDF generado y enviado por correo electrónico correctamente.']);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()]);
         }
@@ -124,10 +101,16 @@ class pdfController extends Controller
         return $data;
     }
 
-    private function updateExamPDF($id, $fileUrl)
+    private function updateExamPDF($id, $pdfContent)
     {
-        $examen = Exams::findOrFail($id);
-        $examen->pdf_file = $fileUrl;
-        $examen->save();
+        // Asumiendo que tienes un modelo Exam
+        $exam = Exams::find($id);
+        if ($exam) {
+            // Actualiza el campo pdf_file con el contenido binario
+            $exam->pdf_file = $pdfContent;
+            $exam->save();
+        } else {
+            throw new \Exception('Examen no encontrado.');
+        }
     }
 }
