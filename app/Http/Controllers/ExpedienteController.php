@@ -185,8 +185,16 @@ class ExpedienteController extends Controller
                 'user' => $user
             ]);
 
-            // Devuelve el PDF como una descarga
-            return $pdf->download('Expediente.pdf');
+            $filename = 'Expediente.pdf';
+
+            // Enviar el archivo PDF al navegador
+            return response()->stream(function () use ($pdf) {
+                echo $pdf->output();
+            }, 200, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'attachment; filename="Expediente.pdf"',
+            ]);
+
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
