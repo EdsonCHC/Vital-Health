@@ -36,15 +36,6 @@
             </div>
         </section>
 
-        <!-- Título y descripción para pantallas pequeñas -->
-        <section class="lg:hidden bg-white py-10 border-b border-gray-200 px-6">
-            <div class="container mx-auto text-center">
-                <h2 class="text-3xl font-semibold mb-2">Servicios</h2>
-                <p class="text-lg text-gray-600">Explora nuestras especialidades médicas y encuentra el mejor servicio
-                    para tus necesidades en un ambiente profesional y accesible.</p>
-            </div>
-        </section>
-
         <!-- Filtro y búsqueda -->
         <section class="bg-white py-8 border-b border-gray-200 lg:px-24 px-6">
             <div class="container mx-auto">
@@ -122,7 +113,7 @@
 
     <div class="w-full h-auto">
         @include('templates.footer')
-    </div>p
+    </div>
 
     <aside class="bg-gray-100">
         @include('templates.chat_ia')

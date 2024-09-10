@@ -10,9 +10,10 @@ use App\Models\Usuario;
 use App\Models\Expedientes;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 
 class ExpedienteController extends Controller
@@ -156,34 +157,44 @@ class ExpedienteController extends Controller
 
     public function generatePdf()
     {
-        $doctor = auth()->user();
-        $user = Usuario::all();
+        $user = Auth::user();
         $userId = $user->id;
 
-        // Recupera los datos necesarios
         $citas = Citas::with('category')
             ->where('patient_id', $userId)
-            ->where('state', 1)
+            ->where('state', 0)
             ->get();
 
         $exams = Exams::where('patient_id', $userId)
-            ->where('state', 1)
+            ->where('state', 0)
             ->get();
 
         $recetas = Receta::with('medicinas')
             ->where('patient_id', $userId)
             ->get();
 
-        // Pasa los datos a la vista
-        $pdf = PDF::loadView('pdf.file', [
+        $pdf = PDF::loadView('app.fileUser', [
             'citas' => $citas,
             'exams' => $exams,
             'recetas' => $recetas,
             'user' => $user
         ]);
 
-        // Devuelve el PDF como una descarga
-        return $pdf->download('Expediente.pdf');
+        $fileName = 'Expediente_' . $userId . '.pdf';
+        $filePath = 'expedientes/' . $fileName;
+        $publicPath = asset($filePath); // Genera la URL pública del archivo
+
+        // Guarda el PDF en el directorio public/expedientes
+        $pdf->save(public_path($filePath));
+
+        // Guarda la URL del PDF en la base de datos
+        Expedientes::updateOrCreate(
+            ['patient_id' => $userId],
+            ['pdf_path' => $publicPath, 'state' => '0']
+        );
+
+        // Devuelve el archivo PDF directamente
+        return response()->file(public_path($filePath));
     }
 
     public function edit(Expedientes $expediente)

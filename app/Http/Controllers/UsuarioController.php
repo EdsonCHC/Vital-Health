@@ -55,34 +55,6 @@ class UsuarioController extends Controller
         return view('app.user_info', compact('user', 'citas', 'exams', 'recetas', 'expedientes'));
     }
 
-    public function generatePdf()
-    {
-        $user = Auth::user();
-        $userId = $user->id;
-
-        $citas = Citas::with('category')
-            ->where('patient_id', $userId)
-            ->where('state', 1)
-            ->get();
-
-        $exams = Exams::where('patient_id', $userId)
-            ->where('state', 1)
-            ->get();
-
-        $recetas = Receta::with('medicinas')
-            ->where('patient_id', $userId)
-            ->get();
-
-        $pdf = PDF::loadView('pdf.file', [
-            'citas' => $citas,
-            'exams' => $exams,
-            'recetas' => $recetas,
-            'user' => $user
-        ]);
-
-        return $pdf->download('Expediente.pdf');
-    }
-
     public function citasPaciente(Request $request)
     {
         $pacienteId = Auth::id();

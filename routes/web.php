@@ -86,7 +86,7 @@ Route::middleware('auth')->group(function () {
     //User
     //
     Route::get('/user', [UsuarioController::class, 'index'])->name('user');
-    Route::get('/fileUser', [UsuarioController::class, 'generatePdf']);
+    Route::get('/fileUser', [ExpedienteController::class, 'generatePdf']);
     Route::post('/user', [UsuarioController::class, 'destroy']);
     Route::put('/user/update', [UsuarioController::class, 'update'])->name('user.update');
     route::put('/user/update-password', [UsuarioController::class, 'updatePassword'])->name('user.updatePassword');
