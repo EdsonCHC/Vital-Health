@@ -36,7 +36,7 @@ $(document).ready(function () {
                 Swal.fire({
                     title: "Será enviado al inicio en breve",
                     icon: "success",
-                    timer: 1500,
+                    timer: 2000,
                     showConfirmButton: false,
                     timerProgressBar: true,
                 }).then(() => {
@@ -225,17 +225,16 @@ $(document).ready(function () {
                 success(response) {
                     if (response.success) {
                         Swal.fire({
-                            title: "Imagen actualizada correctamente",
+                            toast: true,
+                            position: "bottom-end",
+                            title: "La imagen se actualizara en breve",
                             icon: "success",
                             timer: 2000,
                             showConfirmButton: false,
                             timerProgressBar: true,
                         }).then(() => {
                             // Actualizar la imagen en la vista
-                            $("img[alt='Perfil']").attr(
-                                "src",
-                                "/storage/users-avatar/" + response.image
-                            );
+                            window.location.reload();
                         });
                     }
                 },
