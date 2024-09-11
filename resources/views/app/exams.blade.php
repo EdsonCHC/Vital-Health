@@ -14,77 +14,74 @@
     @include('templates.loader')
 
     <!-- Header -->
-    <div class="w-full h-auto">
+    <header class="w-full">
         @include('templates.header')
-    </div>
+    </header>
 
     <!-- Main Content -->
     <main class="flex-1 p-4 mt-6 lg:max-w-screen-2xl lg:mx-auto lg:rounded-md">
-        <section class="flex flex-col lg:flex-row justify-between items-center mx-4 mb-6">
-            <div class="flex-1 lg:mr-4 text-center lg:text-left">
-                <h2 class="text-4xl font-bold mb-4 text-vh-green">Especialidades Médicas</h2>
-                <p class="text-sm mt-2">Los exámenes son necesarios para las citas</p>
+        <section class="flex flex-col lg:flex-row justify-between items-center mb-6">
+            <div class="text-center lg:text-left">
+                <h2 class="text-4xl font-bold text-vh-green mb-2">Especialidades Médicas</h2>
+                <p class="text-sm text-gray-700">Los exámenes son necesarios para las citas</p>
             </div>
-            <div>
+            <div class="sticky top-4">
                 <button type="button" id="menu-buttone"
-                    class="mt-4 lg:mt-0 inline-flex justify-center gap-x-1.5 rounded-md bg-vh-green px-3 py-2 font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-vh-green-medium"
-                    aria-expanded="false" aria-haspopup="true">
-                    <h2>Exámenes Finalizados</h2>
+                    class="mt-4 lg:mt-0 bg-vh-green text-white font-semibold rounded-md px-4 py-2 shadow hover:bg-green-700 focus:ring-2 focus:ring-vh-green">
+                    Exámenes Finalizados
                 </button>
             </div>
         </section>
 
-        <!-- Sección de Exámenes Pendientes -->
-        <section id="pendientes" class="lg:px-16 lg:py-12 bg-gray-50">
-            @if(isset($examenes) && $examenes->where('state', '1')->isEmpty())
+        <!-- Exámenes Pendientes -->
+        <section id="pendientes" class="lg:px-16 lg:py-12">
+            @if (isset($examenes) && $examenes->where('state', '1')->isEmpty())
                 <div class="text-center py-8">
                     <p class="text-lg font-semibold text-gray-700">No tienes exámenes programados.</p>
                 </div>
             @else
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     @foreach ($examenes->where('state', '1') as $examen)
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                            <div class="p-6 flex flex-col">
-                                <h2 class="text-2xl font-bold text-gray-800 mb-2">Tipo de Examen</h2>
-                                <p class="text-lg text-gray-700 mb-4">{{ $examen->exam_type ?? 'No disponible' }}</p>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Fecha</h3>
-                                <p class="text-lg text-gray-700 mb-4">
-                                    {{ !empty($examen->exam_date) ? (new DateTime($examen->exam_date))->format('j \d\e F \d\e Y') : 'No disponible' }}
-                                </p>
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Notas</h4>
-                                <p class="text-base text-gray-600">{{ $examen->notes ?? 'No disponible' }}</p>
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Estado</h4>
-                                <p class="text-base text-gray-600">{{ $examen->state == "1" ? 'Pendiente' : 'Finalizado' }}</p>
-                            </div>
+                        <div class="bg-white rounded-lg shadow-lg p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Tipo de Examen</h3>
+                            <p class="text-lg text-gray-700 mb-4">{{ $examen->exam_type ?? 'No disponible' }}</p>
+                            <h4 class="text-xl font-semibold text-gray-800 mb-2">Fecha</h4>
+                            <p class="text-lg text-gray-700 mb-4">
+                                {{ !empty($examen->exam_date) ? (new DateTime($examen->exam_date))->format('j \d\e F \d\e Y') : 'No disponible' }}
+                            </p>
+                            <h4 class="text-lg font-semibold text-gray-800 mb-2">Notas</h4>
+                            <p class="text-base text-gray-600 mb-4">{{ $examen->notes ?? 'No disponible' }}</p>
+                            <h4 class="text-lg font-semibold text-gray-800 mb-2">Estado</h4>
+                            <p class="text-base text-gray-600">{{ $examen->state == '1' ? 'Pendiente' : 'Finalizado' }}
+                            </p>
                         </div>
                     @endforeach
                 </div>
             @endif
         </section>
 
-        <!-- Sección de Exámenes Finalizados -->
+        <!-- Exámenes Finalizados -->
         <section id="finalizados" class="lg:px-16 lg:py-12 bg-gray-50 hidden">
-            @if(isset($examenes) && $examenes->where('state', '0')->isEmpty())
+            @if (isset($examenes) && $examenes->where('state', '0')->isEmpty())
                 <div class="text-center py-8">
                     <p class="text-lg font-semibold text-gray-700">No tienes exámenes finalizados.</p>
                 </div>
             @else
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     @foreach ($examenes->where('state', '0') as $examen)
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                            <div class="p-6 flex flex-col" data-id="{{$examen->id}}">
-                                <h2 class="text-2xl font-bold text-gray-800 mb-2">Tipo de Examen</h2>
-                                <p class="text-lg text-gray-700 mb-4">{{ $examen->exam_type ?? 'No disponible' }}</p>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Fecha</h3>
-                                <p class="text-lg text-gray-700 mb-4">
-                                    {{ !empty($examen->exam_date) ? (new DateTime($examen->exam_date))->format('j \d\e F \d\e Y') : 'No disponible' }}
-                                </p>
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Notas</h4>
-                                <p class="text-base text-gray-600">{{ $examen->notes ?? 'No disponible' }}</p>
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Estado</h4>
-                                <p class="text-base text-gray-600">{{ $examen->state == "1" ? 'Pendiente' : 'Finalizado' }}</p>
-                                <button class="bg-slate-500 text-white p-1 results">Resultados</button>
-                            </div>
+                        <div class="bg-white rounded-lg shadow-lg p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Tipo de Examen</h3>
+                            <p class="text-lg text-gray-700 mb-4">{{ $examen->exam_type ?? 'No disponible' }}</p>
+                            <h4 class="text-xl font-semibold text-gray-800 mb-2">Fecha</h4>
+                            <p class="text-lg text-gray-700 mb-4">
+                                {{ !empty($examen->exam_date) ? (new DateTime($examen->exam_date))->format('j \d\e F \d\e Y') : 'No disponible' }}
+                            </p>
+                            <h4 class="text-lg font-semibold text-gray-800 mb-2">Notas</h4>
+                            <p class="text-base text-gray-600">{{ $examen->notes ?? 'No disponible' }}</p>
+                            <h4 class="text-lg font-semibold text-gray-800 mb-2">Estado</h4>
+                            <p class="text-base text-gray-600">{{ $examen->state == '1' ? 'Pendiente' : 'Finalizado' }}
+                            </p>
+                            <button class="bg-slate-500 text-white p-1 mt-2">Resultados</button>
                         </div>
                     @endforeach
                 </div>
@@ -93,7 +90,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-4">
+    <footer class="bg-gray-800 text-white py-4 mt-auto">
         @include('templates.footer')
     </footer>
 

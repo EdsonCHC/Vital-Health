@@ -6,16 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citas</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
     @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/css/loader.css', 'resources/js/preloader.js'])
     <style>
         .transition-max-height {
             transition: max-height 0.3s ease-out;
         }
-
         .rotate-90 {
             transform: rotate(90deg);
         }
-
         footer {
             margin-top: 2rem;
             /* Ajusta el valor según sea necesario */
@@ -35,7 +34,7 @@
             <h2 class="font-bold text-center text-2xl text-gray-800">Menú de Citas</h2>
             <div class="lg:relative inline-block text-left">
                 <button type="button"
-                    class="inline-flex items-center justify-center gap-x-1.5 rounded-md bg-green-600 px-4 py-2 font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-green-500"
+                    class="inline-flex items-center justify-center gap-x-1.5 rounded-md bg-green-800 px-4 py-2 font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-green-700"
                     id="menu-button" aria-expanded="false" aria-haspopup="true">
                     <h2>Citas Finalizadas</h2>
                 </button>
@@ -91,10 +90,14 @@
         </section>
     </main>
 
-    <footer class="w-full h-auto">
-        @include('templates.chat_ia')
+    <!-- Footer -->
+    <div class="w-full h-auto footer-container">
         @include('templates.footer')
-    </footer>
+    </div>
+
+    <aside class="bg-gray-100">
+        @include('templates.chat_ia')
+    </aside>
 
     <script>
         function toggleContent(id) {

@@ -23,7 +23,10 @@
                 <li class="font-bold text-white tracking-wider"><a href="/">Inicio</a></li>
                 <li class="font-bold relative group text-white tracking-wider">
                     <a href="/area">Especialidades Médicas</a>
-                    <ul class="absolute hidden bg-white py-2 px-4 shadow-md w-full z-10 group-hover:block rounded-sm">
+                    <!-- Dropdown con transición -->
+                    <ul
+                        class="absolute hidden bg-white py-2 px-4 shadow-md w-full z-10 group-hover:block rounded-sm
+               transform opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out">
                         <li><a href="/medicina" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Medicina</a>
                         </li>
                         <li><a href="/citas" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Citas</a></li>
@@ -38,7 +41,7 @@
             <div class="hidden md:flex items-center gap-4 pr-4">
                 <a href="/user" class="w-[50px] h-[50px]">
                     @if (Auth::check())
-                        <img src="{{ route('patient.image', ['id' => Auth::user()->id])}}" alt="user_icon"
+                        <img src="{{ route('patient.image', ['id' => Auth::user()->id]) }}" alt="user_icon"
                             class="w-full h-full bg-vh-gray-light rounded-full border-solid border-[2px] object-cover">
                     @else
                         <img src="{{ asset('storage/svg/user.svg') }}" alt="user_icon"
@@ -85,7 +88,7 @@
 @endguest
 
 <script>
-    document.getElementById('mobile-menu-button').addEventListener('click', function () {
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenu.classList.toggle('hidden');
     });
