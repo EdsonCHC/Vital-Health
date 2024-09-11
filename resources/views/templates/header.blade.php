@@ -38,8 +38,8 @@
             <div class="hidden md:flex items-center gap-4 pr-4">
                 <a href="/user" class="w-[50px] h-[50px]">
                     @if (Auth::check())
-                        <img src="storage/profile_images/{{ Auth::user()->img }}" alt="user_icon"
-                            class="w-full h-full bg-vh-gray-light rounded-full border-solid border-[2px]">
+                        <img src="{{ route('patient.image', ['id' => Auth::user()->id])}}" alt="user_icon"
+                            class="w-full h-full bg-vh-gray-light rounded-full border-solid border-[2px] object-cover">
                     @else
                         <img src="{{ asset('storage/svg/user.svg') }}" alt="user_icon"
                             class="w-full p-2 bg-vh-gray-light rounded-full">
@@ -85,7 +85,7 @@
 @endguest
 
 <script>
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+    document.getElementById('mobile-menu-button').addEventListener('click', function () {
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenu.classList.toggle('hidden');
     });

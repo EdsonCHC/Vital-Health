@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
 
-class PatientsTableSeeder
-extends Seeder
+class PatientsTableSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -36,7 +35,7 @@ extends Seeder
                 'email_verification_token' => null,
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('pass123'),
-                'img'=> 'blob',
+                'img' => 'blob',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -51,7 +50,7 @@ extends Seeder
                 'email_verification_token' => null,
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('pass456'),
-                'img'=> 'blob',
+                'img' => 'blob',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -66,7 +65,7 @@ extends Seeder
                 'email_verification_token' => null,
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('pass789'),
-                'img'=> 'blob',
+                'img' => 'blob',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
