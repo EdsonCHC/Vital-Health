@@ -7,16 +7,36 @@
     <title>Medicina</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
     @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js'])
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex-grow: 1;
+        }
+
+        .footer-container {
+            margin-top: auto;
+        }
+    </style>
 </head>
 
-<body class="flex flex-col overflow-x-hidden">
+<body class="flex flex-col min-h-screen overflow-x-hidden">
     @include('templates.loader')
 
     <div class="w-full h-auto">
         @include('templates.header')
     </div>
 
-    <div class="flex-grow">
+    <main class="flex-grow">
         <div class="w-full h-auto flex flex-col md:items-start items-center p-4 gap-2 lg:px-16">
             <h2 class="font-bold text-xl text-vh-green lg:font-bold lg:text-3xl">Medicamento Asignado</h2>
         </div>
@@ -24,7 +44,7 @@
             <div class="bg-cover w-full flex justify-center items-center">
                 <div class="w-full bg-white lg:p-5 p-2 bg-opacity-40">
                     <div class="w-12/12 mx-auto rounded-2xl bg-white lg:p-5 p-2">
-                        <div class="">
+                        <div>
                             @if ($recetas->isEmpty())
                                 <p class="text-center text-gray-500">No tienes recetas disponibles.</p>
                             @else
@@ -67,12 +87,16 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <div class="w-full h-auto mt-20">
+    <!-- Footer -->
+    <div class="w-full h-auto footer-container">
         @include('templates.footer')
     </div>
-    @include('templates.chat_ia')
+
+    <aside class="bg-gray-100">
+        @include('templates.chat_ia')
+    </aside>
 </body>
 
 </html>

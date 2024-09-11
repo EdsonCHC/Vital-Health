@@ -235,13 +235,11 @@ class UsuarioController extends Controller
 
         $user = Auth::user();
 
-
         $imageData = null;
         if ($request->hasFile('img')) {
 
             $image = $request->file('img');
             $imageData = file_get_contents($image->getRealPath());
-
 
             // Actualizar la ruta de la imagen en el perfil del usuario
             $user->img = $imageData;

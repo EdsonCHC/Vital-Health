@@ -207,7 +207,7 @@ $(document).ready(function () {
             </form>
             `,
             showConfirmButton: false,
-            showCancelButton: true,
+            showCancelButton: false,
             cancelButtonText: "Cancelar",
         });
 
@@ -243,10 +243,8 @@ $(document).ready(function () {
                     Swal.fire({
                         title: "Error al actualizar la imagen",
                         icon: "error",
-                        text:
-                            response.responseJSON.message ||
-                            "Hubo un error inesperado.",
                     });
+                    console.log(response);
                 },
             });
         });

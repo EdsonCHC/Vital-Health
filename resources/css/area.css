@@ -1,0 +1,15 @@
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* Propiedad estándar para compatibilidad */
+    line-clamp: 3;
+    box-orient: vertical;
+}
+
+.p-6 {
+    height: 230px; /* Altura fija para las tarjetas */
+}

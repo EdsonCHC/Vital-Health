@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Especialidades Médicas</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
-    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js', 'resources/js/area.js'])
+    @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/css/area.css', 'resources/js/preloader.js', 'resources/js/scroll.js', 'resources/js/area.js'])
     <style>
         html,
         body {
@@ -76,7 +76,7 @@
 
                     <!-- Botón de búsqueda -->
                     <button type="submit"
-                        class="px-6 py-3 bg-green-900 text-white rounded-md hover:bg-green-800 focus:outline-none transition">
+                        class="px-6 py-3 bg-green-800 text-white rounded-md hover:bg-green-700 focus:outline-none transition">
                         Buscar
                     </button>
                 </form>
@@ -84,23 +84,23 @@
         </section>
 
         <!-- Tarjetas de categorías -->
-        <section class="px-6 lg:px-24 py-8">
+        <section class="px-6 lg:px-24 py-8 mb-14">
             <div class="container mx-auto flex flex-wrap gap-6">
                 @foreach ($categorias as $categoria)
                     <div class="w-full sm:w-1/2 lg:w-1/4">
                         <div
                             class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
                             <div class="h-48 bg-gray-200 flex items-center justify-center">
-                                <img src="{{ route('category.image', ['id' => $categoria->id])}}"
-                                    alt="{{ $categoria->nombre }}" class="object-cover h-full w-full">
+                                <img src="{{ route('category.image', ['id' => $categoria->id]) }}"
+                                    alt="{{ $categoria->nombre }}" class="object-cover h-full w-full" loading="lazy">
                             </div>
-                            <div class="p-6">
+                            <div class="p-6 flex flex-col h-full">
                                 <h3 class="text-xl font-semibold mb-2">{{ $categoria->nombre }}</h3>
-                                <p class="text-gray-600">Disponible</p>
-                                <div class="mt-4 flex justify-center">
+                                <p class="text-gray-600 line-clamp-3">{{ $categoria->descripcion }}</p>
+                                <div class="mt-auto flex justify-center">
                                     <a href="{{ route('service', ['id' => $categoria->id]) }}"
-                                        class="bg-green-600 text-white rounded-full h-10 w-10 flex items-center justify-center transition-transform transform hover:scale-110">
-                                        <img class="h-6 w-6" src="{{ asset('storage/svg/info.svg') }}" alt="Info" />
+                                        class="py-2.5 px-5 me-2 mb-2 text-lg font-medium text-white focus:outline-none bg-vh-green rounded-lg border border-gray-200 hover:bg-green-700 hover:text-white focus:z-10 focus:ring-4 focus:ring-green-300">
+                                        Ingresar
                                     </a>
                                 </div>
                             </div>
@@ -111,7 +111,8 @@
         </section>
     </main>
 
-    <div class="w-full h-auto">
+    <!-- Footer -->
+    <div class="w-full h-auto footer-container">
         @include('templates.footer')
     </div>
 
