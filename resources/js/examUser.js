@@ -8,10 +8,23 @@ $(document).ready(function () {
     const finalizadosSection = document.getElementById("finalizados");
     const menuButton = document.getElementById("menu-buttone");
 
-    menuButton.addEventListener("click", () => {
-        pendientesSection.classList.toggle("hidden");
-        finalizadosSection.classList.toggle("hidden");
-    });
+    document
+        .getElementById("toggle-examenes")
+        .addEventListener("click", function () {
+            const pendientes = document.getElementById("pendientes");
+            const finalizados = document.getElementById("finalizados");
+            const boton = document.getElementById("toggle-examenes");
+
+            if (pendientes.classList.contains("hidden")) {
+                pendientes.classList.remove("hidden");
+                finalizados.classList.add("hidden");
+                boton.textContent = "Ver Exámenes Finalizados";
+            } else {
+                pendientes.classList.add("hidden");
+                finalizados.classList.remove("hidden");
+                boton.textContent = "Ver Exámenes Pendientes";
+            }
+        });
 
     $(".results").click(function () {
         const div = $(this).closest("div");

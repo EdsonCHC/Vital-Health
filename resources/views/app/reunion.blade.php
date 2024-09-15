@@ -10,16 +10,18 @@
     @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/citas.js', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/videollamada.js'])
 </head>
 
-<body class="w-full h-full bg-gray-100">
+<body class="min-h-screen flex flex-col bg-gray-100">
     @include('templates.loader')
 
-    <div class="w-full h-auto">
+    <!-- Contenedor principal -->
+    <div class="w-full">
         @include('templates.header')
     </div>
 
-    <main class="w-full max-w-6xl mx-auto mb-24 px-4 py-6 lg:px-10 lg:py-8">
+    <!-- Contenido principal -->
+    <main class="w-full max-w-6xl mx-auto mb-24 px-4 py-6 lg:px-10 lg:py-8 flex-grow">
         <section class="mb-6">
-            <h2 class="text-2xl font-bold text-center">Mis Reuniones</h2>
+            <h2 class="font-bold text-2xl text-green-800">Mis Reuniones</h2>
         </section>
 
         <section class="w-full mb-12">
@@ -29,12 +31,13 @@
                         class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <div class="flex flex-col items-center pb-10">
                             <div
-                                class="w-28 h-28 mt-10 bg-gray-500 text- rounded-full flex flex-col items-center justify-center mb-2">
+                                class="w-28 h-28 mt-10 bg-gray-500 rounded-full flex flex-col items-center justify-center mb-2">
                                 <span class="text-lg font-semibold">
                                     {{ \Carbon\Carbon::parse($videollamada->date)->format('d M') }}
                                 </span>
                                 <span class="text-lg font-semibold">
-                                    {{ \Carbon\Carbon::parse($videollamada->hour)->format('h:i A') }} </span>
+                                    {{ \Carbon\Carbon::parse($videollamada->hour)->format('h:i A') }}
+                                </span>
                             </div>
                             <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
                                 {{ $videollamada->patient->name }}</h5>
@@ -55,13 +58,15 @@
         </section>
     </main>
 
+    <!-- Sección de chat IA -->
     <div class="w-full bg-white shadow-md">
         @include('templates.chat_ia')
     </div>
 
-    <div class="w-full bg-white shadow-md">
+    <!-- Footer pegado al final -->
+    <footer class="w-full bg-white shadow-md mt-auto">
         @include('templates.footer')
-    </div>
+    </footer>
 </body>
 
 </html>

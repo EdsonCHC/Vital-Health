@@ -36,19 +36,6 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-//-- PASSWORD  RECOVERY --//
-// Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-// Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-// Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-// Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
-
-// route::get('send-test-email', function () {
-//     Mail::raw('Este es un correo de prueba', function ($message) {
-//         $message->to('alejandro.josealvarenga@gmail.com')->subject('Correo de Prueba');
-//     });
-//     return 'Correo de prueba enviado.';
-// });
-
 // Rutas del usuario
 Route::view('/about', 'app.about');
 Route::view('/registro', 'app.registro');
@@ -132,7 +119,6 @@ Route::middleware(['auth:doctor'])->group(function () {
     //Exámenes
     //
     Route::view('/exams_doc', 'doctor.exams_doc');
-    Route::get('/service_doc', [ExamController::class, 'viewServiceDoc'])->name('doctor.service_doc');
     Route::get('/citas/{cita_id}/exams/{user_id}', [ExamController::class, 'getExams']);
     Route::get('/citas/{cita_id}/check-end', [ExamController::class, 'checkAndEndCita']);
     Route::get('/recetas/fetch-prescription-form-data', [ExamController::class, 'fetchPrescriptionFormData'])->name('recetas.fetchFormData');
@@ -239,7 +225,6 @@ Route::middleware('auth:laboratorio')->group(function () {
     //
     Route::post('/laboratorio/logout', [LaboratorioController::class, 'destroy'])->name('laboratorio.logout');
 });
-
 
 
 //-------API ROUTES--------//

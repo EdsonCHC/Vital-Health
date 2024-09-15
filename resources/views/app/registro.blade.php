@@ -39,7 +39,8 @@
                         <p>Ver Contraseñas</p><img src="{{ asset('storage/svg/eye-scan.svg') }}" alt="scan_eye"
                             type="image/svg+xml" id="see_password_img">
                     </label>
-                    <button id="register" class="w-full p-2 rounded-md bg-vh-green text-white font-bold  lg:w-2/5"
+                    <button id="register"
+                        class="w-full p-2 rounded-md bg-vh-green text-white font-bold  lg:w-2/5 hover:bg-gray-100 hover:text-vh-green duration-200"
                         id="show-alert">Registrarse</button>
                 </form>
                 <p class="my-8">¿Ya posees una cuenta?

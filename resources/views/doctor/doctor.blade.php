@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor {{ $doctor->name }}</title>
+    <title>Doctor: {{ $doctor->name }}</title>
     <!-- Incluir Tailwind CSS -->
     @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/doctor.js'])
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
@@ -50,7 +50,7 @@
                                 alt="Usuarios" />
                             <div class="text-center">
                                 <h3 class="font-bold text-xl lg:text-2xl">{{ $totalPatients }}</h3>
-                                <p class="font-bold text-sm lg:text-base text-gray-600">Usuarios Creados</p>
+                                <p class="font-bold text-sm lg:text-base text-gray-600">Nuevos Usuarios</p>
                             </div>
                         </div>
                         <!-- Caja de Citas -->
@@ -60,7 +60,7 @@
                                 alt="Citas" />
                             <div class="text-center">
                                 <h3 class="font-bold text-xl lg:text-2xl">{{ $totalCitas }}</h3>
-                                <p class="font-bold text-sm lg:text-base text-gray-600">Citas</p>
+                                <p class="font-bold text-sm lg:text-base text-gray-600">Citas Pendientes</p>
                             </div>
                         </div>
                         <!-- Caja de Recetas -->
@@ -69,7 +69,7 @@
                             <img class="w-16 lg:w-16 mb-2" src="{{ asset('storage/svg/inter.svg') }}" alt="Recetas" />
                             <div class="text-center">
                                 <h3 class="font-bold text-xl lg:text-2xl">{{ $totalRecetas }}</h3>
-                                <p class="font-bold text-sm lg:text-base text-gray-600">Recetas creadas</p>
+                                <p class="font-bold text-sm lg:text-base text-gray-600">Recetas</p>
                             </div>
                         </div>
                     </div>
@@ -77,36 +77,36 @@
                     <!-- Recetas -->
                     <div class="bg-white rounded-lg shadow-lg px-4 mb-6 min-h-[300px]">
                         <h2 class="font-bold text-xl px-4 border-b border-gray-200">Recetas</h2>
-                        @if($recentRecetas->isEmpty())
+                        @if ($recentRecetas->isEmpty())
                             <div class="p-4 text-center text-gray-600 flex items-center justify-center min-h-[300px]">
                                 <p>No hay recetas recientes.</p>
                             </div>
                         @else
-                                            @foreach($recentRecetas as $receta)
-                                                                <?php
-                                                $date = \Carbon\Carbon::parse($receta->fecha_entrega);
-                                                                                                                                                        ?>
-                                                                <div class="p-4 border-b border-gray-200 last:border-b-0">
-                                                                    <div class="flex flex-col lg:flex-row items-start lg:items-center">
-                                                                        <div
-                                                                            class="bg-yellow-800 text-white rounded-lg w-full lg:w-24 h-24 lg:h-24 flex items-center justify-center mb-4 lg:mb-0 lg:mr-4">
-                                                                            <div class="text-center">
-                                                                                <span class="block text-2xl font-bold">{{ $date->format('d') }}</span>
-                                                                                <span class="block text-xs">{{ $date->format('M') }}</span>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="flex-1">
-                                                                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Receta</h3>
-                                                                            <p class="text-gray-600 mb-2">Paciente: {{ $receta->patient->name }}</p>
-                                                                            <p class="text-gray-600 mb-2">Descripción: {{ $receta->description }}</p>
-                                                                            <a href="/recetas_doc"
-                                                                                class="inline-block bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition duration-300">
-                                                                                Ver más
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                            @endforeach
+                            @foreach ($recentRecetas as $receta)
+                                <?php
+                                $date = \Carbon\Carbon::parse($receta->fecha_entrega);
+                                ?>
+                                <div class="p-4 border-b border-gray-200 last:border-b-0">
+                                    <div class="flex flex-col lg:flex-row items-start lg:items-center">
+                                        <div
+                                            class="bg-yellow-800 text-white rounded-lg w-full lg:w-24 h-24 lg:h-24 flex items-center justify-center mb-4 lg:mb-0 lg:mr-4">
+                                            <div class="text-center">
+                                                <span class="block text-2xl font-bold">{{ $date->format('d') }}</span>
+                                                <span class="block text-xs">{{ $date->format('M') }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Receta</h3>
+                                            <p class="text-gray-600 mb-2">Paciente: {{ $receta->patient->name }}</p>
+                                            <p class="text-gray-600 mb-2">Descripción: {{ $receta->description }}</p>
+                                            <a href="/medicine_doc"
+                                                class="inline-block bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition duration-300">
+                                                Ver más
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         @endif
                     </div>
                 </div>
@@ -116,37 +116,39 @@
                     <div class="bg-white rounded-lg shadow-lg p-6 lg:mb-4 mb-36 flex flex-col h-auto lg:h-[500px]">
                         <h2 class="font-bold text-xl px-4 border-b border-gray-200 mb-4">Notificaciones</h2>
                         <div class="flex-1 overflow-y-auto">
-                            @if($recentCitas->isEmpty())
+                            @if ($recentCitas->isEmpty())
                                 <div class="p-4 text-center text-gray-600 flex items-center justify-center h-full">
                                     <p>No hay notificaciones recientes.</p>
                                 </div>
                             @else
-                                                    @foreach($recentCitas as $cita)
-                                                                            <?php
-                                                        $date = \Carbon\Carbon::parse($cita->date);
-                                                                                                                                                            ?>
-                                                                            <div class="p-4 border-b border-gray-200 last:border-b-0">
-                                                                                <div
-                                                                                    class="flex flex-col lg:flex-row bg-gray-50 lg:p-2 rounded-xl items-start lg:items-center">
-                                                                                    <div
-                                                                                        class="bg-green-800 text-white rounded-lg w-full lg:w-32 h-32 lg:h-32 flex items-center justify-center mb-4 lg:mb-0 lg:mr-4">
-                                                                                        <div class="text-center">
-                                                                                            <span class="block text-3xl font-bold">{{ $date->format('d') }}</span>
-                                                                                            <span class="block text-sm">{{ $date->format('M') }}</span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="flex-1">
-                                                                                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Notificación de Cita</h3>
-                                                                                        <p class="text-gray-600 mb-2">Paciente: {{ $cita->patient->name }}</p>
-                                                                                        <p class="text-gray-600 mb-2">Hora: {{ $cita->hour }}</p>
-                                                                                        <a href="/citas_doc"
-                                                                                            class="inline-flex items-center justify-center bg-green-500 text-white font-bold py-2 px-4 rounded-md shadow-md transition-transform transform hover:bg-green-600 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2">
-                                                                                            <p>Observar</p>
-                                                                                        </a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                    @endforeach
+                                @foreach ($recentCitas as $cita)
+                                    <?php
+                                    $date = \Carbon\Carbon::parse($cita->date);
+                                    ?>
+                                    <div class="p-4 border-b border-gray-200 last:border-b-0">
+                                        <div
+                                            class="flex flex-col lg:flex-row bg-gray-50 lg:p-2 rounded-xl items-start lg:items-center">
+                                            <div
+                                                class="bg-green-800 text-white rounded-lg w-full lg:w-32 h-32 lg:h-32 flex items-center justify-center mb-4 lg:mb-0 lg:mr-4">
+                                                <div class="text-center">
+                                                    <span
+                                                        class="block text-3xl font-bold">{{ $date->format('d') }}</span>
+                                                    <span class="block text-sm">{{ $date->format('M') }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="flex-1">
+                                                <h3 class="text-lg font-semibold text-gray-800 mb-2">Notificación de
+                                                    Cita</h3>
+                                                <p class="text-gray-600 mb-2">Paciente: {{ $cita->patient->name }}</p>
+                                                <p class="text-gray-600 mb-2">Hora: {{ $cita->hour }}</p>
+                                                <a href="/citas_doc"
+                                                    class="inline-flex items-center justify-center bg-green-500 text-white font-bold py-2 px-4 rounded-md shadow-md transition-transform transform hover:bg-green-600 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2">
+                                                    <p>Observar</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             @endif
                         </div>
                     </div>

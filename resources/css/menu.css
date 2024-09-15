@@ -46,7 +46,7 @@ body {
     top: 35px;
     transform: rotate(180deg);
     transition: transform 0.2s ease;
-    background: #155D1C; /* Cambia la flecha a verde cuando está desplegado */
+    background: #155d1c; /* Cambia la flecha a verde cuando está desplegado */
 }
 
 #menu--toggle:checked + #trigger + #burger::before {
@@ -55,14 +55,14 @@ body {
     left: 18px;
     transform: rotate(45deg) translateX(-5px);
     transition: transform 0.2s ease;
-    background: #155D1C; /* Cambia la flecha a verde cuando está desplegado */
+    background: #155d1c; /* Cambia la flecha a verde cuando está desplegado */
 }
 
 #menu--toggle:checked + #trigger + #burger::after {
     width: 20px;
     transform: rotate(-45deg) translateX(20px);
     transition: transform 0.2s ease;
-    background: #155D1C; /* Cambia la flecha a verde cuando está desplegado */
+    background: #155d1c; /* Cambia la flecha a verde cuando está desplegado */
 }
 
 #menu {
@@ -81,7 +81,12 @@ body {
 }
 
 #menu--toggle:checked + #trigger + #burger + #menu {
-    background: rgba(255, 255, 255, 0.882); /* Fondo visible cuando se selecciona */
+    background: rgba(
+        255,
+        255,
+        255,
+        0.882
+    ); /* Fondo visible cuando se selecciona */
     animation: checked-anim 1s ease both;
 }
 
@@ -97,7 +102,7 @@ a {
 li.menu_list,
 a.menu_link {
     margin: 75px 0 -55px 0;
-    color: #155D1C;
+    color: #155d1c;
     line-height: 1.8;
     font-weight: 700;
     text-decoration: none;
@@ -114,7 +119,7 @@ li.menu_list {
 a.menu_link:focus {
     display: block;
     color: #333;
-    background-color: #155D1C;
+    background-color: #155d1c;
     transition: all 0.5s;
 }
 
@@ -154,4 +159,46 @@ a.menu_link:focus {
 #menu--toggle:checked + #trigger ~ #menu > li.menu_list,
 a.menu_link {
     display: block;
+}
+
+.nav-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white; /* Color de la línea */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover::before {
+    transform: translateX(0);
+}
+
+.nav-link-2 {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link-2::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #2f855a; /* Color de la línea */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.nav-link-2:hover::before {
+    transform: translateX(0);
 }

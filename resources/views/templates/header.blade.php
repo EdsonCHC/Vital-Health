@@ -1,5 +1,5 @@
 @auth
-    @vite('resources/css/menu.css', 'resources/js/noti.js')
+    @vite('resources/css/menu.css', 'resources/js/noti.js', 'resources/css/menu.js')
     <header class="w-full h-20 flex z-20 bg-vh-green-medium-2">
         <div class="w-full h-full mx-auto flex justify-between items-center px-4">
             <!-- Logo a la izquierda -->
@@ -20,21 +20,20 @@
 
             <!-- Menú para pantallas grandes -->
             <ul class="hidden md:flex justify-center gap-10 items-center">
-                <li class="font-bold text-white tracking-wider"><a href="/">Inicio</a></li>
+                <li class="nav-link font-bold text-white tracking-wider"><a href="/">Inicio</a></li>
                 <li class="font-bold relative group text-white tracking-wider">
                     <a href="/area">Especialidades Médicas</a>
                     <!-- Dropdown con transición -->
                     <ul
-                        class="absolute hidden bg-white py-2 px-4 shadow-md w-full z-10 group-hover:block rounded-sm
-               transform opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out">
-                        <li><a href="/medicina" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Medicina</a>
+                        class="absolute hidden bg-white py-2 px-4 shadow-md w-full z-10 group-hover:block rounded-sm transform opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out">
+                        <li><a href="/medicina" class="block p-1 text-vh-green nav-link-2">Medicina</a>
                         </li>
-                        <li><a href="/citas" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Citas</a></li>
-                        <li><a href="/examen" class="block p-1 text-vh-green hover:bg-gray-200 rounded-sm">Exámenes</a></li>
+                        <li><a href="/citas" class="block p-1 text-vh-green nav-link-2">Citas</a></li>
+                        <li><a href="/examen" class="block p-1 text-vh-green nav-link-2">Exámenes</a></li>
                     </ul>
                 </li>
-                <li><a href="/reunion" class="font-bold text-white tracking-wider">Reuniones</a></li>
-                <li class="font-bold text-white tracking-wider"><a href="/about">Acerca de VH</a></li>
+                <li><a href="/reunion" class="nav-link font-bold text-white tracking-wider">Reuniones</a></li>
+                <li class="nav-link font-bold text-white tracking-wider"><a href="/about">Acerca de VH</a></li>
             </ul>
 
             <!-- Controles de usuario y notificaciones -->
@@ -86,10 +85,3 @@
         </div>
     </header>
 @endguest
-
-<script>
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenu.classList.toggle('hidden');
-    });
-</script>

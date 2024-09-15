@@ -25,7 +25,7 @@
                 <input class="block h-10 p-2 outline outline-1 outline-vh-green w-4/5 mb-10 lg:w-2/5"
                     placeholder="Contraseña" type="password" id="password">
                 <button id="login_btn"
-                    class="w-4/5 h-10 text-white bg-vh-green font-bold text-1xl shadow-xl mb-10 rounded-lg lg:w-2/5 hover:bg-white hover:text-vh-green">
+                    class="w-4/5 h-10 text-white bg-vh-green font-bold text-1xl shadow-xl mb-10 rounded-lg lg:w-2/5 hover:bg-gray-100 hover:text-vh-green duration-200">
                     Ingresar</button>
             </form>
         </div>

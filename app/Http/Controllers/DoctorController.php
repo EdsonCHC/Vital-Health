@@ -32,9 +32,6 @@ class DoctorController extends Controller
         $recentCitas = citas::where('doctor_id', $doctor->id)
             ->orderBy('date', 'desc')
             ->limit(2)
-            ->get()
-            ->orderBy('date', 'desc')
-            ->limit(2)
             ->get();
 
         // Fetch recent recipes for the logged-in doctor
@@ -145,7 +142,6 @@ class DoctorController extends Controller
                 'message' => 'Success',
                 'error' => 'Doctor actualizado correctamente',
             ], 200);
-
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error interno del servidor',

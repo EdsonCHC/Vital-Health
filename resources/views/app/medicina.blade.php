@@ -51,33 +51,31 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
                                     @foreach ($recetas as $receta)
                                         <article
-                                            class="bg-white p-6 mb-6 shadow-lg transition duration-300 hover:shadow-2xl rounded-lg border">
-                                            <div class="flex justify-between items-start pb-4 mb-4 border-b">
-                                                <div class="flex items-center">
-                                                    <div class="pr-3">
-                                                        <object class="h-12 w-12 rounded-full object-cover"
-                                                            data="{{ asset('storage/svg/medicine_example.svg') }}"
-                                                            type="image/svg+xml"></object>
-                                                    </div>
-                                                    <div>
-                                                        <p class="text-sm font-semibold">{{ $receta->titulo }}</p>
-                                                        <p class="text-sm text-gray-500">Fecha de Entrega:
-                                                            {{ $receta->fecha_entrega }}
-                                                        </p>
-                                                        <p class="text-sm text-gray-500">Estado:
-                                                            {{ $receta->estado }}
-                                                        </p> <!-- Estado agregado aquí -->
-                                                    </div>
+                                            class="w-80 bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 border mb-6">
+                                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                                <object class="h-full w-full object-cover"
+                                                    data="{{ asset('storage/svg/medicine_example.svg') }}"
+                                                    type="image/svg+xml"></object>
+                                            </div>
+                                            <div class="p-6 flex flex-col h-full">
+                                                <h3 class="text-xl font-semibold mb-2">{{ $receta->titulo }}</h3>
+                                                <p class="text-gray-600 mb-2">Fecha de Entrega:
+                                                    {{ $receta->hora_entrega }}</p>
+                                                <p class="text-gray-600 mb-2">Estado: {{ $receta->estado }}</p>
+                                                <h4 class="font-medium text-lg leading-8 mb-2">Medicinas:</h4>
+                                                <ul class="list-disc pl-5 mb-4">
+                                                    @foreach ($receta->medicinas as $medicina)
+                                                        <li>{{ $medicina->nombre }} ({{ $medicina->pivot->cantidad }})
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                                <div class="mt-auto flex justify-center">
+                                                    <a href="#"
+                                                        class="py-2.5 px-5 text-lg font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300">
+                                                        Descargar Receta
+                                                    </a>
                                                 </div>
                                             </div>
-                                            <h3 class="font-medium text-xl leading-8 mb-2">
-                                                Medicinas:
-                                            </h3>
-                                            <ul class="list-disc pl-5">
-                                                @foreach ($receta->medicinas as $medicina)
-                                                    <li>{{ $medicina->nombre }} ({{ $medicina->pivot->cantidad }})</li>
-                                                @endforeach
-                                            </ul>
                                         </article>
                                     @endforeach
                                 </div>

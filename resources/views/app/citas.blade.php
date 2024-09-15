@@ -12,9 +12,11 @@
         .transition-max-height {
             transition: max-height 0.3s ease-out;
         }
+
         .rotate-90 {
             transform: rotate(90deg);
         }
+
         footer {
             margin-top: 2rem;
             /* Ajusta el valor según sea necesario */
@@ -32,6 +34,8 @@
     <main class="flex-1 w-auto lg:px-8 p-4 lg:rounded-md lg:mt-8 mt-12  lg:mb-60 mx-10 bg-white shadow-lg mb-16">
         <section class="flex justify-between items-center mb-8">
             <h2 class="font-bold text-center text-2xl text-gray-800">Menú de Citas</h2>
+            <p class="font-bold text-center text-lg text-green-800">¡Si no encuentra su cita es porque no se le ha
+                asignado un doctor!</p>
             <div class="lg:relative inline-block text-left">
                 <button type="button"
                     class="inline-flex items-center justify-center gap-x-1.5 rounded-md bg-green-800 px-4 py-2 font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-green-700"
@@ -65,21 +69,22 @@
                                     <div class="p-4 text-start">
                                         <h3 class="text-lg text-gray-800 mb-2">Doctor:
                                             {{ $cita->doctor->name ?? 'No disponible' }}</h3>
-                                        <button
-                                            class="bg-yellow-300 text-yellow-700 rounded-md font-bold py-1 px-3 mt-2">En
-                                            Proceso</button>
                                         <h4 class="mt-2 text-gray-600">Hora:
                                             {{ !empty($cita->hour) ? (new DateTime($cita->hour))->format('h:i A') : 'No disponible' }}
                                         </h4>
                                         <h4 class="text-gray-600">Fecha:
                                             {{ !empty($cita->date) ? (new DateTime($cita->date))->format('j \d\e F \d\e Y') : 'No disponible' }}
                                         </h4>
-                                        <a href="#"
-                                            class="block px-4 py-2 text-sm text-red-600 hover:bg-red-100 mt-4 rounded-md delete-btn"
+                                        <button
+                                            class="bg-yellow-300 text-yellow-700 rounded-md font-bold py-1 px-3 mt-2 cursor-default"
+                                            disabled>En Proceso</button>
+                                        <button type="button"
+                                            class="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-100 mt-4 rounded-md delete-btn"
                                             data-id="{{ $cita->id }}">
-                                            <img src="{{ asset('storage/svg/trash.svg') }}"
-                                                class="w-4 h-4 inline-block mr-2" alt="Eliminar"> Eliminar
-                                        </a>
+                                            <img src="{{ asset('storage/svg/trash.svg') }}" class="w-4 h-4 mr-2"
+                                                alt="Eliminar">
+                                            Eliminar
+                                        </button>
                                     </div>
                                 </div>
                             </article>

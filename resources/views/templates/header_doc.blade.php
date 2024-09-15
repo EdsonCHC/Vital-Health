@@ -17,13 +17,6 @@
             </div>
             <div
               class="flex items-center py-2 rounded transition duration-200 hover:bg-green-200 text-black w-full cursor-pointer">
-              <a href="/service_doc" class="w-full flex items-center">
-                <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/servicio.svg')}}" type="image/svg+xml" />
-                <p>Servicio</p>
-              </a>
-            </div>
-            <div
-              class="flex items-center py-2 rounded transition duration-200 hover:bg-green-200 text-black w-full cursor-pointer">
               <a href="/files_doc" class="w-full flex items-center">
                 <img class="h-8 w-8 mx-2" src="{{asset('storage/svg/paciente.svg')}}" type="image/svg+xml" />
                 <p>Expedientes</p>
