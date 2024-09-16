@@ -282,10 +282,9 @@
                                                             Medicinas:
                                                         </h3>
                                                         <ul class="list-disc pl-5">
-                                                            @foreach ($recetas as $receta)
-                                                                <li>{{ $receta->medicine->nombre }}
-                                                                    ({{ $receta->medicine->stock }})
-                                                                </li>
+                                                            @foreach ($receta->medicinas as $medicina)
+                                                                <li>{{ $medicina->nombre }}
+                                                                    ({{ $medicina->pivot->cantidad }})
                                                             @endforeach
                                                         </ul>
                                                     </article>

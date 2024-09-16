@@ -45,6 +45,8 @@ class Receta extends Model
 
     public function medicinas()
     {
-        return $this->belongsTo(Medicina::class, 'medicine_id');
+        return $this->belongsToMany(Medicina::class, 'receta_medicina')
+            ->withPivot('cantidad')
+            ->withTimestamps();
     }
 }

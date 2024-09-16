@@ -13,9 +13,9 @@ return new class extends Migration
             $table->string('nombre')->unique();
             $table->text('descripcion')->nullable();
             $table->string('tipo');
-            $table->integer('stock');
+            $table->integer('stock');  
             $table->string('estado')->default('Disponible');
-            
+
             $table->foreignId('patient_id')->nullable()->constrained('patients')->onDelete('set null');
             $table->timestamps();
         });
