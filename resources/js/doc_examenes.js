@@ -16,8 +16,7 @@ $(document).ready(function () {
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
-        }).done(function (data) {
-        });
+        }).done(function (data) {});
     }
     $(document).on("click", ".btn-delete", function () {
         const examId = $(this).closest(".exam-item").data("exam-id");
@@ -85,9 +84,13 @@ $(document).ready(function () {
                                     <h4 class="text-2xl font-semibold mb-2">
                                         ${exam.exam_type}
                                     </h4>
-                                    <p class="text-gray-700 mb-1"><strong>Fecha:</strong> ${exam.exam_date}</p>
+                                    <p class="text-gray-700 mb-1"><strong>Fecha:</strong> ${
+                                        exam.exam_date
+                                    }</p>
                                     <p class="text-gray-700 mb-1"><strong>Estado:</strong> ${
-                                        exam.state === "1" ? "En proceso" : "Finalizado"
+                                        exam.state === "1"
+                                            ? "En proceso"
+                                            : "Finalizado"
                                     }</p>
                                     <p class="text-gray-700 mb-4"><strong>Notas:</strong> ${
                                         exam.notes || "N/A"
@@ -141,20 +144,33 @@ $(document).ready(function () {
         Swal.fire({
             title: "Crear Nuevo Examen",
             html: `
-    <form id="create-form">
-        <select id="create-field1" class="form-select">
-            <option value="" disabled selected>Tipo de Examen</option>
-            <option value="blood">Sangre</option>
-            <option value="urine">Orina</option>
-            <option value="stool">Heces</option>
-        </select>
-        <input type="date" id="create-field2" class="form-input" placeholder="Fecha" min="${
-            new Date().toISOString().split("T")[0]
-        }">
-        <textarea id="create-field3" class="form-textarea h-24" placeholder="Notas"></textarea>
-    </form>
-    `,
+                <form id="create-form" class="space-y-4 bg-white text-left">
+                    <!-- Select field -->
+                    <label for="create-field1" class="block">
+                        <span class="text-lg font-semibold">Tipo de Examen</span>
+                        <select id="create-field1" class="form-select w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100">
+                            <option value="" disabled selected>Selecciona una opción</option>
+                            <option value="blood">Sangre</option>
+                            <option value="urine">Orina</option>
+                            <option value="stool">Heces</option>
+                        </select>
+                    </label>
+                    <!-- Date input -->
+                    <label for="create-field2" class="block">
+                        <span class="text-lg font-semibold">Fecha</span>
+                        <input type="date" id="create-field2" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" placeholder="Fecha" min="${
+                            new Date().toISOString().split("T")[0]
+                        }">
+                    </label>
+                    <label for="create-field3" class="block">
+                        <span class="text-lg font-semibold">Notas</span>
+                        <textarea id="create-field3" class="form-input w-full h-32 border rounded-lg p-2 mt-1 bg-gray-100 text-input" placeholder="Notas"></textarea>
+                    </label>
+
+                </form>
+            `,
             confirmButtonText: "Guardar",
+            confirmButtonColor: "#166534",
             showCancelButton: true,
             cancelButtonText: "Cancelar",
             preConfirm: () => {

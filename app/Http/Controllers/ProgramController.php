@@ -23,6 +23,7 @@ class ProgramController extends Controller
         // Obtener todas las citas del doctor
         $cita = Citas::where('doctor_id', $doctor->id)->first();
 
+        // Arreglar esto 
         if (!$cita) {
             return redirect()->route('errors.404page')->with('message', 'No se encontró una videollamada para este doctor.');
         }

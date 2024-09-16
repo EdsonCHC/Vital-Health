@@ -49,7 +49,7 @@ $(document).ready(function () {
                     </label>
                 </form>
             `,
-            confirmButtonText: "Crear",
+            confirmButtonText: "Guardar",
             confirmButtonColor: "#166534",
             showCancelButton: true,
             cancelButtonText: "Cancelar",

@@ -57,6 +57,7 @@ $(document).ready(function () {
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Eliminar",
+            confirmButtonColor: "#",
             cancelButtonText: "Cancelar",
         }).then((result) => {
             if (result.isConfirmed) {
@@ -122,5 +123,5 @@ $(document).ready(function () {
         setInterval(updateDateTime, 1000);
     };
 
-    
+
 });
