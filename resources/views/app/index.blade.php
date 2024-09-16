@@ -27,7 +27,7 @@
                         con atención médica de calidad, dedicada a mantenerte saludable y en óptimas condiciones</p>
                 </div>
                 @guest
-                    <a href="/login" target="_self"
+                    <a href="/registro" target="_self"
                         class="w-4/5 lg:w-2/5 h-12 text-white font-bold bg-vh-green text-lg tracking-wide shadow-xl my-10 mx-4 rounded-full hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
                         Regístrate ahora
                     </a>

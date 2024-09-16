@@ -46,9 +46,9 @@ class UsuarioController extends Controller
             ->where('state', 0)
             ->get();
 
-        $recetas = Receta::with('medicinas')
-            ->where('patient_id', $userId)
-            ->get();
+        $recetas = Receta::with('medicine_id')
+        ->where('patient_id', $userId)
+        ->get();
 
         $expedientes = Expedientes::where('patient_id', $userId)->get();
 
