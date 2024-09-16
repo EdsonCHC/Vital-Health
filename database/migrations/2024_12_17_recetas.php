@@ -16,9 +16,10 @@ return new class extends Migration
             $table->time('hora_entrega'); 
             $table->string('titulo');
             $table->text('descripcion')->nullable();
-            $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade');
-            $table->foreignId('patient_id')->nullable()->constrained('patients')->onDelete('set null');
             $table->string('estado')->default('pendiente');
+            $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade');
+            $table->foreignId('medicine_id')->nullable()->constrained('medicinas')->nullOnDelete();
+            $table->foreignId('patient_id')->nullable()->constrained('patients')->onDelete('set null');
             $table->timestamps();
         });
     }

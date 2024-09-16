@@ -27,9 +27,12 @@ $(document).ready(function () {
         const _token = $('meta[name="csrf-token"]').attr("content");
 
         Swal.fire({
-            title: "¿Desea cerrar la sesión?",
+            title: "¿Desea Cerrar Sesión?",
             showCancelButton: true,
             showConfirmButton: true,
+            confirmButtonText: "Confirmar",
+            cancelButtonText: "Cancelar",
+            confirmButtonColor: "#166534",
             icon: "question",
         }).then((result) => {
             if (result.isConfirmed) {

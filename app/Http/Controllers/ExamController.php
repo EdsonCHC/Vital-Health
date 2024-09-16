@@ -236,6 +236,9 @@ class ExamController extends Controller
             $cita = Citas::findOrFail($cita_id);
             $patient_id = $cita->patient_id;
 
+            // Depuración
+            Log::info("Cita ID: $cita_id, User ID: $user_id, Patient ID: $patient_id");
+
             if ($patient_id != $user_id) {
                 return response()->json([
                     'success' => false,
@@ -263,6 +266,7 @@ class ExamController extends Controller
             ], 500);
         }
     }
+
 
     public function viewServiceDoc()
     {

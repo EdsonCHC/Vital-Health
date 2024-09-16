@@ -21,7 +21,6 @@ $(document).ready(function () {
         });
     });
 
-
     $(".createVideollamada").click(function () {
         const citaId = $(this).data("cita-id");
         const patientId = $(`#patient_id_${citaId}`).data("patient-id");
@@ -30,24 +29,28 @@ $(document).ready(function () {
         Swal.fire({
             title: "Crear una nueva reunión",
             html: `
-        <form id="create-form" class="space-y-4 p-4 bg-white">
-            <div>
-                <label for="roomName" class="block text-xl font-medium text-gray-700">Nombre de la Sala</label>
-                <input type="text" id="roomName" name="roomName" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            </div>
-            <div>
-                <label for="date" class="block text-xl font-medium text-gray-700">Fecha</label>
-                <input type="date" id="date" name="date" min="${
-                    new Date().toISOString().split("T")[0]
-                }" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            </div>
-            <div>
-                <label for="hour" class="block text-xl font-medium text-gray-700">Hora</label>
-                <input type="time" id="hour" name="hour" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            </div>
-        </form>
-        `,
+                <form id="create-form" class="space-y-4 p-4 bg-white text-left">
+                    <label class="block">
+                        <span class="text-lg font-semibold">Nombre de la Sala</span>
+                        <input type="text" id="roomName" name="roomName"
+                            class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                    </label>
+                    <label class="block">
+                        <span class="text-lg font-semibold">Fecha</span>
+                        <input type="date" id="date" name="date" min="${
+                            new Date().toISOString().split("T")[0]
+                        }"
+                            class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                    </label>
+                    <label class="block">
+                        <span class="text-lg font-semibold">Hora</span>
+                        <input type="time" id="hour" name="hour"
+                            class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                    </label>
+                </form>
+            `,
             confirmButtonText: "Crear",
+            confirmButtonColor: "#166534",
             showCancelButton: true,
             cancelButtonText: "Cancelar",
             preConfirm: () => {
@@ -103,7 +106,6 @@ $(document).ready(function () {
                                 "",
                                 "success"
                             );
-                            window.location.href = `/videollamadaDoc?roomName=${response.room_name}`;
                         } else {
                             Swal.fire(
                                 "Error al crear la videollamada",

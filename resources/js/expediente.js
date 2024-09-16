@@ -3,7 +3,7 @@ import jQuery from "jquery";
 import QRCode from "qrcode";
 window.$ = jQuery;
 
-$(document).ready(function () {    
+$(document).ready(function () {
     // Doctor
     // Maneja la creacion del expediente y del usuario
     $(".saveFileDoc").click(function () {
@@ -42,168 +42,137 @@ $(document).ready(function () {
 
     $(".createFile").click(function () {
         Swal.fire({
-            title: "Crear Expediente",
+            title: "Crea un Usuario",
             html: `
-                <div class="flex justify-center items-center content-center space-x-4">
-                    <button id="register" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-sm">
-                        Crear Nuevo Usuario
-                    </button>
-                </div>
+            <form id="register-form" class="space-y-4 p-4 bg-white text-left">
+                <label class="block">
+                    <span class="text-lg font-semibold">Nombre</span>
+                    <input type="text" id="name" name="name"
+                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                </label>
+                <label class="block">
+                    <span class="text-lg font-semibold">Apellido</span>
+                    <input type="text" id="lastName" name="lastName"
+                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                </label>
+                <label class="block">
+                    <span class="text-lg font-semibold">Correo Electrónico</span>
+                    <input type="email" id="mail"
+                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                </label>
+                <label class="block">
+                    <span class="text-lg font-semibold">Dirección</span>
+                    <input type="text" id="address"
+                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                </label>
+                <label for="gender" class="block text-lg font-semibold mt-4">Género
+                    <select id="gender" class="form-select w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" required>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </label>
+                <label for="blood" class="block text-lg font-semibold">Tipo de sangre
+                    <select id="blood" class="form-select w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" required>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </label>
+                <label class="block">
+                    <span class="text-lg font-semibold">Fecha de Nacimiento</span>
+                    <input type="date" id="birth"
+                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                </label>
+                <label class="block">
+                    <span class="text-lg font-semibold">Contraseña</span>
+                    <input type="password" id="password"
+                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
+                </label>
+            </form>
             `,
-            showConfirmButton: false,
             showCancelButton: true,
             cancelButtonText: "Cancelar",
-            didOpen: () => {
-                document
-                    .getElementById("register")
-                    .addEventListener("click", () => {
-                        Swal.fire({
-                            title: "Crear un Usuario",
-                            html: `
-                            <form id="register-form" class="space-y-4 p-4 bg-white text-left">
-                                <label class="block">
-                                    <span class="text-lg font-semibold">Nombre</span>
-                                    <input type="text" id="name" name="name"
-                                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
-                                </label>
-                                <label class="block">
-                                    <span class="text-lg font-semibold">Apellido</span>
-                                    <input type="text" id="lastName" name="lastName"
-                                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
-                                </label>
-                                <label class="block">
-                                    <span class="text-lg font-semibold">Correo Electronico</span>
-                                    <input type="email" id="mail"
-                                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
-                                </label>
-                                <label class="block">
-                                    <span class="text-lg font-semibold">Dirección</span>
-                                    <input type="text" id="address"
-                                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
-                                </label>
-                                <label for="gender" class="block text-lg font-semibold mt-4">Género
-                                    <select id="gender" class="form-select w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" required>
-                                        <option value="masculino">Masculino</option>
-                                        <option value="femenino">Femenino</option>
-                                        <option value="otro">Otro</option>
-                                    </select>
-                                </label>
-                                <label for="blood" class="block text-lg font-semibold">Tipo de sangre
-                                    <select id="blood" class="form-select w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" required>
-                                        <option value="A+">A+</option>
-                                        <option value="A-">A-</option>
-                                        <option value="B+">B+</option>
-                                        <option value="B-">B-</option>
-                                        <option value="AB+">AB+</option>
-                                        <option value="AB-">AB-</option>
-                                        <option value="O+">O+</option>
-                                        <option value="O-">O-</option>
-                                    </select>
-                                </label>
-                                <label class="block">
-                                    <span class="text-lg font-semibold">Fecha de Nacimiento</span>
-                                    <input type="date" id="birth"
-                                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
-                                </label>
-                                <label class="block">
-                                    <span class="text-lg font-semibold">Contraseña</span>
-                                    <input type="password" id="password"
-                                    class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
-                                </label>
-                            </form>
-                            `,
-                            showCancelButton: true,
-                            cancelButtonText: "Cancelar",
-                            confirmButtonText: "Registrar",
-                            preConfirm: () => {
-                                const name =
-                                    document.getElementById("name")?.value;
-                                const lastName =
-                                    document.getElementById("lastName")?.value;
-                                const mail =
-                                    document.getElementById("mail")?.value;
-                                const address =
-                                    document.getElementById("address")?.value;
-                                const birth =
-                                    document.getElementById("birth")?.value;
-                                const blood =
-                                    document.getElementById("blood")?.value;
-                                const gender =
-                                    document.getElementById("gender")?.value;
-                                const password =
-                                    document.getElementById("password")?.value;
+            confirmButtonText: "Registrar",
+            confirmButtonColor: "#166534",
+            preConfirm: () => {
+                const name = document.getElementById("name")?.value;
+                const lastName = document.getElementById("lastName")?.value;
+                const mail = document.getElementById("mail")?.value;
+                const address = document.getElementById("address")?.value;
+                const birth = document.getElementById("birth")?.value;
+                const blood = document.getElementById("blood")?.value;
+                const gender = document.getElementById("gender")?.value;
+                const password = document.getElementById("password")?.value;
 
-                                if (
-                                    !name ||
-                                    !lastName ||
-                                    !mail ||
-                                    !address ||
-                                    !birth ||
-                                    !blood ||
-                                    !gender ||
-                                    !password
-                                ) {
-                                    Swal.showValidationMessage(
-                                        "Por favor, completa todos los campos requeridos."
-                                    );
-                                    return false;
-                                }
+                if (
+                    !name ||
+                    !lastName ||
+                    !mail ||
+                    !address ||
+                    !birth ||
+                    !blood ||
+                    !gender ||
+                    !password
+                ) {
+                    Swal.showValidationMessage(
+                        "Por favor, completa todos los campos requeridos."
+                    );
+                    return false;
+                }
 
-                                const formData = new FormData();
-                                formData.append("name", name);
-                                formData.append("lastName", lastName);
-                                formData.append("mail", mail);
-                                formData.append("address", address);
-                                formData.append("birth", birth);
-                                formData.append("blood", blood);
-                                formData.append("gender", gender);
-                                formData.append("password", password);
+                const formData = new FormData();
+                formData.append("name", name);
+                formData.append("lastName", lastName);
+                formData.append("mail", mail);
+                formData.append("address", address);
+                formData.append("birth", birth);
+                formData.append("blood", blood);
+                formData.append("gender", gender);
+                formData.append("password", password);
 
-                                const csrfToken = document
-                                    .querySelector('meta[name="csrf-token"]')
-                                    .getAttribute("content");
+                const csrfToken = document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content");
 
-                                return fetch("/files_doc", {
-                                    method: "POST",
-                                    headers: {
-                                        "X-CSRF-TOKEN": csrfToken,
-                                    },
-                                    body: formData,
-                                })
-                                    .then((response) => response.json())
-                                    .then((data) => {
-                                        if (data.success) {
-                                            return Swal.fire({
-                                                icon: "success",
-                                                title: "Éxito",
-                                                text: data.message,
-                                            });
-                                        } else {
-                                            const errors = data.errors;
-                                            let errorMessage =
-                                                "Por favor, corrige los siguientes errores:\n";
-                                            for (const [
-                                                key,
-                                                messages,
-                                            ] of Object.entries(errors)) {
-                                                errorMessage += `${messages.join(
-                                                    ", "
-                                                )}\n`;
-                                            }
-                                            Swal.showValidationMessage(
-                                                errorMessage
-                                            );
-                                            return false;
-                                        }
-                                    })
-                                    .catch((error) => {
-                                        Swal.showValidationMessage(
-                                            "Ocurrió un error al enviar los datos."
-                                        );
-                                        return false;
-                                    });
-                            },
-                        });
+                return fetch("/files_doc", {
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-TOKEN": csrfToken,
+                    },
+                    body: formData,
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data.success) {
+                            return Swal.fire({
+                                icon: "success",
+                                title: "Éxito",
+                                text: data.message,
+                            });
+                        } else {
+                            const errors = data.errors;
+                            let errorMessage =
+                                "Por favor, corrige los siguientes errores:\n";
+                            for (const [key, messages] of Object.entries(
+                                errors
+                            )) {
+                                errorMessage += `${messages.join(", ")}\n`;
+                            }
+                            Swal.showValidationMessage(errorMessage);
+                            return false;
+                        }
+                    })
+                    .catch((error) => {
+                        Swal.showValidationMessage(
+                            "Ocurrió un error al enviar los datos."
+                        );
+                        return false;
                     });
             },
         });
@@ -239,12 +208,12 @@ $(document).ready(function () {
                     },
                     success(response) {
                         if (response.success) {
-                            Swal.fire(
-                                "Expediente deshabilitado",
-                                "",
-                                "success"
-                            );
-                            // Actualiza el HTML si es necesario
+                            Swal.fire({
+                                title: "Expediente deshabilitado",
+                                icon: "success",
+                            }).then(() => {
+                                window.location.href = `/files_doc`;
+                            });
                         } else {
                             Swal.fire(
                                 "Error al deshabilitar el expediente",
@@ -296,8 +265,12 @@ $(document).ready(function () {
                     },
                     success(response) {
                         if (response.success) {
-                            Swal.fire("Expediente habilitado", "", "success");
-                            // Actualiza el HTML si es necesario
+                            Swal.fire({
+                                title: "Expediente Habilitado",
+                                icon: "success",
+                            }).then(() => {
+                                window.location.href = `/files_doc`;
+                            });
                         } else {
                             Swal.fire(
                                 "Error al habilitar el expediente",

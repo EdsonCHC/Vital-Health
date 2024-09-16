@@ -70,8 +70,6 @@ $(document).ready(function () {
         }
     });
 
-  
-
     async function mostrarAlerta() {
         const result = await Swal.fire({
             title: "Registro de Citas",

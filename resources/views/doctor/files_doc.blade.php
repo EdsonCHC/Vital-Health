@@ -6,7 +6,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expediente</title>
-    <!-- Incluir Tailwind CSS -->
     @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/doctor.js', 'resources/js/expediente.js'])
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
 </head>
@@ -23,7 +22,7 @@
             <header class="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-6">
                 <h2 class="text-3xl font-bold text-vh-green">Expedientes de Pacientes</h2>
                 <button
-                    class="createFile bg-vh-green text-white font-semibold mt-4 lg:mt-0 py-2 px-4 rounded-lg shadow-lg hover:bg-green-600 transition duration-300">
+                    class="createFile bg-green-700 text-white font-semibold mt-4 lg:mt-0 py-2 px-4 rounded-lg shadow-lg hover:bg-green-800 transition duration-300">
                     Nuevo Usuario
                 </button>
             </header>
@@ -68,7 +67,7 @@
                             </div>
                             <div class="flex justify-between space-x-2">
                                 <button data-id="{{ $file->id }}" data-patient-id="{{ $file->patient->id }}"
-                                    class="assignFile w-full bg-green-500 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-green-600 transition duration-300">
+                                    class="assignFile w-full bg-green-700 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-green-800 transition duration-300">
                                     Habilitar Expediente
                                 </button>
                             </div>

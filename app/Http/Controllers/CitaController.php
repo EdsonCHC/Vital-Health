@@ -242,7 +242,6 @@ class CitaController extends Controller
         return response()->json(['patients' => $patients]);
     }
 
-
     public function search(Request $request)
     {
         $search = $request->input('search');
@@ -260,8 +259,6 @@ class CitaController extends Controller
         return view('doctor.citas_doc', ['citas' => $citas, 'doctor' => Doctor::find($doctorId)]);
     }
     
-    
-
     public function show_doc($id)
     {
         try {

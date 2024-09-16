@@ -17,7 +17,6 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
         }).done(function (data) {
-            // Lógica para mostrar los exámenes en el modal
         });
     }
     $(document).on("click", ".btn-delete", function () {
@@ -69,6 +68,7 @@ $(document).ready(function () {
             }
         });
     });
+
     function showExamsInModal(citaId, userId) {
         const url = `/citas/${citaId}/exams/${userId}`;
         $.ajax({
@@ -81,20 +81,24 @@ $(document).ready(function () {
                     if (response.exams.length > 0) {
                         response.exams.forEach((exam) => {
                             examsHtml += `
-                 <div class="exam-item p-4 border-b border-gray-200" data-exam-id="${
-                     exam.id
-                 }" data-cita-id="${citaId}">
-                      <h4 class="text-lg font-semibold">${exam.exam_type}</h4>
-                      <p>Fecha: ${exam.exam_date}</p>
-                      <p>Estado: ${
-                          exam.state === "1" ? "En proceso" : "Finalizado"
-                      }</p>
-                      <p>Notas: ${exam.notes || "N/A"}</p>
-                      <div class="flex gap-2 mt-2">
-                       <button class="bg-red-600 text-white rounded px-4 py-2 w-32 btn-delete">Eliminar</button>
-                     </div>
-                 </div>
-                    `;
+                                <div class="p-6 border rounded-lg border-gray-200 bg-white shadow-md mb-4 flex flex-col">
+                                    <h4 class="text-2xl font-semibold mb-2">
+                                        ${exam.exam_type}
+                                    </h4>
+                                    <p class="text-gray-700 mb-1"><strong>Fecha:</strong> ${exam.exam_date}</p>
+                                    <p class="text-gray-700 mb-1"><strong>Estado:</strong> ${
+                                        exam.state === "1" ? "En proceso" : "Finalizado"
+                                    }</p>
+                                    <p class="text-gray-700 mb-4"><strong>Notas:</strong> ${
+                                        exam.notes || "N/A"
+                                    }</p>
+                                    <div class="flex justify-end mt-auto">
+                                        <button class="bg-red-600 text-white rounded-lg px-4 py-2 font-semibold hover:bg-red-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500">
+                                            Eliminar
+                                        </button>
+                                    </div>
+                                </div>
+                            `;
                         });
                     } else {
                         examsHtml =
@@ -105,11 +109,11 @@ $(document).ready(function () {
                     Swal.fire({
                         title: "Lista de Exámenes",
                         html: `
-                            ${examsHtml}
-                            <div class="flex flex-wrap justify-center items-center gap-4 p-4">
-                            <button id="option-create" data-cita-id="${citaId}" class="bg-green-400 text-white rounded px-4 py-2 w-32">Crear</button>
-                            </div>
-                        `,
+                    ${examsHtml}
+                    <div class="flex flex-wrap justify-center items-center gap-4 p-4">
+                        <button id="option-create" data-cita-id="${citaId}" class="bg-green-700 text-white rounded px-4 py-2 w-32">Crear</button>
+                    </div>
+                `,
                         showConfirmButton: false,
                         showCancelButton: false,
                     });

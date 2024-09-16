@@ -27,7 +27,7 @@
                     <div class="text-center lg:text-left flex flex-col justify-between h-full">
                         <div>
                             <p id="current-date" class="font-bold text-base text-gray-400 mb-2"></p>
-                            <h3 class="font-bold text-2xl text-white">{{ $doctor->name }}</h3>
+                            <h3 class="font-bold text-2xl text-white">{{ $doctor->name }} {{ $doctor->lastName}}</h3>
                             <p class="font-bold text-xl text-gray-400">{{ $doctor->category->nombre }}</p>
                         </div>
                         <p id="current-time" class="font-bold text-3xl text-white mt-4 lg:mt-6"></p>
@@ -74,7 +74,7 @@
                         </div>
                     </div>
 
-                    <!-- Recetas -->
+                    <!-- Grafica -->
                     <div class="bg-white rounded-lg shadow-lg px-4 mb-6 min-h-[300px]">
                         <h2 class="font-bold text-xl px-4 border-b border-gray-200">Recetas</h2>
                         @if ($recentRecetas->isEmpty())

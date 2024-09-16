@@ -12,11 +12,19 @@ class Receta extends Model
     protected $table = 'recetas';
 
     protected $fillable = [
-        'cita_id', 'doctor_id', 'patient_id', 'fecha_entrega', 'hora_entrega', 'titulo', 'descripcion', 'codigo_receta'
+        'cita_id',
+        'doctor_id',
+        'patient_id',
+        'medicine_id',
+        'fecha_entrega',
+        'hora_entrega',
+        'titulo',
+        'descripcion',
+        'codigo_receta'
     ];
     protected $casts = [
         'fecha_entrega' => 'date',
-        'hora_entrega' => 'datetime:H:i', 
+        'hora_entrega' => 'datetime:H:i',
         'descripcion' => 'string',
     ];
 
@@ -37,8 +45,6 @@ class Receta extends Model
 
     public function medicinas()
     {
-        return $this->belongsToMany(Medicina::class, 'receta_medicina')
-                    ->withPivot('cantidad')
-                    ->withTimestamps();
+        return $this->belongsTo(Medicina::class);
     }
 }

@@ -6,23 +6,33 @@ $(document).ready(function () {
     // Datos ficticios para los signos vitales
     let vitals = [
         { id: 1, type: "pressure", value: "120/80", date: "2024-08-20" },
-        { id: 2, type: "temperature", value: "37°C", date: "2024-08-21" }
+        { id: 2, type: "temperature", value: "37°C", date: "2024-08-21" },
     ];
 
     // Función para mostrar signos vitales en una alerta
     function showVitalsAlert() {
-        let vitalsHtml = '';
+        let vitalsHtml = "";
         if (vitals.length > 0) {
             vitals.forEach((vital) => {
                 vitalsHtml += `
-                    <div class="vital-item p-4 border-b border-gray-200" data-vital-id="${vital.id}">
-                        <h4 class="text-lg font-semibold">${vital.type === "pressure" ? "Presión" : "Temperatura"}</h4>
-                        <p>Valor: ${vital.value}</p>
-                        <p>Fecha: ${vital.date}</p>
-                        <div class="flex gap-2 mt-2">
-                            <button class="bg-red-600 text-white rounded px-4 py-2 w-32 btn-delete-vital">Eliminar</button>
-                        </div>
+                <div class="vital-item p-6 border rounded-lg border-gray-200 bg-white shadow-md mb-4 flex flex-col" data-vital-id="${
+                    vital.id
+                }">
+                    <h4 class="text-2xl font-semibold mb-2">
+                        ${vital.type === "pressure" ? "Presión" : "Temperatura"}
+                    </h4>
+                    <p class="text-gray-700 mb-1"><strong>Valor:</strong> ${
+                        vital.value
+                    }</p>
+                    <p class="text-gray-700"><strong>Fecha:</strong> ${
+                        vital.date
+                    }</p>
+                    <div class="mt-4 flex justify-end">
+                        <button class="bg-red-600 text-white rounded-lg px-4 py-2 font-semibold hover:bg-red-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500">
+                            Eliminar
+                        </button>
                     </div>
+                </div>
                 `;
             });
         } else {
@@ -34,7 +44,7 @@ $(document).ready(function () {
             html: vitalsHtml,
             showConfirmButton: false,
             showCancelButton: false,
-            footer: '<button id="add-new-vital" class="btn btn-primary">Agregar Nuevo Signo Vital</button>'
+            footer: '<button id="add-new-vital" class="btn btn-primary bg-green-700 text-white hover:bg-green-800 transition duration-300 px-10 py-2 rounded-md">Agregar Un Signo Vital</button>',
         });
     }
 
@@ -48,22 +58,24 @@ $(document).ready(function () {
         Swal.fire({
             title: "Agregar Signos Vitales",
             html: `
-                <form id="vitals-form">
-                    <div class="mb-4">
-                        <label for="vital-type" class="block text-sm font-medium text-gray-700">Tipo de Signo Vital</label>
-                        <select id="vital-type" class="form-select">
+                <form id="vitals-form" class="space-y-4 p-4 bg-white text-left">
+                    <label class="block">
+                        <span class="text-lg font-semibold">Tipo de Signo Vital</span>
+                        <select id="vital-type" class="form-select w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" required>
                             <option value="" disabled selected>Selecciona un tipo</option>
                             <option value="pressure">Presión</option>
                             <option value="temperature">Temperatura</option>
                         </select>
-                    </div>
-                    <div class="mb-4">
-                        <label for="vital-value" class="block text-sm font-medium text-gray-700">Valor</label>
-                        <input type="text" id="vital-value" class="form-input" placeholder="Introduce el valor">
-                    </div>
+                    </label>
+                    <label class="block">
+                        <span class="text-lg font-semibold">Valor</span>
+                        <input type="text" id="vital-value" name="vital-value"
+                        class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" placeholder="Introduce el valor" required>
+                    </label>
                 </form>
             `,
             confirmButtonText: "Guardar",
+            confirmButtonColor: "#166534",
             showCancelButton: true,
             cancelButtonText: "Cancelar",
             preConfirm: () => {
@@ -71,15 +83,17 @@ $(document).ready(function () {
                 const vitalValue = document.querySelector("#vital-value").value;
 
                 if (!vitalType || !vitalValue) {
-                    Swal.showValidationMessage("Por favor, completa todos los campos");
+                    Swal.showValidationMessage(
+                        "Por favor, completa todos los campos"
+                    );
                     return false;
                 }
 
                 return {
                     type: vitalType,
-                    value: vitalValue
+                    value: vitalValue,
                 };
-            }
+            },
         }).then((result) => {
             if (result.isConfirmed) {
                 // Agregar el nuevo signo vital a los datos ficticios
@@ -87,14 +101,14 @@ $(document).ready(function () {
                     id: vitals.length + 1, // Simple incremento para ID
                     type: result.value.type,
                     value: result.value.value,
-                    date: new Date().toISOString().split('T')[0] // Fecha actual
+                    date: new Date().toISOString().split("T")[0], // Fecha actual
                 };
                 vitals.push(newVital);
 
                 Swal.fire({
                     title: "Signo Vital Agregado",
                     text: `Tipo: ${result.value.type}\nValor: ${result.value.value}`,
-                    icon: "success"
+                    icon: "success",
                 });
 
                 showVitalsAlert(); // Actualizar la lista de signos vitales
@@ -112,11 +126,11 @@ $(document).ready(function () {
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Sí, eliminar",
-            cancelButtonText: "Cancelar"
+            cancelButtonText: "Cancelar",
         }).then((result) => {
             if (result.isConfirmed) {
                 // Eliminar el signo vital de los datos ficticios
-                vitals = vitals.filter(vital => vital.id !== vitalId);
+                vitals = vitals.filter((vital) => vital.id !== vitalId);
 
                 Swal.fire("Signo vital eliminado correctamente", "", "success");
                 showVitalsAlert(); // Actualizar la lista de signos vitales
@@ -124,5 +138,3 @@ $(document).ready(function () {
         });
     });
 });
-
-
