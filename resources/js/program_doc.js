@@ -8,11 +8,10 @@ $(document).ready(function () {
         const doctorId = $(this).data("doctor-id"); // Obtener el doctor_id del botón
 
         Swal.fire({
-            title: "Crear Tarea",
+            title: "Nueva Tarea",
             html: `
             <form id="register-form" class="space-y-4 p-4 bg-white text-left">
                 <label class="block">
-                    <span class="text-lg font-semibold">Nombre de la Tarea</span>
                     <input type="text" id="homework" name="homeworks"
                     class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input" required>
                 </label>
@@ -20,7 +19,8 @@ $(document).ready(function () {
         `,
             showCancelButton: true,
             cancelButtonText: "Cancelar",
-            confirmButtonText: "Crear",
+            confirmButtonText: "Guardar",
+            confirmButtonColor: "#166534",
         }).then((result) => {
             if (result.isConfirmed) {
                 const _token = $('meta[name="csrf-token"]').attr("content");
@@ -35,7 +35,7 @@ $(document).ready(function () {
                     data: { homeworks: homework },
                     success(response) {
                         if (response.success) {
-                            Swal.fire("Tarea creada", "", "success");
+                            window.location.reload();
                         } else {
                             Swal.fire(
                                 "Error al crear la tarea",
@@ -82,11 +82,7 @@ $(document).ready(function () {
                     },
                     success(response) {
                         if (response.success) {
-                            Swal.fire("Tarea eliminada", "", "success");
-                            // Eliminar la tarea del DOM si es necesario
-                            $(`input[data-id="${homeworkId}"]`)
-                                .closest("li")
-                                .remove();
+                            window.location.reload();
                         } else {
                             Swal.fire(
                                 "Error al eliminar la tarea",

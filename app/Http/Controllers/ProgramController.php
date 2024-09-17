@@ -20,21 +20,27 @@ class ProgramController extends Controller
     {
         $doctor = auth()->user();
 
-        // Obtener todas las citas del doctor
-        $cita = Citas::where('doctor_id', $doctor->id)->first();
-
-        // Arreglar esto 
-        if (!$cita) {
-            return redirect()->route('errors.404page')->with('message', 'No se encontró una videollamada para este doctor.');
-        }
-
-        // Obtener todos los registros de ProgramDoc relacionados con el doctor
+        // Obtener todas las tareas del doctor
         $program_docs = ProgramDoc::where('doctor_id', $doctor->id)->get();
 
-        // Obtener las videollamadas
+        // Obtener la primera cita del doctor
+        $cita = Citas::where('doctor_id', $doctor->id)->first();
+
+        // Si no hay citas, pasar un mensaje a la vista
+        if (!$cita) {
+            $message = 'No tienes citas pendientes.';
+            return view('doctor.program_doc', compact('message', 'program_docs'));
+        }
+
+        // Obtener las videollamadas relacionadas con la cita
         $videollamadas = Videollamada::where('cita_id', $cita->id)->get();
 
-        return view('doctor.program_doc', compact('videollamadas', 'program_docs'));
+        // Extraer las fechas de las citas y videollamadas
+        $fechasCitas = [$cita->fecha];  // Como solo es una cita, creamos un array con la fecha
+        $fechasVideollamadas = $videollamadas->pluck('date')->toArray();
+
+        // Pasar las fechas a la vista
+        return view('doctor.program_doc', compact('videollamadas', 'program_docs', 'fechasCitas', 'fechasVideollamadas'));
     }
 
 
