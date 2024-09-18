@@ -1,4 +1,4 @@
-<footer class="footer bg-white dark:bg-gray-900">
+<footer class="footer bg-gray-900">
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
             <div class="mb-6 md:mb-0">
@@ -6,12 +6,12 @@
                     <img src="{{ asset('storage/svg/logo-icon-white.svg') }}" class="h-24 sm:h-28 lg:h-32"
                         alt="FlowBite Logo" />
                     <span
-                        class="self-center text-lg sm:text-xl lg:text-2xl font-semibold whitespace-nowrap dark:text-white ml-2">Vital-Health</span>
+                        class="self-center text-lg sm:text-xl lg:text-2xl font-semibold whitespace-nowrap text-white-not-white ml-2">Vital-Health</span>
                 </a>
             </div>
             <div class="grid grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-3">
                 <div>
-                    <h2 class="mb-4 text-xs sm:text-sm font-semibold text-gray-900 uppercase dark:text-white">Recursos
+                    <h2 class="mb-4 text-xs sm:text-sm font-semibold text-gray-900 uppercase text-white-not-white">Recursos
                     </h2>
                     <ul class="text-gray-500 dark:text-gray-400 font-medium">
                         <li class="mb-2 sm:mb-4">
@@ -26,7 +26,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h2 class="mb-4 text-xs sm:text-sm font-semibold text-gray-900 uppercase dark:text-white">Sobre
+                    <h2 class="mb-4 text-xs sm:text-sm font-semibold text-gray-900 uppercase text-white-not-white">Sobre
                         Nosotros</h2>
                     <ul class="text-gray-500 dark:text-gray-400 font-medium">
                         <li class="mb-2 sm:mb-4">
@@ -38,7 +38,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h2 class="mb-4 text-xs sm:text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                    <h2 class="mb-4 text-xs sm:text-sm font-semibold text-gray-900 uppercase text-white-not-white">Legal</h2>
                     <ul class="text-gray-500 dark:text-gray-400 font-medium">
                         <li class="mb-2 sm:mb-4">
                             <a href="#" class="hover:underline">Política de privacidad</a>
