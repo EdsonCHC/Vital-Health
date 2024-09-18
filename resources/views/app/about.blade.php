@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>Sobre Nosotros</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
     @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js'])
 </head>
@@ -259,12 +259,14 @@
             </div>
         </div>
     </div>
-    <div class="w-full h-auto">
+    <!-- Footer -->
+    <div class="w-full h-auto footer-container">
         @include('templates.footer')
     </div>
-    <div class="w-full h-auto">
+
+    <aside class="bg-gray-100">
         @include('templates.chat_ia')
-    </div>
+    </aside>
 </body>
 
 </html>

@@ -20,14 +20,11 @@
 
     <!-- Main Content -->
     <main class="flex-1 p-4 mt-6 lg:max-w-screen-2xl lg:mx-auto lg:rounded-md">
-        <section class="flex flex-col lg:flex-row justify-between items-center mb-6 gap-4">
+        <section class="w-full flex flex-col lg:flex-row justify-between items-center mb-6 gap-4">
             <div class="text-center lg:text-left">
                 <h2 class="text-4xl font-bold text-vh-green mb-2">Especialidades Médicas</h2>
                 <p class="text-lg text-gray-700">¡ Los exámenes son necesarios para las citas !</p>
             </div>
-        </section>
-
-        <section id="examenes" class="lg:px-16 lg:py-12">
             <!-- Botón para alternar entre Exámenes Pendientes y Finalizados -->
             <div class="flex justify-end mb-4">
                 <button id="toggle-examenes"
@@ -35,12 +32,15 @@
                     Ver Exámenes Finalizados
                 </button>
             </div>
+        </section>
+
+        <section id="examenes" class="lg:px-16 lg:py-12">
 
             <!-- Exámenes Pendientes -->
             <div id="pendientes">
                 @if (isset($examenes) && $examenes->where('state', '1')->isEmpty())
                     <div class="text-center py-8">
-                        <p class="text-lg font-semibold text-gray-700">No tienes exámenes programados.</p>
+                        <p class="text-lg font-semibold text-gray-700">No tienes exámenes pendientes.</p>
                     </div>
                 @else
                     <h2 class="text-xl font-bold text-vh-green mb-2">Exámenes Pendientes</h2>
@@ -95,6 +95,7 @@
         </section>
     </main>
 
+    <!-- Footer -->
     <div class="w-full h-auto footer-container">
         @include('templates.footer')
     </div>

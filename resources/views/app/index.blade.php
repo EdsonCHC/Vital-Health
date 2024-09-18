@@ -288,7 +288,6 @@
                 </a>
             @endguest
 
-
         </div>
     </div>
 
@@ -358,12 +357,14 @@
         </div>
     </div>
 
-    <div class="w-full h-auto">
+    <!-- Footer -->
+    <div class="w-full h-auto footer-container">
         @include('templates.footer')
     </div>
-    <div class="w-full h-auto">
+
+    <aside class="bg-gray-100">
         @include('templates.chat_ia')
-    </div>
+    </aside>
 </body>
 
 </html>

@@ -91,16 +91,22 @@ class VideollamadaController extends Controller
     {
         $user = Auth::user();
 
+        // Obtener la primera cita del usuario
         $cita = Citas::where('patient_id', $user->id)->first();
 
-        // if (!$cita) {
-        //     return redirect()->route('errors.404page')->with('message', 'No se encontró una videollamada para usted.');
-        // }
+        // Si no hay cita, definir el mensaje pero no redirigir
+        if (!$cita) {
+            $message = 'No se encontró una videollamada para usted.';
+            return view('app.reunion', compact('message'));
+        }
 
+        // Obtener las videollamadas relacionadas con la cita
         $videollamadas = Videollamada::where('cita_id', $cita->id)->get();
 
+        // Pasar las videollamadas a la vista
         return view('app.reunion', compact('videollamadas'));
     }
+
 
     public function update(Request $request, $id)
     {

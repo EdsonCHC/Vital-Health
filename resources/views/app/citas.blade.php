@@ -42,6 +42,11 @@
                     id="menu-button" aria-expanded="false" aria-haspopup="true">
                     <h2>Citas Finalizadas</h2>
                 </button>
+                <button type="button"
+                    class="inline-flex items-center justify-center gap-x-1.5 rounded-md bg-green-800 px-4 py-2 font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-green-700"
+                    id="menu-button" aria-expanded="false" aria-haspopup="true" onclick="window.location.href='/area'">
+                    <h2>Crear una cita</h2>
+                </button>
             </div>
         </section>
 

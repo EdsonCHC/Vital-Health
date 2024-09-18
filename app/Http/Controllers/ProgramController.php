@@ -43,7 +43,6 @@ class ProgramController extends Controller
         return view('doctor.program_doc', compact('videollamadas', 'program_docs', 'fechasCitas', 'fechasVideollamadas'));
     }
 
-
     public function storeHomework(Request $request, $doctor_id)
     {
         $validator = Validator::make($request->all(), [

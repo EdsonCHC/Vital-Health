@@ -28,7 +28,7 @@ class DoctorsTableSeeder extends Seeder
             [
                 'name' => 'Victor',
                 'lastName' => 'Alexander',
-                'description' => 'El Dr. Victor es un experto en [especialidad], conocido por su habilidad técnica y trato excepcional con los pacientes. Su enfoque profesional y empático garantiza una atención de alta calidad y una experiencia positiva para cada paciente.',
+                'description' => 'El Dr. Victor es un experto en Cardiología, conocido por su habilidad técnica y trato excepcional con los pacientes. Su enfoque profesional y empático garantiza una atención de alta calidad y una experiencia positiva para cada paciente.',
                 'number' => '5555-5555',
                 'age' => 55,
                 'gender' => 'male',
@@ -42,7 +42,7 @@ class DoctorsTableSeeder extends Seeder
             [
                 'name' => 'Alejandro',
                 'lastName' => 'Alvarenga',
-                'description' => 'El Dr. Alejandro es un experto en [especialidad], conocido por su habilidad técnica y trato excepcional con los pacientes. Su enfoque profesional y empático garantiza una atención de alta calidad y una experiencia positiva para cada paciente.',
+                'description' => 'El Dr. Alejandro es un experto en Dermatología, conocido por su habilidad técnica y trato excepcional con los pacientes. Su enfoque profesional y empático garantiza una atención de alta calidad y una experiencia positiva para cada paciente.',
                 'number' => '5555-5555',
                 'age' => 50,
                 'gender' => 'male',
@@ -56,7 +56,7 @@ class DoctorsTableSeeder extends Seeder
             [
                 'name' => 'Geovanni',
                 'lastName' => 'Jacinto',
-                'description' => 'El Dr. Geovanni es un experto en [especialidad], conocido por su habilidad técnica y trato excepcional con los pacientes. Su enfoque profesional y empático garantiza una atención de alta calidad y una experiencia positiva para cada paciente.',
+                'description' => 'El Dr. Geovanni es un experto en Cirujía, conocido por su habilidad técnica y trato excepcional con los pacientes. Su enfoque profesional y empático garantiza una atención de alta calidad y una experiencia positiva para cada paciente.',
                 'number' => '5555-5555',
                 'age' => 50,
                 'gender' => 'male',
