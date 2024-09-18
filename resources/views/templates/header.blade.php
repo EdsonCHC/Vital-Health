@@ -1,5 +1,5 @@
 @auth
-    @vite('resources/css/menu.css', 'resources/js/noti.js', 'resources/css/menu.js')
+    @vite(['resources/css/menu.css', 'resources/js/noti.js', 'resources/css/menu.js'])
     <header class="w-full h-20 flex z-20 bg-vh-green-medium-2">
         <div class="w-full h-full mx-auto flex justify-between items-center px-4">
             <!-- Logo a la izquierda -->
