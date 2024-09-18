@@ -39,6 +39,7 @@ export default defineConfig({
                 'resources/js/lab.js',
                 'resources/js/login.js',
                 'resources/js/medicine.js',
+                'resources/js/menu.js',
                 'resources/js/noti.js',
                 'resources/js/preloader.js',
                 'resources/js/program_doc.js',
