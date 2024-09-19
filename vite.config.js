@@ -37,6 +37,7 @@ export default defineConfig({
                 'resources/js/doctor.js',
                 'resources/js/exams.js',
                 'resources/js/expediente.js',
+                'resources/js/hardware.js',
                 'resources/js/lab.js',
                 'resources/js/login.js',
                 'resources/js/medicine.js',
