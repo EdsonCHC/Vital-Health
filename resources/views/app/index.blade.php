@@ -21,15 +21,14 @@
         <div class="w-1/2 hidden lg:flex justify-center items-center">
             <div class="w-4/5">
                 <div class="ml-4 mt-4 mb-2">
-                    <span class="font-bold text-5xl mr-4">Brindamos Ayuda</span>
-                    <span class="font-bold text-5xl"> En Tu Futuro</span>
-                    <p class="text-3xl text-justify mx-4 my-4 font-bold text-gray-400">Transformamos tu bienestar
-                        con atención médica de calidad, dedicada a mantenerte saludable y en óptimas condiciones</p>
+                    <span class="font-bold text-5xl mr-4">{{__('messages.es_1')}}</span>
+                    <span class="font-bold text-5xl"> {{__('messages.es_2')}}</span>
+                    <p class="text-3xl text-justify mx-4 my-4 font-bold text-gray-400">{{__('messages.es_3')}}</p>
                 </div>
                 @guest
                     <a href="/registro" target="_self"
                         class="w-4/5 lg:w-2/5 h-12 text-white font-bold bg-vh-green text-lg tracking-wide shadow-xl my-10 mx-4 rounded-full hover:bg-white transition duration-300 hover:text-vh-green inline-block text-center content-center">
-                        Regístrate ahora
+                        {{__('messages.es_4')}}
                     </a>
                 @endguest
 
@@ -80,8 +79,8 @@
         <div class="flex justify-center items-center">
             <div class="w-1/2">
                 <div class="ml-4 mt-4 mb-2">
-                    <span class="font-bold text-lg">Brindamos Ayuda</span>
-                    <span class="font-bold text-lg"> En Tu Futuro</span>
+                    <span class="font-bold text-lg">{{__('messages.es_1')}}</span>
+                    <span class="font-bold text-lg"> {{__('messages.es_2')}}</span>
                 </div>
 
                 <a href="/register" target="_self"
@@ -90,7 +89,7 @@
                 </a>
             </div>
             <div class="w-1/2">
-                <p class="text-xs text-justify mb-4 font-bold text-gray-400 mx-4 -mt-1">Tu Salud es Nuestra Prioridad
+                <p class="text-xs text-justify mb-4 font-bold text-gray-400 mx-4 -mt-1">{{__('messages.es_5')}}
                 </p>
             </div>
         </div>
@@ -99,91 +98,73 @@
     <div class="flex justify-center text-center flex-col items-center">
         <div class="w-full h-auto">
             <div>
-                <h2 class="font-bold text-xl text-vh-green lg:font-bold  lg:text-4xl">Nuestros Doctores</h2>
-
-                <p class="text-sm font-bold text-gray-400 mx-96 mt-2 hidden lg:block">
-                    Los doctores son esenciales para la salud y el bienestar de la sociedad,
-                </p>
-                <p class="text-sm font-bold text-gray-400 mx-96 mt-2 hidden lg:block">
-                    ya que proporcionan atención médica crucial, diagnósticos precisos y tratamientos eficaces.
-                </p>
+                <h2 class="font-bold text-xl text-vh-green lg:font-bold  lg:text-4xl">{{__('messages.es_6')}}</h2>
             </div>
             <div class="w-full flex grow-0 flex-wrap items-center justify-center my-8">
                 @php
-                    $maxDoctors = 3;
-                    $count = 0;
+                $maxDoctors = 3;
+                $count = 0;
                 @endphp
 
                 @if ($doctors->isEmpty())
-                    <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                        <h2 class="text-lg font-bold mb-2 text-vh-green">Alonso</h2>
-                        <p class="text-sm font-bold text-gray-400 mt-2">Cardiólogo</p>
-                        <p class="text-md text-justify text-vh-green block leading-7">El Dr. Alonso Martínez es un
-                            destacado cardiólogo con más de 15 años de experiencia en el diagnóstico y tratamiento de
-                            enfermedades cardíacas. Su enfoque integral y personalizado le permite ofrecer atención de
-                            alta calidad a cada paciente, utilizando tecnología avanzada y las últimas investigaciones
-                            en cardiología.
-                        </p>
-                    </div>
-                    <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                        <h2 class="text-lg font-bold mb-2 text-vh-green">Laura</h2>
-                        <p class="text-sm font-bold text-gray-400 mt-2">Dermatología</p>
-                        <p class="text-md text-justify text-vh-green block leading-7">La Dra. Laura Gómez es una
-                            reconocida dermatóloga con una trayectoria de más de 12 años en el cuidado de la piel.
-                            Especializada en el diagnóstico y tratamiento de diversas afecciones dermatológicas, desde
-                            el acné hasta el cáncer de piel, la Dra. Gómez combina su experiencia clínica con un enfoque
-                            detallado y personalizado para cada paciente.
-                        </p>
-                    </div>
-                    <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                        <h2 class="text-lg font-bold mb-2 text-vh-green">Javier</h2>
-                        <p class="text-sm font-bold text-gray-400 mt-2">Cirugía</p>
-                        <p class="text-md text-justify text-vh-green block leading-7">El Dr. Javier Torres es un
-                            cirujano experimentado con más de 20 años de práctica en diversas especialidades
-                            quirúrgicas. Su destreza técnica y enfoque meticuloso le han permitido abordar una amplia
-                            gama de procedimientos, desde operaciones mínimamente invasivas hasta intervenciones
-                            complejas.
-                        </p>
-                    </div>
+                <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
+                    <h2 class="text-lg font-bold mb-2 text-vh-green">Alonso</h2>
+                    <p class="text-sm font-bold text-gray-400 mt-2">Cardiólogo</p>
+                    <p class="text-md text-justify text-vh-green block leading-7">El Dr. Alonso Martínez es un
+                        destacado cardiólogo con más de 15 años de experiencia en el diagnóstico y tratamiento de
+                        enfermedades cardíacas. Su enfoque integral y personalizado le permite ofrecer atención de
+                        alta calidad a cada paciente, utilizando tecnología avanzada y las últimas investigaciones
+                        en cardiología.
+                    </p>
+                </div>
+                <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
+                    <h2 class="text-lg font-bold mb-2 text-vh-green">Laura</h2>
+                    <p class="text-sm font-bold text-gray-400 mt-2">Dermatología</p>
+                    <p class="text-md text-justify text-vh-green block leading-7">La Dra. Laura Gómez es una
+                        reconocida dermatóloga con una trayectoria de más de 12 años en el cuidado de la piel.
+                        Especializada en el diagnóstico y tratamiento de diversas afecciones dermatológicas, desde
+                        el acné hasta el cáncer de piel, la Dra. Gómez combina su experiencia clínica con un enfoque
+                        detallado y personalizado para cada paciente.
+                    </p>
+                </div>
+                <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
+                    <h2 class="text-lg font-bold mb-2 text-vh-green">Javier</h2>
+                    <p class="text-sm font-bold text-gray-400 mt-2">Cirugía</p>
+                    <p class="text-md text-justify text-vh-green block leading-7">El Dr. Javier Torres es un
+                        cirujano experimentado con más de 20 años de práctica en diversas especialidades
+                        quirúrgicas. Su destreza técnica y enfoque meticuloso le han permitido abordar una amplia
+                        gama de procedimientos, desde operaciones mínimamente invasivas hasta intervenciones
+                        complejas.
+                    </p>
+                </div>
                 @else
-                    @foreach ($doctors as $doctor)
-                        <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
-                            <h2 class="text-lg font-bold mb-2 text-vh-green">{{ $doctor->name }}</h2>
-                            <p class="text-sm font-bold text-gray-400 mt-2">{{ $doctor->category->nombre }}</p>
-                            <p class="text-md text-justify text-vh-green block leading-7">{{ $doctor->description }}
-                            </p>
-                        </div>
-                    @endforeach
+                @foreach ($doctors as $doctor)
+                <div class="w-full min-w-40 max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
+                    <h2 class="text-lg font-bold mb-2 text-vh-green">{{ $doctor->name }}</h2>
+                    <p class="text-sm font-bold text-gray-400 mt-2">{{ $doctor->category->nombre }}</p>
+                    <p class="text-md text-justify text-vh-green block leading-7">{{ $doctor->description }}
+                    </p>
+                </div>
+                @endforeach
                 @endif
 
             </div>
         </div>
         <div class="w-full text-center mb-8">
             <div class="mb-2">
-                <h2 class="font-bold  text-xl text-vh-green lg:font-bold  lg:text-4xl">Servicios</h2>
-                <p class="text-sm font-bold text-gray-400 px-4 text-justify  lg:mx-96 mt-2">En nuestra clínica,
-                    ofrecemos una amplia gama de
-                    servicios médicos diseñados para atender todas tus necesidades de salud. Desde consultas generales
-                    hasta especialidades médicas avanzadas, nuestro equipo de profesionales está comprometido con
-                    brindarte la mejor atención posible. Contamos con tecnología de punta y un enfoque centrado en el
-                    paciente para asegurar diagnósticos precisos y tratamientos eficaces.</p>
-                <a class="text-md my-1 font-bold text-vh-green-medium block leading-7">Contamos con personal médico muy
-                    amable y profesional</a>
+                <h2 class="font-bold  text-xl text-vh-green lg:font-bold  lg:text-4xl">{{__('messages.es_7')}}</h2>
+                <p class="text-sm font-bold text-gray-400 px-4 text-justify  lg:mx-96 mt-2">{{__('messages.es_8')}}</p>
+                <a class="text-md my-1 font-bold text-vh-green-medium block leading-7">{{__('messages.es_9')}}</a>
             </div>
             <div class="w-full h-auto flex flex-wrap items-center justify-center">
-                <div class="w-full max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">Nuestro centro médico
-                    cuenta con especialistas en diversas áreas de la medicina para ofrecerte una atención integral y
-                    especializada.
+                <div class="w-full max-w-72 mx-4 bg-blue-100 py-4 my-4 rounded-2xl shadow-lg px-8">
+                    {{__('messages.es_10')}}
                 </div>
-                <div class="w-full max-w-72 mx-4 bg-blue-100 py-4  my-4 rounded-2xl shadow-lg px-8">Ofrecemos consultas
-                    médicas tanto presenciales como virtuales para tu comodidad. Nuestras consultas están diseñadas para
-                    evaluar tu estado de salud, diagnosticar enfermedades y planificar tratamientos personalizados.
-                    Puedes programar una cita con nuestros médicos generales o especialistas a través de nuestra
-                    plataforma en línea, asegurando una atención rápida y eficiente sin largas esperas.
+                <div class="w-full max-w-72 mx-4 bg-blue-100 py-4  my-4 rounded-2xl shadow-lg px-8">
+                    {{__('messages.es_11')}}
                 </div>
-                <div class="w-full max-w-72 mx-4 bg-blue-100 py-4  my-4 rounded-2xl shadow-lg px-8">Realizamos una
-                    variedad de exámenes médicos para evaluar tu salud y detectar posibles enfermedades de manera
-                    temprana.
+                <div class="w-full max-w-72 mx-4 bg-blue-100 py-4  my-4 rounded-2xl shadow-lg px-8">
+                    {{__('messages.es_12')}}
                 </div>
             </div>
         </div>
@@ -191,8 +172,7 @@
             <div class="m-8 flex items-center justify-center lg:mx-0 lg:w-1/2">
                 <h2
                     class="font-bold text-left lg:pl-28  text-xl text-vh-green lg:font-bold lg:text-4xl lg:ml-12 animation">
-                    Las
-                    ventajas que posee con nuestros servicios son:</h2>
+                    {{__('messages.es_13')}}</h2>
             </div>
             <div
                 class="w-full flex flex-wrap justify-center items-center gap-5 lg:w-1/2 lg:flex-row lg:flex-wrap lg:justify-start lg:ml-8 lg:mr-8 lg:flex-grow">
@@ -200,18 +180,17 @@
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center  lg:w-1/3 animation3">
                     <object data="{{ asset('storage/svg/dental.svg') }}" type="image/svg+xml" class="w-10"></object>
-                    <p class="font-bold">Cuidado dental</p>
+                    <p class="font-bold">{{__('messages.es_14')}}</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
                     <object data="{{ asset('storage/svg/eye.svg') }}" type="image/svg+xml" class="w-10"></object>
-                    <p class="font-bold">Oculista</p>
+                    <p class="font-bold">{{__('messages.es_16')}}</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{ asset('storage/svg/derma_hand.svg') }}" type="image/svg+xml"
-                        class="w-10"></object>
-                    <p class="font-bold">Dermatología</p>
+                    <object data="{{ asset('storage/svg/derma_hand.svg') }}" type="image/svg+xml" class="w-10"></object>
+                    <p class="font-bold">{{__('messages.es_16')}}</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
@@ -220,14 +199,12 @@
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{ asset('storage/svg/heart.svg') }}" type="image/svg+xml"
-                        class="w-10"></object>
+                    <object data="{{ asset('storage/svg/heart.svg') }}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Atención Primaria</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
-                    <object data="{{ asset('storage/svg/brain.svg') }}" type="image/svg+xml"
-                        class="w-10"></object>
+                    <object data="{{ asset('storage/svg/brain.svg') }}" type="image/svg+xml" class="w-10"></object>
                     <p class="font-bold">Psiquiatría</p>
                 </div>
             </div>
