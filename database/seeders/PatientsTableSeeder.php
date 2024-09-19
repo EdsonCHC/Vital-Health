@@ -1,19 +1,13 @@
 <?php
 
-
 namespace Database\Seeders;
-
 
 use App\Models\citas;
 use App\Models\Usuario;
-
-
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
-
 
 class PatientsTableSeeder extends Seeder
 {
@@ -22,6 +16,9 @@ class PatientsTableSeeder extends Seeder
      */
     public function run(): void
     {
+        // Ruta por defecto de la imagen
+        $defaultImagePath = 'storage/svg/user.svg';  // Ruta en la carpeta storage
+
         // Crear pacientes de ejemplo
         $patients = [
             [
@@ -35,7 +32,7 @@ class PatientsTableSeeder extends Seeder
                 'email_verification_token' => null,
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('pass123'),
-                'img' => 'blob',
+                'img' => $defaultImagePath,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -50,7 +47,7 @@ class PatientsTableSeeder extends Seeder
                 'email_verification_token' => null,
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('pass456'),
-                'img' => 'blob',
+                'img' => $defaultImagePath,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -65,12 +62,11 @@ class PatientsTableSeeder extends Seeder
                 'email_verification_token' => null,
                 'email_verified_at' => Carbon::now(),
                 'password' => Hash::make('pass789'),
-                'img' => 'blob',
+                'img' => $defaultImagePath,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
         ];
-
 
         // Insertar los registros en la base de datos
         DB::transaction(function () use ($patients) {
