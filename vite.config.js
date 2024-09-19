@@ -36,6 +36,7 @@ export default defineConfig({
                 'resources/js/doc_examenes.js',
                 'resources/js/doctor.js',
                 'resources/js/exams.js',
+                'resources/js/examUser.js',
                 'resources/js/expediente.js',
                 'resources/js/hardware.js',
                 'resources/js/lab.js',
