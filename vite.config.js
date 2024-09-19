@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/css/admin_staff.css',
                 'resources/css/animation.css',
                 'resources/css/app.css',
+                'resources/css/area.css',
                 'resources/css/chatsv1.css',
                 'resources/css/checkbox.css',
                 'resources/css/footer.css',
