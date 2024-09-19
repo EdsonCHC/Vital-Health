@@ -59,7 +59,8 @@ $(document).ready(function () {
                         });
                     },
                 });
-            } catch (error) {
+            } catch (response) {
+                console.log(response);
                 Swal.fire({
                     title: "Error",
                     text: "No se pudo conectar con el servidor.",
