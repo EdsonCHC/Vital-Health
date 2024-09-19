@@ -10,14 +10,24 @@ $(document).ready(function () {
         Swal.fire({
             title: "Nueva Categoría",
             html: `
-        <label for="category_name">Nombre</label>
-        <input id="category_name" class="swal2-input" type="text" placeholder="Nombre">
-        <label for="category_description">Descripción</label>
-        <textarea id="category_description" class="swal2-textarea" placeholder="Descripción"></textarea>
-        <label for="category_features">Características</label>
-        <textarea id="category_features" class="swal2-textarea" placeholder="Características"></textarea>
-        <label for="category_img">Imagen</label>
-        <input id="category_img" class="swal2-input" type="file" accept="image/*">
+    <form id="category-form" class="space-y-4 p-4 bg-white text-left">
+        <label class="block">
+            <span class="text-lg font-semibold">Nombre</span>
+            <input id="category_name" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="text" placeholder="Introduce el nombre" required>
+        </label>
+        <label class="block">
+            <span class="text-lg font-semibold">Descripción</span>
+            <textarea id="category_description" class="form-input w-full h-24 border rounded-lg p-2 mt-1 bg-gray-100" placeholder="Introduce la descripción" required></textarea>
+        </label>
+        <label class="block">
+            <span class="text-lg font-semibold">Características</span>
+            <textarea id="category_features" class="form-input w-full h-24 border rounded-lg p-2 mt-1 bg-gray-100" placeholder="Introduce las características" required></textarea>
+        </label>
+        <label class="block">
+            <span class="text-lg font-semibold">Imagen</span>
+            <input id="category_img" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="file" accept="image/*" required>
+        </label>
+    </form>
     `,
             showCancelButton: true,
             confirmButtonText: "Agregar",
@@ -28,13 +38,19 @@ $(document).ready(function () {
                 const features = $("#category_features").val();
                 const img = $("#category_img").prop("files")[0];
 
+                // Validación para asegurarse de que todos los campos están completos, incluida la imagen
+                if (!name || !description || !features || !img) {
+                    Swal.showValidationMessage(
+                        "Por favor completa todos los campos, incluida la imagen"
+                    );
+                    return false;
+                }
+
                 const formData = new FormData();
                 formData.append("nombre", name);
                 formData.append("descripcion", description);
                 formData.append("caracteristicas", features);
-                if (img) {
-                    formData.append("img", img);
-                }
+                formData.append("img", img);
 
                 return formData;
             },
@@ -105,7 +121,9 @@ $(document).ready(function () {
                     url: `/categorias/${categoryId}`,
                     type: "DELETE",
                     headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ),
                     },
                     success: function (response) {
                         Swal.fire(
@@ -126,7 +144,7 @@ $(document).ready(function () {
                 });
             }
         });
-    };    
+    };
 
     // Editar categoría
     window.editCategory = function (id) {
@@ -134,18 +152,31 @@ $(document).ready(function () {
             Swal.fire({
                 title: "Editar Categoría",
                 html: `
-                <label for="category_name">Nombre</label>
-                <input id="category_name" class="swal2-input" type="text" value="${data.nombre
-                    }" placeholder="Nombre">
-                <label for="category_description">Descripción</label>
-                <textarea id="category_description" class="swal2-textarea" placeholder="Descripción">${data.descripcion || ""
-                    }</textarea>
-                <label for="category_features">Características</label>
-                <textarea id="category_features" class="swal2-textarea" placeholder="Características">${data.caracteristicas || ""
-                    }</textarea>
-                <label for="category_img">Imagen</label>
-                <input id="category_img" class="swal2-input" type="file" accept="image/*">
-            `,
+                    <form id="category-form" class="space-y-4 p-4 bg-white text-left">
+                        <label class="block">
+                            <span class="text-lg font-semibold">Nombre</span>
+                            <input id="category_name" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="text" value="${
+                                data.nombre
+                            }" placeholder="Introduce el nombre" required>
+                        </label>
+                        <label class="block">
+                            <span class="text-lg font-semibold">Descripción</span>
+                            <textarea id="category_description" class="form-input w-full h-24 border rounded-lg p-2 mt-1 bg-gray-100" placeholder="Introduce la descripción" required>${
+                                data.descripcion || ""
+                            }</textarea>
+                        </label>
+                        <label class="block">
+                            <span class="text-lg font-semibold">Características</span>
+                            <textarea id="category_features" class="form-input w-full h-24 border rounded-lg p-2 mt-1 bg-gray-100" placeholder="Introduce las características" required>${
+                                data.caracteristicas || ""
+                            }</textarea>
+                        </label>
+                        <label class="block">
+                            <span class="text-lg font-semibold">Imagen</span>
+                            <input id="category_img" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="file" accept="image/*" required>
+                        </label>
+                    </form>
+                `,
                 showCancelButton: true,
                 confirmButtonText: "Guardar",
                 cancelButtonText: "Cancelar",
@@ -155,9 +186,9 @@ $(document).ready(function () {
                     const features = $("#category_features").val();
                     const img = $("#category_img").prop("files")[0];
 
-                    if (!name || !description || !features) {
+                    if (!name || !description || !features || !img) {
                         Swal.showValidationMessage(
-                            "Por favor completa todos los campos"
+                            "Por favor completa todos los campos, incluyendo la imagen"
                         );
                         return false;
                     }
@@ -167,9 +198,7 @@ $(document).ready(function () {
                     formData.append("nombre", name);
                     formData.append("descripcion", description);
                     formData.append("caracteristicas", features);
-                    if (img) {
-                        formData.append("img", img);
-                    }
+                    formData.append("img", img);
 
                     return formData;
                 },

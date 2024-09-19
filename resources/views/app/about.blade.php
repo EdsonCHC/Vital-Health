@@ -128,20 +128,14 @@
                     <div class="  bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5">
                         <h2 class="text-vh-green font-bold text-2xl">01</h2>
                     </div>
-                    <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                    <h3 class="font-semibold text-xl p-2">Acceso a Consultas desde Cualquier Lugar</h3>
                     <div class="text-container overflow-hidden">
                         <p id="text1" class="text-base leading-loose p-4 line-clamp-3">
-                            Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
-                            de
-                            capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes,
-                            las
-                            cuales son riencias de capacitación de los estudiantes, las cuales son riencias de
-                            capacitación de
-                            los estudiantes, las cuales son
+                            Los pacientes pueden acceder a consultas médicas desde la comodidad de su hogar o cualquier
+                            lugar con conexión a internet, eliminando la necesidad de desplazarse a un centro físico.
                         </p>
                         <a href="#" onclick="toggleText('text1')"
-                            class="text-vh-green hover:underline block p-4">Learn
-                            More</a>
+                            class="text-vh-green hover:underline block p-4">Saber más...</a>
                     </div>
                 </div>
             </div>
@@ -151,20 +145,14 @@
 
                         <h2 class="text-vh-green font-bold text-2xl">02</h2>
                     </div>
-                    <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                    <h3 class="font-semibold text-xl p-2">Horarios Flexibles</h3>
                     <div class="text-container overflow-hidden">
                         <p id="text2" class="text-base leading-loose p-4 line-clamp-3">
-                            Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
-                            de
-                            capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes,
-                            las
-                            cuales son riencias de capacitación de los estudiantes, las cuales son riencias de
-                            capacitación de
-                            los estudiantes, las cuales son
+                            Los pacientes pueden agendar citas en horarios más convenientes, incluyendo opciones fuera
+                            del horario laboral convencional, lo que se adapta mejor a sus estilos de vida ocupados.
                         </p>
                         <a href="#" onclick="toggleText('text2')"
-                            class="text-vh-green hover:underline block p-4">Learn
-                            More</a>
+                            class="text-vh-green hover:underline block p-4">Saber más...</a>
                     </div>
                 </div>
             </div>
@@ -173,16 +161,11 @@
                     <div class="  bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5">
                         <h2 class="text-vh-green font-bold text-2xl">03</h2>
                     </div>
-                    <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                    <h3 class="font-semibold text-xl p-2">Atención Médica Personalizada</h3>
                     <div class="text-container overflow-hidden">
                         <p id="text3" class="text-base leading-loose p-4 line-clamp-3">
-                            Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
-                            de
-                            capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes,
-                            las
-                            cuales son riencias de capacitación de los estudiantes, las cuales son riencias de
-                            capacitación de
-                            los estudiantes, las cuales son
+                            Ofrecemos un seguimiento más continuo y personalizado, ya que los pacientes pueden contactar a
+                            los doctores fácilmente a través de la plataforma para consultas o dudas adicionales.
                         </p>
                         <a href="#" onclick="toggleText('text3')"
                             class="text-vh-green hover:underline block p-4">Learn
@@ -195,20 +178,14 @@
                     <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5">
                         <h2 class="text-vh-green font-bold text-2xl">04</h2>
                     </div>
-                    <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                    <h3 class="font-semibold text-xl p-2">Acceso Rápido a Expedientes Médicos</h3>
                     <div class="text-container overflow-hidden">
                         <p id="text4" class="text-base leading-loose p-4 line-clamp-3">
-                            Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
-                            de
-                            capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes,
-                            las
-                            cuales son riencias de capacitación de los estudiantes, las cuales son riencias de
-                            capacitación de
-                            los estudiantes, las cuales son
+                            Los pacientes tienen acceso en tiempo real a sus expedientes médicos, resultados de pruebas
+                            y recetas, lo que facilita la gestión y el seguimiento de su salud.
                         </p>
                         <a href="#" onclick="toggleText('text4')"
-                            class="text-vh-green hover:underline block p-4">Learn
-                            More</a>
+                            class="text-vh-green hover:underline block p-4">Saber más...</a>
                     </div>
                 </div>
             </div>
@@ -217,20 +194,14 @@
                     <div class="  bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5">
                         <h2 class="text-vh-green font-bold text-2xl">05</h2>
                     </div>
-                    <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                    <h3 class="font-semibold text-xl p-2">Ahorro de Tiempo y Costos</h3>
                     <div class="text-container overflow-hidden">
                         <p id="text5" class="text-base leading-loose p-4 line-clamp-3">
-                            Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
-                            de
-                            capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes,
-                            las
-                            cuales son riencias de capacitación de los estudiantes, las cuales son riencias de
-                            capacitación de
-                            los estudiantes, las cuales son
+                            Al evitar el traslado y los tiempos de espera en la clínica, los pacientes ahorran tiempo y,
+                            en muchos casos, también reducen costos asociados con consultas presenciales.
                         </p>
                         <a href="#" onclick="toggleText('text5')"
-                            class="text-vh-green hover:underline block p-4">Learn
-                            More</a>
+                            class="text-vh-green hover:underline block p-4">Saber más...</a>
                     </div>
                 </div>
             </div>
@@ -240,20 +211,15 @@
 
                         <h2 class="text-vh-green font-bold text-2xl">06</h2>
                     </div>
-                    <h3 class="font-semibold text-xl p-2">Standardization</h3>
+                    <h3 class="font-semibold text-xl p-2">Seguridad y Privacidad de Datos</h3>
                     <div class="text-container overflow-hidden">
                         <p id="text6" class="text-base leading-loose p-4 line-clamp-3">
-                            Cuando trabajas en un entorno laboral global, a menudo es difícil evaluar las experiencias
-                            de
-                            capacitación de los estudiantes, las cuales son riencias de capacitación de los estudiantes,
-                            las
-                            cuales son riencias de capacitación de los estudiantes, las cuales son riencias de
-                            capacitación de
-                            los estudiantes, las cuales son
+                            Garantizamos un entorno seguro y protegido para la gestión de información médica, cumpliendo
+                            con los estándares de protección de datos y privacidad, lo que brinda tranquilidad a los
+                            pacientes.
                         </p>
                         <a href="#" onclick="toggleText('text6')"
-                            class="text-vh-green hover:underline block p-4">Learn
-                            More</a>
+                            class="text-vh-green hover:underline block p-4">Saber más...</a>
                     </div>
                 </div>
             </div>

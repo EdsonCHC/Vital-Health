@@ -9,112 +9,113 @@ $(document).ready(function () {
     const id = pathSegments[pathSegments.length - 1];
 
     const firstForm = `
-                <form id="firstForm" class="space-y-4" autocomplete="off">
+                <form id="firstForm" class="space-y-4 p-4 bg-white text-left" autocomplete="off">
                     <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Nombre</label>
-                        <input id="name" name="name" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
+                        <label class="text-lg font-semibold">Nombre</label>
+                        <input id="name" name="name" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="text" placeholder="Introduce el nombre" required>
                     </div>
                     <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Apellidos</label>
-                        <input id="lastName" name="lastName" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
+                        <label class="text-lg font-semibold">Apellidos</label>
+                        <input id="lastName" name="lastName" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="text" placeholder="Introduce los apellidos" required>
                     </div>
                     <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Número Telefónico</label>
-                        <input id="phone" name="phone" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text">
+                        <label class="text-lg font-semibold">Número Telefónico</label>
+                        <input id="phone" name="phone" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="text" placeholder="Introduce el número telefónico" required>
                     </div>
                     <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Género</label>
-                        <select id="gender" name="gender" class="w-full h-10 my-2 px-2 border border-solid rounded-sm">
+                        <label class="text-lg font-semibold">Género</label>
+                        <select id="gender" name="gender" class="form-select w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" required>
                             <option value="" disabled selected>Seleccione un género</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
                         </select>
                     </div>
                     <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Edad</label>
-                        <input id="age" name="age" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="number" min="18" max="100">
+                        <label class="text-lg font-semibold">Edad</label>
+                        <input id="age" name="age" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="number" min="18" max="100" placeholder="Introduce la edad" required>
                     </div>
                     <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Descripción</label>
-                        <textarea id="description" name="description" class="w-full h-10 my-2 px-2 border border-solid rounded-sm"></textarea>
+                        <label class="text-lg font-semibold">Descripción</label>
+                        <textarea id="description" name="description" class="form-input w-full h-24 border rounded-lg p-2 mt-1 bg-gray-100" placeholder="Introduce la descripción" required></textarea>
                     </div>
                 </form>
             `;
 
     const secondForm = `
-                <form id="secondForm" class="space-y-4" autocomplete="off">
+                <form id="secondForm" class="space-y-4 p-4 bg-white text-left" autocomplete="off">
                     <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Correo</label>
-                        <input id="email" name="email" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="email">
+                        <label class="text-lg font-semibold">Correo</label>
+                        <input id="email" name="email" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="email" placeholder="Introduce tu correo" required>
                     </div>
                     <div class="flex flex-col">
-                        <label class="mr-auto font-semibold text-xl">Contraseña</label>
-                        <input id="password" name="password" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="password">
+                        <label class="text-lg font-semibold">Contraseña</label>
+                        <input id="password" name="password" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="password" placeholder="Introduce tu contraseña" required>
                     </div>
                 </form>
             `;
 
     function firstFormEdit(doctorInfo) {
         return `
-            <form id="firstForm" class="space-y-4" autocomplete="off">
-                <div class="flex flex-col">
-                    <label class="mr-auto font-semibold text-xl">Nombre</label>
-                    <input id="name" name="name" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text" value="${
-                        doctorInfo.name
-                    }">
-                </div>
-                <div class="flex flex-col">
-                    <label class="mr-auto font-semibold text-xl">Apellidos</label>
-                    <input id="lastName" name="lastName" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text" value="${
-                        doctorInfo.lastName
-                    }">
-                </div>
-                <div class="flex flex-col">
-                    <label class="mr-auto font-semibold text-xl">Número Telefónico</label>
-                    <input id="phone" name="phone" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="text" value="${
-                        doctorInfo.number
-                    }">
-                </div>
-                <div class="flex flex-col">
-                    <label class="mr-auto font-semibold text-xl">Género</label>
-                    <select id="gender" name="gender" class="w-full h-10 my-2 px-2 border border-solid rounded-sm">
-                    <option value="" ${
-                        !doctorInfo.gender ? "selected" : ""
-                    } disabled>Seleccione un género</option>
-                    <option value="Masculino" ${
-                        doctorInfo.gender === "Masculino" ? "selected" : ""
-                    }>Masculino</option>
-                    <option value="Femenino" ${
-                        doctorInfo.gender === "Femenino" ? "selected" : ""
-                    }>Femenino</option>
-                    </select>
-                </div>
-                <div class="flex flex-col">
-                    <label class="mr-auto font-semibold text-xl">Edad</label>
-                    <input id="age" name="age" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="number" min="18" max="100" value="${
-                        doctorInfo.age
-                    }">
-                </div>
-                <div class="flex flex-col">
-                    <label class="mr-auto font-semibold text-xl">Descripción</label>
-                    <textarea id="description" name="description" class="w-full h-10 my-2 px-2 border border-solid rounded-sm">${
-                        doctorInfo.description
-                    }</textarea>
-                </div>
-            </form>
+            <form id="firstForm" class="space-y-4 p-4 bg-white text-left" autocomplete="off">
+    <div class="flex flex-col">
+        <label class="text-lg font-semibold">Nombre</label>
+        <input id="name" name="name" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="text" value="${
+            doctorInfo.name
+        }" placeholder="Introduce el nombre">
+    </div>
+    <div class="flex flex-col">
+        <label class="text-lg font-semibold">Apellidos</label>
+        <input id="lastName" name="lastName" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="text" value="${
+            doctorInfo.lastName
+        }" placeholder="Introduce los apellidos">
+    </div>
+    <div class="flex flex-col">
+        <label class="text-lg font-semibold">Número Telefónico</label>
+        <input id="phone" name="phone" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="text" value="${
+            doctorInfo.number
+        }" placeholder="Introduce el número telefónico">
+    </div>
+    <div class="flex flex-col">
+        <label class="text-lg font-semibold">Género</label>
+        <select id="gender" name="gender" class="form-select w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100">
+            <option value="" ${
+                !doctorInfo.gender ? "selected" : ""
+            } disabled>Seleccione un género</option>
+            <option value="Masculino" ${
+                doctorInfo.gender === "Masculino" ? "selected" : ""
+            }>Masculino</option>
+            <option value="Femenino" ${
+                doctorInfo.gender === "Femenino" ? "selected" : ""
+            }>Femenino</option>
+        </select>
+    </div>
+    <div class="flex flex-col">
+        <label class="text-lg font-semibold">Edad</label>
+        <input id="age" name="age" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="number" min="18" max="100" value="${
+            doctorInfo.age
+        }" placeholder="Introduce la edad">
+    </div>
+    <div class="flex flex-col">
+        <label class="text-lg font-semibold">Descripción</label>
+        <textarea id="description" name="description" class="form-input w-full h-24 border rounded-lg p-2 mt-1 bg-gray-100" placeholder="Introduce la descripción">${
+            doctorInfo.description
+        }</textarea>
+    </div>
+</form>
+
         `;
     }
 
     function secondFormEdit(doctorInfo) {
         return `
-            <form id="secondForm" class="space-y-4" autocomplete="off">
+            <form id="secondForm" class="space-y-4 p-4 bg-white text-left" autocomplete="off">
                 <div class="flex flex-col">
-                    <label class="mr-auto font-semibold text-xl">Correo</label>
-                    <input id="email" name="email" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="email" value="${doctorInfo.mail}">
+                    <label class="text-lg font-semibold">Correo</label>
+                    <input id="email" name="email" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="email" value="${doctorInfo.mail}" placeholder="Introduce el correo">
                 </div>
                 <div class="flex flex-col">
-                    <label class="mr-auto font-semibold text-xl">Contraseña</label>
-                    <input id="password" name="password" class="w-full h-10 my-2 px-2 border border-solid rounded-sm" type="password">
+                    <label class="text-lg font-semibold">Contraseña</label>
+                    <input id="password" name="password" class="form-input w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100" type="password" placeholder="Introduce la contraseña">
                 </div>
             </form>
         `;
@@ -213,7 +214,7 @@ $(document).ready(function () {
             title: "Credenciales del Nuevo Doctor",
             html: secondForm,
             showConfirmButton: true,
-            confirmButtonText: "Crear",
+            confirmButtonText: "Guardar",
             confirmButtonColor: "#166534",
             showCancelButton: true,
             cancelButtonText: "Cancelar",
@@ -363,7 +364,7 @@ $(document).ready(function () {
             title: "Credenciales del Doctor",
             html: secondFormEdit(doctorInfo),
             showConfirmButton: true,
-            confirmButtonText: "Crear",
+            confirmButtonText: "Guardar",
             confirmButtonColor: "#166534",
             showCancelButton: true,
             cancelButtonText: "Cancelar",

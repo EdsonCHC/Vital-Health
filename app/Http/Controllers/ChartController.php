@@ -38,8 +38,4 @@ class ChartController extends Controller
                 ->get()
         );
     }
-
-
-    
-    
 }

@@ -53,7 +53,7 @@
                                     class="h-32 bg-cover bg-center bg-vh-green bg-gradient-to-t from-green-800 to-green-600">
                                 </div>
                                 <div class="flex justify-center -mt-12">
-                                    <img id="profile_image" src="{{ route('patient.image', ['id' => $user->id])}}"
+                                    <img id="profile_image" src="{{ route('patient.image', ['id' => $user->id]) }}"
                                         alt="Perfil"
                                         class="rounded-full border-4 border-gray-200 w-36 h-36 object-cover">
                                 </div>
@@ -249,42 +249,31 @@
 
                                 <!-- Section III: Assigned medication -->
                                 <section class="mb-8">
-                                    <h2 class="text-xl font-semibold mb-4">Sección III. Medicaciones</h2>
-                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <h2 class="text-2xl font-semibold mb-6">Sección III. Medicaciones</h2>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                                         @if ($recetas->isEmpty())
-                                            <p>No Tienes Medicamentos Asignados...</p>
+                                            <p class="text-lg text-gray-600">No Tienes Medicamentos Asignados...</p>
                                         @else
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                                 @foreach ($recetas as $receta)
-                                                    <article
-                                                        class="bg-white p-6 mb-6 shadow-lg transition duration-300 hover:shadow-2xl rounded-lg border">
-                                                        <div
-                                                            class="flex justify-between items-start pb-4 mb-4 border-b">
-                                                            <div class="flex items-center">
-                                                                <div class="pr-3">
-                                                                    <object class="h-12 w-12 rounded-full object-cover"
-                                                                        data="{{ asset('storage/svg/medicine_example.svg') }}"
-                                                                        type="image/svg+xml"></object>
-                                                                </div>
-                                                                <div>
-                                                                    <p class="text-sm font-semibold">
-                                                                        {{ $receta->titulo }}
-                                                                    </p>
-                                                                    <p class="text-sm text-gray-500">Fecha de Entrega:
-                                                                        {{ $receta->fecha_entrega }}</p>
-                                                                    <p class="text-sm text-gray-500">Estado:
-                                                                        {{ $receta->estado }}</p>
-                                                                    <!-- Estado agregado aquí -->
-                                                                </div>
+                                                    <article class="w-80 bg-white rounded-lg shadow-lg p-8">
+                                                        <div class="flex items-start mb-6">
+                                                            <div class="ml-6">
+                                                                <p class="text-xl font-bold text-gray-800">
+                                                                    {{ $receta->titulo }}</p>
+                                                                <p class="text-lg text-gray-600">Fecha de Entrega:
+                                                                    {{ $receta->fecha_entrega }}</p>
+                                                                <p class="text-lg text-gray-600">Estado:
+                                                                    {{ $receta->estado }}</p>
                                                             </div>
                                                         </div>
-                                                        <h3 class="font-medium text-xl leading-8 mb-2">
-                                                            Medicinas:
-                                                        </h3>
-                                                        <ul class="list-disc pl-5">
+                                                        <h4 class="text-xl font-semibold text-gray-800 mb-3">Medicinas
+                                                        </h4>
+                                                        <ul class="list-disc pl-6 text-lg text-gray-700">
                                                             @foreach ($receta->medicinas as $medicina)
                                                                 <li>{{ $medicina->nombre }}
                                                                     ({{ $medicina->pivot->cantidad }})
+                                                                </li>
                                                             @endforeach
                                                         </ul>
                                                     </article>
