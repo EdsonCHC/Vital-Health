@@ -158,8 +158,7 @@ class ExpedienteController extends Controller
     public function generatePdf()
     {
         try {
-            $doctor = auth()->user();
-            $user = Usuario::all();
+            $user = Auth::user();
             $userId = $user->id;
 
             // Recupera los datos necesarios
@@ -177,27 +176,20 @@ class ExpedienteController extends Controller
                 ->get();
 
             // Pasa los datos a la vista
-            $pdf = PDF::loadView('pdf.file', [
+            $pdf = PDF::loadView('app.fileUser', [
                 'citas' => $citas,
                 'exams' => $exams,
                 'recetas' => $recetas,
                 'user' => $user
             ]);
 
-            $filename = 'Expediente.pdf';
-
-            // Enviar el archivo PDF al navegador
-            return response()->stream(function () use ($pdf) {
-                echo $pdf->output();
-            }, 200, [
-                'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'attachment; filename="Expediente.pdf"',
-            ]);
+            
+            return $pdf->download('Expediente.pdf');
 
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'No se pudo actualizar el expediente. ' . $e->getMessage()
+                'message' => 'No se pudo descargar el expediente. ' . $e->getMessage()
             ], 500);
         }
     }
