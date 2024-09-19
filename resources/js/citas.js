@@ -38,7 +38,7 @@ $(document).ready(function () {
         if (result.isConfirmed) {
             try {
                 await $.ajax({
-                    url: `/citas/${citaId}/eliminar`,
+                    url: `/citas/${citaId}`,
                     type: "DELETE",
                     dataType: "json",
                     success: function (response) {
