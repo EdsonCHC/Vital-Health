@@ -17,31 +17,32 @@ use Illuminate\Support\Facades\DB;
 class ProgramController extends Controller
 {
     public function showDoc(Request $request)
-    {
-        $doctor = auth()->user();
+{
+    $doctor = auth()->user();
 
-        // Obtener todas las tareas del doctor
-        $program_docs = ProgramDoc::where('doctor_id', $doctor->id)->get();
+    // Obtener todas las tareas del doctor
+    $program_docs = ProgramDoc::where('doctor_id', $doctor->id)->get();
 
-        // Obtener la primera cita del doctor
-        $cita = Citas::where('doctor_id', $doctor->id)->first();
+    // Obtener todas las citas del doctor
+    $citas = Citas::where('doctor_id', $doctor->id)->get();
 
-        // Si no hay citas, pasar un mensaje a la vista
-        if (!$cita) {
-            $message = 'No tienes citas pendientes.';
-            return view('doctor.program_doc', compact('message', 'program_docs'));
-        }
-
-        // Obtener las videollamadas relacionadas con la cita
-        $videollamadas = Videollamada::where('cita_id', $cita->id)->get();
-
-        // Extraer las fechas de las citas y videollamadas
-        $fechasCitas = [$cita->fecha];  // Como solo es una cita, creamos un array con la fecha
-        $fechasVideollamadas = $videollamadas->pluck('date')->toArray();
-
-        // Pasar las fechas a la vista
-        return view('doctor.program_doc', compact('videollamadas', 'program_docs', 'fechasCitas', 'fechasVideollamadas'));
+    // Si no hay citas, pasar un mensaje a la vista
+    if ($citas->isEmpty()) {
+        $message = 'No tienes citas pendientes.';
+        return view('doctor.program_doc', compact('message', 'program_docs'));
     }
+
+    // Obtener las videollamadas relacionadas con todas las citas del doctor
+    $videollamadas = Videollamada::whereIn('cita_id', $citas->pluck('id'))->get();
+
+    // Extraer las fechas de las citas y videollamadas
+    $fechasCitas = $citas->pluck('fecha')->toArray();
+    $fechasVideollamadas = $videollamadas->pluck('date')->toArray();
+
+    // Pasar las videollamadas y fechas a la vista
+    return view('doctor.program_doc', compact('videollamadas', 'program_docs', 'fechasCitas', 'fechasVideollamadas'));
+}
+
 
     public function storeHomework(Request $request, $doctor_id)
     {

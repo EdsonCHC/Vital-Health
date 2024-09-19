@@ -135,6 +135,7 @@ Route::middleware(['auth:doctor'])->group(function () {
     // Program Doc
     //
     Route::get('/program_doc', [ProgramController::class, 'showDoc'])->name('doctor.program_doc');
+
     route::post('/program_doc/{doctor_id}', [ProgramController::class, 'storeHomework'])->name('doctor.storeHomework');
     Route::post('/citas/{cita_id}/{doctor_id}/videollamada', [VideollamadaController::class, 'store']);
     route::delete('/program_doc/{doctor_id}/{homework_id}', [ProgramController::class, 'destroy'])->name('doctor.deleteHomework');
