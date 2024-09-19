@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\DatoSensorController;
 use App\Http\Controllers\LoginController;
 
 // Auth::routes();
@@ -101,6 +102,10 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/doctor/{id}', [DoctorController::class, 'showDoctorWithAppointments'])->name('doctor.show');
     Route::post('/citas', [CitaController::class, 'store_doc']);
     Route::delete('/citas/{id}', [CitaController::class, 'destroy'])->name('citas.destroy');
+    //
+    // Signos Vitales
+    //
+    Route::post('/almacenar-datos', [DatoSensorController::class, 'store']);
     //
     //Recetas
     //
