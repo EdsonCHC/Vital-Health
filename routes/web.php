@@ -235,7 +235,7 @@ Route::get('/videollamadaDoc', [VideollamadaController::class, 'showRoomDoc'])->
 
 // Fallback route (404)
 Route::fallback(function () {
-    return response()->view('errors.404page', [], 404);
+    return response()->view('errors.404page', [], 404)->name('errors.404page');
 });
 
 //PDF
@@ -255,10 +255,4 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 
 Route::get('/storageLink', function () {
     Artisan::call('storage:link');
-});
-
-//idioma
-Route::get('lang/{locale}', function ($locale) {
-    session(['locale' => $locale]);
-    return redirect()->back();
 });

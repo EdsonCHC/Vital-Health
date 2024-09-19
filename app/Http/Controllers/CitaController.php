@@ -155,7 +155,6 @@ class CitaController extends Controller
                 'message' => 'Cita eliminada exitosamente',
             ]);
         } catch (\Exception $e) {
-            Log::error('Error deleting appointment: ' . $e->getMessage());
             return response()->json([
                 'message' => 'Error interno del servidor',
                 'error' => $e->getMessage(),

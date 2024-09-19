@@ -22,11 +22,11 @@
                 <div class="flex flex-col lg:flex-row justify-between items-center mb-4">
                     <div>
                         @if ($doctor)
-                            <h2 class="text-2xl lg:text-3xl font-bold text-vh-green">Citas del Doctor:
-                                {{ $doctor->name }}
-                            </h2>
+                        <h2 class="text-2xl lg:text-3xl font-bold text-vh-green">Citas del Doctor:
+                            {{ $doctor->name }}
+                        </h2>
                         @else
-                            <h2 class="text-2xl lg:text-3xl font-bold text-vh-green">No hay doctor activo asignado.</h2>
+                        <h2 class="text-2xl lg:text-3xl font-bold text-vh-green">No hay doctor activo asignado.</h2>
                         @endif
                     </div>
                     <div class="relative w-full lg:w-1/3">
@@ -57,78 +57,73 @@
                 <section class="px-6 lg:px-24 py-8 mb-14">
                     <div id="citas-container" class="container mx-auto flex flex-wrap gap-6">
                         @forelse ($citas as $cita)
-                            @if ($cita->state == 1)
-                                <div class="w-full sm:w-1/2 lg:w-1/4" id="cita-{{ $cita->id }}"
-                                    data-cita-id="{{ $cita->id }}">
-                                    <div
-                                        class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
-                                        <div class="p-6 flex flex-col h-full">
-                                            <input type="hidden" id="cita_id_{{ $cita->id }}"
-                                                data-cita-id="{{ $cita->id }}">
-                                            <input type="hidden" id="patient_id_{{ $cita->id }}"
-                                                data-patient-id="{{ $cita->patient->id }}">
-                                            <input type="hidden" id="doctor_id_{{ $cita->id }}"
-                                                data-doctor-id="{{ $cita->doctor->id }}">
-                                            <h3 class="text-xl font-semibold mb-2">N°: {{ $cita->id }}</h3>
-                                            <p class="text-gray-600 mb-2">
-                                                <strong>Paciente: </strong>{{ $cita->patient->name }}
-                                                {{ $cita->patient->lastName }}
-                                            </p>
-                                            <p class="text-gray-600 mb-2">
-                                                <strong>Especialidad: </strong>{{ $cita->category->nombre }}
-                                            </p>
-                                            <p class="text-gray-600 mb-2">
-                                                <strong>Fecha:
-                                                </strong>{{ \Carbon\Carbon::parse($cita->date)->locale('es')->isoFormat('D [de] MMMM [de] YYYY') }}
-                                            </p>
-                                            <p class="text-gray-600 mb-4">
-                                                <strong>Hora:
-                                                </strong>{{ \Carbon\Carbon::parse($cita->hour)->locale('es')->isoFormat('H:mm') }}
-                                            </p>
-                                            <div class="mt-auto flex space-x-3 justify-center">
-                                                <button id="add-vitals"
-                                                    class="py-2 px-4 bg-blue-50 border border-blue-300 rounded-lg shadow-lg hover:bg-blue-200 transition duration-300 ease-in-out flex items-center justify-center"
-                                                    aria-label="Add Vitals">
-                                                    <img src="{{ asset('storage/svg/favicon.png') }}" alt="add"
-                                                        class="w-6 h-6">
-                                                </button>
-                                                <button
-                                                    class="py-2 px-4 bg-green-50 border border-green-300 rounded-lg shadow-lg hover:bg-green-200 transition duration-300 ease-in-out flex items-center justify-center option-button"
-                                                    data-cita-id="{{ $cita->id }}"
-                                                    data-cita-id="{{ $cita->patient->id }}" aria-label="Options">
-                                                    <img src="{{ asset('storage/svg/expedientes.svg') }}"
-                                                        alt="options" class="w-8 h-6">
-                                                </button>
-                                                @if ($cita->modo == 'Virtual')
-                                                    <button
-                                                        class="py-2 px-4 bg-purple-50 border border-purple-300 rounded-lg shadow-lg hover:bg-purple-200 transition duration-300 ease-in-out flex items-center justify-center createVideollamada"
-                                                        data-cita-id="{{ $cita->id }}"
-                                                        data-doctor-id="{{ $cita->doctor->id }}"
-                                                        aria-label="Video Call">
-                                                        <img src="{{ asset('storage/svg/link-icon.svg') }}"
-                                                            alt="videocall" class="w-6 h-6">
-                                                    </button>
-                                                @endif
-                                                <button id="aceptar"
-                                                    class="py-2 px-4 bg-yellow-50 border border-yellow-300 rounded-lg shadow-lg hover:bg-yellow-200 transition duration-300 ease-in-out flex items-center justify-center"
-                                                    aria-label="Accept">
-                                                    <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="accept"
-                                                        class="w-6 h-6">
-                                                </button>
-                                                <button
-                                                    class="py-2 px-4 bg-red-50 border border-red-300 rounded-lg shadow-lg hover:bg-red-200 transition duration-300 ease-in-out flex items-center justify-center delete-cita"
-                                                    data-cita-id="{{ $cita->id }}" aria-label="Delete">
-                                                    <img src="{{ asset('storage/svg/trash-icon.svg') }}"
-                                                        alt="delete" class="w-6 h-6">
-                                                </button>
-                                            </div>
-                                        </div>
+                        @if ($cita->state == 1)
+                        <div class="w-full sm:w-1/2 lg:w-1/4" id="cita-{{ $cita->id }}"
+                            data-cita-id="{{ $cita->id }}">
+                            <div
+                                class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+                                <div class="p-6 flex flex-col h-full">
+                                    <input type="hidden" id="cita_id_{{ $cita->id }}"
+                                        data-cita-id="{{ $cita->id }}">
+                                    <input type="hidden" id="patient_id_{{ $cita->id }}"
+                                        data-patient-id="{{ $cita->patient->id }}">
+                                    <input type="hidden" id="doctor_id_{{ $cita->id }}"
+                                        data-doctor-id="{{ $cita->doctor->id }}">
+                                    <h3 class="text-xl font-semibold mb-2">N°: {{ $cita->id }}</h3>
+                                    <p class="text-gray-600 mb-2">
+                                        <strong>Paciente: </strong>{{ $cita->patient->name }}
+                                        {{ $cita->patient->lastName }}
+                                    </p>
+                                    <p class="text-gray-600 mb-2">
+                                        <strong>Especialidad: </strong>{{ $cita->category->nombre }}
+                                    </p>
+                                    <p class="text-gray-600 mb-2">
+                                        <strong>Fecha:
+                                        </strong>{{ \Carbon\Carbon::parse($cita->date)->locale('es')->isoFormat('D [de] MMMM [de] YYYY') }}
+                                    </p>
+                                    <p class="text-gray-600 mb-4">
+                                        <strong>Hora:
+                                        </strong>{{ \Carbon\Carbon::parse($cita->hour)->locale('es')->isoFormat('H:mm') }}
+                                    </p>
+                                    <div class="mt-auto flex space-x-3 justify-center">
+                                        
+                                        <button
+                                            class="py-2 px-4 bg-green-50 border border-green-300 rounded-lg shadow-lg hover:bg-green-200 transition duration-300 ease-in-out flex items-center justify-center option-button"
+                                            data-cita-id="{{ $cita->id }}"
+                                            data-cita-id="{{ $cita->patient->id }}" aria-label="Options">
+                                            <img src="{{ asset('storage/svg/expedientes.svg') }}"
+                                                alt="options" class="w-8 h-6">
+                                        </button>
+                                        @if ($cita->modo == 'Virtual')
+                                        <button
+                                            class="py-2 px-4 bg-purple-50 border border-purple-300 rounded-lg shadow-lg hover:bg-purple-200 transition duration-300 ease-in-out flex items-center justify-center createVideollamada"
+                                            data-cita-id="{{ $cita->id }}"
+                                            data-doctor-id="{{ $cita->doctor->id }}"
+                                            aria-label="Video Call">
+                                            <img src="{{ asset('storage/svg/link-icon.svg') }}"
+                                                alt="videocall" class="w-6 h-6">
+                                        </button>
+                                        @endif
+                                        <button id="aceptar"
+                                            class="py-2 px-4 bg-yellow-50 border border-yellow-300 rounded-lg shadow-lg hover:bg-yellow-200 transition duration-300 ease-in-out flex items-center justify-center"
+                                            aria-label="Accept">
+                                            <img src="{{ asset('storage/svg/check-icon.svg') }}" alt="accept"
+                                                class="w-6 h-6">
+                                        </button>
+                                        <button
+                                            class="py-2 px-4 bg-red-50 border border-red-300 rounded-lg shadow-lg hover:bg-red-200 transition duration-300 ease-in-out flex items-center justify-center delete-cita"
+                                            data-cita-id="{{ $cita->id }}" aria-label="Delete">
+                                            <img src="{{ asset('storage/svg/trash-icon.svg') }}"
+                                                alt="delete" class="w-6 h-6">
+                                        </button>
                                     </div>
                                 </div>
-                            @endif
+                            </div>
+                        </div>
+                        @endif
                         @empty
-                            <p class="text-center font-semibold text-xl text-vh-green">No hay citas disponibles para
-                                mostrar.</p>
+                        <p class="text-center font-semibold text-xl text-vh-green">No hay citas disponibles para
+                            mostrar.</p>
                         @endforelse
                     </div>
                 </section>

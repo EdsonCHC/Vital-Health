@@ -40,7 +40,6 @@ $(document).ready(function () {
                 await $.ajax({
                     url: `/citas/${citaId}`,
                     type: "DELETE",
-                    dataType: "json",
                     success: function (response) {
                         Swal.fire({
                             title: "Éxito",
@@ -50,7 +49,8 @@ $(document).ready(function () {
                         });
                         // Opcional: Actualiza la vista o elimina el elemento de la lista
                     },
-                    error: function (xhr, status, error) {
+                    error: function (response) {
+                        console.log(response);
                         Swal.fire({
                             title: "Error",
                             text: "No se pudo eliminar la cita. Inténtalo de nuevo.",
@@ -61,12 +61,6 @@ $(document).ready(function () {
                 });
             } catch (response) {
                 console.log(response);
-                Swal.fire({
-                    title: "Error",
-                    text: "No se pudo conectar con el servidor.",
-                    icon: "error",
-                    confirmButtonText: "Cerrar",
-                });
             }
         }
     });
