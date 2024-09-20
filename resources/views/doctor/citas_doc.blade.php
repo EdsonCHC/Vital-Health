@@ -86,7 +86,7 @@
                                                 </strong>{{ \Carbon\Carbon::parse($cita->hour)->locale('es')->isoFormat('H:mm') }}
                                             </p>
                                             <div class="mt-auto flex space-x-3 justify-center">
-                                                <button id="add-vitals"
+                                                <button id="add-vitals" data-cita-id="{{ $cita->id }}"
                                                     class="py-2 px-4 bg-blue-50 border border-blue-300 rounded-lg shadow-lg hover:bg-blue-200 transition duration-300 ease-in-out flex items-center justify-center"
                                                     aria-label="Add Vitals">
                                                     <img src="{{ asset('storage/svg/favicon.png') }}" alt="add"

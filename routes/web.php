@@ -101,7 +101,10 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/doctor/{id}', [DoctorController::class, 'showDoctorWithAppointments'])->name('doctor.show');
     Route::post('/citas', [CitaController::class, 'store_doc']);
     Route::delete('/citas/{id}', [CitaController::class, 'destroy'])->name('citas.destroy');
-    Route::post('/almacenar-datos', [DatoSensorController::class, 'store']);
+    //
+    // Signos Vitales
+    //
+    Route::post('/citas/{cita_id}/{doctor_id}/vital-sign', [DatoSensorController::class, 'store']);
     //
     //Recetas
     //
