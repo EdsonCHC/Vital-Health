@@ -33,7 +33,7 @@
                 @else
                     @foreach ($videollamadas as $videollamada)
                         <div
-                            class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            class="w-full max-w-sm  border border-gray-200 rounded-lg shadow bg-gray-800 dark:border-gray-700">
                             <div class="flex flex-col items-center pb-10">
                                 <div
                                     class="w-28 h-28 mt-10 bg-gray-500 rounded-full flex flex-col items-center justify-center mb-2">
