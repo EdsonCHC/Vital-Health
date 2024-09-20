@@ -20,10 +20,10 @@
             <div class="w-full max-w-6xl mx-auto h-auto my-4 lg:my-5 px-4 lg:px-16">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="font-bold text-xl lg:text-3xl text-vh-green">Recetas - Medicinas</h2>
-                    <button id="open-modal"
+                    <!-- <button id="open-modal"
                         class="mt-4 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">
                         Crear
-                    </button>
+                    </button> -->
                 </div>
 
                 <!-- Contenedor principal para recetas y medicinas -->
