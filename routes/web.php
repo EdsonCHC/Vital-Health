@@ -95,16 +95,12 @@ Route::middleware(['auth:doctor'])->group(function () {
     //Citas
     //
     Route::get('/citas_doc', [CitaController::class, 'showCitas'])->name('doctor.citas_doc');
-    //
     Route::get('/historical-appointments/{doctorId}', [CitaController::class, 'historicalAppointments'])->name('historical.appointments');
     Route::get('/pacientes', [CitaController::class, 'getPatients']);
     Route::get('/citas/{id}', [CitaController::class, 'show_doc']);
     Route::get('/doctor/{id}', [DoctorController::class, 'showDoctorWithAppointments'])->name('doctor.show');
     Route::post('/citas', [CitaController::class, 'store_doc']);
     Route::delete('/citas/{id}', [CitaController::class, 'destroy'])->name('citas.destroy');
-    //
-    // Signos Vitales
-    //
     Route::post('/almacenar-datos', [DatoSensorController::class, 'store']);
     //
     //Recetas

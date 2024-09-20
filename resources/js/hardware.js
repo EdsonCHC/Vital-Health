@@ -28,7 +28,7 @@ $(document).ready(function () {
                         vital.date
                     }</p>
                     <div class="mt-4 flex justify-end">
-                        <button class="bg-red-600 text-white rounded-lg px-4 py-2 font-semibold hover:bg-red-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500">
+                        <button class="btn-delete-vital bg-red-600 text-white rounded-lg px-4 py-2 font-semibold hover:bg-red-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500">
                             Eliminar
                         </button>
                     </div>

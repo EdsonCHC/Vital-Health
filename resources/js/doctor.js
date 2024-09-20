@@ -12,16 +12,18 @@ $(document).ready(function () {
 
         // Confirmación de SweetAlert
         Swal.fire({
-            title: "¿Desea cerrar la sesión?",
+            title: "¿Cerrar Sesión?",
             showCancelButton: true,
             showConfirmButton: true,
+            confirmButtonText: "Confirmar",
+            confirmButtonColor: "#166534",
             icon: "question",
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
                     title: "Será enviado al inicio en breve",
                     icon: "success",
-                    timer: 2000,
+                    timer: 1500,
                     showConfirmButton: false,
                     timerProgressBar: true,
                 }).then(() => {

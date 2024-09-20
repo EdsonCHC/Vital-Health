@@ -320,10 +320,19 @@ class ExamController extends Controller
             return response()->json(['success' => false, 'message' => 'Error al crear el examen: ' . $e->getMessage()]);
         }
     }
+
     public function destroy($cita_id, $exam_id)
     {
         try {
-            $exam = Exams::where('cita_id', $cita_id)->where('id', $exam_id)->firstOrFail();
+            $exam = Exams::where('cita_id', $cita_id)->where('id', $exam_id)->first();
+
+            if (!$exam) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Examen no encontrado',
+                ], 404);
+            }
+
             $exam->delete();
 
             return response()->json([
@@ -338,6 +347,7 @@ class ExamController extends Controller
             ], 500);
         }
     }
+
     public function delete($exam_id)
     {
         try {
@@ -356,6 +366,7 @@ class ExamController extends Controller
             ], 500);
         }
     }
+    
     public function endExamen($exam_id)
     {
         try {

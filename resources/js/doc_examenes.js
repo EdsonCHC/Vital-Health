@@ -18,9 +18,10 @@ $(document).ready(function () {
             },
         }).done(function (data) {});
     }
+
     $(document).on("click", ".btn-delete", function () {
-        const examId = $(this).closest(".exam-item").data("exam-id");
-        const citaId = $(this).closest(".exam-item").data("cita-id");
+        const examId = $(this).data("exam-id");
+        const citaId = $(this).data("cita-id");
 
         Swal.fire({
             title: "Eliminar Examen",
@@ -61,7 +62,7 @@ $(document).ready(function () {
                     },
                     error(response) {
                         console.log(response);
-                        Swal.fire("Error al eliminar el examen");
+                        Swal.fire("Error al eliminar el examen", "", "error");
                     },
                 });
             }
@@ -96,7 +97,7 @@ $(document).ready(function () {
                                         exam.notes || "N/A"
                                     }</p>
                                     <div class="flex justify-end mt-auto">
-                                        <button class="bg-red-600 text-white rounded-lg px-4 py-2 font-semibold hover:bg-red-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500">
+                                        <button data-exam-id="${exam.id}" data-cita-id="${exam.cita_id}" class="btn-delete bg-red-600 text-white rounded-lg px-4 py-2 font-semibold hover:bg-red-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500">
                                             Eliminar
                                         </button>
                                     </div>
@@ -150,9 +151,9 @@ $(document).ready(function () {
                         <span class="text-lg font-semibold">Tipo de Examen</span>
                         <select id="create-field1" class="form-select w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100">
                             <option value="" disabled selected>Selecciona una opción</option>
-                            <option value="blood">Sangre</option>
-                            <option value="urine">Orina</option>
-                            <option value="stool">Heces</option>
+                            <option value="sangre">Sangre</option>
+                            <option value="orina">Orina</option>
+                            <option value="heces">Heces</option>
                         </select>
                     </label>
                     <!-- Date input -->
