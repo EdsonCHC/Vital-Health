@@ -44,16 +44,16 @@
                                         {{ \Carbon\Carbon::parse($videollamada->hour)->format('h:i A') }}
                                     </span>
                                 </div>
-                                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+                                <h5 class="mb-1 text-xl font-medium text-white">
                                     {{ $videollamada->patient->name }}
                                 </h5>
-                                <span class="text-lg text-gray-500 dark:text-gray-400">{{__('messages.es_125')}}
+                                <span class="text-lg text-gray-400">{{__('messages.es_125')}}
                                     {{ $videollamada->room_name }}</span>
-                                <span class="text-lg text-gray-500 dark:text-gray-400">Doctor:
+                                <span class="text-lg text-gray-400">Doctor:
                                     {{ $videollamada->doctor->name }} {{ $videollamada->doctor->lastName }}</span>
                                 <div class="flex mt-4 md:mt-6">
                                     <button data-roomName="{{ $videollamada->room_name }}"
-                                        class="joinRoomButtonUser inline-flex items-center px-4 py-2 text-lg font-medium text-center text-black bg-blue-800 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-white dark:hover:bg-gray-600 duration-100 dark:focus:ring-blue-800">
+                                        class="joinRoomButtonUser inline-flex items-center px-4 py-2 text-lg font-medium text-center text-black rounded-lg focus:ring-4 focus:outline-none bg-white hover:bg-gray-600 duration-100">
                                         {{__('messages.es_127')}}
                                     </button>
                                 </div>
