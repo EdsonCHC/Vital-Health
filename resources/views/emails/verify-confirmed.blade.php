@@ -33,7 +33,7 @@
         <p class="paragraph">Tu correo electrónico ha sido verificado con éxito.</p>
         <p class="paragraph">Ahora puedes acceder a tu cuenta y disfrutar de todas las funcionalidades.</p>
         <button class="p-2 bg-vh-green-medium text-white-not-white font-semibold rounded-lg">
-            <a href="/login">Iniciar session</a>
+            <a href="/login">Iniciar sesión</a>
         </button>
     </div>
 </body>
