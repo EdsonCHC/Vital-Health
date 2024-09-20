@@ -206,7 +206,7 @@ $(document).ready(function () {
                         Swal.fire({
                             icon: "error",
                             title: "Error...",
-                            text: response,
+                            text: response.errors,
                         }).then(() => {
                             $("#mail").focus();
                         });
