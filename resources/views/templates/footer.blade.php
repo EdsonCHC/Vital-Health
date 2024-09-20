@@ -11,26 +11,25 @@
             </div>
             <div class="grid grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-3">
                 <div>
-                    <h2 class="mb-4 text-xs sm:text-sm font-semibold text-gray-900 uppercase text-white-not-white">Recursos
+                    <h2 class="mb-4 text-xs sm:text-sm font-semibold text-gray-900 uppercase text-white-not-white">{{__('messages.es_220')}}
                     </h2>
                     <ul class="text-gray-500 dark:text-gray-400 font-medium">
                         <li class="mb-2 sm:mb-4">
-                            <a href="/citas" class="hover:underline">Citas</a>
+                            <a href="/citas" class="hover:underline">{{__('messages.es_221')}}</a>
                         </li>
                         <li class="mb-2 sm:mb-4">
-                            <a href="/examen" class="hover:underline">Exámenes</a>
+                            <a href="/examen" class="hover:underline">{{__('messages.es_222')}}</a>
                         </li>
                         <li class="mb-2 sm:mb-4">
-                            <a href="/area" class="hover:underline">Especialidades</a>
+                            <a href="/area" class="hover:underline">{{__('messages.es_223')}}</a>
                         </li>
                     </ul>
                 </div>
                 <div>
-                    <h2 class="mb-4 text-xs sm:text-sm font-semibold text-gray-900 uppercase text-white-not-white">Sobre
-                        Nosotros</h2>
+                    <h2 class="mb-4 text-xs sm:text-sm font-semibold text-gray-900 uppercase text-white-not-white">{{__('messages.es_224')}}</h2>
                     <ul class="text-gray-500 dark:text-gray-400 font-medium">
                         <li class="mb-2 sm:mb-4">
-                            <a href="/about" class="hover:underline">¿Quiénes somos?</a>
+                            <a href="/about" class="hover:underline">{{__('messages.es_225')}}</a>
                         </li>
                         <li class="mb-2 sm:mb-4">
                             <a href="https://github.com/EdsonCHC/Vital-Health" class="hover:underline">Github</a>
@@ -38,13 +37,13 @@
                     </ul>
                 </div>
                 <div>
-                    <h2 class="mb-4 text-xs sm:text-sm font-semibold text-gray-900 uppercase text-white-not-white">Legal</h2>
+                    <h2 class="mb-4 text-xs sm:text-sm font-semibold text-gray-900 uppercase text-white-not-white">{{__('messages.es_226')}}</h2>
                     <ul class="text-gray-500 dark:text-gray-400 font-medium">
                         <li class="mb-2 sm:mb-4">
-                            <a href="#" class="hover:underline">Política de privacidad</a>
+                            <a href="#" class="hover:underline">{{__('messages.es_227')}}</a>
                         </li>
                         <li class="mb-2 sm:mb-4">
-                            <a href="#" class="hover:underline">Términos y condiciones</a>
+                            <a href="#" class="hover:underline">{{__('messages.es_228')}}</a>
                         </li>
                     </ul>
                 </div>
@@ -52,8 +51,8 @@
         </div>
         <hr class="my-4 sm:my-6 border-gray-200 dark:border-gray-700 lg:my-8" />
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-            <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 text-center sm:text-left">© 2023
-                Vital-Health™ Todos los derechos reservados.</span>
+            <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 text-center sm:text-left">&copy 2024
+            {{__('messages.es_229')}}</span>
         </div>
     </div>
 </footer>

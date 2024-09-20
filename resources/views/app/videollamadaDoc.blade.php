@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Videollamada Doctor</title>
+    <title>{{__('messages.es_206')}} Doctor</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
     @vite(['resources/css/app.css', 'resources/css/loader.css'])
     <script src="https://meet.jit.si/external_api.js"></script>
@@ -17,26 +17,26 @@
         <!-- Header -->
         <header class="bg-white shadow-md p-4 flex items-center justify-between">
             <div class="text-xl font-semibold text-gray-800">
-                Videollamada
+                {{__('messages.es_206')}}
             </div>
 
             <div class="text-lg font-semibold text-gray-800">
-                Sala: <span class="font-bold text-vh-green">{{ $roomName }}</span>
+                {{__('messages.es_210')}} <span class="font-bold text-vh-green">{{ $roomName }}</span>
             </div>
-
+            sala
             <a href="/doctor"
                 class="p-2 rounded-full flex items-center justify-center bg-blue-500 hover:bg-blue-600 transition-colors duration-300 ease-in-out">
                 <img src="{{ asset('storage/svg/arrow.svg') }}" alt="Ir al doctor"
                     class="w-8 h-8 p-1 bg-white rounded-full shadow-md">
             </a>
         </header>
-        
+
         <!-- Video Container -->
         <div id="meet" class="flex-grow bg-black"></div>
 
         <!-- Script -->
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("DOMContentLoaded", function () {
                 const roomName = "{{ $roomName }}";
 
                 if (!roomName) {

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
+    <title>{{__('messages.es_112')}}</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
     @vite(['resources/css/app.css', 'resources/css/sweet.css', 'resources/js/register.js', 'resources/css/loader.css', 'resources/js/preloader.js'])
 </head>
@@ -17,46 +17,45 @@
                 <a href="/" class="">
                     <img src="{{ asset('storage/svg/logo.svg') }}" type="image/svg+xml"></img><!--LOGO-->
                 </a>
-                <h1 class="font-bold text-2xl mb-4">Registrarse</h1>
+                <h1 class="font-bold text-2xl mb-4">{{__('messages.es_112')}}</h1>
                 <form action="/" class="w-4/5 lg:flex flex-col items-center">
                     @csrf
                     <input type="hidden" id="_token" value="{{ csrf_token() }}">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="text "
-                        placeholder="Nombres" id="name">
+                        placeholder="{{__('messages.es_113')}}" id="name">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="text"
-                        placeholder="Apellidos" id="lastName">
+                        placeholder="{{__('messages.es_114')}}" id="lastName">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="email"
-                        placeholder="Email" id="mail">
+                        placeholder="{{__('messages.es_115')}}" id="mail">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="text"
-                        placeholder="Dirección" id="address" name="address">
+                        placeholder="{{__('messages.es_116')}}" id="address" name="address">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="password"
-                        placeholder="Contraseña" id="password">
+                        placeholder="{{__('messages.es_117')}}" id="password">
                     <input class="block w-full p-2 outline outline-1 outline-vh-green mb-4 lg:w-2/5 " type="password"
-                        placeholder="Confirmar Contraseña" id="password_confirm">
+                        placeholder="{{__('messages.es_118')}}" id="password_confirm">
                     <input type="checkbox" class="hidden" id="see_password"></input>
                     <label for="see_password" id="see_password_label"
                         class="cursor-pointer flex gap-2 items-center mb-10">
-                        <p>Ver Contraseñas</p><img src="{{ asset('storage/svg/eye-scan.svg') }}" alt="scan_eye"
+                        <p>{{__('messages.es_119')}}</p><img src="{{ asset('storage/svg/eye-scan.svg') }}" alt="scan_eye"
                             type="image/svg+xml" id="see_password_img">
                     </label>
                     <button id="register"
                         class="w-full p-2 rounded-md bg-vh-green text-white font-bold  lg:w-2/5 hover:bg-gray-100 hover:text-vh-green duration-200"
-                        id="show-alert">Registrarse</button>
+                        id="show-alert">{{__('messages.es_112')}}</button>
                 </form>
-                <p class="my-8">¿Ya posees una cuenta?
+                <p class="my-8">{{__('messages.es_120')}}
                     <a href="/login" class="text-vh-green font-bold">
-                        Iniciar Sesión
+                    {{__('messages.es_121')}}
                     </a>
                 </p>
             </div>
-            <p class="flex grow items-end text-vh-green text-center lg:block">© 2024 Vital Health Todos los derechos
-                reservados</p>
+            <p class="flex grow items-end text-vh-green text-center lg:block">© 2024 {{__('messages.es_105')}}</p>
         </div>
         <div class="hidden lg:block bg-vh-green w-2/5 rounded-xl p-11 order-1 relative">
             <div class="lg:bg-black opacity-20 w-full h-full rounded-xl"></div>
             <h3
                 class="text-5xl text-white-not-white font-semibold leading-relaxed absolute  inset-20 text-center opacity-90 font-mono">
-                Tu salud es nuestra prioridad; confía en nosotros para brindarte el mejor cuidado.</h3>
+                {{__('messages.es_122')}}</h3>
             <div class="">
                 <img src="{{ asset('storage/svg/kid.svg') }}" alt="doctor_svg" class="absolute start-2 bottom-2">
             </div>

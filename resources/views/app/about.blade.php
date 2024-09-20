@@ -1,7 +1,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Nosotros</title>
+    <title>
+        {{__('messages.es_38')}}
+    </title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
     @vite(['resources/css/app.css', 'resources/css/loader.css', 'resources/js/preloader.js', 'resources/js/scroll.js'])
 </head>
@@ -19,23 +21,23 @@
         </div>
         <div class="flex flex-col w-full lg:w-1/2 mx-auto items-center md:justify-center lg:text-left text-center">
             <h2 class="font-bold text-xl py-4 lg:mt-10 lg:text-4xl text-vh-green pb-1 lg:pb-6">
-                Por
-                qué elegir
-                nuestros servicios?
+                {{__('messages.es_39')}}
             </h2>
             <ul class="text-start items-center text-sm pb-1 pl-1 lg:pl-24">
-                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">Servicio Inmediato
+                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">
+                    {{__('messages.es_40')}}
                 </li>
-                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">Personal
-                    Profesional
+                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">
+                    {{__('messages.es_41')}}
                 </li>
-                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">Equipos De Calidad
+                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">
+                    {{__('messages.es_42')}}
                 </li>
-                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">Atención
-                    Profesional
+                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">
+                    {{__('messages.es_43')}}
                 </li>
-                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">Desde Cualquier
-                    Lugar
+                <li class="text-sm md:text-base lg:text-2xl lg:font-semibold text-gray-400 list-disc">
+                    {{__('messages.es_44')}}
                 </li>
             </ul>
 
@@ -62,12 +64,9 @@
             </div>
         </div>
         <div class="lg:w-1/2 flex flex-col lg:pl-28 lg:order-first">
-            <h2 class="text-star font-bold text-vh-green mb-5 text-4xl mt-8 mx-8">Mision</h2>
+            <h2 class="text-star font-bold text-vh-green mb-5 text-4xl mt-8 mx-8">{{__('messages.es_45')}}</h2>
             <div class="flex justify-center text-start">
-                <p class="text-base mx-8 leading-loose">Desarrollar Vital Health, una plataforma web adaptable y segura,
-                    que aborde las necesidades y desafíos del servicio de salud en línea. Nuestro objetivo es mejorar el
-                    acceso eficiente a la atención médica mediante el uso de herramientas de desarrollo web actualizadas
-                    y adaptables, proporcionando un servicio eficiente y de alta calidad a nuestros usuarios.
+                <p class="text-base mx-8 leading-loose">{{__('messages.es_46')}}
                 </p>
             </div>
         </div>
@@ -89,27 +88,20 @@
             </div>
         </div>
         <div class="lg:w-1/2 flex flex-col lg:pl-28">
-            <h2 class="text-end  lg:text-start  md:text-start font-bold text-vh-green mb-5 text-4xl mt-8 mx-8">Vision
+            <h2 class="text-end  lg:text-start  md:text-start font-bold text-vh-green mb-5 text-4xl mt-8 mx-8">
+                {{__('messages.es_47')}}
             </h2>
             <div class="flex justify-center text-start">
-                <p class="text-base mx-8 leading-loose">Ser líderes en el campo de la salud digital, ofreciendo una
-                    plataforma innovadora y escalable que permita a los usuarios acceder a una variedad de servicios de
-                    salud en línea. Aspiramos a transformar la manera en que las personas interactúan con los servicios
-                    de salud, facilitando consultas médicas virtuales, acceso a historiales médicos electrónicos y
-                    seguimiento personalizado de la salud, todo a través de una experiencia de usuario optimizada y
-                    accesible.
+                <p class="text-base mx-8 leading-loose">{{__('messages.es_48')}}
                 </p>
             </div>
         </div>
     </div>
     <div class="flex flex-col ">
         <div class="flex flex-col lg:text-center lg:items-center ">
-            <h2 class="font-bold text-4xl mt-8 mb-5 text-center">Beneficios que ofrecemos al unirte a nosotros.</h2>
-            <h3 class="text-vh-green font-bold mx-8 text-2xl  text-start">Tus Beneficios</h3>
-            <div class="flex mx-8 ">
-                <p class="text-base leading-loose">Install our top-rated dropshipping app to your e-commerce site and
-                    get access to US Suppliers, AliExpress vendors, and the best.</p>
-            </div>
+            <h2 class="font-bold text-4xl mt-8 mb-5 text-center">
+                {{__('messages.es_49')}}
+            </h2>
         </div>
         <script>
             function toggleText(textId) {
@@ -128,14 +120,13 @@
                     <div class="  bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5">
                         <h2 class="text-vh-green font-bold text-2xl">01</h2>
                     </div>
-                    <h3 class="font-semibold text-xl p-2">Acceso a Consultas desde Cualquier Lugar</h3>
+                    <h3 class="font-semibold text-xl p-2">
+                        {{__('messages.es_50')}}
+                    </h3>
                     <div class="text-container overflow-hidden">
                         <p id="text1" class="text-base leading-loose p-4 line-clamp-3">
-                            Los pacientes pueden acceder a consultas médicas desde la comodidad de su hogar o cualquier
-                            lugar con conexión a internet, eliminando la necesidad de desplazarse a un centro físico.
+                            {{__('messages.es_51')}}
                         </p>
-                        <a href="#" onclick="toggleText('text1')"
-                            class="text-vh-green hover:underline block p-4">Saber más...</a>
                     </div>
                 </div>
             </div>
@@ -145,14 +136,11 @@
 
                         <h2 class="text-vh-green font-bold text-2xl">02</h2>
                     </div>
-                    <h3 class="font-semibold text-xl p-2">Horarios Flexibles</h3>
+                    <h3 class="font-semibold text-xl p-2">{{__('messages.es_52')}}</h3>
                     <div class="text-container overflow-hidden">
                         <p id="text2" class="text-base leading-loose p-4 line-clamp-3">
-                            Los pacientes pueden agendar citas en horarios más convenientes, incluyendo opciones fuera
-                            del horario laboral convencional, lo que se adapta mejor a sus estilos de vida ocupados.
+                            {{__('messages.es_53')}}
                         </p>
-                        <a href="#" onclick="toggleText('text2')"
-                            class="text-vh-green hover:underline block p-4">Saber más...</a>
                     </div>
                 </div>
             </div>
@@ -161,15 +149,11 @@
                     <div class="  bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5">
                         <h2 class="text-vh-green font-bold text-2xl">03</h2>
                     </div>
-                    <h3 class="font-semibold text-xl p-2">Atención Médica Personalizada</h3>
+                    <h3 class="font-semibold text-xl p-2">{{__('messages.es_54')}}</h3>
                     <div class="text-container overflow-hidden">
                         <p id="text3" class="text-base leading-loose p-4 line-clamp-3">
-                            Ofrecemos un seguimiento más continuo y personalizado, ya que los pacientes pueden contactar a
-                            los doctores fácilmente a través de la plataforma para consultas o dudas adicionales.
+                            {{__('messages.es_55')}}
                         </p>
-                        <a href="#" onclick="toggleText('text3')"
-                            class="text-vh-green hover:underline block p-4">Learn
-                            More</a>
                     </div>
                 </div>
             </div>
@@ -178,14 +162,11 @@
                     <div class="bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5">
                         <h2 class="text-vh-green font-bold text-2xl">04</h2>
                     </div>
-                    <h3 class="font-semibold text-xl p-2">Acceso Rápido a Expedientes Médicos</h3>
+                    <h3 class="font-semibold text-xl p-2">{{__('messages.es_56')}}</h3>
                     <div class="text-container overflow-hidden">
                         <p id="text4" class="text-base leading-loose p-4 line-clamp-3">
-                            Los pacientes tienen acceso en tiempo real a sus expedientes médicos, resultados de pruebas
-                            y recetas, lo que facilita la gestión y el seguimiento de su salud.
+                            {{__('messages.es_47')}}
                         </p>
-                        <a href="#" onclick="toggleText('text4')"
-                            class="text-vh-green hover:underline block p-4">Saber más...</a>
                     </div>
                 </div>
             </div>
@@ -194,14 +175,11 @@
                     <div class="  bg-green-100 rounded-full h-14 w-14 flex items-center justify-center ml-5">
                         <h2 class="text-vh-green font-bold text-2xl">05</h2>
                     </div>
-                    <h3 class="font-semibold text-xl p-2">Ahorro de Tiempo y Costos</h3>
+                    <h3 class="font-semibold text-xl p-2">{{__('messages.es_58')}}</h3>
                     <div class="text-container overflow-hidden">
                         <p id="text5" class="text-base leading-loose p-4 line-clamp-3">
-                            Al evitar el traslado y los tiempos de espera en la clínica, los pacientes ahorran tiempo y,
-                            en muchos casos, también reducen costos asociados con consultas presenciales.
+                            {{__('messages.es_59')}}
                         </p>
-                        <a href="#" onclick="toggleText('text5')"
-                            class="text-vh-green hover:underline block p-4">Saber más...</a>
                     </div>
                 </div>
             </div>
@@ -211,15 +189,13 @@
 
                         <h2 class="text-vh-green font-bold text-2xl">06</h2>
                     </div>
-                    <h3 class="font-semibold text-xl p-2">Seguridad y Privacidad de Datos</h3>
+                    <h3 class="font-semibold text-xl p-2">
+                        {{__('messages.es_60')}}
+                    </h3>
                     <div class="text-container overflow-hidden">
                         <p id="text6" class="text-base leading-loose p-4 line-clamp-3">
-                            Garantizamos un entorno seguro y protegido para la gestión de información médica, cumpliendo
-                            con los estándares de protección de datos y privacidad, lo que brinda tranquilidad a los
-                            pacientes.
+                            {{__('messages.es_61')}}
                         </p>
-                        <a href="#" onclick="toggleText('text6')"
-                            class="text-vh-green hover:underline block p-4">Saber más...</a>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Videollamada Paciente</title>
+    <title>{{__('messages.es_209')}} Paciente</title>
     <link rel="shortcut icon" href="{{ asset('storage/svg/favicon.png') }}" type="image/x-icon">
     @vite(['resources/css/app.css', 'resources/css/loader.css'])
     <script defer src="https://meet.jit.si/external_api.js"></script>
@@ -17,7 +17,7 @@
         <!-- Header -->
         <header class="bg-white shadow-md p-4 flex items-center justify-between">
             <div class="text-xl font-semibold text-gray-800">
-                Videollamada
+                {{__('messages.es_209')}}
             </div>
             <div class="text-lg font-semibold text-gray-800">
                 Sala: <span class="font-bold text-vh-green">{{ $roomName }}</span>
@@ -31,7 +31,7 @@
         <div id="meet" class="flex-grow bg-black"></div>
 
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("DOMContentLoaded", function () {
                 const roomName = "{{ $roomName }}";
                 if (!roomName) {
                     console.error("El nombre de la sala es inválido o no se proporcionó.");

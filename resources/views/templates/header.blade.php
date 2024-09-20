@@ -20,20 +20,23 @@
 
             <!-- Menú para pantallas grandes -->
             <ul class="hidden md:flex justify-center gap-10 items-center">
-                <li class="nav-link font-bold text-white tracking-wider"><a href="/">Inicio</a></li>
+                <li class="nav-link font-bold text-white tracking-wider"><a href="/">{{__('messages.es_211')}}</a></li>
                 <li class="font-bold relative group text-white tracking-wider">
-                    <a href="/area">Especialidades Médicas</a>
+                    <a href="/area">
+                        {{__('messages.es_212')}}
+                    </a>
                     <!-- Dropdown con transición -->
                     <ul
                         class="absolute hidden bg-white py-2 px-4 shadow-md w-full z-10 group-hover:block rounded-sm transform opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out">
-                        <li><a href="/medicina" class="block p-1 text-vh-green nav-link-2">Medicina</a>
+                        <li><a href="/medicina" class="block p-1 text-vh-green nav-link-2">{{__('messages.es_213')}}</a>
                         </li>
-                        <li><a href="/citas" class="block p-1 text-vh-green nav-link-2">Citas</a></li>
-                        <li><a href="/examen" class="block p-1 text-vh-green nav-link-2">Exámenes</a></li>
+                        <li><a href="/citas" class="block p-1 text-vh-green nav-link-2">{{__('messages.es_214')}}</a></li>
+                        <li><a href="/examen" class="block p-1 text-vh-green nav-link-2">{{__('messages.es_215')}}</a></li>
                     </ul>
                 </li>
-                <li><a href="/reunion" class="nav-link font-bold text-white tracking-wider">Reuniones</a></li>
-                <li class="nav-link font-bold text-white tracking-wider"><a href="/about">Acerca de VH</a></li>
+                <li><a href="/reunion" class="nav-link font-bold text-white tracking-wider">{{__('messages.es_216')}}</a>
+                </li>
+                <li class="nav-link font-bold text-white tracking-wider"><a href="/about">{{__('messages.es_217')}}</a></li>
             </ul>
 
             <!-- Controles de usuario y notificaciones -->
@@ -54,17 +57,24 @@
         <div id="mobile-menu" class="hidden fixed top-20 z-20 right-0 w-full h-full bg-stone-100 bg-opacity-95 md:hidden">
             <div class="flex flex-col h-full space-y-6 py-4 mx-4">
                 <ul class="space-y-4 text-lg font-semibold">
-                    <li><a href="/" class="w-6/12 sm:4/12 block px-2 py-2 text-white bg-vh-green rounded">Inicio</a>
+                    <li><a href="/"
+                            class="w-6/12 sm:4/12 block px-2 py-2 text-white bg-vh-green rounded">{{__('messages.es_218')}}</a>
                     </li>
-                    <li><a href="/area" class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Especialidades
-                            Médicas</a></li>
-                    <li><a href="/medicina" class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Medicina</a></li>
-                    <li><a href="/citas" class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Citas</a></li>
-                    <li><a href="/examen" class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Exámenes</a></li>
-                    <li><a href="/reunion" class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Reuniones</a></li>
-                    <li><a href="/about" class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Acerca de VH</a>
+                    <li><a href="/area"
+                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">{{__('messages.es_212')}}</a></li>
+                    <li><a href="/medicina"
+                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">{{__('messages.es_213')}}</a></li>
+                    <li><a href="/citas"
+                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">{{__('messages.es_214')}}</a></li>
+                    <li><a href="/examen"
+                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">{{__('messages.es_215')}}</a></li>
+                    <li><a href="/reunion"
+                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">{{__('messages.es_216')}}</a></li>
+                    <li><a href="/about"
+                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">{{__('messages.es_217')}}</a>
                     </li>
-                    <li><a href="/user" class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">Perfil</a></li>
+                    <li><a href="/user"
+                            class="w-6/12 block px-2 py-2 text-white bg-vh-green rounded">{{__('messages.es_218')}}</a></li>
                 </ul>
             </div>
         </div>
@@ -80,7 +90,7 @@
         <div class="ml-auto">
             <a href="/login"
                 class="inline-block px-6 py-2 tracking-wide text-white font-semibold bg-green-900 hover:bg-gray-300 hover:text-black rounded-lg shadow-md transition duration-300 ease-in-out">
-                Iniciar Sesión
+                {{__('messages.es_219')}}
             </a>
         </div>
     </header>

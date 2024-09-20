@@ -85,7 +85,7 @@
 
                 <a href="/register" target="_self"
                     class="w-4/5 h-8 text-white bg-vh-green text-sm shadow-xl mb-10 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green inline-block text-center pt-1 mx-4">
-                    Regístrate ahora
+                    {{__('messages.es_4')}}
                 </a>
             </div>
             <div class="w-1/2">
@@ -195,17 +195,17 @@
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
                     <object data="{{ asset('storage/svg/baby.svg') }}" type="image/svg+xml" class="w-10"></object>
-                    <p class="font-bold">Pediatría</p>
+                    <p class="font-bold">{{__('messages.es_17')}}</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
                     <object data="{{ asset('storage/svg/heart.svg') }}" type="image/svg+xml" class="w-10"></object>
-                    <p class="font-bold">Atención Primaria</p>
+                    <p class="font-bold">{{__('messages.es_18')}}</p>
                 </div>
                 <div
                     class="w-32 h-32 bg-gray-100 p-8 rounded-2xl shadow-lg flex flex-col items-center lg:w-1/3 animation3">
                     <object data="{{ asset('storage/svg/brain.svg') }}" type="image/svg+xml" class="w-10"></object>
-                    <p class="font-bold">Psiquiatría</p>
+                    <p class="font-bold">{{__('messages.es_19')}}</p>
                 </div>
             </div>
         </div>
@@ -217,11 +217,11 @@
         </div>
         <div class="flex justify-center lg:my-20 text-left items-center flex-col">
             <h2 class="font-bold p-2 text-xl text-vh-green lg:font-bold lg:text-left lg:text-4xl lg:ml-12 animation2">
-                Por qué elegir nuestros servicios?</h2>
+            {{__('messages.es_20')}}</h2>
             <div class="flex justify-center lg:text-center items-center mx-8">
                 <div class="flex flex-col text-left">
                     <section class="px-6 py-4 bg-gray-100 rounded-lg shadow-md">
-                        <h2 class="text-xl lg:text-2xl font-semibold text-gray-700 mb-4">Nuestros Servicios</h2>
+                        <h2 class="text-xl lg:text-2xl font-semibold text-gray-700 mb-4">{{__('messages.es_21')}}</h2>
                         <ul class="space-y-4">
                             <li class="text-base lg:text-xl font-medium text-gray-600 flex items-center">
                                 <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor"
@@ -230,8 +230,7 @@
                                         d="M12 8c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zM12 4a8 8 0 0 0-8 8c0 4.42 3.58 8 8 8s8-3.58 8-8a8 8 0 0 0-8-8z">
                                     </path>
                                 </svg>
-                                Nuestro equipo de profesionales de la salud se dedica a proporcionar una atención
-                                personalizada y de alta calidad.
+                                {{__('messages.es_22')}}
                             </li>
                             <li class="text-base lg:text-xl font-medium text-gray-600 flex items-center">
                                 <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor"
@@ -240,8 +239,7 @@
                                         d="M12 8c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zM12 4a8 8 0 0 0-8 8c0 4.42 3.58 8 8 8s8-3.58 8-8a8 8 0 0 0-8-8z">
                                     </path>
                                 </svg>
-                                Contamos con tecnología de última generación para ofrecerte los mejores servicios
-                                médicos.
+                                {{__('messages.es_23')}}
                             </li>
                             <li class="text-base lg:text-xl font-medium text-gray-600 flex items-center">
                                 <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor"
@@ -250,8 +248,7 @@
                                         d="M12 8c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zM12 4a8 8 0 0 0-8 8c0 4.42 3.58 8 8 8s8-3.58 8-8a8 8 0 0 0-8-8z">
                                     </path>
                                 </svg>
-                                Ofrecemos una amplia gama de servicios médicos que cubren todas tus necesidades de
-                                salud.
+                                {{__('messages.es_24')}}
                             </li>
                         </ul>
                     </section>
@@ -261,7 +258,7 @@
             @guest
                 <a href="/login" target="_self"
                     class="w-2/5 lg:w-2/3 h-12 text-white bg-vh-green text-base lg:text-2xl shadow-xl m-5 rounded-full hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center content-center">
-                    Comienza ya
+                    {{__('messages.es_25')}}
                 </a>
             @endguest
 
@@ -272,35 +269,36 @@
         <div class="rounded-lg shadow-md overflow-hidden">
             <div class="p-8">
                 <h2 class="font-bold text-3xl text-vh-green  lg:text-4xl lg:py-6">
-                    Nuestras Características
+                    {{__('messages.es_26')}}
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                     <div class="bg-blue-100 border border-blue-400 rounded-lg p-8 animate-fade-in-up">
-                        <h3 class="text-2xl font-semibold text-blue-800 mb-4">Atención Personalizada</h3>
-                        <p class="text-gray-700"> En nuestra clínica, cada paciente es único. Nos tomamos el tiempo
-                            para escuchar y entender tus necesidades específicas, asegurando que recibas el tratamiento
-                            más adecuado y efectivo. Tu salud y bienestar son nuestra prioridad.</p>
+                        <h3 class="text-2xl font-semibold text-blue-800 mb-4">
+                        {{__('messages.es_27')}}
+                        </h3>
+                        <p class="text-gray-700"> 
+                            {{__('messages.es_28')}}</p>
                     </div>
                     <div class="bg-green-100 border border-green-400 rounded-lg p-8 animate-fade-in-up">
-                        <h3 class="text-2xl font-semibold text-green-800 mb-4">Tecnología Avanzada</h3>
-                        <p class="text-gray-700">Contamos con equipos de última generación para ofrecer diagnósticos
-                            precisos y tratamientos innovadores. Nuestra tecnología de vanguardia nos permite brindarte
-                            una atención médica moderna y eficiente, reduciendo tiempos de espera y mejorando los
-                            resultados.</p>
+                        <h3 class="text-2xl font-semibold text-green-800 mb-4">
+                        {{__('messages.es_29')}}
+                        </h3>
+                        <p class="text-gray-700">
+                            {{__('messages.es_30')}}</p>
                     </div>
                     <div class="bg-green-100 border border-green-400 rounded-lg p-8 animate-fade-in-up">
-                        <h3 class="text-2xl font-semibold text-green-800 mb-4">Amplia Gama de Servicios</h3>
-                        <p class="text-gray-700">Ofrecemos una variedad de servicios médicos que cubren todas tus
-                            necesidades de salud. Desde consultas generales y especialidades médicas hasta exámenes y
-                            tratamientos específicos, nuestro centro está preparado para atenderte en todas las etapas
-                            de tu vida.</p>
+                        <h3 class="text-2xl font-semibold text-green-800 mb-4">
+                        {{__('messages.es_31')}}
+                        </h3>
+                        <p class="text-gray-700">
+                            {{__('messages.es_32')}}</p>
                     </div>
                     <div class="bg-blue-100 border border-blue-400 rounded-lg p-8 animate-fade-in-up">
-                        <h3 class="text-2xl font-semibold text-blue-800 mb-4">Profesionales Expertos</h3>
-                        <p class="text-gray-700">Nuestro equipo está compuesto por médicos y especialistas altamente
-                            calificados y con amplia experiencia en sus respectivas áreas. Nos enorgullece contar con
-                            profesionales dedicados que se mantienen actualizados con los últimos avances médicos para
-                            ofrecerte la mejor atención posible.</p>
+                        <h3 class="text-2xl font-semibold text-blue-800 mb-4">
+                        {{__('messages.es_33')}}
+                        </h3>
+                        <p class="text-gray-700">
+                            {{__('messages.es_34')}}</p>
                     </div>
                 </div>
             </div>
@@ -309,17 +307,16 @@
     <div class="flex w-full flex-col lg:flex-row  ">
         <div class=" lg:w-1/2 lg:items-center flex flex-col lg:flex-row">
             <div class="lg:pl-28  ">
-                <h3 class="text-left lg:text-start   m-4 text-vh-green font-semibold lg:text-xl xl:text-4xl">Vital
-                    Healt
+                <h3 class="text-left lg:text-start   m-4 text-vh-green font-semibold lg:text-xl xl:text-4xl">
+                    {{__('messages.es_35')}}
                 </h3>
                 <h2 class="text-center  lg:text-start font-bold mt-3 lg:pl-5 lg:mx-0 mx-9 lg:text-3xl xl:text-4xl">
-                    Únase
-                    a nosotros y brindaremos una asistencia sanitaria de calidad.</h2>
+                    {{__('messages.es_36')}} </h2>
                 <div class="flex lg:justify-start justify-center">
                     @guest
                         <a href="/login" target="_self"
                             class="w-3/5  h-10 content-center text-white bg-vh-green text-sm lg:text-base xl:text-lg shadow-xl my-5 rounded-full lg:w-2/5 hover:bg-white hover:text-vh-green duration-200 ease-in inline-block text-center mx-4">
-                            Únete ya
+                            {{__('messages.es_37')}}
                         </a>
                     @endguest
 
