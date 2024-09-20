@@ -203,10 +203,16 @@ $(document).ready(function () {
                     },
                     error: (response) => {
                         console.error(response.responseJSON);
+
+                        if (response.responseJSON && response.responseJSON.errors) {
+                            // Accede directamente al primer error de la primera clave
+                            const firstErrorField = Object.keys(response.responseJSON.errors)[0];
+                            const firstErrorMessage = response.responseJSON.errors[firstErrorField][0];
+                        }
                         Swal.fire({
                             icon: "error",
                             title: "Error...",
-                            text: response.responseJSON.errors,
+                            text: firstErrorMessage,
                         }).then(() => {
                             $("#mail").focus();
                         });
