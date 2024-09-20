@@ -208,14 +208,15 @@ $(document).ready(function () {
                             // Accede directamente al primer error de la primera clave
                             const firstErrorField = Object.keys(response.responseJSON.errors)[0];
                             const firstErrorMessage = response.responseJSON.errors[firstErrorField][0];
+
+                            Swal.fire({
+                                icon: "error",
+                                title: "Error...",
+                                text: firstErrorMessage, // Solo el primer mensaje de error
+                            }).then(() => {
+                                $("#mail").focus(); // Focaliza el campo de correo
+                            });
                         }
-                        Swal.fire({
-                            icon: "error",
-                            title: "Error...",
-                            text: firstErrorMessage,
-                        }).then(() => {
-                            $("#mail").focus();
-                        });
                     },
                 });
                 break;
