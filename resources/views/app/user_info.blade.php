@@ -117,13 +117,13 @@
                                                 <span class="text-lg font-semibold">{{__('messages.es_165')}} *</span>
                                                 <input type="email" name="mail" value="{{ $user->mail }}"
                                                     class="w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input"
-                                                    required>
+                                                    readonly required>
                                             </label>
                                             <label class="block">
                                                 <span class="text-lg font-semibold">{{__('messages.es_166')}} *</span>
                                                 <input type="text" name="address" value="{{ $user->address }}"
                                                     class="w-full h-12 border rounded-lg p-2 mt-1 bg-gray-100 text-input"
-                                                    required>
+                                                    readonly required>
                                             </label>
                                         </div>
                                         <div class="flex justify-between items-center mt-6">
