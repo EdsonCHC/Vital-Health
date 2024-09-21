@@ -37,9 +37,11 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                    title: "Será enviado al inicio en breve",
+                    toast: true,
+                    title: "Cerrando Sesión",
+                    position: "bottom-end",
                     icon: "success",
-                    timer: 1500,
+                    timer: 2000,
                     showConfirmButton: false,
                     timerProgressBar: true,
                 }).then(() => {
@@ -237,7 +239,6 @@ $(document).ready(function () {
                             timerProgressBar: true,
                         }).then(() => {
                             // Actualizar la imagen en la vista
-                            window.location.reload();
                         });
                     }
                 },
