@@ -57,7 +57,16 @@ $(document).ready(function () {
                             }
                         },
                         error(response) {
-                            console.log("Ups, algo ha salido mal :v");
+                            console.log(response);
+                            Swal.fire({
+                                toast: true,
+                                title: "Error al Cerrar Sesión",
+                                position: "bottom-end",
+                                icon: "error",
+                                timer: 2000,
+                                showConfirmButton: false,
+                                timerProgressBar: true,
+                            });
                         },
                     });
                 });

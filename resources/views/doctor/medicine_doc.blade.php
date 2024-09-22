@@ -40,9 +40,11 @@
                                     class="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 mb-4">
                                     <div class="p-4">
                                         <h3 class="text-lg font-semibold text-vh-green mb-2">{{ $receta->titulo }}</h3>
-                                        <p class="text-sm text-gray-600"><strong>Código:</strong> {{ $receta->codigo_receta }}
+                                        <p class="text-sm text-gray-600"><strong>Código:</strong>
+                                            {{ $receta->codigo_receta }}
                                         </p>
-                                        <p class="text-sm text-gray-600"><strong>Paciente:</strong> {{ $receta->patient->name }}
+                                        <p class="text-sm text-gray-600"><strong>Paciente:</strong>
+                                            {{ $receta->patient->name }}
                                         </p>
                                         <p class="text-sm text-gray-600"><strong>Fecha:</strong>
                                             {{ $receta->fecha_entrega->format('Y-m-d') }}</p>
@@ -74,12 +76,16 @@
                                 <div
                                     class="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 mb-4">
                                     <div class="p-4">
-                                        <h3 class="text-lg font-semibold text-vh-green mb-2">{{ $medicina->nombre }}</h3>
+                                        <h3 class="text-lg font-semibold text-vh-green mb-2">{{ $medicina->nombre }}
+                                        </h3>
                                         <p class="text-sm text-gray-600"><strong>Descripción:</strong>
                                             {{ $medicina->descripcion }}</p>
-                                        <p class="text-sm text-gray-600"><strong>Tipo:</strong> {{ $medicina->tipo }}</p>
-                                        <p class="text-sm text-gray-600"><strong>Cantidad:</strong> {{ $medicina->stock }}</p>
-                                        <p class="text-sm text-gray-600"><strong>Estado:</strong> {{ $medicina->estado }}</p>
+                                        <p class="text-sm text-gray-600"><strong>Tipo:</strong> {{ $medicina->tipo }}
+                                        </p>
+                                        <p class="text-sm text-gray-600"><strong>Cantidad:</strong>
+                                            {{ $medicina->stock }}</p>
+                                        <p class="text-sm text-gray-600"><strong>Estado:</strong>
+                                            {{ $medicina->estado }}</p>
                                     </div>
                                     <div class="p-4 border-t border-gray-200 flex justify-end">
                                         <button

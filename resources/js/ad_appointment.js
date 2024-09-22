@@ -29,20 +29,28 @@ $(document).ready(function () {
                     url: `/appointments/${appointmentId}`,
                     type: "DELETE",
                     success: function (response) {
-                        Swal.fire(
-                            "Eliminado!",
-                            "La cita ha sido eliminada.",
-                            "success"
-                        ).then(() => {
+                        Swal.fire({
+                            toast: true,
+                            title: "Cita Eliminada",
+                            position: "bottom-end",
+                            icon: "success",
+                            timer: 2000,
+                            showConfirmButton: false,
+                            timerProgressBar: true,
+                        }).then(() => {
                             window.location.reload();
                         });
                     },
                     error: function (xhr) {
-                        Swal.fire(
-                            "Error!",
-                            "No se pudo eliminar la cita.",
-                            "error"
-                        );
+                        Swal.fire({
+                            toast: true,
+                            title: "La Cita no se Pudo Eliminar",
+                            position: "bottom-end",
+                            icon: "error",
+                            timer: 2000,
+                            showConfirmButton: false,
+                            timerProgressBar: true,
+                        });
                     },
                 });
             }
@@ -217,8 +225,7 @@ $(document).ready(function () {
                 success: function (response) {
                     Swal.fire({
                         toast: true,
-                        title: "Actualizado!",
-                        text: "La cita ha sido asignada con el doctor seleccionado.",
+                        title: "Asignado!",
                         position: "bottom-end",
                         icon: "success",
                         timer: 2000,
@@ -232,7 +239,7 @@ $(document).ready(function () {
                     Swal.fire({
                         toast: true,
                         title: "Error!",
-                        text: "No se pudo actualizar la cita.",
+                        text: "No se pudo asignar la cita.",
                         position: "bottom-end",
                         icon: "error",
                         timer: 2000,

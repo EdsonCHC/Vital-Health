@@ -28,20 +28,28 @@ $(document).ready(function () {
                     url: `/recetas/${recetaId}`,
                     type: "DELETE",
                     success: function () {
-                        Swal.fire(
-                            "Eliminado!",
-                            "El pedido ha sido eliminado.",
-                            "success"
-                        ).then(() => {
+                        Swal.fire({
+                            toast: true,
+                            title: "Receta eliminada",
+                            position: "bottom-end",
+                            icon: "success",
+                            timer: 2000,
+                            showConfirmButton: false,
+                            timerProgressBar: true,
+                        }).then(() => {
                             location.reload(); // Reload the page to update the view
                         });
                     },
                     error: function () {
-                        Swal.fire(
-                            "Error!",
-                            "Hubo un problema al eliminar el pedido.",
-                            "error"
-                        );
+                        Swal.fire({
+                            toast: true,
+                            title: "La Receta no se pudo eliminar",
+                            position: "bottom-end",
+                            icon: "error",
+                            timer: 2000,
+                            showConfirmButton: false,
+                            timerProgressBar: true,
+                        });
                     },
                 });
             }

@@ -21,9 +21,11 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                    title: "Será enviado al inicio en breve",
+                    toast: true,
+                    title: "Cerrando Sesión",
+                    position: "bottom-end",
                     icon: "success",
-                    timer: 1500,
+                    timer: 2000,
                     showConfirmButton: false,
                     timerProgressBar: true,
                 }).then(() => {
@@ -40,7 +42,16 @@ $(document).ready(function () {
                             }
                         },
                         error(response) {
-                            console.log("Ups, algo ha salido mal :v");
+                            console.log(response);
+                            Swal.fire({
+                                toast: true,
+                                title: "Error al Cerrar Sesión",
+                                position: "bottom-end",
+                                icon: "error",
+                                timer: 2000,
+                                showConfirmButton: false,
+                                timerProgressBar: true,
+                            });
                         },
                     });
                 });
@@ -73,7 +84,9 @@ $(document).ready(function () {
                     success(response) {
                         if (response.success) {
                             Swal.fire({
-                                title: response.message,
+                                toast: true,
+                                title: "Cita Eliminada",
+                                position: "bottom-end",
                                 icon: "success",
                                 timer: 2000,
                                 showConfirmButton: false,
@@ -124,6 +137,4 @@ $(document).ready(function () {
         updateDateTime();
         setInterval(updateDateTime, 1000);
     };
-
-
 });
