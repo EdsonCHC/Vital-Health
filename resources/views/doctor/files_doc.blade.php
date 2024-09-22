@@ -29,7 +29,7 @@
             <!-- Expediente Cards -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach ($expedientes as $file)
-                    @if ($file->state == 0)
+                    @if ($file->state == 1)
                         <div class="bg-white p-4 rounded-lg shadow-lg space-y-4">
                             <div>
                                 <label class="block font-bold text-gray-700">Paciente</label>
@@ -37,23 +37,18 @@
                                     value="{{ $file->patient->name }} {{ $file->patient->lastName }}" readonly>
                             </div>
                             <div>
-                                <label class="block font-bold text-gray-700">Correo Electronico</label>
+                                <label class="block font-bold text-gray-700">Correo Electrónico</label>
                                 <input type="text" class="w-full p-2 border rounded bg-gray-100"
                                     value="{{ $file->patient->mail }}" readonly>
                             </div>
                             <div class="flex justify-between space-x-2">
-                                {{-- Lo habilitare cuando me funcione la logica --}}
-                                {{-- <button data-patient-id="{{ $file->patient->id }}"
-                                    class="saveFileDoc w-full bg-blue-500 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300">
-                                    PDF
-                                </button> --}}
                                 <button data-id="{{ $file->id }}" data-patient-id="{{ $file->patient->id }}"
                                     class="unassignedFile w-full bg-red-500 text-white font-semibold py-2 rounded-lg shadow-lg hover:bg-red-600 transition duration-300">
                                     Deshabilitar Expediente
                                 </button>
                             </div>
                         </div>
-                    @elseif ($file->state == 1)
+                    @elseif ($file->state == 0)
                         <div class="bg-white p-4 rounded-lg shadow-lg space-y-4">
                             <div>
                                 <label class="block font-bold text-gray-700">Paciente</label>
@@ -61,7 +56,7 @@
                                     value="{{ $file->patient->name }} {{ $file->patient->lastName }}" readonly>
                             </div>
                             <div>
-                                <label class="block font-bold text-gray-700">Correo Electronico</label>
+                                <label class="block font-bold text-gray-700">Correo Electrónico</label>
                                 <input type="text" class="w-full p-2 border rounded bg-gray-100"
                                     value="{{ $file->patient->mail }}" readonly>
                             </div>

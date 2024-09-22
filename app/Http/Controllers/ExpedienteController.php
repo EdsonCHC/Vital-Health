@@ -206,14 +206,13 @@ class ExpedienteController extends Controller
         try {
             $request->validate([
                 'patient_id' => 'required|exists:patients,id',
-                'state' => 'required|in:0,1' // Asegúrate de que el estado sea 0 o 1
+                'state' => 'required|in:0,1' 
             ]);
 
             $expediente = Expedientes::findOrFail($id);
 
             $expediente->update([
                 'state' => $request->input('state'),
-                // No actualices patient_id aquí
             ]);
 
             return response()->json([

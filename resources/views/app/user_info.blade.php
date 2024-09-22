@@ -64,17 +64,12 @@
                                             class="w-8 h-8 mx-2">Avatar
                                     </button>
                                     @foreach ($expedientes as $file)
-                                        @if ($file->state == 0)
+                                        @if ($file->state == 1)
                                             <a href="/fileUser"
                                                 class="saveFileUser bg-gray-300 text-gray-700 h-12 lg:h-12 px-4 py-2 rounded-md text-lg flex items-center mx-2">
                                                 <img src="{{ asset('storage/svg/printer-icon.svg') }}" alt="Expediente"
                                                     class="w-6 h-6 mx-2">{{__('messages.es_158')}}
                                             </a>
-                                        @elseif ($file->state == 1)
-                                            <button
-                                                class="bg-gray-300 text-gray-700 h-16 lg:h-14 px-4 py-2 rounded-md text-lg flex items-center mx-2">
-                                                <img src="{{ asset('storage/svg/question.svg') }}" alt="Expediente"
-                                                    class="w-6 h-6 mx-2">{{__('messages.es_158')}}</button>
                                         @endif
                                     @endforeach
                                 </div>

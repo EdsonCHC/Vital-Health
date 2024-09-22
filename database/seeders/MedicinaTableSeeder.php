@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 class MedicinaTableSeeder extends Seeder
@@ -21,6 +22,8 @@ class MedicinaTableSeeder extends Seeder
                 'tipo' => 'Analgésico',
                 'stock' => 100,
                 'estado' => 'Disponible',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'nombre' => 'Ibuprofeno',
@@ -28,6 +31,8 @@ class MedicinaTableSeeder extends Seeder
                 'tipo' => 'Anti-inflamatorio',
                 'stock' => 50,
                 'estado' => 'Disponible',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'nombre' => 'Amoxicilina',
@@ -35,6 +40,8 @@ class MedicinaTableSeeder extends Seeder
                 'tipo' => 'Antibiótico',
                 'stock' => 75,
                 'estado' => 'Disponible',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'nombre' => 'Omeprazol',
@@ -42,6 +49,8 @@ class MedicinaTableSeeder extends Seeder
                 'tipo' => 'Antiácido',
                 'stock' => 200,
                 'estado' => 'Disponible',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
         ];
         // Insertar los registros en la base de datos

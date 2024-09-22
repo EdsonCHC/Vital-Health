@@ -149,6 +149,8 @@ $(document).ready(function () {
                 })
                     .then((response) => response.json())
                     .then((data) => {
+                        console.log(data); // Ver la estructura de la respuesta aquí
+
                         if (data.success) {
                             return Swal.fire({
                                 icon: "success",
@@ -157,18 +159,25 @@ $(document).ready(function () {
                             });
                         } else {
                             const errors = data.errors;
-                            let errorMessage =
-                                "Por favor, corrige los siguientes errores:\n";
-                            for (const [key, messages] of Object.entries(
-                                errors
-                            )) {
-                                errorMessage += `${messages.join(", ")}\n`;
+                            if (errors && typeof errors === "object") {
+                                let errorMessage =
+                                    "Por favor, corrige los siguientes errores:\n";
+                                for (const [key, messages] of Object.entries(
+                                    errors
+                                )) {
+                                    errorMessage += `${messages.join(", ")}\n`;
+                                }
+                                Swal.showValidationMessage(errorMessage);
+                            } else {
+                                Swal.showValidationMessage(
+                                    "Hubo un error inesperado en la validación."
+                                );
                             }
-                            Swal.showValidationMessage(errorMessage);
                             return false;
                         }
                     })
                     .catch((error) => {
+                        console.log(error);
                         Swal.showValidationMessage(
                             "Ocurrió un error al enviar los datos."
                         );
@@ -203,8 +212,8 @@ $(document).ready(function () {
                         "X-CSRF-TOKEN": _token,
                     },
                     data: {
-                        patient_id: patientId, // Enviar el patient_id al controlador
-                        state: "1", // Cambiar el estado a "0" como cadena
+                        patient_id: patientId,
+                        state: "0", // desactiva
                     },
                     success(response) {
                         if (response.success) {
@@ -261,7 +270,7 @@ $(document).ready(function () {
                     },
                     data: {
                         patient_id: patientId, // Enviar el patient_id al controlador
-                        state: "0", // Cambiar el estado a "1" como cadena
+                        state: "1", // Cambiar el estado a "1" como cadena
                     },
                     success(response) {
                         if (response.success) {

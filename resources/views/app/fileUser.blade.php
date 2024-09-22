@@ -176,8 +176,8 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label class="block font-bold">Nombre</label>
-                    <input type="text" class="w-full p-2 border rounded"
-                        value="{{ $user->name }} {{ $user->lastName }}" readonly>
+                    <input type="text" class="w-full p-2 border rounded" value="{{ $user->name }} {{ $user->lastName }}"
+                        readonly>
                 </div>
                 <div>
                     <label class="block font-bold">Fecha de Nacimiento</label>
@@ -189,7 +189,7 @@
                         readonly>
                 </div>
                 <div>
-                    <label class="block font-bold">Correo Electronico</label>
+                    <label class="block font-bold">Correo Electrónico</label>
                     <input type="text" class="w-full p-2 border rounded" value="{{ $user->mail }}" readonly>
                 </div>
                 <div>
@@ -279,7 +279,8 @@
                                         <div>
                                             <p class="text-sm font-semibold">{{ $receta->titulo }}</p>
                                             <p class="text-sm text-gray-500">Fecha de Entrega:
-                                                {{ $receta->fecha_entrega }}</p>
+                                                {{ $receta->fecha_entrega }}
+                                            </p>
                                             <p class="text-sm text-gray-500">Estado: {{ $receta->estado }}</p>
                                         </div>
                                     </div>
@@ -287,15 +288,15 @@
                                 <h3 class="font-medium text-xl mb-4">Medicamento</h3>
                                 <div class="p-4 bg-gray-50 rounded">
                                     <h4 class="text-lg font-semibold mb-2">Nombre:</h4>
-                                    <p>{{ $receta->medicamento->name }}</p>
+                                    <p>{{ $receta->medicamento->name ?? 'No tiene medicamentos'}}</p>
                                     <h4 class="text-lg font-semibold mb-2 mt-2">Número de Lote:</h4>
-                                    <p>{{ $receta->medicamento->batch_number }}</p>
+                                    <p>{{ $receta->medicamento->batch_number ?? 'No tiene medicamentos'}}</p>
                                     <h4 class="text-lg font-semibold mb-2 mt-2">Cantidad:</h4>
-                                    <p>{{ $receta->medicamento->quantity }}</p>
+                                    <p>{{ $receta->medicamento->quantity ?? 'No tiene medicamentos'}}</p>
                                     <h4 class="text-lg font-semibold mb-2 mt-2">Fecha de Expiración:</h4>
-                                    <p>{{ $receta->medicamento->expiration_date }}</p>
+                                    <p>{{ $receta->medicamento->expiration_date ?? 'No tiene medicamentos'}}</p>
                                     <h4 class="text-lg font-semibold mb-2 mt-2">Descripción:</h4>
-                                    <p>{{ $receta->medicamento->description }}</p>
+                                    <p>{{ $receta->medicamento->description ?? 'No tiene medicamentos'}}</p>
                                 </div>
                             </article>
                         @endforeach
@@ -315,12 +316,15 @@
                 @else
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
                         @foreach ($exams as $exam)
-                            <div class="bg-white p-6 mb-6 shadow-lg hover:shadow-2xl rounded-lg border">
-                                <h3 class="font-medium text-xl mb-4">{{ $exam->nombre }}</h3>
-                                <p class="text-gray-500 mb-2">Fecha: {{ $exam->fecha }}</p>
-                                <p class="text-gray-500 mb-2">Tipo: {{ $exam->tipo }}</p>
-                                <p class="text-gray-500 mb-2">Descripción: {{ $exam->descripcion }}</p>
+                            <div class="bg-white p-6 mb-6 shadow-md hover:shadow-lg rounded-lg border border-gray-200">
+                                <h3 class="font-semibold text-xl mb-3 text-gray-800">
+                                    {{ $exam->nombre }}
+                                </h3>
+                                <p class="text-gray-600 mb-1"><span class="font-medium">Fecha:</span> {{ $exam->exam_date }}</p>
+                                <p class="text-gray-600 mb-1"><span class="font-medium">Tipo:</span> {{ $exam->exam_type }}</p>
+                                <p class="text-gray-600"><span class="font-medium">Descripción:</span> {{ $exam->notes }}</p>
                             </div>
+
                         @endforeach
                     </div>
                 @endif
@@ -330,7 +334,6 @@
             <h2 class="font-medium text-gray-600">&copy; 2024 Vital Health. Todos los derechos
                 reservados.
             </h2>
-            {{-- <img src="{{ asset('storage/svg/logo.svg') }}" alt="logo" class="h-24"> --}}
         </div>
     </div>
 </body>

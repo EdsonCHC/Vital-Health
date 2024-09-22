@@ -32,4 +32,10 @@ class Usuario extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function expediente()
+    {
+        return $this->hasOne(Expedientes::class, 'patient_id');
+    }
+
 }
